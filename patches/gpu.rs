@@ -1,18 +1,21 @@
 //! GPU acceleration hooks for triton-vm operations.
 //!
 //! Register a GPU accelerator via `set_gpu_accelerator()` before proving.
-//! The prover dispatches Tip5 hashing and NTT to the GPU when available.
+//! The prover dispatches Tip5 hashing, NTT, and Merkle tree construction
+//! to the GPU when available.
 
 use std::sync::OnceLock;
 
 use twenty_first::math::ntt::intt;
 use twenty_first::prelude::*;
+use twenty_first::util_types::merkle_tree::MerkleTree;
 
 /// Trait for GPU-accelerated operations used during proving.
 ///
 /// Acceleration targets (in order of impact):
 /// 1. NTT/iNTT: polynomial interpolation, ~40-50% of prove time
 /// 2. Tip5 batch hashing: Merkle tree leaf construction, ~20-30%
+/// 3. Merkle tree construction: internal node hashing, ~10-15%
 pub trait GpuAccelerator: Send + Sync {
     /// Backend name for diagnostics.
     fn name(&self) -> &str;
@@ -28,6 +31,13 @@ pub trait GpuAccelerator: Send + Sync {
     /// In-place inverse NTT on an XFieldElement column.
     fn intt_xfe(&self, column: &mut [XFieldElement]) {
         intt(column);
+    }
+
+    /// Build a Merkle tree from leaf digests.
+    ///
+    /// Default: delegates to twenty-first's MerkleTree::par_new.
+    fn merkle_tree(&self, leaves: &[Digest]) -> MerkleTree {
+        MerkleTree::par_new(leaves).unwrap()
     }
 }
 

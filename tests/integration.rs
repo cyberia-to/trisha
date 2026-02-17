@@ -333,6 +333,54 @@ fn gpu_intt_xfe_matches_cpu() {
     }
 }
 
+/// Test that GPU Merkle tree produces identical results to CPU.
+#[cfg(feature = "gpu")]
+#[test]
+fn gpu_merkle_tree_matches_cpu() {
+    use triton_vm::gpu::GpuAccelerator;
+    use twenty_first::prelude::*;
+    use twenty_first::util_types::merkle_tree::MerkleTree;
+
+    let accel = match trisha::gpu::wgpu_backend::create_tip5_accelerator() {
+        Some(a) => a,
+        None => {
+            eprintln!("No GPU available, skipping gpu_merkle_tree_matches_cpu");
+            return;
+        }
+    };
+
+    // Test various tree sizes (power of 2 leaves)
+    for log_n in [9, 10, 12] {
+        let n = 1usize << log_n;
+
+        // Generate deterministic leaf digests
+        let leaves: Vec<Digest> = (0..n)
+            .map(|i| {
+                Digest::new([
+                    BFieldElement::new((i as u64 * 97 + 13) % (1u64 << 60)),
+                    BFieldElement::new((i as u64 * 31 + 7) % (1u64 << 60)),
+                    BFieldElement::new((i as u64 * 53 + 41) % (1u64 << 60)),
+                    BFieldElement::new((i as u64 * 71 + 23) % (1u64 << 60)),
+                    BFieldElement::new((i as u64 * 17 + 59) % (1u64 << 60)),
+                ])
+            })
+            .collect();
+
+        // CPU reference
+        let cpu_tree = MerkleTree::par_new(&leaves).unwrap();
+
+        // GPU
+        let gpu_tree = accel.merkle_tree(&leaves);
+
+        assert_eq!(
+            cpu_tree.root(),
+            gpu_tree.root(),
+            "GPU and CPU Merkle tree roots disagree for n=2^{}",
+            log_n
+        );
+    }
+}
+
 /// Test that GPU Tip5 hash_varlen_batch produces identical results to CPU.
 #[cfg(feature = "gpu")]
 #[test]

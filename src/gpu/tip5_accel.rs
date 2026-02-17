@@ -84,6 +84,8 @@ pub struct WgpuTip5Accelerator {
     lookup_buf: wgpu::Buffer,
     mds_buf: wgpu::Buffer,
     rc_buf: wgpu::Buffer,
+    // Merkle tree pipeline (Tip5 hash_pair)
+    hash_pair_pipeline: wgpu::ComputePipeline,
     // NTT pipelines
     ntt_butterfly_pipeline: wgpu::ComputePipeline,
     ntt_normalize_pipeline: wgpu::ComputePipeline,
@@ -106,6 +108,14 @@ impl WgpuTip5Accelerator {
             layout: None,
             module: &tip5_module,
             entry_point: Some("hash_rows"),
+            compilation_options: Default::default(),
+            cache: None,
+        });
+        let hash_pair_pipeline = device.create_compute_pipeline(&wgpu::ComputePipelineDescriptor {
+            label: Some("tip5_hash_pair"),
+            layout: None,
+            module: &tip5_module,
+            entry_point: Some("hash_pair"),
             compilation_options: Default::default(),
             cache: None,
         });
@@ -161,6 +171,7 @@ impl WgpuTip5Accelerator {
             device,
             queue,
             tip5_pipeline,
+            hash_pair_pipeline,
             lookup_buf,
             mds_buf,
             rc_buf,
@@ -583,5 +594,189 @@ impl GpuAccelerator for WgpuTip5Accelerator {
             xfe.coefficients[1] = c1[i];
             xfe.coefficients[2] = c2[i];
         }
+    }
+
+    fn merkle_tree(&self, leaves: &[Digest]) -> twenty_first::util_types::merkle_tree::MerkleTree {
+        use twenty_first::util_types::merkle_tree::MerkleTree;
+
+        let n = leaves.len();
+        if n == 0 || !n.is_power_of_two() {
+            return MerkleTree::par_new(leaves).unwrap();
+        }
+
+        // Small trees: CPU is faster due to GPU dispatch overhead
+        if n < 512 {
+            return MerkleTree::par_new(leaves).unwrap();
+        }
+
+        // Build flat node array: index 0 unused, root at 1, leaves at [n..2n)
+        let num_nodes = 2 * n;
+        let digest_len = 5;
+
+        // Initialize nodes: zeros for internal, leaves at the end
+        let mut nodes_flat: Vec<[u32; 2]> = vec![[0u32; 2]; num_nodes * digest_len];
+        for (i, leaf) in leaves.iter().enumerate() {
+            let base = (n + i) * digest_len;
+            for (j, &bfe) in leaf.0.iter().enumerate() {
+                let raw = bfe.raw_u64();
+                nodes_flat[base + j] = [raw as u32, (raw >> 32) as u32];
+            }
+        }
+
+        // Build tree bottom-up, one level per GPU dispatch
+        // Level k: nodes [2^k .. 2^(k+1)) are parents of [2^(k+1) .. 2^(k+2))
+        let mut level_size = n / 2; // number of parents at bottom internal level
+        let mut child_start = n; // first child index
+
+        while level_size >= 1 {
+            let parent_start = child_start / 2;
+            let n_pairs = level_size as u32;
+
+            // Prepare children buffer: n_pairs * 2 * digest_len elements
+            let children_data: Vec<[u32; 2]> = (0..level_size)
+                .flat_map(|i| {
+                    let left_idx = (parent_start + i) * 2;
+                    let right_idx = left_idx + 1;
+                    let left_base = left_idx * digest_len;
+                    let right_base = right_idx * digest_len;
+                    let mut pair = Vec::with_capacity(2 * digest_len);
+                    for j in 0..digest_len {
+                        pair.push(nodes_flat[left_base + j]);
+                    }
+                    for j in 0..digest_len {
+                        pair.push(nodes_flat[right_base + j]);
+                    }
+                    pair
+                })
+                .collect();
+
+            let children_buf = self
+                .device
+                .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                    label: Some("merkle_children"),
+                    contents: bytemuck::cast_slice(&children_data),
+                    usage: wgpu::BufferUsages::STORAGE,
+                });
+
+            let parents_size = (n_pairs as usize * digest_len * 8) as u64;
+            let parents_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
+                label: Some("merkle_parents"),
+                size: parents_size,
+                usage: wgpu::BufferUsages::STORAGE | wgpu::BufferUsages::COPY_SRC,
+                mapped_at_creation: false,
+            });
+
+            let params = [n_pairs, 0u32, 0u32, 0u32];
+            let params_buf = self
+                .device
+                .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                    label: Some("merkle_params"),
+                    contents: bytemuck::cast_slice(&params),
+                    usage: wgpu::BufferUsages::UNIFORM,
+                });
+
+            let bind_group_layout = self.hash_pair_pipeline.get_bind_group_layout(0);
+            let bind_group = self.device.create_bind_group(&wgpu::BindGroupDescriptor {
+                label: Some("merkle_bg"),
+                layout: &bind_group_layout,
+                entries: &[
+                    wgpu::BindGroupEntry {
+                        binding: 0,
+                        resource: self.lookup_buf.as_entire_binding(),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 1,
+                        resource: self.mds_buf.as_entire_binding(),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 2,
+                        resource: self.rc_buf.as_entire_binding(),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 6,
+                        resource: children_buf.as_entire_binding(),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 7,
+                        resource: parents_buf.as_entire_binding(),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 8,
+                        resource: params_buf.as_entire_binding(),
+                    },
+                ],
+            });
+
+            let workgroups = (n_pairs + WORKGROUP_SIZE - 1) / WORKGROUP_SIZE;
+            let mut encoder = self
+                .device
+                .create_command_encoder(&wgpu::CommandEncoderDescriptor {
+                    label: Some("merkle_encoder"),
+                });
+            {
+                let mut pass = encoder.begin_compute_pass(&wgpu::ComputePassDescriptor {
+                    label: Some("merkle_pass"),
+                    timestamp_writes: None,
+                });
+                pass.set_pipeline(&self.hash_pair_pipeline);
+                pass.set_bind_group(0, &bind_group, &[]);
+                pass.dispatch_workgroups(workgroups, 1, 1);
+            }
+
+            // Read back parents
+            let staging_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
+                label: Some("merkle_staging"),
+                size: parents_size,
+                usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
+                mapped_at_creation: false,
+            });
+            encoder.copy_buffer_to_buffer(&parents_buf, 0, &staging_buf, 0, parents_size);
+            self.queue.submit(std::iter::once(encoder.finish()));
+
+            let slice = staging_buf.slice(..);
+            let (tx, rx) = std::sync::mpsc::channel();
+            slice.map_async(wgpu::MapMode::Read, move |result| {
+                tx.send(result).unwrap();
+            });
+            self.device.poll(wgpu::Maintain::Wait);
+            rx.recv()
+                .expect("Merkle readback channel closed")
+                .expect("Merkle readback failed");
+
+            let data = slice.get_mapped_range();
+            let result_pairs: &[[u32; 2]] = bytemuck::cast_slice(&data);
+
+            // Write parents into flat node array
+            for i in 0..level_size {
+                let node_idx = parent_start + i;
+                let node_base = node_idx * digest_len;
+                let src_base = i * digest_len;
+                for j in 0..digest_len {
+                    nodes_flat[node_base + j] = result_pairs[src_base + j];
+                }
+            }
+
+            drop(data);
+            staging_buf.unmap();
+
+            child_start = parent_start;
+            level_size /= 2;
+        }
+
+        // Convert flat node array to Vec<Digest>
+        let nodes: Vec<Digest> = (0..num_nodes)
+            .map(|i| {
+                let base = i * digest_len;
+                let mut elements = [BFieldElement::new(0); 5];
+                for j in 0..5 {
+                    let [lo, hi] = nodes_flat[base + j];
+                    let raw = (hi as u64) << 32 | lo as u64;
+                    elements[j] = BFieldElement::from_raw_u64(raw);
+                }
+                Digest::new(elements)
+            })
+            .collect();
+
+        MerkleTree::from_nodes(nodes)
     }
 }

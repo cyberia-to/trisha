@@ -110,6 +110,63 @@ fn tip5_permute(state: ptr<function, array<vec2<u32>, 16>>) {
     }
 }
 
+// ── Merkle tree internal node hashing (fixed-length domain) ─────
+//
+// hash_pair(left, right) = Tip5 permutation with:
+//   state[0..5]  = left digest
+//   state[5..10] = right digest
+//   state[10..16] = ONE (fixed-length domain separator)
+//
+// Used for Merkle tree construction: parent = hash_pair(left_child, right_child).
+// Level-by-level dispatch: each invocation hashes one parent node.
+
+struct MerkleParams {
+    n_pairs: u32,      // Number of parent nodes to compute
+    _pad0: u32,
+    _pad1: u32,
+    _pad2: u32,
+}
+
+// Children digests: n_pairs * 2 * DIGEST_LEN elements (left0,right0,left1,right1,...)
+@group(0) @binding(6) var<storage, read> children: array<vec2<u32>>;
+// Parent digests: n_pairs * DIGEST_LEN elements
+@group(0) @binding(7) var<storage, read_write> parents: array<vec2<u32>>;
+@group(0) @binding(8) var<uniform> merkle_params: MerkleParams;
+
+@compute @workgroup_size(64)
+fn hash_pair(@builtin(global_invocation_id) gid: vec3<u32>) {
+    let idx = gid.x;
+    if idx >= merkle_params.n_pairs {
+        return;
+    }
+
+    // Initialize state: fixed-length domain (capacity = ONE)
+    var state: array<vec2<u32>, 16>;
+    let child_base = idx * 2u * DIGEST_LEN;
+    // state[0..5] = left digest
+    for (var i = 0u; i < DIGEST_LEN; i = i + 1u) {
+        state[i] = children[child_base + i];
+    }
+    // state[5..10] = right digest
+    for (var i = 0u; i < DIGEST_LEN; i = i + 1u) {
+        state[DIGEST_LEN + i] = children[child_base + DIGEST_LEN + i];
+    }
+    // state[10..16] = ONE (fixed-length domain separator)
+    for (var i = RATE; i < STATE_SIZE; i = i + 1u) {
+        state[i] = MONTY_ONE;
+    }
+
+    tip5_permute(&state);
+
+    // Extract digest
+    let out_base = idx * DIGEST_LEN;
+    for (var i = 0u; i < DIGEST_LEN; i = i + 1u) {
+        parents[out_base + i] = state[i];
+    }
+}
+
+// ── Variable-length row hashing (sponge) ───────────────────────
+
 // Hash a single row using Tip5 sponge (variable-length domain).
 //
 // Algorithm:

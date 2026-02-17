@@ -1,59 +1,94 @@
 #!/usr/bin/env nu
 #
-# Fetch triton-vm from crates.io and apply GPU acceleration overlay.
+# Fetch triton-vm + twenty-first from crates.io and apply GPU acceleration overlay.
 #
 # No .patch files — just Rust code and surgical str replace.
 # Each replacement has a named step so you see what's happening.
 #
 # Usage: nu patches/apply.nu
-# Result: .vendor/triton-vm/ ready to build with GPU hooks.
+# Result: .vendor/triton-vm/ and .vendor/twenty-first/ ready to build with GPU hooks.
 
-let version = "2.0.0"
-let vendor_dir = ".vendor/triton-vm"
+let tv_version = "2.0.0"
+let tf_version = "1.1.0"
 let project_root = ($env.FILE_PWD | path join "..")
 
 cd $project_root
 
-# ── Fetch upstream ──────────────────────────────────────────────
-
-rm -rf $vendor_dir
-mkdir .vendor
-
-print $"Fetching triton-vm ($version)..."
-
 let cargo_home = ($env | get -o CARGO_HOME | default $"($env.HOME)/.cargo")
 let registry_src = $"($cargo_home)/registry/src"
-let crate_name = $"triton-vm-($version)"
 
-let cached = (glob $"($registry_src)/**/($crate_name)" | first)
+# ── Helper: fetch a crate from registry ─────────────────────────
 
-if ($cached | is-empty) {
-    print "Not in cache, downloading via cargo..."
-    let tmp = (mktemp -d)
-    $"[package]\nname = \"fetch-triton-vm\"\nversion = \"0.0.0\"\nedition = \"2021\"\n\n[dependencies]\ntriton-vm = \"=($version)\"\n" | save $"($tmp)/Cargo.toml"
-    mkdir $"($tmp)/src"
-    "" | save $"($tmp)/src/lib.rs"
-    cd $tmp; cargo fetch; cd $project_root
-    rm -rf $tmp
+def fetch_crate [name: string, version: string, vendor_dir: string] {
+    rm -rf $vendor_dir
 
+    let crate_name = $"($name)-($version)"
     let cached = (glob $"($registry_src)/**/($crate_name)" | first)
+
     if ($cached | is-empty) {
-        error make { msg: $"failed to download triton-vm ($version)" }
+        print $"  downloading ($name) ($version) via cargo..."
+        let tmp = (mktemp -d)
+        $"[package]\nname = \"fetch-dep\"\nversion = \"0.0.0\"\nedition = \"2021\"\n\n[dependencies]\n($name) = \"=($version)\"\n" | save $"($tmp)/Cargo.toml"
+        mkdir $"($tmp)/src"
+        "" | save $"($tmp)/src/lib.rs"
+        cd $tmp; cargo fetch; cd $project_root
+        rm -rf $tmp
+
+        let cached = (glob $"($registry_src)/**/($crate_name)" | first)
+        if ($cached | is-empty) {
+            error make { msg: $"failed to download ($name) ($version)" }
+        }
     }
+
+    print $"  found: ($cached)"
+    cp -r $cached $vendor_dir
 }
 
-print $"Found: ($cached)"
-cp -r $cached $vendor_dir
+# ── Fetch upstream crates ───────────────────────────────────────
+
+mkdir .vendor
+
+print $"Fetching twenty-first ($tf_version)..."
+fetch_crate "twenty-first" $tf_version ".vendor/twenty-first"
+
+print $"Fetching triton-vm ($tv_version)..."
+fetch_crate "triton-vm" $tv_version ".vendor/triton-vm"
+
+# triton-vm's twenty-first dep is redirected by [patch.crates-io] in Cargo.toml
+
+# ══════════════════════════════════════════════════════════════════
+# TWENTY-FIRST PATCHES
+# ══════════════════════════════════════════════════════════════════
+
+print "  [T0] twenty-first: MerkleTree::from_nodes constructor"
+
+let mt_file = ".vendor/twenty-first/src/util_types/merkle_tree.rs"
+(open $mt_file
+    | str replace ('    pub fn par_new(leafs: &[Digest]) -> Result<Self>') ('    /// Construct a MerkleTree from a pre-computed flat node array.
+    ///
+    /// The caller is responsible for ensuring the nodes are valid
+    /// (root at index 1, leaves at [n..2n), all internal nodes correct).
+    /// Used by GPU-accelerated tree construction.
+    pub fn from_nodes(nodes: Vec<Digest>) -> Self {
+        MerkleTree { nodes }
+    }
+
+    pub fn par_new(leafs: &[Digest]) -> Result<Self>')
+    | save -f $mt_file)
+
+# ══════════════════════════════════════════════════════════════════
+# TRITON-VM PATCHES
+# ══════════════════════════════════════════════════════════════════
 
 # ── Layer 0: gpu.rs — the trait itself ──────────────────────────
 
 print "  [0] gpu.rs — GpuAccelerator trait"
-cp patches/gpu.rs $"($vendor_dir)/src/gpu.rs"
+cp patches/gpu.rs .vendor/triton-vm/src/gpu.rs
 
 # ── Layer 1: lib.rs — export the module ─────────────────────────
 
 print "  [1] lib.rs — pub mod gpu"
-let lib_rs = $"($vendor_dir)/src/lib.rs"
+let lib_rs = ".vendor/triton-vm/src/lib.rs"
 (open $lib_rs | str replace
     "pub mod fri;\n"
     "pub mod fri;\npub mod gpu;\n"
@@ -63,22 +98,19 @@ let lib_rs = $"($vendor_dir)/src/lib.rs"
 
 print "  [2] visibility — pub(crate) → pub"
 
-# stark.rs
-let stark = $"($vendor_dir)/src/stark.rs"
+let stark = ".vendor/triton-vm/src/stark.rs"
 (open $stark
     | str replace "pub(crate) struct ProverDomains" "pub struct ProverDomains"
     | str replace "pub(crate) fn randomized_trace_len" "pub fn randomized_trace_len"
     | str replace "pub(crate) fn interpolant_degree" "pub fn interpolant_degree"
     | save -f $stark)
 
-# auxiliary_table.rs
-let aux = $"($vendor_dir)/src/table/auxiliary_table.rs"
+let aux = ".vendor/triton-vm/src/table/auxiliary_table.rs"
 (open $aux
     | str replace "pub(crate) struct DegreeWithOrigin" "pub struct DegreeWithOrigin"
     | save -f $aux)
 
-# master_table.rs
-let mt = $"($vendor_dir)/src/table/master_table.rs"
+let mt = ".vendor/triton-vm/src/table/master_table.rs"
 (open $mt
     | str replace "pub(crate) trait BfeSlice" "pub trait BfeSlice"
     | str replace "pub(crate) trait MasterTable" "pub trait MasterTable"
@@ -92,7 +124,6 @@ let mt = $"($vendor_dir)/src/table/master_table.rs"
 
 print "  [3] hash dispatch — Tip5 batch hashing"
 
-# stark.rs: add gpu import + replace quotient hash block
 (open $stark
     | str replace "use crate::fri;\n" "use crate::fri;\nuse crate::gpu;\n"
     | str replace ('        profiler!(start "hash rows of quotient segments" ("hash"));
@@ -131,7 +162,6 @@ print "  [3] hash dispatch — Tip5 batch hashing"
         profiler!(stop "hash rows of quotient segments");')
     | save -f $stark)
 
-# master_table.rs: add gpu import + replace FRI domain hash block
 (open $mt
     | str replace "use crate::challenges::Challenges;\n" "use crate::challenges::Challenges;\nuse crate::gpu;\n"
     | str replace ('            let all_digests = fri_domain_table
@@ -210,4 +240,30 @@ print "  [4] iNTT dispatch — polynomial interpolation"
         profiler!(stop "poly interpolate");')
     | save -f $stark)
 
-print $"Done. GPU overlay applied to ($vendor_dir)"
+# ── Layer 5: Merkle tree dispatch — GPU tree construction ───────
+
+print "  [5] Merkle tree dispatch — GPU tree construction"
+
+# master_table.rs: replace MerkleTree::par_new with GPU dispatch
+(open $mt
+    | str replace ('        profiler!(start "Merkle tree" ("hash"));
+        let merkle_tree = MerkleTree::par_new(&hashed_rows).unwrap();
+        profiler!(stop "Merkle tree");') ('        profiler!(start "Merkle tree" ("hash"));
+        let merkle_tree = if let Some(gpu) = gpu::gpu_accelerator() {
+            gpu.merkle_tree(&hashed_rows)
+        } else {
+            MerkleTree::par_new(&hashed_rows).unwrap()
+        };
+        profiler!(stop "Merkle tree");')
+    | save -f $mt)
+
+# stark.rs: replace quotient MerkleTree::par_new with GPU dispatch
+(open $stark
+    | str replace ('        let quot_merkle_tree = MerkleTree::par_new(&fri_domain_quotient_segment_codewords_digests)?;') ('        let quot_merkle_tree = if let Some(gpu) = gpu::gpu_accelerator() {
+            gpu.merkle_tree(&fri_domain_quotient_segment_codewords_digests)
+        } else {
+            MerkleTree::par_new(&fri_domain_quotient_segment_codewords_digests)?
+        };')
+    | save -f $stark)
+
+print "Done. GPU overlay applied to .vendor/"
