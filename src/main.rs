@@ -3,6 +3,7 @@ mod cli;
 mod compile;
 mod convert;
 mod error;
+mod gpu;
 mod proof_file;
 mod warrior;
 

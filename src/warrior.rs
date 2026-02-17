@@ -6,13 +6,21 @@ use trident::runtime::{
 
 use crate::convert;
 use crate::error::TrishaError;
+use crate::gpu::{self, GpuBackend};
 
 /// Trisha warrior: implements all four runtime traits for Triton VM.
-pub struct TrishaWarrior;
+///
+/// Uses the GPU backend for trace generation, proving, and verification
+/// when available; falls back to CPU otherwise.
+pub struct TrishaWarrior {
+    backend: Box<dyn GpuBackend>,
+}
 
 impl TrishaWarrior {
     pub fn new() -> Self {
-        TrishaWarrior
+        let backend = gpu::select_backend();
+        eprintln!("Backend: {}", backend.name());
+        TrishaWarrior { backend }
     }
 }
 
@@ -26,12 +34,8 @@ impl Runner for TrishaWarrior {
         let op_count = bundle.assembly.lines().count();
         eprintln!("Executing {} ({} ops)...", bundle.name, op_count);
 
-        let output =
-            VM::run(program, pub_in, non_det).map_err(|e| format!("execution error: {}", e))?;
-
-        // VM::run doesn't return cycle count — use 0 as placeholder.
-        // For cycle count, trace_execution is needed (but expensive).
-        Ok(convert::to_execution_result(&output, 0))
+        let (output, cycle_count) = self.backend.trace(&program, pub_in, non_det)?;
+        Ok(convert::to_execution_result(&output, cycle_count))
     }
 }
 
@@ -45,10 +49,7 @@ impl Prover for TrishaWarrior {
         let op_count = bundle.assembly.lines().count();
         eprintln!("Proving {} ({} ops)...", bundle.name, op_count);
 
-        let (stark, claim, proof) = triton_vm::prove_program(program, pub_in, non_det)
-            .map_err(|e| format!("proving error: {}", e))?;
-
-        let _ = stark; // Stark config used implicitly
+        let (claim, proof) = self.backend.prove(&program, pub_in, non_det)?;
 
         eprintln!("Proof generated ({} output elements)", claim.output.len());
 
@@ -68,10 +69,7 @@ impl Verifier for TrishaWarrior {
             &proof_data.claim.public_output,
         );
         let proof = convert::bytes_to_proof(&proof_data.proof_bytes).map_err(|e| e.to_string())?;
-
-        let stark = Stark::default();
-        let valid = triton_vm::verify(stark, &claim, &proof);
-        Ok(valid)
+        self.backend.verify(&claim, &proof)
     }
 }
 
