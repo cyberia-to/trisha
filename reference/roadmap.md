@@ -13,21 +13,25 @@ Trisha closes the loop: source → compile → run → prove → verify → depl
 | Proof file | DONE | TOML + bincode, roundtrip tested | — |
 | Deploy | STUB | Prints digest, says "not yet available" | No neptune-core dep, no RPC, no LockScript, no UTXO |
 | GPU trait | DONE | GpuBackend trait, CPU fallback, wgpu init | — |
-| WGSL shaders | DONE | 5 shaders (goldilocks, ntt, poseidon2, fri, tip5) | FRI not yet wired to computation |
+| WGSL shaders | DONE | 5 shaders (goldilocks, ntt, poseidon2, fri, tip5) | — |
 | GPU Tip5 hash | DONE | Tip5 batch hashing on GPU via GpuAccelerator | — |
 | GPU NTT | DONE | iNTT on BFE + XFE columns via ntt.wgsl | — |
-| GPU proving | PARTIAL | Tip5 hashing + BFE/XFE iNTT dispatched to GPU | Merkle tree, FRI still CPU |
-| GPU verify | NOT STARTED | wgpu backend falls back to CPU | Need FRI shader integration |
+| GPU Merkle | DONE | Tip5 hash_pair shader, level-by-level GPU build | — |
+| GPU FRI fold | DONE | XFE arithmetic shader, split-and-fold on GPU | — |
+| GPU proving | DONE | All 5 hot paths dispatched: hash, iNTT, Merkle, FRI fold | — |
+| GPU verify | NOT STARTED | wgpu backend falls back to CPU | Verifier FRI fold smaller workload |
 
-**What's real**: Runner, Prover, Verifier work end-to-end. 15 tests
+**What's real**: Runner, Prover, Verifier work end-to-end. 17 tests
 pass. Proofs are genuine STARK proofs verified by triton-vm. GPU
-accelerates three hot paths during proving: Tip5 leaf hashing (Merkle
-tree construction), iNTT on main table columns (BFE), and iNTT on
-aux table columns (XFE via coefficient deinterleaving). All run on
-Metal/Vulkan/DX12.
+accelerates all five proving hot paths: Tip5 leaf hashing, iNTT on
+main table columns (BFE), iNTT on aux table columns (XFE via
+coefficient deinterleaving), Merkle tree construction (Tip5 hash_pair),
+and FRI split-and-fold (XFieldElement arithmetic). All dispatched
+to Metal/Vulkan/DX12 via wgpu. Dependency patching injects GPU hooks
+into triton-vm without maintaining a fork.
 
-**What's scaffold**: GPU FRI (shader compiles but not wired),
-Deploy (prints metadata but no blockchain interaction).
+**What's scaffold**: Deploy (prints metadata but no blockchain
+interaction).
 
 ## Completion Plan
 
