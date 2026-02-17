@@ -15,18 +15,18 @@ Trisha closes the loop: source → compile → run → prove → verify → depl
 | GPU trait | DONE | GpuBackend trait, CPU fallback, wgpu init | — |
 | WGSL shaders | DONE | 5 shaders (goldilocks, ntt, poseidon2, fri, tip5) | FRI not yet wired to computation |
 | GPU Tip5 hash | DONE | Tip5 batch hashing on GPU via GpuAccelerator | — |
-| GPU NTT | DONE | iNTT on BFieldElement columns via ntt.wgsl | XFieldElement iNTT still CPU |
-| GPU proving | PARTIAL | Tip5 hashing + BFE iNTT dispatched to GPU | XFE iNTT, Merkle tree, FRI still CPU |
+| GPU NTT | DONE | iNTT on BFE + XFE columns via ntt.wgsl | — |
+| GPU proving | PARTIAL | Tip5 hashing + BFE/XFE iNTT dispatched to GPU | Merkle tree, FRI still CPU |
 | GPU verify | NOT STARTED | wgpu backend falls back to CPU | Need FRI shader integration |
 
-**What's real**: Runner, Prover, Verifier work end-to-end. 14 tests
+**What's real**: Runner, Prover, Verifier work end-to-end. 15 tests
 pass. Proofs are genuine STARK proofs verified by triton-vm. GPU
-accelerates two hot paths during proving: Tip5 leaf hashing (Merkle
-tree construction) and iNTT on main table columns (polynomial
-interpolation). Both run on Metal/Vulkan/DX12.
+accelerates three hot paths during proving: Tip5 leaf hashing (Merkle
+tree construction), iNTT on main table columns (BFE), and iNTT on
+aux table columns (XFE via coefficient deinterleaving). All run on
+Metal/Vulkan/DX12.
 
 **What's scaffold**: GPU FRI (shader compiles but not wired),
-XFieldElement iNTT (trait hook exists, needs shader extension),
 Deploy (prints metadata but no blockchain interaction).
 
 ## Completion Plan
