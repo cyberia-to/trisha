@@ -162,11 +162,34 @@ impl GpuBackend for WgpuBackend {
     }
 
     fn verify_batch(&self, jobs: &[(triton_vm::proof::Claim, Proof)]) -> Vec<Result<bool, String>> {
-        // Batch verification on GPU pending FRI shader integration.
-        // Currently verifies sequentially on CPU.
-        jobs.iter()
-            .map(|(claim, proof)| self.verify(claim, proof))
-            .collect()
+        if jobs.len() <= 1 {
+            return jobs
+                .iter()
+                .map(|(claim, proof)| self.verify(claim, proof))
+                .collect();
+        }
+
+        // Parallel verification: each thread runs triton_vm::verify independently.
+        // FRI fold calls within each verify hit the GPU accelerator concurrently —
+        // wgpu handles concurrent submissions from multiple threads.
+        std::thread::scope(|s| {
+            let handles: Vec<_> = jobs
+                .iter()
+                .map(|(claim, proof)| {
+                    s.spawn(move || {
+                        let stark = Stark::default();
+                        Ok(triton_vm::verify(stark, claim, proof))
+                    })
+                })
+                .collect();
+            handles
+                .into_iter()
+                .map(|h| {
+                    h.join()
+                        .unwrap_or(Err("verification thread panicked".into()))
+                })
+                .collect()
+        })
     }
 }
 

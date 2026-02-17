@@ -43,8 +43,29 @@ impl GpuBackend for CpuBackend {
     }
 
     fn verify_batch(&self, jobs: &[(triton_vm::proof::Claim, Proof)]) -> Vec<Result<bool, String>> {
-        jobs.iter()
-            .map(|(claim, proof)| self.verify(claim, proof))
-            .collect()
+        if jobs.len() <= 1 {
+            return jobs
+                .iter()
+                .map(|(claim, proof)| self.verify(claim, proof))
+                .collect();
+        }
+        std::thread::scope(|s| {
+            let handles: Vec<_> = jobs
+                .iter()
+                .map(|(claim, proof)| {
+                    s.spawn(move || {
+                        let stark = Stark::default();
+                        Ok(triton_vm::verify(stark, claim, proof))
+                    })
+                })
+                .collect();
+            handles
+                .into_iter()
+                .map(|h| {
+                    h.join()
+                        .unwrap_or(Err("verification thread panicked".into()))
+                })
+                .collect()
+        })
     }
 }
