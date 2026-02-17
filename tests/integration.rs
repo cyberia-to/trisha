@@ -246,6 +246,47 @@ fn select_backend_returns_valid_name() {
     );
 }
 
+/// Test that GPU iNTT produces identical results to CPU.
+#[cfg(feature = "gpu")]
+#[test]
+fn gpu_intt_matches_cpu() {
+    use triton_vm::gpu::GpuAccelerator;
+    use twenty_first::math::ntt::intt;
+    use twenty_first::prelude::*;
+
+    let accel = match trisha::gpu::wgpu_backend::create_tip5_accelerator() {
+        Some(a) => a,
+        None => {
+            eprintln!("No GPU available, skipping gpu_intt_matches_cpu");
+            return;
+        }
+    };
+
+    // Test various power-of-2 sizes
+    for log_n in [10, 12, 14] {
+        let n = 1usize << log_n;
+
+        // Create test data
+        let data: Vec<BFieldElement> = (0..n)
+            .map(|i| BFieldElement::new((i as u64 * 97 + 13) % (1u64 << 60)))
+            .collect();
+
+        // CPU reference
+        let mut cpu_result = data.clone();
+        intt(&mut cpu_result);
+
+        // GPU
+        let mut gpu_result = data.clone();
+        accel.intt_bfe(&mut gpu_result);
+
+        assert_eq!(
+            cpu_result, gpu_result,
+            "GPU and CPU iNTT disagree for n=2^{}",
+            log_n
+        );
+    }
+}
+
 /// Test that GPU Tip5 hash_varlen_batch produces identical results to CPU.
 #[cfg(feature = "gpu")]
 #[test]

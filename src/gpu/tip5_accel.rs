@@ -11,6 +11,7 @@ use wgpu;
 use wgpu::util::DeviceExt;
 
 use triton_vm::gpu::GpuAccelerator;
+use twenty_first::math::traits::PrimitiveRootOfUnity;
 use twenty_first::prelude::*;
 
 const DIGEST_LEN: usize = 5;
@@ -70,37 +71,70 @@ impl Tip5Constants {
     }
 }
 
-/// wgpu-based Tip5 batch hasher implementing triton-vm's GpuAccelerator.
+/// wgpu-based GPU accelerator implementing triton-vm's GpuAccelerator.
+///
+/// Accelerates:
+/// - Tip5 batch hashing (Merkle tree leaf construction)
+/// - NTT/iNTT (polynomial interpolation during proving)
 pub struct WgpuTip5Accelerator {
     device: wgpu::Device,
     queue: wgpu::Queue,
-    pipeline: wgpu::ComputePipeline,
-    // Persistent constant buffers (uploaded once at init)
+    // Tip5 pipeline + constants
+    tip5_pipeline: wgpu::ComputePipeline,
     lookup_buf: wgpu::Buffer,
     mds_buf: wgpu::Buffer,
     rc_buf: wgpu::Buffer,
+    // NTT pipelines
+    ntt_butterfly_pipeline: wgpu::ComputePipeline,
+    ntt_normalize_pipeline: wgpu::ComputePipeline,
 }
 
 impl WgpuTip5Accelerator {
     /// Create a new accelerator using an existing wgpu device and queue.
     pub fn new(device: wgpu::Device, queue: wgpu::Queue) -> Self {
         let goldilocks_src = include_str!("shaders/goldilocks.wgsl");
+
+        // Compile Tip5 shader
         let tip5_src = include_str!("shaders/tip5.wgsl");
-        let full_src = format!("{}\n{}", goldilocks_src, tip5_src);
-
-        let module = device.create_shader_module(wgpu::ShaderModuleDescriptor {
+        let tip5_full = format!("{}\n{}", goldilocks_src, tip5_src);
+        let tip5_module = device.create_shader_module(wgpu::ShaderModuleDescriptor {
             label: Some("tip5"),
-            source: wgpu::ShaderSource::Wgsl(full_src.into()),
+            source: wgpu::ShaderSource::Wgsl(tip5_full.into()),
         });
-
-        let pipeline = device.create_compute_pipeline(&wgpu::ComputePipelineDescriptor {
+        let tip5_pipeline = device.create_compute_pipeline(&wgpu::ComputePipelineDescriptor {
             label: Some("tip5_hash_rows"),
             layout: None,
-            module: &module,
+            module: &tip5_module,
             entry_point: Some("hash_rows"),
             compilation_options: Default::default(),
             cache: None,
         });
+
+        // Compile NTT shader
+        let ntt_src = include_str!("shaders/ntt.wgsl");
+        let ntt_full = format!("{}\n{}", goldilocks_src, ntt_src);
+        let ntt_module = device.create_shader_module(wgpu::ShaderModuleDescriptor {
+            label: Some("ntt"),
+            source: wgpu::ShaderSource::Wgsl(ntt_full.into()),
+        });
+        let ntt_butterfly_pipeline =
+            device.create_compute_pipeline(&wgpu::ComputePipelineDescriptor {
+                label: Some("ntt_butterfly"),
+                layout: None,
+                module: &ntt_module,
+                entry_point: Some("ntt_butterfly"),
+                compilation_options: Default::default(),
+                cache: None,
+            });
+        let ntt_normalize_pipeline =
+            device.create_compute_pipeline(&wgpu::ComputePipelineDescriptor {
+                label: Some("ntt_normalize"),
+                layout: None,
+                module: &ntt_module,
+                entry_point: Some("ntt_normalize"),
+                compilation_options: Default::default(),
+                cache: None,
+            });
 
         // Upload Tip5 constants
         let constants = Tip5Constants::load();
@@ -126,10 +160,12 @@ impl WgpuTip5Accelerator {
         WgpuTip5Accelerator {
             device,
             queue,
-            pipeline,
+            tip5_pipeline,
             lookup_buf,
             mds_buf,
             rc_buf,
+            ntt_butterfly_pipeline,
+            ntt_normalize_pipeline,
         }
     }
 }
@@ -199,7 +235,7 @@ impl GpuAccelerator for WgpuTip5Accelerator {
             });
 
         // Create bind group
-        let bind_group_layout = self.pipeline.get_bind_group_layout(0);
+        let bind_group_layout = self.tip5_pipeline.get_bind_group_layout(0);
         let bind_group = self.device.create_bind_group(&wgpu::BindGroupDescriptor {
             label: Some("tip5_bind_group"),
             layout: &bind_group_layout,
@@ -243,7 +279,7 @@ impl GpuAccelerator for WgpuTip5Accelerator {
                 label: Some("tip5_pass"),
                 timestamp_writes: None,
             });
-            pass.set_pipeline(&self.pipeline);
+            pass.set_pipeline(&self.tip5_pipeline);
             pass.set_bind_group(0, &bind_group, &[]);
             pass.dispatch_workgroups(workgroups, 1, 1);
         }
@@ -291,5 +327,223 @@ impl GpuAccelerator for WgpuTip5Accelerator {
         staging_buf.unmap();
 
         digests
+    }
+
+    fn intt_bfe(&self, column: &mut [BFieldElement]) {
+        let n = column.len();
+        if n <= 1 || !n.is_power_of_two() {
+            // Fallback to CPU for non-power-of-2 or trivial sizes
+            twenty_first::math::ntt::intt(column);
+            return;
+        }
+
+        // Small transforms: CPU is faster due to GPU dispatch overhead
+        if n < 1024 {
+            twenty_first::math::ntt::intt(column);
+            return;
+        }
+
+        let n_u32 = n as u32;
+        let log_n = n.trailing_zeros();
+
+        // Compute inverse twiddle factors: omega_inv = primitive_root^(-1)
+        let omega = BFieldElement::primitive_root_of_unity(n as u64).unwrap();
+        let omega_inv = omega.inverse();
+
+        // Build flat twiddle factor array: for each butterfly pair,
+        // tw[k] = omega_inv^k for k = 0..n/2
+        let mut twiddles = vec![[0u32; 2]; n / 2];
+        let mut w = BFieldElement::new(1); // = omega_inv^0
+        for tw in twiddles.iter_mut() {
+            let raw = w.raw_u64();
+            *tw = [raw as u32, (raw >> 32) as u32];
+            w *= omega_inv;
+        }
+
+        // Bit-reversal permutation (must happen before butterfly passes)
+        let log_n_u32 = log_n;
+        for k in 0..n {
+            let rev_k = (k as u32).reverse_bits() >> (32 - log_n_u32);
+            let rev_k = rev_k as usize;
+            if k < rev_k {
+                column.swap(k, rev_k);
+            }
+        }
+
+        // Upload column data (Montgomery form)
+        let col_data: Vec<[u32; 2]> = column
+            .iter()
+            .map(|bfe| {
+                let raw = bfe.raw_u64();
+                [raw as u32, (raw >> 32) as u32]
+            })
+            .collect();
+
+        let data_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("ntt_data"),
+                contents: bytemuck::cast_slice(&col_data),
+                usage: wgpu::BufferUsages::STORAGE | wgpu::BufferUsages::COPY_SRC,
+            });
+
+        let twiddle_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("ntt_twiddles"),
+                contents: bytemuck::cast_slice(&twiddles),
+                usage: wgpu::BufferUsages::STORAGE,
+            });
+
+        // Run log2(n) butterfly passes
+        for layer in 0..log_n {
+            let params = [n_u32, layer, 0u32, 0u32];
+            let params_buf = self
+                .device
+                .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                    label: Some("ntt_params"),
+                    contents: bytemuck::cast_slice(&params),
+                    usage: wgpu::BufferUsages::UNIFORM,
+                });
+
+            let bind_group_layout = self.ntt_butterfly_pipeline.get_bind_group_layout(0);
+            let bind_group = self.device.create_bind_group(&wgpu::BindGroupDescriptor {
+                label: Some("ntt_bg"),
+                layout: &bind_group_layout,
+                entries: &[
+                    wgpu::BindGroupEntry {
+                        binding: 0,
+                        resource: data_buf.as_entire_binding(),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 1,
+                        resource: twiddle_buf.as_entire_binding(),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 2,
+                        resource: params_buf.as_entire_binding(),
+                    },
+                ],
+            });
+
+            let n_butterflies = n_u32 / 2;
+            let workgroups = (n_butterflies + WORKGROUP_SIZE - 1) / WORKGROUP_SIZE;
+
+            let mut encoder = self
+                .device
+                .create_command_encoder(&wgpu::CommandEncoderDescriptor {
+                    label: Some("ntt_encoder"),
+                });
+            {
+                let mut pass = encoder.begin_compute_pass(&wgpu::ComputePassDescriptor {
+                    label: Some("ntt_butterfly_pass"),
+                    timestamp_writes: None,
+                });
+                pass.set_pipeline(&self.ntt_butterfly_pipeline);
+                pass.set_bind_group(0, &bind_group, &[]);
+                pass.dispatch_workgroups(workgroups, 1, 1);
+            }
+            self.queue.submit(std::iter::once(encoder.finish()));
+            self.device.poll(wgpu::Maintain::Wait);
+        }
+
+        // Normalization pass: multiply all elements by n_inv
+        {
+            let n_inv = BFieldElement::new(n as u64).inverse();
+            let n_inv_raw = n_inv.raw_u64();
+            // Store n_inv as twiddles[0] for the normalize kernel
+            let norm_twiddle = [[n_inv_raw as u32, (n_inv_raw >> 32) as u32]];
+            let norm_tw_buf = self
+                .device
+                .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                    label: Some("ntt_norm_tw"),
+                    contents: bytemuck::cast_slice(&norm_twiddle),
+                    usage: wgpu::BufferUsages::STORAGE,
+                });
+
+            let params = [n_u32, 0u32, 0u32, 0u32];
+            let params_buf = self
+                .device
+                .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                    label: Some("ntt_norm_params"),
+                    contents: bytemuck::cast_slice(&params),
+                    usage: wgpu::BufferUsages::UNIFORM,
+                });
+
+            let bind_group_layout = self.ntt_normalize_pipeline.get_bind_group_layout(0);
+            let bind_group = self.device.create_bind_group(&wgpu::BindGroupDescriptor {
+                label: Some("ntt_norm_bg"),
+                layout: &bind_group_layout,
+                entries: &[
+                    wgpu::BindGroupEntry {
+                        binding: 0,
+                        resource: data_buf.as_entire_binding(),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 1,
+                        resource: norm_tw_buf.as_entire_binding(),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 2,
+                        resource: params_buf.as_entire_binding(),
+                    },
+                ],
+            });
+
+            let workgroups = (n_u32 + WORKGROUP_SIZE - 1) / WORKGROUP_SIZE;
+            let mut encoder = self
+                .device
+                .create_command_encoder(&wgpu::CommandEncoderDescriptor {
+                    label: Some("ntt_norm_encoder"),
+                });
+            {
+                let mut pass = encoder.begin_compute_pass(&wgpu::ComputePassDescriptor {
+                    label: Some("ntt_normalize_pass"),
+                    timestamp_writes: None,
+                });
+                pass.set_pipeline(&self.ntt_normalize_pipeline);
+                pass.set_bind_group(0, &bind_group, &[]);
+                pass.dispatch_workgroups(workgroups, 1, 1);
+            }
+            self.queue.submit(std::iter::once(encoder.finish()));
+        }
+
+        // Read back results
+        let buf_size = (n * 8) as u64;
+        let staging_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
+            label: Some("ntt_staging"),
+            size: buf_size,
+            usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
+            mapped_at_creation: false,
+        });
+
+        let mut encoder = self
+            .device
+            .create_command_encoder(&wgpu::CommandEncoderDescriptor {
+                label: Some("ntt_readback"),
+            });
+        encoder.copy_buffer_to_buffer(&data_buf, 0, &staging_buf, 0, buf_size);
+        self.queue.submit(std::iter::once(encoder.finish()));
+
+        let slice = staging_buf.slice(..);
+        let (tx, rx) = std::sync::mpsc::channel();
+        slice.map_async(wgpu::MapMode::Read, move |result| {
+            tx.send(result).unwrap();
+        });
+        self.device.poll(wgpu::Maintain::Wait);
+        rx.recv()
+            .expect("NTT readback channel closed")
+            .expect("NTT readback failed");
+
+        let data = slice.get_mapped_range();
+        let result_pairs: &[[u32; 2]] = bytemuck::cast_slice(&data);
+
+        for (i, &[lo, hi]) in result_pairs.iter().enumerate() {
+            let raw = (hi as u64) << 32 | lo as u64;
+            column[i] = BFieldElement::from_raw_u64(raw);
+        }
+
+        drop(data);
+        staging_buf.unmap();
     }
 }
