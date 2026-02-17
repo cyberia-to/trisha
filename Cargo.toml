@@ -1,0 +1,21 @@
+[package]
+name = "trisha"
+version = "0.1.0"
+edition = "2021"
+description = "Triton VM warrior — execute, prove, verify, deploy"
+
+[[bin]]
+name = "trisha"
+path = "src/main.rs"
+
+[dependencies]
+trident-lang = { path = "../trident" }
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"
+bincode = "1"
+base64 = "0.22"
+
+[features]
+default = ["gpu"]
+gpu = []
