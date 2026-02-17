@@ -381,26 +381,40 @@ print "  [8] GEMV dispatch — weighted_sum_of_columns"
             let weights_slice = weights.as_slice().unwrap();
 
             if TypeId::of::<Self::Field>() == TypeId::of::<BFieldElement>() {
-                // BFE table: reinterpret trace as &[BFieldElement]
-                let flat: &[Self::Field] = trace.as_slice().unwrap_or_else(|| {
-                    panic!("trace table not contiguous in memory")
-                });
-                // SAFETY: TypeId confirms Self::Field == BFieldElement, same size/alignment
-                let bfe_flat: &[BFieldElement] = unsafe {
-                    std::slice::from_raw_parts(flat.as_ptr() as *const BFieldElement, flat.len())
-                };
-                gpu.gemv_bfe(bfe_flat, nrows, ncols, weights_slice)
+                // Trace is column-major: gather into row-major flat buffer for GPU.
+                let mut flat = vec![BFieldElement::ZERO; nrows * ncols];
+                for c in 0..ncols {
+                    let col = trace.column(c);
+                    let col_slice = col.as_slice().unwrap();
+                    // SAFETY: TypeId confirms Self::Field == BFieldElement
+                    let bfe_col: &[BFieldElement] = unsafe {
+                        std::slice::from_raw_parts(
+                            col_slice.as_ptr() as *const BFieldElement,
+                            col_slice.len(),
+                        )
+                    };
+                    for r in 0..nrows {
+                        flat[r * ncols + c] = bfe_col[r];
+                    }
+                }
+                gpu.gemv_bfe(&flat, nrows, ncols, weights_slice)
             } else if TypeId::of::<Self::Field>() == TypeId::of::<XFieldElement>() {
-                // XFE table: reinterpret trace as &[XFieldElement]
-                let flat: &[Self::Field] = trace.as_slice().unwrap_or_else(|| {
-                    panic!("trace table not contiguous in memory")
-                });
-                let xfe_flat: &[XFieldElement] = unsafe {
-                    std::slice::from_raw_parts(flat.as_ptr() as *const XFieldElement, flat.len())
-                };
-                gpu.gemv_xfe(xfe_flat, nrows, ncols, weights_slice)
+                let mut flat = vec![XFieldElement::zero(); nrows * ncols];
+                for c in 0..ncols {
+                    let col = trace.column(c);
+                    let col_slice = col.as_slice().unwrap();
+                    let xfe_col: &[XFieldElement] = unsafe {
+                        std::slice::from_raw_parts(
+                            col_slice.as_ptr() as *const XFieldElement,
+                            col_slice.len(),
+                        )
+                    };
+                    for r in 0..nrows {
+                        flat[r * ncols + c] = xfe_col[r];
+                    }
+                }
+                gpu.gemv_xfe(&flat, nrows, ncols, weights_slice)
             } else {
-                // Unknown field type: CPU fallback
                 trace
                     .axis_iter(ROW_AXIS)
                     .into_par_iter()

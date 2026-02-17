@@ -101,10 +101,10 @@ impl WgpuBackend {
         });
 
         let fri_pipeline = device.create_compute_pipeline(&wgpu::ComputePipelineDescriptor {
-            label: Some("fri_fold"),
+            label: Some("fri_fold_round"),
             layout: None,
             module: &fri_module,
-            entry_point: Some("fri_fold"),
+            entry_point: Some("fri_fold_round"),
             compilation_options: Default::default(),
             cache: None,
         });
