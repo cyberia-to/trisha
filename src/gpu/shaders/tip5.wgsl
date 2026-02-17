@@ -165,6 +165,62 @@ fn hash_pair(@builtin(global_invocation_id) gid: vec3<u32>) {
     }
 }
 
+// ── Fused Merkle tree (single flat node buffer) ────────────────
+//
+// hash_pair_flat operates on a single read_write buffer containing
+// the entire tree in flat layout: nodes[0] unused, nodes[1] = root,
+// nodes[n..2n] = leaves. Each node is DIGEST_LEN vec2<u32> elements.
+//
+// Per dispatch: parent_start = first parent index, n_pairs = count.
+// Thread i computes nodes[parent_start + i] = hash(
+//     nodes[(parent_start + i) * 2],
+//     nodes[(parent_start + i) * 2 + 1]
+// ).
+
+struct FlatMerkleParams {
+    n_pairs: u32,         // Number of parent nodes to compute
+    parent_start: u32,    // First parent node index in the flat array
+    _pad0: u32,
+    _pad1: u32,
+}
+
+@group(0) @binding(9) var<storage, read_write> nodes: array<vec2<u32>>;
+@group(0) @binding(10) var<uniform> flat_merkle_params: FlatMerkleParams;
+
+@compute @workgroup_size(64)
+fn hash_pair_flat(@builtin(global_invocation_id) gid: vec3<u32>) {
+    let idx = gid.x;
+    if idx >= flat_merkle_params.n_pairs {
+        return;
+    }
+
+    let parent_idx = flat_merkle_params.parent_start + idx;
+    let left_idx = parent_idx * 2u;
+    let right_idx = left_idx + 1u;
+
+    var state: array<vec2<u32>, 16>;
+    // state[0..5] = left child digest
+    for (var i = 0u; i < DIGEST_LEN; i = i + 1u) {
+        state[i] = nodes[left_idx * DIGEST_LEN + i];
+    }
+    // state[5..10] = right child digest
+    for (var i = 0u; i < DIGEST_LEN; i = i + 1u) {
+        state[DIGEST_LEN + i] = nodes[right_idx * DIGEST_LEN + i];
+    }
+    // state[10..16] = ONE (fixed-length domain separator)
+    for (var i = RATE; i < STATE_SIZE; i = i + 1u) {
+        state[i] = MONTY_ONE;
+    }
+
+    tip5_permute(&state);
+
+    // Write parent digest
+    let out_base = parent_idx * DIGEST_LEN;
+    for (var i = 0u; i < DIGEST_LEN; i = i + 1u) {
+        nodes[out_base + i] = state[i];
+    }
+}
+
 // ── Variable-length row hashing (sponge) ───────────────────────
 
 // Hash a single row using Tip5 sponge (variable-length domain).

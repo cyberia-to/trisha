@@ -86,8 +86,9 @@ pub struct WgpuTip5Accelerator {
     lookup_buf: wgpu::Buffer,
     mds_buf: wgpu::Buffer,
     rc_buf: wgpu::Buffer,
-    // Merkle tree pipeline (Tip5 hash_pair)
+    // Merkle tree pipelines
     hash_pair_pipeline: wgpu::ComputePipeline,
+    hash_pair_flat_pipeline: wgpu::ComputePipeline,
     // NTT pipelines
     ntt_butterfly_pipeline: wgpu::ComputePipeline,
     ntt_normalize_pipeline: wgpu::ComputePipeline,
@@ -126,6 +127,15 @@ impl WgpuTip5Accelerator {
             compilation_options: Default::default(),
             cache: None,
         });
+        let hash_pair_flat_pipeline =
+            device.create_compute_pipeline(&wgpu::ComputePipelineDescriptor {
+                label: Some("tip5_hash_pair_flat"),
+                layout: None,
+                module: &tip5_module,
+                entry_point: Some("hash_pair_flat"),
+                compilation_options: Default::default(),
+                cache: None,
+            });
 
         // Compile FRI fold shader
         let fri_src = include_str!("shaders/fri.wgsl");
@@ -219,6 +229,7 @@ impl WgpuTip5Accelerator {
             queue,
             tip5_pipeline,
             hash_pair_pipeline,
+            hash_pair_flat_pipeline,
             lookup_buf,
             mds_buf,
             rc_buf,
@@ -228,6 +239,207 @@ impl WgpuTip5Accelerator {
             gemv_bfe_pipeline,
             gemv_xfe_pipeline,
         }
+    }
+}
+
+impl WgpuTip5Accelerator {
+    /// Fused GPU NTT: all butterfly layers + optional normalization in a single
+    /// command encoder submission. Eliminates per-layer CPU↔GPU sync.
+    ///
+    /// `omega` is the twiddle root: omega.inverse() for iNTT, omega for forward NTT.
+    /// `normalize` adds a final multiply-by-1/n pass (iNTT only).
+    fn gpu_ntt_core(&self, column: &mut [BFieldElement], omega: BFieldElement, normalize: bool) {
+        let n = column.len();
+        let n_u32 = n as u32;
+        let log_n = n.trailing_zeros();
+
+        // Build twiddle factors: tw[k] = omega^k for k = 0..n/2
+        let mut twiddles = vec![[0u32; 2]; n / 2];
+        let mut w = BFieldElement::new(1);
+        for tw in twiddles.iter_mut() {
+            let raw = w.raw_u64();
+            *tw = [raw as u32, (raw >> 32) as u32];
+            w *= omega;
+        }
+
+        // Bit-reversal permutation (CPU, before GPU butterflies)
+        for k in 0..n {
+            let rev_k = ((k as u32).reverse_bits() >> (32 - log_n)) as usize;
+            if k < rev_k {
+                column.swap(k, rev_k);
+            }
+        }
+
+        // Upload data + twiddles
+        let col_data: Vec<[u32; 2]> = column
+            .iter()
+            .map(|bfe| {
+                let raw = bfe.raw_u64();
+                [raw as u32, (raw >> 32) as u32]
+            })
+            .collect();
+
+        let data_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("ntt_data"),
+                contents: bytemuck::cast_slice(&col_data),
+                usage: wgpu::BufferUsages::STORAGE | wgpu::BufferUsages::COPY_SRC,
+            });
+
+        let twiddle_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("ntt_twiddles"),
+                contents: bytemuck::cast_slice(&twiddles),
+                usage: wgpu::BufferUsages::STORAGE,
+            });
+
+        // Pre-create all per-layer params buffers so bind groups can reference them
+        let layer_params: Vec<wgpu::Buffer> = (0..log_n)
+            .map(|layer| {
+                let params = [n_u32, layer, 0u32, 0u32];
+                self.device
+                    .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                        label: Some("ntt_params"),
+                        contents: bytemuck::cast_slice(&params),
+                        usage: wgpu::BufferUsages::UNIFORM,
+                    })
+            })
+            .collect();
+
+        let bg_layout = self.ntt_butterfly_pipeline.get_bind_group_layout(0);
+        let layer_bind_groups: Vec<wgpu::BindGroup> = layer_params
+            .iter()
+            .map(|params_buf| {
+                self.device.create_bind_group(&wgpu::BindGroupDescriptor {
+                    label: Some("ntt_bg"),
+                    layout: &bg_layout,
+                    entries: &[
+                        wgpu::BindGroupEntry {
+                            binding: 0,
+                            resource: data_buf.as_entire_binding(),
+                        },
+                        wgpu::BindGroupEntry {
+                            binding: 1,
+                            resource: twiddle_buf.as_entire_binding(),
+                        },
+                        wgpu::BindGroupEntry {
+                            binding: 2,
+                            resource: params_buf.as_entire_binding(),
+                        },
+                    ],
+                })
+            })
+            .collect();
+
+        let n_butterflies = n_u32 / 2;
+        let workgroups = (n_butterflies + WORKGROUP_SIZE - 1) / WORKGROUP_SIZE;
+
+        // Single command encoder for ALL butterfly layers + normalization + readback
+        let mut encoder = self
+            .device
+            .create_command_encoder(&wgpu::CommandEncoderDescriptor {
+                label: Some("ntt_fused_encoder"),
+            });
+
+        // Dispatch all butterfly layers in one compute pass.
+        // wgpu guarantees sequential execution within a pass — layer N sees
+        // layer N-1's writes to the data buffer.
+        {
+            let mut pass = encoder.begin_compute_pass(&wgpu::ComputePassDescriptor {
+                label: Some("ntt_butterfly_fused"),
+                timestamp_writes: None,
+            });
+            pass.set_pipeline(&self.ntt_butterfly_pipeline);
+            for bg in &layer_bind_groups {
+                pass.set_bind_group(0, bg, &[]);
+                pass.dispatch_workgroups(workgroups, 1, 1);
+            }
+        }
+
+        // Optional normalization pass (iNTT: multiply all by 1/n)
+        if normalize {
+            let n_inv = BFieldElement::new(n as u64).inverse();
+            let n_inv_raw = n_inv.raw_u64();
+            let norm_twiddle = [[n_inv_raw as u32, (n_inv_raw >> 32) as u32]];
+            let norm_tw_buf = self
+                .device
+                .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                    label: Some("ntt_norm_tw"),
+                    contents: bytemuck::cast_slice(&norm_twiddle),
+                    usage: wgpu::BufferUsages::STORAGE,
+                });
+            let norm_params = [n_u32, 0u32, 0u32, 0u32];
+            let norm_params_buf =
+                self.device
+                    .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                        label: Some("ntt_norm_params"),
+                        contents: bytemuck::cast_slice(&norm_params),
+                        usage: wgpu::BufferUsages::UNIFORM,
+                    });
+            let norm_bg_layout = self.ntt_normalize_pipeline.get_bind_group_layout(0);
+            let norm_bg = self.device.create_bind_group(&wgpu::BindGroupDescriptor {
+                label: Some("ntt_norm_bg"),
+                layout: &norm_bg_layout,
+                entries: &[
+                    wgpu::BindGroupEntry {
+                        binding: 0,
+                        resource: data_buf.as_entire_binding(),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 1,
+                        resource: norm_tw_buf.as_entire_binding(),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 2,
+                        resource: norm_params_buf.as_entire_binding(),
+                    },
+                ],
+            });
+            let norm_workgroups = (n_u32 + WORKGROUP_SIZE - 1) / WORKGROUP_SIZE;
+            {
+                let mut pass = encoder.begin_compute_pass(&wgpu::ComputePassDescriptor {
+                    label: Some("ntt_normalize"),
+                    timestamp_writes: None,
+                });
+                pass.set_pipeline(&self.ntt_normalize_pipeline);
+                pass.set_bind_group(0, &norm_bg, &[]);
+                pass.dispatch_workgroups(norm_workgroups, 1, 1);
+            }
+        }
+
+        // Readback in the same submission
+        let buf_size = (n * 8) as u64;
+        let staging_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
+            label: Some("ntt_staging"),
+            size: buf_size,
+            usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
+            mapped_at_creation: false,
+        });
+        encoder.copy_buffer_to_buffer(&data_buf, 0, &staging_buf, 0, buf_size);
+
+        // Single submit — entire NTT runs on GPU without CPU intervention
+        self.queue.submit(std::iter::once(encoder.finish()));
+
+        let slice = staging_buf.slice(..);
+        let (tx, rx) = std::sync::mpsc::channel();
+        slice.map_async(wgpu::MapMode::Read, move |result| {
+            tx.send(result).unwrap();
+        });
+        self.device.poll(wgpu::Maintain::Wait);
+        rx.recv()
+            .expect("NTT readback channel closed")
+            .expect("NTT readback failed");
+
+        let data = slice.get_mapped_range();
+        let result_pairs: &[[u32; 2]] = bytemuck::cast_slice(&data);
+        for (i, &[lo, hi]) in result_pairs.iter().enumerate() {
+            let raw = (hi as u64) << 32 | lo as u64;
+            column[i] = BFieldElement::from_raw_u64(raw);
+        }
+        drop(data);
+        staging_buf.unmap();
     }
 }
 
@@ -393,219 +605,16 @@ impl GpuAccelerator for WgpuTip5Accelerator {
     fn intt_bfe(&self, column: &mut [BFieldElement]) {
         let n = column.len();
         if n <= 1 || !n.is_power_of_two() {
-            // Fallback to CPU for non-power-of-2 or trivial sizes
             twenty_first::math::ntt::intt(column);
             return;
         }
-
-        // Small transforms: CPU is faster due to GPU dispatch overhead
         if n < 1024 {
             twenty_first::math::ntt::intt(column);
             return;
         }
 
-        let n_u32 = n as u32;
-        let log_n = n.trailing_zeros();
-
-        // Compute inverse twiddle factors: omega_inv = primitive_root^(-1)
         let omega = BFieldElement::primitive_root_of_unity(n as u64).unwrap();
-        let omega_inv = omega.inverse();
-
-        // Build flat twiddle factor array: for each butterfly pair,
-        // tw[k] = omega_inv^k for k = 0..n/2
-        let mut twiddles = vec![[0u32; 2]; n / 2];
-        let mut w = BFieldElement::new(1); // = omega_inv^0
-        for tw in twiddles.iter_mut() {
-            let raw = w.raw_u64();
-            *tw = [raw as u32, (raw >> 32) as u32];
-            w *= omega_inv;
-        }
-
-        // Bit-reversal permutation (must happen before butterfly passes)
-        let log_n_u32 = log_n;
-        for k in 0..n {
-            let rev_k = (k as u32).reverse_bits() >> (32 - log_n_u32);
-            let rev_k = rev_k as usize;
-            if k < rev_k {
-                column.swap(k, rev_k);
-            }
-        }
-
-        // Upload column data (Montgomery form)
-        let col_data: Vec<[u32; 2]> = column
-            .iter()
-            .map(|bfe| {
-                let raw = bfe.raw_u64();
-                [raw as u32, (raw >> 32) as u32]
-            })
-            .collect();
-
-        let data_buf = self
-            .device
-            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
-                label: Some("ntt_data"),
-                contents: bytemuck::cast_slice(&col_data),
-                usage: wgpu::BufferUsages::STORAGE | wgpu::BufferUsages::COPY_SRC,
-            });
-
-        let twiddle_buf = self
-            .device
-            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
-                label: Some("ntt_twiddles"),
-                contents: bytemuck::cast_slice(&twiddles),
-                usage: wgpu::BufferUsages::STORAGE,
-            });
-
-        // Run log2(n) butterfly passes
-        for layer in 0..log_n {
-            let params = [n_u32, layer, 0u32, 0u32];
-            let params_buf = self
-                .device
-                .create_buffer_init(&wgpu::util::BufferInitDescriptor {
-                    label: Some("ntt_params"),
-                    contents: bytemuck::cast_slice(&params),
-                    usage: wgpu::BufferUsages::UNIFORM,
-                });
-
-            let bind_group_layout = self.ntt_butterfly_pipeline.get_bind_group_layout(0);
-            let bind_group = self.device.create_bind_group(&wgpu::BindGroupDescriptor {
-                label: Some("ntt_bg"),
-                layout: &bind_group_layout,
-                entries: &[
-                    wgpu::BindGroupEntry {
-                        binding: 0,
-                        resource: data_buf.as_entire_binding(),
-                    },
-                    wgpu::BindGroupEntry {
-                        binding: 1,
-                        resource: twiddle_buf.as_entire_binding(),
-                    },
-                    wgpu::BindGroupEntry {
-                        binding: 2,
-                        resource: params_buf.as_entire_binding(),
-                    },
-                ],
-            });
-
-            let n_butterflies = n_u32 / 2;
-            let workgroups = (n_butterflies + WORKGROUP_SIZE - 1) / WORKGROUP_SIZE;
-
-            let mut encoder = self
-                .device
-                .create_command_encoder(&wgpu::CommandEncoderDescriptor {
-                    label: Some("ntt_encoder"),
-                });
-            {
-                let mut pass = encoder.begin_compute_pass(&wgpu::ComputePassDescriptor {
-                    label: Some("ntt_butterfly_pass"),
-                    timestamp_writes: None,
-                });
-                pass.set_pipeline(&self.ntt_butterfly_pipeline);
-                pass.set_bind_group(0, &bind_group, &[]);
-                pass.dispatch_workgroups(workgroups, 1, 1);
-            }
-            self.queue.submit(std::iter::once(encoder.finish()));
-            self.device.poll(wgpu::Maintain::Wait);
-        }
-
-        // Normalization pass: multiply all elements by n_inv
-        {
-            let n_inv = BFieldElement::new(n as u64).inverse();
-            let n_inv_raw = n_inv.raw_u64();
-            // Store n_inv as twiddles[0] for the normalize kernel
-            let norm_twiddle = [[n_inv_raw as u32, (n_inv_raw >> 32) as u32]];
-            let norm_tw_buf = self
-                .device
-                .create_buffer_init(&wgpu::util::BufferInitDescriptor {
-                    label: Some("ntt_norm_tw"),
-                    contents: bytemuck::cast_slice(&norm_twiddle),
-                    usage: wgpu::BufferUsages::STORAGE,
-                });
-
-            let params = [n_u32, 0u32, 0u32, 0u32];
-            let params_buf = self
-                .device
-                .create_buffer_init(&wgpu::util::BufferInitDescriptor {
-                    label: Some("ntt_norm_params"),
-                    contents: bytemuck::cast_slice(&params),
-                    usage: wgpu::BufferUsages::UNIFORM,
-                });
-
-            let bind_group_layout = self.ntt_normalize_pipeline.get_bind_group_layout(0);
-            let bind_group = self.device.create_bind_group(&wgpu::BindGroupDescriptor {
-                label: Some("ntt_norm_bg"),
-                layout: &bind_group_layout,
-                entries: &[
-                    wgpu::BindGroupEntry {
-                        binding: 0,
-                        resource: data_buf.as_entire_binding(),
-                    },
-                    wgpu::BindGroupEntry {
-                        binding: 1,
-                        resource: norm_tw_buf.as_entire_binding(),
-                    },
-                    wgpu::BindGroupEntry {
-                        binding: 2,
-                        resource: params_buf.as_entire_binding(),
-                    },
-                ],
-            });
-
-            let workgroups = (n_u32 + WORKGROUP_SIZE - 1) / WORKGROUP_SIZE;
-            let mut encoder = self
-                .device
-                .create_command_encoder(&wgpu::CommandEncoderDescriptor {
-                    label: Some("ntt_norm_encoder"),
-                });
-            {
-                let mut pass = encoder.begin_compute_pass(&wgpu::ComputePassDescriptor {
-                    label: Some("ntt_normalize_pass"),
-                    timestamp_writes: None,
-                });
-                pass.set_pipeline(&self.ntt_normalize_pipeline);
-                pass.set_bind_group(0, &bind_group, &[]);
-                pass.dispatch_workgroups(workgroups, 1, 1);
-            }
-            self.queue.submit(std::iter::once(encoder.finish()));
-        }
-
-        // Read back results
-        let buf_size = (n * 8) as u64;
-        let staging_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
-            label: Some("ntt_staging"),
-            size: buf_size,
-            usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
-            mapped_at_creation: false,
-        });
-
-        let mut encoder = self
-            .device
-            .create_command_encoder(&wgpu::CommandEncoderDescriptor {
-                label: Some("ntt_readback"),
-            });
-        encoder.copy_buffer_to_buffer(&data_buf, 0, &staging_buf, 0, buf_size);
-        self.queue.submit(std::iter::once(encoder.finish()));
-
-        let slice = staging_buf.slice(..);
-        let (tx, rx) = std::sync::mpsc::channel();
-        slice.map_async(wgpu::MapMode::Read, move |result| {
-            tx.send(result).unwrap();
-        });
-        self.device.poll(wgpu::Maintain::Wait);
-        rx.recv()
-            .expect("NTT readback channel closed")
-            .expect("NTT readback failed");
-
-        let data = slice.get_mapped_range();
-        let result_pairs: &[[u32; 2]] = bytemuck::cast_slice(&data);
-
-        for (i, &[lo, hi]) in result_pairs.iter().enumerate() {
-            let raw = (hi as u64) << 32 | lo as u64;
-            column[i] = BFieldElement::from_raw_u64(raw);
-        }
-
-        drop(data);
-        staging_buf.unmap();
+        self.gpu_ntt_core(column, omega.inverse(), true);
     }
 
     fn intt_xfe(&self, column: &mut [XFieldElement]) {
@@ -652,151 +661,13 @@ impl GpuAccelerator for WgpuTip5Accelerator {
             twenty_first::math::ntt::ntt(column);
             return;
         }
-
         if n < 1024 {
             twenty_first::math::ntt::ntt(column);
             return;
         }
 
-        let n_u32 = n as u32;
-        let log_n = n.trailing_zeros();
-
-        // Forward twiddle factors: omega (NOT omega.inverse())
         let omega = BFieldElement::primitive_root_of_unity(n as u64).unwrap();
-
-        let mut twiddles = vec![[0u32; 2]; n / 2];
-        let mut w = BFieldElement::new(1);
-        for tw in twiddles.iter_mut() {
-            let raw = w.raw_u64();
-            *tw = [raw as u32, (raw >> 32) as u32];
-            w *= omega;
-        }
-
-        // Bit-reversal permutation
-        for k in 0..n {
-            let rev_k = (k as u32).reverse_bits() >> (32 - log_n);
-            let rev_k = rev_k as usize;
-            if k < rev_k {
-                column.swap(k, rev_k);
-            }
-        }
-
-        // Upload column data (Montgomery form)
-        let col_data: Vec<[u32; 2]> = column
-            .iter()
-            .map(|bfe| {
-                let raw = bfe.raw_u64();
-                [raw as u32, (raw >> 32) as u32]
-            })
-            .collect();
-
-        let data_buf = self
-            .device
-            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
-                label: Some("fwd_ntt_data"),
-                contents: bytemuck::cast_slice(&col_data),
-                usage: wgpu::BufferUsages::STORAGE | wgpu::BufferUsages::COPY_SRC,
-            });
-
-        let twiddle_buf = self
-            .device
-            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
-                label: Some("fwd_ntt_twiddles"),
-                contents: bytemuck::cast_slice(&twiddles),
-                usage: wgpu::BufferUsages::STORAGE,
-            });
-
-        // Run log2(n) butterfly passes (same shader as iNTT)
-        for layer in 0..log_n {
-            let params = [n_u32, layer, 0u32, 0u32];
-            let params_buf = self
-                .device
-                .create_buffer_init(&wgpu::util::BufferInitDescriptor {
-                    label: Some("fwd_ntt_params"),
-                    contents: bytemuck::cast_slice(&params),
-                    usage: wgpu::BufferUsages::UNIFORM,
-                });
-
-            let bind_group_layout = self.ntt_butterfly_pipeline.get_bind_group_layout(0);
-            let bind_group = self.device.create_bind_group(&wgpu::BindGroupDescriptor {
-                label: Some("fwd_ntt_bg"),
-                layout: &bind_group_layout,
-                entries: &[
-                    wgpu::BindGroupEntry {
-                        binding: 0,
-                        resource: data_buf.as_entire_binding(),
-                    },
-                    wgpu::BindGroupEntry {
-                        binding: 1,
-                        resource: twiddle_buf.as_entire_binding(),
-                    },
-                    wgpu::BindGroupEntry {
-                        binding: 2,
-                        resource: params_buf.as_entire_binding(),
-                    },
-                ],
-            });
-
-            let n_butterflies = n_u32 / 2;
-            let workgroups = (n_butterflies + WORKGROUP_SIZE - 1) / WORKGROUP_SIZE;
-
-            let mut encoder = self
-                .device
-                .create_command_encoder(&wgpu::CommandEncoderDescriptor {
-                    label: Some("fwd_ntt_encoder"),
-                });
-            {
-                let mut pass = encoder.begin_compute_pass(&wgpu::ComputePassDescriptor {
-                    label: Some("fwd_ntt_butterfly_pass"),
-                    timestamp_writes: None,
-                });
-                pass.set_pipeline(&self.ntt_butterfly_pipeline);
-                pass.set_bind_group(0, &bind_group, &[]);
-                pass.dispatch_workgroups(workgroups, 1, 1);
-            }
-            self.queue.submit(std::iter::once(encoder.finish()));
-            self.device.poll(wgpu::Maintain::Wait);
-        }
-
-        // NO normalization pass — forward NTT doesn't divide by n
-
-        // Read back results
-        let buf_size = (n * 8) as u64;
-        let staging_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
-            label: Some("fwd_ntt_staging"),
-            size: buf_size,
-            usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
-            mapped_at_creation: false,
-        });
-
-        let mut encoder = self
-            .device
-            .create_command_encoder(&wgpu::CommandEncoderDescriptor {
-                label: Some("fwd_ntt_readback"),
-            });
-        encoder.copy_buffer_to_buffer(&data_buf, 0, &staging_buf, 0, buf_size);
-        self.queue.submit(std::iter::once(encoder.finish()));
-
-        let slice = staging_buf.slice(..);
-        let (tx, rx) = std::sync::mpsc::channel();
-        slice.map_async(wgpu::MapMode::Read, move |result| {
-            tx.send(result).unwrap();
-        });
-        self.device.poll(wgpu::Maintain::Wait);
-        rx.recv()
-            .expect("Forward NTT readback channel closed")
-            .expect("Forward NTT readback failed");
-
-        let data = slice.get_mapped_range();
-        let result_pairs: &[[u32; 2]] = bytemuck::cast_slice(&data);
-
-        for (i, &[lo, hi]) in result_pairs.iter().enumerate() {
-            let raw = (hi as u64) << 32 | lo as u64;
-            column[i] = BFieldElement::from_raw_u64(raw);
-        }
-
-        drop(data);
-        staging_buf.unmap();
+        self.gpu_ntt_core(column, omega, false);
     }
 
     fn ntt_xfe(&self, column: &mut [XFieldElement]) {
@@ -1378,17 +1249,15 @@ impl GpuAccelerator for WgpuTip5Accelerator {
         if n == 0 || !n.is_power_of_two() {
             return MerkleTree::par_new(leaves).unwrap();
         }
-
-        // Small trees: CPU is faster due to GPU dispatch overhead
         if n < 512 {
             return MerkleTree::par_new(leaves).unwrap();
         }
 
-        // Build flat node array: index 0 unused, root at 1, leaves at [n..2n)
+        // Flat node array: 2n nodes × 5 digest elements. Index 0 unused, root at 1,
+        // leaves at [n..2n). Entire tree lives on GPU — no per-level readback.
         let num_nodes = 2 * n;
         let digest_len = 5;
 
-        // Initialize nodes: zeros for internal, leaves at the end
         let mut nodes_flat: Vec<[u32; 2]> = vec![[0u32; 2]; num_nodes * digest_len];
         for (i, leaf) in leaves.iter().enumerate() {
             let base = (n + i) * digest_len;
@@ -1398,159 +1267,128 @@ impl GpuAccelerator for WgpuTip5Accelerator {
             }
         }
 
-        // Build tree bottom-up, one level per GPU dispatch
-        // Level k: nodes [2^k .. 2^(k+1)) are parents of [2^(k+1) .. 2^(k+2))
-        let mut level_size = n / 2; // number of parents at bottom internal level
-        let mut child_start = n; // first child index
-
-        while level_size >= 1 {
-            let parent_start = child_start / 2;
-            let n_pairs = level_size as u32;
-
-            // Prepare children buffer: n_pairs * 2 * digest_len elements
-            let children_data: Vec<[u32; 2]> = (0..level_size)
-                .flat_map(|i| {
-                    let left_idx = (parent_start + i) * 2;
-                    let right_idx = left_idx + 1;
-                    let left_base = left_idx * digest_len;
-                    let right_base = right_idx * digest_len;
-                    let mut pair = Vec::with_capacity(2 * digest_len);
-                    for j in 0..digest_len {
-                        pair.push(nodes_flat[left_base + j]);
-                    }
-                    for j in 0..digest_len {
-                        pair.push(nodes_flat[right_base + j]);
-                    }
-                    pair
-                })
-                .collect();
-
-            let children_buf = self
-                .device
-                .create_buffer_init(&wgpu::util::BufferInitDescriptor {
-                    label: Some("merkle_children"),
-                    contents: bytemuck::cast_slice(&children_data),
-                    usage: wgpu::BufferUsages::STORAGE,
-                });
-
-            let parents_size = (n_pairs as usize * digest_len * 8) as u64;
-            let parents_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
-                label: Some("merkle_parents"),
-                size: parents_size,
+        let buf_size = (num_nodes * digest_len * 8) as u64;
+        let nodes_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("merkle_nodes"),
+                contents: bytemuck::cast_slice(&nodes_flat),
                 usage: wgpu::BufferUsages::STORAGE | wgpu::BufferUsages::COPY_SRC,
-                mapped_at_creation: false,
             });
 
-            let params = [n_pairs, 0u32, 0u32, 0u32];
-            let params_buf = self
-                .device
-                .create_buffer_init(&wgpu::util::BufferInitDescriptor {
-                    label: Some("merkle_params"),
-                    contents: bytemuck::cast_slice(&params),
-                    usage: wgpu::BufferUsages::UNIFORM,
-                });
-
-            let bind_group_layout = self.hash_pair_pipeline.get_bind_group_layout(0);
-            let bind_group = self.device.create_bind_group(&wgpu::BindGroupDescriptor {
-                label: Some("merkle_bg"),
-                layout: &bind_group_layout,
-                entries: &[
-                    wgpu::BindGroupEntry {
-                        binding: 0,
-                        resource: self.lookup_buf.as_entire_binding(),
-                    },
-                    wgpu::BindGroupEntry {
-                        binding: 1,
-                        resource: self.mds_buf.as_entire_binding(),
-                    },
-                    wgpu::BindGroupEntry {
-                        binding: 2,
-                        resource: self.rc_buf.as_entire_binding(),
-                    },
-                    wgpu::BindGroupEntry {
-                        binding: 6,
-                        resource: children_buf.as_entire_binding(),
-                    },
-                    wgpu::BindGroupEntry {
-                        binding: 7,
-                        resource: parents_buf.as_entire_binding(),
-                    },
-                    wgpu::BindGroupEntry {
-                        binding: 8,
-                        resource: params_buf.as_entire_binding(),
-                    },
-                ],
-            });
-
-            let workgroups = (n_pairs + WORKGROUP_SIZE - 1) / WORKGROUP_SIZE;
-            let mut encoder = self
-                .device
-                .create_command_encoder(&wgpu::CommandEncoderDescriptor {
-                    label: Some("merkle_encoder"),
-                });
-            {
-                let mut pass = encoder.begin_compute_pass(&wgpu::ComputePassDescriptor {
-                    label: Some("merkle_pass"),
-                    timestamp_writes: None,
-                });
-                pass.set_pipeline(&self.hash_pair_pipeline);
-                pass.set_bind_group(0, &bind_group, &[]);
-                pass.dispatch_workgroups(workgroups, 1, 1);
-            }
-
-            // Read back parents
-            let staging_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
-                label: Some("merkle_staging"),
-                size: parents_size,
-                usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
-                mapped_at_creation: false,
-            });
-            encoder.copy_buffer_to_buffer(&parents_buf, 0, &staging_buf, 0, parents_size);
-            self.queue.submit(std::iter::once(encoder.finish()));
-
-            let slice = staging_buf.slice(..);
-            let (tx, rx) = std::sync::mpsc::channel();
-            slice.map_async(wgpu::MapMode::Read, move |result| {
-                tx.send(result).unwrap();
-            });
-            self.device.poll(wgpu::Maintain::Wait);
-            rx.recv()
-                .expect("Merkle readback channel closed")
-                .expect("Merkle readback failed");
-
-            let data = slice.get_mapped_range();
-            let result_pairs: &[[u32; 2]] = bytemuck::cast_slice(&data);
-
-            // Write parents into flat node array
-            for i in 0..level_size {
-                let node_idx = parent_start + i;
-                let node_base = node_idx * digest_len;
-                let src_base = i * digest_len;
-                for j in 0..digest_len {
-                    nodes_flat[node_base + j] = result_pairs[src_base + j];
-                }
-            }
-
-            drop(data);
-            staging_buf.unmap();
-
-            child_start = parent_start;
+        // Pre-create params buffers for each level
+        let num_levels = (n as f64).log2() as u32;
+        let mut level_params: Vec<wgpu::Buffer> = Vec::with_capacity(num_levels as usize);
+        let mut level_size = n / 2;
+        let mut parent_start = n / 2;
+        while level_size >= 1 {
+            let params = [level_size as u32, parent_start as u32, 0u32, 0u32];
+            level_params.push(
+                self.device
+                    .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                        label: Some("merkle_flat_params"),
+                        contents: bytemuck::cast_slice(&params),
+                        usage: wgpu::BufferUsages::UNIFORM,
+                    }),
+            );
+            parent_start /= 2;
             level_size /= 2;
         }
 
-        // Convert flat node array to Vec<Digest>
+        let bg_layout = self.hash_pair_flat_pipeline.get_bind_group_layout(0);
+        let level_bind_groups: Vec<wgpu::BindGroup> = level_params
+            .iter()
+            .map(|params_buf| {
+                self.device.create_bind_group(&wgpu::BindGroupDescriptor {
+                    label: Some("merkle_flat_bg"),
+                    layout: &bg_layout,
+                    entries: &[
+                        wgpu::BindGroupEntry {
+                            binding: 0,
+                            resource: self.lookup_buf.as_entire_binding(),
+                        },
+                        wgpu::BindGroupEntry {
+                            binding: 1,
+                            resource: self.mds_buf.as_entire_binding(),
+                        },
+                        wgpu::BindGroupEntry {
+                            binding: 2,
+                            resource: self.rc_buf.as_entire_binding(),
+                        },
+                        wgpu::BindGroupEntry {
+                            binding: 9,
+                            resource: nodes_buf.as_entire_binding(),
+                        },
+                        wgpu::BindGroupEntry {
+                            binding: 10,
+                            resource: params_buf.as_entire_binding(),
+                        },
+                    ],
+                })
+            })
+            .collect();
+
+        // Single command encoder: all levels dispatched as separate compute passes
+        // (each pass gets an implicit barrier for prior writes to nodes_buf)
+        let mut encoder = self
+            .device
+            .create_command_encoder(&wgpu::CommandEncoderDescriptor {
+                label: Some("merkle_fused_encoder"),
+            });
+
+        let mut dispatch_size = n / 2;
+        for bg in &level_bind_groups {
+            let workgroups = (dispatch_size as u32 + WORKGROUP_SIZE - 1) / WORKGROUP_SIZE;
+            {
+                let mut pass = encoder.begin_compute_pass(&wgpu::ComputePassDescriptor {
+                    label: Some("merkle_level"),
+                    timestamp_writes: None,
+                });
+                pass.set_pipeline(&self.hash_pair_flat_pipeline);
+                pass.set_bind_group(0, bg, &[]);
+                pass.dispatch_workgroups(workgroups, 1, 1);
+            }
+            dispatch_size /= 2;
+        }
+
+        // Single readback of entire tree
+        let staging_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
+            label: Some("merkle_staging"),
+            size: buf_size,
+            usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
+            mapped_at_creation: false,
+        });
+        encoder.copy_buffer_to_buffer(&nodes_buf, 0, &staging_buf, 0, buf_size);
+        self.queue.submit(std::iter::once(encoder.finish()));
+
+        let slice = staging_buf.slice(..);
+        let (tx, rx) = std::sync::mpsc::channel();
+        slice.map_async(wgpu::MapMode::Read, move |result| {
+            tx.send(result).unwrap();
+        });
+        self.device.poll(wgpu::Maintain::Wait);
+        rx.recv()
+            .expect("Merkle readback channel closed")
+            .expect("Merkle readback failed");
+
+        let data = slice.get_mapped_range();
+        let result_pairs: &[[u32; 2]] = bytemuck::cast_slice(&data);
+
         let nodes: Vec<Digest> = (0..num_nodes)
             .map(|i| {
                 let base = i * digest_len;
                 let mut elements = [BFieldElement::new(0); 5];
                 for j in 0..5 {
-                    let [lo, hi] = nodes_flat[base + j];
+                    let [lo, hi] = result_pairs[base + j];
                     let raw = (hi as u64) << 32 | lo as u64;
                     elements[j] = BFieldElement::from_raw_u64(raw);
                 }
                 Digest::new(elements)
             })
             .collect();
+
+        drop(data);
+        staging_buf.unmap();
 
         MerkleTree::from_nodes(nodes)
     }
