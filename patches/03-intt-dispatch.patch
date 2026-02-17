@@ -1,0 +1,62 @@
+GPU dispatch for inverse NTT (polynomial interpolation).
+
+The most expensive operation in proving (~40-50% of prove time).
+Replaces rayon parallel CPU iNTT with GPU-accelerated column-by-column
+dispatch for both main table (BFieldElement) and aux table
+(XFieldElement).
+
+Falls back to original rayon parallel CPU path when no GPU is
+registered.
+
+diff --git a/src/stark.rs b/src/stark.rs
+index b2c3d01..f5200f9 100644
+--- a/src/stark.rs
++++ b/src/stark.rs
+@@ -699,16 +711,37 @@ impl Prover {
+         profiler!(stop "fetch trace randomizers");
+ 
+         profiler!(start "poly interpolate" ("LDE"));
+-        main_table
+-            .trace_table_mut()
+-            .axis_iter_mut(COL_AXIS)
+-            .into_par_iter()
+-            .for_each(|mut column| intt(column.as_slice_mut().unwrap()));
+-        aux_table
+-            .trace_table_mut()
+-            .axis_iter_mut(COL_AXIS)
+-            .into_par_iter()
+-            .for_each(|mut column| intt(column.as_slice_mut().unwrap()));
++        if let Some(gpu) = gpu::gpu_accelerator() {
++            // GPU-accelerated iNTT on all main table columns (BFieldElement).
++            {
++                let mut trace = main_table.trace_table_mut();
++                let ncols = trace.ncols();
++                for c in 0..ncols {
++                    let col_slice = trace.column_mut(c).into_slice_memory_order().unwrap();
++                    gpu.intt_bfe(col_slice);
++                }
++            }
++            // GPU-accelerated iNTT on all aux table columns (XFieldElement).
++            {
++                let mut trace = aux_table.trace_table_mut();
++                let ncols = trace.ncols();
++                for c in 0..ncols {
++                    let col_slice = trace.column_mut(c).into_slice_memory_order().unwrap();
++                    gpu.intt_xfe(col_slice);
++                }
++            }
++        } else {
++            main_table
++                .trace_table_mut()
++                .axis_iter_mut(COL_AXIS)
++                .into_par_iter()
++                .for_each(|mut column| intt(column.as_slice_mut().unwrap()));
++            aux_table
++                .trace_table_mut()
++                .axis_iter_mut(COL_AXIS)
++                .into_par_iter()
++                .for_each(|mut column| intt(column.as_slice_mut().unwrap()));
++        }
+         profiler!(stop "poly interpolate");
+ 
+         profiler!(start "calculate quotients");

@@ -1,0 +1,103 @@
+GPU dispatch for Tip5 batch hashing.
+
+Two insertion points where the prover hashes table rows into Merkle
+tree leaves — the second most expensive operation (~20-30% of prove).
+
+1. stark.rs: quotient segment row hashing (FRI domain)
+2. master_table.rs: FRI domain row hashing (main + aux tables)
+
+Both check gpu_accelerator() and fall back to rayon parallel CPU
+hashing when no GPU is registered.
+
+diff --git a/src/stark.rs b/src/stark.rs
+index a1b2c01..b2c3d01 100644
+--- a/src/stark.rs
++++ b/src/stark.rs
+@@ -27,6 +27,7 @@ use crate::challenges::Challenges;
+ use crate::error::ProvingError;
+ use crate::error::VerificationError;
+ use crate::fri;
++use crate::gpu;
+ use crate::fri::Fri;
+ use crate::ndarray_helper;
+ use crate::ndarray_helper::COL_AXIS;
+@@ -320,15 +321,26 @@ impl Prover {
+ 
+         profiler!(start "hash rows of quotient segments" ("hash"));
+         let interpret_xfe_as_bfes = |xfe: &XFieldElement| xfe.coefficients.to_vec();
+-        let hash_row = |row: ArrayView1<_>| {
+-            let row_as_bfes = row.iter().map(interpret_xfe_as_bfes).concat();
+-            Tip5::hash_varlen(&row_as_bfes)
+-        };
+-        let quotient_segments_rows = fri_domain_quotient_segment_codewords
+-            .axis_iter(ROW_AXIS)
+-            .into_par_iter();
+         let fri_domain_quotient_segment_codewords_digests =
+-            quotient_segments_rows.map(hash_row).collect::<Vec<_>>();
++            if let Some(gpu) = gpu::gpu_accelerator() {
++                let rows: Vec<Vec<BFieldElement>> = fri_domain_quotient_segment_codewords
++                    .axis_iter(ROW_AXIS)
++                    .map(|row| row.iter().flat_map(interpret_xfe_as_bfes).collect())
++                    .collect();
++                let row_refs: Vec<&[BFieldElement]> =
++                    rows.iter().map(|r| r.as_slice()).collect();
++                gpu.hash_varlen_batch(&row_refs)
++            } else {
++                let hash_row = |row: ArrayView1<_>| {
++                    let row_as_bfes = row.iter().map(interpret_xfe_as_bfes).concat();
++                    Tip5::hash_varlen(&row_as_bfes)
++                };
++                fri_domain_quotient_segment_codewords
++                    .axis_iter(ROW_AXIS)
++                    .into_par_iter()
++                    .map(hash_row)
++                    .collect::<Vec<_>>()
++            };
+         profiler!(stop "hash rows of quotient segments");
+         profiler!(start "Merkle tree" ("hash"));
+         let quot_merkle_tree = MerkleTree::par_new(&fri_domain_quotient_segment_codewords_digests)?;
+diff --git a/src/table/master_table.rs b/src/table/master_table.rs
+index b1a3c01..c2d4e01 100644
+--- a/src/table/master_table.rs
++++ b/src/table/master_table.rs
+@@ -145,6 +145,7 @@ use twenty_first::util_types::sponge;
+ use crate::aet::AlgebraicExecutionTrace;
+ use crate::arithmetic_domain::ArithmeticDomain;
+ use crate::challenges::Challenges;
++use crate::gpu;
+ use crate::config::CacheDecision;
+ use crate::error::ProvingError;
+ use crate::ndarray_helper;
+@@ -441,13 +442,25 @@ where
+     fn hash_all_fri_domain_rows(&self) -> Vec<Digest> {
+         if let Some(fri_domain_table) = self.fri_domain_table() {
+             profiler!(start "hash rows" ("hash"));
+-            let all_digests = fri_domain_table
+-                .axis_iter(ROW_AXIS)
+-                .into_par_iter()
+-                .map(|row| row.to_slice().unwrap())
+-                .map(Self::Field::bfe_slice)
+-                .map(Tip5::hash_varlen)
+-                .collect();
++            let all_digests = if let Some(gpu) = gpu::gpu_accelerator() {
++                let rows: Vec<Vec<BFieldElement>> = fri_domain_table
++                    .axis_iter(ROW_AXIS)
++                    .map(|row| {
++                        let slice = row.to_slice().unwrap();
++                        Self::Field::bfe_slice(slice).to_vec()
++                    })
++                    .collect();
++                let row_refs: Vec<&[BFieldElement]> = rows.iter().map(|r| r.as_slice()).collect();
++                gpu.hash_varlen_batch(&row_refs)
++            } else {
++                fri_domain_table
++                    .axis_iter(ROW_AXIS)
++                    .into_par_iter()
++                    .map(|row| row.to_slice().unwrap())
++                    .map(Self::Field::bfe_slice)
++                    .map(Tip5::hash_varlen)
++                    .collect()
++            };
+             profiler!(stop "hash rows");
+ 
+             return all_digests;

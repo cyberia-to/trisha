@@ -19,8 +19,11 @@ dispatch points) to upstream triton-vm from crates.io.
 
 ```
 patches/
-  triton-vm-gpu.patch   305-line diff against triton-vm 2.0.0
-  apply.nu              nushell script: fetch + patch + vendor
+  00-visibility.patch     Open internal types for external integration
+  01-gpu-trait.patch      GpuAccelerator trait + global registration
+  02-hash-dispatch.patch  GPU dispatch for Tip5 batch hashing
+  03-intt-dispatch.patch  GPU dispatch for inverse NTT
+  apply.nu                nushell script: fetch + apply all in order
 ```
 
 After cloning or when upgrading triton-vm:
