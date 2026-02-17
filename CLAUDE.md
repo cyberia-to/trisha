@@ -19,12 +19,16 @@ dispatch points) to upstream triton-vm from crates.io.
 
 ```
 patches/
-  00-visibility.patch     Open internal types for external integration
-  01-gpu-trait.patch      GpuAccelerator trait + global registration
-  02-hash-dispatch.patch  GPU dispatch for Tip5 batch hashing
-  03-intt-dispatch.patch  GPU dispatch for inverse NTT
-  apply.nu                nushell script: fetch + apply all in order
+  gpu.rs     GpuAccelerator trait — the only new Rust file
+  apply.nu   fetch upstream + overlay gpu.rs + str replace
 ```
+
+The apply script works in 5 named layers:
+0. Copy `gpu.rs` into vendor
+1. Export `pub mod gpu` in lib.rs
+2. Widen `pub(crate)` → `pub` on types we need
+3. Insert GPU dispatch for Tip5 batch hashing
+4. Insert GPU dispatch for iNTT (polynomial interpolation)
 
 After cloning or when upgrading triton-vm:
 ```
