@@ -13,15 +13,18 @@ Trisha closes the loop: source → compile → run → prove → verify → depl
 | Proof file | DONE | TOML + bincode, roundtrip tested | — |
 | Deploy | STUB | Prints digest, says "not yet available" | No neptune-core dep, no RPC, no LockScript, no UTXO |
 | GPU trait | DONE | GpuBackend trait, CPU fallback, wgpu init | — |
-| WGSL shaders | COMPILED | 4 shaders compile, pipelines created | Not wired to computation |
-| GPU proving | NOT STARTED | wgpu backend falls back to CPU | Need to intercept triton-vm internals |
+| WGSL shaders | DONE | 5 shaders (goldilocks, ntt, poseidon2, fri, tip5) | NTT/FRI not yet wired to computation |
+| GPU Tip5 hash | DONE | Tip5 batch hashing on GPU via GpuAccelerator | — |
+| GPU proving | PARTIAL | Tip5 leaf hashing dispatched to GPU during proving | NTT, Merkle tree construction still CPU |
 | GPU verify | NOT STARTED | wgpu backend falls back to CPU | Need FRI shader integration |
 
-**What's real**: Runner, Prover, Verifier work end-to-end. 12 tests
-pass. Proofs are genuine STARK proofs verified by triton-vm.
+**What's real**: Runner, Prover, Verifier work end-to-end. 13 tests
+pass. Proofs are genuine STARK proofs verified by triton-vm. GPU Tip5
+accelerator is wired into triton-vm's prover — Merkle leaf hashing
+runs on Metal/Vulkan/DX12.
 
-**What's scaffold**: GPU acceleration (shaders compile but don't
-compute), Deploy (prints metadata but no blockchain interaction).
+**What's scaffold**: GPU NTT/FRI (shaders compile but not wired),
+Deploy (prints metadata but no blockchain interaction).
 
 ## Completion Plan
 
