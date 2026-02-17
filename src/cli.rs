@@ -4,7 +4,9 @@ use std::process;
 use clap::{Args, Parser, Subcommand};
 
 use trident::runtime::{Deployer, ProgramInput, ProofData, Prover, Runner, Verifier};
+use trisha::batch;
 use trisha::compile::compile_source;
+use trisha::error::TrishaError;
 use trisha::proof_file::{ClaimSection, DataSection, ProofFile, ProofMeta};
 use trisha::warrior::TrishaWarrior;
 
@@ -24,19 +26,36 @@ pub enum Command {
     Run(RunArgs),
     /// Generate a STARK proof of correct execution
     Prove(ProveArgs),
-    /// Prove multiple programs in parallel
-    ProveBatch(ProveBatchArgs),
     /// Verify a STARK proof
     Verify(VerifyArgs),
     /// Deploy a program (package artifact + optional on-chain)
     Deploy(DeployArgs),
 }
 
+// ---------------------------------------------------------------------------
+// Shared arg groups
+// ---------------------------------------------------------------------------
+
+fn make_input(input_values: &Option<Vec<u64>>, secret: &Option<Vec<u64>>) -> ProgramInput {
+    ProgramInput {
+        public: input_values.clone().unwrap_or_default(),
+        secret: secret.clone().unwrap_or_default(),
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Run
+// ---------------------------------------------------------------------------
+
 #[derive(Args)]
+#[command(args_conflicts_with_subcommands = true)]
 pub struct RunArgs {
+    #[command(subcommand)]
+    pub mode: Option<RunMode>,
+
     /// Input .tri file
-    pub input: PathBuf,
-    /// Target VM (default: triton)
+    pub input: Option<PathBuf>,
+    /// Target VM
     #[arg(long, default_value = "triton")]
     pub target: String,
     /// Compilation profile
@@ -48,16 +67,150 @@ pub struct RunArgs {
     /// Secret input values (comma-separated)
     #[arg(long, value_delimiter = ',')]
     pub secret: Option<Vec<u64>>,
-    /// Chain state name
-    #[arg(long)]
-    pub state: Option<String>,
+}
+
+#[derive(Subcommand)]
+pub enum RunMode {
+    /// Run multiple programs in parallel
+    Batch(RunBatchArgs),
 }
 
 #[derive(Args)]
+pub struct RunBatchArgs {
+    /// Input .tri files
+    pub inputs: Vec<PathBuf>,
+    /// Target VM
+    #[arg(long, default_value = "triton")]
+    pub target: String,
+    /// Compilation profile
+    #[arg(long, default_value = "debug")]
+    pub profile: String,
+    /// Public input values (comma-separated)
+    #[arg(long, value_delimiter = ',')]
+    pub input_values: Option<Vec<u64>>,
+    /// Secret input values (comma-separated)
+    #[arg(long, value_delimiter = ',')]
+    pub secret: Option<Vec<u64>>,
+    /// Maximum parallel jobs
+    #[arg(long, default_value = "4")]
+    pub max_parallel: usize,
+}
+
+pub fn cmd_run(args: RunArgs) {
+    match args.mode {
+        Some(RunMode::Batch(batch_args)) => cmd_run_batch(batch_args),
+        None => {
+            let input = match args.input {
+                Some(p) => p,
+                None => {
+                    eprintln!("error: no input file specified");
+                    process::exit(1);
+                }
+            };
+            cmd_run_single(
+                input,
+                &args.target,
+                &args.profile,
+                &args.input_values,
+                &args.secret,
+            );
+        }
+    }
+}
+
+fn cmd_run_single(
+    input: PathBuf,
+    target: &str,
+    profile: &str,
+    input_values: &Option<Vec<u64>>,
+    secret: &Option<Vec<u64>>,
+) {
+    let bundle = match compile_source(&input, target, profile) {
+        Ok(b) => b,
+        Err(e) => {
+            eprintln!("error: {}", e);
+            process::exit(1);
+        }
+    };
+
+    let pi = make_input(input_values, secret);
+    let warrior = TrishaWarrior::new();
+    match warrior.run(&bundle, &pi) {
+        Ok(result) => {
+            for val in &result.output {
+                println!("{}", val);
+            }
+            eprintln!("Executed in {} cycles", result.cycle_count);
+        }
+        Err(e) => {
+            eprintln!("error: {}", e);
+            process::exit(1);
+        }
+    }
+}
+
+fn cmd_run_batch(args: RunBatchArgs) {
+    if args.inputs.is_empty() {
+        eprintln!("error: no input files specified");
+        process::exit(1);
+    }
+
+    let target = args.target.clone();
+    let profile = args.profile.clone();
+    let input_values = args.input_values.clone();
+    let secret = args.secret.clone();
+    let count = args.inputs.len();
+    eprintln!(
+        "Running {} programs (max {} parallel)...",
+        count, args.max_parallel
+    );
+
+    let results = batch::run_batch(args.inputs, args.max_parallel, |path| {
+        let bundle = compile_source(&path, &target, &profile)?;
+        let pi = make_input(&input_values, &secret);
+        let warrior = TrishaWarrior::new();
+        warrior.run(&bundle, &pi).map_err(TrishaError::Execute)
+    });
+
+    let mut failures = 0;
+    for r in &results {
+        match &r.result {
+            Ok(exec) => {
+                let output: Vec<String> = exec.output.iter().map(|v| v.to_string()).collect();
+                eprintln!(
+                    "  [{}] {} cycles, {} ms → {}",
+                    r.index,
+                    exec.cycle_count,
+                    r.elapsed_ms,
+                    output.join(", ")
+                );
+            }
+            Err(e) => {
+                eprintln!("  [{}] FAIL: {}", r.index, e);
+                failures += 1;
+            }
+        }
+    }
+
+    eprintln!("{}/{} succeeded", count - failures, count);
+    if failures > 0 {
+        process::exit(1);
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Prove
+// ---------------------------------------------------------------------------
+
+#[derive(Args)]
+#[command(args_conflicts_with_subcommands = true)]
 pub struct ProveArgs {
+    #[command(subcommand)]
+    pub mode: Option<ProveMode>,
+
     /// Input .tri file
-    pub input: PathBuf,
-    /// Target VM (default: triton)
+    pub input: Option<PathBuf>,
+    /// Target VM
     #[arg(long, default_value = "triton")]
     pub target: String,
     /// Compilation profile
@@ -72,93 +225,70 @@ pub struct ProveArgs {
     /// Output path for proof file
     #[arg(long)]
     pub output: Option<PathBuf>,
-    /// Chain state name
-    #[arg(long)]
-    pub state: Option<String>,
+}
+
+#[derive(Subcommand)]
+pub enum ProveMode {
+    /// Prove multiple programs in parallel
+    Batch(ProveBatchArgs),
 }
 
 #[derive(Args)]
 pub struct ProveBatchArgs {
     /// Input .tri files
     pub inputs: Vec<PathBuf>,
-    /// Target VM (default: triton)
+    /// Target VM
     #[arg(long, default_value = "triton")]
     pub target: String,
     /// Compilation profile
     #[arg(long, default_value = "release")]
     pub profile: String,
+    /// Public input values (comma-separated)
+    #[arg(long, value_delimiter = ',')]
+    pub input_values: Option<Vec<u64>>,
+    /// Secret input values (comma-separated)
+    #[arg(long, value_delimiter = ',')]
+    pub secret: Option<Vec<u64>>,
     /// Output directory for proof files
     #[arg(long, default_value = ".")]
     pub output: PathBuf,
-    /// Maximum parallel proving jobs
+    /// Maximum parallel jobs
     #[arg(long, default_value = "4")]
     pub max_parallel: usize,
 }
 
-#[derive(Args)]
-pub struct VerifyArgs {
-    /// Path to the proof file (.proof.toml)
-    pub proof: PathBuf,
-    /// Target VM (default: triton)
-    #[arg(long, default_value = "triton")]
-    pub target: String,
-    /// Chain state name
-    #[arg(long)]
-    pub state: Option<String>,
-}
-
-#[derive(Args)]
-pub struct DeployArgs {
-    /// Input .tri file
-    pub input: PathBuf,
-    /// Target (default: neptune)
-    #[arg(long, default_value = "neptune")]
-    pub target: String,
-    /// Chain state (mainnet, testnet)
-    #[arg(long, default_value = "testnet")]
-    pub state: String,
-    /// Compilation profile
-    #[arg(long, default_value = "release")]
-    pub profile: String,
-    /// Path to proof file to attach
-    #[arg(long)]
-    pub proof: Option<PathBuf>,
-    /// Show what would happen without deploying
-    #[arg(long)]
-    pub dry_run: bool,
-}
-
-pub fn cmd_run(args: RunArgs) {
-    let bundle = match compile_source(&args.input, &args.target, &args.profile) {
-        Ok(b) => b,
-        Err(e) => {
-            eprintln!("error: {}", e);
-            process::exit(1);
-        }
-    };
-
-    let input = ProgramInput {
-        public: args.input_values.unwrap_or_default(),
-        secret: args.secret.unwrap_or_default(),
-    };
-
-    let warrior = TrishaWarrior::new();
-    match warrior.run(&bundle, &input) {
-        Ok(result) => {
-            for val in &result.output {
-                println!("{}", val);
-            }
-            eprintln!("Executed in {} cycles", result.cycle_count);
-        }
-        Err(e) => {
-            eprintln!("error: {}", e);
-            process::exit(1);
+pub fn cmd_prove(args: ProveArgs) {
+    match args.mode {
+        Some(ProveMode::Batch(batch_args)) => cmd_prove_batch(batch_args),
+        None => {
+            let input = match args.input {
+                Some(p) => p,
+                None => {
+                    eprintln!("error: no input file specified");
+                    process::exit(1);
+                }
+            };
+            cmd_prove_single(
+                input,
+                &args.target,
+                &args.profile,
+                &args.input_values,
+                &args.secret,
+                args.output,
+            );
         }
     }
 }
 
-pub fn cmd_prove(args: ProveArgs) {
-    let bundle = match compile_source(&args.input, &args.target, &args.profile) {
+fn cmd_prove_single(
+    input: PathBuf,
+    target: &str,
+    profile: &str,
+    input_values: &Option<Vec<u64>>,
+    secret: &Option<Vec<u64>>,
+    output: Option<PathBuf>,
+) {
+    let bundle = match compile_source(&input, target, profile) {
         Ok(b) => b,
         Err(e) => {
             eprintln!("error: {}", e);
@@ -166,14 +296,10 @@ pub fn cmd_prove(args: ProveArgs) {
         }
     };
 
-    let input = ProgramInput {
-        public: args.input_values.unwrap_or_default(),
-        secret: args.secret.unwrap_or_default(),
-    };
-
+    let pi = make_input(input_values, secret);
     let start = std::time::Instant::now();
     let warrior = TrishaWarrior::new();
-    let proof_data = match warrior.prove(&bundle, &input) {
+    let proof_data = match warrior.prove(&bundle, &pi) {
         Ok(p) => p,
         Err(e) => {
             eprintln!("error: {}", e);
@@ -182,8 +308,8 @@ pub fn cmd_prove(args: ProveArgs) {
     };
     let proving_time_ms = start.elapsed().as_millis() as u64;
 
-    let output_path = args.output.unwrap_or_else(|| {
-        let stem = args.input.file_stem().unwrap_or_default().to_string_lossy();
+    let output_path = output.unwrap_or_else(|| {
+        let stem = input.file_stem().unwrap_or_default().to_string_lossy();
         PathBuf::from(format!("{}.proof.toml", stem))
     });
 
@@ -220,47 +346,68 @@ pub fn cmd_prove(args: ProveArgs) {
     );
 }
 
-pub fn cmd_prove_batch(args: ProveBatchArgs) {
+fn cmd_prove_batch(args: ProveBatchArgs) {
     if args.inputs.is_empty() {
         eprintln!("error: no input files specified");
         process::exit(1);
     }
 
-    // Create output directory if needed
     if let Err(e) = std::fs::create_dir_all(&args.output) {
         eprintln!("error: cannot create output directory: {}", e);
         process::exit(1);
     }
 
-    let jobs =
-        match trisha::batch::build_jobs(&args.inputs, &args.target, &args.profile, &args.output) {
-            Ok(j) => j,
-            Err(e) => {
-                eprintln!("error: {}", e);
-                process::exit(1);
-            }
-        };
-
-    let count = jobs.len();
+    let target = args.target.clone();
+    let profile = args.profile.clone();
+    let input_values = args.input_values.clone();
+    let secret = args.secret.clone();
+    let output_dir = args.output.clone();
+    let count = args.inputs.len();
     eprintln!(
         "Proving {} programs (max {} parallel)...",
         count, args.max_parallel
     );
 
-    let results = trisha::batch::prove_batch(jobs, args.max_parallel);
+    let results = batch::run_batch(args.inputs, args.max_parallel, |path| {
+        let bundle = compile_source(&path, &target, &profile)?;
+        let pi = make_input(&input_values, &secret);
+        let warrior = TrishaWarrior::new();
+        let start = std::time::Instant::now();
+        let proof_data = warrior.prove(&bundle, &pi).map_err(TrishaError::Prove)?;
+        let proving_time_ms = start.elapsed().as_millis() as u64;
+
+        let stem = path.file_stem().unwrap_or_default().to_string_lossy();
+        let out_path = output_dir.join(format!("{}.proof.toml", stem));
+
+        let proof_file = ProofFile {
+            proof: ProofMeta {
+                format: proof_data.format.clone(),
+                program_name: bundle.name.clone(),
+                cycle_count: 0,
+                padded_height: 0,
+                proving_time_ms,
+            },
+            claim: ClaimSection {
+                program_hash: proof_data.claim.program_hash.clone(),
+                public_input: proof_data.claim.public_input.clone(),
+                public_output: proof_data.claim.public_output.clone(),
+            },
+            data: DataSection {
+                proof: ProofFile::encode_proof_bytes(&proof_data.proof_bytes),
+            },
+        };
+        proof_file.save(&out_path)?;
+        Ok::<(PathBuf, u64), TrishaError>((out_path, proving_time_ms))
+    });
 
     let mut failures = 0;
-    for result in &results {
-        match &result.proof_data {
-            Ok(_) => {
-                eprintln!(
-                    "  {} ({} ms)",
-                    result.output_path.display(),
-                    result.proving_time_ms
-                );
+    for r in &results {
+        match &r.result {
+            Ok((path, prove_ms)) => {
+                eprintln!("  {} ({} ms)", path.display(), prove_ms);
             }
             Err(e) => {
-                eprintln!("  FAIL {}: {}", result.output_path.display(), e);
+                eprintln!("  [{}] FAIL: {}", r.index, e);
                 failures += 1;
             }
         }
@@ -272,24 +419,61 @@ pub fn cmd_prove_batch(args: ProveBatchArgs) {
     }
 }
 
+// ---------------------------------------------------------------------------
+// Verify
+// ---------------------------------------------------------------------------
+
+#[derive(Args)]
+#[command(args_conflicts_with_subcommands = true)]
+pub struct VerifyArgs {
+    #[command(subcommand)]
+    pub mode: Option<VerifyMode>,
+
+    /// Path to the proof file (.proof.toml)
+    pub proof: Option<PathBuf>,
+    /// Target VM
+    #[arg(long, default_value = "triton")]
+    pub target: String,
+}
+
+#[derive(Subcommand)]
+pub enum VerifyMode {
+    /// Verify multiple proofs in parallel
+    Batch(VerifyBatchArgs),
+}
+
+#[derive(Args)]
+pub struct VerifyBatchArgs {
+    /// Proof files (.proof.toml)
+    pub proofs: Vec<PathBuf>,
+    /// Target VM
+    #[arg(long, default_value = "triton")]
+    pub target: String,
+    /// Maximum parallel jobs
+    #[arg(long, default_value = "4")]
+    pub max_parallel: usize,
+}
+
 pub fn cmd_verify(args: VerifyArgs) {
-    let proof_file = match ProofFile::load(&args.proof) {
-        Ok(p) => p,
-        Err(e) => {
-            eprintln!("error: {}", e);
-            process::exit(1);
+    match args.mode {
+        Some(VerifyMode::Batch(batch_args)) => cmd_verify_batch(batch_args),
+        None => {
+            let proof = match args.proof {
+                Some(p) => p,
+                None => {
+                    eprintln!("error: no proof file specified");
+                    process::exit(1);
+                }
+            };
+            cmd_verify_single(proof);
         }
-    };
+    }
+}
 
-    let proof_bytes = match ProofFile::decode_proof_bytes(&proof_file.data.proof) {
-        Ok(b) => b,
-        Err(e) => {
-            eprintln!("error: {}", e);
-            process::exit(1);
-        }
-    };
-
-    let proof_data = ProofData {
+fn load_proof_data(path: &std::path::Path) -> Result<ProofData, TrishaError> {
+    let proof_file = ProofFile::load(path)?;
+    let proof_bytes = ProofFile::decode_proof_bytes(&proof_file.data.proof)?;
+    Ok(ProofData {
         claim: trident::field::proof::Claim {
             program_hash: proof_file.claim.program_hash,
             public_input: proof_file.claim.public_input,
@@ -297,13 +481,21 @@ pub fn cmd_verify(args: VerifyArgs) {
         },
         proof_bytes,
         format: proof_file.proof.format,
+    })
+}
+
+fn cmd_verify_single(proof_path: PathBuf) {
+    let proof_data = match load_proof_data(&proof_path) {
+        Ok(p) => p,
+        Err(e) => {
+            eprintln!("error: {}", e);
+            process::exit(1);
+        }
     };
 
     let warrior = TrishaWarrior::new();
     match warrior.verify(&proof_data) {
-        Ok(true) => {
-            println!("Verification: PASS");
-        }
+        Ok(true) => println!("Verification: PASS"),
         Ok(false) => {
             println!("Verification: FAIL");
             process::exit(1);
@@ -315,8 +507,136 @@ pub fn cmd_verify(args: VerifyArgs) {
     }
 }
 
+fn cmd_verify_batch(args: VerifyBatchArgs) {
+    if args.proofs.is_empty() {
+        eprintln!("error: no proof files specified");
+        process::exit(1);
+    }
+
+    let count = args.proofs.len();
+    eprintln!(
+        "Verifying {} proofs (max {} parallel)...",
+        count, args.max_parallel
+    );
+
+    let results = batch::run_batch(args.proofs, args.max_parallel, |path| {
+        let proof_data = load_proof_data(&path)?;
+        let warrior = TrishaWarrior::new();
+        let valid = warrior.verify(&proof_data).map_err(TrishaError::Verify)?;
+        Ok::<(PathBuf, bool), TrishaError>((path, valid))
+    });
+
+    let mut failures = 0;
+    for r in &results {
+        match &r.result {
+            Ok((path, true)) => {
+                eprintln!("  {} PASS ({} ms)", path.display(), r.elapsed_ms);
+            }
+            Ok((path, false)) => {
+                eprintln!("  {} FAIL", path.display());
+                failures += 1;
+            }
+            Err(e) => {
+                eprintln!("  [{}] ERROR: {}", r.index, e);
+                failures += 1;
+            }
+        }
+    }
+
+    eprintln!("{}/{} verified", count - failures, count);
+    if failures > 0 {
+        process::exit(1);
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Deploy
+// ---------------------------------------------------------------------------
+
+#[derive(Args)]
+#[command(args_conflicts_with_subcommands = true)]
+pub struct DeployArgs {
+    #[command(subcommand)]
+    pub mode: Option<DeployMode>,
+
+    /// Input .tri file
+    pub input: Option<PathBuf>,
+    /// Target (default: neptune)
+    #[arg(long, default_value = "neptune")]
+    pub target: String,
+    /// Chain state (mainnet, testnet)
+    #[arg(long, default_value = "testnet")]
+    pub state: String,
+    /// Compilation profile
+    #[arg(long, default_value = "release")]
+    pub profile: String,
+    /// Path to proof file to attach
+    #[arg(long)]
+    pub proof: Option<PathBuf>,
+    /// Show what would happen without deploying
+    #[arg(long)]
+    pub dry_run: bool,
+}
+
+#[derive(Subcommand)]
+pub enum DeployMode {
+    /// Deploy multiple programs in parallel
+    Batch(DeployBatchArgs),
+}
+
+#[derive(Args)]
+pub struct DeployBatchArgs {
+    /// Input .tri files
+    pub inputs: Vec<PathBuf>,
+    /// Target (default: neptune)
+    #[arg(long, default_value = "neptune")]
+    pub target: String,
+    /// Chain state (mainnet, testnet)
+    #[arg(long, default_value = "testnet")]
+    pub state: String,
+    /// Compilation profile
+    #[arg(long, default_value = "release")]
+    pub profile: String,
+    /// Show what would happen without deploying
+    #[arg(long)]
+    pub dry_run: bool,
+    /// Maximum parallel jobs
+    #[arg(long, default_value = "4")]
+    pub max_parallel: usize,
+}
+
 pub fn cmd_deploy(args: DeployArgs) {
-    let bundle = match compile_source(&args.input, &args.target, &args.profile) {
+    match args.mode {
+        Some(DeployMode::Batch(batch_args)) => cmd_deploy_batch(batch_args),
+        None => {
+            let input = match args.input {
+                Some(p) => p,
+                None => {
+                    eprintln!("error: no input file specified");
+                    process::exit(1);
+                }
+            };
+            cmd_deploy_single(
+                input,
+                &args.target,
+                &args.state,
+                &args.profile,
+                args.proof,
+                args.dry_run,
+            );
+        }
+    }
+}
+
+fn cmd_deploy_single(
+    input: PathBuf,
+    target: &str,
+    state: &str,
+    profile: &str,
+    proof_path: Option<PathBuf>,
+    dry_run: bool,
+) {
+    let bundle = match compile_source(&input, target, profile) {
         Ok(b) => b,
         Err(e) => {
             eprintln!("error: {}", e);
@@ -324,48 +644,30 @@ pub fn cmd_deploy(args: DeployArgs) {
         }
     };
 
-    // Load proof if provided
-    let proof_data = if let Some(ref proof_path) = args.proof {
-        let pf = match ProofFile::load(proof_path) {
-            Ok(p) => p,
+    let proof_data = if let Some(ref pp) = proof_path {
+        match load_proof_data(pp) {
+            Ok(p) => Some(p),
             Err(e) => {
                 eprintln!("error: cannot load proof: {}", e);
                 process::exit(1);
             }
-        };
-        let proof_bytes = match ProofFile::decode_proof_bytes(&pf.data.proof) {
-            Ok(b) => b,
-            Err(e) => {
-                eprintln!("error: {}", e);
-                process::exit(1);
-            }
-        };
-        Some(ProofData {
-            claim: trident::field::proof::Claim {
-                program_hash: pf.claim.program_hash,
-                public_input: pf.claim.public_input,
-                public_output: pf.claim.public_output,
-            },
-            proof_bytes,
-            format: pf.proof.format,
-        })
+        }
     } else {
         None
     };
 
-    // Compute program digest for display
     let digest = trident::poseidon2::hash_bytes(bundle.assembly.as_bytes());
     let digest_hex = trident::hash::ContentHash(digest).to_hex();
 
-    if args.dry_run {
+    if dry_run {
         eprintln!("Dry run — would deploy:");
         eprintln!("  Program:  {}", bundle.name);
-        eprintln!("  Target:   {}", args.target);
-        eprintln!("  State:    {}", args.state);
+        eprintln!("  Target:   {}", target);
+        eprintln!("  State:    {}", state);
         eprintln!("  Digest:   {}", digest_hex);
         eprintln!(
             "  Proof:    {}",
-            if args.proof.is_some() {
+            if proof_path.is_some() {
                 "attached"
             } else {
                 "none"
@@ -376,12 +678,56 @@ pub fn cmd_deploy(args: DeployArgs) {
 
     let warrior = TrishaWarrior::new();
     match warrior.deploy(&bundle, proof_data.as_ref()) {
-        Ok(result) => {
-            println!("{}", result);
-        }
+        Ok(result) => println!("{}", result),
         Err(e) => {
             eprintln!("error: {}", e);
             process::exit(1);
         }
+    }
+}
+
+fn cmd_deploy_batch(args: DeployBatchArgs) {
+    if args.inputs.is_empty() {
+        eprintln!("error: no input files specified");
+        process::exit(1);
+    }
+
+    let target = args.target.clone();
+    let profile = args.profile.clone();
+    let dry_run = args.dry_run;
+    let count = args.inputs.len();
+    eprintln!(
+        "Deploying {} programs (max {} parallel)...",
+        count, args.max_parallel
+    );
+
+    let results = batch::run_batch(args.inputs, args.max_parallel, |path| {
+        let bundle = compile_source(&path, &target, &profile)?;
+
+        let digest = trident::poseidon2::hash_bytes(bundle.assembly.as_bytes());
+        let digest_hex = trident::hash::ContentHash(digest).to_hex();
+
+        if dry_run {
+            return Ok::<String, TrishaError>(format!("dry-run: {} ({})", bundle.name, digest_hex));
+        }
+
+        let warrior = TrishaWarrior::new();
+        warrior.deploy(&bundle, None).map_err(TrishaError::Deploy)
+    });
+
+    let mut failures = 0;
+    for r in &results {
+        match &r.result {
+            Ok(msg) => eprintln!("  [{}] {} ({} ms)", r.index, msg, r.elapsed_ms),
+            Err(e) => {
+                eprintln!("  [{}] FAIL: {}", r.index, e);
+                failures += 1;
+            }
+        }
+    }
+
+    eprintln!("{}/{} deployed", count - failures, count);
+    if failures > 0 {
+        process::exit(1);
     }
 }
