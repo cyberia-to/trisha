@@ -617,6 +617,195 @@ impl GpuAccelerator for WgpuTip5Accelerator {
         }
     }
 
+    fn ntt_bfe(&self, column: &mut [BFieldElement]) {
+        let n = column.len();
+        if n <= 1 || !n.is_power_of_two() {
+            twenty_first::math::ntt::ntt(column);
+            return;
+        }
+
+        if n < 1024 {
+            twenty_first::math::ntt::ntt(column);
+            return;
+        }
+
+        let n_u32 = n as u32;
+        let log_n = n.trailing_zeros();
+
+        // Forward twiddle factors: omega (NOT omega.inverse())
+        let omega = BFieldElement::primitive_root_of_unity(n as u64).unwrap();
+
+        let mut twiddles = vec![[0u32; 2]; n / 2];
+        let mut w = BFieldElement::new(1);
+        for tw in twiddles.iter_mut() {
+            let raw = w.raw_u64();
+            *tw = [raw as u32, (raw >> 32) as u32];
+            w *= omega;
+        }
+
+        // Bit-reversal permutation
+        for k in 0..n {
+            let rev_k = (k as u32).reverse_bits() >> (32 - log_n);
+            let rev_k = rev_k as usize;
+            if k < rev_k {
+                column.swap(k, rev_k);
+            }
+        }
+
+        // Upload column data (Montgomery form)
+        let col_data: Vec<[u32; 2]> = column
+            .iter()
+            .map(|bfe| {
+                let raw = bfe.raw_u64();
+                [raw as u32, (raw >> 32) as u32]
+            })
+            .collect();
+
+        let data_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("fwd_ntt_data"),
+                contents: bytemuck::cast_slice(&col_data),
+                usage: wgpu::BufferUsages::STORAGE | wgpu::BufferUsages::COPY_SRC,
+            });
+
+        let twiddle_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("fwd_ntt_twiddles"),
+                contents: bytemuck::cast_slice(&twiddles),
+                usage: wgpu::BufferUsages::STORAGE,
+            });
+
+        // Run log2(n) butterfly passes (same shader as iNTT)
+        for layer in 0..log_n {
+            let params = [n_u32, layer, 0u32, 0u32];
+            let params_buf = self
+                .device
+                .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                    label: Some("fwd_ntt_params"),
+                    contents: bytemuck::cast_slice(&params),
+                    usage: wgpu::BufferUsages::UNIFORM,
+                });
+
+            let bind_group_layout = self.ntt_butterfly_pipeline.get_bind_group_layout(0);
+            let bind_group = self.device.create_bind_group(&wgpu::BindGroupDescriptor {
+                label: Some("fwd_ntt_bg"),
+                layout: &bind_group_layout,
+                entries: &[
+                    wgpu::BindGroupEntry {
+                        binding: 0,
+                        resource: data_buf.as_entire_binding(),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 1,
+                        resource: twiddle_buf.as_entire_binding(),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 2,
+                        resource: params_buf.as_entire_binding(),
+                    },
+                ],
+            });
+
+            let n_butterflies = n_u32 / 2;
+            let workgroups = (n_butterflies + WORKGROUP_SIZE - 1) / WORKGROUP_SIZE;
+
+            let mut encoder = self
+                .device
+                .create_command_encoder(&wgpu::CommandEncoderDescriptor {
+                    label: Some("fwd_ntt_encoder"),
+                });
+            {
+                let mut pass = encoder.begin_compute_pass(&wgpu::ComputePassDescriptor {
+                    label: Some("fwd_ntt_butterfly_pass"),
+                    timestamp_writes: None,
+                });
+                pass.set_pipeline(&self.ntt_butterfly_pipeline);
+                pass.set_bind_group(0, &bind_group, &[]);
+                pass.dispatch_workgroups(workgroups, 1, 1);
+            }
+            self.queue.submit(std::iter::once(encoder.finish()));
+            self.device.poll(wgpu::Maintain::Wait);
+        }
+
+        // NO normalization pass — forward NTT doesn't divide by n
+
+        // Read back results
+        let buf_size = (n * 8) as u64;
+        let staging_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
+            label: Some("fwd_ntt_staging"),
+            size: buf_size,
+            usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
+            mapped_at_creation: false,
+        });
+
+        let mut encoder = self
+            .device
+            .create_command_encoder(&wgpu::CommandEncoderDescriptor {
+                label: Some("fwd_ntt_readback"),
+            });
+        encoder.copy_buffer_to_buffer(&data_buf, 0, &staging_buf, 0, buf_size);
+        self.queue.submit(std::iter::once(encoder.finish()));
+
+        let slice = staging_buf.slice(..);
+        let (tx, rx) = std::sync::mpsc::channel();
+        slice.map_async(wgpu::MapMode::Read, move |result| {
+            tx.send(result).unwrap();
+        });
+        self.device.poll(wgpu::Maintain::Wait);
+        rx.recv()
+            .expect("Forward NTT readback channel closed")
+            .expect("Forward NTT readback failed");
+
+        let data = slice.get_mapped_range();
+        let result_pairs: &[[u32; 2]] = bytemuck::cast_slice(&data);
+
+        for (i, &[lo, hi]) in result_pairs.iter().enumerate() {
+            let raw = (hi as u64) << 32 | lo as u64;
+            column[i] = BFieldElement::from_raw_u64(raw);
+        }
+
+        drop(data);
+        staging_buf.unmap();
+    }
+
+    fn ntt_xfe(&self, column: &mut [XFieldElement]) {
+        let n = column.len();
+        if n <= 1 || !n.is_power_of_two() {
+            twenty_first::math::ntt::ntt(column);
+            return;
+        }
+
+        if n < 1024 {
+            twenty_first::math::ntt::ntt(column);
+            return;
+        }
+
+        // Deinterleave: split XFE column into 3 independent BFE columns.
+        // NTT is linear over BFE, so NTT(xfe_col) = reassemble(NTT(c0), NTT(c1), NTT(c2)).
+        let mut c0 = vec![BFieldElement::new(0); n];
+        let mut c1 = vec![BFieldElement::new(0); n];
+        let mut c2 = vec![BFieldElement::new(0); n];
+        for (i, xfe) in column.iter().enumerate() {
+            c0[i] = xfe.coefficients[0];
+            c1[i] = xfe.coefficients[1];
+            c2[i] = xfe.coefficients[2];
+        }
+
+        // Run 3 independent BFE forward NTTs on GPU
+        self.ntt_bfe(&mut c0);
+        self.ntt_bfe(&mut c1);
+        self.ntt_bfe(&mut c2);
+
+        // Reinterleave back into XFE column
+        for (i, xfe) in column.iter_mut().enumerate() {
+            xfe.coefficients[0] = c0[i];
+            xfe.coefficients[1] = c1[i];
+            xfe.coefficients[2] = c2[i];
+        }
+    }
+
     fn fri_fold(
         &self,
         codeword: &[XFieldElement],

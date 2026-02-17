@@ -314,4 +314,53 @@ let fri_rs = ".vendor/triton-vm/src/fri.rs"
     }')
     | save -f $fri_rs)
 
+# ── Layer 7: Forward NTT dispatch — GPU "restore original trace" ──
+
+print "  [7] Forward NTT dispatch — restore original trace"
+
+(open $stark
+    | str replace ('        profiler!(start "restore original trace" ("LDE"));
+        main_table
+            .trace_table_mut()
+            .axis_iter_mut(COL_AXIS)
+            .into_par_iter()
+            .for_each(|mut column| ntt(column.as_slice_mut().unwrap()));
+        aux_table
+            .trace_table_mut()
+            .axis_iter_mut(COL_AXIS)
+            .into_par_iter()
+            .for_each(|mut column| ntt(column.as_slice_mut().unwrap()));
+        profiler!(stop "restore original trace");') ('        profiler!(start "restore original trace" ("LDE"));
+        if let Some(gpu) = gpu::gpu_accelerator() {
+            {
+                let mut trace = main_table.trace_table_mut();
+                let ncols = trace.ncols();
+                for c in 0..ncols {
+                    let col_slice = trace.column_mut(c).into_slice_memory_order().unwrap();
+                    gpu.ntt_bfe(col_slice);
+                }
+            }
+            {
+                let mut trace = aux_table.trace_table_mut();
+                let ncols = trace.ncols();
+                for c in 0..ncols {
+                    let col_slice = trace.column_mut(c).into_slice_memory_order().unwrap();
+                    gpu.ntt_xfe(col_slice);
+                }
+            }
+        } else {
+            main_table
+                .trace_table_mut()
+                .axis_iter_mut(COL_AXIS)
+                .into_par_iter()
+                .for_each(|mut column| ntt(column.as_slice_mut().unwrap()));
+            aux_table
+                .trace_table_mut()
+                .axis_iter_mut(COL_AXIS)
+                .into_par_iter()
+                .for_each(|mut column| ntt(column.as_slice_mut().unwrap()));
+        }
+        profiler!(stop "restore original trace");')
+    | save -f $stark)
+
 print "Done. GPU overlay applied to .vendor/"

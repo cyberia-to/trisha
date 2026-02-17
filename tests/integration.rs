@@ -427,6 +427,114 @@ fn gpu_fri_fold_matches_cpu() {
     }
 }
 
+/// Test that GPU forward NTT (BFE) produces identical results to CPU.
+#[cfg(feature = "gpu")]
+#[test]
+fn gpu_ntt_bfe_matches_cpu() {
+    use triton_vm::gpu::GpuAccelerator;
+    use twenty_first::math::ntt::ntt;
+    use twenty_first::prelude::*;
+
+    let accel = match trisha::gpu::wgpu_backend::create_tip5_accelerator() {
+        Some(a) => a,
+        None => {
+            eprintln!("No GPU available, skipping gpu_ntt_bfe_matches_cpu");
+            return;
+        }
+    };
+
+    for log_n in [10, 12, 14] {
+        let n = 1usize << log_n;
+
+        let data: Vec<BFieldElement> = (0..n)
+            .map(|i| BFieldElement::new((i as u64 * 97 + 13) % (1u64 << 60)))
+            .collect();
+
+        let mut cpu_result = data.clone();
+        ntt(&mut cpu_result);
+
+        let mut gpu_result = data.clone();
+        accel.ntt_bfe(&mut gpu_result);
+
+        assert_eq!(
+            cpu_result, gpu_result,
+            "GPU and CPU forward NTT (BFE) disagree for n=2^{}",
+            log_n
+        );
+    }
+}
+
+/// Test that GPU forward NTT (XFE) produces identical results to CPU.
+#[cfg(feature = "gpu")]
+#[test]
+fn gpu_ntt_xfe_matches_cpu() {
+    use triton_vm::gpu::GpuAccelerator;
+    use twenty_first::math::ntt::ntt;
+    use twenty_first::prelude::*;
+
+    let accel = match trisha::gpu::wgpu_backend::create_tip5_accelerator() {
+        Some(a) => a,
+        None => {
+            eprintln!("No GPU available, skipping gpu_ntt_xfe_matches_cpu");
+            return;
+        }
+    };
+
+    for log_n in [10, 12, 14] {
+        let n = 1usize << log_n;
+
+        let data: Vec<XFieldElement> = (0..n)
+            .map(|i| {
+                XFieldElement::new([
+                    BFieldElement::new((i as u64 * 97 + 13) % (1u64 << 60)),
+                    BFieldElement::new((i as u64 * 31 + 7) % (1u64 << 60)),
+                    BFieldElement::new((i as u64 * 53 + 41) % (1u64 << 60)),
+                ])
+            })
+            .collect();
+
+        let mut cpu_result = data.clone();
+        ntt(&mut cpu_result);
+
+        let mut gpu_result = data.clone();
+        accel.ntt_xfe(&mut gpu_result);
+
+        assert_eq!(
+            cpu_result, gpu_result,
+            "GPU and CPU forward NTT (XFE) disagree for n=2^{}",
+            log_n
+        );
+    }
+}
+
+/// Test that GPU forward NTT is the inverse of GPU iNTT.
+#[cfg(feature = "gpu")]
+#[test]
+fn gpu_ntt_intt_roundtrip() {
+    use triton_vm::gpu::GpuAccelerator;
+    use twenty_first::prelude::*;
+
+    let accel = match trisha::gpu::wgpu_backend::create_tip5_accelerator() {
+        Some(a) => a,
+        None => {
+            eprintln!("No GPU available, skipping gpu_ntt_intt_roundtrip");
+            return;
+        }
+    };
+
+    let n = 1usize << 12;
+    let original: Vec<BFieldElement> = (0..n)
+        .map(|i| BFieldElement::new((i as u64 * 97 + 13) % (1u64 << 60)))
+        .collect();
+
+    // Forward then inverse should give back the original
+    let mut data = original.clone();
+    accel.ntt_bfe(&mut data);
+    accel.intt_bfe(&mut data);
+
+    assert_eq!(original, data, "NTT followed by iNTT should be identity");
+}
+
 /// Test that GPU Merkle tree produces identical results to CPU.
 #[cfg(feature = "gpu")]
 #[test]

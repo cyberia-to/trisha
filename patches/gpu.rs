@@ -33,6 +33,16 @@ pub trait GpuAccelerator: Send + Sync {
         intt(column);
     }
 
+    /// In-place forward NTT on a BFieldElement column.
+    fn ntt_bfe(&self, column: &mut [BFieldElement]) {
+        twenty_first::math::ntt::ntt(column);
+    }
+
+    /// In-place forward NTT on an XFieldElement column.
+    fn ntt_xfe(&self, column: &mut [XFieldElement]) {
+        twenty_first::math::ntt::ntt(column);
+    }
+
     /// Build a Merkle tree from leaf digests.
     ///
     /// Default: delegates to twenty-first's MerkleTree::par_new.
