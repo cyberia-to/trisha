@@ -2,6 +2,15 @@
 
 Triton VM warrior. Execute, prove, verify, deploy Trident programs.
 
+## Source of Truth
+
+`reference/` is the canonical reference for Trisha design decisions:
+
+- `roadmap.md` — honest status, completion plan, confidence milestone
+
+Any change to architecture or scope MUST update the corresponding
+reference doc first, then propagate to code.
+
 ## Workspace
 
 This repo (`~/git/trisha`) is a companion to `~/git/trident` (the
@@ -29,17 +38,17 @@ by trident via `find_warrior()`.
 src/
   lib.rs           Public API (re-exports modules for tests)
   main.rs          Entry point, clap dispatch
-  cli.rs           CLI subcommands (run, prove, prove-batch, verify, deploy)
+  cli.rs           CLI subcommands (run, prove, verify, deploy — each with batch)
   error.rs         TrishaError enum
   compile.rs       Source -> ProgramBundle via trident API
   convert.rs       Vec<u64> <-> BFieldElement type conversion
   warrior.rs       TrishaWarrior: trait implementations via GPU backend
   proof_file.rs    TOML envelope + bincode proof bytes (base64)
-  batch.rs         Batch/streaming prover (parallel across threads)
+  batch.rs         Generic parallel executor (run_batch)
   gpu/
     mod.rs         GpuBackend trait (trace, prove, verify, verify_batch)
     cpu.rs         CPU fallback (delegates to triton-vm)
-    wgpu_backend.rs  wgpu backend (Metal, Vulkan, DX12)
+    wgpu_backend.rs  wgpu backend (Metal, Vulkan, DX12) — scaffolded, not wired
     shaders/
       goldilocks.wgsl  Field arithmetic (add, sub, mul, inv) via vec2<u32>
       ntt.wgsl         Radix-2 Cooley-Tukey butterfly NTT
@@ -49,17 +58,43 @@ tests/
   integration.rs   12 end-to-end tests
 ```
 
+## What Works vs What's Scaffold
+
+**Working**: Runner, Prover, Verifier, Batch, Proof files.
+Real STARK proofs generated and verified by triton-vm.
+
+**Scaffold**: GPU acceleration (shaders compile, pipelines created,
+but all operations fall back to CPU). Deploy (prints digest, no
+Neptune integration).
+
+See `reference/roadmap.md` for completion plan.
+
 ## CLI Contract
+
+Every command supports single-file and batch modes:
 
 ```
 trisha run <input.tri> [--input-values 1,2,3] [--secret 4,5,6]
+trisha run batch <files...> [--max-parallel 4]
+
 trisha prove <input.tri> [--output path.proof.toml] [--input-values 1,2,3]
-trisha prove-batch <input1.tri> <input2.tri> ... [--output dir/] [--max-parallel N]
+trisha prove batch <files...> [--output dir/] [--max-parallel 4]
+
 trisha verify <proof.proof.toml>
+trisha verify batch <files...> [--max-parallel 4]
+
 trisha deploy <input.tri> [--state testnet] [--proof proof.toml] [--dry-run]
+trisha deploy batch <files...> [--max-parallel 4] [--dry-run]
 ```
 
 stdout = machine-readable output, stderr = progress/diagnostics.
+
+## Batch Executor
+
+`batch::run_batch(jobs, max_parallel, closure)` is generic — any
+operation can use it. Takes a `Vec<J>`, concurrency limit, and a
+`Fn(J) -> T` closure. Returns `Vec<BatchResult<T>>` preserving
+input order with per-job timing.
 
 ## GPU Backend
 
@@ -70,6 +105,9 @@ wgpu auto-detects the best native API:
 
 GPU enabled by default (`--features gpu`). CPU-only: `--no-default-features`.
 WGSL shaders use `vec2<u32>` to emulate u64 (Goldilocks field).
+
+Currently: GPU is detected and shaders compile, but all computation
+falls back to CPU. See `reference/roadmap.md` Phase A for wiring plan.
 
 ## Proof File Format (.proof.toml)
 
