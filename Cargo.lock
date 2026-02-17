@@ -2052,6 +2052,7 @@ version = "0.1.0"
 dependencies = [
  "base64",
  "bincode",
+ "bytemuck",
  "clap",
  "pollster",
  "serde",
@@ -2131,8 +2132,6 @@ dependencies = [
 [[package]]
 name = "triton-vm"
 version = "2.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "59233747518b17f9a4dcda7e176dc446e148fc760bdb864e2bd8934582ccde59"
 dependencies = [
  "arbitrary",
  "colored",

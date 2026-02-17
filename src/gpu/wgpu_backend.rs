@@ -176,3 +176,35 @@ impl WgpuBackend {
         format!("{} ({})", self.adapter_name, self.backend_type)
     }
 }
+
+/// Create a standalone Tip5 GPU accelerator for triton-vm's prover.
+///
+/// Requests its own wgpu device so it can be registered globally via
+/// `triton_vm::gpu::set_gpu_accelerator` without sharing state with
+/// the main WgpuBackend.
+#[cfg(feature = "gpu")]
+pub fn create_tip5_accelerator() -> Option<super::tip5_accel::WgpuTip5Accelerator> {
+    let instance = wgpu::Instance::new(&wgpu::InstanceDescriptor {
+        backends: wgpu::Backends::all(),
+        ..Default::default()
+    });
+
+    let adapter = pollster::block_on(instance.request_adapter(&wgpu::RequestAdapterOptions {
+        power_preference: wgpu::PowerPreference::HighPerformance,
+        compatible_surface: None,
+        force_fallback_adapter: false,
+    }))?;
+
+    let (device, queue) = pollster::block_on(adapter.request_device(
+        &wgpu::DeviceDescriptor {
+            label: Some("trisha-tip5"),
+            required_features: wgpu::Features::empty(),
+            required_limits: wgpu::Limits::default(),
+            memory_hints: wgpu::MemoryHints::Performance,
+        },
+        None,
+    ))
+    .ok()?;
+
+    Some(super::tip5_accel::WgpuTip5Accelerator::new(device, queue))
+}

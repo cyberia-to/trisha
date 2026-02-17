@@ -14,7 +14,7 @@ path = "src/main.rs"
 
 [dependencies]
 trident-lang = { path = "../trident" }
-triton-vm = "2"
+triton-vm = { path = "../triton-vm-gpu" }
 twenty-first = "1"
 clap = { version = "4", features = ["derive"] }
 serde = { version = "1", features = ["derive"] }
@@ -22,6 +22,7 @@ toml = "0.8"
 bincode = "1"
 base64 = "0.22"
 pollster = "0.4"
+bytemuck = { version = "1", features = ["derive"] }
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 wgpu = "24"

@@ -7,6 +7,8 @@
 //! Goldilocks field arithmetic (NTT, Poseidon2, FRI).
 
 pub mod cpu;
+#[cfg(feature = "gpu")]
+pub mod tip5_accel;
 pub mod wgpu_backend;
 
 use triton_vm::prelude::*;
@@ -61,11 +63,24 @@ pub trait GpuBackend: Send + Sync {
 ///
 /// Tries wgpu first (Metal/Vulkan/DX12). Falls back to CPU if
 /// no GPU is available or shader compilation fails.
+///
+/// When GPU is available, also registers a `GpuAccelerator` with
+/// triton-vm so the prover dispatches Tip5 hashing to the GPU.
 pub fn select_backend() -> Box<dyn GpuBackend> {
     #[cfg(feature = "gpu")]
     {
         if let Some(backend) = wgpu_backend::WgpuBackend::try_new() {
             eprintln!("GPU: {}", backend.adapter_info());
+
+            // Register Tip5 GPU accelerator with triton-vm's prover.
+            // Needs its own device from the same adapter.
+            if let Some(accel) = wgpu_backend::create_tip5_accelerator() {
+                match triton_vm::gpu::set_gpu_accelerator(Box::new(accel)) {
+                    Ok(()) => eprintln!("GPU: Tip5 accelerator registered"),
+                    Err(_) => eprintln!("GPU: Tip5 accelerator already registered"),
+                }
+            }
+
             return Box::new(backend);
         }
     }

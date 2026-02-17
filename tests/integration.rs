@@ -245,3 +245,69 @@ fn select_backend_returns_valid_name() {
         name
     );
 }
+
+/// Test that GPU Tip5 hash_varlen_batch produces identical results to CPU.
+#[cfg(feature = "gpu")]
+#[test]
+fn gpu_tip5_matches_cpu() {
+    use triton_vm::gpu::GpuAccelerator;
+    use twenty_first::prelude::*;
+
+    // Create GPU accelerator
+    let accel = match trisha::gpu::wgpu_backend::create_tip5_accelerator() {
+        Some(a) => a,
+        None => {
+            eprintln!("No GPU available, skipping gpu_tip5_matches_cpu");
+            return;
+        }
+    };
+
+    // Test cases: various row lengths
+    let test_cases: Vec<Vec<BFieldElement>> = vec![
+        // Single element
+        vec![BFieldElement::new(42)],
+        // Exactly RATE (10) elements
+        (0..10).map(|i| BFieldElement::new(i * 7 + 3)).collect(),
+        // More than RATE, not aligned
+        (0..17).map(|i| BFieldElement::new(i * 13 + 1)).collect(),
+        // Multiple full chunks
+        (0..30).map(|i| BFieldElement::new(i * 31 + 5)).collect(),
+        // Large row (typical LDE table row)
+        (0..200).map(|i| BFieldElement::new(i * 97 + 11)).collect(),
+    ];
+
+    // Test uniform batches (same row length — GPU path)
+    for row in &test_cases {
+        let cpu_digest = Tip5::hash_varlen(row);
+
+        let rows: Vec<&[BFieldElement]> = vec![row.as_slice()];
+        let gpu_digests = accel.hash_varlen_batch(&rows);
+
+        assert_eq!(gpu_digests.len(), 1, "should return one digest per row");
+        assert_eq!(
+            cpu_digest,
+            gpu_digests[0],
+            "GPU and CPU Tip5 disagree for row_len={}",
+            row.len()
+        );
+    }
+
+    // Test batch of identical-length rows
+    let batch_row_len = 30;
+    let batch: Vec<Vec<BFieldElement>> = (0..16)
+        .map(|batch_idx| {
+            (0..batch_row_len)
+                .map(|i| BFieldElement::new(batch_idx * 1000 + i * 7))
+                .collect()
+        })
+        .collect();
+
+    let cpu_digests: Vec<Digest> = batch.iter().map(|r| Tip5::hash_varlen(r)).collect();
+    let row_refs: Vec<&[BFieldElement]> = batch.iter().map(|r| r.as_slice()).collect();
+    let gpu_digests = accel.hash_varlen_batch(&row_refs);
+
+    assert_eq!(cpu_digests.len(), gpu_digests.len());
+    for (i, (cpu, gpu)) in cpu_digests.iter().zip(&gpu_digests).enumerate() {
+        assert_eq!(cpu, gpu, "GPU and CPU Tip5 disagree at batch index {}", i);
+    }
+}
