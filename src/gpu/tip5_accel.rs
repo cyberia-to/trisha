@@ -546,4 +546,42 @@ impl GpuAccelerator for WgpuTip5Accelerator {
         drop(data);
         staging_buf.unmap();
     }
+
+    fn intt_xfe(&self, column: &mut [XFieldElement]) {
+        let n = column.len();
+        if n <= 1 || !n.is_power_of_two() {
+            twenty_first::math::ntt::intt(column);
+            return;
+        }
+
+        // Small transforms: CPU is faster due to GPU dispatch overhead.
+        // Threshold is higher than BFE because deinterleave adds CPU cost.
+        if n < 1024 {
+            twenty_first::math::ntt::intt(column);
+            return;
+        }
+
+        // Deinterleave: split XFE column into 3 independent BFE columns.
+        // iNTT is linear over BFE, so iNTT(xfe_col) = reassemble(iNTT(c0), iNTT(c1), iNTT(c2)).
+        let mut c0 = vec![BFieldElement::new(0); n];
+        let mut c1 = vec![BFieldElement::new(0); n];
+        let mut c2 = vec![BFieldElement::new(0); n];
+        for (i, xfe) in column.iter().enumerate() {
+            c0[i] = xfe.coefficients[0];
+            c1[i] = xfe.coefficients[1];
+            c2[i] = xfe.coefficients[2];
+        }
+
+        // Run 3 independent BFE iNTTs on GPU
+        self.intt_bfe(&mut c0);
+        self.intt_bfe(&mut c1);
+        self.intt_bfe(&mut c2);
+
+        // Reinterleave back into XFE column
+        for (i, xfe) in column.iter_mut().enumerate() {
+            xfe.coefficients[0] = c0[i];
+            xfe.coefficients[1] = c1[i];
+            xfe.coefficients[2] = c2[i];
+        }
+    }
 }
