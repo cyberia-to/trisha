@@ -16,6 +16,7 @@ use triton_vm::proof::Proof;
 use super::GpuBackend;
 
 /// wgpu-based GPU backend.
+#[allow(dead_code)]
 pub struct WgpuBackend {
     device: wgpu::Device,
     queue: wgpu::Queue,

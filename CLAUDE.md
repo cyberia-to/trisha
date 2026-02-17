@@ -10,16 +10,70 @@ by trident via `find_warrior()`.
 
 ```
 src/
-  main.rs        Entry point, clap dispatch
-  cli.rs         CLI subcommands (run, prove, verify, deploy)
-  error.rs       TrishaError enum
-  compile.rs     Source → ProgramBundle via trident API
-  warrior.rs     TrishaWarrior: trait implementations
-  proof_file.rs  TOML envelope + bincode proof bytes
-  batch.rs       Batch/streaming prover
-  deploy/        Neptune deployment (RPC, LockScript, UTXO, tx)
-  gpu/           GPU acceleration (wgpu + WGSL shaders)
+  lib.rs           Public API (re-exports modules for tests)
+  main.rs          Entry point, clap dispatch
+  cli.rs           CLI subcommands (run, prove, prove-batch, verify, deploy)
+  error.rs         TrishaError enum
+  compile.rs       Source -> ProgramBundle via trident API
+  convert.rs       Vec<u64> <-> BFieldElement type conversion
+  warrior.rs       TrishaWarrior: trait implementations via GPU backend
+  proof_file.rs    TOML envelope + bincode proof bytes (base64)
+  batch.rs         Batch/streaming prover (parallel across threads)
+  gpu/
+    mod.rs         GpuBackend trait (trace, prove, verify, verify_batch)
+    cpu.rs         CPU fallback (delegates to triton-vm)
+    wgpu_backend.rs  wgpu backend (Metal, Vulkan, DX12)
+    shaders/
+      goldilocks.wgsl  Field arithmetic (add, sub, mul, inv) via vec2<u32>
+      ntt.wgsl         Radix-2 Cooley-Tukey butterfly NTT
+      poseidon2.wgsl   Poseidon2 permutation for Merkle trees
+      fri.wgsl         FRI query folding and verification
+tests/
+  integration.rs   12 end-to-end tests
 ```
+
+## CLI Contract
+
+```
+trisha run <input.tri> [--input-values 1,2,3] [--secret 4,5,6]
+trisha prove <input.tri> [--output path.proof.toml] [--input-values 1,2,3]
+trisha prove-batch <input1.tri> <input2.tri> ... [--output dir/] [--max-parallel N]
+trisha verify <proof.proof.toml>
+trisha deploy <input.tri> [--state testnet] [--proof proof.toml] [--dry-run]
+```
+
+stdout = machine-readable output, stderr = progress/diagnostics.
+
+## GPU Backend
+
+wgpu auto-detects the best native API:
+- Metal on macOS
+- Vulkan on Linux/Windows
+- DX12 on Windows
+
+GPU enabled by default (`--features gpu`). CPU-only: `--no-default-features`.
+WGSL shaders use `vec2<u32>` to emulate u64 (Goldilocks field).
+
+## Proof File Format (.proof.toml)
+
+```toml
+[proof]
+format = "stark-triton-v2"
+program_name = "hello"
+cycle_count = 0
+padded_height = 0
+proving_time_ms = 40
+
+[claim]
+program_hash = ["1460305242624279511", "5843494972284683383", ...]
+public_input = []
+public_output = ["42"]
+
+[data]
+proof = "base64-encoded-bincode-bytes..."
+```
+
+Field elements serialized as strings (Goldilocks values exceed i64 range).
 
 ## Forbidden Patterns
 
@@ -38,7 +92,7 @@ src/
 
 ```
 cargo check
-cargo test
+cargo test          # 12 integration tests
 cargo install --path .
 ```
 
@@ -46,6 +100,7 @@ cargo install --path .
 
 Atomic commits. Conventional prefixes: `feat:`, `fix:`, `refactor:`,
 `test:`, `docs:`, `chore:`.
+Rebuild after commit: `cargo install --path . --force`.
 
 ## License
 
