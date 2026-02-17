@@ -218,11 +218,19 @@ pub fn create_tip5_accelerator() -> Option<super::tip5_accel::WgpuTip5Accelerato
         force_fallback_adapter: false,
     }))?;
 
+    // Request the adapter's actual limits rather than conservative defaults.
+    // This unlocks large buffer sizes on GPUs with plenty of VRAM.
+    let adapter_limits = adapter.limits();
+    let mut required_limits = wgpu::Limits::default();
+    required_limits.max_buffer_size = adapter_limits.max_buffer_size;
+    required_limits.max_storage_buffer_binding_size =
+        adapter_limits.max_storage_buffer_binding_size;
+
     let (device, queue) = pollster::block_on(adapter.request_device(
         &wgpu::DeviceDescriptor {
             label: Some("trisha-tip5"),
             required_features: wgpu::Features::empty(),
-            required_limits: wgpu::Limits::default(),
+            required_limits,
             memory_hints: wgpu::MemoryHints::Performance,
         },
         None,

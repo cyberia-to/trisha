@@ -105,6 +105,9 @@ pub struct WgpuTip5Accelerator {
     // Persistent buffers
     twiddle_cache: Mutex<HashMap<(usize, bool), wgpu::Buffer>>,
     two_inverse_buf: wgpu::Buffer,
+    // VRAM budget and staging pool
+    vram_budget: u64,
+    staging_pool: Mutex<Vec<(u64, wgpu::Buffer)>>,
 }
 
 impl WgpuTip5Accelerator {
@@ -269,6 +272,20 @@ impl WgpuTip5Accelerator {
             usage: wgpu::BufferUsages::STORAGE,
         });
 
+        // Compute VRAM budget: use 75% of max_buffer_size to leave headroom.
+        // max_storage_buffer_binding_size is the hard per-binding limit.
+        let limits = device.limits();
+        let per_binding = limits.max_storage_buffer_binding_size as u64;
+        let per_buffer = limits.max_buffer_size;
+        let effective_max = per_binding.min(per_buffer);
+        let vram_budget = (effective_max * 3) / 4; // 75%
+        eprintln!(
+            "GPU: VRAM budget {:.0} MB (max_buffer {} MB, max_binding {} MB)",
+            vram_budget as f64 / (1024.0 * 1024.0),
+            per_buffer as f64 / (1024.0 * 1024.0),
+            per_binding as f64 / (1024.0 * 1024.0),
+        );
+
         WgpuTip5Accelerator {
             device,
             queue,
@@ -286,6 +303,8 @@ impl WgpuTip5Accelerator {
             mine_pipeline,
             twiddle_cache: Mutex::new(HashMap::new()),
             two_inverse_buf,
+            vram_budget,
+            staging_pool: Mutex::new(Vec::new()),
         }
     }
 }
@@ -318,6 +337,162 @@ impl WgpuTip5Accelerator {
                 usage: wgpu::BufferUsages::STORAGE,
             });
         cache.insert(key, buf);
+    }
+
+    /// Acquire a staging buffer (MAP_READ | COPY_DST) from the pool, or create one.
+    fn acquire_staging(&self, size: u64) -> wgpu::Buffer {
+        let mut pool = self.staging_pool.lock().unwrap();
+        // Find smallest buffer that fits
+        if let Some(idx) = pool
+            .iter()
+            .enumerate()
+            .filter(|(_, (s, _))| *s >= size)
+            .min_by_key(|(_, (s, _))| *s)
+            .map(|(i, _)| i)
+        {
+            return pool.remove(idx).1;
+        }
+        drop(pool);
+        self.device.create_buffer(&wgpu::BufferDescriptor {
+            label: Some("staging_pooled"),
+            size,
+            usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
+            mapped_at_creation: false,
+        })
+    }
+
+    /// Return a staging buffer to the pool for reuse.
+    fn release_staging(&self, size: u64, buf: wgpu::Buffer) {
+        let mut pool = self.staging_pool.lock().unwrap();
+        if pool.len() < 8 {
+            pool.push((size, buf));
+        }
+        // else: drop the buffer (pool full)
+    }
+
+    /// GPU inner path for hash_varlen_batch — assumes inputs fit in VRAM.
+    fn hash_varlen_batch_gpu(&self, inputs: &[&[BFieldElement]], row_len: usize) -> Vec<Digest> {
+        let num_rows = inputs.len() as u32;
+
+        // Flatten input: convert BFieldElement → Montgomery u64 → [u32; 2]
+        let input_data: Vec<[u32; 2]> = inputs
+            .iter()
+            .flat_map(|row| {
+                row.iter().map(|bfe| {
+                    let raw = bfe.raw_u64();
+                    [raw as u32, (raw >> 32) as u32]
+                })
+            })
+            .collect();
+
+        let input_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("tip5_input"),
+                contents: bytemuck::cast_slice(&input_data),
+                usage: wgpu::BufferUsages::STORAGE,
+            });
+
+        let output_size = (num_rows as usize * DIGEST_LEN * 8) as u64;
+        let output_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
+            label: Some("tip5_output"),
+            size: output_size,
+            usage: wgpu::BufferUsages::STORAGE | wgpu::BufferUsages::COPY_SRC,
+            mapped_at_creation: false,
+        });
+
+        let params = [num_rows, row_len as u32, 0u32, 0u32];
+        let params_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("tip5_params"),
+                contents: bytemuck::cast_slice(&params),
+                usage: wgpu::BufferUsages::UNIFORM,
+            });
+
+        let bind_group_layout = self.tip5_pipeline.get_bind_group_layout(0);
+        let bind_group = self.device.create_bind_group(&wgpu::BindGroupDescriptor {
+            label: Some("tip5_bind_group"),
+            layout: &bind_group_layout,
+            entries: &[
+                wgpu::BindGroupEntry {
+                    binding: 0,
+                    resource: self.lookup_buf.as_entire_binding(),
+                },
+                wgpu::BindGroupEntry {
+                    binding: 1,
+                    resource: self.mds_buf.as_entire_binding(),
+                },
+                wgpu::BindGroupEntry {
+                    binding: 2,
+                    resource: self.rc_buf.as_entire_binding(),
+                },
+                wgpu::BindGroupEntry {
+                    binding: 3,
+                    resource: input_buf.as_entire_binding(),
+                },
+                wgpu::BindGroupEntry {
+                    binding: 4,
+                    resource: output_buf.as_entire_binding(),
+                },
+                wgpu::BindGroupEntry {
+                    binding: 5,
+                    resource: params_buf.as_entire_binding(),
+                },
+            ],
+        });
+
+        let workgroups = (num_rows + WORKGROUP_SIZE - 1) / WORKGROUP_SIZE;
+        let mut encoder = self
+            .device
+            .create_command_encoder(&wgpu::CommandEncoderDescriptor {
+                label: Some("tip5_encoder"),
+            });
+        {
+            let mut pass = encoder.begin_compute_pass(&wgpu::ComputePassDescriptor {
+                label: Some("tip5_pass"),
+                timestamp_writes: None,
+            });
+            pass.set_pipeline(&self.tip5_pipeline);
+            pass.set_bind_group(0, &bind_group, &[]);
+            pass.dispatch_workgroups(workgroups, 1, 1);
+        }
+
+        let staging_buf = self.acquire_staging(output_size);
+        encoder.copy_buffer_to_buffer(&output_buf, 0, &staging_buf, 0, output_size);
+        self.queue.submit(std::iter::once(encoder.finish()));
+
+        let slice = staging_buf.slice(..);
+        let (tx, rx) = std::sync::mpsc::channel();
+        slice.map_async(wgpu::MapMode::Read, move |result| {
+            tx.send(result).unwrap();
+        });
+        self.device.poll(wgpu::Maintain::Wait);
+        rx.recv()
+            .expect("GPU readback channel closed")
+            .expect("GPU readback failed");
+
+        let data = slice.get_mapped_range();
+        let output_pairs: &[[u32; 2]] = bytemuck::cast_slice(&data);
+
+        let digests: Vec<Digest> = (0..num_rows as usize)
+            .map(|i| {
+                let base = i * DIGEST_LEN;
+                let mut elements = [BFieldElement::new(0); DIGEST_LEN];
+                for j in 0..DIGEST_LEN {
+                    let [lo, hi] = output_pairs[base + j];
+                    let raw = (hi as u64) << 32 | lo as u64;
+                    elements[j] = BFieldElement::from_raw_u64(raw);
+                }
+                Digest::new(elements)
+            })
+            .collect();
+
+        drop(data);
+        staging_buf.unmap();
+        self.release_staging(output_size, staging_buf);
+
+        digests
     }
 
     fn gpu_ntt_core(&self, column: &mut [BFieldElement], omega: BFieldElement, normalize: bool) {
@@ -472,12 +647,7 @@ impl WgpuTip5Accelerator {
 
         // Readback in the same submission
         let buf_size = (n * 8) as u64;
-        let staging_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
-            label: Some("ntt_staging"),
-            size: buf_size,
-            usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
-            mapped_at_creation: false,
-        });
+        let staging_buf = self.acquire_staging(buf_size);
         encoder.copy_buffer_to_buffer(&data_buf, 0, &staging_buf, 0, buf_size);
 
         // Single submit — entire NTT runs on GPU without CPU intervention
@@ -501,6 +671,7 @@ impl WgpuTip5Accelerator {
         }
         drop(data);
         staging_buf.unmap();
+        self.release_staging(buf_size, staging_buf);
     }
 
     /// GPU nonce mining: search for nonce such that Tip5(message ++ nonce) < target.
@@ -653,12 +824,7 @@ impl WgpuTip5Accelerator {
             }
 
             // Readback result
-            let staging_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
-                label: Some("mine_staging"),
-                size: result_size,
-                usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
-                mapped_at_creation: false,
-            });
+            let staging_buf = self.acquire_staging(result_size);
             encoder.copy_buffer_to_buffer(&result_buf, 0, &staging_buf, 0, result_size);
             self.queue.submit(std::iter::once(encoder.finish()));
 
@@ -693,11 +859,13 @@ impl WgpuTip5Accelerator {
 
                 drop(data);
                 staging_buf.unmap();
+                self.release_staging(result_size, staging_buf);
                 return Some((nonce_val, digest, attempts + batch_size));
             }
 
             drop(data);
             staging_buf.unmap();
+            self.release_staging(result_size, staging_buf);
             attempts += batch_size;
         }
 
@@ -728,140 +896,28 @@ impl GpuAccelerator for WgpuTip5Accelerator {
                 .collect();
         }
 
-        let num_rows = inputs.len() as u32;
+        // Check if total GPU memory exceeds budget; if so, process in chunks.
+        let bytes_per_row = row_len * 8; // input
+        let bytes_per_digest = DIGEST_LEN * 8; // output
+        let total_input_bytes = inputs.len() * bytes_per_row;
+        let total_output_bytes = inputs.len() * bytes_per_digest;
+        let total_bytes = (total_input_bytes + total_output_bytes) as u64;
 
-        // Flatten input: convert BFieldElement → Montgomery u64 → [u32; 2]
-        let input_data: Vec<[u32; 2]> = inputs
-            .iter()
-            .flat_map(|row| {
-                row.iter().map(|bfe| {
-                    let raw = bfe.raw_u64();
-                    [raw as u32, (raw >> 32) as u32]
-                })
-            })
-            .collect();
-
-        // Create input buffer
-        let input_buf = self
-            .device
-            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
-                label: Some("tip5_input"),
-                contents: bytemuck::cast_slice(&input_data),
-                usage: wgpu::BufferUsages::STORAGE,
-            });
-
-        // Create output buffer (num_rows * DIGEST_LEN elements)
-        let output_size = (num_rows as usize * DIGEST_LEN * 8) as u64;
-        let output_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
-            label: Some("tip5_output"),
-            size: output_size,
-            usage: wgpu::BufferUsages::STORAGE | wgpu::BufferUsages::COPY_SRC,
-            mapped_at_creation: false,
-        });
-
-        // Uniform params: num_rows, row_len, pad, pad
-        let params = [num_rows, row_len as u32, 0u32, 0u32];
-        let params_buf = self
-            .device
-            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
-                label: Some("tip5_params"),
-                contents: bytemuck::cast_slice(&params),
-                usage: wgpu::BufferUsages::UNIFORM,
-            });
-
-        // Create bind group
-        let bind_group_layout = self.tip5_pipeline.get_bind_group_layout(0);
-        let bind_group = self.device.create_bind_group(&wgpu::BindGroupDescriptor {
-            label: Some("tip5_bind_group"),
-            layout: &bind_group_layout,
-            entries: &[
-                wgpu::BindGroupEntry {
-                    binding: 0,
-                    resource: self.lookup_buf.as_entire_binding(),
-                },
-                wgpu::BindGroupEntry {
-                    binding: 1,
-                    resource: self.mds_buf.as_entire_binding(),
-                },
-                wgpu::BindGroupEntry {
-                    binding: 2,
-                    resource: self.rc_buf.as_entire_binding(),
-                },
-                wgpu::BindGroupEntry {
-                    binding: 3,
-                    resource: input_buf.as_entire_binding(),
-                },
-                wgpu::BindGroupEntry {
-                    binding: 4,
-                    resource: output_buf.as_entire_binding(),
-                },
-                wgpu::BindGroupEntry {
-                    binding: 5,
-                    resource: params_buf.as_entire_binding(),
-                },
-            ],
-        });
-
-        // Dispatch compute shader
-        let workgroups = (num_rows + WORKGROUP_SIZE - 1) / WORKGROUP_SIZE;
-        let mut encoder = self
-            .device
-            .create_command_encoder(&wgpu::CommandEncoderDescriptor {
-                label: Some("tip5_encoder"),
-            });
-        {
-            let mut pass = encoder.begin_compute_pass(&wgpu::ComputePassDescriptor {
-                label: Some("tip5_pass"),
-                timestamp_writes: None,
-            });
-            pass.set_pipeline(&self.tip5_pipeline);
-            pass.set_bind_group(0, &bind_group, &[]);
-            pass.dispatch_workgroups(workgroups, 1, 1);
+        if total_bytes > self.vram_budget {
+            // Chunk: fit both input + output within budget
+            let per_row_total = (bytes_per_row + bytes_per_digest) as u64;
+            let chunk_rows = (self.vram_budget / per_row_total).max(1) as usize;
+            let mut all_digests = Vec::with_capacity(inputs.len());
+            for chunk_start in (0..inputs.len()).step_by(chunk_rows) {
+                let chunk_end = (chunk_start + chunk_rows).min(inputs.len());
+                let chunk = &inputs[chunk_start..chunk_end];
+                let chunk_digests = self.hash_varlen_batch_gpu(chunk, row_len);
+                all_digests.extend(chunk_digests);
+            }
+            return all_digests;
         }
 
-        // Copy output to staging buffer for CPU readback
-        let staging_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
-            label: Some("tip5_staging"),
-            size: output_size,
-            usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
-            mapped_at_creation: false,
-        });
-        encoder.copy_buffer_to_buffer(&output_buf, 0, &staging_buf, 0, output_size);
-
-        self.queue.submit(std::iter::once(encoder.finish()));
-
-        // Map staging buffer and read results
-        let slice = staging_buf.slice(..);
-        let (tx, rx) = std::sync::mpsc::channel();
-        slice.map_async(wgpu::MapMode::Read, move |result| {
-            tx.send(result).unwrap();
-        });
-        self.device.poll(wgpu::Maintain::Wait);
-        rx.recv()
-            .expect("GPU readback channel closed")
-            .expect("GPU readback failed");
-
-        let data = slice.get_mapped_range();
-        let output_pairs: &[[u32; 2]] = bytemuck::cast_slice(&data);
-
-        // Convert GPU output (Montgomery form) to Digest values
-        let digests: Vec<Digest> = (0..num_rows as usize)
-            .map(|i| {
-                let base = i * DIGEST_LEN;
-                let mut elements = [BFieldElement::new(0); DIGEST_LEN];
-                for j in 0..DIGEST_LEN {
-                    let [lo, hi] = output_pairs[base + j];
-                    let raw = (hi as u64) << 32 | lo as u64;
-                    elements[j] = BFieldElement::from_raw_u64(raw);
-                }
-                Digest::new(elements)
-            })
-            .collect();
-
-        drop(data);
-        staging_buf.unmap();
-
-        digests
+        self.hash_varlen_batch_gpu(inputs, row_len)
     }
 
     fn intt_bfe(&self, column: &mut [BFieldElement]) {
@@ -870,7 +926,8 @@ impl GpuAccelerator for WgpuTip5Accelerator {
             twenty_first::math::ntt::intt(column);
             return;
         }
-        if n < 1024 {
+        // CPU fallback for small domains or oversized columns
+        if n < 1024 || (n as u64 * 8) > self.vram_budget {
             twenty_first::math::ntt::intt(column);
             return;
         }
@@ -886,9 +943,8 @@ impl GpuAccelerator for WgpuTip5Accelerator {
             return;
         }
 
-        // Small transforms: CPU is faster due to GPU dispatch overhead.
-        // Threshold is higher than BFE because deinterleave adds CPU cost.
-        if n < 1024 {
+        // CPU fallback for small domains or oversized columns (3 BFE columns)
+        if n < 1024 || (n as u64 * 8) > self.vram_budget {
             twenty_first::math::ntt::intt(column);
             return;
         }
@@ -923,7 +979,7 @@ impl GpuAccelerator for WgpuTip5Accelerator {
             twenty_first::math::ntt::ntt(column);
             return;
         }
-        if n < 1024 {
+        if n < 1024 || (n as u64 * 8) > self.vram_budget {
             twenty_first::math::ntt::ntt(column);
             return;
         }
@@ -939,7 +995,7 @@ impl GpuAccelerator for WgpuTip5Accelerator {
             return;
         }
 
-        if n < 1024 {
+        if n < 1024 || (n as u64 * 8) > self.vram_budget {
             twenty_first::math::ntt::ntt(column);
             return;
         }
@@ -975,19 +1031,44 @@ impl GpuAccelerator for WgpuTip5Accelerator {
         ncols: usize,
         weights: &[XFieldElement],
     ) -> Vec<XFieldElement> {
-        // Small matrices: CPU is faster due to GPU dispatch overhead
-        if nrows < 256 || ncols < 4 {
-            return (0..nrows)
+        let cpu_gemv_bfe = |mat: &[BFieldElement],
+                            nr: usize,
+                            nc: usize,
+                            w: &[XFieldElement]|
+         -> Vec<XFieldElement> {
+            (0..nr)
                 .map(|i| {
-                    let row = &matrix[i * ncols..(i + 1) * ncols];
+                    let row = &mat[i * nc..(i + 1) * nc];
                     row.iter()
-                        .zip(weights.iter())
-                        .map(|(&m, &w)| w * m)
+                        .zip(w.iter())
+                        .map(|(&m, &wt)| wt * m)
                         .fold(XFieldElement::new([BFieldElement::new(0); 3]), |acc, x| {
                             acc + x
                         })
                 })
-                .collect();
+                .collect()
+        };
+
+        if nrows < 256 || ncols < 4 {
+            return cpu_gemv_bfe(matrix, nrows, ncols, weights);
+        }
+
+        // VRAM guard: chunk rows if matrix doesn't fit
+        let matrix_bytes = (nrows * ncols * 8) as u64;
+        if matrix_bytes > self.vram_budget {
+            let rows_per_chunk = (self.vram_budget / (ncols as u64 * 8)).max(256) as usize;
+            let mut result = Vec::with_capacity(nrows);
+            for chunk_start in (0..nrows).step_by(rows_per_chunk) {
+                let chunk_end = (chunk_start + rows_per_chunk).min(nrows);
+                let chunk_nrows = chunk_end - chunk_start;
+                let chunk_matrix = &matrix[chunk_start * ncols..chunk_end * ncols];
+                if chunk_nrows < 256 {
+                    result.extend(cpu_gemv_bfe(chunk_matrix, chunk_nrows, ncols, weights));
+                } else {
+                    result.extend(self.gemv_bfe(chunk_matrix, chunk_nrows, ncols, weights));
+                }
+            }
+            return result;
         }
 
         // Flatten matrix: BFE → vec2<u32>
@@ -1085,12 +1166,7 @@ impl GpuAccelerator for WgpuTip5Accelerator {
         }
 
         // Read back results
-        let staging_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
-            label: Some("gemv_bfe_staging"),
-            size: output_size,
-            usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
-            mapped_at_creation: false,
-        });
+        let staging_buf = self.acquire_staging(output_size);
         encoder.copy_buffer_to_buffer(&output_buf, 0, &staging_buf, 0, output_size);
         self.queue.submit(std::iter::once(encoder.finish()));
 
@@ -1122,6 +1198,7 @@ impl GpuAccelerator for WgpuTip5Accelerator {
 
         drop(data);
         staging_buf.unmap();
+        self.release_staging(output_size, staging_buf);
 
         result
     }
@@ -1133,19 +1210,44 @@ impl GpuAccelerator for WgpuTip5Accelerator {
         ncols: usize,
         weights: &[XFieldElement],
     ) -> Vec<XFieldElement> {
-        // Small matrices: CPU is faster
-        if nrows < 256 || ncols < 4 {
-            return (0..nrows)
+        let cpu_gemv_xfe = |mat: &[XFieldElement],
+                            nr: usize,
+                            nc: usize,
+                            w: &[XFieldElement]|
+         -> Vec<XFieldElement> {
+            (0..nr)
                 .map(|i| {
-                    let row = &matrix[i * ncols..(i + 1) * ncols];
+                    let row = &mat[i * nc..(i + 1) * nc];
                     row.iter()
-                        .zip(weights.iter())
-                        .map(|(&m, &w)| m * w)
+                        .zip(w.iter())
+                        .map(|(&m, &wt)| m * wt)
                         .fold(XFieldElement::new([BFieldElement::new(0); 3]), |acc, x| {
                             acc + x
                         })
                 })
-                .collect();
+                .collect()
+        };
+
+        if nrows < 256 || ncols < 4 {
+            return cpu_gemv_xfe(matrix, nrows, ncols, weights);
+        }
+
+        // VRAM guard: chunk rows if XFE matrix doesn't fit (24 bytes per element)
+        let matrix_bytes = (nrows * ncols * 24) as u64;
+        if matrix_bytes > self.vram_budget {
+            let rows_per_chunk = (self.vram_budget / (ncols as u64 * 24)).max(256) as usize;
+            let mut result = Vec::with_capacity(nrows);
+            for chunk_start in (0..nrows).step_by(rows_per_chunk) {
+                let chunk_end = (chunk_start + rows_per_chunk).min(nrows);
+                let chunk_nrows = chunk_end - chunk_start;
+                let chunk_matrix = &matrix[chunk_start * ncols..chunk_end * ncols];
+                if chunk_nrows < 256 {
+                    result.extend(cpu_gemv_xfe(chunk_matrix, chunk_nrows, ncols, weights));
+                } else {
+                    result.extend(self.gemv_xfe(chunk_matrix, chunk_nrows, ncols, weights));
+                }
+            }
+            return result;
         }
 
         // Flatten matrix: XFE → 3 × vec2<u32>
@@ -1243,12 +1345,7 @@ impl GpuAccelerator for WgpuTip5Accelerator {
             pass.dispatch_workgroups(workgroups, 1, 1);
         }
 
-        let staging_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
-            label: Some("gemv_xfe_staging"),
-            size: output_size,
-            usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
-            mapped_at_creation: false,
-        });
+        let staging_buf = self.acquire_staging(output_size);
         encoder.copy_buffer_to_buffer(&output_buf, 0, &staging_buf, 0, output_size);
         self.queue.submit(std::iter::once(encoder.finish()));
 
@@ -1280,6 +1377,7 @@ impl GpuAccelerator for WgpuTip5Accelerator {
 
         drop(data);
         staging_buf.unmap();
+        self.release_staging(output_size, staging_buf);
 
         result
     }
@@ -1293,8 +1391,11 @@ impl GpuAccelerator for WgpuTip5Accelerator {
         let n = codeword.len();
         let half_n = n / 2;
 
-        if half_n == 0 || !n.is_power_of_two() || half_n < 512 {
-            // Fallback to CPU for small or non-power-of-2 codewords
+        // CPU fallback for small, non-power-of-2, or oversized codewords
+        // Codeword needs n*24 bytes (XFE) + n/2*8 (domain inverses)
+        let codeword_bytes = (n as u64) * 24 + (half_n as u64) * 8;
+        if half_n == 0 || !n.is_power_of_two() || half_n < 512 || codeword_bytes > self.vram_budget
+        {
             let one = XFieldElement::new([
                 BFieldElement::new(1),
                 BFieldElement::new(0),
@@ -1439,12 +1540,7 @@ impl GpuAccelerator for WgpuTip5Accelerator {
         }
 
         // Read back results
-        let staging_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
-            label: Some("fri_staging"),
-            size: output_size,
-            usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
-            mapped_at_creation: false,
-        });
+        let staging_buf = self.acquire_staging(output_size);
         encoder.copy_buffer_to_buffer(&output_buf, 0, &staging_buf, 0, output_size);
         self.queue.submit(std::iter::once(encoder.finish()));
 
@@ -1476,6 +1572,7 @@ impl GpuAccelerator for WgpuTip5Accelerator {
 
         drop(data);
         staging_buf.unmap();
+        self.release_staging(output_size, staging_buf);
 
         folded
     }
@@ -1487,7 +1584,9 @@ impl GpuAccelerator for WgpuTip5Accelerator {
         if n == 0 || !n.is_power_of_two() {
             return MerkleTree::par_new(leaves).unwrap();
         }
-        if n < 512 {
+        // CPU fallback for small trees or if flat buffer exceeds VRAM
+        let buf_bytes = (2 * n * 5 * 8) as u64;
+        if n < 512 || buf_bytes > self.vram_budget {
             return MerkleTree::par_new(leaves).unwrap();
         }
 
@@ -1590,12 +1689,7 @@ impl GpuAccelerator for WgpuTip5Accelerator {
         }
 
         // Single readback of entire tree
-        let staging_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
-            label: Some("merkle_staging"),
-            size: buf_size,
-            usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
-            mapped_at_creation: false,
-        });
+        let staging_buf = self.acquire_staging(buf_size);
         encoder.copy_buffer_to_buffer(&nodes_buf, 0, &staging_buf, 0, buf_size);
         self.queue.submit(std::iter::once(encoder.finish()));
 
@@ -1627,6 +1721,7 @@ impl GpuAccelerator for WgpuTip5Accelerator {
 
         drop(data);
         staging_buf.unmap();
+        self.release_staging(buf_size, staging_buf);
 
         MerkleTree::from_nodes(nodes)
     }
