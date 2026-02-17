@@ -363,4 +363,58 @@ print "  [7] Forward NTT dispatch — restore original trace"
         profiler!(stop "restore original trace");')
     | save -f $stark)
 
+# ── Layer 8: GEMV dispatch — GPU weighted sum of columns ─────────
+
+print "  [8] GEMV dispatch — weighted_sum_of_columns"
+
+(open $mt
+    | str replace ('        let weighted_sum_of_trace_columns = self
+            .trace_table()
+            .axis_iter(ROW_AXIS)
+            .into_par_iter()
+            .map(|row| row.iter().zip_eq(&weights).map(|(&r, &w)| r * w).sum())
+            .collect::<Vec<_>>();') ('        let weighted_sum_of_trace_columns = if let Some(gpu) = gpu::gpu_accelerator() {
+            use std::any::TypeId;
+            let trace = self.trace_table();
+            let nrows = trace.nrows();
+            let ncols = trace.ncols();
+            let weights_slice = weights.as_slice().unwrap();
+
+            if TypeId::of::<Self::Field>() == TypeId::of::<BFieldElement>() {
+                // BFE table: reinterpret trace as &[BFieldElement]
+                let flat: &[Self::Field] = trace.as_slice().unwrap_or_else(|| {
+                    panic!("trace table not contiguous in memory")
+                });
+                // SAFETY: TypeId confirms Self::Field == BFieldElement, same size/alignment
+                let bfe_flat: &[BFieldElement] = unsafe {
+                    std::slice::from_raw_parts(flat.as_ptr() as *const BFieldElement, flat.len())
+                };
+                gpu.gemv_bfe(bfe_flat, nrows, ncols, weights_slice)
+            } else if TypeId::of::<Self::Field>() == TypeId::of::<XFieldElement>() {
+                // XFE table: reinterpret trace as &[XFieldElement]
+                let flat: &[Self::Field] = trace.as_slice().unwrap_or_else(|| {
+                    panic!("trace table not contiguous in memory")
+                });
+                let xfe_flat: &[XFieldElement] = unsafe {
+                    std::slice::from_raw_parts(flat.as_ptr() as *const XFieldElement, flat.len())
+                };
+                gpu.gemv_xfe(xfe_flat, nrows, ncols, weights_slice)
+            } else {
+                // Unknown field type: CPU fallback
+                trace
+                    .axis_iter(ROW_AXIS)
+                    .into_par_iter()
+                    .map(|row| row.iter().zip_eq(&weights).map(|(&r, &w)| r * w).sum())
+                    .collect::<Vec<_>>()
+            }
+        } else {
+            self
+            .trace_table()
+            .axis_iter(ROW_AXIS)
+            .into_par_iter()
+            .map(|row| row.iter().zip_eq(&weights).map(|(&r, &w)| r * w).sum())
+            .collect::<Vec<_>>()
+        };')
+    | save -f $mt)
+
 print "Done. GPU overlay applied to .vendor/"

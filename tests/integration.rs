@@ -535,6 +535,121 @@ fn gpu_ntt_intt_roundtrip() {
     assert_eq!(original, data, "NTT followed by iNTT should be identity");
 }
 
+/// Test that GPU GEMV (BFE × XFE) produces identical results to CPU.
+#[cfg(feature = "gpu")]
+#[test]
+fn gpu_gemv_bfe_matches_cpu() {
+    use triton_vm::gpu::GpuAccelerator;
+    use twenty_first::prelude::*;
+
+    let accel = match trisha::gpu::wgpu_backend::create_tip5_accelerator() {
+        Some(a) => a,
+        None => {
+            eprintln!("No GPU available, skipping gpu_gemv_bfe_matches_cpu");
+            return;
+        }
+    };
+
+    // Test: 1024 rows × 32 columns
+    let nrows = 1024;
+    let ncols = 32;
+
+    let matrix: Vec<BFieldElement> = (0..nrows * ncols)
+        .map(|i| BFieldElement::new((i as u64 * 97 + 13) % (1u64 << 60)))
+        .collect();
+
+    let weights: Vec<XFieldElement> = (0..ncols)
+        .map(|i| {
+            XFieldElement::new([
+                BFieldElement::new((i as u64 * 31 + 7) % (1u64 << 60)),
+                BFieldElement::new((i as u64 * 53 + 41) % (1u64 << 60)),
+                BFieldElement::new((i as u64 * 17 + 59) % (1u64 << 60)),
+            ])
+        })
+        .collect();
+
+    // CPU reference
+    let cpu_result: Vec<XFieldElement> = (0..nrows)
+        .map(|i| {
+            let row = &matrix[i * ncols..(i + 1) * ncols];
+            row.iter()
+                .zip(weights.iter())
+                .map(|(&m, &w)| w * m)
+                .fold(XFieldElement::new([BFieldElement::new(0); 3]), |acc, x| {
+                    acc + x
+                })
+        })
+        .collect();
+
+    // GPU
+    let gpu_result = accel.gemv_bfe(&matrix, nrows, ncols, &weights);
+
+    assert_eq!(cpu_result.len(), gpu_result.len());
+    for (i, (cpu, gpu)) in cpu_result.iter().zip(&gpu_result).enumerate() {
+        assert_eq!(cpu, gpu, "GPU and CPU GEMV BFE disagree at row {}", i);
+    }
+}
+
+/// Test that GPU GEMV (XFE × XFE) produces identical results to CPU.
+#[cfg(feature = "gpu")]
+#[test]
+fn gpu_gemv_xfe_matches_cpu() {
+    use triton_vm::gpu::GpuAccelerator;
+    use twenty_first::prelude::*;
+
+    let accel = match trisha::gpu::wgpu_backend::create_tip5_accelerator() {
+        Some(a) => a,
+        None => {
+            eprintln!("No GPU available, skipping gpu_gemv_xfe_matches_cpu");
+            return;
+        }
+    };
+
+    let nrows = 1024;
+    let ncols = 16;
+
+    let matrix: Vec<XFieldElement> = (0..nrows * ncols)
+        .map(|i| {
+            XFieldElement::new([
+                BFieldElement::new((i as u64 * 97 + 13) % (1u64 << 60)),
+                BFieldElement::new((i as u64 * 31 + 7) % (1u64 << 60)),
+                BFieldElement::new((i as u64 * 53 + 41) % (1u64 << 60)),
+            ])
+        })
+        .collect();
+
+    let weights: Vec<XFieldElement> = (0..ncols)
+        .map(|i| {
+            XFieldElement::new([
+                BFieldElement::new((i as u64 * 71 + 23) % (1u64 << 60)),
+                BFieldElement::new((i as u64 * 17 + 59) % (1u64 << 60)),
+                BFieldElement::new((i as u64 * 43 + 11) % (1u64 << 60)),
+            ])
+        })
+        .collect();
+
+    // CPU reference
+    let cpu_result: Vec<XFieldElement> = (0..nrows)
+        .map(|i| {
+            let row = &matrix[i * ncols..(i + 1) * ncols];
+            row.iter()
+                .zip(weights.iter())
+                .map(|(&m, &w)| m * w)
+                .fold(XFieldElement::new([BFieldElement::new(0); 3]), |acc, x| {
+                    acc + x
+                })
+        })
+        .collect();
+
+    // GPU
+    let gpu_result = accel.gemv_xfe(&matrix, nrows, ncols, &weights);
+
+    assert_eq!(cpu_result.len(), gpu_result.len());
+    for (i, (cpu, gpu)) in cpu_result.iter().zip(&gpu_result).enumerate() {
+        assert_eq!(cpu, gpu, "GPU and CPU GEMV XFE disagree at row {}", i);
+    }
+}
+
 /// Test that GPU Merkle tree produces identical results to CPU.
 #[cfg(feature = "gpu")]
 #[test]

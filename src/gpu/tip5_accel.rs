@@ -93,6 +93,9 @@ pub struct WgpuTip5Accelerator {
     ntt_normalize_pipeline: wgpu::ComputePipeline,
     // FRI fold pipeline
     fri_fold_pipeline: wgpu::ComputePipeline,
+    // GEMV pipelines
+    gemv_bfe_pipeline: wgpu::ComputePipeline,
+    gemv_xfe_pipeline: wgpu::ComputePipeline,
 }
 
 impl WgpuTip5Accelerator {
@@ -166,6 +169,30 @@ impl WgpuTip5Accelerator {
                 cache: None,
             });
 
+        // Compile GEMV shader
+        let gemv_src = include_str!("shaders/gemv.wgsl");
+        let gemv_full = format!("{}\n{}", goldilocks_src, gemv_src);
+        let gemv_module = device.create_shader_module(wgpu::ShaderModuleDescriptor {
+            label: Some("gemv"),
+            source: wgpu::ShaderSource::Wgsl(gemv_full.into()),
+        });
+        let gemv_bfe_pipeline = device.create_compute_pipeline(&wgpu::ComputePipelineDescriptor {
+            label: Some("gemv_bfe"),
+            layout: None,
+            module: &gemv_module,
+            entry_point: Some("gemv_bfe"),
+            compilation_options: Default::default(),
+            cache: None,
+        });
+        let gemv_xfe_pipeline = device.create_compute_pipeline(&wgpu::ComputePipelineDescriptor {
+            label: Some("gemv_xfe"),
+            layout: None,
+            module: &gemv_module,
+            entry_point: Some("gemv_xfe"),
+            compilation_options: Default::default(),
+            cache: None,
+        });
+
         // Upload Tip5 constants
         let constants = Tip5Constants::load();
 
@@ -198,6 +225,8 @@ impl WgpuTip5Accelerator {
             ntt_butterfly_pipeline,
             ntt_normalize_pipeline,
             fri_fold_pipeline,
+            gemv_bfe_pipeline,
+            gemv_xfe_pipeline,
         }
     }
 }
@@ -804,6 +833,322 @@ impl GpuAccelerator for WgpuTip5Accelerator {
             xfe.coefficients[1] = c1[i];
             xfe.coefficients[2] = c2[i];
         }
+    }
+
+    fn gemv_bfe(
+        &self,
+        matrix: &[BFieldElement],
+        nrows: usize,
+        ncols: usize,
+        weights: &[XFieldElement],
+    ) -> Vec<XFieldElement> {
+        // Small matrices: CPU is faster due to GPU dispatch overhead
+        if nrows < 256 || ncols < 4 {
+            return (0..nrows)
+                .map(|i| {
+                    let row = &matrix[i * ncols..(i + 1) * ncols];
+                    row.iter()
+                        .zip(weights.iter())
+                        .map(|(&m, &w)| w * m)
+                        .fold(XFieldElement::new([BFieldElement::new(0); 3]), |acc, x| {
+                            acc + x
+                        })
+                })
+                .collect();
+        }
+
+        // Flatten matrix: BFE → vec2<u32>
+        let matrix_data: Vec<[u32; 2]> = matrix
+            .iter()
+            .map(|bfe| {
+                let raw = bfe.raw_u64();
+                [raw as u32, (raw >> 32) as u32]
+            })
+            .collect();
+
+        // Flatten weights: XFE → 3 × vec2<u32>
+        let weights_data: Vec<[u32; 2]> = weights
+            .iter()
+            .flat_map(|xfe| {
+                xfe.coefficients.iter().map(|bfe| {
+                    let raw = bfe.raw_u64();
+                    [raw as u32, (raw >> 32) as u32]
+                })
+            })
+            .collect();
+
+        let matrix_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("gemv_matrix"),
+                contents: bytemuck::cast_slice(&matrix_data),
+                usage: wgpu::BufferUsages::STORAGE,
+            });
+
+        let weights_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("gemv_weights"),
+                contents: bytemuck::cast_slice(&weights_data),
+                usage: wgpu::BufferUsages::STORAGE,
+            });
+
+        // Output: nrows XFEs = nrows * 3 * 8 bytes
+        let output_size = (nrows * 3 * 8) as u64;
+        let output_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
+            label: Some("gemv_output"),
+            size: output_size,
+            usage: wgpu::BufferUsages::STORAGE | wgpu::BufferUsages::COPY_SRC,
+            mapped_at_creation: false,
+        });
+
+        let params = [nrows as u32, ncols as u32, 0u32, 0u32];
+        let params_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("gemv_params"),
+                contents: bytemuck::cast_slice(&params),
+                usage: wgpu::BufferUsages::UNIFORM,
+            });
+
+        let bind_group_layout = self.gemv_bfe_pipeline.get_bind_group_layout(0);
+        let bind_group = self.device.create_bind_group(&wgpu::BindGroupDescriptor {
+            label: Some("gemv_bfe_bg"),
+            layout: &bind_group_layout,
+            entries: &[
+                wgpu::BindGroupEntry {
+                    binding: 0,
+                    resource: matrix_buf.as_entire_binding(),
+                },
+                wgpu::BindGroupEntry {
+                    binding: 1,
+                    resource: weights_buf.as_entire_binding(),
+                },
+                wgpu::BindGroupEntry {
+                    binding: 2,
+                    resource: output_buf.as_entire_binding(),
+                },
+                wgpu::BindGroupEntry {
+                    binding: 3,
+                    resource: params_buf.as_entire_binding(),
+                },
+            ],
+        });
+
+        let workgroups = (nrows as u32 + WORKGROUP_SIZE - 1) / WORKGROUP_SIZE;
+        let mut encoder = self
+            .device
+            .create_command_encoder(&wgpu::CommandEncoderDescriptor {
+                label: Some("gemv_bfe_encoder"),
+            });
+        {
+            let mut pass = encoder.begin_compute_pass(&wgpu::ComputePassDescriptor {
+                label: Some("gemv_bfe_pass"),
+                timestamp_writes: None,
+            });
+            pass.set_pipeline(&self.gemv_bfe_pipeline);
+            pass.set_bind_group(0, &bind_group, &[]);
+            pass.dispatch_workgroups(workgroups, 1, 1);
+        }
+
+        // Read back results
+        let staging_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
+            label: Some("gemv_bfe_staging"),
+            size: output_size,
+            usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
+            mapped_at_creation: false,
+        });
+        encoder.copy_buffer_to_buffer(&output_buf, 0, &staging_buf, 0, output_size);
+        self.queue.submit(std::iter::once(encoder.finish()));
+
+        let slice = staging_buf.slice(..);
+        let (tx, rx) = std::sync::mpsc::channel();
+        slice.map_async(wgpu::MapMode::Read, move |result| {
+            tx.send(result).unwrap();
+        });
+        self.device.poll(wgpu::Maintain::Wait);
+        rx.recv()
+            .expect("GEMV BFE readback channel closed")
+            .expect("GEMV BFE readback failed");
+
+        let data = slice.get_mapped_range();
+        let result_pairs: &[[u32; 2]] = bytemuck::cast_slice(&data);
+
+        let result: Vec<XFieldElement> = (0..nrows)
+            .map(|i| {
+                let base = i * 3;
+                let mut coeffs = [BFieldElement::new(0); 3];
+                for j in 0..3 {
+                    let [lo, hi] = result_pairs[base + j];
+                    let raw = (hi as u64) << 32 | lo as u64;
+                    coeffs[j] = BFieldElement::from_raw_u64(raw);
+                }
+                XFieldElement::new(coeffs)
+            })
+            .collect();
+
+        drop(data);
+        staging_buf.unmap();
+
+        result
+    }
+
+    fn gemv_xfe(
+        &self,
+        matrix: &[XFieldElement],
+        nrows: usize,
+        ncols: usize,
+        weights: &[XFieldElement],
+    ) -> Vec<XFieldElement> {
+        // Small matrices: CPU is faster
+        if nrows < 256 || ncols < 4 {
+            return (0..nrows)
+                .map(|i| {
+                    let row = &matrix[i * ncols..(i + 1) * ncols];
+                    row.iter()
+                        .zip(weights.iter())
+                        .map(|(&m, &w)| m * w)
+                        .fold(XFieldElement::new([BFieldElement::new(0); 3]), |acc, x| {
+                            acc + x
+                        })
+                })
+                .collect();
+        }
+
+        // Flatten matrix: XFE → 3 × vec2<u32>
+        let matrix_data: Vec<[u32; 2]> = matrix
+            .iter()
+            .flat_map(|xfe| {
+                xfe.coefficients.iter().map(|bfe| {
+                    let raw = bfe.raw_u64();
+                    [raw as u32, (raw >> 32) as u32]
+                })
+            })
+            .collect();
+
+        // Flatten weights: XFE → 3 × vec2<u32>
+        let weights_data: Vec<[u32; 2]> = weights
+            .iter()
+            .flat_map(|xfe| {
+                xfe.coefficients.iter().map(|bfe| {
+                    let raw = bfe.raw_u64();
+                    [raw as u32, (raw >> 32) as u32]
+                })
+            })
+            .collect();
+
+        let matrix_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("gemv_xfe_matrix"),
+                contents: bytemuck::cast_slice(&matrix_data),
+                usage: wgpu::BufferUsages::STORAGE,
+            });
+
+        let weights_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("gemv_xfe_weights"),
+                contents: bytemuck::cast_slice(&weights_data),
+                usage: wgpu::BufferUsages::STORAGE,
+            });
+
+        let output_size = (nrows * 3 * 8) as u64;
+        let output_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
+            label: Some("gemv_xfe_output"),
+            size: output_size,
+            usage: wgpu::BufferUsages::STORAGE | wgpu::BufferUsages::COPY_SRC,
+            mapped_at_creation: false,
+        });
+
+        let params = [nrows as u32, ncols as u32, 0u32, 0u32];
+        let params_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("gemv_xfe_params"),
+                contents: bytemuck::cast_slice(&params),
+                usage: wgpu::BufferUsages::UNIFORM,
+            });
+
+        let bind_group_layout = self.gemv_xfe_pipeline.get_bind_group_layout(0);
+        let bind_group = self.device.create_bind_group(&wgpu::BindGroupDescriptor {
+            label: Some("gemv_xfe_bg"),
+            layout: &bind_group_layout,
+            entries: &[
+                wgpu::BindGroupEntry {
+                    binding: 0,
+                    resource: matrix_buf.as_entire_binding(),
+                },
+                wgpu::BindGroupEntry {
+                    binding: 1,
+                    resource: weights_buf.as_entire_binding(),
+                },
+                wgpu::BindGroupEntry {
+                    binding: 2,
+                    resource: output_buf.as_entire_binding(),
+                },
+                wgpu::BindGroupEntry {
+                    binding: 3,
+                    resource: params_buf.as_entire_binding(),
+                },
+            ],
+        });
+
+        let workgroups = (nrows as u32 + WORKGROUP_SIZE - 1) / WORKGROUP_SIZE;
+        let mut encoder = self
+            .device
+            .create_command_encoder(&wgpu::CommandEncoderDescriptor {
+                label: Some("gemv_xfe_encoder"),
+            });
+        {
+            let mut pass = encoder.begin_compute_pass(&wgpu::ComputePassDescriptor {
+                label: Some("gemv_xfe_pass"),
+                timestamp_writes: None,
+            });
+            pass.set_pipeline(&self.gemv_xfe_pipeline);
+            pass.set_bind_group(0, &bind_group, &[]);
+            pass.dispatch_workgroups(workgroups, 1, 1);
+        }
+
+        let staging_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
+            label: Some("gemv_xfe_staging"),
+            size: output_size,
+            usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
+            mapped_at_creation: false,
+        });
+        encoder.copy_buffer_to_buffer(&output_buf, 0, &staging_buf, 0, output_size);
+        self.queue.submit(std::iter::once(encoder.finish()));
+
+        let slice = staging_buf.slice(..);
+        let (tx, rx) = std::sync::mpsc::channel();
+        slice.map_async(wgpu::MapMode::Read, move |result| {
+            tx.send(result).unwrap();
+        });
+        self.device.poll(wgpu::Maintain::Wait);
+        rx.recv()
+            .expect("GEMV XFE readback channel closed")
+            .expect("GEMV XFE readback failed");
+
+        let data = slice.get_mapped_range();
+        let result_pairs: &[[u32; 2]] = bytemuck::cast_slice(&data);
+
+        let result: Vec<XFieldElement> = (0..nrows)
+            .map(|i| {
+                let base = i * 3;
+                let mut coeffs = [BFieldElement::new(0); 3];
+                for j in 0..3 {
+                    let [lo, hi] = result_pairs[base + j];
+                    let raw = (hi as u64) << 32 | lo as u64;
+                    coeffs[j] = BFieldElement::from_raw_u64(raw);
+                }
+                XFieldElement::new(coeffs)
+            })
+            .collect();
+
+        drop(data);
+        staging_buf.unmap();
+
+        result
     }
 
     fn fri_fold(

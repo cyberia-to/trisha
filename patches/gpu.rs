@@ -50,6 +50,52 @@ pub trait GpuAccelerator: Send + Sync {
         MerkleTree::par_new(leaves).unwrap()
     }
 
+    /// GEMV (BFE matrix × XFE weights): compute weighted sum of BFE columns.
+    ///
+    /// For each row i: result[i] = sum_j(matrix[i][j] * weights[j])
+    /// where matrix elements are BFE and weights are XFE.
+    ///
+    /// Default: CPU row-parallel dot product.
+    fn gemv_bfe(
+        &self,
+        matrix: &[BFieldElement],
+        nrows: usize,
+        ncols: usize,
+        weights: &[XFieldElement],
+    ) -> Vec<XFieldElement> {
+        use rayon::prelude::*;
+        (0..nrows)
+            .into_par_iter()
+            .map(|i| {
+                let row = &matrix[i * ncols..(i + 1) * ncols];
+                row.iter().zip(weights.iter()).map(|(&m, &w)| w * m).sum()
+            })
+            .collect()
+    }
+
+    /// GEMV (XFE matrix × XFE weights): compute weighted sum of XFE columns.
+    ///
+    /// For each row i: result[i] = sum_j(matrix[i][j] * weights[j])
+    /// where both matrix elements and weights are XFE.
+    ///
+    /// Default: CPU row-parallel dot product.
+    fn gemv_xfe(
+        &self,
+        matrix: &[XFieldElement],
+        nrows: usize,
+        ncols: usize,
+        weights: &[XFieldElement],
+    ) -> Vec<XFieldElement> {
+        use rayon::prelude::*;
+        (0..nrows)
+            .into_par_iter()
+            .map(|i| {
+                let row = &matrix[i * ncols..(i + 1) * ncols];
+                row.iter().zip(weights.iter()).map(|(&m, &w)| m * w).sum()
+            })
+            .collect()
+    }
+
     /// FRI fold: split-and-fold a codeword with the given challenge.
     ///
     /// Implements ProverRound::split_and_fold from fri.rs.
