@@ -18,17 +18,21 @@ Trisha closes the loop: source → compile → run → prove → verify → depl
 | GPU NTT | DONE | iNTT on BFE + XFE columns via ntt.wgsl | — |
 | GPU Merkle | DONE | Tip5 hash_pair shader, level-by-level GPU build | — |
 | GPU FRI fold | DONE | XFE arithmetic shader, split-and-fold on GPU | — |
-| GPU proving | DONE | All 5 hot paths dispatched: hash, iNTT, Merkle, FRI fold | — |
+| GPU forward NTT | DONE | Forward NTT on BFE + XFE columns, same butterfly shader | — |
+| GPU GEMV | DONE | Weighted column sums: BFE×XFE and XFE×XFE via compute shader | — |
+| GPU proving | DONE | All 7 hot paths dispatched: hash, iNTT, NTT, Merkle, FRI fold, GEMV | — |
 | GPU verify | NOT STARTED | wgpu backend falls back to CPU | Verifier FRI fold smaller workload |
 
-**What's real**: Runner, Prover, Verifier work end-to-end. 17 tests
+**What's real**: Runner, Prover, Verifier work end-to-end. 22 tests
 pass. Proofs are genuine STARK proofs verified by triton-vm. GPU
-accelerates all five proving hot paths: Tip5 leaf hashing, iNTT on
+accelerates seven proving hot paths: Tip5 leaf hashing, iNTT on
 main table columns (BFE), iNTT on aux table columns (XFE via
-coefficient deinterleaving), Merkle tree construction (Tip5 hash_pair),
-and FRI split-and-fold (XFieldElement arithmetic). All dispatched
-to Metal/Vulkan/DX12 via wgpu. Dependency patching injects GPU hooks
-into triton-vm without maintaining a fork.
+coefficient deinterleaving), forward NTT (restore original trace),
+Merkle tree construction (Tip5 hash_pair), FRI split-and-fold
+(XFieldElement arithmetic), and GEMV weighted column sums (linear
+combination). All dispatched to Metal/Vulkan/DX12 via wgpu.
+Dependency patching injects GPU hooks into triton-vm without
+maintaining a fork.
 
 **What's scaffold**: Deploy (prints metadata but no blockchain
 interaction).
