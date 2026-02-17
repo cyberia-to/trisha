@@ -7,6 +7,7 @@
 //! Goldilocks field arithmetic (NTT, Poseidon2, FRI).
 
 pub mod cpu;
+pub mod wgpu_backend;
 
 use triton_vm::prelude::*;
 use triton_vm::proof::Proof;
@@ -58,8 +59,15 @@ pub trait GpuBackend: Send + Sync {
 
 /// Select the best available backend.
 ///
-/// Returns wgpu backend if a GPU is available, otherwise CPU fallback.
+/// Tries wgpu first (Metal/Vulkan/DX12). Falls back to CPU if
+/// no GPU is available or shader compilation fails.
 pub fn select_backend() -> Box<dyn GpuBackend> {
-    // TODO: try wgpu backend first when Phase 7 is implemented
+    #[cfg(feature = "gpu")]
+    {
+        if let Some(backend) = wgpu_backend::WgpuBackend::try_new() {
+            eprintln!("GPU: {}", backend.adapter_info());
+            return Box::new(backend);
+        }
+    }
     Box::new(cpu::CpuBackend)
 }

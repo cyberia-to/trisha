@@ -17,6 +17,10 @@ serde = { version = "1", features = ["derive"] }
 toml = "0.8"
 bincode = "1"
 base64 = "0.22"
+pollster = "0.4"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+wgpu = "24"
 
 [features]
 default = ["gpu"]
