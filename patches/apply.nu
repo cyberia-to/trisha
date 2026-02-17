@@ -266,4 +266,52 @@ print "  [5] Merkle tree dispatch — GPU tree construction"
         };')
     | save -f $stark)
 
+# ── Layer 6: FRI fold dispatch — GPU split-and-fold ─────────────
+
+print "  [6] FRI fold dispatch — GPU split-and-fold"
+
+let fri_rs = ".vendor/triton-vm/src/fri.rs"
+(open $fri_rs
+    | str replace "use crate::profiler::profiler;\n" "use crate::gpu;\nuse crate::profiler::profiler;\n"
+    | str replace ('    fn split_and_fold(&self, folding_challenge: XFieldElement) -> Vec<XFieldElement> {
+        let one = xfe!(1);
+        let two_inverse = xfe!(2).inverse();
+
+        let domain_points = self.domain.values();
+        let domain_point_inverses = BFieldElement::batch_inversion(domain_points);
+
+        let n = self.codeword.len();
+        (0..n / 2)
+            .into_par_iter()
+            .map(|i| {
+                let scaled_offset_inv = folding_challenge * domain_point_inverses[i];
+                let left_summand = (one + scaled_offset_inv) * self.codeword[i];
+                let right_summand = (one - scaled_offset_inv) * self.codeword[n / 2 + i];
+                (left_summand + right_summand) * two_inverse
+            })
+            .collect()
+    }') ('    fn split_and_fold(&self, folding_challenge: XFieldElement) -> Vec<XFieldElement> {
+        let domain_points = self.domain.values();
+        let domain_point_inverses = BFieldElement::batch_inversion(domain_points);
+
+        if let Some(gpu) = gpu::gpu_accelerator() {
+            return gpu.fri_fold(&self.codeword, &domain_point_inverses, folding_challenge);
+        }
+
+        let one = xfe!(1);
+        let two_inverse = xfe!(2).inverse();
+
+        let n = self.codeword.len();
+        (0..n / 2)
+            .into_par_iter()
+            .map(|i| {
+                let scaled_offset_inv = folding_challenge * domain_point_inverses[i];
+                let left_summand = (one + scaled_offset_inv) * self.codeword[i];
+                let right_summand = (one - scaled_offset_inv) * self.codeword[n / 2 + i];
+                (left_summand + right_summand) * two_inverse
+            })
+            .collect()
+    }')
+    | save -f $fri_rs)
+
 print "Done. GPU overlay applied to .vendor/"

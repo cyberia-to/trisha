@@ -333,6 +333,100 @@ fn gpu_intt_xfe_matches_cpu() {
     }
 }
 
+/// Test that GPU FRI fold produces identical results to CPU.
+#[cfg(feature = "gpu")]
+#[test]
+fn gpu_fri_fold_matches_cpu() {
+    use triton_vm::gpu::GpuAccelerator;
+    use twenty_first::math::traits::FiniteField;
+    use twenty_first::math::traits::PrimitiveRootOfUnity;
+    use twenty_first::prelude::*;
+
+    let accel = match trisha::gpu::wgpu_backend::create_tip5_accelerator() {
+        Some(a) => a,
+        None => {
+            eprintln!("No GPU available, skipping gpu_fri_fold_matches_cpu");
+            return;
+        }
+    };
+
+    // Test various codeword sizes
+    for log_n in [10, 12, 14] {
+        let n = 1usize << log_n;
+        let half_n = n / 2;
+
+        // Generate deterministic XFE codeword
+        let codeword: Vec<XFieldElement> = (0..n)
+            .map(|i| {
+                XFieldElement::new([
+                    BFieldElement::new((i as u64 * 97 + 13) % (1u64 << 60)),
+                    BFieldElement::new((i as u64 * 31 + 7) % (1u64 << 60)),
+                    BFieldElement::new((i as u64 * 53 + 41) % (1u64 << 60)),
+                ])
+            })
+            .collect();
+
+        // Generate domain point inverses (simulate ArithmeticDomain)
+        let omega = BFieldElement::primitive_root_of_unity(n as u64).unwrap();
+        let offset = BFieldElement::new(7); // arbitrary offset
+        let domain_points: Vec<BFieldElement> = (0..half_n)
+            .map(|i| {
+                let mut w = offset;
+                for _ in 0..i {
+                    w *= omega;
+                }
+                w
+            })
+            .collect();
+        let domain_point_inverses = BFieldElement::batch_inversion(domain_points);
+
+        // Folding challenge
+        let folding_challenge = XFieldElement::new([
+            BFieldElement::new(123456789),
+            BFieldElement::new(987654321),
+            BFieldElement::new(112233445),
+        ]);
+
+        // CPU reference (same algorithm as triton-vm split_and_fold)
+        let one = XFieldElement::new([
+            BFieldElement::new(1),
+            BFieldElement::new(0),
+            BFieldElement::new(0),
+        ]);
+        let two_inverse = XFieldElement::new([
+            BFieldElement::new(2),
+            BFieldElement::new(0),
+            BFieldElement::new(0),
+        ])
+        .inverse();
+        let cpu_result: Vec<XFieldElement> = (0..half_n)
+            .map(|i| {
+                let scaled_offset_inv = folding_challenge * domain_point_inverses[i];
+                let left_summand = (one + scaled_offset_inv) * codeword[i];
+                let right_summand = (one - scaled_offset_inv) * codeword[n / 2 + i];
+                (left_summand + right_summand) * two_inverse
+            })
+            .collect();
+
+        // GPU
+        let gpu_result = accel.fri_fold(&codeword, &domain_point_inverses, folding_challenge);
+
+        assert_eq!(
+            cpu_result.len(),
+            gpu_result.len(),
+            "GPU and CPU FRI fold output lengths disagree for n=2^{}",
+            log_n
+        );
+        for (j, (cpu, gpu)) in cpu_result.iter().zip(&gpu_result).enumerate() {
+            assert_eq!(
+                cpu, gpu,
+                "GPU and CPU FRI fold disagree at index {} for n=2^{}",
+                j, log_n
+            );
+        }
+    }
+}
+
 /// Test that GPU Merkle tree produces identical results to CPU.
 #[cfg(feature = "gpu")]
 #[test]

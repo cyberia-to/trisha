@@ -39,6 +39,41 @@ pub trait GpuAccelerator: Send + Sync {
     fn merkle_tree(&self, leaves: &[Digest]) -> MerkleTree {
         MerkleTree::par_new(leaves).unwrap()
     }
+
+    /// FRI fold: split-and-fold a codeword with the given challenge.
+    ///
+    /// Implements ProverRound::split_and_fold from fri.rs.
+    /// Takes the full codeword, precomputed domain point inverses (first half),
+    /// and the folding challenge. Returns the folded codeword (half length).
+    ///
+    /// Default: CPU implementation matching triton-vm.
+    fn fri_fold(
+        &self,
+        codeword: &[XFieldElement],
+        domain_point_inverses: &[BFieldElement],
+        folding_challenge: XFieldElement,
+    ) -> Vec<XFieldElement> {
+        let one = XFieldElement::new([
+            BFieldElement::new(1),
+            BFieldElement::new(0),
+            BFieldElement::new(0),
+        ]);
+        let two_inverse = XFieldElement::new([
+            BFieldElement::new(2),
+            BFieldElement::new(0),
+            BFieldElement::new(0),
+        ])
+        .inverse();
+        let n = codeword.len();
+        (0..n / 2)
+            .map(|i| {
+                let scaled_offset_inv = folding_challenge * domain_point_inverses[i];
+                let left_summand = (one + scaled_offset_inv) * codeword[i];
+                let right_summand = (one - scaled_offset_inv) * codeword[n / 2 + i];
+                (left_summand + right_summand) * two_inverse
+            })
+            .collect()
+    }
 }
 
 static GPU_ACCELERATOR: OnceLock<Box<dyn GpuAccelerator>> = OnceLock::new();

@@ -76,6 +76,8 @@ impl Tip5Constants {
 /// Accelerates:
 /// - Tip5 batch hashing (Merkle tree leaf construction)
 /// - NTT/iNTT (polynomial interpolation during proving)
+/// - Merkle tree construction (Tip5 hash_pair)
+/// - FRI fold (split-and-fold with XFE arithmetic)
 pub struct WgpuTip5Accelerator {
     device: wgpu::Device,
     queue: wgpu::Queue,
@@ -89,6 +91,8 @@ pub struct WgpuTip5Accelerator {
     // NTT pipelines
     ntt_butterfly_pipeline: wgpu::ComputePipeline,
     ntt_normalize_pipeline: wgpu::ComputePipeline,
+    // FRI fold pipeline
+    fri_fold_pipeline: wgpu::ComputePipeline,
 }
 
 impl WgpuTip5Accelerator {
@@ -116,6 +120,22 @@ impl WgpuTip5Accelerator {
             layout: None,
             module: &tip5_module,
             entry_point: Some("hash_pair"),
+            compilation_options: Default::default(),
+            cache: None,
+        });
+
+        // Compile FRI fold shader
+        let fri_src = include_str!("shaders/fri.wgsl");
+        let fri_full = format!("{}\n{}", goldilocks_src, fri_src);
+        let fri_module = device.create_shader_module(wgpu::ShaderModuleDescriptor {
+            label: Some("fri"),
+            source: wgpu::ShaderSource::Wgsl(fri_full.into()),
+        });
+        let fri_fold_pipeline = device.create_compute_pipeline(&wgpu::ComputePipelineDescriptor {
+            label: Some("fri_fold_round"),
+            layout: None,
+            module: &fri_module,
+            entry_point: Some("fri_fold_round"),
             compilation_options: Default::default(),
             cache: None,
         });
@@ -177,6 +197,7 @@ impl WgpuTip5Accelerator {
             rc_buf,
             ntt_butterfly_pipeline,
             ntt_normalize_pipeline,
+            fri_fold_pipeline,
         }
     }
 }
@@ -594,6 +615,226 @@ impl GpuAccelerator for WgpuTip5Accelerator {
             xfe.coefficients[1] = c1[i];
             xfe.coefficients[2] = c2[i];
         }
+    }
+
+    fn fri_fold(
+        &self,
+        codeword: &[XFieldElement],
+        domain_point_inverses: &[BFieldElement],
+        folding_challenge: XFieldElement,
+    ) -> Vec<XFieldElement> {
+        let n = codeword.len();
+        let half_n = n / 2;
+
+        if half_n == 0 || !n.is_power_of_two() || half_n < 512 {
+            // Fallback to CPU for small or non-power-of-2 codewords
+            let one = XFieldElement::new([
+                BFieldElement::new(1),
+                BFieldElement::new(0),
+                BFieldElement::new(0),
+            ]);
+            let two_inverse = XFieldElement::new([
+                BFieldElement::new(2),
+                BFieldElement::new(0),
+                BFieldElement::new(0),
+            ])
+            .inverse();
+            return (0..half_n)
+                .map(|i| {
+                    let scaled_offset_inv = folding_challenge * domain_point_inverses[i];
+                    let left_summand = (one + scaled_offset_inv) * codeword[i];
+                    let right_summand = (one - scaled_offset_inv) * codeword[n / 2 + i];
+                    (left_summand + right_summand) * two_inverse
+                })
+                .collect();
+        }
+
+        // Flatten codeword: each XFE = 3 BFE = 3 × vec2<u32>
+        let codeword_data: Vec<[u32; 2]> = codeword
+            .iter()
+            .flat_map(|xfe| {
+                xfe.coefficients.iter().map(|bfe| {
+                    let raw = bfe.raw_u64();
+                    [raw as u32, (raw >> 32) as u32]
+                })
+            })
+            .collect();
+
+        // Domain point inverses: BFE values
+        let dinv_data: Vec<[u32; 2]> = domain_point_inverses
+            .iter()
+            .map(|bfe| {
+                let raw = bfe.raw_u64();
+                [raw as u32, (raw >> 32) as u32]
+            })
+            .collect();
+
+        // Folding challenge: 3 BFE
+        let challenge_data: [[u32; 2]; 3] = {
+            let mut data = [[0u32; 2]; 3];
+            for (i, bfe) in folding_challenge.coefficients.iter().enumerate() {
+                let raw = bfe.raw_u64();
+                data[i] = [raw as u32, (raw >> 32) as u32];
+            }
+            data
+        };
+
+        // two_inverse: XFE(2).inverse()
+        let two_inv = XFieldElement::new([
+            BFieldElement::new(2),
+            BFieldElement::new(0),
+            BFieldElement::new(0),
+        ])
+        .inverse();
+        let two_inv_data: [[u32; 2]; 3] = {
+            let mut data = [[0u32; 2]; 3];
+            for (i, bfe) in two_inv.coefficients.iter().enumerate() {
+                let raw = bfe.raw_u64();
+                data[i] = [raw as u32, (raw >> 32) as u32];
+            }
+            data
+        };
+
+        // Create GPU buffers
+        let codeword_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("fri_codeword"),
+                contents: bytemuck::cast_slice(&codeword_data),
+                usage: wgpu::BufferUsages::STORAGE,
+            });
+
+        let dinv_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("fri_domain_inv"),
+                contents: bytemuck::cast_slice(&dinv_data),
+                usage: wgpu::BufferUsages::STORAGE,
+            });
+
+        let challenge_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("fri_challenge"),
+                contents: bytemuck::cast_slice(&challenge_data),
+                usage: wgpu::BufferUsages::STORAGE,
+            });
+
+        let two_inv_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("fri_two_inv"),
+                contents: bytemuck::cast_slice(&two_inv_data),
+                usage: wgpu::BufferUsages::STORAGE,
+            });
+
+        let output_size = (half_n * 3 * 8) as u64; // half_n XFEs × 3 BFEs × 8 bytes
+        let output_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
+            label: Some("fri_folded"),
+            size: output_size,
+            usage: wgpu::BufferUsages::STORAGE | wgpu::BufferUsages::COPY_SRC,
+            mapped_at_creation: false,
+        });
+
+        let params = [half_n as u32, 0u32, 0u32, 0u32];
+        let params_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("fri_params"),
+                contents: bytemuck::cast_slice(&params),
+                usage: wgpu::BufferUsages::UNIFORM,
+            });
+
+        // Create bind group
+        let bind_group_layout = self.fri_fold_pipeline.get_bind_group_layout(0);
+        let bind_group = self.device.create_bind_group(&wgpu::BindGroupDescriptor {
+            label: Some("fri_bg"),
+            layout: &bind_group_layout,
+            entries: &[
+                wgpu::BindGroupEntry {
+                    binding: 0,
+                    resource: codeword_buf.as_entire_binding(),
+                },
+                wgpu::BindGroupEntry {
+                    binding: 1,
+                    resource: dinv_buf.as_entire_binding(),
+                },
+                wgpu::BindGroupEntry {
+                    binding: 2,
+                    resource: challenge_buf.as_entire_binding(),
+                },
+                wgpu::BindGroupEntry {
+                    binding: 3,
+                    resource: two_inv_buf.as_entire_binding(),
+                },
+                wgpu::BindGroupEntry {
+                    binding: 4,
+                    resource: output_buf.as_entire_binding(),
+                },
+                wgpu::BindGroupEntry {
+                    binding: 5,
+                    resource: params_buf.as_entire_binding(),
+                },
+            ],
+        });
+
+        // Dispatch
+        let workgroups = (half_n as u32 + WORKGROUP_SIZE - 1) / WORKGROUP_SIZE;
+        let mut encoder = self
+            .device
+            .create_command_encoder(&wgpu::CommandEncoderDescriptor {
+                label: Some("fri_encoder"),
+            });
+        {
+            let mut pass = encoder.begin_compute_pass(&wgpu::ComputePassDescriptor {
+                label: Some("fri_fold_pass"),
+                timestamp_writes: None,
+            });
+            pass.set_pipeline(&self.fri_fold_pipeline);
+            pass.set_bind_group(0, &bind_group, &[]);
+            pass.dispatch_workgroups(workgroups, 1, 1);
+        }
+
+        // Read back results
+        let staging_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
+            label: Some("fri_staging"),
+            size: output_size,
+            usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
+            mapped_at_creation: false,
+        });
+        encoder.copy_buffer_to_buffer(&output_buf, 0, &staging_buf, 0, output_size);
+        self.queue.submit(std::iter::once(encoder.finish()));
+
+        let slice = staging_buf.slice(..);
+        let (tx, rx) = std::sync::mpsc::channel();
+        slice.map_async(wgpu::MapMode::Read, move |result| {
+            tx.send(result).unwrap();
+        });
+        self.device.poll(wgpu::Maintain::Wait);
+        rx.recv()
+            .expect("FRI readback channel closed")
+            .expect("FRI readback failed");
+
+        let data = slice.get_mapped_range();
+        let result_pairs: &[[u32; 2]] = bytemuck::cast_slice(&data);
+
+        let folded: Vec<XFieldElement> = (0..half_n)
+            .map(|i| {
+                let base = i * 3;
+                let mut coeffs = [BFieldElement::new(0); 3];
+                for j in 0..3 {
+                    let [lo, hi] = result_pairs[base + j];
+                    let raw = (hi as u64) << 32 | lo as u64;
+                    coeffs[j] = BFieldElement::from_raw_u64(raw);
+                }
+                XFieldElement::new(coeffs)
+            })
+            .collect();
+
+        drop(data);
+        staging_buf.unmap();
+
+        folded
     }
 
     fn merkle_tree(&self, leaves: &[Digest]) -> twenty_first::util_types::merkle_tree::MerkleTree {
