@@ -7,6 +7,9 @@
 //!
 //! Uses the `tip5.wgsl` compute shader with Goldilocks field arithmetic.
 
+use std::collections::HashMap;
+use std::sync::Mutex;
+
 use wgpu;
 use wgpu::util::DeviceExt;
 
@@ -87,7 +90,7 @@ pub struct WgpuTip5Accelerator {
     mds_buf: wgpu::Buffer,
     rc_buf: wgpu::Buffer,
     // Merkle tree pipelines
-    hash_pair_pipeline: wgpu::ComputePipeline,
+    _hash_pair_pipeline: wgpu::ComputePipeline,
     hash_pair_flat_pipeline: wgpu::ComputePipeline,
     // NTT pipelines
     ntt_butterfly_pipeline: wgpu::ComputePipeline,
@@ -97,6 +100,9 @@ pub struct WgpuTip5Accelerator {
     // GEMV pipelines
     gemv_bfe_pipeline: wgpu::ComputePipeline,
     gemv_xfe_pipeline: wgpu::ComputePipeline,
+    // Persistent buffers
+    twiddle_cache: Mutex<HashMap<(usize, bool), wgpu::Buffer>>,
+    two_inverse_buf: wgpu::Buffer,
 }
 
 impl WgpuTip5Accelerator {
@@ -224,11 +230,32 @@ impl WgpuTip5Accelerator {
             usage: wgpu::BufferUsages::STORAGE,
         });
 
+        // Precompute two_inverse = XFE(2).inverse() — used by every FRI fold
+        let two_inv = XFieldElement::new([
+            BFieldElement::new(2),
+            BFieldElement::new(0),
+            BFieldElement::new(0),
+        ])
+        .inverse();
+        let two_inv_data: [[u32; 2]; 3] = {
+            let mut data = [[0u32; 2]; 3];
+            for (i, bfe) in two_inv.coefficients.iter().enumerate() {
+                let raw = bfe.raw_u64();
+                data[i] = [raw as u32, (raw >> 32) as u32];
+            }
+            data
+        };
+        let two_inverse_buf = device.create_buffer_init(&wgpu::util::BufferInitDescriptor {
+            label: Some("fri_two_inv_persistent"),
+            contents: bytemuck::cast_slice(&two_inv_data),
+            usage: wgpu::BufferUsages::STORAGE,
+        });
+
         WgpuTip5Accelerator {
             device,
             queue,
             tip5_pipeline,
-            hash_pair_pipeline,
+            _hash_pair_pipeline: hash_pair_pipeline,
             hash_pair_flat_pipeline,
             lookup_buf,
             mds_buf,
@@ -238,6 +265,8 @@ impl WgpuTip5Accelerator {
             fri_fold_pipeline,
             gemv_bfe_pipeline,
             gemv_xfe_pipeline,
+            twiddle_cache: Mutex::new(HashMap::new()),
+            two_inverse_buf,
         }
     }
 }
@@ -248,12 +277,13 @@ impl WgpuTip5Accelerator {
     ///
     /// `omega` is the twiddle root: omega.inverse() for iNTT, omega for forward NTT.
     /// `normalize` adds a final multiply-by-1/n pass (iNTT only).
-    fn gpu_ntt_core(&self, column: &mut [BFieldElement], omega: BFieldElement, normalize: bool) {
-        let n = column.len();
-        let n_u32 = n as u32;
-        let log_n = n.trailing_zeros();
-
-        // Build twiddle factors: tw[k] = omega^k for k = 0..n/2
+    /// Ensure twiddle factor buffer exists in cache for given domain size and direction.
+    fn ensure_twiddle_cached(&self, n: usize, omega: BFieldElement, is_inverse: bool) {
+        let mut cache = self.twiddle_cache.lock().unwrap();
+        let key = (n, is_inverse);
+        if cache.contains_key(&key) {
+            return;
+        }
         let mut twiddles = vec![[0u32; 2]; n / 2];
         let mut w = BFieldElement::new(1);
         for tw in twiddles.iter_mut() {
@@ -261,6 +291,20 @@ impl WgpuTip5Accelerator {
             *tw = [raw as u32, (raw >> 32) as u32];
             w *= omega;
         }
+        let buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("ntt_twiddles_cached"),
+                contents: bytemuck::cast_slice(&twiddles),
+                usage: wgpu::BufferUsages::STORAGE,
+            });
+        cache.insert(key, buf);
+    }
+
+    fn gpu_ntt_core(&self, column: &mut [BFieldElement], omega: BFieldElement, normalize: bool) {
+        let n = column.len();
+        let n_u32 = n as u32;
+        let log_n = n.trailing_zeros();
 
         // Bit-reversal permutation (CPU, before GPU butterflies)
         for k in 0..n {
@@ -270,7 +314,7 @@ impl WgpuTip5Accelerator {
             }
         }
 
-        // Upload data + twiddles
+        // Upload column data (new each call — data changes)
         let col_data: Vec<[u32; 2]> = column
             .iter()
             .map(|bfe| {
@@ -287,13 +331,11 @@ impl WgpuTip5Accelerator {
                 usage: wgpu::BufferUsages::STORAGE | wgpu::BufferUsages::COPY_SRC,
             });
 
-        let twiddle_buf = self
-            .device
-            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
-                label: Some("ntt_twiddles"),
-                contents: bytemuck::cast_slice(&twiddles),
-                usage: wgpu::BufferUsages::STORAGE,
-            });
+        // Twiddle factors: cached per (domain_size, direction).
+        // ensure_twiddle_cached populates the cache; we hold the lock for bind group creation.
+        self.ensure_twiddle_cached(n, omega, normalize);
+        let cache = self.twiddle_cache.lock().unwrap();
+        let twiddle_buf = cache.get(&(n, normalize)).unwrap();
 
         // Pre-create all per-layer params buffers so bind groups can reference them
         let layer_params: Vec<wgpu::Buffer> = (0..log_n)
@@ -1084,23 +1126,7 @@ impl GpuAccelerator for WgpuTip5Accelerator {
             data
         };
 
-        // two_inverse: XFE(2).inverse()
-        let two_inv = XFieldElement::new([
-            BFieldElement::new(2),
-            BFieldElement::new(0),
-            BFieldElement::new(0),
-        ])
-        .inverse();
-        let two_inv_data: [[u32; 2]; 3] = {
-            let mut data = [[0u32; 2]; 3];
-            for (i, bfe) in two_inv.coefficients.iter().enumerate() {
-                let raw = bfe.raw_u64();
-                data[i] = [raw as u32, (raw >> 32) as u32];
-            }
-            data
-        };
-
-        // Create GPU buffers
+        // Create GPU buffers (two_inverse uses persistent buffer)
         let codeword_buf = self
             .device
             .create_buffer_init(&wgpu::util::BufferInitDescriptor {
@@ -1122,14 +1148,6 @@ impl GpuAccelerator for WgpuTip5Accelerator {
             .create_buffer_init(&wgpu::util::BufferInitDescriptor {
                 label: Some("fri_challenge"),
                 contents: bytemuck::cast_slice(&challenge_data),
-                usage: wgpu::BufferUsages::STORAGE,
-            });
-
-        let two_inv_buf = self
-            .device
-            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
-                label: Some("fri_two_inv"),
-                contents: bytemuck::cast_slice(&two_inv_data),
                 usage: wgpu::BufferUsages::STORAGE,
             });
 
@@ -1170,7 +1188,7 @@ impl GpuAccelerator for WgpuTip5Accelerator {
                 },
                 wgpu::BindGroupEntry {
                     binding: 3,
-                    resource: two_inv_buf.as_entire_binding(),
+                    resource: self.two_inverse_buf.as_entire_binding(),
                 },
                 wgpu::BindGroupEntry {
                     binding: 4,
