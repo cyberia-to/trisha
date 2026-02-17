@@ -11,5 +11,6 @@ fn main() {
         Command::Prove(args) => cli::cmd_prove(args),
         Command::Verify(args) => cli::cmd_verify(args),
         Command::Deploy(args) => cli::cmd_deploy(args),
+        Command::Guess(args) => cli::cmd_guess(args),
     }
 }

@@ -3,7 +3,7 @@ use std::process;
 
 use clap::{Args, Parser, Subcommand};
 
-use trident::runtime::{Deployer, ProgramInput, ProofData, Prover, Runner, Verifier};
+use trident::runtime::{Deployer, Guesser, ProgramInput, ProofData, Prover, Runner, Verifier};
 use trisha::batch;
 use trisha::compile::compile_source;
 use trisha::error::TrishaError;
@@ -30,6 +30,8 @@ pub enum Command {
     Verify(VerifyArgs),
     /// Deploy a program (package artifact + optional on-chain)
     Deploy(DeployArgs),
+    /// Search for a nonce satisfying a difficulty target
+    Guess(GuessArgs),
 }
 
 // ---------------------------------------------------------------------------
@@ -679,6 +681,60 @@ fn cmd_deploy_single(
     let warrior = TrishaWarrior::new();
     match warrior.deploy(&bundle, proof_data.as_ref()) {
         Ok(result) => println!("{}", result),
+        Err(e) => {
+            eprintln!("error: {}", e);
+            process::exit(1);
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Guess
+// ---------------------------------------------------------------------------
+
+#[derive(Args)]
+pub struct GuessArgs {
+    /// Input .tri file
+    pub input: PathBuf,
+    /// Target VM
+    #[arg(long, default_value = "triton")]
+    pub target: String,
+    /// Compilation profile
+    #[arg(long, default_value = "release")]
+    pub profile: String,
+    /// Difficulty target (digest[0] must be less than this value)
+    #[arg(long, default_value = "1000000")]
+    pub difficulty: u64,
+    /// Maximum nonces to try before giving up
+    #[arg(long, default_value = "100000000")]
+    pub max_attempts: u64,
+}
+
+pub fn cmd_guess(args: GuessArgs) {
+    let bundle = match compile_source(&args.input, &args.target, &args.profile) {
+        Ok(b) => b,
+        Err(e) => {
+            eprintln!("error: {}", e);
+            process::exit(1);
+        }
+    };
+
+    let pi = ProgramInput::default();
+    let warrior = TrishaWarrior::new();
+    match warrior.guess(&bundle, &pi, args.difficulty, args.max_attempts) {
+        Ok(result) => {
+            println!("nonce:    {}", result.nonce);
+            println!(
+                "digest:   {}",
+                result
+                    .digest
+                    .iter()
+                    .map(|d| d.to_string())
+                    .collect::<Vec<_>>()
+                    .join(":")
+            );
+            println!("attempts: {}", result.attempts);
+        }
         Err(e) => {
             eprintln!("error: {}", e);
             process::exit(1);

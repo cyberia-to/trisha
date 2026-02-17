@@ -100,6 +100,8 @@ pub struct WgpuTip5Accelerator {
     // GEMV pipelines
     gemv_bfe_pipeline: wgpu::ComputePipeline,
     gemv_xfe_pipeline: wgpu::ComputePipeline,
+    // Mining pipeline
+    mine_pipeline: wgpu::ComputePipeline,
     // Persistent buffers
     twiddle_cache: Mutex<HashMap<(usize, bool), wgpu::Buffer>>,
     two_inverse_buf: wgpu::Buffer,
@@ -209,6 +211,22 @@ impl WgpuTip5Accelerator {
             cache: None,
         });
 
+        // Compile mining shader
+        let mine_src = include_str!("shaders/mine.wgsl");
+        let mine_full = format!("{}\n{}", goldilocks_src, mine_src);
+        let mine_module = device.create_shader_module(wgpu::ShaderModuleDescriptor {
+            label: Some("mine"),
+            source: wgpu::ShaderSource::Wgsl(mine_full.into()),
+        });
+        let mine_pipeline = device.create_compute_pipeline(&wgpu::ComputePipelineDescriptor {
+            label: Some("mine"),
+            layout: None,
+            module: &mine_module,
+            entry_point: Some("mine"),
+            compilation_options: Default::default(),
+            cache: None,
+        });
+
         // Upload Tip5 constants
         let constants = Tip5Constants::load();
 
@@ -265,6 +283,7 @@ impl WgpuTip5Accelerator {
             fri_fold_pipeline,
             gemv_bfe_pipeline,
             gemv_xfe_pipeline,
+            mine_pipeline,
             twiddle_cache: Mutex::new(HashMap::new()),
             two_inverse_buf,
         }
@@ -482,6 +501,207 @@ impl WgpuTip5Accelerator {
         }
         drop(data);
         staging_buf.unmap();
+    }
+
+    /// GPU nonce mining: search for nonce such that Tip5(message ++ nonce) < target.
+    ///
+    /// `message` is the base message in Montgomery form BFieldElements.
+    /// `target` is the difficulty target as a canonical u64.
+    /// `max_attempts` limits total nonces tried.
+    /// Returns `(nonce_raw_u64, digest_mont_values, attempts)` or None.
+    pub fn mine(
+        &self,
+        message: &[BFieldElement],
+        target: u64,
+        max_attempts: u64,
+    ) -> Option<(u64, Vec<BFieldElement>, u64)> {
+        let msg_len = message.len() as u32;
+        let batch_size: u64 = 256 * 1024; // 256 workgroups × 256 threads
+
+        // Upload base message
+        let msg_data: Vec<[u32; 2]> = message
+            .iter()
+            .map(|bfe| {
+                let raw = bfe.raw_u64();
+                [raw as u32, (raw >> 32) as u32]
+            })
+            .collect();
+        // Ensure at least 1 element for empty message
+        let msg_upload = if msg_data.is_empty() {
+            vec![[0u32; 2]]
+        } else {
+            msg_data
+        };
+        let msg_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("mine_message"),
+                contents: bytemuck::cast_slice(&msg_upload),
+                usage: wgpu::BufferUsages::STORAGE,
+            });
+
+        let target_lo = target as u32;
+        let target_hi = (target >> 32) as u32;
+
+        // Result buffer: [found, nonce_lo, nonce_hi, d0_lo, d0_hi, ..., d4_lo, d4_hi] = 13 u32s
+        let result_size = 13u64 * 4;
+        let result_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
+            label: Some("mine_result"),
+            size: result_size,
+            usage: wgpu::BufferUsages::STORAGE
+                | wgpu::BufferUsages::COPY_SRC
+                | wgpu::BufferUsages::COPY_DST,
+            mapped_at_creation: false,
+        });
+
+        // Target uniform
+        let target_data = [target_hi, 0u32, 0u32, 0u32];
+        let target_buf = self
+            .device
+            .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                label: Some("mine_target"),
+                contents: bytemuck::cast_slice(&target_data),
+                usage: wgpu::BufferUsages::UNIFORM,
+            });
+
+        let mut attempts: u64 = 0;
+        while attempts < max_attempts {
+            // Clear result buffer
+            let zero_data = [0u32; 13];
+            let zero_buf = self
+                .device
+                .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                    label: Some("mine_zero"),
+                    contents: bytemuck::cast_slice(&zero_data),
+                    usage: wgpu::BufferUsages::COPY_SRC,
+                });
+            let mut clear_enc =
+                self.device
+                    .create_command_encoder(&wgpu::CommandEncoderDescriptor {
+                        label: Some("mine_clear"),
+                    });
+            clear_enc.copy_buffer_to_buffer(&zero_buf, 0, &result_buf, 0, result_size);
+            self.queue.submit(std::iter::once(clear_enc.finish()));
+
+            // Nonce offset in Montgomery form
+            let nonce_bfe = BFieldElement::new(attempts);
+            let nonce_raw = nonce_bfe.raw_u64();
+            let params_data = [
+                msg_len,
+                nonce_raw as u32,
+                (nonce_raw >> 32) as u32,
+                target_lo,
+            ];
+            let params_buf = self
+                .device
+                .create_buffer_init(&wgpu::util::BufferInitDescriptor {
+                    label: Some("mine_params"),
+                    contents: bytemuck::cast_slice(&params_data),
+                    usage: wgpu::BufferUsages::UNIFORM,
+                });
+
+            let bg_layout = self.mine_pipeline.get_bind_group_layout(0);
+            let bind_group = self.device.create_bind_group(&wgpu::BindGroupDescriptor {
+                label: Some("mine_bg"),
+                layout: &bg_layout,
+                entries: &[
+                    wgpu::BindGroupEntry {
+                        binding: 0,
+                        resource: msg_buf.as_entire_binding(),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 1,
+                        resource: self.lookup_buf.as_entire_binding(),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 2,
+                        resource: self.mds_buf.as_entire_binding(),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 3,
+                        resource: self.rc_buf.as_entire_binding(),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 4,
+                        resource: params_buf.as_entire_binding(),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 5,
+                        resource: target_buf.as_entire_binding(),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 6,
+                        resource: result_buf.as_entire_binding(),
+                    },
+                ],
+            });
+
+            let workgroups = (batch_size as u32) / 256;
+            let mut encoder = self
+                .device
+                .create_command_encoder(&wgpu::CommandEncoderDescriptor {
+                    label: Some("mine_encoder"),
+                });
+            {
+                let mut pass = encoder.begin_compute_pass(&wgpu::ComputePassDescriptor {
+                    label: Some("mine_pass"),
+                    timestamp_writes: None,
+                });
+                pass.set_pipeline(&self.mine_pipeline);
+                pass.set_bind_group(0, &bind_group, &[]);
+                pass.dispatch_workgroups(workgroups, 1, 1);
+            }
+
+            // Readback result
+            let staging_buf = self.device.create_buffer(&wgpu::BufferDescriptor {
+                label: Some("mine_staging"),
+                size: result_size,
+                usage: wgpu::BufferUsages::MAP_READ | wgpu::BufferUsages::COPY_DST,
+                mapped_at_creation: false,
+            });
+            encoder.copy_buffer_to_buffer(&result_buf, 0, &staging_buf, 0, result_size);
+            self.queue.submit(std::iter::once(encoder.finish()));
+
+            let slice = staging_buf.slice(..);
+            let (tx, rx) = std::sync::mpsc::channel();
+            slice.map_async(wgpu::MapMode::Read, move |r| {
+                tx.send(r).unwrap();
+            });
+            self.device.poll(wgpu::Maintain::Wait);
+            rx.recv()
+                .expect("mine readback channel closed")
+                .expect("mine readback failed");
+
+            let data = slice.get_mapped_range();
+            let result_u32: &[u32] = bytemuck::cast_slice(&data);
+
+            if result_u32[0] != 0 {
+                // Found! Extract nonce and digest
+                let nonce_lo = result_u32[1];
+                let nonce_hi = result_u32[2];
+                let nonce_mont_raw = (nonce_hi as u64) << 32 | nonce_lo as u64;
+                let nonce_bfe = BFieldElement::from_raw_u64(nonce_mont_raw);
+                let nonce_val = nonce_bfe.value();
+
+                let mut digest = Vec::with_capacity(5);
+                for i in 0..5 {
+                    let lo = result_u32[3 + i * 2];
+                    let hi = result_u32[3 + i * 2 + 1];
+                    let raw = (hi as u64) << 32 | lo as u64;
+                    digest.push(BFieldElement::from_raw_u64(raw));
+                }
+
+                drop(data);
+                staging_buf.unmap();
+                return Some((nonce_val, digest, attempts + batch_size));
+            }
+
+            drop(data);
+            staging_buf.unmap();
+            attempts += batch_size;
+        }
+
+        None
     }
 }
 

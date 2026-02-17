@@ -1,7 +1,8 @@
 use triton_vm::prelude::*;
 
 use trident::runtime::{
-    Deployer, ExecutionResult, ProgramBundle, ProgramInput, ProofData, Prover, Runner, Verifier,
+    Deployer, ExecutionResult, GuessResult, Guesser, ProgramBundle, ProgramInput, ProofData,
+    Prover, Runner, Verifier,
 };
 
 use crate::convert;
@@ -98,6 +99,86 @@ impl Deployer for TrishaWarrior {
         eprintln!("to construct a LockScript when Neptune SDK is available.");
 
         Ok(digest_str)
+    }
+}
+
+impl Guesser for TrishaWarrior {
+    fn guess(
+        &self,
+        bundle: &ProgramBundle,
+        _input: &ProgramInput,
+        difficulty: u64,
+        max_attempts: u64,
+    ) -> Result<GuessResult, String> {
+        let program =
+            Program::from_code(&bundle.assembly).map_err(|e| format!("TASM parse error: {}", e))?;
+
+        // Use program hash as the mining message
+        let digest = program.hash();
+        let message: Vec<BFieldElement> = digest.0.to_vec();
+
+        eprintln!(
+            "Mining {} (difficulty {}, max {} attempts)...",
+            bundle.name, difficulty, max_attempts
+        );
+
+        // Try GPU mining first
+        #[cfg(feature = "gpu")]
+        {
+            if let Some(accel) = crate::gpu::wgpu_backend::create_tip5_accelerator() {
+                let start = std::time::Instant::now();
+                if let Some((nonce, digest_bfes, attempts)) =
+                    accel.mine(&message, difficulty, max_attempts)
+                {
+                    let elapsed = start.elapsed();
+                    let rate = attempts as f64 / elapsed.as_secs_f64();
+                    eprintln!(
+                        "Found nonce {} in {} attempts ({:.0} H/s, {:.1}s)",
+                        nonce,
+                        attempts,
+                        rate,
+                        elapsed.as_secs_f64()
+                    );
+                    return Ok(GuessResult {
+                        nonce,
+                        digest: digest_bfes.iter().map(|b| b.value()).collect(),
+                        attempts,
+                    });
+                }
+                return Err(format!(
+                    "no solution found within {} attempts",
+                    max_attempts
+                ));
+            }
+        }
+
+        // CPU fallback: sequential search
+        let start = std::time::Instant::now();
+        for nonce in 0..max_attempts {
+            let mut input_elements = message.clone();
+            input_elements.push(BFieldElement::new(nonce));
+            let hash = Tip5::hash_varlen(&input_elements);
+            if hash.0[0].value() < difficulty {
+                let elapsed = start.elapsed();
+                let rate = (nonce + 1) as f64 / elapsed.as_secs_f64();
+                eprintln!(
+                    "Found nonce {} in {} attempts ({:.0} H/s, {:.1}s)",
+                    nonce,
+                    nonce + 1,
+                    rate,
+                    elapsed.as_secs_f64()
+                );
+                return Ok(GuessResult {
+                    nonce,
+                    digest: hash.0.iter().map(|b| b.value()).collect(),
+                    attempts: nonce + 1,
+                });
+            }
+        }
+        Err(format!(
+            "no solution found within {} attempts",
+            max_attempts
+        ))
     }
 }
 
