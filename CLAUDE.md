@@ -11,6 +11,31 @@ Triton VM warrior. Execute, prove, verify, deploy Trident programs.
 Any change to architecture or scope MUST update the corresponding
 reference doc first, then propagate to code.
 
+## Dependency Patching
+
+Trisha patches triton-vm at build time instead of maintaining a fork.
+The patch adds GPU acceleration hooks (GpuAccelerator trait + 3
+dispatch points) to upstream triton-vm from crates.io.
+
+```
+patches/
+  triton-vm-gpu.patch   305-line diff against triton-vm 2.0.0
+  apply.nu              nushell script: fetch + patch + vendor
+```
+
+After cloning or when upgrading triton-vm:
+```
+nu patches/apply.nu
+```
+
+This fetches triton-vm from cargo registry, applies the patch, and
+places the result in `.vendor/triton-vm/`. Cargo.toml points to it
+via `path = ".vendor/triton-vm"`. The `.vendor/` directory is
+gitignored.
+
+When upgrading triton-vm version: update `version` in `apply.nu`,
+run the script, fix any patch conflicts, regenerate the patch file.
+
 ## Workspace
 
 This repo (`~/git/trisha`) is a companion to `~/git/trident` (the
@@ -60,12 +85,12 @@ tests/
 
 ## What Works vs What's Scaffold
 
-**Working**: Runner, Prover, Verifier, Batch, Proof files.
+**Working**: Runner, Prover, Verifier, Batch, Proof files, GPU
+acceleration (Tip5 batch hashing, BFE/XFE iNTT on Metal/Vulkan/DX12).
 Real STARK proofs generated and verified by triton-vm.
 
-**Scaffold**: GPU acceleration (shaders compile, pipelines created,
-but all operations fall back to CPU). Deploy (prints digest, no
-Neptune integration).
+**Scaffold**: GPU Merkle tree, GPU FRI (shaders compile, not wired).
+Deploy (prints digest, no Neptune integration).
 
 See `reference/roadmap.md` for completion plan.
 
@@ -146,8 +171,9 @@ Field elements serialized as strings (Goldilocks values exceed i64 range).
 ## Build & Test
 
 ```
+nu patches/apply.nu  # first time only, or after version bump
 cargo check
-cargo test          # 12 integration tests
+cargo test          # 15 integration tests
 cargo install --path .
 ```
 
