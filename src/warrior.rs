@@ -1,7 +1,10 @@
+use triton_vm::prelude::*;
+
 use trident::runtime::{
     Deployer, ExecutionResult, ProgramBundle, ProgramInput, ProofData, Prover, Runner, Verifier,
 };
 
+use crate::convert;
 use crate::error::TrishaError;
 
 /// Trisha warrior: implements all four runtime traits for Triton VM.
@@ -15,24 +18,32 @@ impl TrishaWarrior {
 
 impl Runner for TrishaWarrior {
     fn run(&self, bundle: &ProgramBundle, input: &ProgramInput) -> Result<ExecutionResult, String> {
-        // Phase 1: stub — will be implemented when triton-vm is added
-        let _ = input;
+        let program =
+            Program::from_code(&bundle.assembly).map_err(|e| format!("TASM parse error: {}", e))?;
+
+        let (pub_in, non_det) = convert::to_triton_inputs(input);
+
         let op_count = bundle.assembly.lines().count();
         eprintln!("Executing {} ({} ops)...", bundle.name, op_count);
-        eprintln!("triton-vm execution not yet implemented");
-        Err("triton-vm dependency not yet added — coming in Phase 2".to_string())
+
+        let output =
+            VM::run(program, pub_in, non_det).map_err(|e| format!("execution error: {}", e))?;
+
+        // VM::run doesn't return cycle count — use 0 as placeholder.
+        // For cycle count, trace_execution is needed (but expensive).
+        Ok(convert::to_execution_result(&output, 0))
     }
 }
 
 impl Prover for TrishaWarrior {
     fn prove(&self, _bundle: &ProgramBundle, _input: &ProgramInput) -> Result<ProofData, String> {
-        Err("proving not yet implemented — coming in Phase 2".to_string())
+        Err("proving not yet implemented".to_string())
     }
 }
 
 impl Verifier for TrishaWarrior {
     fn verify(&self, _proof: &ProofData) -> Result<bool, String> {
-        Err("verification not yet implemented — coming in Phase 3".to_string())
+        Err("verification not yet implemented".to_string())
     }
 }
 
@@ -42,7 +53,7 @@ impl Deployer for TrishaWarrior {
         _bundle: &ProgramBundle,
         _proof: Option<&ProofData>,
     ) -> Result<String, String> {
-        Err("deployment not yet implemented — coming in Phase 4".to_string())
+        Err("deployment not yet implemented".to_string())
     }
 }
 

@@ -1,5 +1,6 @@
 mod cli;
 mod compile;
+mod convert;
 mod error;
 mod warrior;
 
