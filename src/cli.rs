@@ -3,10 +3,10 @@ use std::process;
 
 use clap::{Args, Parser, Subcommand};
 
-use crate::compile::compile_source;
-use crate::proof_file::{ClaimSection, DataSection, ProofFile, ProofMeta};
-use crate::warrior::TrishaWarrior;
 use trident::runtime::{Deployer, ProgramInput, ProofData, Prover, Runner, Verifier};
+use trisha::compile::compile_source;
+use trisha::proof_file::{ClaimSection, DataSection, ProofFile, ProofMeta};
+use trisha::warrior::TrishaWarrior;
 
 #[derive(Parser)]
 #[command(
@@ -233,7 +233,7 @@ pub fn cmd_prove_batch(args: ProveBatchArgs) {
     }
 
     let jobs =
-        match crate::batch::build_jobs(&args.inputs, &args.target, &args.profile, &args.output) {
+        match trisha::batch::build_jobs(&args.inputs, &args.target, &args.profile, &args.output) {
             Ok(j) => j,
             Err(e) => {
                 eprintln!("error: {}", e);
@@ -247,7 +247,7 @@ pub fn cmd_prove_batch(args: ProveBatchArgs) {
         count, args.max_parallel
     );
 
-    let results = crate::batch::prove_batch(jobs, args.max_parallel);
+    let results = trisha::batch::prove_batch(jobs, args.max_parallel);
 
     let mut failures = 0;
     for result in &results {

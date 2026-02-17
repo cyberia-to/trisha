@@ -1,11 +1,4 @@
-mod batch;
 mod cli;
-mod compile;
-mod convert;
-mod error;
-mod gpu;
-mod proof_file;
-mod warrior;
 
 use clap::Parser;
 use cli::{Cli, Command};

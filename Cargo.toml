@@ -4,6 +4,10 @@ version = "0.1.0"
 edition = "2021"
 description = "Triton VM warrior — execute, prove, verify, deploy"
 
+[lib]
+name = "trisha"
+path = "src/lib.rs"
+
 [[bin]]
 name = "trisha"
 path = "src/main.rs"
