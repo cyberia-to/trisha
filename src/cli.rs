@@ -24,6 +24,8 @@ pub enum Command {
     Run(RunArgs),
     /// Generate a STARK proof of correct execution
     Prove(ProveArgs),
+    /// Prove multiple programs in parallel
+    ProveBatch(ProveBatchArgs),
     /// Verify a STARK proof
     Verify(VerifyArgs),
 }
@@ -71,6 +73,24 @@ pub struct ProveArgs {
     /// Chain state name
     #[arg(long)]
     pub state: Option<String>,
+}
+
+#[derive(Args)]
+pub struct ProveBatchArgs {
+    /// Input .tri files
+    pub inputs: Vec<PathBuf>,
+    /// Target VM (default: triton)
+    #[arg(long, default_value = "triton")]
+    pub target: String,
+    /// Compilation profile
+    #[arg(long, default_value = "release")]
+    pub profile: String,
+    /// Output directory for proof files
+    #[arg(long, default_value = ".")]
+    pub output: PathBuf,
+    /// Maximum parallel proving jobs
+    #[arg(long, default_value = "4")]
+    pub max_parallel: usize,
 }
 
 #[derive(Args)]
@@ -175,6 +195,58 @@ pub fn cmd_prove(args: ProveArgs) {
         output_path.display(),
         proving_time_ms
     );
+}
+
+pub fn cmd_prove_batch(args: ProveBatchArgs) {
+    if args.inputs.is_empty() {
+        eprintln!("error: no input files specified");
+        process::exit(1);
+    }
+
+    // Create output directory if needed
+    if let Err(e) = std::fs::create_dir_all(&args.output) {
+        eprintln!("error: cannot create output directory: {}", e);
+        process::exit(1);
+    }
+
+    let jobs =
+        match crate::batch::build_jobs(&args.inputs, &args.target, &args.profile, &args.output) {
+            Ok(j) => j,
+            Err(e) => {
+                eprintln!("error: {}", e);
+                process::exit(1);
+            }
+        };
+
+    let count = jobs.len();
+    eprintln!(
+        "Proving {} programs (max {} parallel)...",
+        count, args.max_parallel
+    );
+
+    let results = crate::batch::prove_batch(jobs, args.max_parallel);
+
+    let mut failures = 0;
+    for result in &results {
+        match &result.proof_data {
+            Ok(_) => {
+                eprintln!(
+                    "  {} ({} ms)",
+                    result.output_path.display(),
+                    result.proving_time_ms
+                );
+            }
+            Err(e) => {
+                eprintln!("  FAIL {}: {}", result.output_path.display(), e);
+                failures += 1;
+            }
+        }
+    }
+
+    eprintln!("{}/{} proofs generated", count - failures, count);
+    if failures > 0 {
+        process::exit(1);
+    }
 }
 
 pub fn cmd_verify(args: VerifyArgs) {

@@ -1,3 +1,4 @@
+mod batch;
 mod cli;
 mod compile;
 mod convert;
@@ -14,6 +15,7 @@ fn main() {
     match cli.command {
         Command::Run(args) => cli::cmd_run(args),
         Command::Prove(args) => cli::cmd_prove(args),
+        Command::ProveBatch(args) => cli::cmd_prove_batch(args),
         Command::Verify(args) => cli::cmd_verify(args),
     }
 }
