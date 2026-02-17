@@ -38,10 +38,28 @@ pub fn digest_to_u64s(digest: &Digest) -> Vec<u64> {
 /// Convert a triton-vm Claim to trident's Claim.
 pub fn to_trident_claim(claim: &triton_vm::proof::Claim) -> trident::field::proof::Claim {
     trident::field::proof::Claim {
-        program_hash: bfes_to_u64s(&claim.input),
+        program_hash: digest_to_u64s(&claim.program_digest),
         public_input: bfes_to_u64s(&claim.input),
         public_output: bfes_to_u64s(&claim.output),
     }
+}
+
+/// Construct a native triton-vm Claim from raw u64 parts.
+pub fn to_triton_claim_native(
+    program_hash: &[u64],
+    public_input: &[u64],
+    public_output: &[u64],
+) -> triton_vm::proof::Claim {
+    let digest_bfes: [BFieldElement; Digest::LEN] = program_hash
+        .iter()
+        .take(Digest::LEN)
+        .map(|&v| BFieldElement::new(v))
+        .collect::<Vec<_>>()
+        .try_into()
+        .unwrap_or_else(|_| [BFieldElement::new(0); Digest::LEN]);
+    triton_vm::proof::Claim::new(Digest::new(digest_bfes))
+        .with_input(u64s_to_bfes(public_input))
+        .with_output(u64s_to_bfes(public_output))
 }
 
 /// Serialize a triton-vm Proof to bytes via bincode.

@@ -36,14 +36,42 @@ impl Runner for TrishaWarrior {
 }
 
 impl Prover for TrishaWarrior {
-    fn prove(&self, _bundle: &ProgramBundle, _input: &ProgramInput) -> Result<ProofData, String> {
-        Err("proving not yet implemented".to_string())
+    fn prove(&self, bundle: &ProgramBundle, input: &ProgramInput) -> Result<ProofData, String> {
+        let program =
+            Program::from_code(&bundle.assembly).map_err(|e| format!("TASM parse error: {}", e))?;
+
+        let (pub_in, non_det) = convert::to_triton_inputs(input);
+
+        let op_count = bundle.assembly.lines().count();
+        eprintln!("Proving {} ({} ops)...", bundle.name, op_count);
+
+        let (stark, claim, proof) = triton_vm::prove_program(program, pub_in, non_det)
+            .map_err(|e| format!("proving error: {}", e))?;
+
+        let _ = stark; // Stark config used implicitly
+
+        eprintln!("Proof generated ({} output elements)", claim.output.len());
+
+        Ok(ProofData {
+            claim: convert::to_trident_claim(&claim),
+            proof_bytes: convert::proof_to_bytes(&proof),
+            format: "stark-triton-v2".to_string(),
+        })
     }
 }
 
 impl Verifier for TrishaWarrior {
-    fn verify(&self, _proof: &ProofData) -> Result<bool, String> {
-        Err("verification not yet implemented".to_string())
+    fn verify(&self, proof_data: &ProofData) -> Result<bool, String> {
+        let claim = convert::to_triton_claim_native(
+            &proof_data.claim.program_hash,
+            &proof_data.claim.public_input,
+            &proof_data.claim.public_output,
+        );
+        let proof = convert::bytes_to_proof(&proof_data.proof_bytes).map_err(|e| e.to_string())?;
+
+        let stark = Stark::default();
+        let valid = triton_vm::verify(stark, &claim, &proof);
+        Ok(valid)
     }
 }
 

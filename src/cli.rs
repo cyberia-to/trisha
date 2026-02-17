@@ -4,8 +4,9 @@ use std::process;
 use clap::{Args, Parser, Subcommand};
 
 use crate::compile::compile_source;
+use crate::proof_file::{ClaimSection, DataSection, ProofFile, ProofMeta};
 use crate::warrior::TrishaWarrior;
-use trident::runtime::{ProgramInput, Prover, Runner, Verifier};
+use trident::runtime::{ProgramInput, ProofData, Prover, Runner, Verifier};
 
 #[derive(Parser)]
 #[command(
@@ -127,22 +128,94 @@ pub fn cmd_prove(args: ProveArgs) {
         secret: args.secret.unwrap_or_default(),
     };
 
+    let start = std::time::Instant::now();
     let warrior = TrishaWarrior::new();
-    match warrior.prove(&bundle, &input) {
-        Ok(_proof) => {
-            eprintln!("Proof generated successfully");
-            // TODO: write proof to output path
+    let proof_data = match warrior.prove(&bundle, &input) {
+        Ok(p) => p,
+        Err(e) => {
+            eprintln!("error: {}", e);
+            process::exit(1);
+        }
+    };
+    let proving_time_ms = start.elapsed().as_millis() as u64;
+
+    let output_path = args.output.unwrap_or_else(|| {
+        let stem = args.input.file_stem().unwrap_or_default().to_string_lossy();
+        PathBuf::from(format!("{}.proof.toml", stem))
+    });
+
+    let proof_file = ProofFile {
+        proof: ProofMeta {
+            format: proof_data.format.clone(),
+            program_name: bundle.name.clone(),
+            cycle_count: 0,
+            padded_height: 0,
+            proving_time_ms,
+        },
+        claim: ClaimSection {
+            program_hash: proof_data.claim.program_hash.clone(),
+            public_input: proof_data.claim.public_input.clone(),
+            public_output: proof_data.claim.public_output.clone(),
+        },
+        data: DataSection {
+            proof: ProofFile::encode_proof_bytes(&proof_data.proof_bytes),
+        },
+    };
+
+    if let Err(e) = proof_file.save(&output_path) {
+        eprintln!("error: {}", e);
+        process::exit(1);
+    }
+
+    for val in &proof_data.claim.public_output {
+        println!("{}", val);
+    }
+    eprintln!(
+        "Proof written to {} ({} ms)",
+        output_path.display(),
+        proving_time_ms
+    );
+}
+
+pub fn cmd_verify(args: VerifyArgs) {
+    let proof_file = match ProofFile::load(&args.proof) {
+        Ok(p) => p,
+        Err(e) => {
+            eprintln!("error: {}", e);
+            process::exit(1);
+        }
+    };
+
+    let proof_bytes = match ProofFile::decode_proof_bytes(&proof_file.data.proof) {
+        Ok(b) => b,
+        Err(e) => {
+            eprintln!("error: {}", e);
+            process::exit(1);
+        }
+    };
+
+    let proof_data = ProofData {
+        claim: trident::field::proof::Claim {
+            program_hash: proof_file.claim.program_hash,
+            public_input: proof_file.claim.public_input,
+            public_output: proof_file.claim.public_output,
+        },
+        proof_bytes,
+        format: proof_file.proof.format,
+    };
+
+    let warrior = TrishaWarrior::new();
+    match warrior.verify(&proof_data) {
+        Ok(true) => {
+            println!("Verification: PASS");
+        }
+        Ok(false) => {
+            println!("Verification: FAIL");
+            process::exit(1);
         }
         Err(e) => {
             eprintln!("error: {}", e);
             process::exit(1);
         }
     }
-}
-
-pub fn cmd_verify(args: VerifyArgs) {
-    // TODO: load proof from file
-    let _ = args;
-    eprintln!("error: verification not yet implemented");
-    process::exit(1);
 }

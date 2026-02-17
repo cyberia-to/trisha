@@ -2,6 +2,7 @@ mod cli;
 mod compile;
 mod convert;
 mod error;
+mod proof_file;
 mod warrior;
 
 use clap::Parser;
