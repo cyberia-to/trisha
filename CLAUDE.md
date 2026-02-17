@@ -2,6 +2,23 @@
 
 Triton VM warrior. Execute, prove, verify, deploy Trident programs.
 
+## Workspace
+
+This repo (`~/git/trisha`) is a companion to `~/git/trident` (the
+compiler). Trisha depends on trident via `path = "../trident"`.
+
+When both repos are in scope:
+- **trident** = the compiler (source -> TASM). ~37k LOC Rust.
+- **trisha** = the runtime warrior (execute, prove, verify, deploy). ~2k LOC Rust + WGSL.
+- Trident's CLAUDE.md rules (forbidden patterns, review passes, git
+  workflow) apply to trisha too.
+- When referencing files, always use the repo-qualified path
+  (e.g. `trisha/src/cli.rs` vs `trident/src/cli/mod.rs`).
+- Git operations: always `cd` to the correct repo before committing.
+- After editing trident code that trisha depends on, rebuild both:
+  `cd ~/git/trident && cargo install --path . --force &&
+   cd ~/git/trisha && cargo install --path . --force`
+
 ## Architecture
 
 Trisha implements trident's `Runner`, `Prover`, `Verifier`, `Deployer`
