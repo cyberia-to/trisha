@@ -6,7 +6,7 @@ use clap::{Args, Parser, Subcommand};
 use crate::compile::compile_source;
 use crate::proof_file::{ClaimSection, DataSection, ProofFile, ProofMeta};
 use crate::warrior::TrishaWarrior;
-use trident::runtime::{ProgramInput, ProofData, Prover, Runner, Verifier};
+use trident::runtime::{Deployer, ProgramInput, ProofData, Prover, Runner, Verifier};
 
 #[derive(Parser)]
 #[command(
@@ -28,6 +28,8 @@ pub enum Command {
     ProveBatch(ProveBatchArgs),
     /// Verify a STARK proof
     Verify(VerifyArgs),
+    /// Deploy a program (package artifact + optional on-chain)
+    Deploy(DeployArgs),
 }
 
 #[derive(Args)]
@@ -103,6 +105,27 @@ pub struct VerifyArgs {
     /// Chain state name
     #[arg(long)]
     pub state: Option<String>,
+}
+
+#[derive(Args)]
+pub struct DeployArgs {
+    /// Input .tri file
+    pub input: PathBuf,
+    /// Target (default: neptune)
+    #[arg(long, default_value = "neptune")]
+    pub target: String,
+    /// Chain state (mainnet, testnet)
+    #[arg(long, default_value = "testnet")]
+    pub state: String,
+    /// Compilation profile
+    #[arg(long, default_value = "release")]
+    pub profile: String,
+    /// Path to proof file to attach
+    #[arg(long)]
+    pub proof: Option<PathBuf>,
+    /// Show what would happen without deploying
+    #[arg(long)]
+    pub dry_run: bool,
 }
 
 pub fn cmd_run(args: RunArgs) {
@@ -284,6 +307,77 @@ pub fn cmd_verify(args: VerifyArgs) {
         Ok(false) => {
             println!("Verification: FAIL");
             process::exit(1);
+        }
+        Err(e) => {
+            eprintln!("error: {}", e);
+            process::exit(1);
+        }
+    }
+}
+
+pub fn cmd_deploy(args: DeployArgs) {
+    let bundle = match compile_source(&args.input, &args.target, &args.profile) {
+        Ok(b) => b,
+        Err(e) => {
+            eprintln!("error: {}", e);
+            process::exit(1);
+        }
+    };
+
+    // Load proof if provided
+    let proof_data = if let Some(ref proof_path) = args.proof {
+        let pf = match ProofFile::load(proof_path) {
+            Ok(p) => p,
+            Err(e) => {
+                eprintln!("error: cannot load proof: {}", e);
+                process::exit(1);
+            }
+        };
+        let proof_bytes = match ProofFile::decode_proof_bytes(&pf.data.proof) {
+            Ok(b) => b,
+            Err(e) => {
+                eprintln!("error: {}", e);
+                process::exit(1);
+            }
+        };
+        Some(ProofData {
+            claim: trident::field::proof::Claim {
+                program_hash: pf.claim.program_hash,
+                public_input: pf.claim.public_input,
+                public_output: pf.claim.public_output,
+            },
+            proof_bytes,
+            format: pf.proof.format,
+        })
+    } else {
+        None
+    };
+
+    // Compute program digest for display
+    let digest = trident::poseidon2::hash_bytes(bundle.assembly.as_bytes());
+    let digest_hex = trident::hash::ContentHash(digest).to_hex();
+
+    if args.dry_run {
+        eprintln!("Dry run — would deploy:");
+        eprintln!("  Program:  {}", bundle.name);
+        eprintln!("  Target:   {}", args.target);
+        eprintln!("  State:    {}", args.state);
+        eprintln!("  Digest:   {}", digest_hex);
+        eprintln!(
+            "  Proof:    {}",
+            if args.proof.is_some() {
+                "attached"
+            } else {
+                "none"
+            }
+        );
+        return;
+    }
+
+    let warrior = TrishaWarrior::new();
+    match warrior.deploy(&bundle, proof_data.as_ref()) {
+        Ok(result) => {
+            println!("{}", result);
         }
         Err(e) => {
             eprintln!("error: {}", e);

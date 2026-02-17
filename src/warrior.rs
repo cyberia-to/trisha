@@ -76,12 +76,30 @@ impl Verifier for TrishaWarrior {
 }
 
 impl Deployer for TrishaWarrior {
-    fn deploy(
-        &self,
-        _bundle: &ProgramBundle,
-        _proof: Option<&ProofData>,
-    ) -> Result<String, String> {
-        Err("deployment not yet implemented".to_string())
+    fn deploy(&self, bundle: &ProgramBundle, proof: Option<&ProofData>) -> Result<String, String> {
+        let program =
+            Program::from_code(&bundle.assembly).map_err(|e| format!("TASM parse error: {}", e))?;
+        let digest = program.hash();
+        let digest_u64s = convert::digest_to_u64s(&digest);
+        let digest_str = digest_u64s
+            .iter()
+            .map(|v| v.to_string())
+            .collect::<Vec<_>>()
+            .join(":");
+
+        eprintln!("Program:   {}", bundle.name);
+        eprintln!("Digest:    {}", digest_str);
+        eprintln!(
+            "Proof:     {}",
+            if proof.is_some() { "attached" } else { "none" }
+        );
+        eprintln!();
+        eprintln!("On-chain deployment requires a running Neptune node.");
+        eprintln!("Neptune RPC is not yet available in this release.");
+        eprintln!("The program is ready for deployment — use the digest");
+        eprintln!("to construct a LockScript when Neptune SDK is available.");
+
+        Ok(digest_str)
     }
 }
 
