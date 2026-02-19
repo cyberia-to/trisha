@@ -19,6 +19,11 @@ pub fn to_triton_inputs(input: &ProgramInput) -> (PublicInput, NonDeterminism) {
     let public = PublicInput::new(u64s_to_bfes(&input.public));
     let mut non_det = NonDeterminism::default();
     non_det.individual_tokens = u64s_to_bfes(&input.secret);
+    non_det.digests = input
+        .digests
+        .iter()
+        .map(|d| Digest::new(d.map(BFieldElement::new)))
+        .collect();
     (public, non_det)
 }
 

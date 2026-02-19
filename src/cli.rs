@@ -40,10 +40,21 @@ pub enum Command {
 // Shared arg groups
 // ---------------------------------------------------------------------------
 
-fn make_input(input_values: &Option<Vec<u64>>, secret: &Option<Vec<u64>>) -> ProgramInput {
+fn make_input(
+    input_values: &Option<Vec<u64>>,
+    secret: &Option<Vec<u64>>,
+    digests: &Option<Vec<u64>>,
+) -> ProgramInput {
+    let digest_vals = digests.clone().unwrap_or_default();
+    let parsed_digests: Vec<[u64; 5]> = digest_vals
+        .chunks(5)
+        .filter(|c| c.len() == 5)
+        .map(|c| [c[0], c[1], c[2], c[3], c[4]])
+        .collect();
     ProgramInput {
         public: input_values.clone().unwrap_or_default(),
         secret: secret.clone().unwrap_or_default(),
+        digests: parsed_digests,
     }
 }
 
@@ -74,6 +85,9 @@ pub struct RunArgs {
     /// Secret input values (comma-separated)
     #[arg(long, value_delimiter = ',')]
     pub secret: Option<Vec<u64>>,
+    /// Nondeterministic digests for merkle_step (comma-separated, 5 per digest)
+    #[arg(long, value_delimiter = ',')]
+    pub digests: Option<Vec<u64>>,
 }
 
 #[derive(Subcommand)]
@@ -98,6 +112,9 @@ pub struct RunBatchArgs {
     /// Secret input values (comma-separated)
     #[arg(long, value_delimiter = ',')]
     pub secret: Option<Vec<u64>>,
+    /// Nondeterministic digests for merkle_step (comma-separated, 5 per digest)
+    #[arg(long, value_delimiter = ',')]
+    pub digests: Option<Vec<u64>>,
     /// Maximum parallel jobs
     #[arg(long, default_value = "4")]
     pub max_parallel: usize,
@@ -109,7 +126,7 @@ pub fn cmd_run(args: RunArgs) {
         None => {
             // --tasm flag: execute raw TASM directly (skip compilation)
             if let Some(ref tasm_path) = args.tasm {
-                cmd_run_tasm(tasm_path, &args.input_values, &args.secret);
+                cmd_run_tasm(tasm_path, &args.input_values, &args.secret, &args.digests);
                 return;
             }
             let input = match args.input {
@@ -125,6 +142,7 @@ pub fn cmd_run(args: RunArgs) {
                 &args.profile,
                 &args.input_values,
                 &args.secret,
+                &args.digests,
             );
         }
     }
@@ -136,6 +154,7 @@ fn cmd_run_single(
     profile: &str,
     input_values: &Option<Vec<u64>>,
     secret: &Option<Vec<u64>>,
+    digests: &Option<Vec<u64>>,
 ) {
     let bundle = match compile_source(&input, target, profile) {
         Ok(b) => b,
@@ -145,7 +164,7 @@ fn cmd_run_single(
         }
     };
 
-    let pi = make_input(input_values, secret);
+    let pi = make_input(input_values, secret, digests);
     let warrior = TrishaWarrior::new();
     match warrior.run(&bundle, &pi) {
         Ok(result) => {
@@ -165,6 +184,7 @@ fn cmd_run_tasm(
     tasm_path: &std::path::Path,
     input_values: &Option<Vec<u64>>,
     secret: &Option<Vec<u64>>,
+    digests: &Option<Vec<u64>>,
 ) {
     let bundle = match bundle_from_tasm(tasm_path) {
         Ok(b) => b,
@@ -174,7 +194,7 @@ fn cmd_run_tasm(
         }
     };
 
-    let pi = make_input(input_values, secret);
+    let pi = make_input(input_values, secret, digests);
     let warrior = TrishaWarrior::new();
     match warrior.run(&bundle, &pi) {
         Ok(result) => {
@@ -227,6 +247,7 @@ fn cmd_run_batch(args: RunBatchArgs) {
     let profile = args.profile.clone();
     let input_values = args.input_values.clone();
     let secret = args.secret.clone();
+    let digests = args.digests.clone();
     let count = args.inputs.len();
     eprintln!(
         "Running {} programs (max {} parallel)...",
@@ -235,7 +256,7 @@ fn cmd_run_batch(args: RunBatchArgs) {
 
     let results = batch::run_batch(args.inputs, args.max_parallel, |path| {
         let bundle = compile_source(&path, &target, &profile)?;
-        let pi = make_input(&input_values, &secret);
+        let pi = make_input(&input_values, &secret, &digests);
         let warrior = TrishaWarrior::new();
         warrior.run(&bundle, &pi).map_err(TrishaError::Execute)
     });
@@ -293,6 +314,9 @@ pub struct ProveArgs {
     /// Secret input values (comma-separated)
     #[arg(long, value_delimiter = ',')]
     pub secret: Option<Vec<u64>>,
+    /// Nondeterministic digests for merkle_step (comma-separated, 5 per digest)
+    #[arg(long, value_delimiter = ',')]
+    pub digests: Option<Vec<u64>>,
     /// Output path for proof file
     #[arg(long)]
     pub output: Option<PathBuf>,
@@ -320,6 +344,9 @@ pub struct ProveBatchArgs {
     /// Secret input values (comma-separated)
     #[arg(long, value_delimiter = ',')]
     pub secret: Option<Vec<u64>>,
+    /// Nondeterministic digests for merkle_step (comma-separated, 5 per digest)
+    #[arg(long, value_delimiter = ',')]
+    pub digests: Option<Vec<u64>>,
     /// Output directory for proof files
     #[arg(long, default_value = ".")]
     pub output: PathBuf,
@@ -334,7 +361,13 @@ pub fn cmd_prove(args: ProveArgs) {
         None => {
             // --tasm flag: prove raw TASM directly (skip compilation)
             if let Some(ref tasm_path) = args.tasm {
-                cmd_prove_tasm(tasm_path, &args.input_values, &args.secret, args.output);
+                cmd_prove_tasm(
+                    tasm_path,
+                    &args.input_values,
+                    &args.secret,
+                    &args.digests,
+                    args.output,
+                );
                 return;
             }
             let input = match args.input {
@@ -350,6 +383,7 @@ pub fn cmd_prove(args: ProveArgs) {
                 &args.profile,
                 &args.input_values,
                 &args.secret,
+                &args.digests,
                 args.output,
             );
         }
@@ -362,6 +396,7 @@ fn cmd_prove_single(
     profile: &str,
     input_values: &Option<Vec<u64>>,
     secret: &Option<Vec<u64>>,
+    digests: &Option<Vec<u64>>,
     output: Option<PathBuf>,
 ) {
     let bundle = match compile_source(&input, target, profile) {
@@ -372,7 +407,7 @@ fn cmd_prove_single(
         }
     };
 
-    let pi = make_input(input_values, secret);
+    let pi = make_input(input_values, secret, digests);
     let start = std::time::Instant::now();
     let warrior = TrishaWarrior::new();
     let proof_data = match warrior.prove(&bundle, &pi) {
@@ -426,6 +461,7 @@ fn cmd_prove_tasm(
     tasm_path: &std::path::Path,
     input_values: &Option<Vec<u64>>,
     secret: &Option<Vec<u64>>,
+    digests: &Option<Vec<u64>>,
     output: Option<PathBuf>,
 ) {
     let bundle = match bundle_from_tasm(tasm_path) {
@@ -436,7 +472,7 @@ fn cmd_prove_tasm(
         }
     };
 
-    let pi = make_input(input_values, secret);
+    let pi = make_input(input_values, secret, digests);
     let start = std::time::Instant::now();
     let warrior = TrishaWarrior::new();
     let proof_data = match warrior.prove(&bundle, &pi) {
@@ -501,6 +537,7 @@ fn cmd_prove_batch(args: ProveBatchArgs) {
     let profile = args.profile.clone();
     let input_values = args.input_values.clone();
     let secret = args.secret.clone();
+    let digests = args.digests.clone();
     let output_dir = args.output.clone();
     let count = args.inputs.len();
     eprintln!(
@@ -510,7 +547,7 @@ fn cmd_prove_batch(args: ProveBatchArgs) {
 
     let results = batch::run_batch(args.inputs, args.max_parallel, |path| {
         let bundle = compile_source(&path, &target, &profile)?;
-        let pi = make_input(&input_values, &secret);
+        let pi = make_input(&input_values, &secret, &digests);
         let warrior = TrishaWarrior::new();
         let start = std::time::Instant::now();
         let proof_data = warrior.prove(&bundle, &pi).map_err(TrishaError::Prove)?;
