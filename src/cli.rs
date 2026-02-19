@@ -3,7 +3,9 @@ use std::process;
 
 use clap::{Args, Parser, Subcommand};
 
-use trident::runtime::{Deployer, Guesser, ProgramInput, ProofData, Prover, Runner, Verifier};
+use trident::runtime::{
+    Deployer, Guesser, ProgramBundle, ProgramInput, ProofData, Prover, Runner, Verifier,
+};
 use trisha::batch;
 use trisha::compile::compile_source;
 use trisha::error::TrishaError;
@@ -57,6 +59,9 @@ pub struct RunArgs {
 
     /// Input .tri file
     pub input: Option<PathBuf>,
+    /// Raw TASM file (skip compilation, execute directly)
+    #[arg(long)]
+    pub tasm: Option<PathBuf>,
     /// Target VM
     #[arg(long, default_value = "triton")]
     pub target: String,
@@ -102,6 +107,11 @@ pub fn cmd_run(args: RunArgs) {
     match args.mode {
         Some(RunMode::Batch(batch_args)) => cmd_run_batch(batch_args),
         None => {
+            // --tasm flag: execute raw TASM directly (skip compilation)
+            if let Some(ref tasm_path) = args.tasm {
+                cmd_run_tasm(tasm_path, &args.input_values, &args.secret);
+                return;
+            }
             let input = match args.input {
                 Some(p) => p,
                 None => {
@@ -149,6 +159,62 @@ fn cmd_run_single(
             process::exit(1);
         }
     }
+}
+
+fn cmd_run_tasm(
+    tasm_path: &std::path::Path,
+    input_values: &Option<Vec<u64>>,
+    secret: &Option<Vec<u64>>,
+) {
+    let bundle = match bundle_from_tasm(tasm_path) {
+        Ok(b) => b,
+        Err(e) => {
+            eprintln!("error: {}", e);
+            process::exit(1);
+        }
+    };
+
+    let pi = make_input(input_values, secret);
+    let warrior = TrishaWarrior::new();
+    match warrior.run(&bundle, &pi) {
+        Ok(result) => {
+            for val in &result.output {
+                println!("{}", val);
+            }
+            eprintln!("Executed in {} cycles", result.cycle_count);
+        }
+        Err(e) => {
+            eprintln!("error: {}", e);
+            process::exit(1);
+        }
+    }
+}
+
+/// Build a ProgramBundle from a raw .tasm file (no compilation step).
+fn bundle_from_tasm(tasm_path: &std::path::Path) -> Result<ProgramBundle, TrishaError> {
+    let assembly = std::fs::read_to_string(tasm_path)
+        .map_err(|e| TrishaError::Io(format!("cannot read '{}': {}", tasm_path.display(), e)))?;
+    let name = tasm_path
+        .file_stem()
+        .unwrap_or_default()
+        .to_string_lossy()
+        .to_string();
+    Ok(ProgramBundle {
+        name,
+        version: String::new(),
+        target_vm: "triton".to_string(),
+        target_os: None,
+        assembly,
+        entry_point: String::new(),
+        functions: Vec::new(),
+        cost: trident::runtime::artifact::BundleCost {
+            table_values: Vec::new(),
+            table_names: Vec::new(),
+            padded_height: 0,
+            estimated_proving_ns: 0,
+        },
+        source_hash: String::new(),
+    })
 }
 
 fn cmd_run_batch(args: RunBatchArgs) {
@@ -212,6 +278,9 @@ pub struct ProveArgs {
 
     /// Input .tri file
     pub input: Option<PathBuf>,
+    /// Raw TASM file (skip compilation, prove directly)
+    #[arg(long)]
+    pub tasm: Option<PathBuf>,
     /// Target VM
     #[arg(long, default_value = "triton")]
     pub target: String,
@@ -263,6 +332,11 @@ pub fn cmd_prove(args: ProveArgs) {
     match args.mode {
         Some(ProveMode::Batch(batch_args)) => cmd_prove_batch(batch_args),
         None => {
+            // --tasm flag: prove raw TASM directly (skip compilation)
+            if let Some(ref tasm_path) = args.tasm {
+                cmd_prove_tasm(tasm_path, &args.input_values, &args.secret, args.output);
+                return;
+            }
             let input = match args.input {
                 Some(p) => p,
                 None => {
@@ -312,6 +386,70 @@ fn cmd_prove_single(
 
     let output_path = output.unwrap_or_else(|| {
         let stem = input.file_stem().unwrap_or_default().to_string_lossy();
+        PathBuf::from(format!("{}.proof.toml", stem))
+    });
+
+    let proof_file = ProofFile {
+        proof: ProofMeta {
+            format: proof_data.format.clone(),
+            program_name: bundle.name.clone(),
+            cycle_count: 0,
+            padded_height: 0,
+            proving_time_ms,
+        },
+        claim: ClaimSection {
+            program_hash: proof_data.claim.program_hash.clone(),
+            public_input: proof_data.claim.public_input.clone(),
+            public_output: proof_data.claim.public_output.clone(),
+        },
+        data: DataSection {
+            proof: ProofFile::encode_proof_bytes(&proof_data.proof_bytes),
+        },
+    };
+
+    if let Err(e) = proof_file.save(&output_path) {
+        eprintln!("error: {}", e);
+        process::exit(1);
+    }
+
+    for val in &proof_data.claim.public_output {
+        println!("{}", val);
+    }
+    eprintln!(
+        "Proof written to {} ({} ms)",
+        output_path.display(),
+        proving_time_ms
+    );
+}
+
+fn cmd_prove_tasm(
+    tasm_path: &std::path::Path,
+    input_values: &Option<Vec<u64>>,
+    secret: &Option<Vec<u64>>,
+    output: Option<PathBuf>,
+) {
+    let bundle = match bundle_from_tasm(tasm_path) {
+        Ok(b) => b,
+        Err(e) => {
+            eprintln!("error: {}", e);
+            process::exit(1);
+        }
+    };
+
+    let pi = make_input(input_values, secret);
+    let start = std::time::Instant::now();
+    let warrior = TrishaWarrior::new();
+    let proof_data = match warrior.prove(&bundle, &pi) {
+        Ok(p) => p,
+        Err(e) => {
+            eprintln!("error: {}", e);
+            process::exit(1);
+        }
+    };
+    let proving_time_ms = start.elapsed().as_millis() as u64;
+
+    let output_path = output.unwrap_or_else(|| {
+        let stem = tasm_path.file_stem().unwrap_or_default().to_string_lossy();
         PathBuf::from(format!("{}.proof.toml", stem))
     });
 

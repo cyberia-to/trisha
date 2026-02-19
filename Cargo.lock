@@ -2041,9 +2041,12 @@ version = "0.1.0"
 dependencies = [
  "ariadne",
  "blake3",
+ "bytemuck",
  "clap",
+ "pollster",
  "tokio",
  "tower-lsp",
+ "wgpu",
 ]
 
 [[package]]
