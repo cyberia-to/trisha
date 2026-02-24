@@ -421,7 +421,9 @@ fn cmd_prove_single(
 
     let output_path = output.unwrap_or_else(|| {
         let stem = input.file_stem().unwrap_or_default().to_string_lossy();
-        PathBuf::from(format!("{}.proof.toml", stem))
+        let dir = PathBuf::from("target/proofs");
+        let _ = std::fs::create_dir_all(&dir);
+        dir.join(format!("{}.proof.toml", stem))
     });
 
     let proof_file = ProofFile {
@@ -486,7 +488,9 @@ fn cmd_prove_tasm(
 
     let output_path = output.unwrap_or_else(|| {
         let stem = tasm_path.file_stem().unwrap_or_default().to_string_lossy();
-        PathBuf::from(format!("{}.proof.toml", stem))
+        let dir = PathBuf::from("target/proofs");
+        let _ = std::fs::create_dir_all(&dir);
+        dir.join(format!("{}.proof.toml", stem))
     });
 
     let proof_file = ProofFile {
