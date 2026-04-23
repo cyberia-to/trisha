@@ -21,6 +21,7 @@ fn run_hello_world() {
     let input = ProgramInput {
         public: vec![],
         secret: vec![],
+        digests: vec![],
     };
     let result = warrior.run(&bundle, &input).unwrap();
     assert_eq!(result.output, vec![42]);
@@ -38,6 +39,7 @@ fn run_with_public_input() {
     let input = ProgramInput {
         public: vec![7],
         secret: vec![],
+        digests: vec![],
     };
     let result = warrior.run(&bundle, &input).unwrap();
     assert_eq!(result.output, vec![49]);
@@ -55,6 +57,7 @@ fn run_multiple_outputs() {
     let input = ProgramInput {
         public: vec![],
         secret: vec![],
+        digests: vec![],
     };
     let result = warrior.run(&bundle, &input).unwrap();
     assert_eq!(result.output, vec![10, 20, 30]);
@@ -74,6 +77,7 @@ fn prove_and_verify_hello() {
     let input = ProgramInput {
         public: vec![],
         secret: vec![],
+        digests: vec![],
     };
 
     let proof_data = warrior.prove(&bundle, &input).unwrap();
@@ -98,6 +102,7 @@ fn prove_and_verify_with_input() {
     let input = ProgramInput {
         public: vec![5],
         secret: vec![],
+        digests: vec![],
     };
 
     let proof_data = warrior.prove(&bundle, &input).unwrap();
@@ -120,6 +125,7 @@ fn tampered_proof_fails_verification() {
     let input = ProgramInput {
         public: vec![],
         secret: vec![],
+        digests: vec![],
     };
 
     let mut proof_data = warrior.prove(&bundle, &input).unwrap();
@@ -152,6 +158,7 @@ fn proof_file_roundtrip() {
     let input = ProgramInput {
         public: vec![],
         secret: vec![],
+        digests: vec![],
     };
 
     let proof_data = warrior.prove(&bundle, &input).unwrap();
@@ -208,6 +215,7 @@ fn empty_input_conversion() {
     let input = ProgramInput {
         public: vec![],
         secret: vec![],
+        digests: vec![],
     };
     let (pub_in, non_det) = convert::to_triton_inputs(&input);
     assert!(pub_in.individual_tokens.is_empty());
