@@ -2,11 +2,22 @@
 
 Triton VM warrior. Execute, prove, verify, deploy Trident programs.
 
+## Structure
+
+```
+roadmap/     — individual proposals (one file per feature/phase)
+docs/
+  explanation/ — architecture, GPU backend, proof format, patching
+src/         — Rust source
+patches/     — vendor patching scripts
+.claude/plans/ — agent state (persists across sessions)
+```
+
 ## Source of Truth
 
-`reference/` is the canonical reference for Trisha design decisions:
-
-- `roadmap.md` — honest status, completion plan, confidence milestone
+`roadmap/README.md` — status overview and confidence milestone.
+`roadmap/<feature>.md` — individual proposals (open/done).
+`docs/explanation/` — design rationale.
 
 Any change to architecture or scope MUST update the corresponding
 reference doc first, then propagate to code.
