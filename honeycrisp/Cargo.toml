@@ -1,0 +1,17 @@
+[package]
+name = "trisha-honeycrisp"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+path = "lib.rs"
+
+[features]
+triton = ["dep:trident-lang"]
+
+[dependencies]
+trident-lang = { path = "../../trident", optional = true }
+triton-vm = "2"
+twenty-first = "1"
+bincode = "1"
+rayon = "1"

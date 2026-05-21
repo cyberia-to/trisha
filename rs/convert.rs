@@ -1,20 +1,15 @@
-//! Type conversion between trident's Vec<u64> and triton-vm's BFieldElement.
-
 use triton_vm::prelude::*;
 
 use trident::runtime::{ExecutionResult, ProgramInput};
 
-/// Convert u64 values to BFieldElements.
 pub fn u64s_to_bfes(values: &[u64]) -> Vec<BFieldElement> {
     values.iter().map(|&v| BFieldElement::new(v)).collect()
 }
 
-/// Convert BFieldElements to u64 values.
 pub fn bfes_to_u64s(bfes: &[BFieldElement]) -> Vec<u64> {
     bfes.iter().map(|b| b.value()).collect()
 }
 
-/// Convert ProgramInput to triton-vm's PublicInput + NonDeterminism.
 pub fn to_triton_inputs(input: &ProgramInput) -> (PublicInput, NonDeterminism) {
     let public = PublicInput::new(u64s_to_bfes(&input.public));
     let mut non_det = NonDeterminism::default();
@@ -27,7 +22,6 @@ pub fn to_triton_inputs(input: &ProgramInput) -> (PublicInput, NonDeterminism) {
     (public, non_det)
 }
 
-/// Convert triton-vm output to ExecutionResult.
 pub fn to_execution_result(output: &[BFieldElement], cycle_count: u64) -> ExecutionResult {
     ExecutionResult {
         output: bfes_to_u64s(output),
@@ -35,12 +29,10 @@ pub fn to_execution_result(output: &[BFieldElement], cycle_count: u64) -> Execut
     }
 }
 
-/// Convert a triton-vm Digest to Vec<u64>.
 pub fn digest_to_u64s(digest: &Digest) -> Vec<u64> {
     digest.0.iter().map(|b| b.value()).collect()
 }
 
-/// Convert a triton-vm Claim to trident's Claim.
 pub fn to_trident_claim(claim: &triton_vm::proof::Claim) -> trident::field::proof::Claim {
     trident::field::proof::Claim {
         program_hash: digest_to_u64s(&claim.program_digest),
@@ -49,7 +41,6 @@ pub fn to_trident_claim(claim: &triton_vm::proof::Claim) -> trident::field::proo
     }
 }
 
-/// Construct a native triton-vm Claim from raw u64 parts.
 pub fn to_triton_claim_native(
     program_hash: &[u64],
     public_input: &[u64],
@@ -67,13 +58,11 @@ pub fn to_triton_claim_native(
         .with_output(u64s_to_bfes(public_output))
 }
 
-/// Serialize a triton-vm Proof to bytes via bincode.
-pub fn proof_to_bytes(proof: &Proof) -> Vec<u8> {
+pub fn proof_to_bytes(proof: &triton_vm::proof::Proof) -> Vec<u8> {
     bincode::serialize(proof).expect("proof serialization should not fail")
 }
 
-/// Deserialize a triton-vm Proof from bytes via bincode.
-pub fn bytes_to_proof(bytes: &[u8]) -> Result<Proof, crate::error::TrishaError> {
+pub fn bytes_to_proof(bytes: &[u8]) -> Result<triton_vm::proof::Proof, String> {
     bincode::deserialize(bytes)
-        .map_err(|e| crate::error::TrishaError::Verify(format!("invalid proof bytes: {}", e)))
+        .map_err(|e| format!("invalid proof bytes: {}", e))
 }

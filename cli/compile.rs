@@ -5,7 +5,6 @@ use trident::{compile_to_bundle, CompileOptions};
 
 use crate::error::TrishaError;
 
-/// Compile a Trident source file to a ProgramBundle.
 pub fn compile_source(
     input: &Path,
     target: &str,
@@ -13,7 +12,6 @@ pub fn compile_source(
 ) -> Result<ProgramBundle, TrishaError> {
     let mut options = CompileOptions::for_profile(profile);
 
-    // Load target-specific config if available
     if let Ok(resolved) = trident::target::ResolvedTarget::resolve(target) {
         options.target_config = resolved.vm;
     }

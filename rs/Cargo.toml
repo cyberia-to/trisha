@@ -1,0 +1,14 @@
+[package]
+name = "trisha-rs"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+path = "lib.rs"
+
+[dependencies]
+trident-lang = { path = "../../trident" }
+triton-vm = "2"
+twenty-first = "1"
+bincode = "1"
+rayon = "1"

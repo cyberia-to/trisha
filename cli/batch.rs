@@ -1,24 +1,11 @@
-//! Generic parallel executor for batch operations.
-//!
-//! Any operation (run, prove, verify, deploy) can use `run_batch` to
-//! execute jobs in parallel with bounded concurrency.
-
 use std::thread;
 
-/// Result of a single batch job.
 pub struct BatchResult<T> {
-    /// Zero-based index of this job in the input list.
     pub index: usize,
-    /// The result produced by the job closure.
     pub result: T,
-    /// Wall-clock time in milliseconds.
     pub elapsed_ms: u64,
 }
 
-/// Execute `jobs` in parallel, applying `f` to each.
-///
-/// At most `max_parallel` jobs run concurrently. Results are returned
-/// in the same order as the input jobs.
 pub fn run_batch<J, T, F>(jobs: Vec<J>, max_parallel: usize, f: F) -> Vec<BatchResult<T>>
 where
     J: Send,
@@ -33,7 +20,6 @@ where
         let mut handles: Vec<(usize, thread::ScopedJoinHandle<'_, (T, u64)>)> = Vec::new();
 
         for (index, job) in jobs.into_iter().enumerate() {
-            // Drain finished handles when at capacity
             if handles.len() >= max_parallel {
                 let (idx, handle) = handles.remove(0);
                 let (result, elapsed_ms) = handle.join().expect("batch job panicked");
@@ -53,7 +39,6 @@ where
             handles.push((index, handle));
         }
 
-        // Drain remaining handles
         for (idx, handle) in handles {
             let (result, elapsed_ms) = handle.join().expect("batch job panicked");
             results[idx] = Some(BatchResult {

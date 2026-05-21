@@ -1,21 +1,15 @@
 use std::fmt;
 
-/// Trisha error types.
 #[derive(Debug)]
 pub enum TrishaError {
-    /// Source compilation failed.
     Compile(String),
-    /// TASM parsing failed.
     Parse(String),
-    /// VM execution failed.
     Execute(String),
-    /// Proof generation failed.
     Prove(String),
-    /// Proof verification failed.
     Verify(String),
-    /// Deployment failed.
     Deploy(String),
-    /// I/O error.
+    Node(String),
+    State(String),
     Io(String),
 }
 
@@ -28,6 +22,8 @@ impl fmt::Display for TrishaError {
             TrishaError::Prove(msg) => write!(f, "prove error: {}", msg),
             TrishaError::Verify(msg) => write!(f, "verify error: {}", msg),
             TrishaError::Deploy(msg) => write!(f, "deploy error: {}", msg),
+            TrishaError::Node(msg) => write!(f, "node error: {}", msg),
+            TrishaError::State(msg) => write!(f, "state error: {}", msg),
             TrishaError::Io(msg) => write!(f, "I/O error: {}", msg),
         }
     }

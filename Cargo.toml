@@ -1,35 +1,7 @@
-[package]
-name = "trisha"
-version = "0.1.0"
-edition = "2021"
-description = "Triton VM warrior — execute, prove, verify, deploy"
-
-[lib]
-name = "trisha"
-path = "src/lib.rs"
-
-[[bin]]
-name = "trisha"
-path = "src/main.rs"
-
-[dependencies]
-trident-lang = { path = "../trident" }
-triton-vm = { path = ".vendor/triton-vm" }
-twenty-first = "1"
-clap = { version = "4", features = ["derive"] }
-serde = { version = "1", features = ["derive"] }
-toml = "0.8"
-bincode = "1"
-base64 = "0.22"
-pollster = "0.4"
-bytemuck = { version = "1", features = ["derive"] }
-
-[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
-wgpu = "24"
+[workspace]
+members = ["cli", "rs", "wgpu", "honeycrisp"]
+resolver = "2"
 
 [patch.crates-io]
+triton-vm = { path = ".vendor/triton-vm" }
 twenty-first = { path = ".vendor/twenty-first" }
-
-[features]
-default = ["gpu"]
-gpu = []
