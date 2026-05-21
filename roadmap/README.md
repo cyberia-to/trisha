@@ -17,7 +17,7 @@ trisha closes the loop: source → compile → run → prove → verify → depl
 | batch | done | `trisha <op> batch` for all operations | — |
 | proof file | done | TOML + bincode, roundtrip tested | — |
 | deploy | stub | prints digest, says "not yet available" | no neptune-core, no RPC |
-| guesser | done | `trisha guess` — GPU nonce search, 24M H/s | guesser tree (M=29) |
+| miner | done | `trisha mine` — gpu/honeycrisp/cpu backends, 24M H/s GPU | mining tree (M=29) |
 | GPU shaders | done | 7 WGSL shaders (goldilocks, ntt, tip5, fri, poseidon2, gemv, mine) | — |
 | GPU proving | done | all 7 hot paths: hash, iNTT, NTT, Merkle, FRI fold, GEMV | — |
 | GPU verify | done | FRI fold on GPU, parallel batch via scoped threads | double-buffering |
@@ -32,14 +32,14 @@ full prover pipeline on GPU. 7 compute shaders dispatched to Metal/Vulkan/DX12 v
 
 ## what's scaffold
 
-deploy (prints metadata, no blockchain interaction). guesser tree (brute-force only, no tree structure).
+deploy (prints metadata, no blockchain interaction). mining tree (brute-force only, no tree structure).
 
 ## proposals
 
 | proposal | status | goal |
 |----------|--------|------|
 | [[gpu-proving-at-scale]] | open | streaming NTT for 2^25+ row traces |
-| [[guesser-tree]] | open | M=29 neptune mining tree |
+| [[mining-tree]] | open | M=29 neptune mining tree |
 | [[proof-merging]] | open | `trisha merge` — proof-that-verifies-proof |
 | [[real-workload-benchmarks]] | open | actual speedup numbers across trace sizes |
 | [[double-buffered-batch]] | open | pipelined GPU batch verification |
@@ -63,7 +63,7 @@ trisha verify batch proofs/a.proof.toml proofs/b.proof.toml
 trisha prove /tmp/hello.tri  # dispatches NTT/Merkle/FRI/GEMV/Hash on GPU
 
 # mining (passing)
-trisha guess /tmp/hello.tri --difficulty 1000000000000000000
+trisha mine /tmp/hello.tri --difficulty 1000000000000000000
 
 # not yet passing
 trisha deploy /tmp/hello.tri --state testnet
