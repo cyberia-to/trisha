@@ -23,9 +23,9 @@ def fetch_crate [name: string, version: string, vendor_dir: string] {
     rm -rf $vendor_dir
 
     let crate_name = $"($name)-($version)"
-    let cached = (glob $"($registry_src)/**/($crate_name)" | first)
+    let initial = (glob $"($registry_src)/**/($crate_name)")
 
-    if ($cached | is-empty) {
+    if ($initial | is-empty) {
         print $"  downloading ($name) ($version) via cargo..."
         let tmp = (mktemp -d)
         $"[package]\nname = \"fetch-dep\"\nversion = \"0.0.0\"\nedition = \"2021\"\n\n[dependencies]\n($name) = \"=($version)\"\n" | save $"($tmp)/Cargo.toml"
@@ -33,15 +33,15 @@ def fetch_crate [name: string, version: string, vendor_dir: string] {
         "" | save $"($tmp)/src/lib.rs"
         cd $tmp; cargo fetch; cd $project_root
         rm -rf $tmp
-
-        let cached = (glob $"($registry_src)/**/($crate_name)" | first)
-        if ($cached | is-empty) {
-            error make { msg: $"failed to download ($name) ($version)" }
-        }
     }
 
-    print $"  found: ($cached)"
-    cp -r $cached $vendor_dir
+    let found = (glob $"($registry_src)/**/($crate_name)" | first)
+    if ($found | is-empty) {
+        error make { msg: $"failed to download ($name) ($version)" }
+    }
+
+    print $"  found: ($found)"
+    cp -r $found $vendor_dir
 }
 
 # ── Fetch upstream crates ───────────────────────────────────────
