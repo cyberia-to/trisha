@@ -17,7 +17,9 @@ trisha closes the loop: source → compile → run → prove → verify → depl
 | batch | done | `trisha <op> batch` for all operations | — |
 | proof file | done | TOML + bincode, roundtrip tested | — |
 | deploy | stub | prints digest, says "not yet available" | no neptune-core, no RPC |
-| miner | done | `trisha mine` — gpu/honeycrisp/cpu backends, 24M H/s GPU | mining tree (M=29) |
+| miner (CPU) | done | `trisha mine --neptune` — rayon, 0.33 MH/s on M4 Max | — |
+| miner (wgpu) | done | Mine.wgsl + Tip5.wgsl wired into wgpu accelerator | not connected to neptune_mine.rs |
+| miner (honeycrisp) | done | MSL Tip5 kernel, 1.1 MH/s (3.3× CPU), `--features gpu` | NEON/unimem zero-copy (Phase 2/3) |
 | GPU shaders | done | 7 WGSL shaders (goldilocks, ntt, tip5, fri, poseidon2, gemv, mine) | — |
 | GPU proving | done | all 7 hot paths: hash, iNTT, NTT, Merkle, FRI fold, GEMV | — |
 | GPU verify | done | FRI fold on GPU, parallel batch via scoped threads | double-buffering |
@@ -28,18 +30,21 @@ trisha closes the loop: source → compile → run → prove → verify → depl
 
 ## what's real
 
-full prover pipeline on GPU. 7 compute shaders dispatched to Metal/Vulkan/DX12 via wgpu. kernel fusion eliminates per-layer CPU↔GPU sync. VRAM budget auto-detected from adapter limits; oversized buffers gracefully fall back to CPU. dependency patching injects GPU hooks into triton-vm without maintaining a fork. 4.3× proving speedup on small programs. mining at 24M H/s (M1 Max).
+full prover pipeline on GPU. 7 compute shaders dispatched to Metal/Vulkan/DX12 via wgpu. kernel fusion eliminates per-layer CPU↔GPU sync. VRAM budget auto-detected from adapter limits; oversized buffers gracefully fall back to CPU. dependency patching injects GPU hooks into triton-vm without maintaining a fork. 4.3× proving speedup on small programs.
+
+neptune HardforkBeta CPU mining: 0.33 MH/s on M4 Max (rayon + triton-vm Tip5). honeycrisp GPU mining: 1.1 MH/s (39 Tip5 permutations per nonce; Metal MSL kernel; compute-bound at ~65% GPU utilization — practical ceiling for this algorithm on M4 Max). GPU path activated via `--features gpu`; `trisha mine --neptune --bench-gpu 10` benchmarks. CPU+GPU combined: ~1.43 MH/s. wgpu Tip5 + Mine.wgsl shaders exist and compile but not wired into neptune_mine.rs.
 
 ## what's scaffold
 
-deploy (prints metadata, no blockchain interaction). mining tree (brute-force only, no tree structure).
+deploy (prints metadata, no blockchain interaction). honeycrisp Phase 2 (NEON Tip5 via acpu) and Phase 3 (unimem zero-copy IOSurface).
 
 ## proposals
 
 | proposal | status | goal |
 |----------|--------|------|
+| [[honeycrisp-npt-mining]] | phase-1-done | MSL Tip5 kernel live (1.1 MH/s); Phase 2: NEON+AMX; Phase 3: unimem zero-copy |
 | [[gpu-proving-at-scale]] | open | streaming NTT for 2^25+ row traces |
-| [[mining-tree]] | open | M=29 neptune mining tree |
+| [[mining-tree]] | open | M=29 neptune mining tree (obsolete for mainnet — HFB removed memory-hard PoW) |
 | [[proof-merging]] | open | `trisha merge` — proof-that-verifies-proof |
 | [[real-workload-benchmarks]] | open | actual speedup numbers across trace sizes |
 | [[double-buffered-batch]] | open | pipelined GPU batch verification |

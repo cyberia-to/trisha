@@ -37,6 +37,12 @@ pub struct MineArgs {
     /// Mine Neptune PoW using the running node (ignores input file)
     #[arg(long)]
     pub neptune: bool,
+    /// Benchmark CPU HardforkBeta hashrate for N seconds (no node required)
+    #[arg(long, default_value = "0")]
+    pub bench_secs: f64,
+    /// Benchmark GPU (aruminium Metal) hashrate for N seconds (no node required)
+    #[arg(long, default_value = "0")]
+    pub bench_gpu_secs: f64,
     /// Guesser reward address (for --neptune; uses neuron address if omitted)
     #[arg(long)]
     pub guesser_address: Option<String>,
@@ -48,6 +54,20 @@ pub struct MineArgs {
 }
 
 pub fn cmd_mine(args: MineArgs) {
+    if args.bench_secs > 0.0 {
+        neptune_mine::benchmark_hardfork_beta(args.bench_secs);
+        return;
+    }
+    #[cfg(feature = "gpu")]
+    if args.bench_gpu_secs > 0.0 {
+        neptune_mine::benchmark_gpu(args.bench_gpu_secs);
+        return;
+    }
+    #[cfg(not(feature = "gpu"))]
+    if args.bench_gpu_secs > 0.0 {
+        eprintln!("GPU benchmark requires --features gpu");
+        process::exit(1);
+    }
     if args.neptune {
         cmd_mine_neptune(args);
     } else {
@@ -237,7 +257,22 @@ fn cmd_mine_neptune(args: MineArgs) {
         };
 
         eprintln!("Mining (max {} attempts)...", args.max_attempts);
-        match neptune_mine::mine_hardfork_beta(path_a, &mast_paths, threshold, args.max_attempts) {
+
+        // Try GPU first (Apple Silicon Metal), fall back to CPU.
+        // GPU path (Apple Silicon Metal, requires --features gpu).
+        // Falls back to CPU if Metal unavailable or when gpu returns None.
+        #[cfg(feature = "gpu")]
+        let pow_opt = neptune_mine::mine_hardfork_beta_gpu(
+            path_a, &mast_paths, threshold, args.max_attempts,
+        ).or_else(|| neptune_mine::mine_hardfork_beta(
+            path_a, &mast_paths, threshold, args.max_attempts,
+        ));
+        #[cfg(not(feature = "gpu"))]
+        let pow_opt = neptune_mine::mine_hardfork_beta(
+            path_a, &mast_paths, threshold, args.max_attempts,
+        );
+
+        match pow_opt {
             Some(p) => p,
             None => {
                 eprintln!("No solution found within {} attempts", args.max_attempts);

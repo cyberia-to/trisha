@@ -6,8 +6,13 @@ edition = "2021"
 [lib]
 path = "lib.rs"
 
+[[bin]]
+name = "bench-mine"
+path = "bench_mine.rs"
+
 [features]
 triton = ["dep:trident-lang"]
+gpu    = ["dep:aruminium"]
 
 [dependencies]
 trident-lang = { path = "../../trident", optional = true }
@@ -15,3 +20,5 @@ triton-vm = "2"
 twenty-first = "1"
 bincode = "1"
 rayon = "1"
+acpu = { path = "../../honeycrisp/acpu" }
+aruminium = { path = "../../honeycrisp/aruminium", optional = true }

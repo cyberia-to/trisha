@@ -3,5 +3,9 @@ members = ["cli", "rs", "wgpu", "honeycrisp"]
 resolver = "2"
 
 [patch.crates-io]
-triton-vm = { path = ".vendor/triton-vm" }
-twenty-first = { path = ".vendor/twenty-first" }
+triton-vm                = { path = ".vendor/triton-vm" }
+twenty-first             = { path = ".vendor/twenty-first" }
+triton-air               = { path = ".vendor/triton-air" }
+triton-isa               = { path = ".vendor/triton-isa" }
+triton-constraint-circuit = { path = ".vendor/triton-constraint-circuit" }
+triton-constraint-builder = { path = ".vendor/triton-constraint-builder" }

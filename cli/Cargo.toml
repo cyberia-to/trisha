@@ -9,6 +9,7 @@ path = "main.rs"
 
 [features]
 triton = ["dep:trident-lang", "dep:trisha-rs", "trisha-honeycrisp/triton"]
+gpu    = ["trisha-honeycrisp/gpu"]
 
 [dependencies]
 trident-lang = { path = "../../trident", optional = true }
