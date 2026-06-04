@@ -50,6 +50,7 @@ deploy (prints metadata, no blockchain interaction). honeycrisp Phase 2 (NEON Ti
 | [[double-buffered-batch]] | open | pipelined GPU batch verification |
 | [[deploy]] | open | neptune-core integration, on-chain programs |
 | [[missing-metadata]] | open | cycle_count, padded_height in proof file |
+| [[helical-parallelism]] | open | multi-strand coprocessor proving: GPU hash + AMX field + NEON bookkeeping in parallel; O(log N) sequential depth |
 
 ## confidence milestone
 
