@@ -27,11 +27,11 @@ def fetch_crate [name: string, version: string, vendor_dir: string] {
 
     if ($initial | is-empty) {
         print $"  downloading ($name) ($version) via cargo..."
+        # direct CDN download — survives yanked versions (2.0.0 was yanked)
         let tmp = (mktemp -d)
-        $"[package]\nname = \"fetch-dep\"\nversion = \"0.0.0\"\nedition = \"2021\"\n\n[dependencies]\n($name) = \"=($version)\"\n" | save $"($tmp)/Cargo.toml"
-        mkdir $"($tmp)/src"
-        "" | save $"($tmp)/src/lib.rs"
-        cd $tmp; cargo fetch; cd $project_root
+        http get $"https://static.crates.io/crates/($name)/($name)-($version).crate" | save $"($tmp)/c.crate"
+        mkdir $"($registry_src)/manual"
+        tar -xzf $"($tmp)/c.crate" -C $"($registry_src)/manual"
         rm -rf $tmp
     }
 
