@@ -60,7 +60,20 @@ fetch_crate "triton-vm" $tv_version ".vendor/triton-vm"
 # TWENTY-FIRST PATCHES
 # ══════════════════════════════════════════════════════════════════
 
-print "  [T0] twenty-first: MerkleTree::from_nodes constructor"
+print "  [T0] twenty-first: rlib only (drop cdylib)"
+
+# Upstream ships `crate-type = ["cdylib", "rlib"]`. A cdylib bundles its
+# dependencies' metadata, so rustc sees TWO versions of serde/rand once the
+# rlib and the dylib both land in the search path — which is what broke the
+# release build with "multiple different versions of crate `rand`" and
+# "BFieldElement: Serialize is not satisfied" (trisha#1). Nothing here needs
+# a C ABI, so build a plain rlib.
+let tf_manifest = ".vendor/twenty-first/Cargo.toml"
+(open --raw $tf_manifest
+    | str replace "crate-type = [\n    \"cdylib\",\n    \"rlib\",\n]" 'crate-type = ["rlib"]'
+    | save -f $tf_manifest)
+
+print "  [T1] twenty-first: MerkleTree::from_nodes constructor"
 
 let mt_file = ".vendor/twenty-first/src/util_types/merkle_tree.rs"
 (open $mt_file

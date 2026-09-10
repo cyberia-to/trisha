@@ -1,10 +1,6 @@
 [workspace]
 members = ["cli", "rs", "wgpu", "honeycrisp"]
-# resolver = "1": the vendored triton chain shares twenty-first/rand/serde between
-# its build scripts and the normal graph; resolver 2 gives those two contexts
-# different feature sets, which makes the SAME type from twenty-first fail to
-# match itself (trisha#1). Unifying features is what this vendored stack needs.
-resolver = "1"
+resolver = "2"
 
 [patch.crates-io]
 triton-vm                = { path = ".vendor/triton-vm" }
