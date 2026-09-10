@@ -16,8 +16,9 @@ triton = ["dep:trident-lang", "dep:trisha-rs", "trisha-honeycrisp/triton"]
 gpu    = ["trisha-honeycrisp/gpu"]
 
 [dependencies]
-# default-features = false drops burn/cubecl — which enables serde/rc and splits
-# serde into two instances the vendored triton crates cannot share (trisha#1).
+# A warrior never trains: default-features = false keeps burn/cubecl/wgpu out
+# of trisha's graph entirely (build weight, not correctness — trisha#1's real
+# cause was twenty-first's cdylib crate-type, patched in patches/apply.nu).
 trident-lang = { path = "../../trident", optional = true, default-features = false }
 trisha-rs = { path = "../rs", optional = true }
 trisha-wgpu = { path = "../wgpu", optional = true }
