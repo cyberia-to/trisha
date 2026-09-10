@@ -5,8 +5,12 @@ use trident::runtime::{ProgramInput, Prover, Runner, Verifier};
 use trisha_rs::convert;
 use trisha_rs::Warrior;
 
+/// Compile for Triton — this is the Triton warrior's suite. trident's own
+/// default terrain is nox, where these programs' streaming I/O has no
+/// meaning, so the warrior names its terrain (as `compile_source` does).
 fn compile(path: &Path) -> Result<trident::runtime::ProgramBundle, String> {
-    let options = trident::CompileOptions::for_profile("debug");
+    let mut options = trident::CompileOptions::for_profile("debug");
+    options.target_config = trident::target::TerrainConfig::triton();
     trident::compile_to_bundle(path, &options)
         .map_err(|diags| diags.iter().map(|d| d.message.clone()).collect::<Vec<_>>().join("; "))
 }

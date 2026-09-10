@@ -23,6 +23,8 @@ use trident::CompileOptions;
 /// `profile` selects cfg flags (`debug` / `release`).
 pub fn build_tasm(input: &Path, target: &str, profile: &str) -> Result<String, String> {
     let mut options = CompileOptions::for_profile(profile);
+    // The warrior's own terrain, not the compiler's default (which is nox).
+    options.target_config = trident::target::TerrainConfig::triton();
     if let Ok(resolved) = trident::target::ResolvedTarget::resolve(target) {
         options.target_config = resolved.vm;
     }
