@@ -3,7 +3,6 @@ use std::fmt;
 #[derive(Debug)]
 pub enum TrishaError {
     Compile(String),
-    Parse(String),
     Execute(String),
     Prove(String),
     Verify(String),
@@ -17,7 +16,6 @@ impl fmt::Display for TrishaError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             TrishaError::Compile(msg) => write!(f, "compile error: {}", msg),
-            TrishaError::Parse(msg) => write!(f, "parse error: {}", msg),
             TrishaError::Execute(msg) => write!(f, "execution error: {}", msg),
             TrishaError::Prove(msg) => write!(f, "prove error: {}", msg),
             TrishaError::Verify(msg) => write!(f, "verify error: {}", msg),

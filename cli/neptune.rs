@@ -4,7 +4,6 @@ use std::process::Command;
 use serde_json::Value;
 
 use crate::error::TrishaError;
-use crate::state::State;
 
 pub struct NeptuneClient {
     rpc_port: u16,
@@ -18,13 +17,6 @@ impl NeptuneClient {
 
     pub fn with_http_port(rpc_port: u16, http_rpc_port: u16) -> Self {
         NeptuneClient { rpc_port, http_rpc_port }
-    }
-
-    pub fn from_state(state: &State, rpc_port_override: Option<u16>) -> Self {
-        NeptuneClient {
-            rpc_port: rpc_port_override.unwrap_or(state.rpc_port),
-            http_rpc_port: 9797,
-        }
     }
 
     fn run(&self, args: &[&str]) -> Result<String, TrishaError> {
@@ -67,10 +59,6 @@ impl NeptuneClient {
 
     pub fn mempool_tx_count(&self) -> Result<String, TrishaError> {
         self.run(&["mempool-tx-count"])
-    }
-
-    pub fn network(&self) -> Result<String, TrishaError> {
-        self.run(&["network"])
     }
 
     pub fn confirmed_balance(&self) -> Result<String, TrishaError> {

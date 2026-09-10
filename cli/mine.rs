@@ -10,7 +10,7 @@ use trisha_honeycrisp::neptune_mine::{self, GuesserBuffer, NeptunePow, PowMastPa
 use trisha_honeycrisp::Digest;
 #[cfg(feature = "triton")]
 use trisha_honeycrisp::Warrior as HoneycriAppleWarrior;
-#[cfg(all(feature = "triton", feature = "trisha-rs"))]
+#[cfg(feature = "triton")]
 use trisha_rs::Warrior as CpuWarrior;
 #[cfg(feature = "trisha-wgpu")]
 use trisha_wgpu::Warrior as GpuWarrior;

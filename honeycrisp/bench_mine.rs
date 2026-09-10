@@ -1,4 +1,7 @@
-use trisha_honeycrisp::neptune_mine::{self, PowMastPaths, HEIGHT};
+use trisha_honeycrisp::neptune_mine;
+#[cfg(feature = "gpu")]
+use trisha_honeycrisp::neptune_mine::{PowMastPaths, HEIGHT};
+#[cfg(feature = "gpu")]
 use trisha_honeycrisp::Digest;
 
 fn main() {

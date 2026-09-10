@@ -8,11 +8,17 @@ name = "trisha"
 path = "main.rs"
 
 [features]
+# The warrior CLI (run/prove/verify/deploy) IS trisha's reason to exist, so it
+# builds by default; `--no-default-features` gives the light mining-only binary
+# without trident and the vendored triton-vm.
+default = ["triton"]
 triton = ["dep:trident-lang", "dep:trisha-rs", "trisha-honeycrisp/triton"]
 gpu    = ["trisha-honeycrisp/gpu"]
 
 [dependencies]
-trident-lang = { path = "../../trident", optional = true }
+# default-features = false drops burn/cubecl — which enables serde/rc and splits
+# serde into two instances the vendored triton crates cannot share (trisha#1).
+trident-lang = { path = "../../trident", optional = true, default-features = false }
 trisha-rs = { path = "../rs", optional = true }
 trisha-wgpu = { path = "../wgpu", optional = true }
 trisha-honeycrisp = { path = "../honeycrisp" }
