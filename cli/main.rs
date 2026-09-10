@@ -1,6 +1,8 @@
 #[cfg(feature = "triton")]
 mod batch;
 #[cfg(feature = "triton")]
+mod build_cmd;
+#[cfg(feature = "triton")]
 mod compile;
 #[cfg(feature = "triton")]
 mod deploy;
@@ -41,6 +43,9 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Command {
+    #[cfg(feature = "triton")]
+    /// Lower a Trident program to linked TASM (trident stops at TIR)
+    Build(build_cmd::BuildArgs),
     #[cfg(feature = "triton")]
     /// Execute a Trident program on Triton VM
     Run(run::RunArgs),
@@ -150,6 +155,13 @@ fn main() {
     let cli = Cli::parse();
 
     match cli.command {
+        #[cfg(feature = "triton")]
+        Command::Build(args) => {
+            if let Err(e) = build_cmd::cmd_build(args) {
+                eprintln!("error: {}", e);
+                std::process::exit(1);
+            }
+        }
         #[cfg(feature = "triton")]
         Command::Run(args) => run::cmd_run(args),
         #[cfg(feature = "triton")]
