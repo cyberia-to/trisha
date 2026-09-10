@@ -7,7 +7,7 @@ edition = "2021"
 path = "lib.rs"
 
 [dependencies]
-trident-lang = { path = "../../trident" }
+trident-lang = { path = "../../trident", default-features = false }
 triton-vm = "2"
 twenty-first = "1"
 bincode = "1"

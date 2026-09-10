@@ -107,7 +107,7 @@ fn cmd_deploy_single(
     } else {
         None
     };
-    let digest = trident::poseidon2::hash_bytes(bundle.assembly.as_bytes());
+    let digest = trident::hash::content_hash_bytes(bundle.assembly.as_bytes());
     let digest_hex = trident::hash::ContentHash(digest).to_hex();
     if dry_run {
         eprintln!("Dry run — would deploy:");
@@ -152,7 +152,7 @@ fn cmd_deploy_batch(args: DeployBatchArgs) {
     );
     let results = batch::run_batch(args.inputs, args.max_parallel, |path| {
         let bundle = compile_source(&path, &vm, &profile)?;
-        let digest = trident::poseidon2::hash_bytes(bundle.assembly.as_bytes());
+        let digest = trident::hash::content_hash_bytes(bundle.assembly.as_bytes());
         let digest_hex = trident::hash::ContentHash(digest).to_hex();
         if dry_run {
             return Ok::<String, TrishaError>(format!("dry-run: {} ({})", bundle.name, digest_hex));

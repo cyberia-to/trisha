@@ -126,6 +126,8 @@ pub(crate) fn bundle_from_tasm(
             estimated_proving_ns: 0,
         },
         source_hash: String::new(),
+        // .tasm carries no state declaration; the bundle path that does is `trident build`
+        reads_state: false,
     })
 }
 

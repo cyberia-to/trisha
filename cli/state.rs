@@ -41,25 +41,3 @@ pub fn resolve(union: &str, name: &str) -> Result<&'static State, TrishaError> {
         .find(|s| s.union == union && s.name == name)
         .ok_or_else(|| TrishaError::State(format!("unknown state {}/{}", union, name)))
 }
-
-pub fn resolve_union_default(union: &str) -> Result<&'static State, TrishaError> {
-    STATES
-        .iter()
-        .find(|s| s.union == union && s.is_default)
-        .or_else(|| STATES.iter().find(|s| s.union == union))
-        .ok_or_else(|| TrishaError::State(format!("unknown union: {}", union)))
-}
-
-pub fn default_state() -> &'static State {
-    STATES.iter().find(|s| s.is_default).unwrap_or(&STATES[0])
-}
-
-pub fn unions() -> Vec<&'static str> {
-    let mut seen = Vec::new();
-    for s in STATES {
-        if !seen.contains(&s.union) {
-            seen.push(s.union);
-        }
-    }
-    seen
-}
