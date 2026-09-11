@@ -28,6 +28,11 @@ pub struct BuildArgs {
     /// Output file (default: <input>.tasm next to the source)
     #[arg(short = 'o', long)]
     pub output: Option<PathBuf>,
+
+    /// Print the AET-table cost report (single-file only — see
+    /// trisha_rs::cost::analyze_source)
+    #[arg(long)]
+    pub costs: bool,
 }
 
 pub fn cmd_build(args: BuildArgs) -> Result<(), TrishaError> {
@@ -41,5 +46,15 @@ pub fn cmd_build(args: BuildArgs) -> Result<(), TrishaError> {
         .map_err(|e| TrishaError::Io(format!("cannot write '{}': {}", out.display(), e)))?;
 
     eprintln!("Compiled -> {}", out.display());
+
+    if args.costs {
+        let source = std::fs::read_to_string(&args.input)
+            .map_err(|e| TrishaError::Io(format!("cannot read '{}': {}", args.input.display(), e)))?;
+        match trisha_rs::cost::analyze_source(&source, &args.input.to_string_lossy()) {
+            Ok(cost) => eprintln!("\n{}", cost.format_report()),
+            Err(e) => eprintln!("warning: cost analysis failed: {}", e),
+        }
+    }
+
     Ok(())
 }

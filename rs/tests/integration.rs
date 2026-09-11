@@ -9,10 +9,33 @@ use trisha_rs::Warrior;
 /// default terrain is nox, where these programs' streaming I/O has no
 /// meaning, so the warrior names its terrain (as `compile_source` does).
 fn compile(path: &Path) -> Result<trident::runtime::ProgramBundle, String> {
-    let mut options = trident::CompileOptions::for_profile("debug");
-    options.target_config = trident::target::TerrainConfig::triton();
-    trident::compile_to_bundle(path, &options)
-        .map_err(|diags| diags.iter().map(|d| d.message.clone()).collect::<Vec<_>>().join("; "))
+    // trident::compile_to_bundle no longer lowers to Triton in-process (the
+    // core stops at TIR); the warrior does its own build and wraps the
+    // result, the same shape `bundle_from_tasm` uses for a raw .tasm file.
+    let assembly = trisha_rs::build_tasm(path, "triton", "debug")?;
+    let name = path
+        .file_stem()
+        .unwrap_or_default()
+        .to_string_lossy()
+        .to_string();
+    let source_hash = trident::hash::content_hash_bytes(assembly.as_bytes());
+    Ok(trident::runtime::ProgramBundle {
+        name,
+        version: String::new(),
+        target_vm: "triton".to_string(),
+        target_os: None,
+        assembly,
+        entry_point: String::new(),
+        functions: Vec::new(),
+        cost: trident::runtime::artifact::BundleCost {
+            table_values: Vec::new(),
+            table_names: Vec::new(),
+            padded_height: 0,
+            estimated_proving_ns: 0,
+        },
+        source_hash: trident::hash::ContentHash(source_hash).to_hex(),
+        reads_state: false,
+    })
 }
 
 // ─── Runner Tests ──────────────────────────────────────────────────
