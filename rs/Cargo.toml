@@ -8,7 +8,13 @@ path = "lib.rs"
 
 [dependencies]
 trident-lang = { path = "../../trident", default-features = false }
+nebu = { package = "strata-nebu", version = "0.1", path = "../../strata/nebu/rs" }
 triton-vm = "2"
 twenty-first = "1"
 bincode = "1"
-rayon = "1"
+burn = { version = "0.20", features = ["wgpu", "autodiff", "ndarray"] }
+rkyv = { version = "0.8", features = ["bytecheck"] }
+rayon = "1.10"
+
+[dev-dependencies]
+tempfile = "3"
