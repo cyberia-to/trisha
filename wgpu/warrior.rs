@@ -46,6 +46,7 @@ impl Warrior {
         bundle: &ProgramBundle,
         input: &ProgramInput,
     ) -> Result<ProveResult, String> {
+        crate::bundle::validate(bundle)?;
         let program =
             Program::from_code(&bundle.assembly).map_err(|e| format!("TASM parse error: {}", e))?;
 
@@ -87,6 +88,7 @@ impl Warrior {
 
 impl Runner for Warrior {
     fn run(&self, bundle: &ProgramBundle, input: &ProgramInput) -> Result<ExecutionResult, String> {
+        crate::bundle::validate(bundle)?;
         let program =
             Program::from_code(&bundle.assembly).map_err(|e| format!("TASM parse error: {}", e))?;
 
@@ -145,6 +147,7 @@ impl Guesser for Warrior {
         difficulty: u64,
         max_attempts: u64,
     ) -> Result<GuessResult, String> {
+        crate::bundle::validate(bundle)?;
         let program =
             Program::from_code(&bundle.assembly).map_err(|e| format!("TASM parse error: {}", e))?;
 

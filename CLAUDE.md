@@ -13,7 +13,8 @@ rs/          — CPU backend (Cargo crate: trisha-rs)
 wgpu/        — wgpu/Metal/Vulkan backend (Cargo crate: trisha-wgpu)
 honeycrisp/  — Apple Silicon backend stub (Cargo crate: trisha-honeycrisp)
 patches/     — vendor patching scripts
-os/neptune/  — Neptune runtime modules, embedded at build time
+lib/os/neptune/ — Neptune runtime modules, embedded at build time
+examples/experimental/neptune/ — unimplemented recursive proof prototypes, excluded from packages
 baselines/triton/ — hand TASM and explicit execution fixtures
 scripts/     — reproducible source release packaging
 .claude/plans/ — agent state (persists across sessions)
@@ -163,7 +164,7 @@ Trisha follows trident's union/state vocabulary:
 - **union** = OS/network (e.g. `neptune`)
 - **state** = chain instance (e.g. `mainnet`, `testnet`)
 
-Known states live in `cli/state.rs`. All network-touching commands
+Known states live in `networks/neptune/states/*.toml`; the CLI registry is generated at build time. All network-touching commands
 (`neuron`, `node`, `deploy`) accept `--union` and `--state` flags via
 the shared `NetworkArgs` struct (flattened into each command's args).
 `--rpc-port` is an escape hatch that overrides the state's default port.
@@ -176,8 +177,7 @@ trisha state list                              # show all known states
 trisha state show neptune testnet
 ```
 
-Adding a new state: append an entry to `STATES` in `cli/state.rs`.
-No other files need to change.
+Adding a new state: add a manifest in `networks/neptune/states/`, including its `[node]` RPC port and network flag. Rebuild to embed it.
 
 ## CLI Contract
 

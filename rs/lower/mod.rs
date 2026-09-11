@@ -10,6 +10,7 @@
 //! path with an optional neural v2 optimizer.
 
 mod linker;
+mod legalize;
 pub mod report;
 #[cfg(test)]
 mod tests;
@@ -350,19 +351,5 @@ pub fn build_tasm(input: &std::path::Path, target: &str, profile: &str) -> Resul
 
 /// Resolve a supported terrain without silently falling back on typos.
 pub fn compile_options(target: &str, profile: &str) -> Result<trident::CompileOptions, String> {
-    let mut options = trident::CompileOptions::for_profile(profile);
-    let terrain = match target {
-        "triton" | "neptune" => trident::target::TerrainConfig::triton(),
-        _ => {
-            trident::target::ResolvedTarget::resolve(target)
-                .map_err(|e| e.message)?
-                .vm
-        }
-    };
-    if terrain.name != "triton" {
-        return Err(format!("trisha supports Triton, not '{}'", terrain.name));
-    }
-    options.target_config = terrain;
-    options.module_sources.extend(crate::resources::modules());
-    Ok(options)
+    trident::CompileOptions::for_profile(profile).with_package(crate::target::package(target)?)
 }

@@ -2,6 +2,37 @@ use crate::error::TrishaError;
 use std::path::Path;
 use trident::runtime::{artifact::BundleCost, ProgramBundle};
 
+/// Explicit CLI target wins; otherwise use the enclosing project, then Triton.
+pub fn resolve_target(input: Option<&Path>, explicit: Option<&str>) -> Result<String, TrishaError> {
+    let target = if let Some(target) = explicit {
+        target.to_owned()
+    } else {
+        let current = std::env::current_dir()?;
+        let input = input.map(|path| current.join(path)).unwrap_or(current);
+        let start = if input.is_dir() {
+            input.as_path()
+        } else {
+            input.parent().unwrap_or(Path::new("."))
+        };
+        match trident::config::project::Project::find(start) {
+            Some(path) => trident::config::project::Project::load(&path)
+                .map_err(|error| TrishaError::Compile(error.message))?
+                .target
+                .unwrap_or_else(|| "triton".into()),
+            None => "triton".into(),
+        }
+    };
+    trisha_rs::target::package(&target).map_err(TrishaError::Compile)?;
+    Ok(target)
+}
+
+pub fn selected_target(input: Option<&Path>, explicit: Option<&str>) -> String {
+    resolve_target(input, explicit).unwrap_or_else(|error| {
+        eprintln!("error: {error}");
+        std::process::exit(1);
+    })
+}
+
 pub fn compile_source(
     input: &Path,
     target: &str,

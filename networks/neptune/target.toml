@@ -22,6 +22,6 @@ protocols = []
 
 [status]
 level = 2
-ext_modules = 6
+ext_modules = 5
 tests = false
-notes = "kernel, proof, recursive, registry, utxo, xfield"
+notes = "Kernel, authorization, arithmetic and UTXO helpers. Recursive STARK verifier and live deployment are unavailable."

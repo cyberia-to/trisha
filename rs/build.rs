@@ -22,7 +22,7 @@ fn collect(root: &Path, dir: &Path, entries: &mut Vec<(String, String)>) -> io::
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let root = format!("{}/..", env::var("CARGO_MANIFEST_DIR")?);
     let mut entries = Vec::new();
-    for dir in ["os"] {
+    for dir in ["lib", "targets", "networks"] {
         println!("cargo:rerun-if-changed=../{dir}");
         collect(Path::new(&root), &Path::new(&root).join(dir), &mut entries)?;
     }

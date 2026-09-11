@@ -21,8 +21,8 @@ pub struct ProveArgs {
     pub input: Option<PathBuf>,
     #[arg(long)]
     pub tasm: Option<PathBuf>,
-    #[arg(long, default_value = "triton")]
-    pub target: String,
+    #[arg(long)]
+    pub target: Option<String>,
     #[arg(long, default_value = "release")]
     pub profile: String,
     #[arg(long, value_delimiter = ',')]
@@ -43,8 +43,8 @@ pub enum ProveMode {
 #[derive(Args)]
 pub struct ProveBatchArgs {
     pub inputs: Vec<PathBuf>,
-    #[arg(long, default_value = "triton")]
-    pub target: String,
+    #[arg(long)]
+    pub target: Option<String>,
     #[arg(long, default_value = "release")]
     pub profile: String,
     #[arg(long, value_delimiter = ',')]
@@ -63,6 +63,10 @@ pub fn cmd_prove(args: ProveArgs) {
     match args.mode {
         Some(ProveMode::Batch(batch_args)) => cmd_prove_batch(batch_args),
         None => {
+            let target = crate::compile::selected_target(
+                args.input.as_deref().or(args.tasm.as_deref()),
+                args.target.as_deref(),
+            );
             if let Some(ref tasm_path) = args.tasm {
                 cmd_prove_tasm(
                     tasm_path,
@@ -82,7 +86,7 @@ pub fn cmd_prove(args: ProveArgs) {
             };
             cmd_prove_single(
                 input,
-                &args.target,
+                &target,
                 &args.profile,
                 &args.input_values,
                 &args.secret,
@@ -236,6 +240,16 @@ fn cmd_prove_tasm(
 }
 
 fn cmd_prove_batch(args: ProveBatchArgs) {
+    let jobs: Vec<_> = args
+        .inputs
+        .iter()
+        .map(|path| {
+            (
+                path.clone(),
+                crate::compile::selected_target(Some(path), args.target.as_deref()),
+            )
+        })
+        .collect();
     if args.inputs.is_empty() {
         eprintln!("error: no input files specified");
         process::exit(1);
@@ -256,7 +270,6 @@ fn cmd_prove_batch(args: ProveBatchArgs) {
         eprintln!("error: cannot create output directory: {}", e);
         process::exit(1);
     }
-    let target = args.target.clone();
     let profile = args.profile.clone();
     let input_values = args.input_values.clone();
     let secret = args.secret.clone();
@@ -267,7 +280,7 @@ fn cmd_prove_batch(args: ProveBatchArgs) {
         "Proving {} programs (max {} parallel)...",
         count, args.max_parallel
     );
-    let results = batch::run_batch(args.inputs, args.max_parallel, |path| {
+    let results = batch::run_batch(jobs, args.max_parallel, |(path, target)| {
         let bundle = compile_source(&path, &target, &profile)?;
         let pi = make_input(&input_values, &secret, &digests);
         let warrior = Warrior::new();

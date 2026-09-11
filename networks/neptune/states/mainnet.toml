@@ -16,3 +16,7 @@ explorer_url = "https://explorer.neptune.cash"
 
 [currency]
 symbol = "NEPT"
+
+[node]
+rpc_port = 9799
+network_flag = "alpha-mainnet"

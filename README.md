@@ -53,10 +53,23 @@ Regression tests exercise source CLI run/prove/verify and tampered claims, wide 
 - `rs/`: CPU runtime, Triton lowering, AET cost model and neural target integration.
 - `wgpu/`: GPU runtime backend and WGSL kernels.
 - `honeycrisp/`: Apple Silicon mining integration.
-- `os/neptune/`: Neptune source modules and network configurations.
+- `lib/os/neptune/`: Neptune source modules.
+- `targets/triton/`: authoritative Triton machine manifest.
+- `networks/neptune/`: Neptune network and state manifests.
 - `baselines/triton/`: independent hand assembly and reference fixtures.
 - `patches/`: reproducible overlay for pinned upstream Triton dependencies.
 
 See [architecture](docs/explanation/architecture.md) and [roadmap](roadmap/README.md).
 
 Cyber License: Don't trust. Don't fear. Don't beg.
+
+Inspect the installed target package without compiling or running a program:
+
+```sh
+trisha describe --target triton
+trisha describe --target neptune
+```
+
+The JSON includes compiler API compatibility, the machine ABI, content hashes for embedded SDK modules, network/state descriptors, and supported proof formats. Neptune state commands consume the same owned state manifests. Fixed ABI libraries use `vm.triton.hash`, `vm.triton.merkle`, `vm.triton.merkle_proof`, and `os.neptune.auth`; they are not portable compiler libraries.
+
+The Neptune package excludes the unfinished `os.neptune.proof` verifier. Its previous implementation failed to constrain FRI/OOD/constraint consistency; the source and dependent transaction/proof entry programs are preserved in `examples/experimental/neptune`. Production imports fail closed. Low-level extension-field helpers do not claim complete recursive verification.

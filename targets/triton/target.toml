@@ -1,0 +1,47 @@
+# ---
+# tags: trident, config
+# crystal-type: source
+# crystal-domain: comp
+# ---
+# Triton VM target configuration
+# https://triton-vm.org/spec/
+
+[target]
+name = "triton"
+display_name = "TRITON"
+architecture = "stack"
+output_extension = ".tasm"
+
+[field]
+prime = "2^64 - 2^32 + 1"
+bits = 64
+limbs = 2
+
+[stack]
+depth = 16
+spill_ram_base = 1073741824
+
+[hash]
+function = "Tip5"
+digest_width = 5
+rate = 10
+
+[extension_field]
+degree = 3
+
+[cost]
+tables = ["processor", "hash", "u32", "op_stack", "ram", "jump_stack"]
+
+[warrior]
+name = "trisha"
+crate = "trisha"
+runner = true
+prover = true
+
+[status]
+level = 5
+lowering = "Trisha Triton lowering"
+lowering_path = "tir"
+cost_model = true
+tests = true
+notes = "Trisha-owned CPU execution and STARK proof backend. Live Neptune deployment is unsupported."

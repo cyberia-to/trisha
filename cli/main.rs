@@ -47,6 +47,12 @@ struct Cli {
 #[derive(Subcommand)]
 enum Command {
     #[cfg(feature = "triton")]
+    /// Export the embedded, versioned compiler package and runtime capabilities
+    Describe {
+        #[arg(long, default_value = "triton")]
+        target: String,
+    },
+    #[cfg(feature = "triton")]
     /// Lower a Trident program to linked TASM (trident stops at TIR)
     Build(build_cmd::BuildArgs),
     #[cfg(feature = "triton")]
@@ -78,17 +84,28 @@ enum Command {
 pub(crate) struct NetworkArgs {
     #[arg(long, default_value = "neptune")]
     pub union: String,
-    #[arg(long, default_value = "mainnet")]
-    pub state: String,
+    #[arg(long)]
+    pub state: Option<String>,
     #[arg(long)]
     pub rpc_port: Option<u16>,
 }
 
 impl NetworkArgs {
     pub fn resolve(&self) -> Result<(&'static state::State, u16), TrishaError> {
-        let s = state::resolve(&self.union, &self.state)?;
+        let s = match self.state.as_deref() {
+            Some(name) => state::resolve(&self.union, name)?,
+            None => state::default_for_union(&self.union)?,
+        };
         let port = self.rpc_port.unwrap_or(s.rpc_port);
         Ok((s, port))
+    }
+}
+
+#[cfg(feature = "triton")]
+pub(crate) fn require_target(target: &str) {
+    if let Err(error) = trisha_rs::target::package(target) {
+        eprintln!("error: {error}");
+        std::process::exit(1);
     }
 }
 
@@ -176,6 +193,16 @@ fn main() {
     let cli = Cli::parse();
 
     match cli.command {
+        #[cfg(feature = "triton")]
+        Command::Describe { target } => match trisha_rs::target::package(&target)
+            .and_then(|package| serde_json::to_string(&package).map_err(|error| error.to_string()))
+        {
+            Ok(json) => println!("{json}"),
+            Err(error) => {
+                eprintln!("error: {error}");
+                std::process::exit(1);
+            }
+        },
         #[cfg(feature = "triton")]
         Command::Bench(args) => {
             if let Err(e) = bench::cmd_bench(args) {

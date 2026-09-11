@@ -12,28 +12,14 @@ pub struct State {
     pub is_default: bool,
 }
 
-pub static STATES: &[State] = &[
-    State {
-        name: "mainnet",
-        union: "neptune",
-        display_name: "Neptune Mainnet",
-        rpc_port: 9799,
-        network_flag: "alpha-mainnet",
-        currency_symbol: "NEPT",
-        chain_id: "1",
-        is_default: true,
-    },
-    State {
-        name: "testnet",
-        union: "neptune",
-        display_name: "Neptune Testnet",
-        rpc_port: 9899,
-        network_flag: "testnet",
-        currency_symbol: "tNEPT",
-        chain_id: "2",
-        is_default: false,
-    },
-];
+include!(concat!(env!("OUT_DIR"), "/states.rs"));
+
+pub fn default_for_union(union: &str) -> Result<&'static State, TrishaError> {
+    STATES
+        .iter()
+        .find(|state| state.union == union && state.is_default)
+        .ok_or_else(|| TrishaError::State(format!("no default state for {union}")))
+}
 
 pub fn resolve(union: &str, name: &str) -> Result<&'static State, TrishaError> {
     STATES

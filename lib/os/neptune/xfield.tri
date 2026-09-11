@@ -8,21 +8,9 @@ pub fn new(a: Field, b: Field, c: Field) -> XField
 #[intrinsic(xinvert)]
 pub fn inv(a: XField) -> XField
 
-// Dot product steps (for IPA / FRI)
+// Dot product steps return the updated accumulator and both RAM pointers.
 #[intrinsic(xx_dot_step)]
-pub fn xx_dot_step(
-    acc0: Field,
-    acc1: Field,
-    acc2: Field,
-    ptr_a: Field,
-    ptr_b: Field
-) -> Digest
+pub fn xx_dot_step(acc: XField, ptr_a: Field, ptr_b: Field) -> (XField, Field, Field)
 
 #[intrinsic(xb_dot_step)]
-pub fn xb_dot_step(
-    acc0: Field,
-    acc1: Field,
-    acc2: Field,
-    ptr_a: Field,
-    ptr_b: Field
-) -> Digest
+pub fn xb_dot_step(acc: XField, ptr_a: Field, ptr_b: Field) -> (XField, Field, Field)

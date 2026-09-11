@@ -1,0 +1,1 @@
+add addi and assert assert_vector call div_mod divine dup eq halt hash invert log_2_floor lt merkle_step merkle_step_mem mul nop pick place pop pop_count pow push read_io read_mem recurse recurse_or_return return skiz split sponge_absorb sponge_absorb_mem sponge_init sponge_squeeze swap write_io write_mem x_invert xb_dot_step xb_mul xor xx_add xx_dot_step xx_mul

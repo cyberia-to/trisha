@@ -37,6 +37,11 @@ pub struct VerifyBatchArgs {
 }
 
 pub fn cmd_verify(args: VerifyArgs) {
+    let target = match &args.mode {
+        Some(VerifyMode::Batch(batch)) => &batch.target,
+        None => &args.target,
+    };
+    crate::require_target(target);
     match args.mode {
         Some(VerifyMode::Batch(batch_args)) => cmd_verify_batch(batch_args),
         None => {

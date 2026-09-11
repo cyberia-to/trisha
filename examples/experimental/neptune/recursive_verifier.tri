@@ -1,10 +1,11 @@
 program recursive_verifier
+// UNIMPLEMENTED RESEARCH PROTOTYPE. Not a verifier; excluded from release SDK.
 
 // Recursive STARK Verifier — Configurable FRI Rounds
 //
 // Verifies a single inner proof with a configurable number of FRI
 // rounds read from public input. This is the general-purpose version;
-// proof_relay.tri hardcodes 4 rounds for production use.
+// proof_relay.tri hardcodes four rounds as an unvalidated prototype.
 //
 // Public input:
 //   1. num_fri_rounds (security parameter, typically 3-5)

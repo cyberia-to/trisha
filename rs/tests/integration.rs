@@ -265,11 +265,37 @@ fn malformed_claims_are_rejected_without_normalization() {
 }
 
 #[test]
+fn bundle_identity_and_state_requirements_are_enforced() {
+    use trident::runtime::Guesser;
+    let directory = tempfile::tempdir().unwrap();
+    let path = directory.path().join("guard.tri");
+    std::fs::write(&path, "program guard\nfn main() { pub_write(1) }\n").unwrap();
+    let bundle = compile(&path).unwrap();
+    let input = ProgramInput {
+        public: vec![],
+        secret: vec![],
+        digests: vec![],
+    };
+    let warrior = Warrior::new();
+    for mutation in 0..3 {
+        let mut altered = bundle.clone();
+        match mutation {
+            0 => altered.target_vm = "nox".into(),
+            1 => altered.target_os = Some("cyber".into()),
+            _ => altered.reads_state = true,
+        }
+        assert!(warrior.run(&altered, &input).is_err());
+        assert!(warrior.prove_full(&altered, &input).is_err());
+        assert!(warrior.guess(&altered, &input, u64::MAX, 1).is_err());
+    }
+}
+
+#[test]
 fn sha256_module_assembly_uses_only_valid_stack_registers() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../trident");
-    std::env::set_var("TRIDENT_STDLIB", root.join("std"));
     let assembly =
-        trisha_rs::build_tasm(&root.join("std/crypto/sha256.tri"), "triton", "release").unwrap();
+        trisha_rs::build_tasm(&root.join("lib/std/crypto/sha256.tri"), "triton", "release")
+            .unwrap();
     triton_vm::prelude::Program::from_code(&assembly)
         .expect("SHA256 assembly must parse on the pinned VM");
 }
@@ -278,8 +304,6 @@ fn sha256_module_assembly_uses_only_valid_stack_registers() {
 fn sha256_empty_block_matches_fips_digest() {
     let dir = tempfile::tempdir().unwrap();
     let path = dir.path().join("sha_empty.tri");
-    let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../trident");
-    std::env::set_var("TRIDENT_STDLIB", root.join("std"));
     let words = std::iter::once("convert.as_u32(2147483648)")
         .chain(std::iter::repeat_n("convert.as_u32(0)", 15))
         .collect::<Vec<_>>()

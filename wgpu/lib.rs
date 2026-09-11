@@ -7,3 +7,6 @@ pub mod accelerator;
 mod backend;
 
 pub use warrior::Warrior;
+
+#[path = "../bundle.rs"]
+mod bundle;

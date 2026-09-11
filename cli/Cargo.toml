@@ -33,3 +33,6 @@ toml = "0.8"
 bincode = "1"
 base64 = "0.22"
 ureq = { version = "2", features = ["json"] }
+
+[build-dependencies]
+toml = "0.8"

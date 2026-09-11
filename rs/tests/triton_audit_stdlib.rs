@@ -10,15 +10,18 @@
 /// TASM, which the core no longer lowers in-process
 /// (.claude/plans/warrior-owns-lowering.md S3 in trident).
 fn compile_test_program(name: &str, source: &str) -> String {
-    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../trident");
-    std::env::set_var("TRIDENT_STDLIB", root.join("std"));
-    std::env::set_var(
-        "TRIDENT_OSLIB",
-        std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../os"),
-    );
-    let path = root.join(name);
+    let directory = tempfile::tempdir().expect("isolated source directory");
+    let path = directory.path().join(name);
     std::fs::write(&path, source).expect("write temp program");
-    let result = trisha_rs::build_tasm(&path, "triton", "debug");
+    let result = trisha_rs::build_tasm(
+        &path,
+        if source.contains("os.neptune") {
+            "neptune"
+        } else {
+            "triton"
+        },
+        "debug",
+    );
     std::fs::remove_file(&path).ok();
     result.unwrap_or_else(|err| {
         panic!("{} should compile, got error: {}", name, err);
@@ -72,14 +75,14 @@ fn main() {
     assert!(tasm.contains("__squeeze1:"), "missing squeeze1 function");
 }
 
-// ── std.crypto.auth ──
+// ── os.neptune.auth ──
 
 #[test]
 fn test_std_crypto_auth_compiles() {
     let tasm = compile_test_program(
         "_test_auth.tri",
         r#"program test_auth
-use std.crypto.auth
+use os.neptune.auth
 
 fn main() {
     let expected: Digest = divine5()
@@ -94,20 +97,20 @@ fn main() {
     );
 }
 
-// ── std.crypto.merkle ──
+// ── vm.triton.merkle_proof ──
 
 #[test]
 fn test_std_crypto_merkle_compiles() {
     let tasm = compile_test_program(
         "_test_merkle.tri",
         r#"program test_merkle
-use std.crypto.merkle
+use vm.triton.merkle_proof
 
 fn main() {
     let leaf: Digest = divine5()
     let root: Digest = divine5()
     let (idx, _hi) = split(pub_read())
-    merkle.verify3(leaf, root, idx)
+    merkle_proof.verify3(leaf, root, idx)
     pub_write(0)
 }
 "#,

@@ -1,4 +1,5 @@
 program proof_relay
+// UNIMPLEMENTED RESEARCH PROTOTYPE. Not a verifier; excluded from release SDK.
 
 // Proof Relay — Verify and Forward a Single Proof
 //

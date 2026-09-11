@@ -117,7 +117,11 @@ fn cmd_deploy_single(
         eprintln!("  Digest  : {}", digest_hex);
         eprintln!(
             "  Proof   : {}",
-            if proof_path.is_some() { "attached" } else { "none" }
+            if proof_path.is_some() {
+                "attached"
+            } else {
+                "none"
+            }
         );
         return;
     }

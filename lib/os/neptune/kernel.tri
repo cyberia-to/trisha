@@ -2,7 +2,7 @@ module os.neptune.kernel
 
 use vm.io.io
 
-use std.crypto.merkle
+use vm.triton.merkle_proof
 
 use vm.core.convert
 
@@ -18,7 +18,7 @@ use vm.core.convert
 // Read the transaction kernel MAST hash from public input.
 // Lock scripts call this (receives 5 field elements = 1 Digest).
 pub fn read_lock_script_hash() -> Digest {
-    io.read5()
+    io.read_digest()
 }
 
 // Read the three type-script public inputs:
@@ -26,9 +26,9 @@ pub fn read_lock_script_hash() -> Digest {
 //   2. hash of salted input UTXOs
 //   3. hash of salted output UTXOs
 pub fn read_type_script_hashes() -> (Digest, Digest, Digest) {
-    let kernel_hash: Digest = io.read5()
-    let input_hash: Digest = io.read5()
-    let output_hash: Digest = io.read5()
+    let kernel_hash: Digest = io.read_digest()
+    let input_hash: Digest = io.read_digest()
+    let output_hash: Digest = io.read_digest()
     (kernel_hash, input_hash, output_hash)
 }
 
@@ -74,18 +74,18 @@ pub fn tree_height() -> Field {
 // Divines the leaf digest, verifies a depth-3 Merkle path,
 // and returns the authenticated leaf digest.
 pub fn authenticate_field(kernel_hash: Digest, leaf_idx: U32) -> Digest {
-    merkle.authenticate_leaf3(kernel_hash, leaf_idx)
+    merkle_proof.authenticate_leaf3(kernel_hash, leaf_idx)
 }
 
 // Authenticate and extract the fee from the kernel.
 // Returns the fee leaf digest (the fee value is encoded in the leaf).
 pub fn authenticate_fee(kernel_hash: Digest) -> Digest {
     let idx: U32 = convert.as_u32(3)
-    merkle.authenticate_leaf3(kernel_hash, idx)
+    merkle_proof.authenticate_leaf3(kernel_hash, idx)
 }
 
 // Authenticate and extract the timestamp from the kernel.
 pub fn authenticate_timestamp(kernel_hash: Digest) -> Digest {
     let idx: U32 = convert.as_u32(5)
-    merkle.authenticate_leaf3(kernel_hash, idx)
+    merkle_proof.authenticate_leaf3(kernel_hash, idx)
 }

@@ -10,3 +10,7 @@ pub use types::{BlockTemplate, MineState, DIGEST_LEN, HEADER_PATH_LEN, HEIGHT, K
 mod warrior;
 #[cfg(feature = "triton")]
 pub use warrior::Warrior;
+
+#[cfg(feature = "triton")]
+#[path = "../bundle.rs"]
+mod bundle;

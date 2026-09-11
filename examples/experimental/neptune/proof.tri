@@ -1,4 +1,5 @@
 module os.neptune.proof
+// UNIMPLEMENTED RESEARCH PROTOTYPE. Not a verifier; excluded from release SDK.
 
 use os.neptune.recursive
 
@@ -79,7 +80,7 @@ pub fn fri_fold(
     round: Field
 ) -> (Digest, Digest) {
     let challenge: Digest = derive_challenge(seed, round)
-    let next_commitment: Digest = io.divine5()
+    let next_commitment: Digest = io.divine_digest()
     (next_commitment, challenge)
 }
 
@@ -104,18 +105,18 @@ pub fn fri_verify(
 // from divine input, and returns both for the caller to check.
 pub fn verify_ood(seed: Digest) -> (Digest, Digest) {
     let ood_point: Digest = derive_challenge(seed, 100)
-    let ood_evaluation: Digest = io.divine5()
+    let ood_evaluation: Digest = io.divine_digest()
     (ood_point, ood_evaluation)
 }
 
 // Combine AIR constraints using inner product with random weights.
 // The constraint values and weights are in RAM at the given pointers.
-// Returns the combined evaluation as a Digest (XField + pointers).
+// Returns the combined accumulator and both RAM pointers.
 pub fn combine_constraints(
     ptr_constraints: Field,
     ptr_weights: Field,
     num_constraints: Field
-) -> Digest {
+) -> (XField, Field, Field) {
     recursive.xfe_inner_product(ptr_constraints, ptr_weights, num_constraints)
 }
 
@@ -136,7 +137,7 @@ pub fn verify_inner_proof(num_fri_rounds: Field) {
     let claim: Claim = parse_claim()
     let io_hash: Digest = hash_public_io(claim)
     let seed: Digest = derive_fiat_shamir_seed(claim, io_hash)
-    let base_commitment: Digest = io.divine5()
+    let base_commitment: Digest = io.divine_digest()
     let final_commitment: Digest = fri_verify(
         base_commitment,
         seed,
@@ -146,7 +147,7 @@ pub fn verify_inner_proof(num_fri_rounds: Field) {
     let ptr_c: Field = io.divine()
     let ptr_w: Field = io.divine()
     let num_c: Field = io.divine()
-    let combined: Digest = combine_constraints(ptr_c, ptr_w, num_c)
+    let combined: (XField, Field, Field) = combine_constraints(ptr_c, ptr_w, num_c)
     output_verified_claim(claim)
 }
 

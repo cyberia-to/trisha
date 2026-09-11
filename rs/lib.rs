@@ -5,6 +5,10 @@ pub mod lower;
 pub mod neural;
 mod resources;
 pub mod warrior;
+pub mod target;
 
 pub use lower::build_tasm;
 pub use warrior::Warrior;
+
+#[path = "../bundle.rs"]
+mod bundle;

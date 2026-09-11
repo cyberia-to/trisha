@@ -31,6 +31,31 @@ impl Drop for Fixture {
 }
 
 #[test]
+fn describe_and_state_share_embedded_network_dataset() {
+    let fixture = Fixture::new();
+    let output = fixture.run(&["describe", "--target", "neptune"]);
+    assert!(output.status.success());
+    let package: trident::target::TargetPackage = serde_json::from_slice(&output.stdout).unwrap();
+    package.validate().unwrap();
+    assert_eq!(package.owner, "trisha");
+    assert!(package.modules.contains_key("vm.triton.hash"));
+    assert!(package.modules.contains_key("os.neptune.auth"));
+    assert!(!package.modules.contains_key("std.crypto.auth"));
+    assert!(!package.runtime.deploy);
+    for state in package.states {
+        let output = fixture.run(&["state", "show", &state.union, &state.name]);
+        assert!(output.status.success());
+        let text = String::from_utf8(output.stdout).unwrap();
+        assert!(text.contains(&state.display_name));
+        assert!(text.contains(&state.currency_symbol));
+    }
+    assert!(!fixture
+        .run(&["describe", "--target", "nox"])
+        .status
+        .success());
+}
+
+#[test]
 fn source_cli_executes_proves_and_rejects_tampered_claim() {
     let f = Fixture::new();
     let run = f.run(&["run", "main.tri", "--input-values", "5"]);
@@ -54,6 +79,16 @@ fn source_cli_executes_proves_and_rejects_tampered_claim() {
         String::from_utf8_lossy(&prove.stderr)
     );
     assert!(f.run(&["verify", "proof.toml"]).status.success());
+    for target in ["nox", "unknown"] {
+        assert!(!f
+            .run(&["verify", "proof.toml", "--target", target])
+            .status
+            .success());
+        assert!(!f
+            .run(&["verify", "batch", "proof.toml", "--target", target])
+            .status
+            .success());
+    }
     let path = f.0.join("proof.toml");
     let text = std::fs::read_to_string(&path).unwrap();
     let altered = text.replace("public_output = [\"12\"]", "public_output = [\"13\"]");
@@ -65,7 +100,17 @@ fn source_cli_executes_proves_and_rejects_tampered_claim() {
 #[test]
 fn unsupported_targets_digests_and_deployment_fail() {
     let f = Fixture::new();
+    std::fs::write(f.0.join("raw.tasm"), "push 1 write_io 1 halt").unwrap();
     for target in ["nox", "tritno", "../../triton"] {
+        for operation in ["run", "prove"] {
+            let output = f.run(&[operation, "--tasm", "raw.tasm", "--target", target]);
+            assert!(!output.status.success());
+            assert!(String::from_utf8_lossy(&output.stderr).contains("does not provide target"));
+            assert!(!f
+                .run(&[operation, "batch", "main.tri", "--target", target])
+                .status
+                .success());
+        }
         assert!(!f
             .run(&["build", "main.tri", "--target", target])
             .status
@@ -101,14 +146,14 @@ fn duplicate_batch_destinations_fail_before_writing_proofs() {
 #[test]
 fn embedded_libraries_and_project_profiles_work_outside_checkout() {
     let f = Fixture::new();
-    std::fs::write(f.0.join("trident.toml"), "[project]\nname = \"isolated\"\nentry = \"main.tri\"\n[targets.release]\nflags = [\"selected\"]\n").unwrap();
+    std::fs::write(f.0.join("trident.toml"), "[project]\nname = \"isolated\"\nentry = \"main.tri\"\ntarget = \"neptune\"\n[targets.release]\nflags = [\"selected\"]\n").unwrap();
     std::fs::write(f.0.join("main.tri"), "program isolated\nuse vm.core.convert\nuse os.neptune.xfield\n#[cfg(selected)]\nfn chosen() -> Field { 38 }\n#[cfg(not(selected))]\nfn chosen() -> Field { 99 }\nfn main() { pub_write(convert.as_field(convert.as_u32(chosen()))) }\n").unwrap();
     let output = Command::new(env!("CARGO_BIN_EXE_trisha"))
         .current_dir(&f.0)
         .env_remove("TRIDENT_STDLIB")
         .env_remove("TRIDENT_OSLIB")
         .env_remove("TRIDENT_EXTLIB")
-        .args(["run", ".", "--target", "neptune", "--profile", "release"])
+        .args(["run", ".", "--profile", "release"])
         .output()
         .unwrap();
     assert!(
@@ -117,4 +162,38 @@ fn embedded_libraries_and_project_profiles_work_outside_checkout() {
         String::from_utf8_lossy(&output.stderr)
     );
     assert_eq!(String::from_utf8_lossy(&output.stdout).trim(), "38");
+    assert!(!f.run(&["run", ".", "--target", "triton"]).status.success());
+    assert!(f
+        .run(&["build", ".", "--profile", "release"])
+        .status
+        .success());
+    assert!(f.0.join("main.tasm").is_file());
+    assert!(f
+        .run(&[
+            "prove",
+            ".",
+            "--profile",
+            "release",
+            "--output",
+            "project.proof.toml"
+        ])
+        .status
+        .success());
+    assert!(f.run(&["verify", "project.proof.toml"]).status.success());
+    assert!(!f
+        .run(&[
+            "prove",
+            ".",
+            "--target",
+            "triton",
+            "--output",
+            "wrong.proof.toml"
+        ])
+        .status
+        .success());
+    assert!(!f.0.join("wrong.proof.toml").exists());
+    assert!(f
+        .run(&["run", "batch", "main.tri", "--profile", "release"])
+        .status
+        .success());
 }

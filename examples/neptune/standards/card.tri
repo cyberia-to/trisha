@@ -33,7 +33,7 @@ program card
 // Leaves are Merkle-authenticated against the state root.
 // Hook program IDs are output for external proof composition.
 // ======================================================
-use std.crypto.merkle
+use vm.triton.merkle_proof
 use os.neptune.standards.plumb
 
 // --- Flag constants ---
@@ -230,7 +230,7 @@ fn pay() {
         leaf_flags
     )
     let leaf_idx: U32 = as_u32(divine())
-    merkle.verify(old_leaf, old_root, leaf_idx, plumb.tree_depth())
+    merkle_proof.verify(old_leaf, old_root, leaf_idx, plumb.tree_depth())
     // Asset ID must match public input
     assert_eq(leaf_asset_id, asset_id)
     // Owner authorization
@@ -263,7 +263,7 @@ fn pay() {
         leaf_flags
     )
     // Authenticate new leaf against new state root
-    merkle.verify(new_leaf, new_root, leaf_idx, plumb.tree_depth())
+    merkle_proof.verify(new_leaf, new_root, leaf_idx, plumb.tree_depth())
     // Hook signal
     plumb.signal_hook(cfg_pay_hook)
     // Nullifier (sealed — prevents replay)
@@ -332,7 +332,7 @@ fn lock() {
         leaf_flags
     )
     let leaf_idx: U32 = as_u32(divine())
-    merkle.verify(old_leaf, old_root, leaf_idx, plumb.tree_depth())
+    merkle_proof.verify(old_leaf, old_root, leaf_idx, plumb.tree_depth())
     assert_eq(leaf_asset_id, asset_id)
     // Owner authorization
     plumb.verify_auth(leaf_auth_hash)
@@ -361,7 +361,7 @@ fn lock() {
         leaf_flags
     )
     // Authenticate new leaf against new state root
-    merkle.verify(new_leaf, new_root, leaf_idx, plumb.tree_depth())
+    merkle_proof.verify(new_leaf, new_root, leaf_idx, plumb.tree_depth())
     // Hook signal
     plumb.signal_hook(cfg_lock_hook)
     reveal
@@ -434,7 +434,7 @@ fn update() {
             leaf_flags
         )
         let leaf_idx: U32 = as_u32(divine())
-        merkle.verify(old_leaf, old_root, leaf_idx, plumb.tree_depth())
+        merkle_proof.verify(old_leaf, old_root, leaf_idx, plumb.tree_depth())
         assert_eq(leaf_asset_id, asset_id)
         // Owner authorization
         plumb.verify_auth(leaf_auth_hash)
@@ -455,7 +455,7 @@ fn update() {
             leaf_flags
         )
         // Authenticate new leaf against new state root
-        merkle.verify(new_leaf, new_root, leaf_idx, plumb.tree_depth())
+        merkle_proof.verify(new_leaf, new_root, leaf_idx, plumb.tree_depth())
         reveal
         MetadataUpdate { asset_id: leaf_asset_id, old_metadata: leaf_metadata_hash, new_metadata: new_metadata_hash }
     }
@@ -539,7 +539,7 @@ fn mint() {
     )
     // Authenticate new leaf against new state root
     let leaf_idx: U32 = as_u32(divine())
-    merkle.verify(new_leaf, new_root, leaf_idx, plumb.tree_depth())
+    merkle_proof.verify(new_leaf, new_root, leaf_idx, plumb.tree_depth())
     // Hook signal
     plumb.signal_hook(cfg_mint_hook)
     // Events
@@ -609,7 +609,7 @@ fn burn() {
         leaf_flags
     )
     let leaf_idx: U32 = as_u32(divine())
-    merkle.verify(old_leaf, old_root, leaf_idx, plumb.tree_depth())
+    merkle_proof.verify(old_leaf, old_root, leaf_idx, plumb.tree_depth())
     assert_eq(leaf_asset_id, asset_id)
     // Owner authorization
     plumb.verify_auth(leaf_auth_hash)

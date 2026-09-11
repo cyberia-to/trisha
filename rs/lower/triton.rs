@@ -50,9 +50,9 @@ impl TritonLowering {
         match op {
             // ── Stack ──
             TIROp::Push(v) => out.push(format!("    push {}", v)),
-            TIROp::Pop(n) => out.push(format!("    pop {}", n)),
-            TIROp::Dup(d) => out.push(format!("    dup {}", d)),
-            TIROp::Swap(d) => out.push(format!("    swap {}", d)),
+            TIROp::Pop(n) => super::legalize::batch("pop", *n, out),
+            TIROp::Dup(d) => super::legalize::access(*d, true, out),
+            TIROp::Swap(d) => super::legalize::access(*d, false, out),
 
             // ── Arithmetic ──
             TIROp::Add => out.push("    add".to_string()),
@@ -94,9 +94,25 @@ impl TritonLowering {
 
             // ── Recursion — extension field & FRI ──
             TIROp::ExtMul => out.push("    xb_mul".to_string()),
-            TIROp::ExtInvert => out.push("    x_invert".to_string()),
-            TIROp::FoldExt => out.push("    xx_dot_step".to_string()),
-            TIROp::FoldBase => out.push("    xb_dot_step".to_string()),
+            TIROp::ExtInvert => {
+                // Source XField tuples put their last coefficient on top;
+                // Triton native extension elements put coefficient zero there.
+                out.extend(["    swap 2", "    x_invert", "    swap 2"].map(str::to_owned));
+            }
+            TIROp::FoldExt | TIROp::FoldBase => {
+                // Preserve both top-of-stack RAM pointers while reversing the
+                // three accumulator coefficients at depths 2 through 4.
+                out.extend(["    swap 2", "    swap 4", "    swap 2"].map(str::to_owned));
+                out.push(
+                    if matches!(op, TIROp::FoldExt) {
+                        "    xx_dot_step"
+                    } else {
+                        "    xb_dot_step"
+                    }
+                    .into(),
+                );
+                out.extend(["    swap 2", "    swap 4", "    swap 2"].map(str::to_owned));
+            }
 
             // ── Recursion — proof verification block ──
             TIROp::ProofBlock { program_hash, body } => {
@@ -108,13 +124,13 @@ impl TritonLowering {
             }
 
             // ── I/O ──
-            TIROp::ReadIo(n) => out.push(format!("    read_io {}", n)),
-            TIROp::WriteIo(n) => out.push(format!("    write_io {}", n)),
-            TIROp::Hint(n) => out.push(format!("    divine {}", n)),
+            TIROp::ReadIo(n) => super::legalize::batch("read_io", *n, out),
+            TIROp::WriteIo(n) => super::legalize::batch("write_io", *n, out),
+            TIROp::Hint(n) => super::legalize::batch("divine", *n, out),
 
             // ── Memory ──
-            TIROp::ReadMem(n) => out.push(format!("    read_mem {}", n)),
-            TIROp::WriteMem(n) => out.push(format!("    write_mem {}", n)),
+            TIROp::ReadMem(n) => super::legalize::batch("read_mem", *n, out),
+            TIROp::WriteMem(n) => super::legalize::batch("write_mem", *n, out),
 
             // ── Crypto ──
             TIROp::Hash { .. } => out.push("    hash".to_string()),

@@ -19,7 +19,15 @@ fn compile_triton(source: &str, filename: &str) -> Result<String, String> {
     let dir = tempfile::tempdir().map_err(|e| e.to_string())?;
     let path = dir.path().join(filename);
     std::fs::write(&path, source).map_err(|e| e.to_string())?;
-    trisha_rs::build_tasm(&path, "triton", "debug")
+    trisha_rs::build_tasm(
+        &path,
+        if source.contains("os.neptune") {
+            "neptune"
+        } else {
+            "triton"
+        },
+        "debug",
+    )
 }
 
 /// Like `compile_triton`, at a named profile (debug/release).
@@ -35,23 +43,20 @@ fn compile_triton_profile(source: &str, filename: &str, profile: &str) -> Result
 /// trident repo checked out beside this one).
 #[allow(dead_code)]
 fn compile_project_triton(path: &Path) -> Result<String, String> {
-    ensure_trident_lib_env();
-    trisha_rs::build_tasm(path, "triton", "debug")
-}
-
-/// Point the module resolver at trident's std/os libraries. Its own search
-/// (env var, then walking up from the compiler binary or the cwd) assumes a
-/// process running inside the trident repo; trisha's tests run from their
-/// own workspace, so name the sibling repo explicitly (env vars win over
-/// every other search step trident's resolver tries).
-#[allow(dead_code)]
-fn ensure_trident_lib_env() {
-    let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../trident");
-    std::env::set_var("TRIDENT_STDLIB", root.join("std"));
-    std::env::set_var(
-        "TRIDENT_OSLIB",
-        std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../os"),
-    );
+    trisha_rs::build_tasm(
+        path,
+        if path.to_string_lossy().contains("os/neptune/")
+            || path
+                .to_string_lossy()
+                .contains("examples/experimental/neptune/")
+            || path.to_string_lossy().contains("examples/neptune/")
+        {
+            "neptune"
+        } else {
+            "triton"
+        },
+        "debug",
+    )
 }
 
 /// A stdlib/vm/os path is relative to the trident repo root; trisha's own
@@ -59,11 +64,23 @@ fn ensure_trident_lib_env() {
 /// (the sibling-repo layout every companion-repo doc in this stack assumes).
 #[allow(dead_code)]
 fn trident_repo_path(rel: &str) -> std::path::PathBuf {
-    if rel.starts_with("os/neptune/") {
-        return Path::new(env!("CARGO_MANIFEST_DIR")).join("..").join(rel);
+    if let Some(name) = rel.strip_prefix("os/neptune/") {
+        if name.starts_with("locks/") || name.starts_with("types/") || matches!(name, "standards/coin.tri" | "standards/card.tri") {
+            return Path::new(env!("CARGO_MANIFEST_DIR")).join("../examples/neptune").join(name);
+        }
+    }
+    if let Some(name) = rel.strip_prefix("os/neptune/programs/") {
+        return Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("../examples/experimental/neptune")
+            .join(name);
+    }
+    if rel.starts_with("os/neptune/") || rel.starts_with("vm/triton/") {
+        return Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("../lib")
+            .join(rel);
     }
     Path::new(env!("CARGO_MANIFEST_DIR"))
-        .join("../../trident")
+        .join("../../trident/lib")
         .join(rel)
 }
 
@@ -132,12 +149,12 @@ fn vm_io_mem_compiles() {
 
 #[test]
 fn vm_crypto_hash_compiles() {
-    assert_compiles("vm/crypto/hash.tri");
+    assert_compiles("vm/triton/hash.tri");
 }
 
 #[test]
 fn vm_crypto_merkle_compiles() {
-    assert_compiles("vm/crypto/merkle.tri");
+    assert_compiles("vm/triton/merkle.tri");
 }
 
 // ── std layer ──
@@ -164,12 +181,12 @@ fn std_crypto_keccak256_compiles() {
 
 #[test]
 fn std_crypto_auth_compiles() {
-    assert_compiles("std/crypto/auth.tri");
+    assert_compiles("os/neptune/auth.tri");
 }
 
 #[test]
 fn std_crypto_merkle_compiles() {
-    assert_compiles("std/crypto/merkle.tri");
+    assert_compiles("vm/triton/merkle_proof.tri");
 }
 
 #[test]
@@ -231,7 +248,10 @@ fn os_neptune_kernel_compiles() {
 
 #[test]
 fn os_neptune_proof_compiles() {
-    assert_compiles("os/neptune/proof.tri");
+    assert!(!trisha_rs::target::package("neptune")
+        .unwrap()
+        .modules
+        .contains_key("os.neptune.proof"));
 }
 
 #[test]
@@ -298,20 +318,44 @@ fn os_neptune_types_native_currency_compiles() {
 
 #[test]
 fn os_neptune_programs_proof_relay_compiles() {
-    assert_compiles("os/neptune/programs/proof_relay.tri");
+    assert!(trisha_rs::build_tasm(
+        &trident_repo_path("os/neptune/programs/proof_relay.tri"),
+        "neptune",
+        "debug"
+    )
+    .unwrap_err()
+    .contains("os.neptune.proof"));
 }
 
 #[test]
 fn os_neptune_programs_proof_aggregator_compiles() {
-    assert_compiles("os/neptune/programs/proof_aggregator.tri");
+    assert!(trisha_rs::build_tasm(
+        &trident_repo_path("os/neptune/programs/proof_aggregator.tri"),
+        "neptune",
+        "debug"
+    )
+    .unwrap_err()
+    .contains("os.neptune.proof"));
 }
 
 #[test]
 fn os_neptune_programs_recursive_verifier_compiles() {
-    assert_compiles("os/neptune/programs/recursive_verifier.tri");
+    assert!(trisha_rs::build_tasm(
+        &trident_repo_path("os/neptune/programs/recursive_verifier.tri"),
+        "neptune",
+        "debug"
+    )
+    .unwrap_err()
+    .contains("os.neptune.proof"));
 }
 
 #[test]
 fn os_neptune_programs_transaction_validation_compiles() {
-    assert_compiles("os/neptune/programs/transaction_validation.tri");
+    assert!(trisha_rs::build_tasm(
+        &trident_repo_path("os/neptune/programs/transaction_validation.tri"),
+        "neptune",
+        "debug"
+    )
+    .unwrap_err()
+    .contains("os.neptune.proof"));
 }

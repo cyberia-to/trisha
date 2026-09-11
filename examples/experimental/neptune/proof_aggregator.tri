@@ -1,4 +1,5 @@
 program proof_aggregator
+// UNIMPLEMENTED RESEARCH PROTOTYPE. Not a verifier; excluded from release SDK.
 
 // Proof Aggregator — Compose Multiple Proofs Into One
 //

@@ -18,7 +18,7 @@ program coin
 // Leaves are Merkle-authenticated against the state root.
 // Hook program IDs are output for external proof composition.
 // ======================================================
-use std.crypto.merkle
+use vm.triton.merkle_proof
 use os.neptune.standards.plumb
 
 // --- Leaf hashing (10 fields: 5 core + 3 program control + 2 reserved) ---
@@ -127,7 +127,7 @@ fn pay() {
         s_controller, s_locked_by, s_lock_data
     )
     let s_idx: U32 = as_u32(divine())
-    merkle.verify(s_leaf, old_root, s_idx, plumb.tree_depth())
+    merkle_proof.verify(s_leaf, old_root, s_idx, plumb.tree_depth())
     // Account-level authorization (always required)
     plumb.verify_auth(s_auth)
     // Config-level pay auth (0 = self only, else dual)
@@ -166,7 +166,7 @@ fn pay() {
         r_controller, r_locked_by, r_lock_data
     )
     let r_idx: U32 = as_u32(divine())
-    merkle.verify(r_leaf, old_root, r_idx, plumb.tree_depth())
+    merkle_proof.verify(r_leaf, old_root, r_idx, plumb.tree_depth())
     // --- Compute new leaves ---
     let new_s_nonce: Field = s_nonce + 1
     let new_s_leaf: Digest = hash_leaf(
@@ -179,8 +179,8 @@ fn pay() {
         r_controller, r_locked_by, r_lock_data
     )
     // Authenticate new leaves against new state root
-    merkle.verify(new_s_leaf, new_root, s_idx, plumb.tree_depth())
-    merkle.verify(new_r_leaf, new_root, r_idx, plumb.tree_depth())
+    merkle_proof.verify(new_s_leaf, new_root, s_idx, plumb.tree_depth())
+    merkle_proof.verify(new_r_leaf, new_root, r_idx, plumb.tree_depth())
     // Hook signal
     plumb.signal_hook(cfg_pay_hook)
     // Nullifier (sealed — verifier sees commitment)
@@ -238,7 +238,7 @@ fn lock() {
         a_controller, a_locked_by, a_lock_data
     )
     let a_idx: U32 = as_u32(divine())
-    merkle.verify(a_leaf, old_root, a_idx, plumb.tree_depth())
+    merkle_proof.verify(a_leaf, old_root, a_idx, plumb.tree_depth())
     // Account-level authorization (always required)
     plumb.verify_auth(a_auth)
     // Config-level lock auth (0 = self only, else dual)
@@ -256,7 +256,7 @@ fn lock() {
         a_controller, a_locked_by, a_lock_data
     )
     // Authenticate new leaf against new state root
-    merkle.verify(new_a_leaf, new_root, a_idx, plumb.tree_depth())
+    merkle_proof.verify(new_a_leaf, new_root, a_idx, plumb.tree_depth())
     // Hook signal
     plumb.signal_hook(cfg_lock_hook)
     // Supply unchanged
@@ -386,7 +386,7 @@ fn mint() {
         r_controller, r_locked_by, r_lock_data
     )
     let r_idx: U32 = as_u32(divine())
-    merkle.verify(r_leaf, old_root, r_idx, plumb.tree_depth())
+    merkle_proof.verify(r_leaf, old_root, r_idx, plumb.tree_depth())
     // New recipient leaf (balance increased)
     let new_r_bal: Field = r_bal + amount
     let new_r_leaf: Digest = hash_leaf(
@@ -394,7 +394,7 @@ fn mint() {
         r_controller, r_locked_by, r_lock_data
     )
     // Authenticate new leaf against new state root
-    merkle.verify(new_r_leaf, new_root, r_idx, plumb.tree_depth())
+    merkle_proof.verify(new_r_leaf, new_root, r_idx, plumb.tree_depth())
     // Hook signal
     plumb.signal_hook(cfg_mint_hook)
     // Supply change
@@ -452,7 +452,7 @@ fn burn() {
         a_controller, a_locked_by, a_lock_data
     )
     let a_idx: U32 = as_u32(divine())
-    merkle.verify(a_leaf, old_root, a_idx, plumb.tree_depth())
+    merkle_proof.verify(a_leaf, old_root, a_idx, plumb.tree_depth())
     // Account-level authorization (always required)
     plumb.verify_auth(a_auth)
     // Config-level burn auth (0 = self only, else dual)
@@ -486,7 +486,7 @@ fn burn() {
         a_controller, a_locked_by, a_lock_data
     )
     // Authenticate new leaf against new state root
-    merkle.verify(new_a_leaf, new_root, a_idx, plumb.tree_depth())
+    merkle_proof.verify(new_a_leaf, new_root, a_idx, plumb.tree_depth())
     // Hook signal
     plumb.signal_hook(cfg_burn_hook)
     // Nullifier (sealed — verifier sees commitment)

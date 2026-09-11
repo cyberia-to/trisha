@@ -16,3 +16,7 @@ explorer_url = "https://explorer.testnet.neptune.cash"
 
 [currency]
 symbol = "tNEPT"
+
+[node]
+rpc_port = 9899
+network_flag = "testnet"

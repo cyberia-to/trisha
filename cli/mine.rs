@@ -75,7 +75,9 @@ pub fn cmd_mine(args: MineArgs) {
         cmd_mine_triton(args);
         #[cfg(not(feature = "triton"))]
         {
-            eprintln!("error: Triton mining requires the 'triton' feature; use --neptune for Neptune PoW");
+            eprintln!(
+                "error: Triton mining requires the 'triton' feature; use --neptune for Neptune PoW"
+            );
             process::exit(1);
         }
     }
@@ -244,7 +246,9 @@ fn cmd_mine_neptune(args: MineArgs) {
     // Merkle-verified. The composer pre-encodes lustration_status into
     // pathA[27..28] and version into pathA[26]; we take pathA from the
     // template block header directly.
-    let hardfork_beta = metadata.get("lustration_status").map_or(false, |v| !v.is_null());
+    let hardfork_beta = metadata
+        .get("lustration_status")
+        .map_or(false, |v| !v.is_null());
 
     let pow = if hardfork_beta {
         eprintln!("HardforkBeta detected — no GuesserBuffer required.");
@@ -262,15 +266,19 @@ fn cmd_mine_neptune(args: MineArgs) {
         // GPU path (Apple Silicon Metal, requires --features gpu).
         // Falls back to CPU if Metal unavailable or when gpu returns None.
         #[cfg(feature = "gpu")]
-        let pow_opt = neptune_mine::mine_hardfork_beta_gpu(
-            path_a, &mast_paths, threshold, args.max_attempts,
-        ).or_else(|| neptune_mine::mine_hardfork_beta(
-            path_a, &mast_paths, threshold, args.max_attempts,
-        ));
+        let pow_opt =
+            neptune_mine::mine_hardfork_beta_gpu(path_a, &mast_paths, threshold, args.max_attempts)
+                .or_else(|| {
+                    neptune_mine::mine_hardfork_beta(
+                        path_a,
+                        &mast_paths,
+                        threshold,
+                        args.max_attempts,
+                    )
+                });
         #[cfg(not(feature = "gpu"))]
-        let pow_opt = neptune_mine::mine_hardfork_beta(
-            path_a, &mast_paths, threshold, args.max_attempts,
-        );
+        let pow_opt =
+            neptune_mine::mine_hardfork_beta(path_a, &mast_paths, threshold, args.max_attempts);
 
         match pow_opt {
             Some(p) => p,
@@ -348,8 +356,7 @@ fn parse_pow_path_a(block: &Value) -> Result<[Digest; HEIGHT], String> {
 }
 
 fn parse_pow_mast_paths(val: Option<&Value>) -> Result<PowMastPaths, String> {
-    let obj = val
-        .ok_or_else(|| "pow_mast_paths missing".to_string())?;
+    let obj = val.ok_or_else(|| "pow_mast_paths missing".to_string())?;
     Ok(PowMastPaths {
         pow: parse_digest_array::<{ neptune_mine::POW_PATH_LEN }>(obj.get("pow"))?,
         header: parse_digest_array::<{ neptune_mine::HEADER_PATH_LEN }>(obj.get("header"))?,
