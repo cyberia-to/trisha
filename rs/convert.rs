@@ -45,17 +45,25 @@ pub fn to_triton_claim_native(
     program_hash: &[u64],
     public_input: &[u64],
     public_output: &[u64],
-) -> triton_vm::proof::Claim {
-    let digest_bfes: [BFieldElement; Digest::LEN] = program_hash
+) -> Result<triton_vm::proof::Claim, String> {
+    if program_hash.len() != Digest::LEN {
+        return Err(format!(
+            "program hash must contain exactly {} field elements",
+            Digest::LEN
+        ));
+    }
+    if program_hash
         .iter()
-        .take(Digest::LEN)
-        .map(|&v| BFieldElement::new(v))
-        .collect::<Vec<_>>()
-        .try_into()
-        .unwrap_or_else(|_| [BFieldElement::new(0); Digest::LEN]);
-    triton_vm::proof::Claim::new(Digest::new(digest_bfes))
+        .chain(public_input)
+        .chain(public_output)
+        .any(|&v| v >= BFieldElement::P)
+    {
+        return Err("claim contains a noncanonical Goldilocks field element".to_string());
+    }
+    let digest_bfes = std::array::from_fn(|i| BFieldElement::new(program_hash[i]));
+    Ok(triton_vm::proof::Claim::new(Digest::new(digest_bfes))
         .with_input(u64s_to_bfes(public_input))
-        .with_output(u64s_to_bfes(public_output))
+        .with_output(u64s_to_bfes(public_output)))
 }
 
 pub fn proof_to_bytes(proof: &triton_vm::proof::Proof) -> Vec<u8> {
@@ -63,6 +71,5 @@ pub fn proof_to_bytes(proof: &triton_vm::proof::Proof) -> Vec<u8> {
 }
 
 pub fn bytes_to_proof(bytes: &[u8]) -> Result<triton_vm::proof::Proof, String> {
-    bincode::deserialize(bytes)
-        .map_err(|e| format!("invalid proof bytes: {}", e))
+    bincode::deserialize(bytes).map_err(|e| format!("invalid proof bytes: {}", e))
 }

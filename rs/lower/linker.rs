@@ -25,8 +25,13 @@ pub fn link(modules: Vec<ModuleTasm>) -> String {
     let entry_label = if let Some(prog) = modules.iter().find(|m| m.is_program) {
         format!("{}main", mangle_module(&prog.module_name))
     } else {
-        // No program module — emit a halt-only program.
-        return "    halt\n// error: no program module found".to_string();
+        // A library build preserves definitions for external harnesses/linkers.
+        // It has no invented executable entry point and no dead-code pruning.
+        return modules
+            .iter()
+            .map(|module| mangle_labels(&module.tasm, &mangle_module(&module.module_name), false))
+            .collect::<Vec<_>>()
+            .join("\n");
     };
 
     // Mangle all modules

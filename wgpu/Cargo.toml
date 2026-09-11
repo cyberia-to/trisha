@@ -1,13 +1,13 @@
 [package]
 name = "trisha-wgpu"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 
 [lib]
 path = "lib.rs"
 
 [dependencies]
-trident-lang = { path = "../../trident", default-features = false }
+trident-lang = { version = "0.3", path = "../../trident", default-features = false }
 triton-vm = "2"
 twenty-first = "1"
 bincode = "1"

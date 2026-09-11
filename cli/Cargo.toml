@@ -1,7 +1,10 @@
 [package]
 name = "trisha"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
+description = "Triton warrior: compile, execute and prove Trident programs"
+license-file = "../LICENSE"
+repository = "https://github.com/cyberia-to/trisha"
 
 [[bin]]
 name = "trisha"
@@ -19,10 +22,10 @@ gpu    = ["trisha-honeycrisp/gpu"]
 # A warrior never trains: default-features = false keeps burn/cubecl/wgpu out
 # of trisha's graph entirely (build weight, not correctness — trisha#1's real
 # cause was twenty-first's cdylib crate-type, patched in patches/apply.nu).
-trident-lang = { path = "../../trident", optional = true, default-features = false }
-trisha-rs = { path = "../rs", optional = true }
-trisha-wgpu = { path = "../wgpu", optional = true }
-trisha-honeycrisp = { path = "../honeycrisp" }
+trident-lang = { version = "0.3", path = "../../trident", optional = true, default-features = false }
+trisha-rs = { version = "0.2", path = "../rs", optional = true }
+trisha-wgpu = { version = "0.2", path = "../wgpu", optional = true }
+trisha-honeycrisp = { version = "0.2", path = "../honeycrisp" }
 clap = { version = "4", features = ["derive"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"

@@ -2,9 +2,7 @@ use std::process;
 
 use clap::{Args, Subcommand};
 
-use crate::neptune::{
-    load_hidden_addresses, neuron_dir, save_hidden_addresses, NeptuneClient,
-};
+use crate::neptune::{load_hidden_addresses, neuron_dir, save_hidden_addresses, NeptuneClient};
 use crate::NetworkArgs;
 
 #[derive(Args)]
@@ -125,11 +123,9 @@ fn cmd_address_add(rpc_port: u16, args: NeuronAddressAddArgs) {
     let address = if let Some(idx) = args.index {
         client
             .address_at_index(idx, &args.key_type)
-            .unwrap_or_else(|_| {
-                client.next_address(&args.key_type).unwrap_or_else(|e| {
-                    eprintln!("error: {}", e);
-                    process::exit(1);
-                })
+            .unwrap_or_else(|e| {
+                eprintln!("error: {}", e);
+                process::exit(1);
             })
     } else {
         client.next_address(&args.key_type).unwrap_or_else(|e| {
@@ -263,10 +259,7 @@ fn cmd_neuron_remove(confirmed: bool) {
     let neuron_path = neuron_dir();
 
     if !neuron_path.exists() {
-        eprintln!(
-            "Neuron directory not found at: {}",
-            neuron_path.display()
-        );
+        eprintln!("Neuron directory not found at: {}", neuron_path.display());
         eprintln!("Nothing to remove.");
         return;
     }

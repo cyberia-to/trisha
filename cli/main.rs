@@ -1,6 +1,8 @@
 #[cfg(feature = "triton")]
 mod batch;
 #[cfg(feature = "triton")]
+mod bench;
+#[cfg(feature = "triton")]
 mod build_cmd;
 #[cfg(feature = "triton")]
 mod compile;
@@ -27,13 +29,14 @@ use clap::{Args, Parser, Subcommand};
 use crate::error::TrishaError;
 
 #[cfg(feature = "triton")]
-use trident::runtime::{ProgramInput, ProofData};
-#[cfg(feature = "triton")]
 use crate::proof_file::ProofFile;
+#[cfg(feature = "triton")]
+use trident::runtime::{ProgramInput, ProofData};
 
 #[derive(Parser)]
 #[command(
     name = "trisha",
+    version,
     about = "Triton VM warrior — execute, prove, verify, deploy"
 )]
 struct Cli {
@@ -46,6 +49,9 @@ enum Command {
     #[cfg(feature = "triton")]
     /// Lower a Trident program to linked TASM (trident stops at TIR)
     Build(build_cmd::BuildArgs),
+    #[cfg(feature = "triton")]
+    /// Compare unchanged programs against independent reference vectors
+    Bench(bench::BenchArgs),
     #[cfg(feature = "triton")]
     /// Execute a Trident program on Triton VM
     Run(run::RunArgs),
@@ -93,6 +99,21 @@ pub(crate) fn make_input(
     digests: &Option<Vec<u64>>,
 ) -> ProgramInput {
     let digest_vals = digests.clone().unwrap_or_default();
+    if digest_vals.len() % 5 != 0 {
+        eprintln!("error: --digests requires a multiple of five field elements");
+        std::process::exit(1);
+    }
+    if input_values
+        .iter()
+        .flatten()
+        .chain(secret.iter().flatten())
+        .chain(digest_vals.iter())
+        .any(|&v| v >= 18_446_744_069_414_584_321)
+    {
+        eprintln!("error: inputs must be canonical Goldilocks field elements");
+        std::process::exit(1);
+    }
+
     let parsed_digests: Vec<[u64; 5]> = digest_vals
         .chunks(5)
         .filter(|c| c.len() == 5)
@@ -155,6 +176,13 @@ fn main() {
     let cli = Cli::parse();
 
     match cli.command {
+        #[cfg(feature = "triton")]
+        Command::Bench(args) => {
+            if let Err(e) = bench::cmd_bench(args) {
+                eprintln!("error: {}", e);
+                std::process::exit(1);
+            }
+        }
         #[cfg(feature = "triton")]
         Command::Build(args) => {
             if let Err(e) = build_cmd::cmd_build(args) {

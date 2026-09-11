@@ -1,83 +1,21 @@
----
-tags: trisha, docs
-crystal-type: pattern
-crystal-domain: cyber
-alias: trisha architecture
----
-# architecture
+# Architecture
 
-trisha is the runtime half of the soft3 proof stack.
+Trident resolves source modules, checks types and produces target-independent IR. Trisha owns Triton instruction selection, linking, AET costs and runtime execution. Generic bundle metadata comes from `trident::bundle_with_assembly`; the warrior supplies its assembly and cost estimate. Source commands share project/profile/dependency resolution.
 
-```
-trident (compiler)          trisha (runtime)
-─────────────────           ─────────────────────────────────────
-source .tri files           TrishaWarrior
-      ↓                           ↓
- parse + type check          runner (execute)
-      ↓                      prover (STARK prove)
- codegen → TASM              verifier (STARK verify)
-      ↓                      deployer (neptune on-chain)
- ProgramBundle ──────────→  batch executor
-                             GPU backend (7 shaders)
+```text
+source -> Trident resolved modules/TIR -> Trisha lower/link -> ProgramBundle
+                                                               |
+                                                        run/prove/verify
 ```
 
-trident produces a `ProgramBundle` (TASM bytecode + type info + metadata). trisha takes that bundle and does the actual work: execution, proof generation, verification, deployment.
+`cli/` is the interface; `rs/` implements the default CPU runtime. `wgpu/` is a separate backend, and `honeycrisp/` provides mining integration. The default command-line proving path uses CPU. Selecting a mining GPU feature does not change the proving backend.
 
-trisha implements trident's four runtime traits:
+Trisha owns Neptune `.tri` modules in `os/neptune` and hand assembly in `baselines/triton`. Compiler target-registry configurations remain available in Trident. Embedded module sources allow both libraries to work independently of the development directory.
 
-| trait | what it does |
-|-------|-------------|
-| `Runner` | execute the program, collect outputs |
-| `Prover` | generate a STARK proof of execution |
-| `Verifier` | verify a STARK proof |
-| `Deployer` | package + submit to neptune (stub) |
+Source execution requires a program entry. Library builds retain their definitions without inventing a halt-only program. Unknown and non-Triton targets fail. Neptune deployment is unsupported and returns an error; dry runs describe the artifact only.
 
-`TrishaWarrior` in `warrior.rs` implements all four.
+Claims require exactly five canonical Goldilocks hash elements, canonical public input/output and the supported proof format. Incomplete nondeterministic digests are rejected. Batch proving checks unique destination paths before starting work.
 
-## stack position
+Stack IR construction tracks all live operands, including imported named structures and unequal-width tuples. A final pass legalizes deep accesses through compiler-allocated scratch RAM. Return cleanup preserves word order and uses Triton's address-first memory convention. The optimizer must preserve the observable operand stack; equal-depth cleanup swaps cannot be collected ahead of their pops.
 
-```
-neurons / apps
-      ↓
-  trident (compile)
-      ↓
-  trisha (execute + prove + verify)
-      ↓
-  triton-vm (STARK engine, vendored + patched)
-      ↓
-  GPU (Metal / Vulkan / DX12 via wgpu)
-```
-
-triton-vm is the STARK engine. trisha patches it at build time (via `patches/apply.nu`) to inject GPU acceleration hooks without maintaining a fork. the patch adds a `GpuAccelerator` trait with three dispatch points: Tip5 batch hashing, iNTT, and NTT.
-
-## binary discovery
-
-the `trisha` binary is discovered at runtime by trident's `find_warrior()`. trident delegates execution to whatever warrior binary is on `$PATH`. this keeps the compiler and runtime independently versioned.
-
-## module map
-
-```
-src/
-  lib.rs          re-exports all public modules
-  main.rs         clap dispatch → cli commands
-  cli.rs          five commands: run, prove, verify, deploy, guess
-  warrior.rs      TrishaWarrior: implements Runner/Prover/Verifier/Deployer
-  compile.rs      source → ProgramBundle via trident API
-  error.rs        TrishaError enum (no unwrap in library code)
-  proof_file.rs   TOML envelope + bincode proof bytes (base64)
-  batch.rs        generic parallel executor (run_batch)
-  convert.rs      Vec<u64> ↔ BFieldElement
-  gpu/
-    mod.rs          GpuBackend trait
-    cpu.rs          CPU fallback via triton-vm
-    wgpu_backend.rs wgpu backend (Metal/Vulkan/DX12)
-    tip5_accel.rs   Tip5 GPU batch hashing
-    shaders/
-      goldilocks.wgsl  field arithmetic (vec2<u32> to emulate u64)
-      ntt.wgsl         radix-2 Cooley-Tukey butterfly NTT
-      poseidon2.wgsl   Poseidon2 permutation for Merkle trees
-      fri.wgsl         FRI query folding and verification
-      gemv.wgsl        matrix-vector multiply (polynomial evaluation)
-      tip5.wgsl        Tip5 batch hashing
-      mine.wgsl        nonce mining kernel (24M H/s on M1 Max)
-```
+`trisha bench` executes unchanged programs using `.bench.toml` reference fixtures. Expected output must match before cycle comparisons appear. Full mode proves and verifies both dimensions. Assertions, recursion, reads and calls are never replaced with dummy operations. Missing or failing fixtures remain unverified and make the full coverage gate fail. Neural results require their own verified fixtures.

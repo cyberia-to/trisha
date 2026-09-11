@@ -48,7 +48,10 @@ fn compile_project_triton(path: &Path) -> Result<String, String> {
 fn ensure_trident_lib_env() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../trident");
     std::env::set_var("TRIDENT_STDLIB", root.join("std"));
-    std::env::set_var("TRIDENT_OSLIB", root.join("os"));
+    std::env::set_var(
+        "TRIDENT_OSLIB",
+        std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../os"),
+    );
 }
 
 /// A stdlib/vm/os path is relative to the trident repo root; trisha's own
@@ -56,6 +59,9 @@ fn ensure_trident_lib_env() {
 /// (the sibling-repo layout every companion-repo doc in this stack assumes).
 #[allow(dead_code)]
 fn trident_repo_path(rel: &str) -> std::path::PathBuf {
+    if rel.starts_with("os/neptune/") {
+        return Path::new(env!("CARGO_MANIFEST_DIR")).join("..").join(rel);
+    }
     Path::new(env!("CARGO_MANIFEST_DIR"))
         .join("../../trident")
         .join(rel)
@@ -69,7 +75,21 @@ fn assert_compiles(rel_path: &str) -> String {
     }
     match compile_project_triton(&p) {
         Ok(tasm) => {
-            assert!(!tasm.is_empty(), "{} produced empty TASM", rel_path);
+            if tasm.is_empty() {
+                // Intrinsic/type-only libraries intentionally emit no functions.
+                let source = std::fs::read_to_string(&p).unwrap();
+                let file = trident::parse_source_silent(&source, rel_path).unwrap();
+                assert!(
+                    !file.items.iter().any(
+                        |item| matches!(&item.node, trident::ast::Item::Fn(f) if f.body.is_some())
+                    ),
+                    "{} lost function bodies",
+                    rel_path
+                );
+            } else {
+                triton_vm::prelude::Program::from_code(&tasm)
+                    .unwrap_or_else(|e| panic!("{} emitted invalid TASM: {}", rel_path, e));
+            }
             tasm
         }
         Err(msg) => {

@@ -1,126 +1,62 @@
 # Trisha
 
-Triton VM warrior. Executes, proves, verifies, and deploys Trident programs on Triton VM with GPU-accelerated STARK proving.
+Trisha is the Triton VM warrior for Trident. It lowers typed Trident IR to TASM, executes programs, generates STARK proofs, and verifies them. Neptune modules and Triton hand baselines live here.
 
-```
-source .tri → ProgramBundle → run / prove / verify / deploy
-                                    ↓
-                            GPU (Metal · Vulkan · DX12)
-                            7 compute shaders · 4.3× speedup
-                            24M H/s mining (M1 Max)
+```text
+Trident source -> resolved typed IR -> Trisha lowering -> Triton VM -> STARK proof
 ```
 
-## what it does
+## Commands
 
-```
-trisha run    program.tri                    # execute, print output
-trisha prove  program.tri -o proof.toml      # STARK prove
-trisha verify proof.toml                     # verify proof
-trisha guess  program.tri --difficulty N     # GPU nonce mining
-trisha deploy program.tri --state testnet    # on-chain (stub)
-```
-
-every command has a batch mode:
-
-```
-trisha prove batch a.tri b.tri c.tri --output proofs/ --max-parallel 4
+```sh
+trisha build program.tri -o program.tasm
+trisha run program.tri --input-values 5
+trisha prove program.tri --input-values 5 --output program.proof.toml
+trisha verify program.proof.toml
+trisha run --tasm program.tasm --input-values 5
+trisha prove batch a.tri b.tri --output proofs/
 trisha verify batch proofs/*.proof.toml
 ```
 
-## GPU backend
+Source commands accept project directories and named compilation profiles. The default terrain is Triton; `--target neptune` selects the same VM. Unsupported targets fail. Library builds retain their function definitions; execution and proving require a program entry.
 
-seven WGSL compute shaders. one pipeline. all platforms.
+The CLI uses the CPU backend. The separate wgpu backend provides GPU acceleration hooks; enabling a mining GPU feature does not switch the proving backend. Neptune on-chain deployment is not implemented: `deploy` fails explicitly, while `deploy --dry-run` describes an artifact.
 
-| shader | operation |
-|--------|-----------|
-| `goldilocks` | field arithmetic over 2⁶⁴ − 2³² + 1 via `vec2<u32>` |
-| `ntt` | radix-2 Cooley-Tukey butterfly NTT |
-| `poseidon2` | Poseidon2 permutation for Merkle trees |
-| `fri` | FRI query folding and verification |
-| `gemv` | matrix-vector multiply for polynomial evaluation |
-| `tip5` | Tip5 batch hashing |
-| `mine` | nonce search kernel |
+## Building
 
-wgpu auto-selects the best native API: Metal on macOS, Vulkan on Linux, DX12 on Windows. GPU is on by default. CPU-only build: `--no-default-features`.
+The development workspace uses sibling Trident and hardware-library checkouts. Bootstrap the pinned Triton vendor patches before building:
 
-## proving pipeline
-
-```
-ProgramBundle
-    ↓
-VM::trace_execution()      ← CPU, unavoidable
-    ↓
-Stark::prove()
-    ├── iNTT    (interpolate) ←  GPU  shader: ntt.wgsl
-    ├── NTT     (evaluate)   ←  GPU  shader: ntt.wgsl
-    ├── Merkle               ←  GPU  shader: poseidon2.wgsl
-    ├── FRI                  ←  GPU  shader: fri.wgsl
-    ├── GEMV                 ←  GPU  shader: gemv.wgsl
-    └── Tip5                 ←  GPU  shader: tip5.wgsl
-    ↓
-Proof → ProofFile → .proof.toml
+```sh
+nu patches/apply.nu
+cargo build --release -p trisha
+cargo test -p trisha-rs
+cargo test -p trisha --test source_pipeline
+cargo install --path cli --locked
 ```
 
-NTT + Merkle share a single command encoder — zero per-layer CPU↔GPU sync.
+The compiled warrior embeds its Neptune modules; the compiler dependency embeds standard libraries. Programs can import those modules when invoked outside the source checkout.
 
-## proof file
+## Verification and benchmarks
 
-`.proof.toml`: human-readable TOML envelope wrapping `base64(bincode(Proof))`.
-
-```toml
-[proof]
-format = "stark-triton-v2"
-program_name = "hello"
-proving_time_ms = 280
-
-[claim]
-program_hash = ["1460305242624279511", ...]
-public_output = ["42"]
-
-[data]
-proof = "AgIAAAAAAAD..."
+```sh
+trisha bench baselines/triton/reference --full --skip-neural
+trisha bench baselines/triton --full --skip-neural
 ```
 
-## patching
+Benchmark fixtures contain independent expected outputs. Both classic and hand programs must match the same vector before a cycle ratio is printed; `--full` also proves and verifies both. Uncovered baselines are reported as `UNVERIFIED`, and incomplete coverage returns a failing exit status. Existing hand baselines still require reference fixtures before the whole collection can pass this gate.
 
-trisha patches triton-vm at build time rather than maintaining a fork. `patches/apply.nu` fetches upstream from crates.io, applies 5 surgical layers (GPU hooks), and writes `.vendor/triton-vm/`. one script, no diverging branches.
+Regression tests exercise source CLI run/prove/verify and tampered claims, wide stacks, imported structures, SHA-256 against the empty-message FIPS digest, malformed inputs, and colliding batch proof destinations.
 
-```
-nu patches/apply.nu    # first time, or after version bump
-```
+## Workspace
 
-## build
+- `cli/`: command-line interface and reference benchmark runner.
+- `rs/`: CPU runtime, Triton lowering, AET cost model and neural target integration.
+- `wgpu/`: GPU runtime backend and WGSL kernels.
+- `honeycrisp/`: Apple Silicon mining integration.
+- `os/neptune/`: Neptune source modules and network configurations.
+- `baselines/triton/`: independent hand assembly and reference fixtures.
+- `patches/`: reproducible overlay for pinned upstream Triton dependencies.
 
-```
-nu patches/apply.nu    # vendor + patch triton-vm
-cargo build --release
-cargo test             # 15 integration tests
-cargo install --path .
-```
+See [architecture](docs/explanation/architecture.md) and [roadmap](roadmap/README.md).
 
-## status
-
-| component | status |
-|-----------|--------|
-| run / prove / verify | done |
-| batch | done |
-| GPU proving (7 shaders) | done |
-| GPU mining (24M H/s) | done |
-| proof file roundtrip | done |
-| deploy (neptune) | stub |
-| proof merging | planned |
-| streaming NTT (2^25+) | planned |
-
-see [roadmap/](roadmap/) for detailed plans.
-
-## workspace
-
-| repo | role |
-|------|------|
-| [trident](../trident) | compiler: source → TASM (ProgramBundle) |
-| [trisha](.) | runtime: execute, prove, verify, deploy |
-| [triton-vm](https://github.com/TritonVM/triton-vm) | STARK engine (vendored + patched) |
-
-## license
-
-cyber — don't trust. don't fear. don't beg.
+Cyber License: Don't trust. Don't fear. Don't beg.

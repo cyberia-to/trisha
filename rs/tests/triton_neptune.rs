@@ -48,7 +48,10 @@ fn compile_project_triton(path: &Path) -> Result<String, String> {
 fn ensure_trident_lib_env() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../trident");
     std::env::set_var("TRIDENT_STDLIB", root.join("std"));
-    std::env::set_var("TRIDENT_OSLIB", root.join("os"));
+    std::env::set_var(
+        "TRIDENT_OSLIB",
+        std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../os"),
+    );
 }
 
 /// A stdlib/vm/os path is relative to the trident repo root; trisha's own
@@ -56,11 +59,13 @@ fn ensure_trident_lib_env() {
 /// (the sibling-repo layout every companion-repo doc in this stack assumes).
 #[allow(dead_code)]
 fn trident_repo_path(rel: &str) -> std::path::PathBuf {
+    if rel.starts_with("os/neptune/") {
+        return Path::new(env!("CARGO_MANIFEST_DIR")).join("..").join(rel);
+    }
     Path::new(env!("CARGO_MANIFEST_DIR"))
         .join("../../trident")
         .join(rel)
 }
-
 
 #[test]
 fn test_recursive_verifier_compiles() {
@@ -104,7 +109,11 @@ pub_write(r0)
     // Create os/neptune directory and copy xfield.tri
     let ext_dir = dir.path().join("os").join("neptune");
     std::fs::create_dir_all(&ext_dir).unwrap();
-    std::fs::copy(trident_repo_path("os/neptune/xfield.tri"), ext_dir.join("xfield.tri")).unwrap_or_default();
+    std::fs::copy(
+        trident_repo_path("os/neptune/xfield.tri"),
+        ext_dir.join("xfield.tri"),
+    )
+    .unwrap_or_default();
 
     let result = compile_project_triton(&main_path);
     assert!(
@@ -140,7 +149,11 @@ pub_write(r0)
     .unwrap();
     let ext_dir = dir.path().join("os").join("neptune");
     std::fs::create_dir_all(&ext_dir).unwrap();
-    std::fs::copy(trident_repo_path("os/neptune/xfield.tri"), ext_dir.join("xfield.tri")).unwrap_or_default();
+    std::fs::copy(
+        trident_repo_path("os/neptune/xfield.tri"),
+        ext_dir.join("xfield.tri"),
+    )
+    .unwrap_or_default();
 
     let result = compile_project_triton(&main_path);
     assert!(
@@ -180,16 +193,27 @@ pub_write(r2)
     // Copy library files
     let ext_dir = dir.path().join("os").join("neptune");
     std::fs::create_dir_all(&ext_dir).unwrap();
-    std::fs::copy(trident_repo_path("os/neptune/xfield.tri"), ext_dir.join("xfield.tri")).unwrap_or_default();
-    std::fs::copy(trident_repo_path("os/neptune/recursive.tri"), ext_dir.join("recursive.tri"))
-        .unwrap_or_default();
+    std::fs::copy(
+        trident_repo_path("os/neptune/xfield.tri"),
+        ext_dir.join("xfield.tri"),
+    )
+    .unwrap_or_default();
+    std::fs::copy(
+        trident_repo_path("os/neptune/recursive.tri"),
+        ext_dir.join("recursive.tri"),
+    )
+    .unwrap_or_default();
     // Copy vm files that recursive.tri depends on
     let vm_io = dir.path().join("vm").join("io");
     let vm_core = dir.path().join("vm").join("core");
     std::fs::create_dir_all(&vm_io).unwrap();
     std::fs::create_dir_all(&vm_core).unwrap();
     std::fs::copy(trident_repo_path("vm/io/io.tri"), vm_io.join("io.tri")).unwrap_or_default();
-    std::fs::copy(trident_repo_path("vm/core/assert.tri"), vm_core.join("assert.tri")).unwrap_or_default();
+    std::fs::copy(
+        trident_repo_path("vm/core/assert.tri"),
+        vm_core.join("assert.tri"),
+    )
+    .unwrap_or_default();
 
     let result = compile_project_triton(&main_path);
     assert!(
@@ -226,15 +250,26 @@ pub_write(r0)
     .unwrap();
     let ext_dir = dir.path().join("os").join("neptune");
     std::fs::create_dir_all(&ext_dir).unwrap();
-    std::fs::copy(trident_repo_path("os/neptune/xfield.tri"), ext_dir.join("xfield.tri")).unwrap_or_default();
-    std::fs::copy(trident_repo_path("os/neptune/recursive.tri"), ext_dir.join("recursive.tri"))
-        .unwrap_or_default();
+    std::fs::copy(
+        trident_repo_path("os/neptune/xfield.tri"),
+        ext_dir.join("xfield.tri"),
+    )
+    .unwrap_or_default();
+    std::fs::copy(
+        trident_repo_path("os/neptune/recursive.tri"),
+        ext_dir.join("recursive.tri"),
+    )
+    .unwrap_or_default();
     let vm_io = dir.path().join("vm").join("io");
     let vm_core = dir.path().join("vm").join("core");
     std::fs::create_dir_all(&vm_io).unwrap();
     std::fs::create_dir_all(&vm_core).unwrap();
     std::fs::copy(trident_repo_path("vm/io/io.tri"), vm_io.join("io.tri")).unwrap_or_default();
-    std::fs::copy(trident_repo_path("vm/core/assert.tri"), vm_core.join("assert.tri")).unwrap_or_default();
+    std::fs::copy(
+        trident_repo_path("vm/core/assert.tri"),
+        vm_core.join("assert.tri"),
+    )
+    .unwrap_or_default();
 
     let result = compile_project_triton(&main_path);
     assert!(
@@ -267,16 +302,31 @@ proof.verify_inner_proof(4)
     // Copy all required library files
     let ext_dir = dir.path().join("os").join("neptune");
     std::fs::create_dir_all(&ext_dir).unwrap();
-    std::fs::copy(trident_repo_path("os/neptune/proof.tri"), ext_dir.join("proof.tri")).unwrap_or_default();
-    std::fs::copy(trident_repo_path("os/neptune/recursive.tri"), ext_dir.join("recursive.tri"))
-        .unwrap_or_default();
-    std::fs::copy(trident_repo_path("os/neptune/xfield.tri"), ext_dir.join("xfield.tri")).unwrap_or_default();
+    std::fs::copy(
+        trident_repo_path("os/neptune/proof.tri"),
+        ext_dir.join("proof.tri"),
+    )
+    .unwrap_or_default();
+    std::fs::copy(
+        trident_repo_path("os/neptune/recursive.tri"),
+        ext_dir.join("recursive.tri"),
+    )
+    .unwrap_or_default();
+    std::fs::copy(
+        trident_repo_path("os/neptune/xfield.tri"),
+        ext_dir.join("xfield.tri"),
+    )
+    .unwrap_or_default();
     let vm_io = dir.path().join("vm").join("io");
     let vm_core = dir.path().join("vm").join("core");
     std::fs::create_dir_all(&vm_io).unwrap();
     std::fs::create_dir_all(&vm_core).unwrap();
     std::fs::copy(trident_repo_path("vm/io/io.tri"), vm_io.join("io.tri")).unwrap_or_default();
-    std::fs::copy(trident_repo_path("vm/core/assert.tri"), vm_core.join("assert.tri")).unwrap_or_default();
+    std::fs::copy(
+        trident_repo_path("vm/core/assert.tri"),
+        vm_core.join("assert.tri"),
+    )
+    .unwrap_or_default();
 
     let result = compile_project_triton(&main_path);
     assert!(
@@ -309,16 +359,31 @@ proof.aggregate_proofs(n, 4)
     .unwrap();
     let ext_dir = dir.path().join("os").join("neptune");
     std::fs::create_dir_all(&ext_dir).unwrap();
-    std::fs::copy(trident_repo_path("os/neptune/proof.tri"), ext_dir.join("proof.tri")).unwrap_or_default();
-    std::fs::copy(trident_repo_path("os/neptune/recursive.tri"), ext_dir.join("recursive.tri"))
-        .unwrap_or_default();
-    std::fs::copy(trident_repo_path("os/neptune/xfield.tri"), ext_dir.join("xfield.tri")).unwrap_or_default();
+    std::fs::copy(
+        trident_repo_path("os/neptune/proof.tri"),
+        ext_dir.join("proof.tri"),
+    )
+    .unwrap_or_default();
+    std::fs::copy(
+        trident_repo_path("os/neptune/recursive.tri"),
+        ext_dir.join("recursive.tri"),
+    )
+    .unwrap_or_default();
+    std::fs::copy(
+        trident_repo_path("os/neptune/xfield.tri"),
+        ext_dir.join("xfield.tri"),
+    )
+    .unwrap_or_default();
     let vm_io = dir.path().join("vm").join("io");
     let vm_core = dir.path().join("vm").join("core");
     std::fs::create_dir_all(&vm_io).unwrap();
     std::fs::create_dir_all(&vm_core).unwrap();
     std::fs::copy(trident_repo_path("vm/io/io.tri"), vm_io.join("io.tri")).unwrap_or_default();
-    std::fs::copy(trident_repo_path("vm/core/assert.tri"), vm_core.join("assert.tri")).unwrap_or_default();
+    std::fs::copy(
+        trident_repo_path("vm/core/assert.tri"),
+        vm_core.join("assert.tri"),
+    )
+    .unwrap_or_default();
 
     let result = compile_project_triton(&main_path);
     assert!(
@@ -420,3 +485,10 @@ fn test_neptune_type_scripts_compile() {
     }
 }
 
+#[test]
+fn coin_formatting_is_idempotent() {
+    let source = include_str!("../../os/neptune/standards/coin.tri");
+    let formatted = trident::format_source(source, "coin.tri").unwrap();
+    let twice = trident::format_source(&formatted, "coin.tri").unwrap();
+    assert_eq!(formatted, twice);
+}

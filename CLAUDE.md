@@ -13,6 +13,9 @@ rs/          — CPU backend (Cargo crate: trisha-rs)
 wgpu/        — wgpu/Metal/Vulkan backend (Cargo crate: trisha-wgpu)
 honeycrisp/  — Apple Silicon backend stub (Cargo crate: trisha-honeycrisp)
 patches/     — vendor patching scripts
+os/neptune/  — Neptune runtime modules, embedded at build time
+baselines/triton/ — hand TASM and explicit execution fixtures
+scripts/     — reproducible source release packaging
 .claude/plans/ — agent state (persists across sessions)
 ```
 
@@ -77,8 +80,8 @@ Each crate uses `[lib] path = "lib.rs"` or `[[bin]] path = "main.rs"` —
 **no `src/` subdirectory anywhere**.
 
 When both repos are in scope:
-- **trident** = the compiler (source -> TASM). ~37k LOC Rust.
-- **trisha** = the runtime warrior (execute, prove, verify, deploy). ~3k LOC Rust + WGSL.
+- **trident** = shared frontend, TIR, nox lowering and generic neural harness.
+- **trisha** = Triton lowering/emission, runtime warrior, Neptune libraries and baselines.
 - Trident's CLAUDE.md rules (forbidden patterns, review passes, git
   workflow) apply to trisha too.
 - When referencing files, always use the repo-qualified path
@@ -86,7 +89,7 @@ When both repos are in scope:
 - Git operations: always `cd` to the correct repo before committing.
 - After editing trident code that trisha depends on, rebuild both:
   `cd ~/cyber/trident && cargo install --path . --force &&
-   cd ~/cyber/trisha && cargo install --path . --force`
+   cd ~/cyber/trisha && cargo install --path cli --locked --force`
 
 ## Architecture
 
@@ -104,7 +107,7 @@ cli/              Binary crate (package name: trisha)
   error.rs        TrishaError enum
   state.rs        State registry (STATES, resolve, default_state)
   neptune.rs      NeptuneClient + neuron file helpers
-  compile.rs      Source -> ProgramBundle via trident API
+  compile.rs      Source -> shared TIR -> Trisha TASM -> core bundle metadata
   proof_file.rs   TOML envelope + bincode proof bytes (base64)
   batch.rs        Generic parallel executor (run_batch)
   run.rs          trisha run (single + batch)
@@ -150,8 +153,7 @@ node status, multi-state network selection, GPU acceleration (Tip5
 batch hashing, BFE/XFE iNTT on Metal/Vulkan/DX12).
 
 **Scaffold**: GPU Merkle tree, GPU FRI, GPU NTT wiring (shaders compile,
-not connected to proving path). Deploy (computes and prints digest,
-no Neptune transaction construction yet). honeycrisp backend.
+not connected to proving path). Deploy (dry-run computes a digest; live deployment returns an error). honeycrisp backend.
 
 See `roadmap/README.md` for completion plan.
 

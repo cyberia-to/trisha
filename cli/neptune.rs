@@ -12,11 +12,17 @@ pub struct NeptuneClient {
 
 impl NeptuneClient {
     pub fn new(rpc_port: u16) -> Self {
-        NeptuneClient { rpc_port, http_rpc_port: 9797 }
+        NeptuneClient {
+            rpc_port,
+            http_rpc_port: 9797,
+        }
     }
 
     pub fn with_http_port(rpc_port: u16, http_rpc_port: u16) -> Self {
-        NeptuneClient { rpc_port, http_rpc_port }
+        NeptuneClient {
+            rpc_port,
+            http_rpc_port,
+        }
     }
 
     fn run(&self, args: &[&str]) -> Result<String, TrishaError> {
@@ -69,20 +75,30 @@ impl NeptuneClient {
         self.run(&["unconfirmed-available-balance"])
     }
 
-    pub fn next_address(&self, _key_type: &str) -> Result<String, TrishaError> {
+    pub fn next_address(&self, key_type: &str) -> Result<String, TrishaError> {
+        validate_key_type(key_type)?;
         self.run(&["next-receiving-address"])
     }
 
-    pub fn address_at_index(&self, _index: u64, _key_type: &str) -> Result<String, TrishaError> {
-        self.run(&["next-receiving-address"])
+    pub fn address_at_index(&self, index: u64, key_type: &str) -> Result<String, TrishaError> {
+        validate_key_type(key_type)?;
+        self.run(&["nth-receiving-address", &index.to_string()])
     }
 
     pub fn list_utxos(&self) -> Result<String, TrishaError> {
-        self.run(&["list-utxos"])
+        self.run(&["list-coins"])
     }
 
     pub fn known_keys(&self) -> Result<String, TrishaError> {
-        self.run(&["known-keys"])
+        let index = self.run(&["get-derivation-index", "generation"])?;
+        let last = index.trim().parse::<u64>().map_err(|_| {
+            TrishaError::Node(format!("invalid generation derivation index: {}", index))
+        })?;
+        let mut addresses = Vec::new();
+        for index in 0..=last {
+            addresses.push(self.address_at_index(index, "generation")?);
+        }
+        Ok(addresses.join("\n"))
     }
 
     fn rpc_url(&self) -> String {
@@ -203,4 +219,14 @@ pub fn save_hidden_addresses(addrs: &[String]) -> Result<(), TrishaError> {
     let content = addrs.join("\n") + if addrs.is_empty() { "" } else { "\n" };
     std::fs::write(dir.join("hidden_addresses"), content)
         .map_err(|e| TrishaError::Io(format!("cannot write hidden_addresses: {}", e)))
+}
+
+fn validate_key_type(key_type: &str) -> Result<(), TrishaError> {
+    if key_type != "generation" {
+        return Err(TrishaError::Node(format!(
+            "neptune-cli receiving addresses support generation keys, not '{}'",
+            key_type
+        )));
+    }
+    Ok(())
 }

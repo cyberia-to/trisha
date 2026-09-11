@@ -12,16 +12,16 @@
 fn compile_test_program(name: &str, source: &str) -> String {
     let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../trident");
     std::env::set_var("TRIDENT_STDLIB", root.join("std"));
-    std::env::set_var("TRIDENT_OSLIB", root.join("os"));
+    std::env::set_var(
+        "TRIDENT_OSLIB",
+        std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../os"),
+    );
     let path = root.join(name);
     std::fs::write(&path, source).expect("write temp program");
     let result = trisha_rs::build_tasm(&path, "triton", "debug");
     std::fs::remove_file(&path).ok();
     result.unwrap_or_else(|err| {
-        panic!(
-            "{} should compile, got error: {}",
-            name, err
-        );
+        panic!("{} should compile, got error: {}", name, err);
     })
 }
 
@@ -290,14 +290,8 @@ fn main() {
 "#,
     );
     assert!(tasm.contains("__parse:"), "missing parse function");
-    assert!(
-        tasm.contains("__dispatch:"),
-        "missing dispatch function"
-    );
-    assert!(
-        tasm.contains("__emit_node:"),
-        "missing emit_node function"
-    );
+    assert!(tasm.contains("__dispatch:"), "missing dispatch function");
+    assert!(tasm.contains("__emit_node:"), "missing emit_node function");
 }
 
 // ── std.compiler.typecheck ──
@@ -318,10 +312,7 @@ fn main() {
 "#,
     );
     assert!(tasm.contains("__check:"), "missing check function");
-    assert!(
-        tasm.contains("__dispatch:"),
-        "missing dispatch function"
-    );
+    assert!(tasm.contains("__dispatch:"), "missing dispatch function");
 }
 
 // ── std.crypto.ed25519 ──

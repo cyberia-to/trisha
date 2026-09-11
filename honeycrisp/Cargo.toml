@@ -1,6 +1,6 @@
 [package]
 name = "trisha-honeycrisp"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 
 [lib]
@@ -15,7 +15,7 @@ triton = ["dep:trident-lang"]
 gpu    = ["dep:aruminium"]
 
 [dependencies]
-trident-lang = { path = "../../trident", optional = true, default-features = false }
+trident-lang = { version = "0.3", path = "../../trident", optional = true, default-features = false }
 triton-vm = "2"
 twenty-first = "1"
 bincode = "1"

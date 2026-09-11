@@ -166,7 +166,12 @@ fn cmd_prove_single(
     for val in &result.proof_data.claim.public_output {
         println!("{}", val);
     }
-    write_proof_file(proof_file, &output_path, proving_time_ms, result.cycle_count);
+    write_proof_file(
+        proof_file,
+        &output_path,
+        proving_time_ms,
+        result.cycle_count,
+    );
 }
 
 fn cmd_prove_tasm(
@@ -222,13 +227,30 @@ fn cmd_prove_tasm(
     for val in &result.proof_data.claim.public_output {
         println!("{}", val);
     }
-    write_proof_file(proof_file, &output_path, proving_time_ms, result.cycle_count);
+    write_proof_file(
+        proof_file,
+        &output_path,
+        proving_time_ms,
+        result.cycle_count,
+    );
 }
 
 fn cmd_prove_batch(args: ProveBatchArgs) {
     if args.inputs.is_empty() {
         eprintln!("error: no input files specified");
         process::exit(1);
+    }
+    let mut destinations = std::collections::BTreeSet::new();
+    for path in &args.inputs {
+        let stem = path.file_stem().unwrap_or_default().to_string_lossy();
+        let destination = args.output.join(format!("{}.proof.toml", stem));
+        if !destinations.insert(destination.clone()) {
+            eprintln!(
+                "error: batch proof output collision: {}",
+                destination.display()
+            );
+            process::exit(1);
+        }
     }
     if let Err(e) = std::fs::create_dir_all(&args.output) {
         eprintln!("error: cannot create output directory: {}", e);
@@ -250,7 +272,9 @@ fn cmd_prove_batch(args: ProveBatchArgs) {
         let pi = make_input(&input_values, &secret, &digests);
         let warrior = Warrior::new();
         let start = std::time::Instant::now();
-        let result = warrior.prove_full(&bundle, &pi).map_err(TrishaError::Prove)?;
+        let result = warrior
+            .prove_full(&bundle, &pi)
+            .map_err(TrishaError::Prove)?;
         let proving_time_ms = start.elapsed().as_millis() as u64;
 
         let stem = path.file_stem().unwrap_or_default().to_string_lossy();

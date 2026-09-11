@@ -1,0 +1,4 @@
+source = "arithmetic.tri"
+hand = "arithmetic.tasm"
+input = [5]
+output = [38]

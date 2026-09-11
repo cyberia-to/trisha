@@ -48,7 +48,10 @@ fn compile_project_triton(path: &Path) -> Result<String, String> {
 fn ensure_trident_lib_env() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../trident");
     std::env::set_var("TRIDENT_STDLIB", root.join("std"));
-    std::env::set_var("TRIDENT_OSLIB", root.join("os"));
+    std::env::set_var(
+        "TRIDENT_OSLIB",
+        std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../os"),
+    );
 }
 
 /// A stdlib/vm/os path is relative to the trident repo root; trisha's own
@@ -56,11 +59,13 @@ fn ensure_trident_lib_env() {
 /// (the sibling-repo layout every companion-repo doc in this stack assumes).
 #[allow(dead_code)]
 fn trident_repo_path(rel: &str) -> std::path::PathBuf {
+    if rel.starts_with("os/neptune/") {
+        return Path::new(env!("CARGO_MANIFEST_DIR")).join("..").join(rel);
+    }
     Path::new(env!("CARGO_MANIFEST_DIR"))
         .join("../../trident")
         .join(rel)
 }
-
 
 #[test]
 fn test_generic_fn_compile_explicit() {
@@ -250,8 +255,8 @@ fn test_cfg_different_targets_different_output() {
     let debug_tasm =
         compile_triton_profile(source, "test.tri", "debug").expect("debug should compile");
 
-    let release_tasm = compile_triton_profile(source, "test.tri", "release")
-        .expect("release should compile");
+    let release_tasm =
+        compile_triton_profile(source, "test.tri", "release").expect("release should compile");
 
     // Both should have __mode: but with different bodies
     assert!(debug_tasm.contains("__mode:"));
@@ -328,7 +333,6 @@ fn test_pure_fn_compiles() {
     assert!(result.is_ok(), "pure fn should compile: {:?}", result.err());
 }
 
-
 #[test]
 fn test_struct_field_assignment_compiles_triton() {
     // p.x = v — struct field assignment must reach codegen (was rejected by
@@ -380,7 +384,10 @@ fn test_os_state_read_still_undefined_on_triton() {
     let source =
         "program test\nfn main() {\n    let v: Field = os.state.read(1)\n    pub_write(v)\n}";
     let result = compile_triton(source, "test.tri");
-    assert!(result.is_err(), "os.state.read must not typecheck on triton");
+    assert!(
+        result.is_err(),
+        "os.state.read must not typecheck on triton"
+    );
     let msg = format!("{:?}", result.err());
     assert!(msg.contains("undefined function"), "{}", msg);
 }
