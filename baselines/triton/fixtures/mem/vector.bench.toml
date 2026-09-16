@@ -1,0 +1,10 @@
+source = "main.tri"
+hand = "../../vm/io/mem.tasm"
+target = "triton"
+input = []
+output = [17, 29]
+reference = "Two distinct RAM cells retain their independently assigned values."
+expect_failure = false
+hand_prefix = """
+push 100 push 17 call vm_io_mem__write push 101 push 29 call vm_io_mem__write push 100 call vm_io_mem__read write_io 1 push 101 call vm_io_mem__read write_io 1 halt
+"""

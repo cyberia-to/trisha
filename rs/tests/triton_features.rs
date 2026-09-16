@@ -8,6 +8,20 @@
 //! trident); this is now the warrior's own correctness suite.
 
 use std::path::Path;
+use triton_vm::prelude::{BFieldElement, NonDeterminism, Program, PublicInput, VM};
+
+fn execute_generic(source: &str, profile: &str, input: &[u64]) -> Vec<u64> {
+    let assembly = compile_triton_profile(source, "test.tri", profile).unwrap();
+    VM::run(
+        Program::from_code(&assembly).unwrap(),
+        PublicInput::new(input.iter().copied().map(BFieldElement::new).collect()),
+        NonDeterminism::default(),
+    )
+    .unwrap()
+    .into_iter()
+    .map(|word| word.value())
+    .collect()
+}
 
 /// Compile a Triton source string, temp-file bridged (`build_tasm` takes a
 /// path, not a source string).
@@ -35,32 +49,31 @@ fn compile_triton_profile(source: &str, filename: &str, profile: &str) -> Result
 /// trident repo checked out beside this one).
 #[allow(dead_code)]
 fn compile_project_triton(path: &Path) -> Result<String, String> {
-    ensure_trident_lib_env();
     trisha_rs::build_tasm(path, "triton", "debug")
 }
 
-/// Point the module resolver at trident's std/os libraries. Its own search
-/// (env var, then walking up from the compiler binary or the cwd) assumes a
-/// process running inside the trident repo; trisha's tests run from their
-/// own workspace, so name the sibling repo explicitly (env vars win over
-/// every other search step trident's resolver tries).
-#[allow(dead_code)]
-fn ensure_trident_lib_env() {
-    let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../trident");
-    std::env::set_var("TRIDENT_STDLIB", root.join("std"));
-    std::env::set_var("TRIDENT_OSLIB", root.join("os"));
-}
+
 
 /// A stdlib/vm/os path is relative to the trident repo root; trisha's own
 /// tests run from trisha's workspace root, so re-root them at `../trident`
 /// (the sibling-repo layout every companion-repo doc in this stack assumes).
 #[allow(dead_code)]
 fn trident_repo_path(rel: &str) -> std::path::PathBuf {
+    if let Some(name) = rel.strip_prefix("os/neptune/") {
+        if name.starts_with("locks/") || name.starts_with("types/") || matches!(name, "standards/coin.tri" | "standards/card.tri") {
+            return Path::new(env!("CARGO_MANIFEST_DIR")).join("../examples/neptune").join(name);
+        }
+    }
+    if let Some(name) = rel.strip_prefix("os/neptune/programs/") {
+        return Path::new(env!("CARGO_MANIFEST_DIR")).join("../examples/experimental/neptune").join(name);
+    }
+    if rel.starts_with("os/neptune/") || rel.starts_with("vm/triton/") {
+        return Path::new(env!("CARGO_MANIFEST_DIR")).join("../lib").join(rel);
+    }
     Path::new(env!("CARGO_MANIFEST_DIR"))
-        .join("../../trident")
+        .join("../../trident/lib")
         .join(rel)
 }
-
 
 #[test]
 fn test_generic_fn_compile_explicit() {
@@ -70,23 +83,14 @@ fn first<N>(arr: [Field; N]) -> Field {
 arr[0]
 }
 
-fn main() {
-let a: [Field; 3] = [1, 2, 3]
+fn main(a: [Field; 3]) {
 let s: Field = first<3>(a)
 pub_write(s)
 }
 "#;
-    let result = compile_triton(source, "test.tri");
-    assert!(
-        result.is_ok(),
-        "generic fn should compile: {:?}",
-        result.err()
-    );
-    let tasm = result.unwrap();
-    assert!(
-        tasm.contains("__first__N3:"),
-        "should emit monomorphized label"
-    );
+    for profile in ["debug", "release"] {
+        assert_eq!(execute_generic(source, profile, &[7, 19, 31]), [7]);
+    }
 }
 
 #[test]
@@ -103,12 +107,9 @@ let s: Field = first(a)
 pub_write(s)
 }
 "#;
-    let result = compile_triton(source, "test.tri");
-    assert!(
-        result.is_ok(),
-        "generic fn with inference should compile: {:?}",
-        result.err()
-    );
+    for profile in ["debug", "release"] {
+        assert_eq!(execute_generic(source, profile, &[]), [1]);
+    }
 }
 
 #[test]
@@ -136,21 +137,13 @@ fn first<N>(arr: [Field; N]) -> Field {
 arr[0]
 }
 
-fn main() {
-let a: [Field; 3] = [1, 2, 3]
-let b: [Field; 5] = [1, 2, 3, 4, 5]
+fn main(a: [Field; 3], b: [Field; 5]) {
 pub_write(first<3>(a) + first<5>(b))
 }
 "#;
-    let result = compile_triton(source, "test.tri");
-    assert!(
-        result.is_ok(),
-        "multiple instantiations should compile: {:?}",
-        result.err()
-    );
-    let tasm = result.unwrap();
-    assert!(tasm.contains("__first__N3:"));
-    assert!(tasm.contains("__first__N5:"));
+    for profile in ["debug", "release"] {
+        assert_eq!(execute_generic(source, profile, &[7, 1, 3, 19, 2, 4, 6, 8]), [26]);
+    }
 }
 
 #[test]
@@ -189,7 +182,7 @@ arr[0]
 fn main() {
 let a: [Field; 3] = [1, 2, 3]
 let s: Field = sum<3>(a)
-pub_write(s)
+assert_eq(s, 1)
 }
 "#;
     assert!(
@@ -250,8 +243,8 @@ fn test_cfg_different_targets_different_output() {
     let debug_tasm =
         compile_triton_profile(source, "test.tri", "debug").expect("debug should compile");
 
-    let release_tasm = compile_triton_profile(source, "test.tri", "release")
-        .expect("release should compile");
+    let release_tasm =
+        compile_triton_profile(source, "test.tri", "release").expect("release should compile");
 
     // Both should have __mode: but with different bodies
     assert!(debug_tasm.contains("__mode:"));
@@ -328,7 +321,6 @@ fn test_pure_fn_compiles() {
     assert!(result.is_ok(), "pure fn should compile: {:?}", result.err());
 }
 
-
 #[test]
 fn test_struct_field_assignment_compiles_triton() {
     // p.x = v — struct field assignment must reach codegen (was rejected by
@@ -380,7 +372,10 @@ fn test_os_state_read_still_undefined_on_triton() {
     let source =
         "program test\nfn main() {\n    let v: Field = os.state.read(1)\n    pub_write(v)\n}";
     let result = compile_triton(source, "test.tri");
-    assert!(result.is_err(), "os.state.read must not typecheck on triton");
+    assert!(
+        result.is_err(),
+        "os.state.read must not typecheck on triton"
+    );
     let msg = format!("{:?}", result.err());
     assert!(msg.contains("undefined function"), "{}", msg);
 }

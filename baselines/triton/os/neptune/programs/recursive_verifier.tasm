@@ -1,0 +1,2 @@
+// Version1: public full-claim commitment; output1 after verification.
+__main: read_io 5 call trisha_recursive_verify_v1 push 1 write_io 1 halt

@@ -1,0 +1,18 @@
+program sha256_compression_chain
+use std.crypto.sha256
+use vm.io.mem
+use vm.core.convert
+fn main() {
+for i in 0..32 bounded 32 { mem.write(1000 + convert.as_field(i),pub_read()) }
+mem.write(2000 + 0,1779033703)
+mem.write(2000 + 1,3144134277)
+mem.write(2000 + 2,1013904242)
+mem.write(2000 + 3,2773480762)
+mem.write(2000 + 4,1359893119)
+mem.write(2000 + 5,2600822924)
+mem.write(2000 + 6,528734635)
+mem.write(2000 + 7,1541459225)
+sha256.compress_in_ram(2000,1000,3000)
+sha256.compress_in_ram(2000,1016,3000)
+for i in 0..8 bounded 8 { pub_write(mem.read(2000 + convert.as_field(i))) }
+}

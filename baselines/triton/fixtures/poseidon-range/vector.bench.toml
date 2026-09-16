@@ -1,0 +1,10 @@
+source = "main.tri"
+hand = "../../std/crypto/poseidon.tasm"
+target = "triton"
+input = []
+output = ["14266028122062624699", "5353147180106052723", "15203350112844181434", "17630919042639565165", "16601551015858213987", "10184091939013874068", "16774100645754596496", "12047415603622314780"]
+reference = "Plonky3 p3-goldilocks 0.4.2 Poseidon2GoldilocksHL8, revision 0835481398d2b481bef0c6d0e8188b484ab9a636; all eight lanes."
+expect_failure = false
+hand_prefix = """
+push 0 push 1 push 2 push 3 push 4 push 5 push 6 push 7 call __permute swap 7 swap 1 swap 6 swap 1 swap 2 swap 5 swap 2 swap 3 swap 4 swap 3 write_io 5 write_io 3 halt
+"""

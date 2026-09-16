@@ -1,0 +1,22 @@
+# ---
+# tags: trident, config
+# crystal-type: source
+# crystal-domain: comp
+# ---
+[state]
+name = "mainnet"
+display_name = "Neptune Mainnet"
+union = "neptune"
+chain_id = "0"
+is_default = true
+
+[endpoints]
+rpc_url = "http://127.0.0.1:9799"
+explorer_url = "https://explorer.neptune.cash"
+
+[currency]
+symbol = "NEPT"
+
+[node]
+rpc_port = 9799
+network_flag = "main"

@@ -1,0 +1,4 @@
+program baseline_kernel_timestamp
+use os.neptune.kernel
+use vm.io.io
+fn main() { let root=io.read_digest() let leaf=kernel.authenticate_timestamp(root) let (a,b,c,d,e)=leaf pub_write(a) pub_write(b) pub_write(c) pub_write(d) pub_write(e) }

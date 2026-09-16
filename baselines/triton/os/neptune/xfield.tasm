@@ -1,0 +1,41 @@
+// Hand-optimized TASM baseline: os.neptune.xfield
+// Extension field operations (all intrinsics).
+
+// new(a, b, c) -> XField
+//   Identity — 3 base fields are already on the stack.
+//   XField is represented as 3 consecutive fields.
+//   1 instruction
+__new:
+    return
+
+// inv(a: XField) -> XField
+//   2 instructions
+__inv:
+    swap 2
+    x_invert
+    swap 2
+    return
+
+// xx_dot_step(acc: XField, ptr_a, ptr_b) -> (XField, Field, Field)
+//   2 instructions
+__xx_dot_step:
+    swap 2
+    swap 4
+    swap 2
+    xx_dot_step
+    swap 2
+    swap 4
+    swap 2
+    return
+
+// xb_dot_step(acc: XField, ptr_a, ptr_b) -> (XField, Field, Field)
+//   2 instructions
+__xb_dot_step:
+    swap 2
+    swap 4
+    swap 2
+    xb_dot_step
+    swap 2
+    swap 4
+    swap 2
+    return

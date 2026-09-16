@@ -1,0 +1,11 @@
+source = "../../../../examples/triton/proof_relay.tri"
+hand = "../../os/neptune/programs/proof_relay.tasm"
+target = "triton"
+input = ["3999889736556452851", "2691730153068718523", "1491919604030507024", "17708881520534836383", "15220410873134884691"]
+output = ["3999889736556452851", "2691730153068718523", "1491919604030507024", "17708881520534836383", "15220410873134884691"]
+witness_files = ["../recursive-witnesses/first.toml"]
+hand_prefix = "call __main halt\n"
+hand_libraries = ["../../os/neptune/proof.tasm"]
+expect_failure = false
+max_cycles = 3000000
+reference = "Official default-security Triton7 proof for read_io1 +3 write_io1, inputs2/9 outputs5/12. Expected full-claim commitments computed by native Tip5(BFieldCodec Claim); published Triton7 verifier hand linkage is independent of Trident compilation. Version1 full-proof ABI replaces invalid configurable-FRI prototype."

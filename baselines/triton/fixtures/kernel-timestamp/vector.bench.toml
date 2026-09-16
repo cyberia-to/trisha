@@ -1,0 +1,19 @@
+source = "main.tri"
+hand = "../../os/neptune/kernel.tasm"
+target = "neptune"
+input = ["14329515731788381556", 3827815838500477559, "9574073180482250751", 8882237803091421092, 8268958998701679952]
+output = [17, 0, 0, 0, 0]
+reference = "Independent native Tip5 depth3 path for leaf[17,0,0,0,0], index5, siblings[1..5],[6..10],[11..15]; changed sibling must reject."
+expect_failure = false
+hand_prefix = """
+read_io 5 call __authenticate_timestamp
+    swap 4
+    swap 1
+    swap 3
+    swap 1
+write_io 5 halt
+"""
+
+secret = [17,0,0,0,0]
+digests = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+hand_libraries = ["../../std/crypto/merkle.tasm"]

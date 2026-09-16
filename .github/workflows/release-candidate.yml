@@ -1,0 +1,66 @@
+name: Native release candidate
+on:
+  push:
+    branches: ['release/native-*']
+  workflow_dispatch:
+permissions:
+  # GitHub requires push access to download assets of an unpublished draft.
+  # The bootstrap removes the token before compiling/running archive code.
+  contents: write
+jobs:
+  select:
+    runs-on: ubuntu-22.04
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - id: matrix
+        run: |
+          python3 - <<'PY'
+          import json, os
+          platforms = {
+              'x86_64-unknown-linux-gnu': 'ubuntu-22.04',
+              'aarch64-unknown-linux-gnu': 'ubuntu-22.04-arm',
+              'x86_64-pc-windows-msvc': 'windows-2022',
+              'aarch64-pc-windows-msvc': 'windows-11-arm',
+              'x86_64-apple-darwin': 'macos-15-intel',
+          }
+          spec = json.load(open('.github/release-candidate.json'))
+          selected = spec.get('targets', list(platforms))
+          assert selected and len(selected) == len(set(selected)) and set(selected) <= platforms.keys()
+          matrix = {'include': [{'runner': platforms[t], 'target': t} for t in selected]}
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('matrix=' + json.dumps(matrix) + '\n')
+          PY
+  native:
+    needs: select
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.select.outputs.matrix) }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.13.15'
+      - name: Build and validate the exact source archive
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TARGET: ${{ matrix.target }}
+        run: python3 -B scripts/native-candidate.py
+      - name: Preserve binaries, proof corpus and failure evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: candidate-${{ matrix.target }}
+          path: release-results/
+          if-no-files-found: error
+          retention-days: 30
+# Native macOS ARM64 runs the identical archived scripts on the local 48 GiB
+# Apple Silicon host. Hosted ARM Macs have insufficient RAM for this proof gate.

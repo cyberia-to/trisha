@@ -1,83 +1,41 @@
----
-tags: trisha, docs
-crystal-type: pattern
-crystal-domain: cyber
-alias: trisha architecture
----
-# architecture
+# Architecture
 
-trisha is the runtime half of the soft3 proof stack.
+Trident resolves source modules, checks types and produces target-independent IR. Trisha owns Triton instruction selection, linking, AET costs and runtime execution. Generic bundle metadata comes from `trident::bundle_with_assembly`; the warrior supplies its assembly and cost estimate. Source commands share project/profile/dependency resolution.
 
-```
-trident (compiler)          trisha (runtime)
-─────────────────           ─────────────────────────────────────
-source .tri files           TrishaWarrior
-      ↓                           ↓
- parse + type check          runner (execute)
-      ↓                      prover (STARK prove)
- codegen → TASM              verifier (STARK verify)
-      ↓                      deployer (neptune on-chain)
- ProgramBundle ──────────→  batch executor
-                             GPU backend (7 shaders)
+```text
+source -> Trident resolved modules/TIR -> Trisha lower/link -> ProgramBundle
+                                                               |
+                                                        run/prove/verify
 ```
 
-trident produces a `ProgramBundle` (TASM bytecode + type info + metadata). trisha takes that bundle and does the actual work: execution, proof generation, verification, deployment.
+`cli/` is the interface; `rs/` implements the default CPU runtime. `wgpu/` is a separate backend, and `honeycrisp/` provides mining integration. `neptune/` owns the pinned consensus/RPC transaction adapter and its intent boundary; these protocol dependencies do not belong to the compiler or CPU engine. The default command-line proving path uses CPU. Selecting a mining GPU feature does not change the proving backend.
 
-trisha implements trident's four runtime traits:
+Trisha owns Triton machine metadata in `targets/triton`, its SDK in `lib/vm/triton`, Neptune `.tri` modules in `lib/os/neptune`, network/state descriptors in `networks/neptune`, and hand assembly in `baselines/triton`. Source namespaces remain independent of physical paths. The embedded target package exports the authoritative descriptors and module sources to the compiler. CLI network selection is generated from the same Neptune state manifests; no separate hardcoded state registry is maintained. Runtime capabilities report CPU execution and STARK proving. The generic deployment trait cannot carry transaction intent and retains `deploy=false`; the owner CLI exposes the separate transaction interface described below.
 
-| trait | what it does |
-|-------|-------------|
-| `Runner` | execute the program, collect outputs |
-| `Prover` | generate a STARK proof of execution |
-| `Verifier` | verify a STARK proof |
-| `Deployer` | package + submit to neptune (stub) |
+Source execution requires a program entry. Library builds retain their definitions without inventing a halt-only program. Unknown and non-Triton targets fail. Program inspection computes the native lock-script hash and checks any attached proof. Transaction preparation separately requires explicit network-bound intent, complete canonical transaction/output preimages and the exact SingleProof claim. A compiled program alone cannot select wallet funds or authorize submission. `trisha deploy output`, `prepare` and `submit` implement this owner interface. Genuine proof validation, mutation rejection and authenticated submission into an isolated Neptune 0.15.1 Testnet(1) mempool passed the [local node gate](../../audit/neptune-local-node-validation.md). Funded wallet construction, public-network operation and block confirmation remain separate requirements.
 
-`TrishaWarrior` in `warrior.rs` implements all four.
+CPU and wgpu share the native input/claim/proof boundary implemented in `rs/convert.rs`; GPU acceleration must not change proof acceptance. Inputs are bounded at8Mi total field words (including five per digest) and must be canonical before conversion. Claims require exactly five canonical Goldilocks hash elements, canonical public input/output and the supported proof format. Incomplete nondeterministic digests are rejected. Batch proving checks unique destination paths before starting work.
 
-## stack position
+Stack IR construction tracks all live operands, including imported named structures and unequal-width tuples. Generic TIR return cleanup uses stack permutations and pops, preserving word order and source RAM. The owner lowerer implements deep accesses with temporary RAM whose contents are restored before the next source operation. The optimizer must preserve the observable operand stack; equal-depth cleanup swaps cannot be collected ahead of their pops.
 
-```
-neurons / apps
-      ↓
-  trident (compile)
-      ↓
-  trisha (execute + prove + verify)
-      ↓
-  triton-vm (STARK engine, vendored + patched)
-      ↓
-  GPU (Metal / Vulkan / DX12 via wgpu)
-```
+`trisha bench` executes unchanged programs using `.bench.toml` reference fixtures. Expected output must match before cycle comparisons appear. Full mode proves and verifies both dimensions. Assertions, recursion, reads and calls are never replaced with dummy operations. Missing or failing fixtures remain unverified and make the full coverage gate fail. Neural results require their own verified fixtures.
 
-triton-vm is the STARK engine. trisha patches it at build time (via `patches/apply.nu`) to inject GPU acceleration hooks without maintaining a fork. the patch adds a `GpuAccelerator` trait with three dispatch points: Tip5 batch hashing, iNTT, and NTT.
+## Machine legalization and SDK names
 
-## binary discovery
+Shared TIR carries unbounded semantic stack operations. Trisha batches counts into Triton instructions of at most five words and legalizes access deeper than register 15. Ordinary source RAM has no compiler-reserved interval. The lowerer checks every cell in a preferred temporary block at `2^31`; it uses the block only if all cells are zero. Otherwise it searches monotonically from address zero for a contiguous zero run and rejects address-space exhaustion. Occupied cells are never overwritten, including at the preferred address. The borrowed cells are zeroed before returning to source code, with no user calls or I/O while temporary values are live.
 
-the `trisha` binary is discovered at runtime by trident's `find_warrior()`. trident delegates execution to whatever warrior binary is on `$PATH`. this keeps the compiler and runtime independently versioned.
+The requested temporary size depends on stack depth; search cost also depends on existing RAM contents. Static source costs cannot certify a bound for arbitrary RAM occupancy. Tests exercise occupied/fragmented memory, zero-valued stack words, field-address wrap, source block reads/writes, and preservation of every nonzero RAM cell. Inline assembly keeps live locals on the operand stack and must preserve the compiler-owned prefix; it shares source RAM without a hidden spill frame. The former fixed-address cleanup/spill behavior was a correctness defect, recorded in the [RAM review](../../audit/ram-scratch-review.md).
 
-## module map
+Consecutive pure `Dup`/`Swap`/`Pop` operations can share one temporary frame.
+The owner computes their complete stack permutation and selects that lowering
+only when it is cheaper than the individual accesses on a free preferred block.
+It preserves untouched prefix words, handles duplicated and discarded words,
+and restores the entire RAM frame before any I/O, memory operation, call,
+assembly block or control-flow boundary. This keeps wide argument/return frames
+from repeatedly searching, writing and restoring the same temporary cells.
 
-```
-src/
-  lib.rs          re-exports all public modules
-  main.rs         clap dispatch → cli commands
-  cli.rs          five commands: run, prove, verify, deploy, guess
-  warrior.rs      TrishaWarrior: implements Runner/Prover/Verifier/Deployer
-  compile.rs      source → ProgramBundle via trident API
-  error.rs        TrishaError enum (no unwrap in library code)
-  proof_file.rs   TOML envelope + bincode proof bytes (base64)
-  batch.rs        generic parallel executor (run_batch)
-  convert.rs      Vec<u64> ↔ BFieldElement
-  gpu/
-    mod.rs          GpuBackend trait
-    cpu.rs          CPU fallback via triton-vm
-    wgpu_backend.rs wgpu backend (Metal/Vulkan/DX12)
-    tip5_accel.rs   Tip5 GPU batch hashing
-    shaders/
-      goldilocks.wgsl  field arithmetic (vec2<u32> to emulate u64)
-      ntt.wgsl         radix-2 Cooley-Tukey butterfly NTT
-      poseidon2.wgsl   Poseidon2 permutation for Merkle trees
-      fri.wgsl         FRI query folding and verification
-      gemv.wgsl        matrix-vector multiply (polynomial evaluation)
-      tip5.wgsl        Tip5 batch hashing
-      mine.wgsl        nonce mining kernel (24M H/s on M1 Max)
-```
+Use `vm.triton.hash`, `vm.triton.merkle`, `vm.triton.merkle_proof`, and `os.neptune.auth` for the fixed Tip5/Neptune ABI. Old generic aliases are deliberately absent. Historical hand-assembly baseline names are retained as provenance, not as compiler module aliases.
+
+`trisha describe --target triton` and `--target neptune` export schema1/compiler API3 JSON. Module hashes identify the embedded sources, and the package separates compilation identity from deployment-state selection.
+
+The retired handwritten `os.neptune.proof` module remains excluded; its FRI/OOD/constraint checks were incomplete. Historical prototypes are preserved under `examples/experimental/neptune`. The production replacement is `vm.triton.proof.verify`, which invokes the official Triton7 verifier with a complete caller-authorized claim. Neptune exports fixed canonical0.15.1 policies through `os.neptune.transaction.verify` and `os.neptune.native_currency.verify`. See the [recursive proof contract](../reference/recursive-proof.md) for witness preparation and the distinction between consensus proof verification and network admission.

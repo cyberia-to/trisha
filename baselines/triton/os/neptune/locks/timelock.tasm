@@ -1,0 +1,18 @@
+// Authenticate hash preimage and timestamp Merkle path before checking U32 delta.
+os_neptune_locks_timelock__main:
+    divine 5
+    call __verify_digest_preimage
+    read_io 5
+    call __authenticate_timestamp
+    pop 4
+    divine 1
+    push -1
+    mul
+    add
+    split
+    swap 1
+    push 0
+    eq
+    assert
+    pop 1
+    return

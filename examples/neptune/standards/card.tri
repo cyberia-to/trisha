@@ -1,0 +1,603 @@
+program card_v2
+
+// PLUMBv2 full-Digest authority and atomic transition example.
+// Normative schema: Trident reference/plumb-v2.md.
+// External hook/controller registry proof requests require outer composition.
+use os.neptune.standards.plumb
+
+// --- Flag constants ---
+// TRANSFERABLE = 1, BURNABLE = 2, UPDATABLE = 4, LOCKABLE = 8, MINTABLE = 16
+// --- Versioned core and full authority/creator commitments ---
+fn hash_leaf(
+    asset_id: Field, owner_id: Field, nonce: Field, auth_hash: Digest,
+    lock_until: Field, collection_id: Field, metadata_hash: Field,
+    royalty_bps: Field, creator_id: Digest, flags: Field
+) -> Digest {
+    plumb.assert_non_negative(nonce)
+    plumb.assert_non_negative(lock_until)
+    plumb.assert_non_negative(royalty_bps)
+    plumb.assert_non_negative(sub(10000,royalty_bps))
+    assert_valid_flags(flags)
+    let core = hash(asset_id,owner_id,nonce,lock_until,collection_id,metadata_hash,royalty_bps,flags,2,2)
+    plumb.pair(core,plumb.pair(auth_hash,creator_id))
+}
+
+
+
+// A checked U32 bit test implements the five independent capability flags.
+fn assert_flag(flags: Field, mask: U32) {
+    let bits: U32 = as_u32(flags)
+    assert(bits < as_u32(32))
+    assert((bits & mask) == mask)
+}
+fn assert_transferable(flags: Field) { assert_flag(flags,as_u32(1)) }
+fn assert_burnable(flags: Field) { assert_flag(flags,as_u32(2)) }
+fn assert_updatable(flags: Field) { assert_flag(flags,as_u32(4)) }
+fn assert_lockable(flags: Field) { assert_flag(flags,as_u32(8)) }
+fn assert_mintable(flags: Field) { assert_flag(flags,as_u32(16)) }
+fn assert_valid_flags(flags: Field) { assert(as_u32(flags) < as_u32(32)) }
+
+// --- Events ---
+event Pay {
+    asset_id: Field,
+    from_owner: Field,
+    to_owner: Field,
+    royalty_bps: Field,
+}
+
+event Lock {
+    asset_id: Field,
+    lock_until: Field,
+}
+
+event MetadataUpdate {
+    asset_id: Field,
+    old_metadata: Field,
+    new_metadata: Field,
+}
+
+event Mint {
+    asset_id: Field,
+    creator_id: Digest,
+    collection_id: Field,
+    metadata_hash: Field,
+}
+
+event Burn {
+    asset_id: Field,
+    owner_id: Field,
+}
+
+event Nullifier {
+    asset_id: Field,
+    nonce: Field,
+}
+
+event SupplyChange {
+    old_count: Field,
+    new_count: Field,
+}
+
+// ============================================================
+// Op 0: PAY — transfer asset ownership
+// ============================================================
+fn pay() {
+    let old_root: Digest = pub_read5()
+    let new_root: Digest = pub_read5()
+    let asset_count: Field = pub_read()
+    plumb.assert_non_negative(asset_count)
+    let asset_id: Field = pub_read()
+    let current_time: Field = pub_read()
+    plumb.assert_non_negative(current_time)
+    let config: Digest = pub_read5()
+    // --- Verify config ---
+    let cfg_admin: Digest = divine5()
+    let cfg_pay: Digest = divine5()
+    let cfg_lock: Digest = divine5()
+    let cfg_mint: Digest = divine5()
+    let cfg_burn: Digest = divine5()
+    let cfg_pay_hook: Field = divine()
+    let cfg_lock_hook: Field = divine()
+    let cfg_update_hook: Field = divine()
+    let cfg_mint_hook: Field = divine()
+    let cfg_burn_hook: Field = divine()
+    plumb.verify_config(
+        cfg_admin,
+        cfg_pay,
+        cfg_lock,
+        cfg_mint,
+        cfg_burn,
+        cfg_pay_hook,
+        cfg_lock_hook,
+        cfg_update_hook,
+        cfg_mint_hook,
+        cfg_burn_hook,
+        config
+    )
+    // --- Current asset leaf ---
+    let leaf_asset_id: Field = divine()
+    let leaf_owner_id: Field = divine()
+    let leaf_nonce: Field = divine()
+    let leaf_auth_hash: Digest = divine5()
+    let leaf_lock_until: Field = divine()
+    let leaf_collection_id: Field = divine()
+    let leaf_metadata_hash: Field = divine()
+    let leaf_royalty_bps: Field = divine()
+    let leaf_creator_id: Digest = divine5()
+    let leaf_flags: Field = divine()
+    // Authenticate leaf against old state root
+    let old_leaf: Digest = hash_leaf(
+        leaf_asset_id,
+        leaf_owner_id,
+        leaf_nonce,
+        leaf_auth_hash,
+        leaf_lock_until,
+        leaf_collection_id,
+        leaf_metadata_hash,
+        leaf_royalty_bps,
+        leaf_creator_id,
+        leaf_flags
+    )
+    let leaf_idx: U32 = as_u32(divine())
+    plumb.check_index(leaf_asset_id,leaf_idx)
+    // Asset ID must match public input
+    assert_eq(leaf_asset_id, asset_id)
+    // Owner authorization
+    plumb.verify_auth(leaf_auth_hash)
+    // Dual auth if pay_auth ≠ 0
+    if plumb.is_zero(cfg_pay) {
+    } else {
+        plumb.verify_auth(cfg_pay)
+    }
+    // Time-lock check
+    let lock_headroom: Field = sub(current_time, leaf_lock_until)
+    plumb.assert_non_negative(lock_headroom)
+    // Flag check: must be transferable
+    assert_transferable(leaf_flags)
+    // --- New owner ---
+    let new_owner_id: Field = divine()
+    let new_auth_hash: Digest = divine5()
+    // New leaf: only owner_id, auth_hash, nonce change
+    let new_nonce: Field = plumb.next_nonce(leaf_nonce)
+    let new_leaf: Digest = hash_leaf(
+        leaf_asset_id,
+        new_owner_id,
+        new_nonce,
+        new_auth_hash,
+        leaf_lock_until,
+        leaf_collection_id,
+        leaf_metadata_hash,
+        leaf_royalty_bps,
+        leaf_creator_id,
+        leaf_flags
+    )
+    // Authenticate new leaf against new state root
+    assert_digest(plumb.update_leaf(old_leaf,new_leaf,old_root,leaf_idx),new_root)
+    // Hook signal
+    plumb.signal_hook(cfg_pay_hook)
+    // Nullifier (sealed — prevents replay)
+    seal Nullifier { asset_id: leaf_asset_id, nonce: leaf_nonce }
+    // Events
+    reveal
+    Pay { asset_id: leaf_asset_id, from_owner: leaf_owner_id, to_owner: new_owner_id, royalty_bps: leaf_royalty_bps }
+}
+
+// ============================================================
+// Op 1: LOCK — time-lock an asset
+// ============================================================
+fn lock() {
+    let old_root: Digest = pub_read5()
+    let new_root: Digest = pub_read5()
+    let asset_count: Field = pub_read()
+    plumb.assert_non_negative(asset_count)
+    let asset_id: Field = pub_read()
+    let lock_until_time: Field = pub_read()
+    plumb.assert_non_negative(lock_until_time)
+    let config: Digest = pub_read5()
+    // --- Verify config ---
+    let cfg_admin: Digest = divine5()
+    let cfg_pay: Digest = divine5()
+    let cfg_lock: Digest = divine5()
+    let cfg_mint: Digest = divine5()
+    let cfg_burn: Digest = divine5()
+    let cfg_pay_hook: Field = divine()
+    let cfg_lock_hook: Field = divine()
+    let cfg_update_hook: Field = divine()
+    let cfg_mint_hook: Field = divine()
+    let cfg_burn_hook: Field = divine()
+    plumb.verify_config(
+        cfg_admin,
+        cfg_pay,
+        cfg_lock,
+        cfg_mint,
+        cfg_burn,
+        cfg_pay_hook,
+        cfg_lock_hook,
+        cfg_update_hook,
+        cfg_mint_hook,
+        cfg_burn_hook,
+        config
+    )
+    // --- Current asset leaf ---
+    let leaf_asset_id: Field = divine()
+    let leaf_owner_id: Field = divine()
+    let leaf_nonce: Field = divine()
+    let leaf_auth_hash: Digest = divine5()
+    let leaf_lock_until: Field = divine()
+    let leaf_collection_id: Field = divine()
+    let leaf_metadata_hash: Field = divine()
+    let leaf_royalty_bps: Field = divine()
+    let leaf_creator_id: Digest = divine5()
+    let leaf_flags: Field = divine()
+    // Authenticate leaf against old state root
+    let old_leaf: Digest = hash_leaf(
+        leaf_asset_id,
+        leaf_owner_id,
+        leaf_nonce,
+        leaf_auth_hash,
+        leaf_lock_until,
+        leaf_collection_id,
+        leaf_metadata_hash,
+        leaf_royalty_bps,
+        leaf_creator_id,
+        leaf_flags
+    )
+    let leaf_idx: U32 = as_u32(divine())
+    plumb.check_index(leaf_asset_id,leaf_idx)
+    assert_eq(leaf_asset_id, asset_id)
+    // Owner authorization
+    plumb.verify_auth(leaf_auth_hash)
+    // Dual auth if lock_auth ≠ 0
+    if plumb.is_zero(cfg_lock) {
+    } else {
+        plumb.verify_auth(cfg_lock)
+    }
+    // Flag check: must be lockable
+    assert_lockable(leaf_flags)
+    // Lock can only extend, not shorten
+    let extension: Field = sub(lock_until_time, leaf_lock_until)
+    plumb.assert_non_negative(extension)
+    // New leaf: only lock_until and nonce change
+    let new_nonce: Field = plumb.next_nonce(leaf_nonce)
+    let new_leaf: Digest = hash_leaf(
+        leaf_asset_id,
+        leaf_owner_id,
+        new_nonce,
+        leaf_auth_hash,
+        lock_until_time,
+        leaf_collection_id,
+        leaf_metadata_hash,
+        leaf_royalty_bps,
+        leaf_creator_id,
+        leaf_flags
+    )
+    // Authenticate new leaf against new state root
+    assert_digest(plumb.update_leaf(old_leaf,new_leaf,old_root,leaf_idx),new_root)
+    // Hook signal
+    plumb.signal_hook(cfg_lock_hook)
+    seal Nullifier { asset_id: leaf_asset_id, nonce: leaf_nonce }
+    reveal
+    Lock { asset_id: leaf_asset_id, lock_until: lock_until_time }
+}
+
+// ============================================================
+// Op 2: UPDATE — update config or asset metadata
+// ============================================================
+// Two modes:
+//   Config update: old_root == new_root, admin auth required
+//   Metadata update: owner auth + UPDATABLE flag required
+fn update() {
+    let old_root: Digest = pub_read5()
+    let new_root: Digest = pub_read5()
+    let asset_count: Field = pub_read()
+    plumb.assert_non_negative(asset_count)
+    let asset_id: Field = pub_read()
+    let new_metadata_hash: Field = pub_read()
+    let config: Digest = pub_read5()
+    // --- Verify config ---
+    let cfg_admin: Digest = divine5()
+    let cfg_pay: Digest = divine5()
+    let cfg_lock: Digest = divine5()
+    let cfg_mint: Digest = divine5()
+    let cfg_burn: Digest = divine5()
+    let cfg_pay_hook: Field = divine()
+    let cfg_lock_hook: Field = divine()
+    let cfg_update_hook: Field = divine()
+    let cfg_mint_hook: Field = divine()
+    let cfg_burn_hook: Field = divine()
+    plumb.verify_config(
+        cfg_admin,
+        cfg_pay,
+        cfg_lock,
+        cfg_mint,
+        cfg_burn,
+        cfg_pay_hook,
+        cfg_lock_hook,
+        cfg_update_hook,
+        cfg_mint_hook,
+        cfg_burn_hook,
+        config
+    )
+    if asset_id == 0 {
+        // --- Config update ---
+        assert_digest(old_root,new_root)
+        let new_config: Digest = pub_read5()
+        plumb.verify_auth(cfg_admin)
+        read_and_verify_config(new_config)
+    } else {
+        // --- Metadata update ---
+        let leaf_asset_id: Field = divine()
+        let leaf_owner_id: Field = divine()
+        let leaf_nonce: Field = divine()
+        let leaf_auth_hash: Digest = divine5()
+        let leaf_lock_until: Field = divine()
+        let leaf_collection_id: Field = divine()
+        let leaf_metadata_hash: Field = divine()
+        let leaf_royalty_bps: Field = divine()
+        let leaf_creator_id: Digest = divine5()
+        let leaf_flags: Field = divine()
+        // Authenticate leaf against old state root
+        let old_leaf: Digest = hash_leaf(
+            leaf_asset_id,
+            leaf_owner_id,
+            leaf_nonce,
+            leaf_auth_hash,
+            leaf_lock_until,
+            leaf_collection_id,
+            leaf_metadata_hash,
+            leaf_royalty_bps,
+            leaf_creator_id,
+            leaf_flags
+        )
+        let leaf_idx: U32 = as_u32(divine())
+        plumb.check_index(leaf_asset_id,leaf_idx)
+        assert_eq(leaf_asset_id, asset_id)
+        // Owner authorization
+        plumb.verify_auth(leaf_auth_hash)
+        // Flag check: must be updatable
+        assert_updatable(leaf_flags)
+        // New leaf: only metadata_hash and nonce change
+        let new_nonce: Field = plumb.next_nonce(leaf_nonce)
+        let new_leaf: Digest = hash_leaf(
+            leaf_asset_id,
+            leaf_owner_id,
+            new_nonce,
+            leaf_auth_hash,
+            leaf_lock_until,
+            leaf_collection_id,
+            new_metadata_hash,
+            leaf_royalty_bps,
+            leaf_creator_id,
+            leaf_flags
+        )
+        // Authenticate new leaf against new state root
+        assert_digest(plumb.update_leaf(old_leaf,new_leaf,old_root,leaf_idx),new_root)
+        seal Nullifier { asset_id: leaf_asset_id, nonce: leaf_nonce }
+        reveal
+        MetadataUpdate { asset_id: leaf_asset_id, old_metadata: leaf_metadata_hash, new_metadata: new_metadata_hash }
+    }
+    // Hook signal
+    plumb.signal_hook(cfg_update_hook)
+}
+
+// ============================================================
+// Op 3: MINT — originate a new unique asset
+// ============================================================
+fn mint() {
+    let old_root: Digest = pub_read5()
+    let new_root: Digest = pub_read5()
+    let old_count: Field = pub_read()
+    plumb.assert_non_negative(old_count)
+    let new_count: Field = pub_read()
+    plumb.assert_non_negative(new_count)
+    let max_supply: Field = pub_read()
+    plumb.assert_non_negative(max_supply)
+    let asset_id: Field = pub_read()
+    let metadata_hash: Field = pub_read()
+    let collection_id: Field = pub_read()
+    let config: Digest = pub_read5()
+    let metadata_config: Digest = pub_read5()
+    // --- Verify config ---
+    let cfg_admin: Digest = divine5()
+    let cfg_pay: Digest = divine5()
+    let cfg_lock: Digest = divine5()
+    let cfg_mint: Digest = divine5()
+    let cfg_burn: Digest = divine5()
+    let cfg_pay_hook: Field = divine()
+    let cfg_lock_hook: Field = divine()
+    let cfg_update_hook: Field = divine()
+    let cfg_mint_hook: Field = divine()
+    let cfg_burn_hook: Field = divine()
+    plumb.verify_config(
+        cfg_admin,
+        cfg_pay,
+        cfg_lock,
+        cfg_mint,
+        cfg_burn,
+        cfg_pay_hook,
+        cfg_lock_hook,
+        cfg_update_hook,
+        cfg_mint_hook,
+        cfg_burn_hook,
+        config
+    )
+    // Mint authorization (always required, 0 = minting disabled)
+    plumb.verify_auth(cfg_mint)
+    verify_metadata_cap(metadata_config,max_supply)
+    // Supply accounting
+    let expected_count: Field = old_count + 1
+    assert_eq(new_count, expected_count)
+    // Max supply enforcement (0 = unlimited)
+    if max_supply == 0 {
+    } else {
+        let headroom: Field = sub(max_supply, new_count)
+        plumb.assert_non_negative(headroom)
+    }
+    // Asset fields from prover
+    let owner_id: Field = divine()
+    let auth_hash: Digest = divine5()
+    let creator_id: Digest = divine5()
+    assert_digest(creator_id,cfg_mint)
+    let royalty_bps: Field = divine()
+    let flags: Field = divine()
+    // Validate fields
+    plumb.assert_non_negative(royalty_bps)
+    let royalty_headroom: Field = sub(10000, royalty_bps)
+    plumb.assert_non_negative(royalty_headroom)
+    assert_valid_flags(flags)
+    // Flag check: must be mintable (collection open for mints)
+    assert_mintable(flags)
+    // New leaf: nonce = 0, lock_until = 0
+    let new_leaf: Digest = hash_leaf(
+        asset_id,
+        owner_id,
+        0,
+        auth_hash,
+        0,
+        collection_id,
+        metadata_hash,
+        royalty_bps,
+        creator_id,
+        flags
+    )
+    // Authenticate new leaf against new state root
+    let leaf_idx: U32 = as_u32(divine())
+    plumb.check_index(asset_id,leaf_idx)
+    assert_digest(plumb.update_leaf(plumb.empty_leaf(),new_leaf,old_root,leaf_idx),new_root)
+    // Hook signal
+    plumb.signal_hook(cfg_mint_hook)
+    // Events
+    reveal
+    Mint { asset_id: asset_id, creator_id: creator_id, collection_id: collection_id, metadata_hash: metadata_hash }
+    reveal
+    SupplyChange { old_count: old_count, new_count: new_count }
+}
+
+// ============================================================
+// Op 4: BURN — permanently destroy an asset
+// ============================================================
+fn burn() {
+    let old_root: Digest = pub_read5()
+    let new_root: Digest = pub_read5()
+    let old_count: Field = pub_read()
+    plumb.assert_non_negative(old_count)
+    let new_count: Field = pub_read()
+    plumb.assert_non_negative(new_count)
+    let asset_id: Field = pub_read()
+    let current_time: Field = pub_read()
+    plumb.assert_non_negative(current_time)
+    let config: Digest = pub_read5()
+    // --- Verify config ---
+    let cfg_admin: Digest = divine5()
+    let cfg_pay: Digest = divine5()
+    let cfg_lock: Digest = divine5()
+    let cfg_mint: Digest = divine5()
+    let cfg_burn: Digest = divine5()
+    let cfg_pay_hook: Field = divine()
+    let cfg_lock_hook: Field = divine()
+    let cfg_update_hook: Field = divine()
+    let cfg_mint_hook: Field = divine()
+    let cfg_burn_hook: Field = divine()
+    plumb.verify_config(
+        cfg_admin,
+        cfg_pay,
+        cfg_lock,
+        cfg_mint,
+        cfg_burn,
+        cfg_pay_hook,
+        cfg_lock_hook,
+        cfg_update_hook,
+        cfg_mint_hook,
+        cfg_burn_hook,
+        config
+    )
+    // --- Asset leaf ---
+    let leaf_asset_id: Field = divine()
+    let leaf_owner_id: Field = divine()
+    let leaf_nonce: Field = divine()
+    let leaf_auth_hash: Digest = divine5()
+    let leaf_lock_until: Field = divine()
+    let leaf_collection_id: Field = divine()
+    let leaf_metadata_hash: Field = divine()
+    let leaf_royalty_bps: Field = divine()
+    let leaf_creator_id: Digest = divine5()
+    let leaf_flags: Field = divine()
+    // Authenticate leaf against old state root
+    let old_leaf: Digest = hash_leaf(
+        leaf_asset_id,
+        leaf_owner_id,
+        leaf_nonce,
+        leaf_auth_hash,
+        leaf_lock_until,
+        leaf_collection_id,
+        leaf_metadata_hash,
+        leaf_royalty_bps,
+        leaf_creator_id,
+        leaf_flags
+    )
+    let leaf_idx: U32 = as_u32(divine())
+    plumb.check_index(leaf_asset_id,leaf_idx)
+    assert_eq(leaf_asset_id, asset_id)
+    // Owner authorization
+    plumb.verify_auth(leaf_auth_hash)
+    // Dual auth if burn_auth ≠ 0
+    if plumb.is_zero(cfg_burn) {
+    } else {
+        plumb.verify_auth(cfg_burn)
+    }
+    // Time-lock check
+    let lock_headroom: Field = sub(current_time, leaf_lock_until)
+    plumb.assert_non_negative(lock_headroom)
+    // Flag check: must be burnable
+    assert_burnable(leaf_flags)
+    // Supply accounting
+    let expected_count: Field = sub(old_count, 1)
+    assert_eq(new_count, expected_count)
+    assert_digest(plumb.update_leaf(old_leaf,plumb.empty_leaf(),old_root,leaf_idx),new_root)
+    // Hook signal
+    plumb.signal_hook(cfg_burn_hook)
+    // Nullifier (sealed — prevents double-burn)
+    seal Nullifier { asset_id: leaf_asset_id, nonce: leaf_nonce }
+    // Events
+    reveal
+    Burn { asset_id: leaf_asset_id, owner_id: leaf_owner_id }
+    reveal
+    SupplyChange { old_count: old_count, new_count: new_count }
+}
+
+// ============================================================
+// Entry point — TSP-2 dispatch by PLUMB operation code
+// ============================================================
+fn main() {
+    let op: Field = pub_read()
+    if op == 0 {
+        pay()
+    } else if op == 1 {
+        lock()
+    } else if op == 2 {
+        update()
+    } else if op == 3 {
+        mint()
+    } else if op == 4 {
+        burn()
+    } else { assert(false) }
+}
+
+fn read_and_verify_config(expected: Digest) {
+    let admin: Digest = divine5()
+    let pay: Digest = divine5()
+    let lock: Digest = divine5()
+    let mint: Digest = divine5()
+    let burn: Digest = divine5()
+    let h0 = divine() let h1 = divine() let h2 = divine() let h3 = divine() let h4 = divine()
+    plumb.verify_config(admin,pay,lock,mint,burn,h0,h1,h2,h3,h4,expected)
+}
+
+fn verify_metadata_cap(expected: Digest, cap: Field) {
+    let name = divine() let description = divine() let image = divine()
+    let site = divine() let custom = divine() let declared_cap = divine()
+    let royalty_receiver = divine() let version = divine() let r0 = divine() let r1 = divine()
+    assert_eq(version,2) assert_eq(r0,0) assert_eq(r1,0)
+    assert_eq(cap,declared_cap)
+    assert_digest(hash(name,description,image,site,custom,declared_cap,royalty_receiver,version,r0,r1),expected)
+}

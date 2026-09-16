@@ -1,0 +1,7 @@
+read_io 1
+push 7
+mul
+push 3
+add
+write_io 1
+halt

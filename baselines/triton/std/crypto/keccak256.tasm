@@ -1,0 +1,475 @@
+// Keccak-f[1600], independent U32 RAM implementation. State RAM0..49.
+// Scratch RAM1000..1251 and round constants1300..1301; no witness constants.
+std_crypto_keccak256__theta:
+push 0 read_mem 1 pop 1 push 10 read_mem 1 pop 1 push 20 read_mem 1 pop 1 push 30 read_mem 1 pop 1 push 40 read_mem 1 pop 1 xor xor xor xor push 1000 write_mem 1 pop 1
+push 1 read_mem 1 pop 1 push 11 read_mem 1 pop 1 push 21 read_mem 1 pop 1 push 31 read_mem 1 pop 1 push 41 read_mem 1 pop 1 xor xor xor xor push 1001 write_mem 1 pop 1
+push 2 read_mem 1 pop 1 push 12 read_mem 1 pop 1 push 22 read_mem 1 pop 1 push 32 read_mem 1 pop 1 push 42 read_mem 1 pop 1 xor xor xor xor push 1002 write_mem 1 pop 1
+push 3 read_mem 1 pop 1 push 13 read_mem 1 pop 1 push 23 read_mem 1 pop 1 push 33 read_mem 1 pop 1 push 43 read_mem 1 pop 1 xor xor xor xor push 1003 write_mem 1 pop 1
+push 4 read_mem 1 pop 1 push 14 read_mem 1 pop 1 push 24 read_mem 1 pop 1 push 34 read_mem 1 pop 1 push 44 read_mem 1 pop 1 xor xor xor xor push 1004 write_mem 1 pop 1
+push 5 read_mem 1 pop 1 push 15 read_mem 1 pop 1 push 25 read_mem 1 pop 1 push 35 read_mem 1 pop 1 push 45 read_mem 1 pop 1 xor xor xor xor push 1005 write_mem 1 pop 1
+push 6 read_mem 1 pop 1 push 16 read_mem 1 pop 1 push 26 read_mem 1 pop 1 push 36 read_mem 1 pop 1 push 46 read_mem 1 pop 1 xor xor xor xor push 1006 write_mem 1 pop 1
+push 7 read_mem 1 pop 1 push 17 read_mem 1 pop 1 push 27 read_mem 1 pop 1 push 37 read_mem 1 pop 1 push 47 read_mem 1 pop 1 xor xor xor xor push 1007 write_mem 1 pop 1
+push 8 read_mem 1 pop 1 push 18 read_mem 1 pop 1 push 28 read_mem 1 pop 1 push 38 read_mem 1 pop 1 push 48 read_mem 1 pop 1 xor xor xor xor push 1008 write_mem 1 pop 1
+push 9 read_mem 1 pop 1 push 19 read_mem 1 pop 1 push 29 read_mem 1 pop 1 push 39 read_mem 1 pop 1 push 49 read_mem 1 pop 1 xor xor xor xor push 1009 write_mem 1 pop 1
+push 1002 read_mem 1 pop 1 push 2 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 1003 read_mem 1 pop 1 push 2 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1008 read_mem 1 pop 1 xor push 1010 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1009 read_mem 1 pop 1 xor push 1011 write_mem 1 pop 1
+push 1004 read_mem 1 pop 1 push 2 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 1005 read_mem 1 pop 1 push 2 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1000 read_mem 1 pop 1 xor push 1012 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1001 read_mem 1 pop 1 xor push 1013 write_mem 1 pop 1
+push 1006 read_mem 1 pop 1 push 2 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 1007 read_mem 1 pop 1 push 2 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1002 read_mem 1 pop 1 xor push 1014 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1003 read_mem 1 pop 1 xor push 1015 write_mem 1 pop 1
+push 1008 read_mem 1 pop 1 push 2 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 1009 read_mem 1 pop 1 push 2 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1004 read_mem 1 pop 1 xor push 1016 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1005 read_mem 1 pop 1 xor push 1017 write_mem 1 pop 1
+push 1000 read_mem 1 pop 1 push 2 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 1001 read_mem 1 pop 1 push 2 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1006 read_mem 1 pop 1 xor push 1018 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1007 read_mem 1 pop 1 xor push 1019 write_mem 1 pop 1
+push 0 read_mem 1 pop 1 push 1010 read_mem 1 pop 1 xor push 0 write_mem 1 pop 1
+push 1 read_mem 1 pop 1 push 1011 read_mem 1 pop 1 xor push 1 write_mem 1 pop 1
+push 2 read_mem 1 pop 1 push 1012 read_mem 1 pop 1 xor push 2 write_mem 1 pop 1
+push 3 read_mem 1 pop 1 push 1013 read_mem 1 pop 1 xor push 3 write_mem 1 pop 1
+push 4 read_mem 1 pop 1 push 1014 read_mem 1 pop 1 xor push 4 write_mem 1 pop 1
+push 5 read_mem 1 pop 1 push 1015 read_mem 1 pop 1 xor push 5 write_mem 1 pop 1
+push 6 read_mem 1 pop 1 push 1016 read_mem 1 pop 1 xor push 6 write_mem 1 pop 1
+push 7 read_mem 1 pop 1 push 1017 read_mem 1 pop 1 xor push 7 write_mem 1 pop 1
+push 8 read_mem 1 pop 1 push 1018 read_mem 1 pop 1 xor push 8 write_mem 1 pop 1
+push 9 read_mem 1 pop 1 push 1019 read_mem 1 pop 1 xor push 9 write_mem 1 pop 1
+push 10 read_mem 1 pop 1 push 1010 read_mem 1 pop 1 xor push 10 write_mem 1 pop 1
+push 11 read_mem 1 pop 1 push 1011 read_mem 1 pop 1 xor push 11 write_mem 1 pop 1
+push 12 read_mem 1 pop 1 push 1012 read_mem 1 pop 1 xor push 12 write_mem 1 pop 1
+push 13 read_mem 1 pop 1 push 1013 read_mem 1 pop 1 xor push 13 write_mem 1 pop 1
+push 14 read_mem 1 pop 1 push 1014 read_mem 1 pop 1 xor push 14 write_mem 1 pop 1
+push 15 read_mem 1 pop 1 push 1015 read_mem 1 pop 1 xor push 15 write_mem 1 pop 1
+push 16 read_mem 1 pop 1 push 1016 read_mem 1 pop 1 xor push 16 write_mem 1 pop 1
+push 17 read_mem 1 pop 1 push 1017 read_mem 1 pop 1 xor push 17 write_mem 1 pop 1
+push 18 read_mem 1 pop 1 push 1018 read_mem 1 pop 1 xor push 18 write_mem 1 pop 1
+push 19 read_mem 1 pop 1 push 1019 read_mem 1 pop 1 xor push 19 write_mem 1 pop 1
+push 20 read_mem 1 pop 1 push 1010 read_mem 1 pop 1 xor push 20 write_mem 1 pop 1
+push 21 read_mem 1 pop 1 push 1011 read_mem 1 pop 1 xor push 21 write_mem 1 pop 1
+push 22 read_mem 1 pop 1 push 1012 read_mem 1 pop 1 xor push 22 write_mem 1 pop 1
+push 23 read_mem 1 pop 1 push 1013 read_mem 1 pop 1 xor push 23 write_mem 1 pop 1
+push 24 read_mem 1 pop 1 push 1014 read_mem 1 pop 1 xor push 24 write_mem 1 pop 1
+push 25 read_mem 1 pop 1 push 1015 read_mem 1 pop 1 xor push 25 write_mem 1 pop 1
+push 26 read_mem 1 pop 1 push 1016 read_mem 1 pop 1 xor push 26 write_mem 1 pop 1
+push 27 read_mem 1 pop 1 push 1017 read_mem 1 pop 1 xor push 27 write_mem 1 pop 1
+push 28 read_mem 1 pop 1 push 1018 read_mem 1 pop 1 xor push 28 write_mem 1 pop 1
+push 29 read_mem 1 pop 1 push 1019 read_mem 1 pop 1 xor push 29 write_mem 1 pop 1
+push 30 read_mem 1 pop 1 push 1010 read_mem 1 pop 1 xor push 30 write_mem 1 pop 1
+push 31 read_mem 1 pop 1 push 1011 read_mem 1 pop 1 xor push 31 write_mem 1 pop 1
+push 32 read_mem 1 pop 1 push 1012 read_mem 1 pop 1 xor push 32 write_mem 1 pop 1
+push 33 read_mem 1 pop 1 push 1013 read_mem 1 pop 1 xor push 33 write_mem 1 pop 1
+push 34 read_mem 1 pop 1 push 1014 read_mem 1 pop 1 xor push 34 write_mem 1 pop 1
+push 35 read_mem 1 pop 1 push 1015 read_mem 1 pop 1 xor push 35 write_mem 1 pop 1
+push 36 read_mem 1 pop 1 push 1016 read_mem 1 pop 1 xor push 36 write_mem 1 pop 1
+push 37 read_mem 1 pop 1 push 1017 read_mem 1 pop 1 xor push 37 write_mem 1 pop 1
+push 38 read_mem 1 pop 1 push 1018 read_mem 1 pop 1 xor push 38 write_mem 1 pop 1
+push 39 read_mem 1 pop 1 push 1019 read_mem 1 pop 1 xor push 39 write_mem 1 pop 1
+push 40 read_mem 1 pop 1 push 1010 read_mem 1 pop 1 xor push 40 write_mem 1 pop 1
+push 41 read_mem 1 pop 1 push 1011 read_mem 1 pop 1 xor push 41 write_mem 1 pop 1
+push 42 read_mem 1 pop 1 push 1012 read_mem 1 pop 1 xor push 42 write_mem 1 pop 1
+push 43 read_mem 1 pop 1 push 1013 read_mem 1 pop 1 xor push 43 write_mem 1 pop 1
+push 44 read_mem 1 pop 1 push 1014 read_mem 1 pop 1 xor push 44 write_mem 1 pop 1
+push 45 read_mem 1 pop 1 push 1015 read_mem 1 pop 1 xor push 45 write_mem 1 pop 1
+push 46 read_mem 1 pop 1 push 1016 read_mem 1 pop 1 xor push 46 write_mem 1 pop 1
+push 47 read_mem 1 pop 1 push 1017 read_mem 1 pop 1 xor push 47 write_mem 1 pop 1
+push 48 read_mem 1 pop 1 push 1018 read_mem 1 pop 1 xor push 48 write_mem 1 pop 1
+push 49 read_mem 1 pop 1 push 1019 read_mem 1 pop 1 xor push 49 write_mem 1 pop 1
+return
+std_crypto_keccak256__rho:
+push 0 read_mem 1 pop 1 push 1100 write_mem 1 pop 1
+push 1 read_mem 1 pop 1 push 1101 write_mem 1 pop 1
+push 2 read_mem 1 pop 1 push 2 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 3 read_mem 1 pop 1 push 2 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1102 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1103 write_mem 1 pop 1
+push 5 read_mem 1 pop 1 push 1073741824 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 4 read_mem 1 pop 1 push 1073741824 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1104 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1105 write_mem 1 pop 1
+push 6 read_mem 1 pop 1 push 268435456 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 7 read_mem 1 pop 1 push 268435456 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1106 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1107 write_mem 1 pop 1
+push 8 read_mem 1 pop 1 push 134217728 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 9 read_mem 1 pop 1 push 134217728 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1108 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1109 write_mem 1 pop 1
+push 11 read_mem 1 pop 1 push 16 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 10 read_mem 1 pop 1 push 16 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1110 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1111 write_mem 1 pop 1
+push 13 read_mem 1 pop 1 push 4096 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 12 read_mem 1 pop 1 push 4096 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1112 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1113 write_mem 1 pop 1
+push 14 read_mem 1 pop 1 push 64 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 15 read_mem 1 pop 1 push 64 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1114 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1115 write_mem 1 pop 1
+push 17 read_mem 1 pop 1 push 8388608 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 16 read_mem 1 pop 1 push 8388608 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1116 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1117 write_mem 1 pop 1
+push 18 read_mem 1 pop 1 push 1048576 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 19 read_mem 1 pop 1 push 1048576 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1118 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1119 write_mem 1 pop 1
+push 20 read_mem 1 pop 1 push 8 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 21 read_mem 1 pop 1 push 8 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1120 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1121 write_mem 1 pop 1
+push 22 read_mem 1 pop 1 push 1024 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 23 read_mem 1 pop 1 push 1024 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1122 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1123 write_mem 1 pop 1
+push 25 read_mem 1 pop 1 push 2048 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 24 read_mem 1 pop 1 push 2048 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1124 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1125 write_mem 1 pop 1
+push 26 read_mem 1 pop 1 push 33554432 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 27 read_mem 1 pop 1 push 33554432 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1126 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1127 write_mem 1 pop 1
+push 29 read_mem 1 pop 1 push 128 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 28 read_mem 1 pop 1 push 128 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1128 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1129 write_mem 1 pop 1
+push 31 read_mem 1 pop 1 push 512 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 30 read_mem 1 pop 1 push 512 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1130 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1131 write_mem 1 pop 1
+push 33 read_mem 1 pop 1 push 8192 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 32 read_mem 1 pop 1 push 8192 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1132 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1133 write_mem 1 pop 1
+push 34 read_mem 1 pop 1 push 32768 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 35 read_mem 1 pop 1 push 32768 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1134 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1135 write_mem 1 pop 1
+push 36 read_mem 1 pop 1 push 2097152 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 37 read_mem 1 pop 1 push 2097152 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1136 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1137 write_mem 1 pop 1
+push 38 read_mem 1 pop 1 push 256 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 39 read_mem 1 pop 1 push 256 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1138 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1139 write_mem 1 pop 1
+push 40 read_mem 1 pop 1 push 262144 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 41 read_mem 1 pop 1 push 262144 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1140 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1141 write_mem 1 pop 1
+push 42 read_mem 1 pop 1 push 4 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 43 read_mem 1 pop 1 push 4 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1142 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1143 write_mem 1 pop 1
+push 45 read_mem 1 pop 1 push 536870912 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 44 read_mem 1 pop 1 push 536870912 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1144 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1145 write_mem 1 pop 1
+push 47 read_mem 1 pop 1 push 16777216 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 46 read_mem 1 pop 1 push 16777216 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1146 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1147 write_mem 1 pop 1
+push 48 read_mem 1 pop 1 push 16384 mul split push 1200 write_mem 1 pop 1 push 1201 write_mem 1 pop 1
+push 49 read_mem 1 pop 1 push 16384 mul split push 1202 write_mem 1 pop 1 push 1203 write_mem 1 pop 1
+push 1200 read_mem 1 pop 1 push 1203 read_mem 1 pop 1 xor push 1148 write_mem 1 pop 1
+push 1202 read_mem 1 pop 1 push 1201 read_mem 1 pop 1 xor push 1149 write_mem 1 pop 1
+push 1100 read_mem 1 pop 1 push 0 write_mem 1 pop 1
+push 1101 read_mem 1 pop 1 push 1 write_mem 1 pop 1
+push 1102 read_mem 1 pop 1 push 2 write_mem 1 pop 1
+push 1103 read_mem 1 pop 1 push 3 write_mem 1 pop 1
+push 1104 read_mem 1 pop 1 push 4 write_mem 1 pop 1
+push 1105 read_mem 1 pop 1 push 5 write_mem 1 pop 1
+push 1106 read_mem 1 pop 1 push 6 write_mem 1 pop 1
+push 1107 read_mem 1 pop 1 push 7 write_mem 1 pop 1
+push 1108 read_mem 1 pop 1 push 8 write_mem 1 pop 1
+push 1109 read_mem 1 pop 1 push 9 write_mem 1 pop 1
+push 1110 read_mem 1 pop 1 push 10 write_mem 1 pop 1
+push 1111 read_mem 1 pop 1 push 11 write_mem 1 pop 1
+push 1112 read_mem 1 pop 1 push 12 write_mem 1 pop 1
+push 1113 read_mem 1 pop 1 push 13 write_mem 1 pop 1
+push 1114 read_mem 1 pop 1 push 14 write_mem 1 pop 1
+push 1115 read_mem 1 pop 1 push 15 write_mem 1 pop 1
+push 1116 read_mem 1 pop 1 push 16 write_mem 1 pop 1
+push 1117 read_mem 1 pop 1 push 17 write_mem 1 pop 1
+push 1118 read_mem 1 pop 1 push 18 write_mem 1 pop 1
+push 1119 read_mem 1 pop 1 push 19 write_mem 1 pop 1
+push 1120 read_mem 1 pop 1 push 20 write_mem 1 pop 1
+push 1121 read_mem 1 pop 1 push 21 write_mem 1 pop 1
+push 1122 read_mem 1 pop 1 push 22 write_mem 1 pop 1
+push 1123 read_mem 1 pop 1 push 23 write_mem 1 pop 1
+push 1124 read_mem 1 pop 1 push 24 write_mem 1 pop 1
+push 1125 read_mem 1 pop 1 push 25 write_mem 1 pop 1
+push 1126 read_mem 1 pop 1 push 26 write_mem 1 pop 1
+push 1127 read_mem 1 pop 1 push 27 write_mem 1 pop 1
+push 1128 read_mem 1 pop 1 push 28 write_mem 1 pop 1
+push 1129 read_mem 1 pop 1 push 29 write_mem 1 pop 1
+push 1130 read_mem 1 pop 1 push 30 write_mem 1 pop 1
+push 1131 read_mem 1 pop 1 push 31 write_mem 1 pop 1
+push 1132 read_mem 1 pop 1 push 32 write_mem 1 pop 1
+push 1133 read_mem 1 pop 1 push 33 write_mem 1 pop 1
+push 1134 read_mem 1 pop 1 push 34 write_mem 1 pop 1
+push 1135 read_mem 1 pop 1 push 35 write_mem 1 pop 1
+push 1136 read_mem 1 pop 1 push 36 write_mem 1 pop 1
+push 1137 read_mem 1 pop 1 push 37 write_mem 1 pop 1
+push 1138 read_mem 1 pop 1 push 38 write_mem 1 pop 1
+push 1139 read_mem 1 pop 1 push 39 write_mem 1 pop 1
+push 1140 read_mem 1 pop 1 push 40 write_mem 1 pop 1
+push 1141 read_mem 1 pop 1 push 41 write_mem 1 pop 1
+push 1142 read_mem 1 pop 1 push 42 write_mem 1 pop 1
+push 1143 read_mem 1 pop 1 push 43 write_mem 1 pop 1
+push 1144 read_mem 1 pop 1 push 44 write_mem 1 pop 1
+push 1145 read_mem 1 pop 1 push 45 write_mem 1 pop 1
+push 1146 read_mem 1 pop 1 push 46 write_mem 1 pop 1
+push 1147 read_mem 1 pop 1 push 47 write_mem 1 pop 1
+push 1148 read_mem 1 pop 1 push 48 write_mem 1 pop 1
+push 1149 read_mem 1 pop 1 push 49 write_mem 1 pop 1
+return
+std_crypto_keccak256__pi:
+push 0 read_mem 1 pop 1 push 1100 write_mem 1 pop 1
+push 1 read_mem 1 pop 1 push 1101 write_mem 1 pop 1
+push 2 read_mem 1 pop 1 push 1120 write_mem 1 pop 1
+push 3 read_mem 1 pop 1 push 1121 write_mem 1 pop 1
+push 4 read_mem 1 pop 1 push 1140 write_mem 1 pop 1
+push 5 read_mem 1 pop 1 push 1141 write_mem 1 pop 1
+push 6 read_mem 1 pop 1 push 1110 write_mem 1 pop 1
+push 7 read_mem 1 pop 1 push 1111 write_mem 1 pop 1
+push 8 read_mem 1 pop 1 push 1130 write_mem 1 pop 1
+push 9 read_mem 1 pop 1 push 1131 write_mem 1 pop 1
+push 10 read_mem 1 pop 1 push 1132 write_mem 1 pop 1
+push 11 read_mem 1 pop 1 push 1133 write_mem 1 pop 1
+push 12 read_mem 1 pop 1 push 1102 write_mem 1 pop 1
+push 13 read_mem 1 pop 1 push 1103 write_mem 1 pop 1
+push 14 read_mem 1 pop 1 push 1122 write_mem 1 pop 1
+push 15 read_mem 1 pop 1 push 1123 write_mem 1 pop 1
+push 16 read_mem 1 pop 1 push 1142 write_mem 1 pop 1
+push 17 read_mem 1 pop 1 push 1143 write_mem 1 pop 1
+push 18 read_mem 1 pop 1 push 1112 write_mem 1 pop 1
+push 19 read_mem 1 pop 1 push 1113 write_mem 1 pop 1
+push 20 read_mem 1 pop 1 push 1114 write_mem 1 pop 1
+push 21 read_mem 1 pop 1 push 1115 write_mem 1 pop 1
+push 22 read_mem 1 pop 1 push 1134 write_mem 1 pop 1
+push 23 read_mem 1 pop 1 push 1135 write_mem 1 pop 1
+push 24 read_mem 1 pop 1 push 1104 write_mem 1 pop 1
+push 25 read_mem 1 pop 1 push 1105 write_mem 1 pop 1
+push 26 read_mem 1 pop 1 push 1124 write_mem 1 pop 1
+push 27 read_mem 1 pop 1 push 1125 write_mem 1 pop 1
+push 28 read_mem 1 pop 1 push 1144 write_mem 1 pop 1
+push 29 read_mem 1 pop 1 push 1145 write_mem 1 pop 1
+push 30 read_mem 1 pop 1 push 1146 write_mem 1 pop 1
+push 31 read_mem 1 pop 1 push 1147 write_mem 1 pop 1
+push 32 read_mem 1 pop 1 push 1116 write_mem 1 pop 1
+push 33 read_mem 1 pop 1 push 1117 write_mem 1 pop 1
+push 34 read_mem 1 pop 1 push 1136 write_mem 1 pop 1
+push 35 read_mem 1 pop 1 push 1137 write_mem 1 pop 1
+push 36 read_mem 1 pop 1 push 1106 write_mem 1 pop 1
+push 37 read_mem 1 pop 1 push 1107 write_mem 1 pop 1
+push 38 read_mem 1 pop 1 push 1126 write_mem 1 pop 1
+push 39 read_mem 1 pop 1 push 1127 write_mem 1 pop 1
+push 40 read_mem 1 pop 1 push 1128 write_mem 1 pop 1
+push 41 read_mem 1 pop 1 push 1129 write_mem 1 pop 1
+push 42 read_mem 1 pop 1 push 1148 write_mem 1 pop 1
+push 43 read_mem 1 pop 1 push 1149 write_mem 1 pop 1
+push 44 read_mem 1 pop 1 push 1118 write_mem 1 pop 1
+push 45 read_mem 1 pop 1 push 1119 write_mem 1 pop 1
+push 46 read_mem 1 pop 1 push 1138 write_mem 1 pop 1
+push 47 read_mem 1 pop 1 push 1139 write_mem 1 pop 1
+push 48 read_mem 1 pop 1 push 1108 write_mem 1 pop 1
+push 49 read_mem 1 pop 1 push 1109 write_mem 1 pop 1
+push 1100 read_mem 1 pop 1 push 0 write_mem 1 pop 1
+push 1101 read_mem 1 pop 1 push 1 write_mem 1 pop 1
+push 1102 read_mem 1 pop 1 push 2 write_mem 1 pop 1
+push 1103 read_mem 1 pop 1 push 3 write_mem 1 pop 1
+push 1104 read_mem 1 pop 1 push 4 write_mem 1 pop 1
+push 1105 read_mem 1 pop 1 push 5 write_mem 1 pop 1
+push 1106 read_mem 1 pop 1 push 6 write_mem 1 pop 1
+push 1107 read_mem 1 pop 1 push 7 write_mem 1 pop 1
+push 1108 read_mem 1 pop 1 push 8 write_mem 1 pop 1
+push 1109 read_mem 1 pop 1 push 9 write_mem 1 pop 1
+push 1110 read_mem 1 pop 1 push 10 write_mem 1 pop 1
+push 1111 read_mem 1 pop 1 push 11 write_mem 1 pop 1
+push 1112 read_mem 1 pop 1 push 12 write_mem 1 pop 1
+push 1113 read_mem 1 pop 1 push 13 write_mem 1 pop 1
+push 1114 read_mem 1 pop 1 push 14 write_mem 1 pop 1
+push 1115 read_mem 1 pop 1 push 15 write_mem 1 pop 1
+push 1116 read_mem 1 pop 1 push 16 write_mem 1 pop 1
+push 1117 read_mem 1 pop 1 push 17 write_mem 1 pop 1
+push 1118 read_mem 1 pop 1 push 18 write_mem 1 pop 1
+push 1119 read_mem 1 pop 1 push 19 write_mem 1 pop 1
+push 1120 read_mem 1 pop 1 push 20 write_mem 1 pop 1
+push 1121 read_mem 1 pop 1 push 21 write_mem 1 pop 1
+push 1122 read_mem 1 pop 1 push 22 write_mem 1 pop 1
+push 1123 read_mem 1 pop 1 push 23 write_mem 1 pop 1
+push 1124 read_mem 1 pop 1 push 24 write_mem 1 pop 1
+push 1125 read_mem 1 pop 1 push 25 write_mem 1 pop 1
+push 1126 read_mem 1 pop 1 push 26 write_mem 1 pop 1
+push 1127 read_mem 1 pop 1 push 27 write_mem 1 pop 1
+push 1128 read_mem 1 pop 1 push 28 write_mem 1 pop 1
+push 1129 read_mem 1 pop 1 push 29 write_mem 1 pop 1
+push 1130 read_mem 1 pop 1 push 30 write_mem 1 pop 1
+push 1131 read_mem 1 pop 1 push 31 write_mem 1 pop 1
+push 1132 read_mem 1 pop 1 push 32 write_mem 1 pop 1
+push 1133 read_mem 1 pop 1 push 33 write_mem 1 pop 1
+push 1134 read_mem 1 pop 1 push 34 write_mem 1 pop 1
+push 1135 read_mem 1 pop 1 push 35 write_mem 1 pop 1
+push 1136 read_mem 1 pop 1 push 36 write_mem 1 pop 1
+push 1137 read_mem 1 pop 1 push 37 write_mem 1 pop 1
+push 1138 read_mem 1 pop 1 push 38 write_mem 1 pop 1
+push 1139 read_mem 1 pop 1 push 39 write_mem 1 pop 1
+push 1140 read_mem 1 pop 1 push 40 write_mem 1 pop 1
+push 1141 read_mem 1 pop 1 push 41 write_mem 1 pop 1
+push 1142 read_mem 1 pop 1 push 42 write_mem 1 pop 1
+push 1143 read_mem 1 pop 1 push 43 write_mem 1 pop 1
+push 1144 read_mem 1 pop 1 push 44 write_mem 1 pop 1
+push 1145 read_mem 1 pop 1 push 45 write_mem 1 pop 1
+push 1146 read_mem 1 pop 1 push 46 write_mem 1 pop 1
+push 1147 read_mem 1 pop 1 push 47 write_mem 1 pop 1
+push 1148 read_mem 1 pop 1 push 48 write_mem 1 pop 1
+push 1149 read_mem 1 pop 1 push 49 write_mem 1 pop 1
+return
+std_crypto_keccak256__chi:
+push 0 read_mem 1 pop 1 push 1100 write_mem 1 pop 1
+push 1 read_mem 1 pop 1 push 1101 write_mem 1 pop 1
+push 2 read_mem 1 pop 1 push 1102 write_mem 1 pop 1
+push 3 read_mem 1 pop 1 push 1103 write_mem 1 pop 1
+push 4 read_mem 1 pop 1 push 1104 write_mem 1 pop 1
+push 5 read_mem 1 pop 1 push 1105 write_mem 1 pop 1
+push 6 read_mem 1 pop 1 push 1106 write_mem 1 pop 1
+push 7 read_mem 1 pop 1 push 1107 write_mem 1 pop 1
+push 8 read_mem 1 pop 1 push 1108 write_mem 1 pop 1
+push 9 read_mem 1 pop 1 push 1109 write_mem 1 pop 1
+push 10 read_mem 1 pop 1 push 1110 write_mem 1 pop 1
+push 11 read_mem 1 pop 1 push 1111 write_mem 1 pop 1
+push 12 read_mem 1 pop 1 push 1112 write_mem 1 pop 1
+push 13 read_mem 1 pop 1 push 1113 write_mem 1 pop 1
+push 14 read_mem 1 pop 1 push 1114 write_mem 1 pop 1
+push 15 read_mem 1 pop 1 push 1115 write_mem 1 pop 1
+push 16 read_mem 1 pop 1 push 1116 write_mem 1 pop 1
+push 17 read_mem 1 pop 1 push 1117 write_mem 1 pop 1
+push 18 read_mem 1 pop 1 push 1118 write_mem 1 pop 1
+push 19 read_mem 1 pop 1 push 1119 write_mem 1 pop 1
+push 20 read_mem 1 pop 1 push 1120 write_mem 1 pop 1
+push 21 read_mem 1 pop 1 push 1121 write_mem 1 pop 1
+push 22 read_mem 1 pop 1 push 1122 write_mem 1 pop 1
+push 23 read_mem 1 pop 1 push 1123 write_mem 1 pop 1
+push 24 read_mem 1 pop 1 push 1124 write_mem 1 pop 1
+push 25 read_mem 1 pop 1 push 1125 write_mem 1 pop 1
+push 26 read_mem 1 pop 1 push 1126 write_mem 1 pop 1
+push 27 read_mem 1 pop 1 push 1127 write_mem 1 pop 1
+push 28 read_mem 1 pop 1 push 1128 write_mem 1 pop 1
+push 29 read_mem 1 pop 1 push 1129 write_mem 1 pop 1
+push 30 read_mem 1 pop 1 push 1130 write_mem 1 pop 1
+push 31 read_mem 1 pop 1 push 1131 write_mem 1 pop 1
+push 32 read_mem 1 pop 1 push 1132 write_mem 1 pop 1
+push 33 read_mem 1 pop 1 push 1133 write_mem 1 pop 1
+push 34 read_mem 1 pop 1 push 1134 write_mem 1 pop 1
+push 35 read_mem 1 pop 1 push 1135 write_mem 1 pop 1
+push 36 read_mem 1 pop 1 push 1136 write_mem 1 pop 1
+push 37 read_mem 1 pop 1 push 1137 write_mem 1 pop 1
+push 38 read_mem 1 pop 1 push 1138 write_mem 1 pop 1
+push 39 read_mem 1 pop 1 push 1139 write_mem 1 pop 1
+push 40 read_mem 1 pop 1 push 1140 write_mem 1 pop 1
+push 41 read_mem 1 pop 1 push 1141 write_mem 1 pop 1
+push 42 read_mem 1 pop 1 push 1142 write_mem 1 pop 1
+push 43 read_mem 1 pop 1 push 1143 write_mem 1 pop 1
+push 44 read_mem 1 pop 1 push 1144 write_mem 1 pop 1
+push 45 read_mem 1 pop 1 push 1145 write_mem 1 pop 1
+push 46 read_mem 1 pop 1 push 1146 write_mem 1 pop 1
+push 47 read_mem 1 pop 1 push 1147 write_mem 1 pop 1
+push 48 read_mem 1 pop 1 push 1148 write_mem 1 pop 1
+push 49 read_mem 1 pop 1 push 1149 write_mem 1 pop 1
+push 1102 read_mem 1 pop 1 push 4294967295 xor push 1104 read_mem 1 pop 1 and push 1100 read_mem 1 pop 1 xor push 0 write_mem 1 pop 1
+push 1103 read_mem 1 pop 1 push 4294967295 xor push 1105 read_mem 1 pop 1 and push 1101 read_mem 1 pop 1 xor push 1 write_mem 1 pop 1
+push 1104 read_mem 1 pop 1 push 4294967295 xor push 1106 read_mem 1 pop 1 and push 1102 read_mem 1 pop 1 xor push 2 write_mem 1 pop 1
+push 1105 read_mem 1 pop 1 push 4294967295 xor push 1107 read_mem 1 pop 1 and push 1103 read_mem 1 pop 1 xor push 3 write_mem 1 pop 1
+push 1106 read_mem 1 pop 1 push 4294967295 xor push 1108 read_mem 1 pop 1 and push 1104 read_mem 1 pop 1 xor push 4 write_mem 1 pop 1
+push 1107 read_mem 1 pop 1 push 4294967295 xor push 1109 read_mem 1 pop 1 and push 1105 read_mem 1 pop 1 xor push 5 write_mem 1 pop 1
+push 1108 read_mem 1 pop 1 push 4294967295 xor push 1100 read_mem 1 pop 1 and push 1106 read_mem 1 pop 1 xor push 6 write_mem 1 pop 1
+push 1109 read_mem 1 pop 1 push 4294967295 xor push 1101 read_mem 1 pop 1 and push 1107 read_mem 1 pop 1 xor push 7 write_mem 1 pop 1
+push 1100 read_mem 1 pop 1 push 4294967295 xor push 1102 read_mem 1 pop 1 and push 1108 read_mem 1 pop 1 xor push 8 write_mem 1 pop 1
+push 1101 read_mem 1 pop 1 push 4294967295 xor push 1103 read_mem 1 pop 1 and push 1109 read_mem 1 pop 1 xor push 9 write_mem 1 pop 1
+push 1112 read_mem 1 pop 1 push 4294967295 xor push 1114 read_mem 1 pop 1 and push 1110 read_mem 1 pop 1 xor push 10 write_mem 1 pop 1
+push 1113 read_mem 1 pop 1 push 4294967295 xor push 1115 read_mem 1 pop 1 and push 1111 read_mem 1 pop 1 xor push 11 write_mem 1 pop 1
+push 1114 read_mem 1 pop 1 push 4294967295 xor push 1116 read_mem 1 pop 1 and push 1112 read_mem 1 pop 1 xor push 12 write_mem 1 pop 1
+push 1115 read_mem 1 pop 1 push 4294967295 xor push 1117 read_mem 1 pop 1 and push 1113 read_mem 1 pop 1 xor push 13 write_mem 1 pop 1
+push 1116 read_mem 1 pop 1 push 4294967295 xor push 1118 read_mem 1 pop 1 and push 1114 read_mem 1 pop 1 xor push 14 write_mem 1 pop 1
+push 1117 read_mem 1 pop 1 push 4294967295 xor push 1119 read_mem 1 pop 1 and push 1115 read_mem 1 pop 1 xor push 15 write_mem 1 pop 1
+push 1118 read_mem 1 pop 1 push 4294967295 xor push 1110 read_mem 1 pop 1 and push 1116 read_mem 1 pop 1 xor push 16 write_mem 1 pop 1
+push 1119 read_mem 1 pop 1 push 4294967295 xor push 1111 read_mem 1 pop 1 and push 1117 read_mem 1 pop 1 xor push 17 write_mem 1 pop 1
+push 1110 read_mem 1 pop 1 push 4294967295 xor push 1112 read_mem 1 pop 1 and push 1118 read_mem 1 pop 1 xor push 18 write_mem 1 pop 1
+push 1111 read_mem 1 pop 1 push 4294967295 xor push 1113 read_mem 1 pop 1 and push 1119 read_mem 1 pop 1 xor push 19 write_mem 1 pop 1
+push 1122 read_mem 1 pop 1 push 4294967295 xor push 1124 read_mem 1 pop 1 and push 1120 read_mem 1 pop 1 xor push 20 write_mem 1 pop 1
+push 1123 read_mem 1 pop 1 push 4294967295 xor push 1125 read_mem 1 pop 1 and push 1121 read_mem 1 pop 1 xor push 21 write_mem 1 pop 1
+push 1124 read_mem 1 pop 1 push 4294967295 xor push 1126 read_mem 1 pop 1 and push 1122 read_mem 1 pop 1 xor push 22 write_mem 1 pop 1
+push 1125 read_mem 1 pop 1 push 4294967295 xor push 1127 read_mem 1 pop 1 and push 1123 read_mem 1 pop 1 xor push 23 write_mem 1 pop 1
+push 1126 read_mem 1 pop 1 push 4294967295 xor push 1128 read_mem 1 pop 1 and push 1124 read_mem 1 pop 1 xor push 24 write_mem 1 pop 1
+push 1127 read_mem 1 pop 1 push 4294967295 xor push 1129 read_mem 1 pop 1 and push 1125 read_mem 1 pop 1 xor push 25 write_mem 1 pop 1
+push 1128 read_mem 1 pop 1 push 4294967295 xor push 1120 read_mem 1 pop 1 and push 1126 read_mem 1 pop 1 xor push 26 write_mem 1 pop 1
+push 1129 read_mem 1 pop 1 push 4294967295 xor push 1121 read_mem 1 pop 1 and push 1127 read_mem 1 pop 1 xor push 27 write_mem 1 pop 1
+push 1120 read_mem 1 pop 1 push 4294967295 xor push 1122 read_mem 1 pop 1 and push 1128 read_mem 1 pop 1 xor push 28 write_mem 1 pop 1
+push 1121 read_mem 1 pop 1 push 4294967295 xor push 1123 read_mem 1 pop 1 and push 1129 read_mem 1 pop 1 xor push 29 write_mem 1 pop 1
+push 1132 read_mem 1 pop 1 push 4294967295 xor push 1134 read_mem 1 pop 1 and push 1130 read_mem 1 pop 1 xor push 30 write_mem 1 pop 1
+push 1133 read_mem 1 pop 1 push 4294967295 xor push 1135 read_mem 1 pop 1 and push 1131 read_mem 1 pop 1 xor push 31 write_mem 1 pop 1
+push 1134 read_mem 1 pop 1 push 4294967295 xor push 1136 read_mem 1 pop 1 and push 1132 read_mem 1 pop 1 xor push 32 write_mem 1 pop 1
+push 1135 read_mem 1 pop 1 push 4294967295 xor push 1137 read_mem 1 pop 1 and push 1133 read_mem 1 pop 1 xor push 33 write_mem 1 pop 1
+push 1136 read_mem 1 pop 1 push 4294967295 xor push 1138 read_mem 1 pop 1 and push 1134 read_mem 1 pop 1 xor push 34 write_mem 1 pop 1
+push 1137 read_mem 1 pop 1 push 4294967295 xor push 1139 read_mem 1 pop 1 and push 1135 read_mem 1 pop 1 xor push 35 write_mem 1 pop 1
+push 1138 read_mem 1 pop 1 push 4294967295 xor push 1130 read_mem 1 pop 1 and push 1136 read_mem 1 pop 1 xor push 36 write_mem 1 pop 1
+push 1139 read_mem 1 pop 1 push 4294967295 xor push 1131 read_mem 1 pop 1 and push 1137 read_mem 1 pop 1 xor push 37 write_mem 1 pop 1
+push 1130 read_mem 1 pop 1 push 4294967295 xor push 1132 read_mem 1 pop 1 and push 1138 read_mem 1 pop 1 xor push 38 write_mem 1 pop 1
+push 1131 read_mem 1 pop 1 push 4294967295 xor push 1133 read_mem 1 pop 1 and push 1139 read_mem 1 pop 1 xor push 39 write_mem 1 pop 1
+push 1142 read_mem 1 pop 1 push 4294967295 xor push 1144 read_mem 1 pop 1 and push 1140 read_mem 1 pop 1 xor push 40 write_mem 1 pop 1
+push 1143 read_mem 1 pop 1 push 4294967295 xor push 1145 read_mem 1 pop 1 and push 1141 read_mem 1 pop 1 xor push 41 write_mem 1 pop 1
+push 1144 read_mem 1 pop 1 push 4294967295 xor push 1146 read_mem 1 pop 1 and push 1142 read_mem 1 pop 1 xor push 42 write_mem 1 pop 1
+push 1145 read_mem 1 pop 1 push 4294967295 xor push 1147 read_mem 1 pop 1 and push 1143 read_mem 1 pop 1 xor push 43 write_mem 1 pop 1
+push 1146 read_mem 1 pop 1 push 4294967295 xor push 1148 read_mem 1 pop 1 and push 1144 read_mem 1 pop 1 xor push 44 write_mem 1 pop 1
+push 1147 read_mem 1 pop 1 push 4294967295 xor push 1149 read_mem 1 pop 1 and push 1145 read_mem 1 pop 1 xor push 45 write_mem 1 pop 1
+push 1148 read_mem 1 pop 1 push 4294967295 xor push 1140 read_mem 1 pop 1 and push 1146 read_mem 1 pop 1 xor push 46 write_mem 1 pop 1
+push 1149 read_mem 1 pop 1 push 4294967295 xor push 1141 read_mem 1 pop 1 and push 1147 read_mem 1 pop 1 xor push 47 write_mem 1 pop 1
+push 1140 read_mem 1 pop 1 push 4294967295 xor push 1142 read_mem 1 pop 1 and push 1148 read_mem 1 pop 1 xor push 48 write_mem 1 pop 1
+push 1141 read_mem 1 pop 1 push 4294967295 xor push 1143 read_mem 1 pop 1 and push 1149 read_mem 1 pop 1 xor push 49 write_mem 1 pop 1
+return
+std_crypto_keccak256__iota:
+push 1 read_mem 1 pop 1 xor push 1 write_mem 1 pop 1
+push 0 read_mem 1 pop 1 xor push 0 write_mem 1 pop 1
+return
+std_crypto_keccak256__keccak_round:
+push 1301 write_mem 1 pop 1
+push 1300 write_mem 1 pop 1
+call std_crypto_keccak256__theta call std_crypto_keccak256__rho call std_crypto_keccak256__pi call std_crypto_keccak256__chi
+push 1300 read_mem 1 pop 1
+push 1301 read_mem 1 pop 1
+call std_crypto_keccak256__iota return
+std_crypto_keccak256__keccak_f1600:
+push 1 push 0 call std_crypto_keccak256__keccak_round
+push 32898 push 0 call std_crypto_keccak256__keccak_round
+push 32906 push 2147483648 call std_crypto_keccak256__keccak_round
+push 2147516416 push 2147483648 call std_crypto_keccak256__keccak_round
+push 32907 push 0 call std_crypto_keccak256__keccak_round
+push 2147483649 push 0 call std_crypto_keccak256__keccak_round
+push 2147516545 push 2147483648 call std_crypto_keccak256__keccak_round
+push 32777 push 2147483648 call std_crypto_keccak256__keccak_round
+push 138 push 0 call std_crypto_keccak256__keccak_round
+push 136 push 0 call std_crypto_keccak256__keccak_round
+push 2147516425 push 0 call std_crypto_keccak256__keccak_round
+push 2147483658 push 0 call std_crypto_keccak256__keccak_round
+push 2147516555 push 0 call std_crypto_keccak256__keccak_round
+push 139 push 2147483648 call std_crypto_keccak256__keccak_round
+push 32905 push 2147483648 call std_crypto_keccak256__keccak_round
+push 32771 push 2147483648 call std_crypto_keccak256__keccak_round
+push 32770 push 2147483648 call std_crypto_keccak256__keccak_round
+push 128 push 2147483648 call std_crypto_keccak256__keccak_round
+push 32778 push 0 call std_crypto_keccak256__keccak_round
+push 2147483658 push 2147483648 call std_crypto_keccak256__keccak_round
+push 2147516545 push 2147483648 call std_crypto_keccak256__keccak_round
+push 32896 push 2147483648 call std_crypto_keccak256__keccak_round
+push 2147483649 push 0 call std_crypto_keccak256__keccak_round
+push 2147516424 push 2147483648 call std_crypto_keccak256__keccak_round
+return

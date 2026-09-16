@@ -1,0 +1,2008 @@
+{
+  "date": "2026-09-12",
+  "backend": "Triton/tasm-lib 7.0.0, native claim 5",
+  "scope": "working-tree implementation; final artifact smoke separate",
+  "baselines": 43,
+  "fixtures": [
+    {
+      "fixture": "fixtures/assert/vector.bench.toml",
+      "hand": "vm/core/assert.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 9,
+        "padded_height": 256
+      },
+      "hand_proof": {
+        "cycles": 9,
+        "padded_height": 256
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/assert-mismatch/vector.bench.toml",
+      "hand": "vm/core/assert.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/auth-preimage/vector.bench.toml",
+      "hand": "std/crypto/auth.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 52,
+        "padded_height": 1024
+      },
+      "hand_proof": {
+        "cycles": 36,
+        "padded_height": 1024
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/auth-preimage-bad/vector.bench.toml",
+      "hand": "std/crypto/auth.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/bigint-carry/vector.bench.toml",
+      "hand": "std/crypto/bigint.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 1695,
+        "padded_height": 32768
+      },
+      "hand_proof": {
+        "cycles": 124,
+        "padded_height": 16384
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/compiler-lexer-associativity/vector.bench.toml",
+      "hand": "std/compiler/lexer.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 35519,
+        "padded_height": 65536
+      },
+      "hand_proof": {
+        "cycles": 13284,
+        "padded_height": 32768
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/compiler-lexer-parentheses/vector.bench.toml",
+      "hand": "std/compiler/lexer.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 35738,
+        "padded_height": 65536
+      },
+      "hand_proof": {
+        "cycles": 14041,
+        "padded_height": 32768
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/compiler-lexer-precedence/vector.bench.toml",
+      "hand": "std/compiler/lexer.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 28976,
+        "padded_height": 65536
+      },
+      "hand_proof": {
+        "cycles": 11426,
+        "padded_height": 32768
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/compiler-lexer-reject/vector.bench.toml",
+      "hand": "std/compiler/lexer.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/compiler-parser-associativity/vector.bench.toml",
+      "hand": "std/compiler/parser.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 69428,
+        "padded_height": 131072
+      },
+      "hand_proof": {
+        "cycles": 14979,
+        "padded_height": 32768
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/compiler-parser-parentheses/vector.bench.toml",
+      "hand": "std/compiler/parser.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 72870,
+        "padded_height": 131072
+      },
+      "hand_proof": {
+        "cycles": 15377,
+        "padded_height": 32768
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/compiler-parser-precedence/vector.bench.toml",
+      "hand": "std/compiler/parser.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 54581,
+        "padded_height": 65536
+      },
+      "hand_proof": {
+        "cycles": 12441,
+        "padded_height": 32768
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/compiler-parser-reject/vector.bench.toml",
+      "hand": "std/compiler/parser.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/compiler-pipeline-associativity/vector.bench.toml",
+      "hand": "std/compiler/pipeline.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 144677,
+        "padded_height": 262144
+      },
+      "hand_proof": {
+        "cycles": 14297,
+        "padded_height": 32768
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/compiler-pipeline-parentheses/vector.bench.toml",
+      "hand": "std/compiler/pipeline.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 139860,
+        "padded_height": 262144
+      },
+      "hand_proof": {
+        "cycles": 14767,
+        "padded_height": 32768
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/compiler-pipeline-precedence/vector.bench.toml",
+      "hand": "std/compiler/pipeline.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 112676,
+        "padded_height": 131072
+      },
+      "hand_proof": {
+        "cycles": 11903,
+        "padded_height": 32768
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/compiler-pipeline-reject/vector.bench.toml",
+      "hand": "std/compiler/pipeline.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/compiler-pipeline-type-reject/vector.bench.toml",
+      "hand": "std/compiler/pipeline.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/convert/vector.bench.toml",
+      "hand": "vm/core/convert.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 10,
+        "padded_height": 256
+      },
+      "hand_proof": {
+        "cycles": 12,
+        "padded_height": 256
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/convert-overflow/vector.bench.toml",
+      "hand": "vm/core/convert.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/custom-poseidon2-lanes/vector.bench.toml",
+      "hand": "std/crypto/poseidon2.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 108267,
+        "padded_height": 262144
+      },
+      "hand_proof": {
+        "cycles": 4139,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/custom-poseidon2-ram/vector.bench.toml",
+      "hand": "std/crypto/poseidon2.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 108514,
+        "padded_height": 262144
+      },
+      "hand_proof": {
+        "cycles": 5711,
+        "padded_height": 16384
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/custom-poseidon2-zero/vector.bench.toml",
+      "hand": "std/crypto/poseidon2.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 108267,
+        "padded_height": 262144
+      },
+      "hand_proof": {
+        "cycles": 4139,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/custom-token-v2-burn/vector.bench.toml",
+      "hand": "os/neptune/types/custom_token.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 25493,
+        "padded_height": 65536
+      },
+      "hand_proof": {
+        "cycles": 8437,
+        "padded_height": 32768
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/custom-token-v2-mint/vector.bench.toml",
+      "hand": "os/neptune/types/custom_token.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 25493,
+        "padded_height": 65536
+      },
+      "hand_proof": {
+        "cycles": 8437,
+        "padded_height": 32768
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/custom-token-v2-transfer/vector.bench.toml",
+      "hand": "os/neptune/types/custom_token.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 24846,
+        "padded_height": 65536
+      },
+      "hand_proof": {
+        "cycles": 8307,
+        "padded_height": 32768
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/custom-token-v2-wrong-selfhash/vector.bench.toml",
+      "hand": "os/neptune/types/custom_token.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/ecdsa-cross-limb/vector.bench.toml",
+      "hand": "std/crypto/ecdsa.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 28010,
+        "padded_height": 65536
+      },
+      "hand_proof": {
+        "cycles": 2927,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/ecdsa-even-order/vector.bench.toml",
+      "hand": "std/crypto/ecdsa.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 28296,
+        "padded_height": 65536
+      },
+      "hand_proof": {
+        "cycles": 3039,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/ecdsa-half/vector.bench.toml",
+      "hand": "std/crypto/ecdsa.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 27836,
+        "padded_height": 65536
+      },
+      "hand_proof": {
+        "cycles": 2819,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/ecdsa-high/vector.bench.toml",
+      "hand": "std/crypto/ecdsa.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 27836,
+        "padded_height": 65536
+      },
+      "hand_proof": {
+        "cycles": 2819,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/ecdsa-invalid-r/vector.bench.toml",
+      "hand": "std/crypto/ecdsa.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 25851,
+        "padded_height": 65536
+      },
+      "hand_proof": {
+        "cycles": 2819,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/ecdsa-order/vector.bench.toml",
+      "hand": "std/crypto/ecdsa.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 27832,
+        "padded_height": 65536
+      },
+      "hand_proof": {
+        "cycles": 2819,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/ecdsa-oversized-limb/vector.bench.toml",
+      "hand": "std/crypto/ecdsa.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/ecdsa-zero/vector.bench.toml",
+      "hand": "std/crypto/ecdsa.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 21798,
+        "padded_height": 65536
+      },
+      "hand_proof": {
+        "cycles": 2709,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/fibonacci-0/vector.bench.toml",
+      "hand": "std/math/fibonacci.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 25,
+        "padded_height": 1024
+      },
+      "hand_proof": {
+        "cycles": 16,
+        "padded_height": 1024
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/fibonacci-1/vector.bench.toml",
+      "hand": "std/math/fibonacci.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 45,
+        "padded_height": 1024
+      },
+      "hand_proof": {
+        "cycles": 28,
+        "padded_height": 1024
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/fibonacci-10/vector.bench.toml",
+      "hand": "std/math/fibonacci.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 225,
+        "padded_height": 1024
+      },
+      "hand_proof": {
+        "cycles": 136,
+        "padded_height": 1024
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/fibonacci-100/vector.bench.toml",
+      "hand": "std/math/fibonacci.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 2025,
+        "padded_height": 2048
+      },
+      "hand_proof": {
+        "cycles": 1216,
+        "padded_height": 2048
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/field/vector.bench.toml",
+      "hand": "vm/core/field.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 27,
+        "padded_height": 512
+      },
+      "hand_proof": {
+        "cycles": 34,
+        "padded_height": 512
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/generation/vector.bench.toml",
+      "hand": "os/neptune/locks/generation.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 50,
+        "padded_height": 1024
+      },
+      "hand_proof": {
+        "cycles": 36,
+        "padded_height": 1024
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/generation-bad-preimage/vector.bench.toml",
+      "hand": "os/neptune/locks/generation.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/io/vector.bench.toml",
+      "hand": "vm/io/io.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 10,
+        "padded_height": 256
+      },
+      "hand_proof": {
+        "cycles": 14,
+        "padded_height": 512
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/keccak-lanes/vector.bench.toml",
+      "hand": "std/crypto/keccak256.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 826062,
+        "padded_height": 1048576
+      },
+      "hand_proof": {
+        "cycles": 98515,
+        "padded_height": 524288
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/keccak-zero/vector.bench.toml",
+      "hand": "std/crypto/keccak256.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 826062,
+        "padded_height": 1048576
+      },
+      "hand_proof": {
+        "cycles": 98515,
+        "padded_height": 262144
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/kernel-timestamp/vector.bench.toml",
+      "hand": "os/neptune/kernel.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 1530,
+        "padded_height": 32768
+      },
+      "hand_proof": {
+        "cycles": 75,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/kernel-timestamp-bad-path/vector.bench.toml",
+      "hand": "os/neptune/kernel.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/mem/vector.bench.toml",
+      "hand": "vm/io/mem.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 21,
+        "padded_height": 512
+      },
+      "hand_proof": {
+        "cycles": 27,
+        "padded_height": 512
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/merkle-2/vector.bench.toml",
+      "hand": "vm/crypto/merkle.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 43,
+        "padded_height": 1024
+      },
+      "hand_proof": {
+        "cycles": 27,
+        "padded_height": 512
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/merkle-3/vector.bench.toml",
+      "hand": "vm/crypto/merkle.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 43,
+        "padded_height": 1024
+      },
+      "hand_proof": {
+        "cycles": 27,
+        "padded_height": 512
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/merkle-proof/vector.bench.toml",
+      "hand": "std/crypto/merkle.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 1491,
+        "padded_height": 32768
+      },
+      "hand_proof": {
+        "cycles": 73,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/merkle-proof-bad-path/vector.bench.toml",
+      "hand": "std/crypto/merkle.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/multisig-3/vector.bench.toml",
+      "hand": "os/neptune/locks/multisig.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 132,
+        "padded_height": 2048
+      },
+      "hand_proof": {
+        "cycles": 109,
+        "padded_height": 2048
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/multisig-5/vector.bench.toml",
+      "hand": "os/neptune/locks/multisig.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 141,
+        "padded_height": 2048
+      },
+      "hand_proof": {
+        "cycles": 109,
+        "padded_height": 2048
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/multisig-6/vector.bench.toml",
+      "hand": "os/neptune/locks/multisig.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 150,
+        "padded_height": 2048
+      },
+      "hand_proof": {
+        "cycles": 109,
+        "padded_height": 2048
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/multisig-7/vector.bench.toml",
+      "hand": "os/neptune/locks/multisig.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/neptune-native-currency/vector.bench.toml",
+      "hand": "os/neptune/types/native_currency.tasm",
+      "negative": false,
+      "group": "heavy",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-native-currency.log",
+      "source_proof": {
+        "cycles": 578365,
+        "padded_height": 1048576
+      },
+      "hand_proof": {
+        "cycles": 578310,
+        "padded_height": 1048576
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/neptune-native-currency-wrong-input/vector.bench.toml",
+      "hand": "os/neptune/types/native_currency.tasm",
+      "negative": true,
+      "group": "heavy",
+      "execution": "rejected"
+    },
+    {
+      "fixture": "fixtures/neptune-transaction/valid.bench.toml",
+      "hand": "os/neptune/programs/transaction_validation.tasm",
+      "negative": false,
+      "group": "heavy",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-neptune-transaction.log",
+      "source_proof": {
+        "cycles": 833066,
+        "padded_height": 1048576
+      },
+      "hand_proof": {
+        "cycles": 833060,
+        "padded_height": 1048576
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/neptune-transaction/wrong-kernel.bench.toml",
+      "hand": "os/neptune/programs/transaction_validation.tasm",
+      "negative": true,
+      "group": "heavy",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-neptune-transaction.log"
+    },
+    {
+      "fixture": "fixtures/neptune-transaction/wrong-output.bench.toml",
+      "hand": "os/neptune/programs/transaction_validation.tasm",
+      "negative": true,
+      "group": "heavy",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-neptune-transaction.log"
+    },
+    {
+      "fixture": "fixtures/neptune-transaction/wrong-program.bench.toml",
+      "hand": "os/neptune/programs/transaction_validation.tasm",
+      "negative": true,
+      "group": "heavy",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-neptune-transaction.log"
+    },
+    {
+      "fixture": "fixtures/neptune-transaction/wrong-version.bench.toml",
+      "hand": "os/neptune/programs/transaction_validation.tasm",
+      "negative": true,
+      "group": "heavy",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-neptune-transaction.log"
+    },
+    {
+      "fixture": "fixtures/plumb-config/vector.bench.toml",
+      "hand": "os/neptune/standards/plumb.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 19775,
+        "padded_height": 65536
+      },
+      "hand_proof": {
+        "cycles": 451,
+        "padded_height": 32768
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/plumb-config-bad/vector.bench.toml",
+      "hand": "os/neptune/standards/plumb.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/plumb-v2-card-0/vector.bench.toml",
+      "hand": "os/neptune/standards/card.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 73754,
+        "padded_height": 524288
+      },
+      "hand_proof": {
+        "cycles": 5761,
+        "padded_height": 65536
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/plumb-v2-card-1/vector.bench.toml",
+      "hand": "os/neptune/standards/card.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 73117,
+        "padded_height": 524288
+      },
+      "hand_proof": {
+        "cycles": 5729,
+        "padded_height": 65536
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/plumb-v2-card-2/vector.bench.toml",
+      "hand": "os/neptune/standards/card.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 69226,
+        "padded_height": 524288
+      },
+      "hand_proof": {
+        "cycles": 5557,
+        "padded_height": 65536
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/plumb-v2-card-3/vector.bench.toml",
+      "hand": "os/neptune/standards/card.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 68486,
+        "padded_height": 524288
+      },
+      "hand_proof": {
+        "cycles": 5584,
+        "padded_height": 65536
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/plumb-v2-card-4/vector.bench.toml",
+      "hand": "os/neptune/standards/card.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 68323,
+        "padded_height": 524288
+      },
+      "hand_proof": {
+        "cycles": 5580,
+        "padded_height": 65536
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/plumb-v2-card-config/vector.bench.toml",
+      "hand": "os/neptune/standards/card.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 44513,
+        "padded_height": 524288
+      },
+      "hand_proof": {
+        "cycles": 1216,
+        "padded_height": 65536
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/plumb-v2-coin-0/vector.bench.toml",
+      "hand": "os/neptune/standards/coin.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 107552,
+        "padded_height": 262144
+      },
+      "hand_proof": {
+        "cycles": 10109,
+        "padded_height": 65536
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/plumb-v2-coin-1/vector.bench.toml",
+      "hand": "os/neptune/standards/coin.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 64716,
+        "padded_height": 262144
+      },
+      "hand_proof": {
+        "cycles": 5489,
+        "padded_height": 65536
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/plumb-v2-coin-2/vector.bench.toml",
+      "hand": "os/neptune/standards/coin.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 44180,
+        "padded_height": 262144
+      },
+      "hand_proof": {
+        "cycles": 1198,
+        "padded_height": 65536
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/plumb-v2-coin-3/vector.bench.toml",
+      "hand": "os/neptune/standards/coin.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 62504,
+        "padded_height": 262144
+      },
+      "hand_proof": {
+        "cycles": 5369,
+        "padded_height": 65536
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/plumb-v2-coin-4/vector.bench.toml",
+      "hand": "os/neptune/standards/coin.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 66163,
+        "padded_height": 262144
+      },
+      "hand_proof": {
+        "cycles": 5585,
+        "padded_height": 65536
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/poly-eval/vector.bench.toml",
+      "hand": "std/private/poly.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 137,
+        "padded_height": 1024
+      },
+      "hand_proof": {
+        "cycles": 84,
+        "padded_height": 4096
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/poseidon-range/vector.bench.toml",
+      "hand": "std/crypto/poseidon.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 7105,
+        "padded_height": 16384
+      },
+      "hand_proof": {
+        "cycles": 7027,
+        "padded_height": 32768
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/poseidon-zero/vector.bench.toml",
+      "hand": "std/crypto/poseidon.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 7105,
+        "padded_height": 16384
+      },
+      "hand_proof": {
+        "cycles": 7027,
+        "padded_height": 32768
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/quantum-cnot/vector.bench.toml",
+      "hand": "std/quantum/gates.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 65,
+        "padded_height": 1024
+      },
+      "hand_proof": {
+        "cycles": 27,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/quantum-pure/0.bench.toml",
+      "hand": "std/quantum/gates.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 27390,
+        "padded_height": 65536
+      },
+      "hand_proof": {
+        "cycles": 739,
+        "padded_height": 16384
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/quantum-pure/1.bench.toml",
+      "hand": "std/quantum/gates.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 27388,
+        "padded_height": 65536
+      },
+      "hand_proof": {
+        "cycles": 739,
+        "padded_height": 16384
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/quantum-pure/2.bench.toml",
+      "hand": "std/quantum/gates.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 27390,
+        "padded_height": 65536
+      },
+      "hand_proof": {
+        "cycles": 739,
+        "padded_height": 16384
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/quantum-pure/3.bench.toml",
+      "hand": "std/quantum/gates.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 27390,
+        "padded_height": 65536
+      },
+      "hand_proof": {
+        "cycles": 739,
+        "padded_height": 16384
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/quantum-ram-1/invalid-address.bench.toml",
+      "hand": "std/quantum/gates.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/quantum-ram-1/invalid-target.bench.toml",
+      "hand": "std/quantum/gates.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/quantum-ram-1/invalid-too-many.bench.toml",
+      "hand": "std/quantum/gates.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/quantum-ram-1/target-0.bench.toml",
+      "hand": "std/quantum/gates.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 3439,
+        "padded_height": 32768
+      },
+      "hand_proof": {
+        "cycles": 516,
+        "padded_height": 16384
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/quantum-ram-2/target-0.bench.toml",
+      "hand": "std/quantum/gates.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 6750,
+        "padded_height": 32768
+      },
+      "hand_proof": {
+        "cycles": 855,
+        "padded_height": 16384
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/quantum-ram-2/target-1.bench.toml",
+      "hand": "std/quantum/gates.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 6766,
+        "padded_height": 32768
+      },
+      "hand_proof": {
+        "cycles": 882,
+        "padded_height": 16384
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/quantum-ram-3/target-0.bench.toml",
+      "hand": "std/quantum/gates.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 13356,
+        "padded_height": 32768
+      },
+      "hand_proof": {
+        "cycles": 1506,
+        "padded_height": 16384
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/quantum-ram-3/target-1.bench.toml",
+      "hand": "std/quantum/gates.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 13372,
+        "padded_height": 32768
+      },
+      "hand_proof": {
+        "cycles": 1533,
+        "padded_height": 16384
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/quantum-ram-3/target-2.bench.toml",
+      "hand": "std/quantum/gates.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 13388,
+        "padded_height": 32768
+      },
+      "hand_proof": {
+        "cycles": 1560,
+        "padded_height": 16384
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/recursive-aggregate-bad-second/vector.bench.toml",
+      "hand": "os/neptune/programs/proof_aggregator.tasm",
+      "negative": true,
+      "group": "heavy",
+      "execution": "rejected"
+    },
+    {
+      "fixture": "fixtures/recursive-aggregate-count-0/vector.bench.toml",
+      "hand": "os/neptune/programs/proof_aggregator.tasm",
+      "negative": true,
+      "group": "heavy",
+      "execution": "rejected"
+    },
+    {
+      "fixture": "fixtures/recursive-aggregate-count-17/vector.bench.toml",
+      "hand": "os/neptune/programs/proof_aggregator.tasm",
+      "negative": true,
+      "group": "heavy",
+      "execution": "rejected"
+    },
+    {
+      "fixture": "fixtures/recursive-aggregate-count-4294967296/vector.bench.toml",
+      "hand": "os/neptune/programs/proof_aggregator.tasm",
+      "negative": true,
+      "group": "heavy",
+      "execution": "rejected"
+    },
+    {
+      "fixture": "fixtures/recursive-aggregate-two/vector.bench.toml",
+      "hand": "os/neptune/programs/proof_aggregator.tasm",
+      "negative": false,
+      "group": "heavy",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-recursive-aggregate-two.log",
+      "source_proof": {
+        "cycles": 862385,
+        "padded_height": 1048576
+      },
+      "hand_proof": {
+        "cycles": 862330,
+        "padded_height": 1048576
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/recursive-dot/vector.bench.toml",
+      "hand": "os/neptune/recursive.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 136,
+        "padded_height": 2048
+      },
+      "hand_proof": {
+        "cycles": 76,
+        "padded_height": 2048
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/recursive-proof/vector.bench.toml",
+      "hand": "os/neptune/proof.tasm",
+      "negative": false,
+      "group": "heavy",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-recursive-proof.log",
+      "source_proof": {
+        "cycles": 430449,
+        "padded_height": 524288
+      },
+      "hand_proof": {
+        "cycles": 430441,
+        "padded_height": 524288
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/recursive-proof-bad-claim/vector.bench.toml",
+      "hand": "os/neptune/proof.tasm",
+      "negative": true,
+      "group": "heavy",
+      "execution": "rejected"
+    },
+    {
+      "fixture": "fixtures/recursive-relay/vector.bench.toml",
+      "hand": "os/neptune/programs/proof_relay.tasm",
+      "negative": false,
+      "group": "heavy",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-recursive-relay.log",
+      "source_proof": {
+        "cycles": 430463,
+        "padded_height": 524288
+      },
+      "hand_proof": {
+        "cycles": 430450,
+        "padded_height": 524288
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/recursive-relay-bad-claim/vector.bench.toml",
+      "hand": "os/neptune/programs/proof_relay.tasm",
+      "negative": true,
+      "group": "heavy",
+      "execution": "rejected"
+    },
+    {
+      "fixture": "fixtures/recursive-verifier/vector.bench.toml",
+      "hand": "os/neptune/programs/recursive_verifier.tasm",
+      "negative": false,
+      "group": "heavy",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-recursive-verifier.log",
+      "source_proof": {
+        "cycles": 430449,
+        "padded_height": 524288
+      },
+      "hand_proof": {
+        "cycles": 430442,
+        "padded_height": 524288
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/recursive-verifier-bad-claim/vector.bench.toml",
+      "hand": "os/neptune/programs/recursive_verifier.tasm",
+      "negative": true,
+      "group": "heavy",
+      "execution": "rejected"
+    },
+    {
+      "fixture": "fixtures/sha256-55bytes/vector.bench.toml",
+      "hand": "std/crypto/sha256.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 188106,
+        "padded_height": 262144
+      },
+      "hand_proof": {
+        "cycles": 29259,
+        "padded_height": 262144
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/sha256-abc/vector.bench.toml",
+      "hand": "std/crypto/sha256.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 188106,
+        "padded_height": 262144
+      },
+      "hand_proof": {
+        "cycles": 29259,
+        "padded_height": 262144
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/sha256-carry/vector.bench.toml",
+      "hand": "std/crypto/sha256.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 188106,
+        "padded_height": 262144
+      },
+      "hand_proof": {
+        "cycles": 29259,
+        "padded_height": 262144
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/sha256-empty/vector.bench.toml",
+      "hand": "std/crypto/sha256.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 188106,
+        "padded_height": 262144
+      },
+      "hand_proof": {
+        "cycles": 29259,
+        "padded_height": 262144
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/sha256-two-blocks/vector.bench.toml",
+      "hand": "std/crypto/sha256.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 187053,
+        "padded_height": 262144
+      },
+      "hand_proof": {
+        "cycles": 29263,
+        "padded_height": 262144
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/symmetric/vector.bench.toml",
+      "hand": "os/neptune/locks/symmetric.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 660,
+        "padded_height": 8192
+      },
+      "hand_proof": {
+        "cycles": 32,
+        "padded_height": 1024
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/symmetric-bad-preimage/vector.bench.toml",
+      "hand": "os/neptune/locks/symmetric.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/tensor-boundaries/ascending.bench.toml",
+      "hand": "std/nn/tensor.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 304,
+        "padded_height": 4096
+      },
+      "hand_proof": {
+        "cycles": 710,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/tensor-boundaries/cross-high.bench.toml",
+      "hand": "std/nn/tensor.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 302,
+        "padded_height": 4096
+      },
+      "hand_proof": {
+        "cycles": 710,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/tensor-boundaries/descending.bench.toml",
+      "hand": "std/nn/tensor.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 292,
+        "padded_height": 4096
+      },
+      "hand_proof": {
+        "cycles": 696,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/tensor-boundaries/negative.bench.toml",
+      "hand": "std/nn/tensor.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 262,
+        "padded_height": 4096
+      },
+      "hand_proof": {
+        "cycles": 564,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/tensor-boundaries/same-high.bench.toml",
+      "hand": "std/nn/tensor.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 304,
+        "padded_height": 4096
+      },
+      "hand_proof": {
+        "cycles": 710,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/tensor-boundaries/threshold-reversed.bench.toml",
+      "hand": "std/nn/tensor.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 270,
+        "padded_height": 4096
+      },
+      "hand_proof": {
+        "cycles": 564,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/tensor-boundaries/threshold.bench.toml",
+      "hand": "std/nn/tensor.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 210,
+        "padded_height": 4096
+      },
+      "hand_proof": {
+        "cycles": 550,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/tensor-matvec/vector.bench.toml",
+      "hand": "std/nn/tensor.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 258,
+        "padded_height": 2048
+      },
+      "hand_proof": {
+        "cycles": 198,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/timelock-16/vector.bench.toml",
+      "hand": "os/neptune/locks/timelock.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 2190,
+        "padded_height": 32768
+      },
+      "hand_proof": {
+        "cycles": 112,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/timelock-17/vector.bench.toml",
+      "hand": "os/neptune/locks/timelock.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 2190,
+        "padded_height": 32768
+      },
+      "hand_proof": {
+        "cycles": 112,
+        "padded_height": 8192
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/timelock-18/vector.bench.toml",
+      "hand": "os/neptune/locks/timelock.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/tip5/vector.bench.toml",
+      "hand": "vm/crypto/hash.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 42,
+        "padded_height": 1024
+      },
+      "hand_proof": {
+        "cycles": 36,
+        "padded_height": 2048
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/trinity-ascending/vector.bench.toml",
+      "hand": "std/trinity/inference.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 139022,
+        "padded_height": 262144
+      },
+      "hand_proof": {
+        "cycles": 21364,
+        "padded_height": 65536
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/trinity-ascending/wrong-witness.bench.toml",
+      "hand": "std/trinity/inference.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/trinity-descending/vector.bench.toml",
+      "hand": "std/trinity/inference.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 138956,
+        "padded_height": 262144
+      },
+      "hand_proof": {
+        "cycles": 21332,
+        "padded_height": 65536
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/trinity-descending/wrong-witness.bench.toml",
+      "hand": "std/trinity/inference.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/u32/vector.bench.toml",
+      "hand": "vm/core/u32.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 31,
+        "padded_height": 512
+      },
+      "hand_proof": {
+        "cycles": 18,
+        "padded_height": 256
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/utxo/vector.bench.toml",
+      "hand": "os/neptune/utxo.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 11,
+        "padded_height": 256
+      },
+      "hand_proof": {
+        "cycles": 9,
+        "padded_height": 256
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "fixtures/utxo-mismatch/vector.bench.toml",
+      "hand": "os/neptune/utxo.tasm",
+      "negative": true,
+      "group": "remaining",
+      "execution": "rejected",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log"
+    },
+    {
+      "fixture": "fixtures/xfield-inverse/vector.bench.toml",
+      "hand": "os/neptune/xfield.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 20,
+        "padded_height": 512
+      },
+      "hand_proof": {
+        "cycles": 11,
+        "padded_height": 512
+      },
+      "verification": "both fresh proofs verified"
+    },
+    {
+      "fixture": "reference/arithmetic.bench.toml",
+      "hand": "reference/arithmetic.tasm",
+      "negative": false,
+      "group": "remaining",
+      "execution": "matched independent reference",
+      "full_run_log": "/tmp/trisha-v7-full-remaining37.log",
+      "source_proof": {
+        "cycles": 11,
+        "padded_height": 256
+      },
+      "hand_proof": {
+        "cycles": 7,
+        "padded_height": 256
+      },
+      "verification": "both fresh proofs verified"
+    }
+  ],
+  "positive_fixtures": 99,
+  "rejection_fixtures": 34,
+  "fresh_verified_proofs": 198,
+  "negative_vectors_in_full_runs": 26,
+  "negative_vectors_in_execution_only": 8,
+  "rayon_threads": 4,
+  "TVM_LDE_TRACE": "no_cache",
+  "remaining37_receipt": {
+    "exit_code": 0,
+    "guard_stopped": false,
+    "elapsed_seconds": 3059.7479870000025,
+    "peak_rss_bytes": 19178422272,
+    "log": "/tmp/trisha-v7-full-remaining37.log",
+    "scope_baselines": 37,
+    "scope_positive": 93,
+    "scope_negative": 22,
+    "binary_sha256": "c73e8a58c848769abbc7f259c232ad1ae7d0bcc477872a3cffe55e06c568dede"
+  },
+  "logs": [
+    {
+      "path": "/tmp/h0003-bench.log",
+      "sha256": "a3c2b16efd9dfd5c16b74ab4a1a03a44bac9b64d9f5a469e757f3613d4d4cf2b"
+    },
+    {
+      "path": "/tmp/trisha-v7-full-remaining37.log",
+      "sha256": "92530a3a21ebb02d1622396b2a74ad45b59e3bc77c4234745c4f125dd5447381"
+    },
+    {
+      "path": "/tmp/trisha-v7-full-recursive-proof.log",
+      "sha256": "57f79308e37a516bb7c93c249afe5b96219988784e0c9f070f480e3393d624ed"
+    },
+    {
+      "path": "/tmp/trisha-v7-full-recursive-verifier.log",
+      "sha256": "35a573b65f298bc221212002a7e51f733d8352e03e51529e113d72b57d4e58d3"
+    },
+    {
+      "path": "/tmp/trisha-v7-full-recursive-relay.log",
+      "sha256": "9a77fc662afd42554954c3514aea390c661988abbd2cee85cdcc77d823cfd6d4"
+    },
+    {
+      "path": "/tmp/trisha-v7-full-recursive-aggregate-two.log",
+      "sha256": "0f25c3e3f2ede74fb7d0d0a7584dfbd2a74559e69a93df31e6faac895946cd7c"
+    },
+    {
+      "path": "/tmp/trisha-v7-full-neptune-transaction.log",
+      "sha256": "e02f4adcb9b9fb0277dfa8ab20bd01fea799a6ead2f18f77638886cae00b67ed"
+    },
+    {
+      "path": "/tmp/trisha-v7-full-native-currency.log",
+      "sha256": "d63c7ac75ecdc087c0fc0e28a203ad0706b64e804d4a5031260d6bba992b7629"
+    }
+  ],
+  "fixture_count": 133
+}

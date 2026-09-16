@@ -9,15 +9,20 @@
 //! and control-flow structure. The speculative lowering wraps the classical
 //! path with an optional neural v2 optimizer.
 
+mod entry;
+mod legalize;
+mod linker;
+mod sequence;
+pub mod report;
+mod target_call;
 #[cfg(test)]
 mod tests;
 mod triton;
-mod linker;
-pub mod report;
+pub use target_call::{lower_checked, validate_target_calls};
 
+use crate::cost::scorer;
 use report::{BlockDecision, DecisionReason, OptimizerReport, OptimizerStatus, Winner};
 use trident::tir::TIROp;
-use crate::cost::scorer;
 
 pub use linker::{link, ModuleTasm};
 pub use triton::TritonLowering;
@@ -317,18 +322,17 @@ pub fn encode_tasm_block(lines: &[String]) -> Vec<u64> {
 /// TIR (`trident::build_tir_modules`); everything past that — instruction
 /// selection, linking — is trisha's own copy, moved from the compiler
 /// (trident/.claude/plans/warrior-owns-lowering.md, S3).
-pub fn build_tasm(
-    input: &std::path::Path,
-    target: &str,
-    profile: &str,
-) -> Result<String, String> {
-    let mut options = trident::CompileOptions::for_profile(profile);
-    options.target_config = trident::target::TerrainConfig::triton();
-    if let Ok(resolved) = trident::target::ResolvedTarget::resolve(target) {
-        options.target_config = resolved.vm;
-    }
+pub fn build_tasm(input: &std::path::Path, target: &str, profile: &str) -> Result<String, String> {
+    let options = compile_options(target, profile)?;
+    let (entry, options) = trident::source_options(input, &options).map_err(|errors| {
+        errors
+            .into_iter()
+            .map(|e| e.message)
+            .collect::<Vec<_>>()
+            .join("; ")
+    })?;
 
-    let modules = trident::build_tir_modules(input, &options).map_err(|diagnostics| {
+    let modules = trident::build_tir_modules(&entry, &options).map_err(|diagnostics| {
         diagnostics
             .iter()
             .map(|d| d.message.clone())
@@ -336,6 +340,9 @@ pub fn build_tasm(
             .join("; ")
     })?;
 
+    for module in &modules {
+        validate_target_calls(&module.ops)?;
+    }
     let lowering = create_stack_lowering(&options.target_config.name);
     let lowered: Vec<ModuleTasm> = modules
         .into_iter()
@@ -347,4 +354,9 @@ pub fn build_tasm(
         .collect();
 
     Ok(link(lowered))
+}
+
+/// Resolve a supported terrain without silently falling back on typos.
+pub fn compile_options(target: &str, profile: &str) -> Result<trident::CompileOptions, String> {
+    trident::CompileOptions::for_profile(profile).with_package(crate::target::package(target)?)
 }

@@ -1,0 +1,10 @@
+program proof_relay
+// Forward the authenticated full-claim commitment only after actual verification.
+use vm.triton.proof
+use vm.io.io
+fn main() {
+    let expected = io.read_digest()
+    proof.verify(expected)
+    let (a,b,c,d,e) = expected
+    pub_write(a) pub_write(b) pub_write(c) pub_write(d) pub_write(e)
+}

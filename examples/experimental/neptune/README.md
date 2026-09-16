@@ -1,0 +1,9 @@
+# Unimplemented recursive proof prototypes
+
+These sources are preserved for research and are excluded from the installed target package. They are not recursive STARK verifiers or transaction validators. In particular, `proof.verify_inner_proof` computes FRI/OOD/constraint values without enforcing their required consistency. Its former acceptance behavior must not authorize transactions or be treated as proof verification.
+
+The production Neptune package does not export `os.neptune.proof`; these entry programs intentionally fail compilation when they import it. CPU Triton proofs generated and verified by Trisha remain available, separately from these unimplemented recursive protocols. No security level is established by selecting a number of prototype FRI rounds.
+
+The supported `vm.triton.proof.verify` operation verifies a full Triton 7 proof against a caller-authenticated full-claim commitment. Its [versioned contract](../../../docs/reference/recursive-proof.md) does not establish Neptune transaction authorization or conservation merely by verifying an arbitrary program proof.
+
+The preserved `transaction_validation.tasm` is also unsafe research code. The production benchmark has replaced this prototype with a fixed pinned Neptune0.15.1 HardforkGamma SingleProof verifier, exposed as `os.neptune.transaction.verify`; it does not execute this experimental source. A handwritten replacement for the canonical upstream policy would require authenticating input membership/removal records and the required lock program digests, binding each type program and its complete public claim to the kernel's actual inputs/outputs, and enforcing the network's conservation and fee rules. The prototype authenticates a few kernel leaves but does not establish those relations; substituting a verifier for arbitrary witness-selected programs would leave the authorization flaw intact.

@@ -1,0 +1,854 @@
+{
+  "candidate": "FINAL5",
+  "published": false,
+  "all_recorded_gates_passed": true,
+  "source_archive": {
+    "archive": "/tmp/cyber-release-source-v7-20260912-final5.tar.gz",
+    "archive_sha256": "7c63fcad9d12a220036b531f85eacc1a91984ff87c18687703aeeac57b3df415",
+    "bytes": 29383684,
+    "source_manifest_sha256": "41c924603d1ed20b78844a4a5cc1aa78e3dff759349d98f1713015e5cfb124a0",
+    "repositories": 11,
+    "source_entries": 2497,
+    "vendor_entries": 557,
+    "published": false
+  },
+  "installed_candidate": {
+    "source": "/private/tmp/cyber-release-extracted-v7-final5/cyber-source",
+    "source_verified": true,
+    "source_verification_sha256": "c9c1ddb3c3d7e24104a9329c073b9cbb1f83fceb426daead1d1ed4b7ed67cb73",
+    "provenance_sha256": "41c924603d1ed20b78844a4a5cc1aa78e3dff759349d98f1713015e5cfb124a0",
+    "binaries": [
+      {
+        "name": "trident",
+        "sha256": "287d643dbb92467ac5e1bdc572b9e2f04949779b0fe7e022e86d84cc506e3ea7"
+      },
+      {
+        "name": "trisha",
+        "sha256": "9265f599c5200f330d29da19f1fccfeb18d5b9cdd905ba713bd15a068532d47b"
+      },
+      {
+        "name": "joy",
+        "sha256": "331a9ce3aa373bcb3d3c32331a5bdbb30d31de45be9e9b92574c7058930aafa5"
+      }
+    ]
+  },
+  "build": {
+    "elapsed_seconds": 336.05,
+    "maximum_process_rss_bytes": 4983504896,
+    "warnings": 0,
+    "swaps": 0,
+    "log": "/tmp/cyber-release-build-v7-darwin-final5.log"
+  },
+  "installed_smoke": {
+    "all_checks_passed": true,
+    "command": [
+      "/usr/bin/time",
+      "-l",
+      "/opt/homebrew/bin/nu",
+      "--no-config-file",
+      "/tmp/cyber-release-extracted-v7-final5/cyber-source/trisha/scripts/smoke-release.nu",
+      "/tmp/cyber-release-installed-v7-darwin-final5/bin",
+      "/tmp/cyber-release-smoke-v7-darwin-final5"
+    ],
+    "exit_code": 0,
+    "guard_stop": null,
+    "elapsed_seconds": 195.5251656670007,
+    "peak_group_rss_bytes": 9872900096,
+    "minimum_free_percent": 76,
+    "samples": 376,
+    "script_sha256": "73c48275e69574eabfe3c99f1009e05617ab7532449ecab04f3cf5bd229fd988",
+    "log_sha256": "d8b0ee72be7387dd5924eee3194ee6520aeaa4ab31c6d824845e5875f92d5ca0",
+    "rayon_threads": 4,
+    "lde_trace": "no_cache"
+  },
+  "archive_and_fresh_unpack": {
+    "all_checks_passed": true,
+    "archive": "/tmp/cyber-tools-final5-darwin-aarch64.tar.gz",
+    "archive_sha256": "72152fb93cb6e5d1aa7dd6a6cc46282d0070479896d2299711a25b88e4885f19",
+    "archive_bytes": 10033018,
+    "repack_byte_identical": true,
+    "archive_entries": 19,
+    "source_provenance_sha256": "41c924603d1ed20b78844a4a5cc1aa78e3dff759349d98f1713015e5cfb124a0",
+    "binaries": [
+      {
+        "name": "trident",
+        "sha256": "287d643dbb92467ac5e1bdc572b9e2f04949779b0fe7e022e86d84cc506e3ea7"
+      },
+      {
+        "name": "trisha",
+        "sha256": "9265f599c5200f330d29da19f1fccfeb18d5b9cdd905ba713bd15a068532d47b"
+      },
+      {
+        "name": "joy",
+        "sha256": "331a9ce3aa373bcb3d3c32331a5bdbb30d31de45be9e9b92574c7058930aafa5"
+      }
+    ],
+    "proofs": [
+      {
+        "platform": "darwin",
+        "file": "outer.proof.toml",
+        "sha256": "f4f56907abccfe8ade3b9760d83ba7fae0116d643c025370e7aff434c2180448",
+        "claim": {
+          "program_hash": [
+            "6614518553714371115",
+            "8767274109245063471",
+            "10754267340020070887",
+            "3839983228444746570",
+            "8395642905561068401"
+          ],
+          "public_input": [
+            "13374011785464380591",
+            "5857491299209599004",
+            "11800408066145505999",
+            "6156672990245785862",
+            "1251648958347136381"
+          ],
+          "public_output": [
+            "1"
+          ]
+        },
+        "verified": true
+      },
+      {
+        "platform": "darwin",
+        "file": "typed-entry-release.proof.toml",
+        "sha256": "75b9c4591c758fbcbeab3f284340213c0156cd90031ef3334250cb3693952f81",
+        "claim": {
+          "program_hash": [
+            "13233555692531953418",
+            "4001012504719712264",
+            "3539491204313852346",
+            "10136130579392151526",
+            "11546006074289198616"
+          ],
+          "public_input": [
+            "7",
+            "19",
+            "1",
+            "101",
+            "102",
+            "103",
+            "104",
+            "105",
+            "106",
+            "107",
+            "108",
+            "109",
+            "110",
+            "111",
+            "112",
+            "113",
+            "114",
+            "115",
+            "116",
+            "117",
+            "118",
+            "119",
+            "120",
+            "31"
+          ],
+          "public_output": [
+            "719",
+            "31"
+          ]
+        },
+        "verified": true
+      },
+      {
+        "platform": "darwin",
+        "file": "imported.proof.toml",
+        "sha256": "904d9e18383cefee127257169f9a8be50f7affd5957c65fe053234d87bd90cb3",
+        "claim": {
+          "program_hash": [
+            "14807092609682744609",
+            "5918637739680069890",
+            "16989122319664299459",
+            "9600622953465804487",
+            "15357520240797172443"
+          ],
+          "public_input": [
+            "3",
+            "5"
+          ],
+          "public_output": [
+            "803"
+          ]
+        },
+        "verified": true
+      },
+      {
+        "platform": "darwin",
+        "file": "imported.zheng",
+        "sha256": "54c3102d5eed02f517e074fdf13e630f144873622baaf101b871965d65c5a363",
+        "claim": "803",
+        "public_input": "3,5",
+        "verified": true,
+        "wrong_output_rejected": true
+      },
+      {
+        "platform": "darwin",
+        "file": "private.zheng",
+        "sha256": "26caef0fced6988a9506e7c1fa49103adc77275b5b7850023d5148cf44fcb144",
+        "claim": "1769",
+        "public_input": "5",
+        "verified": true,
+        "wrong_output_rejected": true
+      },
+      {
+        "platform": "darwin",
+        "file": "typed-private.zheng",
+        "sha256": "4dd1e952c523a2d388be28e3a63ce9bc0579189d138e6480cc35d93f4f19174b",
+        "claim": "42",
+        "public_input": "19,0",
+        "verified": true,
+        "wrong_output_rejected": true
+      },
+      {
+        "platform": "darwin",
+        "file": "state.zheng",
+        "sha256": "0d188483257e93387c8777838a507a220838f493b13e7ef9b97ebdb7e506d2a2",
+        "claim": "82",
+        "public_input": "11",
+        "verified": true,
+        "wrong_output_rejected": true
+      },
+      {
+        "platform": "darwin",
+        "file": "private-state.zheng",
+        "sha256": "597cf2fd72a74d55bf01abf7c2934fedfe69279dce6cd042137768f130e45af3",
+        "claim": "82",
+        "public_input": "5",
+        "verified": true,
+        "wrong_output_rejected": true
+      },
+      {
+        "platform": "linux",
+        "file": "outer.proof.toml",
+        "sha256": "086d675fbea803d79f0f6772ea3b3da47871f285517e25b4674f6b92874a1c62",
+        "claim": {
+          "program_hash": [
+            "6614518553714371115",
+            "8767274109245063471",
+            "10754267340020070887",
+            "3839983228444746570",
+            "8395642905561068401"
+          ],
+          "public_input": [
+            "13374011785464380591",
+            "5857491299209599004",
+            "11800408066145505999",
+            "6156672990245785862",
+            "1251648958347136381"
+          ],
+          "public_output": [
+            "1"
+          ]
+        },
+        "verified": true
+      },
+      {
+        "platform": "linux",
+        "file": "typed-entry-release.proof.toml",
+        "sha256": "f3f2db0dbaa263f09b4cc08e8045ea528b02fc80493a46526dc0dc802a05e29a",
+        "claim": {
+          "program_hash": [
+            "13233555692531953418",
+            "4001012504719712264",
+            "3539491204313852346",
+            "10136130579392151526",
+            "11546006074289198616"
+          ],
+          "public_input": [
+            "7",
+            "19",
+            "1",
+            "101",
+            "102",
+            "103",
+            "104",
+            "105",
+            "106",
+            "107",
+            "108",
+            "109",
+            "110",
+            "111",
+            "112",
+            "113",
+            "114",
+            "115",
+            "116",
+            "117",
+            "118",
+            "119",
+            "120",
+            "31"
+          ],
+          "public_output": [
+            "719",
+            "31"
+          ]
+        },
+        "verified": true
+      },
+      {
+        "platform": "linux",
+        "file": "imported.proof.toml",
+        "sha256": "54af335f019a5cd5ffc040895a19281e5113ad43aafc482a492e6e5101681732",
+        "claim": {
+          "program_hash": [
+            "14807092609682744609",
+            "5918637739680069890",
+            "16989122319664299459",
+            "9600622953465804487",
+            "15357520240797172443"
+          ],
+          "public_input": [
+            "3",
+            "5"
+          ],
+          "public_output": [
+            "803"
+          ]
+        },
+        "verified": true
+      },
+      {
+        "platform": "linux",
+        "file": "imported.zheng",
+        "sha256": "54c3102d5eed02f517e074fdf13e630f144873622baaf101b871965d65c5a363",
+        "claim": "803",
+        "public_input": "3,5",
+        "verified": true,
+        "wrong_output_rejected": true
+      },
+      {
+        "platform": "linux",
+        "file": "private.zheng",
+        "sha256": "19ff50917980c653f138334edc65f96c6bae69176bb38e3457c0eb8392bb3fe4",
+        "claim": "1769",
+        "public_input": "5",
+        "verified": true,
+        "wrong_output_rejected": true
+      },
+      {
+        "platform": "linux",
+        "file": "typed-private.zheng",
+        "sha256": "1afc359023e99af2c5dbab19c758050105fd105ea89f30d4b00bfcd025780b6f",
+        "claim": "42",
+        "public_input": "19,0",
+        "verified": true,
+        "wrong_output_rejected": true
+      },
+      {
+        "platform": "linux",
+        "file": "state.zheng",
+        "sha256": "0d188483257e93387c8777838a507a220838f493b13e7ef9b97ebdb7e506d2a2",
+        "claim": "82",
+        "public_input": "11",
+        "verified": true,
+        "wrong_output_rejected": true
+      },
+      {
+        "platform": "linux",
+        "file": "private-state.zheng",
+        "sha256": "89b566ad0481f0a698c495093128ea34cbf39fc5a7eece23d958ec465e69e20e",
+        "claim": "82",
+        "public_input": "5",
+        "verified": true,
+        "wrong_output_rejected": true
+      }
+    ],
+    "checks": [
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/trident",
+          "--version"
+        ],
+        "exit_code": 0,
+        "stdout": "trident 0.4.0\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/trisha",
+          "--version"
+        ],
+        "exit_code": 0,
+        "stdout": "trisha 0.3.0\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "--version"
+        ],
+        "exit_code": 0,
+        "stdout": "joy 0.5.0\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/trisha",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final5/outer.proof.toml"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS\n",
+        "stderr": "Backend: cpu\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/trisha",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final5/typed-entry-release.proof.toml"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS\n",
+        "stderr": "Backend: cpu\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/trisha",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final5/imported.proof.toml"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS\n",
+        "stderr": "Backend: cpu\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final5/imported.zheng",
+          "--claim",
+          "803",
+          "--input-values",
+          "3,5"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (public execution; non-ZK)\n  public input: [3, 5]\n  public output: [803]\n  reductions: 180\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final5/imported.zheng",
+          "--claim",
+          "0"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Verification: FAIL (execution proof differs from requested input, output or budget)\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final5/private.zheng",
+          "--claim",
+          "1769",
+          "--input-values",
+          "5"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (private execution; Triton ZK)\n  public input: [5]\n  public output: [1769]\n  reductions: 36\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final5/private.zheng",
+          "--claim",
+          "0"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Verification: FAIL (private proof differs from requested input, output or budget)\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final5/typed-private.zheng",
+          "--claim",
+          "42",
+          "--input-values",
+          "19,0"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (private execution; Triton ZK)\n  public input: [19, 0]\n  public output: [42]\n  reductions: 170\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final5/typed-private.zheng",
+          "--claim",
+          "0"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Verification: FAIL (private proof differs from requested input, output or budget)\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final5/state.zheng",
+          "--claim",
+          "82",
+          "--input-values",
+          "11",
+          "--state",
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/share/trisha-release-smoke/state.json"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (authenticated public state execution; non-ZK)\n  public input: [11]\n  public output: [82]\n  reductions: 38\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final5/state.zheng",
+          "--claim",
+          "0"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Verification: FAIL (state execution claim mismatch)\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final5/private-state.zheng",
+          "--claim",
+          "82",
+          "--input-values",
+          "5",
+          "--state",
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/share/trisha-release-smoke/state-all.json"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (private execution; Triton ZK)\n  public input: [5]\n  public output: [82]\n  reductions: 45\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final5/private-state.zheng",
+          "--claim",
+          "0"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Verification: FAIL (private proof differs from requested input, output or budget)\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/trisha",
+          "verify",
+          "/tmp/cyber-final5-darwin-artifact-gate/linux-proofs/outer.proof.toml"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS\n",
+        "stderr": "Backend: cpu\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/trisha",
+          "verify",
+          "/tmp/cyber-final5-darwin-artifact-gate/linux-proofs/typed-entry-release.proof.toml"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS\n",
+        "stderr": "Backend: cpu\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/trisha",
+          "verify",
+          "/tmp/cyber-final5-darwin-artifact-gate/linux-proofs/imported.proof.toml"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS\n",
+        "stderr": "Backend: cpu\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-final5-darwin-artifact-gate/linux-proofs/imported.zheng",
+          "--claim",
+          "803",
+          "--input-values",
+          "3,5"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (public execution; non-ZK)\n  public input: [3, 5]\n  public output: [803]\n  reductions: 180\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-final5-darwin-artifact-gate/linux-proofs/imported.zheng",
+          "--claim",
+          "0"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Verification: FAIL (execution proof differs from requested input, output or budget)\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-final5-darwin-artifact-gate/linux-proofs/private.zheng",
+          "--claim",
+          "1769",
+          "--input-values",
+          "5"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (private execution; Triton ZK)\n  public input: [5]\n  public output: [1769]\n  reductions: 36\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-final5-darwin-artifact-gate/linux-proofs/private.zheng",
+          "--claim",
+          "0"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Verification: FAIL (private proof differs from requested input, output or budget)\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-final5-darwin-artifact-gate/linux-proofs/typed-private.zheng",
+          "--claim",
+          "42",
+          "--input-values",
+          "19,0"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (private execution; Triton ZK)\n  public input: [19, 0]\n  public output: [42]\n  reductions: 170\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-final5-darwin-artifact-gate/linux-proofs/typed-private.zheng",
+          "--claim",
+          "0"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Verification: FAIL (private proof differs from requested input, output or budget)\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-final5-darwin-artifact-gate/linux-proofs/state.zheng",
+          "--claim",
+          "82",
+          "--input-values",
+          "11",
+          "--state",
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/share/trisha-release-smoke/state.json"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (authenticated public state execution; non-ZK)\n  public input: [11]\n  public output: [82]\n  reductions: 38\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-final5-darwin-artifact-gate/linux-proofs/state.zheng",
+          "--claim",
+          "0"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Verification: FAIL (state execution claim mismatch)\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-final5-darwin-artifact-gate/linux-proofs/private-state.zheng",
+          "--claim",
+          "82",
+          "--input-values",
+          "5",
+          "--state",
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/share/trisha-release-smoke/state-all.json"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (private execution; Triton ZK)\n  public input: [5]\n  public output: [82]\n  reductions: 45\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "verify",
+          "/tmp/cyber-final5-darwin-artifact-gate/linux-proofs/private-state.zheng",
+          "--claim",
+          "0"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Verification: FAIL (private proof differs from requested input, output or budget)\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/trident",
+          "build",
+          "nox.tri",
+          "--target",
+          "nox",
+          "-o",
+          "nox.nox"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "Compiled -> nox.nox\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "run",
+          "nox.nox",
+          "--input-values",
+          "0"
+        ],
+        "exit_code": 0,
+        "stdout": "7\n",
+        "stderr": "Executed in 24 reductions\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "build",
+          "nox.tri",
+          "--target",
+          "nox",
+          "-o",
+          "nox.bundle.json"
+        ],
+        "exit_code": 0,
+        "stdout": "nox.bundle.json\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/joy",
+          "run",
+          "nox.bundle.json",
+          "--input-values",
+          "0"
+        ],
+        "exit_code": 0,
+        "stdout": "7\n",
+        "stderr": "Executed in 24 reductions\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/trident",
+          "run",
+          "nox.tri",
+          "--target",
+          "nox",
+          "--input-values",
+          "1"
+        ],
+        "exit_code": 0,
+        "stdout": "9\n",
+        "stderr": "Executed in 24 reductions\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/trident",
+          "build",
+          "triton.tri",
+          "--target",
+          "triton",
+          "-o",
+          "triton.tasm"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "Compiled -> triton.tasm\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/trisha",
+          "run",
+          "--tasm",
+          "triton.tasm",
+          "--input-values",
+          "35"
+        ],
+        "exit_code": 0,
+        "stdout": "42\n",
+        "stderr": "Backend: cpu\nExecuting triton (10 ops)...\nExecuted in 9 cycles\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/trisha",
+          "prove",
+          "--tasm",
+          "triton.tasm",
+          "--input-values",
+          "35",
+          "--output",
+          "fresh.proof.toml"
+        ],
+        "exit_code": 0,
+        "stdout": "42\n",
+        "stderr": "Backend: cpu\nProving triton (10 ops)...\nProof generated (9 cycles, padded height 256)\nProof written to fresh.proof.toml (105 ms, 9 cycles)\n"
+      },
+      {
+        "command": [
+          "/tmp/cyber-final5-darwin-artifact-gate/cyber-tools/bin/trisha",
+          "verify",
+          "fresh.proof.toml"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS\n",
+        "stderr": "Backend: cpu\n"
+      }
+    ],
+    "fresh_proof_claim": {
+      "program_hash": [
+        "4162014623422761662",
+        "12318326423159680244",
+        "11928656256530556209",
+        "132375090885982567",
+        "14255798623698791122"
+      ],
+      "public_input": [
+        "35"
+      ],
+      "public_output": [
+        "42"
+      ]
+    }
+  },
+  "baseline_proof_gate": "running, not included in all_recorded_gates_passed"
+}

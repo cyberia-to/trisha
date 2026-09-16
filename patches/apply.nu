@@ -8,40 +8,17 @@
 # Usage: nu patches/apply.nu
 # Result: .vendor/triton-vm/ and .vendor/twenty-first/ ready to build with GPU hooks.
 
-let tv_version = "2.0.0"
+let tv_version = "7.0.0"
 let tf_version = "1.1.0"
 let project_root = ($env.FILE_PWD | path join "..")
 
 cd $project_root
 
-let cargo_home = ($env | get -o CARGO_HOME | default $"($env.HOME)/.cargo")
-let registry_src = $"($cargo_home)/registry/src"
-
 # ── Helper: fetch a crate from registry ─────────────────────────
 
 def fetch_crate [name: string, version: string, vendor_dir: string] {
-    rm -rf $vendor_dir
-
-    let crate_name = $"($name)-($version)"
-    let initial = (glob $"($registry_src)/**/($crate_name)")
-
-    if ($initial | is-empty) {
-        print $"  downloading ($name) ($version) via cargo..."
-        # direct CDN download — survives yanked versions (2.0.0 was yanked)
-        let tmp = (mktemp -d)
-        http get $"https://static.crates.io/crates/($name)/($name)-($version).crate" | save $"($tmp)/c.crate"
-        mkdir $"($registry_src)/manual"
-        tar -xzf $"($tmp)/c.crate" -C $"($registry_src)/manual"
-        rm -rf $tmp
-    }
-
-    let found = (glob $"($registry_src)/**/($crate_name)" | first)
-    if ($found | is-empty) {
-        error make { msg: $"failed to download ($name) ($version)" }
-    }
-
-    print $"  found: ($found)"
-    cp -r $found $vendor_dir
+    ^python3 -B patches/fetch.py $name $version $vendor_dir
+    if $env.LAST_EXIT_CODE != 0 { error make {msg: $"verified upstream fetch failed: ($name) ($version)"} }
 }
 
 # ── Fetch upstream crates ───────────────────────────────────────
@@ -54,24 +31,30 @@ fetch_crate "twenty-first" $tf_version ".vendor/twenty-first"
 print $"Fetching triton-vm ($tv_version)..."
 fetch_crate "triton-vm" $tv_version ".vendor/triton-vm"
 
+# The compiler family is part of the same pinned source input.
+for name in [triton-air triton-isa triton-constraint-circuit triton-constraint-builder] {
+    print $"Fetching ($name) ($tv_version)..."
+    fetch_crate $name $tv_version $".vendor/($name)"
+}
+
 # triton-vm's twenty-first dep is redirected by [patch.crates-io] in Cargo.toml
 
 # ══════════════════════════════════════════════════════════════════
 # TWENTY-FIRST PATCHES
 # ══════════════════════════════════════════════════════════════════
 
-print "  [T0] twenty-first: rlib only (drop cdylib)"
+print "  [T0] twenty-first and triton-vm: hashed Rust library outputs"
 
-# Upstream ships `crate-type = ["cdylib", "rlib"]`. A cdylib bundles its
-# dependencies' metadata, so rustc sees TWO versions of serde/rand once the
-# rlib and the dylib both land in the search path — which is what broke the
-# release build with "multiple different versions of crate `rand`" and
-# "BFieldElement: Serialize is not satisfied" (trisha#1). Nothing here needs
-# a C ABI, so build a plain rlib.
-let tf_manifest = ".vendor/twenty-first/Cargo.toml"
-(open --raw $tf_manifest
-    | str replace "crate-type = [\n    \"cdylib\",\n    \"rlib\",\n]" 'crate-type = ["rlib"]'
-    | save -f $tf_manifest)
+# Multi-crate-type targets use an unversioned rlib output name. Reusing that
+# output with another lockfile can mix serde/rand/number type identities.
+# These tools require Rust libraries only; no C ABI is shipped.
+for name in [twenty-first triton-vm] {
+    let manifest = $".vendor/($name)/Cargo.toml"
+    let original = (open --raw $manifest)
+    let anchor = "crate-type = [\n    \"cdylib\",\n    \"rlib\",\n]"
+    if not ($original | str contains $anchor) { error make {msg: $"review changed library crate types: ($name)"} }
+    $original | str replace $anchor 'crate-type = ["rlib"]' | save -f $manifest
+}
 
 print "  [T1] twenty-first: MerkleTree::from_nodes constructor"
 
@@ -444,4 +427,19 @@ print "  [8] GEMV dispatch — weighted_sum_of_columns"
         };')
     | save -f $mt)
 
-print "Done. GPU overlay applied to .vendor/"
+
+# Version-pinned upstream warning fixes. Fail if an upstream anchor changes.
+def exact_patch [file: path, before: string, after: string] {
+    let source = (open --raw $file)
+    if not ($source | str contains $before) { error make {msg: $"missing upstream patch anchor in ($file): ($before)"} }
+    $source | str replace $before $after | save --force $file
+}
+print "  [9] explicit crate reexports and Copy metadata"
+exact_patch $lib_rs 'pub use isa;' 'pub use ::isa;'
+exact_patch $lib_rs 'pub use twenty_first;' 'pub use ::twenty_first;'
+exact_patch $aux '#[derive(Debug, Clone, Eq, PartialEq, Ord, PartialOrd)]' '#[derive(Debug, Clone, Copy, Eq, PartialEq, Ord, PartialOrd)]'
+
+nu patches/tasm.nu
+if $env.LAST_EXIT_CODE != 0 { error make {msg: "recursive verifier bootstrap failed"} }
+
+print "Done. GPU overlay and pinned upstream fixes applied to .vendor/"

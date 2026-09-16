@@ -1,0 +1,54 @@
+module os.neptune.recursive
+
+use os.neptune.xfield
+
+use vm.io.io
+
+use vm.core.assert
+
+// Low-level extension-field and public-input helpers.
+// These functions do not implement or verify recursive STARK proofs.
+// Accumulate extension-field products in RAM; return accumulator and pointers.
+pub fn xfe_inner_product(ptr_a: Field, ptr_b: Field, count: Field) -> (XField, Field, Field) {
+    let mut acc: XField = xfield.new(0, 0, 0)
+    let mut cur_a: Field = ptr_a
+    let mut cur_b: Field = ptr_b
+    for i in 0..count bounded 1024 {
+        let (next, next_a, next_b) = xfield.xx_dot_step(acc, cur_a, cur_b)
+        acc = next
+        cur_a = next_a
+        cur_b = next_b
+    }
+    (acc, cur_a, cur_b)
+}
+
+// Accumulate XField * BField products; pointers advance by three and one.
+pub fn xb_inner_product(ptr_a: Field, ptr_b: Field, count: Field) -> (XField, Field, Field) {
+    let mut acc: XField = xfield.new(0, 0, 0)
+    let mut cur_a: Field = ptr_a
+    let mut cur_b: Field = ptr_b
+    for i in 0..count bounded 1024 {
+        let (next, next_a, next_b) = xfield.xb_dot_step(acc, cur_a, cur_b)
+        acc = next
+        cur_a = next_a
+        cur_b = next_b
+    }
+    (acc, cur_a, cur_b)
+}
+
+// Read the inner program's Claim from public input.
+// Returns (program_digest, num_pub_inputs, num_pub_outputs).
+// The actual public I/O values follow in subsequent pub_read calls.
+pub fn read_claim() -> (Digest, Field, Field) {
+    let program_digest: Digest = io.read_digest()
+    let num_inputs: Field = io.read()
+    let num_outputs: Field = io.read()
+    (program_digest, num_inputs, num_outputs)
+}
+
+// Verify that a divined Digest matches an expected commitment.
+// Used to authenticate FRI codeword Merkle roots.
+pub fn verify_commitment(expected: Digest) {
+    let divined: Digest = io.divine_digest()
+    assert.digest(divined, expected)
+}

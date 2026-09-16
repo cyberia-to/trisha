@@ -187,6 +187,7 @@ pub const VOCAB_SIZE: usize = TOKENS.len();
 // ─── Vocab Struct ─────────────────────────────────────────────────
 
 /// Bidirectional vocabulary for encoding/decoding TASM instructions.
+#[derive(Clone)]
 pub struct Vocab {
     encode_map: HashMap<String, u32>,
     decode_map: Vec<String>,

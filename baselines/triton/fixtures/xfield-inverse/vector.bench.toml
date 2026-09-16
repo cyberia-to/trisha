@@ -1,0 +1,10 @@
+source = "main.tri"
+hand = "../../os/neptune/xfield.tasm"
+target = "neptune"
+input = []
+output = ["9529360680408481948", 7868279460887737388, 2010782528893532888]
+reference = "Independent twenty-first XFieldElement::inverse([2,3,4]); rs/examples/baseline_vectors.rs."
+expect_failure = false
+hand_prefix = """
+push 2 push 3 push 4 call __inv swap 2 write_io 3 halt
+"""

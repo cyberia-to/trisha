@@ -1,0 +1,25 @@
+program custom_permutation
+use std.crypto.poseidon2
+use vm.core.convert
+use vm.io.mem
+use vm.io.io
+fn main() {
+let s0 = pub_read()
+let s1 = pub_read()
+let s2 = pub_read()
+let s3 = pub_read()
+let s4 = pub_read()
+let s5 = pub_read()
+let s6 = pub_read()
+let s7 = pub_read()
+for i in 0..86 bounded 86 { mem.write(1000 + convert.as_field(i),io.divine()) }
+let result = poseidon2.permute_from_ram(poseidon2.State { s0: s0, s1: s1, s2: s2, s3: s3, s4: s4, s5: s5, s6: s6, s7: s7 },1000)
+pub_write(result.s0)
+pub_write(result.s1)
+pub_write(result.s2)
+pub_write(result.s3)
+pub_write(result.s4)
+pub_write(result.s5)
+pub_write(result.s6)
+pub_write(result.s7)
+}

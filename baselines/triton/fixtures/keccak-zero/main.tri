@@ -1,0 +1,9 @@
+program keccak_ram_permutation
+use std.crypto.keccak256
+use vm.io.mem
+use vm.core.convert
+fn main() {
+for i in 0..50 bounded 50 { mem.write(2000 + convert.as_field(i),pub_read()) }
+keccak256.keccak_f1600_in_ram(2000,3000)
+for i in 0..50 bounded 50 { pub_write(mem.read(2000 + convert.as_field(i))) }
+}

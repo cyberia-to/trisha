@@ -72,9 +72,11 @@ impl ProofFile {
     }
 
     pub fn load(path: &Path) -> Result<Self, TrishaError> {
-        let content = std::fs::read_to_string(path)?;
-        toml::from_str(&content)
-            .map_err(|e| TrishaError::Verify(format!("invalid proof file: {}", e)))
+        let bytes = crate::input_file::read_regular_bounded(path)
+            .map_err(|error| TrishaError::Verify(format!("proof {error}")))?;
+        let content = std::str::from_utf8(&bytes)
+            .map_err(|_| TrishaError::Verify("invalid proof file: expected UTF-8".into()))?;
+        toml::from_str(content).map_err(|_| TrishaError::Verify("invalid proof file".into()))
     }
 
     pub fn encode_proof_bytes(bytes: &[u8]) -> String {

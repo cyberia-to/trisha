@@ -1,0 +1,36 @@
+# ---
+# tags: trident, config
+# crystal-type: source
+# crystal-domain: comp
+# ---
+# Neptune — provable blockchain powered by Triton VM
+# https://neptune.cash
+
+[os]
+name = "neptune"
+display_name = "Neptune"
+vm = "triton"
+
+[runtime]
+binding_prefix = "os.neptune"
+account_model = "utxo"
+storage_model = "merkle-authenticated"
+transaction_model = "proof-based"
+
+[cross_chain]
+protocols = []
+
+[status]
+level = 2
+ext_modules = 5
+tests = false
+notes = "Protocol reference Neptune Core 0.15.1 (9869b5e35b659dc520fad51ba5a9c812fed46db0), Triton VM 7.0.0, native proof version 5. Neptune Core 0.10.2/Triton2 is incompatible. Fixed HardforkGamma SingleProof and NativeCurrency verification bind caller-authenticated commitments. Live node state admission and deployment remain external."
+
+[compatibility]
+reference_node_version = "0.15.1"
+reference_commit = "9869b5e35b659dc520fad51ba5a9c812fed46db0"
+triton_vm = "7.0.0"
+native_proof_version = 5
+proof_format = "stark-triton-v7"
+
+# Policy program hashes are embedded in the owned SDK and reproduced by the pinned oracle.

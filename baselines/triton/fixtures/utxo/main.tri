@@ -1,0 +1,4 @@
+program baseline_utxo
+use os.neptune.utxo
+use vm.io.io
+fn main() { utxo.authenticate(io.read_digest(),io.read_digest()) pub_write(1) }

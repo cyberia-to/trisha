@@ -22,12 +22,16 @@ pub fn link(modules: Vec<ModuleTasm>) -> String {
     let mut all_lines = Vec::new();
 
     // Find program entry
-    let entry_label = if let Some(prog) = modules.iter().find(|m| m.is_program) {
-        format!("{}main", mangle_module(&prog.module_name))
-    } else {
-        // No program module — emit a halt-only program.
-        return "    halt\n// error: no program module found".to_string();
+    let Some(program) = modules.iter().find(|m| m.is_program) else {
+        // A library build preserves definitions for external harnesses/linkers.
+        // It has no invented executable entry point and no dead-code pruning.
+        return modules
+            .iter()
+            .map(|module| mangle_labels(&module.tasm, &mangle_module(&module.module_name), false))
+            .collect::<Vec<_>>()
+            .join("\n");
     };
+    let entry_label = format!("{}main", mangle_module(&program.module_name));
 
     // Mangle all modules
     for module in &modules {
@@ -129,8 +133,21 @@ pub fn link(modules: Vec<ModuleTasm>) -> String {
 
     // Emit only reachable functions
     let mut output = Vec::new();
-    output.push(format!("    call {}", entry_label));
-    output.push("    halt".to_string());
+    let needs_program_digest = reachable.contains(crate::recursive::program_context::ENTRYPOINT);
+    if needs_program_digest {
+        output.push(crate::recursive::program_context::prologue());
+    }
+    let prelude = program
+        .tasm
+        .lines()
+        .take_while(|line| !line.trim().ends_with(':'))
+        .collect::<Vec<_>>()
+        .join("\n");
+    output.extend(
+        mangle_labels(&prelude, &mangle_module(&program.module_name), false)
+            .lines()
+            .map(str::to_string),
+    );
 
     for (label, start, end) in &functions {
         if reachable.contains(label) {
@@ -140,7 +157,30 @@ pub fn link(modules: Vec<ModuleTasm>) -> String {
         }
     }
 
-    output.join("\n")
+    let mut linked = output.join("\n");
+    if needs_program_digest {
+        linked.push('\n');
+        linked.push_str(&crate::recursive::program_context::assembly());
+    }
+    let mut needs_recursive = reachable.contains(crate::recursive::ENTRYPOINT);
+    for entrypoint in [
+        crate::recursive::neptune::TRANSACTION_ENTRYPOINT,
+        crate::recursive::neptune::NATIVE_CURRENCY_ENTRYPOINT,
+    ] {
+        if reachable.contains(entrypoint) {
+            linked.push('\n');
+            linked.push_str(
+                &crate::recursive::neptune::protocol_assembly(entrypoint)
+                    .expect("registered protocol"),
+            );
+            needs_recursive = true;
+        }
+    }
+    if needs_recursive {
+        linked.push('\n');
+        linked.push_str(&crate::recursive::assembly());
+    }
+    linked
 }
 
 /// Mangle all labels in a TASM block with a module prefix.
@@ -149,11 +189,15 @@ pub fn link(modules: Vec<ModuleTasm>) -> String {
 fn mangle_labels(tasm: &str, prefix: &str, is_program: bool) -> String {
     let mut result = Vec::new();
 
+    let mut before_functions = true;
     for line in tasm.lines() {
         let trimmed = line.trim();
+        if trimmed.ends_with(':') {
+            before_functions = false;
+        }
 
         // Skip the entry point wrapper (call __main / halt) — the linker handles that
-        if is_program && (trimmed == "call __main" || trimmed == "halt") {
+        if is_program && before_functions {
             continue;
         }
 

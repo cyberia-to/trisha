@@ -1,0 +1,13 @@
+program type_native_currency
+
+// Verify the complete canonical Neptune 0.15.1 NativeCurrency program.
+// Public interface: three declaration-order digests; output is empty.
+// The owner reverses each digest when constructing the native type Claim.
+// The witness is the actual native proof, not unauthenticated amount hints.
+use os.neptune.kernel
+use os.neptune.native_currency
+
+fn main() {
+    let (kernel_hash, input_hash, output_hash) = kernel.read_type_script_hashes()
+    native_currency.verify(kernel_hash, input_hash, output_hash)
+}

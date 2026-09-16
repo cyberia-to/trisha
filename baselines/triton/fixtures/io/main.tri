@@ -1,0 +1,3 @@
+program baseline_io
+use vm.io.io
+fn main() { let a=io.read() let b=io.read() io.write(a) io.write(b) }

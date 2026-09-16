@@ -1,0 +1,9 @@
+program recursive_verifier
+// Public input commits to the entire expected native Claim, not witness metadata.
+use vm.triton.proof
+use vm.io.io
+fn main() {
+    let expected = io.read_digest()
+    proof.verify(expected)
+    pub_write(1)
+}

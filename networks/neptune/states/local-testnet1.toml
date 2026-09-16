@@ -1,0 +1,18 @@
+# Isolated real-proof integration network. Not the public testnet-0 preset.
+[state]
+name = "local-testnet1"
+display_name = "Neptune Local Testnet 1"
+union = "neptune"
+chain_id = "4"
+is_default = false
+
+[endpoints]
+rpc_url = "http://127.0.0.1:29799"
+explorer_url = ""
+
+[currency]
+symbol = "lNEPT"
+
+[node]
+rpc_port = 29799
+network_flag = "testnet-1"

@@ -1,0 +1,3 @@
+program baseline_field
+use vm.core.field
+fn main() { let a=pub_read() let b=pub_read() pub_write(field.add(a,b)) pub_write(field.mul(a,b)) pub_write(field.sub(a,b)) pub_write(field.neg(a)) pub_write(field.inv(b)) }

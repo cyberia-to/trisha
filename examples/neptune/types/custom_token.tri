@@ -1,0 +1,12 @@
+program type_custom_token_v2
+
+// Native Neptune type-claim wire: kernel, inputs, outputs, each Digest reversed.
+// Full canonical salted-UTXO authentication, own-program selection and issuer
+// policy are defined in Trident reference/neptune-custom-token-v2.md.
+use os.neptune.custom_token
+fn main() {
+    let kernel: Digest=pub_read5()
+    let inputs: Digest=pub_read5()
+    let outputs: Digest=pub_read5()
+    custom_token.verify(inputs,outputs)
+}

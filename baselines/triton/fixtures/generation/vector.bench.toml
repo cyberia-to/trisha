@@ -1,0 +1,12 @@
+source = "../../../../examples/neptune/locks/generation.tri"
+hand = "../../os/neptune/locks/generation.tasm"
+target = "neptune"
+input = [1, 2, 3, 4, 5]
+output = []
+reference = "Native Tip5 reference for fixed nonzero preimage; this checks the example hash relation, not deployment authorization (example lock digest is witness-supplied)."
+expect_failure = false
+hand_prefix = """
+call os_neptune_locks_generation__main halt
+"""
+
+secret = [8246125568716920169, "16596689167115763045", "13164597619125278720", 862365898050978412, "12476256998795049071", 17]

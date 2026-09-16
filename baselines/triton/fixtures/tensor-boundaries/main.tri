@@ -1,0 +1,10 @@
+program tensor_test
+use vm.io.mem
+use std.nn.tensor
+fn main(){let a:Field=pub_read()
+let b:Field=pub_read()
+mem.write(100,a)
+mem.write(101,b)
+pub_write(tensor.argmax(100,2))
+pub_write(tensor.relu(a))
+pub_write(tensor.relu(b))}

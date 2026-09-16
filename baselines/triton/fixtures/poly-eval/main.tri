@@ -1,0 +1,4 @@
+program baseline_poly_eval
+use std.private.poly
+use vm.io.mem
+fn main() { mem.write(100,2) mem.write(101,3) mem.write(102,5) pub_write(poly.eval(100,7,3)) }

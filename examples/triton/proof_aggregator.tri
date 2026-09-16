@@ -1,0 +1,17 @@
+program proof_aggregator
+// Version1: 1..16 complete proofs, each with its own public Claim commitment.
+use vm.triton.proof
+use vm.io.io
+fn main() {
+    let count: U32 = as_u32(pub_read())
+    let zero: U32 = as_u32(0)
+    let ceiling: U32 = as_u32(17)
+    assert(zero < count)
+    assert(count < ceiling)
+    for i in 0..count bounded 16 {
+        let expected = io.read_digest()
+        proof.verify(expected)
+        let (a,b,c,d,e) = expected
+        pub_write(a) pub_write(b) pub_write(c) pub_write(d) pub_write(e)
+    }
+}

@@ -1,0 +1,429 @@
+// Canonical source ABI and canonical native digest queue; verifies real Merkle paths.
+
+__verify1:
+    swap 5
+    swap 10
+    swap 5
+    swap 4
+    swap 9
+    swap 4
+    swap 3
+    swap 8
+    swap 3
+    swap 2
+    swap 7
+    swap 2
+    swap 1
+    swap 6
+    swap 1
+    swap 5
+    swap 1
+    swap 4
+    swap 1
+    swap 2
+    swap 3
+    swap 2
+    merkle_step
+    swap 4
+    swap 5
+    swap 4
+    swap 3
+    swap 4
+    swap 3
+    swap 2
+    swap 3
+    swap 2
+    swap 1
+    swap 2
+    swap 1
+    swap 1
+    pop 1
+    swap 4
+    swap 1
+    swap 3
+    swap 1
+    assert_vector
+    pop 5
+    return
+
+__verify2:
+    swap 5
+    swap 10
+    swap 5
+    swap 4
+    swap 9
+    swap 4
+    swap 3
+    swap 8
+    swap 3
+    swap 2
+    swap 7
+    swap 2
+    swap 1
+    swap 6
+    swap 1
+    swap 5
+    swap 1
+    swap 4
+    swap 1
+    swap 2
+    swap 3
+    swap 2
+    merkle_step
+    merkle_step
+    swap 4
+    swap 5
+    swap 4
+    swap 3
+    swap 4
+    swap 3
+    swap 2
+    swap 3
+    swap 2
+    swap 1
+    swap 2
+    swap 1
+    swap 1
+    pop 1
+    swap 4
+    swap 1
+    swap 3
+    swap 1
+    assert_vector
+    pop 5
+    return
+
+__verify3:
+    swap 5
+    swap 10
+    swap 5
+    swap 4
+    swap 9
+    swap 4
+    swap 3
+    swap 8
+    swap 3
+    swap 2
+    swap 7
+    swap 2
+    swap 1
+    swap 6
+    swap 1
+    swap 5
+    swap 1
+    swap 4
+    swap 1
+    swap 2
+    swap 3
+    swap 2
+    merkle_step
+    merkle_step
+    merkle_step
+    swap 4
+    swap 5
+    swap 4
+    swap 3
+    swap 4
+    swap 3
+    swap 2
+    swap 3
+    swap 2
+    swap 1
+    swap 2
+    swap 1
+    swap 1
+    pop 1
+    swap 4
+    swap 1
+    swap 3
+    swap 1
+    assert_vector
+    pop 5
+    return
+
+__verify4:
+    swap 5
+    swap 10
+    swap 5
+    swap 4
+    swap 9
+    swap 4
+    swap 3
+    swap 8
+    swap 3
+    swap 2
+    swap 7
+    swap 2
+    swap 1
+    swap 6
+    swap 1
+    swap 5
+    swap 1
+    swap 4
+    swap 1
+    swap 2
+    swap 3
+    swap 2
+    merkle_step
+    merkle_step
+    merkle_step
+    merkle_step
+    swap 4
+    swap 5
+    swap 4
+    swap 3
+    swap 4
+    swap 3
+    swap 2
+    swap 3
+    swap 2
+    swap 1
+    swap 2
+    swap 1
+    swap 1
+    pop 1
+    swap 4
+    swap 1
+    swap 3
+    swap 1
+    assert_vector
+    pop 5
+    return
+
+__authenticate_leaf3:
+    divine 5
+    dup 4
+    dup 4
+    dup 4
+    dup 4
+    dup 4
+    swap 9
+    swap 15
+    swap 9
+    swap 8
+    swap 14
+    swap 8
+    swap 7
+    swap 13
+    swap 7
+    swap 6
+    swap 12
+    swap 6
+    swap 5
+    swap 11
+    swap 5
+    swap 9
+    swap 10
+    swap 9
+    swap 8
+    swap 9
+    swap 8
+    swap 7
+    swap 8
+    swap 7
+    swap 6
+    swap 7
+    swap 6
+    swap 5
+    swap 6
+    swap 5
+    swap 4
+    swap 1
+    swap 3
+    swap 1
+    merkle_step
+    merkle_step
+    merkle_step
+    swap 4
+    swap 5
+    swap 4
+    swap 3
+    swap 4
+    swap 3
+    swap 2
+    swap 3
+    swap 2
+    swap 1
+    swap 2
+    swap 1
+    swap 1
+    pop 1
+    swap 4
+    swap 1
+    swap 3
+    swap 1
+    assert_vector
+    pop 5
+    return
+
+__verify:
+    swap 6
+    swap 11
+    swap 6
+    swap 5
+    swap 10
+    swap 5
+    swap 4
+    swap 9
+    swap 4
+    swap 3
+    swap 8
+    swap 3
+    swap 2
+    swap 7
+    swap 2
+    swap 6
+    swap 1
+    swap 5
+    swap 1
+    swap 2
+    swap 4
+    swap 2
+    call __verify_loop
+    swap 4
+    swap 6
+    swap 4
+    swap 3
+    swap 5
+    swap 3
+    swap 2
+    swap 4
+    swap 2
+    swap 1
+    swap 3
+    swap 1
+    swap 2
+    swap 1
+    pop 2
+    swap 4
+    swap 1
+    swap 3
+    swap 1
+    assert_vector
+    pop 5
+    return
+
+__verify_loop:
+    dup 6
+    push 0
+    eq
+    skiz
+    return
+    merkle_step
+    swap 6
+    push -1
+    add
+    swap 6
+    recurse
+
+__authenticate_leaf:
+    divine 5
+    dup 4
+    dup 4
+    dup 4
+    dup 4
+    dup 4
+    push 51000
+    write_mem 1
+    pop 1
+    push 51001
+    write_mem 1
+    pop 1
+    push 51002
+    write_mem 1
+    pop 1
+    push 51003
+    write_mem 1
+    pop 1
+    push 51004
+    write_mem 1
+    pop 1
+    push 51005
+    write_mem 1
+    pop 1
+    push 51006
+    write_mem 1
+    pop 1
+    push 51007
+    write_mem 1
+    pop 1
+    push 51008
+    write_mem 1
+    pop 1
+    push 51009
+    write_mem 1
+    pop 1
+    push 51010
+    write_mem 1
+    pop 1
+    push 51011
+    write_mem 1
+    pop 1
+    push 51012
+    write_mem 1
+    pop 1
+    push 51013
+    write_mem 1
+    pop 1
+    push 51014
+    write_mem 1
+    pop 1
+    push 51015
+    write_mem 1
+    pop 1
+    push 51016
+    write_mem 1
+    pop 1
+    push 51009
+    read_mem 1
+    pop 1
+    push 51008
+    read_mem 1
+    pop 1
+    push 51007
+    read_mem 1
+    pop 1
+    push 51006
+    read_mem 1
+    pop 1
+    push 51005
+    read_mem 1
+    pop 1
+    push 51004
+    read_mem 1
+    pop 1
+    push 51003
+    read_mem 1
+    pop 1
+    push 51002
+    read_mem 1
+    pop 1
+    push 51001
+    read_mem 1
+    pop 1
+    push 51000
+    read_mem 1
+    pop 1
+    push 51016
+    read_mem 1
+    pop 1
+    push 51015
+    read_mem 1
+    pop 1
+    push 51014
+    read_mem 1
+    pop 1
+    push 51013
+    read_mem 1
+    pop 1
+    push 51012
+    read_mem 1
+    pop 1
+    push 51011
+    read_mem 1
+    pop 1
+    push 51010
+    read_mem 1
+    pop 1
+    call __verify
+    return

@@ -1,0 +1,2 @@
+// Version1: output the verified full-claim commitment.
+__main: read_io 5 dup 4 dup 4 dup 4 dup 4 dup 4 call trisha_recursive_verify_v1 swap 4 swap 1 swap 3 swap 1 write_io 5 halt

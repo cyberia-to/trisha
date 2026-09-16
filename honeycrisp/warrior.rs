@@ -48,6 +48,7 @@ impl Guesser for Warrior {
         difficulty: u64,
         max_attempts: u64,
     ) -> Result<GuessResult, String> {
+        crate::bundle::validate(bundle)?;
         let program = Program::from_code(&bundle.assembly)
             .map_err(|e| format!("TASM parse error: {}", e))?;
 

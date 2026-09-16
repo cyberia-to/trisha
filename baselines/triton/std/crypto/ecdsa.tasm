@@ -1,0 +1,152 @@
+// Independent RAM reference: exact U256 encoding, range validation and low-S.
+__store_u256:
+push 4100040 write_mem 1 pop 1
+push 4100040 read_mem 1 pop 1 push 7 add write_mem 1 pop 1
+push 4100040 read_mem 1 pop 1 push 6 add write_mem 1 pop 1
+push 4100040 read_mem 1 pop 1 push 5 add write_mem 1 pop 1
+push 4100040 read_mem 1 pop 1 push 4 add write_mem 1 pop 1
+push 4100040 read_mem 1 pop 1 push 3 add write_mem 1 pop 1
+push 4100040 read_mem 1 pop 1 push 2 add write_mem 1 pop 1
+push 4100040 read_mem 1 pop 1 push 1 add write_mem 1 pop 1
+push 4100040 read_mem 1 pop 1 push 0 add write_mem 1 pop 1
+return
+__load_u256:
+push 4100040 write_mem 1 pop 1
+push 4100040 read_mem 1 pop 1 push 0 add read_mem 1 pop 1
+push 4100040 read_mem 1 pop 1 push 1 add read_mem 1 pop 1
+push 4100040 read_mem 1 pop 1 push 2 add read_mem 1 pop 1
+push 4100040 read_mem 1 pop 1 push 3 add read_mem 1 pop 1
+push 4100040 read_mem 1 pop 1 push 4 add read_mem 1 pop 1
+push 4100040 read_mem 1 pop 1 push 5 add read_mem 1 pop 1
+push 4100040 read_mem 1 pop 1 push 6 add read_mem 1 pop 1
+push 4100040 read_mem 1 pop 1 push 7 add read_mem 1 pop 1
+return
+__is_zero:
+add
+add
+add
+add
+add
+add
+add
+push 0 eq return
+__lt256:
+push 4100008 call __store_u256
+push 4100000 call __store_u256
+call __cmp7 return
+__cmp7:
+push 4100007 read_mem 1 pop 1 push 4100015 read_mem 1 pop 1 eq skiz call __cmp6
+push 4100007 read_mem 1 pop 1 push 4100015 read_mem 1 pop 1 eq skiz return
+push 4100015 read_mem 1 pop 1 push 4100007 read_mem 1 pop 1 lt return
+__cmp6:
+push 4100006 read_mem 1 pop 1 push 4100014 read_mem 1 pop 1 eq skiz call __cmp5
+push 4100006 read_mem 1 pop 1 push 4100014 read_mem 1 pop 1 eq skiz return
+push 4100014 read_mem 1 pop 1 push 4100006 read_mem 1 pop 1 lt return
+__cmp5:
+push 4100005 read_mem 1 pop 1 push 4100013 read_mem 1 pop 1 eq skiz call __cmp4
+push 4100005 read_mem 1 pop 1 push 4100013 read_mem 1 pop 1 eq skiz return
+push 4100013 read_mem 1 pop 1 push 4100005 read_mem 1 pop 1 lt return
+__cmp4:
+push 4100004 read_mem 1 pop 1 push 4100012 read_mem 1 pop 1 eq skiz call __cmp3
+push 4100004 read_mem 1 pop 1 push 4100012 read_mem 1 pop 1 eq skiz return
+push 4100012 read_mem 1 pop 1 push 4100004 read_mem 1 pop 1 lt return
+__cmp3:
+push 4100003 read_mem 1 pop 1 push 4100011 read_mem 1 pop 1 eq skiz call __cmp2
+push 4100003 read_mem 1 pop 1 push 4100011 read_mem 1 pop 1 eq skiz return
+push 4100011 read_mem 1 pop 1 push 4100003 read_mem 1 pop 1 lt return
+__cmp2:
+push 4100002 read_mem 1 pop 1 push 4100010 read_mem 1 pop 1 eq skiz call __cmp1
+push 4100002 read_mem 1 pop 1 push 4100010 read_mem 1 pop 1 eq skiz return
+push 4100010 read_mem 1 pop 1 push 4100002 read_mem 1 pop 1 lt return
+__cmp1:
+push 4100001 read_mem 1 pop 1 push 4100009 read_mem 1 pop 1 eq skiz call __cmp0
+push 4100001 read_mem 1 pop 1 push 4100009 read_mem 1 pop 1 eq skiz return
+push 4100009 read_mem 1 pop 1 push 4100001 read_mem 1 pop 1 lt return
+__cmp0:
+push 4100008 read_mem 1 pop 1 push 4100000 read_mem 1 pop 1 lt return
+std_crypto_ecdsa__read_u256:
+read_io 1 split swap 1 push 0 eq assert
+read_io 1 split swap 1 push 0 eq assert
+read_io 1 split swap 1 push 0 eq assert
+read_io 1 split swap 1 push 0 eq assert
+read_io 1 split swap 1 push 0 eq assert
+read_io 1 split swap 1 push 0 eq assert
+read_io 1 split swap 1 push 0 eq assert
+read_io 1 split swap 1 push 0 eq assert
+return
+std_crypto_ecdsa__read_signature:
+call std_crypto_ecdsa__read_u256 call std_crypto_ecdsa__read_u256 return
+std_crypto_ecdsa__divine_u256:
+divine 1 split swap 1 push 0 eq assert
+divine 1 split swap 1 push 0 eq assert
+divine 1 split swap 1 push 0 eq assert
+divine 1 split swap 1 push 0 eq assert
+divine 1 split swap 1 push 0 eq assert
+divine 1 split swap 1 push 0 eq assert
+divine 1 split swap 1 push 0 eq assert
+divine 1 split swap 1 push 0 eq assert
+return
+std_crypto_ecdsa__divine_signature:
+call std_crypto_ecdsa__divine_u256 call std_crypto_ecdsa__divine_u256 return
+std_crypto_ecdsa__valid_range:
+push 4100016 call __store_u256
+push 4100024 call __store_u256
+push 4100032 call __store_u256
+push 4100032 call __load_u256
+call __is_zero push 0 eq
+push 4100024 call __load_u256
+call __is_zero push 0 eq mul
+push 4100032 call __load_u256
+push 4100016 call __load_u256
+call __lt256 mul
+push 4100024 call __load_u256
+push 4100016 call __load_u256
+call __lt256 mul return
+std_crypto_ecdsa__is_low_s:
+push 4100016 call __store_u256
+push 4100024 call __store_u256
+pop 5 pop 3
+push 2 push 4100016 read_mem 1 pop 1 div_mod pop 1
+push 4100017 read_mem 1 pop 1 push 1 and push 2147483648 mul add
+push 4100016 write_mem 1 pop 1
+push 2 push 4100017 read_mem 1 pop 1 div_mod pop 1
+push 4100018 read_mem 1 pop 1 push 1 and push 2147483648 mul add
+push 4100017 write_mem 1 pop 1
+push 2 push 4100018 read_mem 1 pop 1 div_mod pop 1
+push 4100019 read_mem 1 pop 1 push 1 and push 2147483648 mul add
+push 4100018 write_mem 1 pop 1
+push 2 push 4100019 read_mem 1 pop 1 div_mod pop 1
+push 4100020 read_mem 1 pop 1 push 1 and push 2147483648 mul add
+push 4100019 write_mem 1 pop 1
+push 2 push 4100020 read_mem 1 pop 1 div_mod pop 1
+push 4100021 read_mem 1 pop 1 push 1 and push 2147483648 mul add
+push 4100020 write_mem 1 pop 1
+push 2 push 4100021 read_mem 1 pop 1 div_mod pop 1
+push 4100022 read_mem 1 pop 1 push 1 and push 2147483648 mul add
+push 4100021 write_mem 1 pop 1
+push 2 push 4100022 read_mem 1 pop 1 div_mod pop 1
+push 4100023 read_mem 1 pop 1 push 1 and push 2147483648 mul add
+push 4100022 write_mem 1 pop 1
+push 2 push 4100023 read_mem 1 pop 1 div_mod pop 1
+push 4100023 write_mem 1 pop 1
+push 4100024 call __load_u256
+call __is_zero push 0 eq
+push 4100016 call __load_u256
+push 4100024 call __load_u256
+call __lt256 push 0 eq mul return
+std_crypto_ecdsa__write_u256:
+push 4100032 call __store_u256
+push 4100032 read_mem 1 pop 1 write_io 1
+push 4100033 read_mem 1 pop 1 write_io 1
+push 4100034 read_mem 1 pop 1 write_io 1
+push 4100035 read_mem 1 pop 1 write_io 1
+push 4100036 read_mem 1 pop 1 write_io 1
+push 4100037 read_mem 1 pop 1 write_io 1
+push 4100038 read_mem 1 pop 1 write_io 1
+push 4100039 read_mem 1 pop 1 write_io 1
+return
+std_crypto_ecdsa__write_signature:
+push 4100024 call __store_u256
+call std_crypto_ecdsa__write_u256
+push 4100024 call __load_u256
+call std_crypto_ecdsa__write_u256 return

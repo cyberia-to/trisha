@@ -54,18 +54,25 @@ pub struct MineArgs {
 }
 
 pub fn cmd_mine(args: MineArgs) {
+    if [args.bench_secs, args.bench_gpu_secs]
+        .iter()
+        .any(|s| !s.is_finite() || !(0.0..=86400.0).contains(s))
+    {
+        eprintln!("benchmark duration must be finite and between 0 and 86400 seconds");
+        process::exit(1);
+    }
     if args.bench_secs > 0.0 {
         neptune_mine::benchmark_hardfork_beta(args.bench_secs);
         return;
     }
-    #[cfg(feature = "gpu")]
+    #[cfg(all(feature = "gpu", target_os = "macos", target_arch = "aarch64"))]
     if args.bench_gpu_secs > 0.0 {
         neptune_mine::benchmark_gpu(args.bench_gpu_secs);
         return;
     }
-    #[cfg(not(feature = "gpu"))]
+    #[cfg(not(all(feature = "gpu", target_os = "macos", target_arch = "aarch64")))]
     if args.bench_gpu_secs > 0.0 {
-        eprintln!("GPU benchmark requires --features gpu");
+        eprintln!("GPU benchmark requires Apple Silicon macOS and --features gpu");
         process::exit(1);
     }
     if args.neptune {
@@ -75,7 +82,9 @@ pub fn cmd_mine(args: MineArgs) {
         cmd_mine_triton(args);
         #[cfg(not(feature = "triton"))]
         {
-            eprintln!("error: Triton mining requires the 'triton' feature; use --neptune for Neptune PoW");
+            eprintln!(
+                "error: Triton mining requires the 'triton' feature; use --neptune for Neptune PoW"
+            );
             process::exit(1);
         }
     }
@@ -154,164 +163,110 @@ fn cmd_mine_triton(args: MineArgs) {
 
 // ── Neptune mode ──────────────────────────────────────────────────────────────
 
+#[path = "mining_session.rs"]
+mod mining_session;
+
 fn cmd_mine_neptune(args: MineArgs) {
-    let (_state, port) = match args.network.resolve() {
-        Ok(r) => r,
-        Err(e) => {
-            eprintln!("error: {}", e);
-            process::exit(1);
-        }
+    if let Err(error) = run_neptune(args) {
+        eprintln!("error: {error}");
+        process::exit(1);
+    }
+}
+fn run_neptune(args: MineArgs) -> Result<(), String> {
+    let (state, port) = args.network.resolve().map_err(|e| e.to_string())?;
+    let client = NeptuneClient::mining_client(port, args.http_rpc_port, state.network_flag);
+    let address = match args.guesser_address {
+        Some(a) => a,
+        None => client
+            .next_address("generation")
+            .map_err(|e| e.to_string())?,
     };
-
-    let client = NeptuneClient::with_http_port(port, args.http_rpc_port);
-
-    let guesser_address = match args.guesser_address {
-        Some(addr) => addr,
-        None => match client.next_address("generation") {
-            Ok(addr) => addr,
-            Err(e) => {
-                eprintln!(
-                    "error: no --guesser-address and cannot get neuron address: {}",
-                    e
-                );
-                process::exit(1);
+    #[cfg(all(feature = "gpu", target_os = "macos", target_arch = "aarch64"))]
+    let mut gpu = if args.backend == "auto" || args.backend == "gpu" {
+        trisha_honeycrisp::aruminium_mine::AruMine::try_new()
+    } else {
+        None
+    };
+    #[cfg(all(feature = "gpu", target_os = "macos", target_arch = "aarch64"))]
+    let gpu_available = gpu.is_some();
+    #[cfg(not(all(feature = "gpu", target_os = "macos", target_arch = "aarch64")))]
+    let gpu_available = false;
+    let backend = mining_session::backend(&args.backend, gpu_available)?;
+    let mut legacy: Option<(Digest, bool, GuesserBuffer)> = None;
+    let pow = mining_session::run(
+        state.network_flag,
+        args.max_attempts,
+        || {
+            client
+                .get_block_template(&address)
+                .map_err(|e| e.to_string())
+        },
+        |template, start, count| {
+            if template.rule.fast() {
+                #[cfg(all(feature = "gpu", target_os = "macos", target_arch = "aarch64"))]
+                if let Some(ref mut miner) = gpu {
+                    return Ok(neptune_mine::mine_gpu_range(
+                        miner,
+                        template.path,
+                        &template.mast,
+                        template.target,
+                        start,
+                        count,
+                        backend == mining_session::Backend::Combined,
+                    ));
+                }
+                Ok(neptune_mine::mine_cpu_range(
+                    template.path,
+                    &template.mast,
+                    template.target,
+                    start,
+                    count,
+                ))
+            } else {
+                if backend == mining_session::Backend::Gpu {
+                    return Err(
+                        "legacy memory-hard mining is a CPU backend; choose cpu/honeycrisp/auto"
+                            .into(),
+                    );
+                }
+                let reversed = template.rule != mining_session::Rule::Reboot;
+                let prefix = if reversed {
+                    template.parent
+                } else {
+                    template.mast.commit()
+                };
+                if !legacy
+                    .as_ref()
+                    .is_some_and(|(p, r, _)| *p == prefix && *r == reversed)
+                {
+                    eprintln!(
+                        "Legacy {:?}: building explicit consensus buffer (~43 GB peak)",
+                        template.rule
+                    );
+                    drop(legacy.take()); // free the previous buffer before allocating another
+                    legacy = Some((
+                        prefix,
+                        reversed,
+                        GuesserBuffer::build_legacy(prefix, reversed),
+                    ));
+                }
+                Ok(neptune_mine::mine_legacy_range(
+                    &legacy.as_ref().unwrap().2,
+                    &template.mast,
+                    template.target,
+                    start,
+                    count,
+                ))
             }
         },
-    };
-    eprintln!("Guesser address: {}", guesser_address);
-
-    eprintln!("Fetching block template from node...");
-    let template_resp = match client.get_block_template(&guesser_address) {
-        Ok(r) => r,
-        Err(e) => {
-            eprintln!("error: {}", e);
-            process::exit(1);
-        }
-    };
-
-    let template_val = match template_resp.get("template") {
-        Some(t) if !t.is_null() => t.clone(),
-        _ => {
-            eprintln!("error: node returned null template (still syncing or no peers?)");
-            process::exit(1);
-        }
-    };
-
-    let metadata = match template_val.get("metadata") {
-        Some(m) => m.clone(),
-        None => {
-            eprintln!("error: template missing metadata");
-            process::exit(1);
-        }
-    };
-
-    let block = match template_val.get("block") {
-        Some(b) => b.clone(),
-        None => {
-            eprintln!("error: template missing block");
-            process::exit(1);
-        }
-    };
-
-    let prev_block = match parse_digest(metadata.get("prev_block")) {
-        Ok(d) => d,
-        Err(e) => {
-            eprintln!("error parsing prev_block: {}", e);
-            process::exit(1);
-        }
-    };
-
-    let threshold = match parse_digest(metadata.get("threshold")) {
-        Ok(d) => d,
-        Err(e) => {
-            eprintln!("error parsing threshold: {}", e);
-            process::exit(1);
-        }
-    };
-
-    let mast_paths = match parse_pow_mast_paths(metadata.get("pow_mast_paths")) {
-        Ok(p) => p,
-        Err(e) => {
-            eprintln!("error parsing pow_mast_paths: {}", e);
-            process::exit(1);
-        }
-    };
-
-    eprintln!("threshold: {}", threshold.to_hex());
-
-    // HardforkBeta (active on mainnet since block 38000): no memory-hard PoW.
-    // Validation only checks fast_mast_hash(pow) ≤ target; paths are not
-    // Merkle-verified. The composer pre-encodes lustration_status into
-    // pathA[27..28] and version into pathA[26]; we take pathA from the
-    // template block header directly.
-    let hardfork_beta = metadata.get("lustration_status").map_or(false, |v| !v.is_null());
-
-    let pow = if hardfork_beta {
-        eprintln!("HardforkBeta detected — no GuesserBuffer required.");
-        let path_a = match parse_pow_path_a(&block) {
-            Ok(p) => p,
-            Err(e) => {
-                eprintln!("error parsing block header pathA: {}", e);
-                process::exit(1);
-            }
-        };
-
-        eprintln!("Mining (max {} attempts)...", args.max_attempts);
-
-        // Try GPU first (Apple Silicon Metal), fall back to CPU.
-        // GPU path (Apple Silicon Metal, requires --features gpu).
-        // Falls back to CPU if Metal unavailable or when gpu returns None.
-        #[cfg(feature = "gpu")]
-        let pow_opt = neptune_mine::mine_hardfork_beta_gpu(
-            path_a, &mast_paths, threshold, args.max_attempts,
-        ).or_else(|| neptune_mine::mine_hardfork_beta(
-            path_a, &mast_paths, threshold, args.max_attempts,
-        ));
-        #[cfg(not(feature = "gpu"))]
-        let pow_opt = neptune_mine::mine_hardfork_beta(
-            path_a, &mast_paths, threshold, args.max_attempts,
-        );
-
-        match pow_opt {
-            Some(p) => p,
-            None => {
-                eprintln!("No solution found within {} attempts", args.max_attempts);
-                process::exit(1);
-            }
-        }
-    } else {
-        eprintln!("Building GuesserBuffer (2^29 leaves, ~32 GB)...");
-        let buffer = GuesserBuffer::build(prev_block);
-
-        eprintln!("Mining (max {} attempts)...", args.max_attempts);
-        match neptune_mine::mine(&buffer, &mast_paths, threshold, args.max_attempts) {
-            Some(p) => p,
-            None => {
-                eprintln!("No solution found within {} attempts", args.max_attempts);
-                process::exit(1);
-            }
-        }
-    };
-
-    eprintln!("Solution found! Submitting to node...");
-
-    let pow_json = neptune_pow_to_json(&pow);
-
-    match client.submit_block(&block, &pow_json) {
-        Ok(true) => {
-            println!("accepted");
-            println!("nonce: {}", pow.nonce.to_hex());
-            println!("root:  {}", pow.root.to_hex());
-        }
-        Ok(false) => {
-            eprintln!("block rejected by node");
-            process::exit(1);
-        }
-        Err(e) => {
-            eprintln!("error submitting block: {}", e);
-            process::exit(1);
-        }
-    }
+        |block, pow| client.submit_block(block, pow).map_err(|e| e.to_string()),
+    )?;
+    println!(
+        "accepted\nnonce: {}\nroot: {}",
+        pow.nonce.to_hex(),
+        pow.root.to_hex()
+    );
+    Ok(())
 }
 
 // ── helpers ───────────────────────────────────────────────────────────────────
@@ -348,8 +303,7 @@ fn parse_pow_path_a(block: &Value) -> Result<[Digest; HEIGHT], String> {
 }
 
 fn parse_pow_mast_paths(val: Option<&Value>) -> Result<PowMastPaths, String> {
-    let obj = val
-        .ok_or_else(|| "pow_mast_paths missing".to_string())?;
+    let obj = val.ok_or_else(|| "pow_mast_paths missing".to_string())?;
     Ok(PowMastPaths {
         pow: parse_digest_array::<{ neptune_mine::POW_PATH_LEN }>(obj.get("pow"))?,
         header: parse_digest_array::<{ neptune_mine::HEADER_PATH_LEN }>(obj.get("header"))?,

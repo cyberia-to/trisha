@@ -1,0 +1,230 @@
+// Independent arithmetic-demo implementation; no encryption/privacy security claim.
+// Full29source-order arguments; scratch [6000000,6011000).
+__trinity:
+push 6000028 write_mem 1 pop 1 push 6000027 write_mem 1 pop 1 push 6000026 write_mem 1 pop 1 push 6000025 write_mem 1 pop 1 push 6000024 write_mem 1 pop 1 push 6000023 write_mem 1 pop 1 push 6000022 write_mem 1 pop 1 push 6000021 write_mem 1 pop 1 push 6000020 write_mem 1 pop 1 push 6000019 write_mem 1 pop 1 push 6000018 write_mem 1 pop 1 push 6000017 write_mem 1 pop 1 push 6000016 write_mem 1 pop 1 push 6000015 write_mem 1 pop 1 push 6000014 write_mem 1 pop 1 push 6000013 write_mem 1 pop 1 push 6000012 write_mem 1 pop 1 push 6000011 write_mem 1 pop 1 push 6000010 write_mem 1 pop 1 push 6000009 write_mem 1 pop 1 push 6000008 write_mem 1 pop 1 push 6000007 write_mem 1 pop 1 push 6000006 write_mem 1 pop 1 push 6000005 write_mem 1 pop 1 push 6000004 write_mem 1 pop 1 push 6000003 write_mem 1 pop 1 push 6000002 write_mem 1 pop 1 push 6000001 write_mem 1 pop 1 push 6000000 write_mem 1 pop 1
+push 0 push 6010000 write_mem 1 pop 1 call __tri_neurons
+push 0 push 6010013 write_mem 1 pop 1 call __tri_decrypt_outputs
+push 0 push 6010014 write_mem 1 pop 1 call __tri_dense_rows
+push 6000012 read_mem 1 pop 1 push 6000009 read_mem 1 pop 1 call __argmax push 6000030 write_mem 1 pop 1
+push 6000030 read_mem 1 pop 1 push 6000014 read_mem 1 pop 1 eq assert
+push 0 push 6000031 write_mem 1 pop 1 push 0 push 6010016 write_mem 1 pop 1 call __tri_sum
+push 6000016 read_mem 1 pop 1 push 6001000 write_mem 1 pop 1
+push 6000017 read_mem 1 pop 1 push 6001001 write_mem 1 pop 1
+push 6000031 read_mem 1 pop 1 push 6001002 write_mem 1 pop 1
+push 6000030 read_mem 1 pop 1 push 6001003 write_mem 1 pop 1
+push 4 push 6001004 write_mem 1 pop 1
+push 0 push 6001005 write_mem 1 pop 1
+push 0 push 6001006 write_mem 1 pop 1
+push 0 push 6001007 write_mem 1 pop 1
+push 0 push 6010021 write_mem 1 pop 1 call __tri_sponge_rounds
+push 6001000 read_mem 1 pop 1 push 6000021 read_mem 1 pop 1 eq assert
+push 6000016 read_mem 1 pop 1 push 6000017 read_mem 1 pop 1 push 6000031 read_mem 1 pop 1 push 6000030 read_mem 1 pop 1 push 6000015 read_mem 1 pop 1 call __poseidon2_hash4_to_digest push 6000018 read_mem 1 pop 1 eq assert
+push 0 push 6010026 write_mem 1 pop 1 call __tri_test_poly
+push 0 push 6010027 write_mem 1 pop 1 call __tri_acc_init
+ divine 1 pop 1
+push 6000025 read_mem 1 pop 1 push 6010025 write_mem 1 pop 1 call __tri_monomial
+push 6000025 read_mem 1 pop 1 push 6000024 read_mem 1 pop 1 add push 6010025 write_mem 1 pop 1 call __tri_monomial
+push 6000025 read_mem 1 pop 1 read_mem 1 pop 1 push 6000026 read_mem 1 pop 1 write_mem 1 pop 1
+push 0 push 6010030 write_mem 1 pop 1 call __tri_extract
+push 6000025 read_mem 1 pop 1 read_mem 1 pop 1 push 6000026 read_mem 1 pop 1 write_mem 1 pop 1
+push 6000025 read_mem 1 pop 1 push 6000024 read_mem 1 pop 1 add read_mem 1 pop 1 push 6000026 read_mem 1 pop 1 push 6000024 read_mem 1 pop 1 add write_mem 1 pop 1
+push 0 push 6010031 write_mem 1 pop 1 call __tri_switch
+push 6000023 read_mem 1 pop 1 push 6000001 read_mem 1 pop 1 push 6000006 read_mem 1 pop 1 push 6000007 read_mem 1 pop 1 call __tri_decrypt push 6000028 read_mem 1 pop 1 eq assert
+push 1 push 6001000 write_mem 1 pop 1
+push 0 push 6001001 write_mem 1 pop 1
+push 0 push 6001002 write_mem 1 pop 1
+push 0 push 6001003 write_mem 1 pop 1
+push 0 push 6001004 write_mem 1 pop 1
+push 0 push 6001005 write_mem 1 pop 1
+push 0 push 6001006 write_mem 1 pop 1
+push 0 push 6001007 write_mem 1 pop 1
+push 6001000 read_mem 1 pop 1 push 6001004 read_mem 1 pop 1 add push 6001010 write_mem 1 pop 1
+push 6001000 read_mem 1 pop 1 push 6001004 read_mem 1 pop 1 push -1 mul add push 6001014 write_mem 1 pop 1
+push 6001001 read_mem 1 pop 1 push 6001005 read_mem 1 pop 1 add push 6001011 write_mem 1 pop 1
+push 6001001 read_mem 1 pop 1 push 6001005 read_mem 1 pop 1 push -1 mul add push 6001015 write_mem 1 pop 1
+push 6001002 read_mem 1 pop 1 push 6001006 read_mem 1 pop 1 add push 6001012 write_mem 1 pop 1
+push 6001002 read_mem 1 pop 1 push 6001006 read_mem 1 pop 1 push -1 mul add push 6001016 write_mem 1 pop 1
+push 6001003 read_mem 1 pop 1 push 6001007 read_mem 1 pop 1 add push 6001013 write_mem 1 pop 1
+push 6001003 read_mem 1 pop 1 push 6001007 read_mem 1 pop 1 push -1 mul add push 6001017 write_mem 1 pop 1
+push 6001010 read_mem 1 pop 1 push 6001000 write_mem 1 pop 1
+push 6001011 read_mem 1 pop 1 push 6001001 write_mem 1 pop 1
+push 6001012 read_mem 1 pop 1 push 6001002 write_mem 1 pop 1
+push 6001013 read_mem 1 pop 1 push 6001003 write_mem 1 pop 1
+push 6001014 read_mem 1 pop 1 push 6001004 write_mem 1 pop 1
+push 6001015 read_mem 1 pop 1 push 6001005 write_mem 1 pop 1
+push 6001016 read_mem 1 pop 1 push 6001006 write_mem 1 pop 1
+push 6001017 read_mem 1 pop 1 push 6001007 write_mem 1 pop 1
+push 6001004 read_mem 1 pop 1 push 6001020 write_mem 1 pop 1
+push 6001005 read_mem 1 pop 1 push 6001021 write_mem 1 pop 1
+push 6001006 read_mem 1 pop 1 push 6001004 write_mem 1 pop 1
+push 6001007 read_mem 1 pop 1 push 6001005 write_mem 1 pop 1
+push 6001020 read_mem 1 pop 1 push 6001006 write_mem 1 pop 1
+push 6001021 read_mem 1 pop 1 push 6001007 write_mem 1 pop 1
+push 6000030 read_mem 1 pop 1 push 0 eq push 0 eq skiz call __tri_cz
+push 6001004 read_mem 1 pop 1 push 6001020 write_mem 1 pop 1
+push 6001005 read_mem 1 pop 1 push 6001021 write_mem 1 pop 1
+push 6001006 read_mem 1 pop 1 push 6001004 write_mem 1 pop 1
+push 6001007 read_mem 1 pop 1 push 6001005 write_mem 1 pop 1
+push 6001020 read_mem 1 pop 1 push 6001006 write_mem 1 pop 1
+push 6001021 read_mem 1 pop 1 push 6001007 write_mem 1 pop 1
+push 6001000 read_mem 1 pop 1 push 6001004 read_mem 1 pop 1 add push 6001000 read_mem 1 pop 1 push 6001004 read_mem 1 pop 1 add mul push 6001001 read_mem 1 pop 1 push 6001005 read_mem 1 pop 1 add push 6001001 read_mem 1 pop 1 push 6001005 read_mem 1 pop 1 add mul add push 6001002 read_mem 1 pop 1 push 6001006 read_mem 1 pop 1 add push 6001002 read_mem 1 pop 1 push 6001006 read_mem 1 pop 1 add mul add push 6001003 read_mem 1 pop 1 push 6001007 read_mem 1 pop 1 add push 6001003 read_mem 1 pop 1 push 6001007 read_mem 1 pop 1 add mul add push 6001000 read_mem 1 pop 1 push 6001004 read_mem 1 pop 1 push -1 mul add push 6001000 read_mem 1 pop 1 push 6001004 read_mem 1 pop 1 push -1 mul add mul push -1 mul add push 6001001 read_mem 1 pop 1 push 6001005 read_mem 1 pop 1 push -1 mul add push 6001001 read_mem 1 pop 1 push 6001005 read_mem 1 pop 1 push -1 mul add mul push -1 mul add push 6001002 read_mem 1 pop 1 push 6001006 read_mem 1 pop 1 push -1 mul add push 6001002 read_mem 1 pop 1 push 6001006 read_mem 1 pop 1 push -1 mul add mul push -1 mul add push 6001003 read_mem 1 pop 1 push 6001007 read_mem 1 pop 1 push -1 mul add push 6001003 read_mem 1 pop 1 push 6001007 read_mem 1 pop 1 push -1 mul add mul push -1 mul add split pop 1 push 2147483647 swap 1 lt return
+
+__tri_coefficients:
+push 6000007 read_mem 1 pop 1 push 1 add push 6010001 read_mem 1 pop 1 lt push 0 eq skiz return
+push 0 push 6000003 read_mem 1 pop 1 push 6010000 read_mem 1 pop 1 push 6000007 read_mem 1 pop 1 push 1 add mul push 6010001 read_mem 1 pop 1 add add write_mem 1 pop 1
+push 6010001 read_mem 1 pop 1 push 1 add push 6010001 write_mem 1 pop 1 recurse
+
+__tri_accumulate:
+push 6000007 read_mem 1 pop 1 push 1 add push 6010003 read_mem 1 pop 1 lt push 0 eq skiz return
+push 6000003 read_mem 1 pop 1 push 6010000 read_mem 1 pop 1 push 6000007 read_mem 1 pop 1 push 1 add mul push 6010003 read_mem 1 pop 1 add add read_mem 1 pop 1 push 6000002 read_mem 1 pop 1 push 6010000 read_mem 1 pop 1 push 6000008 read_mem 1 pop 1 mul push 6010002 read_mem 1 pop 1 add add read_mem 1 pop 1 push 6000000 read_mem 1 pop 1 push 6010002 read_mem 1 pop 1 push 6000007 read_mem 1 pop 1 push 1 add mul push 6010003 read_mem 1 pop 1 add add read_mem 1 pop 1 mul add push 6000003 read_mem 1 pop 1 push 6010000 read_mem 1 pop 1 push 6000007 read_mem 1 pop 1 push 1 add mul push 6010003 read_mem 1 pop 1 add add write_mem 1 pop 1
+push 6010003 read_mem 1 pop 1 push 1 add push 6010003 write_mem 1 pop 1 recurse
+
+__tri_inputs:
+push 6000008 read_mem 1 pop 1 push 6010002 read_mem 1 pop 1 lt push 0 eq skiz return
+push 0 push 6010003 write_mem 1 pop 1 call __tri_accumulate
+push 6010002 read_mem 1 pop 1 push 1 add push 6010002 write_mem 1 pop 1 recurse
+
+__tri_neurons:
+push 6000009 read_mem 1 pop 1 push 6010000 read_mem 1 pop 1 lt push 0 eq skiz return
+push 0 push 6010001 write_mem 1 pop 1 call __tri_coefficients
+push 0 push 6010002 write_mem 1 pop 1 call __tri_inputs
+push 6010000 read_mem 1 pop 1 push 1 add push 6010000 write_mem 1 pop 1 recurse
+
+__tri_decrypt_dot:
+push 6010007 read_mem 1 pop 1 push 6010012 read_mem 1 pop 1 lt push 0 eq skiz return
+push 6010008 read_mem 1 pop 1 push 6010004 read_mem 1 pop 1 push 6010012 read_mem 1 pop 1 add read_mem 1 pop 1 push 6010005 read_mem 1 pop 1 push 6010012 read_mem 1 pop 1 add read_mem 1 pop 1 mul add push 6010008 write_mem 1 pop 1
+push 6010012 read_mem 1 pop 1 push 1 add push 6010012 write_mem 1 pop 1 recurse
+
+__tri_decrypt:
+push 6010007 write_mem 1 pop 1 push 6010006 write_mem 1 pop 1 push 6010005 write_mem 1 pop 1 push 6010004 write_mem 1 pop 1
+push 0 push 6010008 write_mem 1 pop 1 push 0 push 6010012 write_mem 1 pop 1 call __tri_decrypt_dot
+ divine 1 push 6010009 write_mem 1 pop 1
+push 6010004 read_mem 1 pop 1 push 6010007 read_mem 1 pop 1 add read_mem 1 pop 1 push 6010008 read_mem 1 pop 1 push -1 mul add push 6010009 read_mem 1 pop 1 push 6010006 read_mem 1 pop 1 mul push -1 mul add push 6010010 write_mem 1 pop 1
+push 6010006 read_mem 1 pop 1 push 2 invert mul push 6010011 write_mem 1 pop 1
+push 6010011 read_mem 1 pop 1 split pop 1 push 6010010 read_mem 1 pop 1 split pop 1 lt
+push 6010011 read_mem 1 pop 1 split pop 1 push 6010010 read_mem 1 pop 1 push -1 mul split pop 1 lt add push 0 eq push 0 eq assert
+push 6010009 read_mem 1 pop 1 return
+
+__tri_decrypt_outputs:
+push 6000009 read_mem 1 pop 1 push 6010013 read_mem 1 pop 1 lt push 0 eq skiz return
+push 6000003 read_mem 1 pop 1 push 6010013 read_mem 1 pop 1 push 6000007 read_mem 1 pop 1 push 1 add mul add push 6000001 read_mem 1 pop 1 push 6000006 read_mem 1 pop 1 push 6000007 read_mem 1 pop 1 call __tri_decrypt push 6000005 read_mem 1 pop 1 push 6010013 read_mem 1 pop 1 add write_mem 1 pop 1
+push 6010013 read_mem 1 pop 1 push 1 add push 6010013 write_mem 1 pop 1 recurse
+
+__tri_dense_cols:
+push 6000009 read_mem 1 pop 1 push 6010015 read_mem 1 pop 1 lt push 0 eq skiz return
+push 6000012 read_mem 1 pop 1 push 6010014 read_mem 1 pop 1 add read_mem 1 pop 1 push 6000010 read_mem 1 pop 1 push 6010014 read_mem 1 pop 1 push 6000009 read_mem 1 pop 1 mul push 6010015 read_mem 1 pop 1 add add read_mem 1 pop 1 push 6000005 read_mem 1 pop 1 push 6010015 read_mem 1 pop 1 add read_mem 1 pop 1 mul add push 6000012 read_mem 1 pop 1 push 6010014 read_mem 1 pop 1 add write_mem 1 pop 1
+push 6010015 read_mem 1 pop 1 push 1 add push 6010015 write_mem 1 pop 1 recurse
+
+__tri_dense_rows:
+push 6000009 read_mem 1 pop 1 push 6010014 read_mem 1 pop 1 lt push 0 eq skiz return
+push 6000011 read_mem 1 pop 1 push 6010014 read_mem 1 pop 1 add read_mem 1 pop 1 push 6000012 read_mem 1 pop 1 push 6010014 read_mem 1 pop 1 add write_mem 1 pop 1
+push 0 push 6010015 write_mem 1 pop 1 call __tri_dense_cols
+push 6000013 read_mem 1 pop 1 push 6000012 read_mem 1 pop 1 push 6010014 read_mem 1 pop 1 add read_mem 1 pop 1 add read_mem 1 pop 1 push 6000012 read_mem 1 pop 1 push 6010014 read_mem 1 pop 1 add write_mem 1 pop 1
+push 6010014 read_mem 1 pop 1 push 1 add push 6010014 write_mem 1 pop 1 recurse
+
+__tri_sum:
+push 6000009 read_mem 1 pop 1 push 6010016 read_mem 1 pop 1 lt push 0 eq skiz return
+push 6000031 read_mem 1 pop 1 push 6000012 read_mem 1 pop 1 push 6010016 read_mem 1 pop 1 add read_mem 1 pop 1 add push 6000031 write_mem 1 pop 1
+push 6010016 read_mem 1 pop 1 push 1 add push 6010016 write_mem 1 pop 1 recurse
+
+__tri_sponge_rounds:
+push 14 push 6010021 read_mem 1 pop 1 lt push 0 eq skiz return
+push 6001000 read_mem 1 pop 1 push 6000020 read_mem 1 pop 1 push 6010021 read_mem 1 pop 1 push 8 mul push 0 add add read_mem 1 pop 1 add push 6010019 write_mem 1 pop 1
+divine 1 push 6010017 write_mem 1 pop 1 divine 1 push 6010018 write_mem 1 pop 1
+push 6010019 read_mem 1 pop 1 push 6010018 read_mem 1 pop 1 push 6000019 read_mem 1 pop 1 mul push 6010017 read_mem 1 pop 1 add eq assert
+push 6010017 read_mem 1 pop 1 split swap 1 push 0 eq assert pop 1
+push 6000019 read_mem 1 pop 1 push 6010017 read_mem 1 pop 1 lt assert
+push 6000013 read_mem 1 pop 1 push 6010017 read_mem 1 pop 1 add read_mem 1 pop 1 push 6001000 write_mem 1 pop 1
+push 6001001 read_mem 1 pop 1 push 6000020 read_mem 1 pop 1 push 6010021 read_mem 1 pop 1 push 8 mul push 1 add add read_mem 1 pop 1 add push 6010019 write_mem 1 pop 1
+divine 1 push 6010017 write_mem 1 pop 1 divine 1 push 6010018 write_mem 1 pop 1
+push 6010019 read_mem 1 pop 1 push 6010018 read_mem 1 pop 1 push 6000019 read_mem 1 pop 1 mul push 6010017 read_mem 1 pop 1 add eq assert
+push 6010017 read_mem 1 pop 1 split swap 1 push 0 eq assert pop 1
+push 6000019 read_mem 1 pop 1 push 6010017 read_mem 1 pop 1 lt assert
+push 6000013 read_mem 1 pop 1 push 6010017 read_mem 1 pop 1 add read_mem 1 pop 1 push 6001001 write_mem 1 pop 1
+push 6001002 read_mem 1 pop 1 push 6000020 read_mem 1 pop 1 push 6010021 read_mem 1 pop 1 push 8 mul push 2 add add read_mem 1 pop 1 add push 6010019 write_mem 1 pop 1
+divine 1 push 6010017 write_mem 1 pop 1 divine 1 push 6010018 write_mem 1 pop 1
+push 6010019 read_mem 1 pop 1 push 6010018 read_mem 1 pop 1 push 6000019 read_mem 1 pop 1 mul push 6010017 read_mem 1 pop 1 add eq assert
+push 6010017 read_mem 1 pop 1 split swap 1 push 0 eq assert pop 1
+push 6000019 read_mem 1 pop 1 push 6010017 read_mem 1 pop 1 lt assert
+push 6000013 read_mem 1 pop 1 push 6010017 read_mem 1 pop 1 add read_mem 1 pop 1 push 6001002 write_mem 1 pop 1
+push 6001003 read_mem 1 pop 1 push 6000020 read_mem 1 pop 1 push 6010021 read_mem 1 pop 1 push 8 mul push 3 add add read_mem 1 pop 1 add push 6010019 write_mem 1 pop 1
+divine 1 push 6010017 write_mem 1 pop 1 divine 1 push 6010018 write_mem 1 pop 1
+push 6010019 read_mem 1 pop 1 push 6010018 read_mem 1 pop 1 push 6000019 read_mem 1 pop 1 mul push 6010017 read_mem 1 pop 1 add eq assert
+push 6010017 read_mem 1 pop 1 split swap 1 push 0 eq assert pop 1
+push 6000019 read_mem 1 pop 1 push 6010017 read_mem 1 pop 1 lt assert
+push 6000013 read_mem 1 pop 1 push 6010017 read_mem 1 pop 1 add read_mem 1 pop 1 push 6001003 write_mem 1 pop 1
+push 6001004 read_mem 1 pop 1 push 6000020 read_mem 1 pop 1 push 6010021 read_mem 1 pop 1 push 8 mul push 4 add add read_mem 1 pop 1 add push 6010019 write_mem 1 pop 1
+divine 1 push 6010017 write_mem 1 pop 1 divine 1 push 6010018 write_mem 1 pop 1
+push 6010019 read_mem 1 pop 1 push 6010018 read_mem 1 pop 1 push 6000019 read_mem 1 pop 1 mul push 6010017 read_mem 1 pop 1 add eq assert
+push 6010017 read_mem 1 pop 1 split swap 1 push 0 eq assert pop 1
+push 6000019 read_mem 1 pop 1 push 6010017 read_mem 1 pop 1 lt assert
+push 6000013 read_mem 1 pop 1 push 6010017 read_mem 1 pop 1 add read_mem 1 pop 1 push 6001004 write_mem 1 pop 1
+push 6001005 read_mem 1 pop 1 push 6000020 read_mem 1 pop 1 push 6010021 read_mem 1 pop 1 push 8 mul push 5 add add read_mem 1 pop 1 add push 6010019 write_mem 1 pop 1
+divine 1 push 6010017 write_mem 1 pop 1 divine 1 push 6010018 write_mem 1 pop 1
+push 6010019 read_mem 1 pop 1 push 6010018 read_mem 1 pop 1 push 6000019 read_mem 1 pop 1 mul push 6010017 read_mem 1 pop 1 add eq assert
+push 6010017 read_mem 1 pop 1 split swap 1 push 0 eq assert pop 1
+push 6000019 read_mem 1 pop 1 push 6010017 read_mem 1 pop 1 lt assert
+push 6000013 read_mem 1 pop 1 push 6010017 read_mem 1 pop 1 add read_mem 1 pop 1 push 6001005 write_mem 1 pop 1
+push 6001006 read_mem 1 pop 1 push 6000020 read_mem 1 pop 1 push 6010021 read_mem 1 pop 1 push 8 mul push 6 add add read_mem 1 pop 1 add push 6010019 write_mem 1 pop 1
+divine 1 push 6010017 write_mem 1 pop 1 divine 1 push 6010018 write_mem 1 pop 1
+push 6010019 read_mem 1 pop 1 push 6010018 read_mem 1 pop 1 push 6000019 read_mem 1 pop 1 mul push 6010017 read_mem 1 pop 1 add eq assert
+push 6010017 read_mem 1 pop 1 split swap 1 push 0 eq assert pop 1
+push 6000019 read_mem 1 pop 1 push 6010017 read_mem 1 pop 1 lt assert
+push 6000013 read_mem 1 pop 1 push 6010017 read_mem 1 pop 1 add read_mem 1 pop 1 push 6001006 write_mem 1 pop 1
+push 6001007 read_mem 1 pop 1 push 6000020 read_mem 1 pop 1 push 6010021 read_mem 1 pop 1 push 8 mul push 7 add add read_mem 1 pop 1 add push 6010019 write_mem 1 pop 1
+divine 1 push 6010017 write_mem 1 pop 1 divine 1 push 6010018 write_mem 1 pop 1
+push 6010019 read_mem 1 pop 1 push 6010018 read_mem 1 pop 1 push 6000019 read_mem 1 pop 1 mul push 6010017 read_mem 1 pop 1 add eq assert
+push 6010017 read_mem 1 pop 1 split swap 1 push 0 eq assert pop 1
+push 6000019 read_mem 1 pop 1 push 6010017 read_mem 1 pop 1 lt assert
+push 6000013 read_mem 1 pop 1 push 6010017 read_mem 1 pop 1 add read_mem 1 pop 1 push 6001007 write_mem 1 pop 1
+push 6001000 read_mem 1 pop 1 push 6001001 read_mem 1 pop 1 add push 6001002 read_mem 1 pop 1 add push 6001003 read_mem 1 pop 1 add push 6001004 read_mem 1 pop 1 add push 6001005 read_mem 1 pop 1 add push 6001006 read_mem 1 pop 1 add push 6001007 read_mem 1 pop 1 add push 6010020 write_mem 1 pop 1
+push 6001000 read_mem 1 pop 1 push 6010020 read_mem 1 pop 1 add push 6001000 write_mem 1 pop 1
+push 6001001 read_mem 1 pop 1 push 6010020 read_mem 1 pop 1 add push 6001001 write_mem 1 pop 1
+push 6001002 read_mem 1 pop 1 push 6010020 read_mem 1 pop 1 add push 6001002 write_mem 1 pop 1
+push 6001003 read_mem 1 pop 1 push 6010020 read_mem 1 pop 1 add push 6001003 write_mem 1 pop 1
+push 6001004 read_mem 1 pop 1 push 6010020 read_mem 1 pop 1 add push 6001004 write_mem 1 pop 1
+push 6001005 read_mem 1 pop 1 push 6010020 read_mem 1 pop 1 add push 6001005 write_mem 1 pop 1
+push 6001006 read_mem 1 pop 1 push 6010020 read_mem 1 pop 1 add push 6001006 write_mem 1 pop 1
+push 6001007 read_mem 1 pop 1 push 6010020 read_mem 1 pop 1 add push 6001007 write_mem 1 pop 1
+push 6010021 read_mem 1 pop 1 push 1 add push 6010021 write_mem 1 pop 1 recurse
+
+__tri_test_poly:
+push 6000024 read_mem 1 pop 1 push 6010026 read_mem 1 pop 1 lt push 0 eq skiz return
+divine 1 push 6010022 write_mem 1 pop 1 push 6000024 read_mem 1 pop 1 push 6010026 read_mem 1 pop 1 push 6000019 read_mem 1 pop 1 mul push 6010022 read_mem 1 pop 1 push 6000024 read_mem 1 pop 1 mul push -1 mul add lt assert
+push 6000013 read_mem 1 pop 1 push 6010022 read_mem 1 pop 1 add read_mem 1 pop 1 push 6000026 read_mem 1 pop 1 push 6010026 read_mem 1 pop 1 add write_mem 1 pop 1
+push 6010026 read_mem 1 pop 1 push 1 add push 6010026 write_mem 1 pop 1 recurse
+
+__tri_acc_init:
+push 6000024 read_mem 1 pop 1 push 6010027 read_mem 1 pop 1 lt push 0 eq skiz return
+push 0 push 6000025 read_mem 1 pop 1 push 6010027 read_mem 1 pop 1 add write_mem 1 pop 1
+push 6000026 read_mem 1 pop 1 push 6010027 read_mem 1 pop 1 add read_mem 1 pop 1 push 6000006 read_mem 1 pop 1 mul push 6000025 read_mem 1 pop 1 push 6000024 read_mem 1 pop 1 push 6010027 read_mem 1 pop 1 add add write_mem 1 pop 1
+push 6010027 read_mem 1 pop 1 push 1 add push 6010027 write_mem 1 pop 1 recurse
+
+__tri_monomial_copy:
+push 6000024 read_mem 1 pop 1 push 6010028 read_mem 1 pop 1 lt push 0 eq skiz return
+push 6010025 read_mem 1 pop 1 push 6010028 read_mem 1 pop 1 add read_mem 1 pop 1 push 6000027 read_mem 1 pop 1 push 6010028 read_mem 1 pop 1 add write_mem 1 pop 1
+push 6010028 read_mem 1 pop 1 push 1 add push 6010028 write_mem 1 pop 1 recurse
+
+__tri_monomial_write:
+push 6000024 read_mem 1 pop 1 push 6010029 read_mem 1 pop 1 lt push 0 eq skiz return
+divine 1 push 6010023 write_mem 1 pop 1 divine 1 push 6010024 write_mem 1 pop 1
+push 6000027 read_mem 1 pop 1 push 6010023 read_mem 1 pop 1 add read_mem 1 pop 1 push 6010024 read_mem 1 pop 1 mul push 6010025 read_mem 1 pop 1 push 6010029 read_mem 1 pop 1 add write_mem 1 pop 1
+push 6010029 read_mem 1 pop 1 push 1 add push 6010029 write_mem 1 pop 1 recurse
+
+__tri_monomial:
+push 0 push 6010028 write_mem 1 pop 1 call __tri_monomial_copy
+push 0 push 6010029 write_mem 1 pop 1 call __tri_monomial_write return
+
+__tri_extract:
+push 6000024 read_mem 1 pop 1 push 6010030 read_mem 1 pop 1 lt push 0 eq skiz return
+push 6000025 read_mem 1 pop 1 push 6000024 read_mem 1 pop 1 push 6010030 read_mem 1 pop 1 push -1 mul add add read_mem 1 pop 1 push -1 mul push 6000026 read_mem 1 pop 1 push 6010030 read_mem 1 pop 1 add write_mem 1 pop 1
+push 6010030 read_mem 1 pop 1 push 1 add push 6010030 write_mem 1 pop 1 recurse
+
+__tri_switch:
+push 6000007 read_mem 1 pop 1 push 1 add push 6010031 read_mem 1 pop 1 lt push 0 eq skiz return
+divine 1 push 6000023 read_mem 1 pop 1 push 6010031 read_mem 1 pop 1 add write_mem 1 pop 1
+push 6010031 read_mem 1 pop 1 push 1 add push 6010031 write_mem 1 pop 1 recurse
+
+__tri_cz:
+push 6001006 read_mem 1 pop 1 push -1 mul push 6001006 write_mem 1 pop 1
+push 6001007 read_mem 1 pop 1 push -1 mul push 6001007 write_mem 1 pop 1 return

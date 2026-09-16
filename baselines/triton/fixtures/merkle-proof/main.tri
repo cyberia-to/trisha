@@ -1,0 +1,4 @@
+program baseline_merkle_proof
+use vm.triton.merkle_proof
+use vm.io.io
+fn main() { let root=io.read_digest() let leaf=merkle_proof.authenticate_leaf3(root,as_u32(5)) let (a,b,c,d,e)=leaf pub_write(a) pub_write(b) pub_write(c) pub_write(d) pub_write(e) }

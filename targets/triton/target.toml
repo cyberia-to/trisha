@@ -1,0 +1,53 @@
+# ---
+# tags: trident, config
+# crystal-type: source
+# crystal-domain: comp
+# ---
+# Triton VM target configuration
+# https://triton-vm.org/spec/
+
+[target]
+name = "triton"
+display_name = "Triton 7"
+architecture = "stack"
+output_extension = ".tasm"
+
+[field]
+prime = "2^64 - 2^32 + 1"
+bits = 64
+limbs = 2
+
+[stack]
+depth = 16
+spill_ram_base = 1073741824
+
+[hash]
+function = "Tip5"
+digest_width = 5
+rate = 10
+
+[extension_field]
+degree = 3
+
+[cost]
+tables = ["processor", "hash", "u32", "op_stack", "ram", "jump_stack"]
+
+[warrior]
+name = "trisha"
+crate = "trisha"
+runner = true
+prover = true
+
+[status]
+level = 5
+lowering = "Trisha Triton lowering"
+lowering_path = "tir"
+cost_model = true
+tests = true
+notes = "Triton VM 7.0.0 and tasm-lib 7.0.0; native proof version 5, stark-triton-v7. Legacy Triton2 proofs are rejected. Live Neptune deployment is unsupported."
+
+[compatibility]
+triton_vm = "7.0.0"
+tasm_lib = "7.0.0"
+native_proof_version = 5
+proof_format = "stark-triton-v7"

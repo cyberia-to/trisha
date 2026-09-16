@@ -193,39 +193,13 @@ impl StackStateMachine {
 /// apply grammar constraints without GPU-side state tracking.
 ///
 /// Also returns stack depths and type encodings for decoder input.
-pub fn precompute_sequence_state(target_tokens: &[u32], initial_depth: i32) -> SequenceState {
-    let seq_len = target_tokens.len();
-    let mut masks = Vec::with_capacity(seq_len);
-    let mut depths = Vec::with_capacity(seq_len);
-    let mut type_states = Vec::with_capacity(seq_len);
-
-    let mut sm = StackStateMachine::new(initial_depth);
-
-    for &token in target_tokens {
-        // Record state BEFORE executing this token
-        masks.push(sm.valid_mask());
-        depths.push(sm.depth_for_embedding(65));
-        type_states.push(sm.type_encoding());
-
-        // Execute the token to advance state
-        sm.step(token);
-    }
-
-    SequenceState {
-        masks,
-        depths,
-        type_states,
-    }
-}
-
-/// Precomputed sequence state for training.
-pub struct SequenceState {
-    /// Validity masks: [seq_len][VOCAB_SIZE], 0.0 or -1e9.
-    pub masks: Vec<Vec<f32>>,
-    /// Stack depths: [seq_len], clamped for embedding.
-    pub depths: Vec<u32>,
-    /// Type encodings: [seq_len][3*TYPE_WINDOW].
-    pub type_states: Vec<Vec<f32>>,
+pub use trident::neural::model::grammar::SequenceState;
+pub fn precompute_sequence_state(tokens: &[u32], initial_depth: i32) -> SequenceState {
+    trident::neural::model::grammar::precompute_sequence_state(
+        &crate::neural::target::TritonTarget::default(),
+        tokens,
+        initial_depth,
+    )
 }
 
 #[cfg(test)]

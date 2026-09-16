@@ -43,7 +43,9 @@ fn cmd_node_status(rpc_port: u16, display_name: &str) {
         "(unavailable)".to_string()
     });
 
-    let mempool = client.mempool_tx_count().unwrap_or_else(|_| "?".to_string());
+    let mempool = client
+        .mempool_tx_count()
+        .unwrap_or_else(|_| "?".to_string());
 
     println!("Block height : {}", height);
     println!("Mempool txs  : {}", mempool);

@@ -1,0 +1,10 @@
+source = "main.tri"
+hand = "../../std/private/poly.tasm"
+target = "triton"
+input = []
+output = [268]
+reference = "Integer polynomial 2+3*x+5*x^2 at x=7 equals268."
+expect_failure = false
+hand_prefix = """
+push 2 push 100 write_mem 1 pop 1 push 3 push 101 write_mem 1 pop 1 push 5 push 102 write_mem 1 pop 1 push 100 push 7 push 3 call __eval write_io 1 halt
+"""

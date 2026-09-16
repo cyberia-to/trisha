@@ -1,0 +1,9 @@
+source = "main.tri"
+hand = "../../std/compiler/pipeline.tasm"
+target = "triton"
+input = [38, 112, 114, 111, 103, 114, 97, 109, 32, 98, 97, 100, 32, 102, 110, 32, 109, 97, 105, 110, 40, 41, 32, 45, 62, 32, 70, 105, 101, 108, 100, 32, 123, 32, 50, 32, 43, 32, 125]
+output = []
+expect_failure = true
+max_cycles = 500000
+reference = "Malformed source must report an error; driver asserts zero errors. Hand reference rejects the invalid token/expression directly."
+hand_prefix = "call __pipeline_main halt"

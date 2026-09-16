@@ -1,0 +1,790 @@
+// Complete custom-token-v2: canonical salted UTXOs, own-program selector, full issuer Digest.
+// Generated independently; no compiler output is read.
+dup 11
+push 7000000 write_mem 1 pop 1
+dup 12
+push 7000001 write_mem 1 pop 1
+dup 13
+push 7000002 write_mem 1 pop 1
+dup 14
+push 7000003 write_mem 1 pop 1
+dup 15
+push 7000004 write_mem 1 pop 1
+read_io 1
+push 7000005 write_mem 1 pop 1
+read_io 1
+push 7000006 write_mem 1 pop 1
+read_io 1
+push 7000007 write_mem 1 pop 1
+read_io 1
+push 7000008 write_mem 1 pop 1
+read_io 1
+push 7000009 write_mem 1 pop 1
+read_io 1
+push 7000010 write_mem 1 pop 1
+read_io 1
+push 7000011 write_mem 1 pop 1
+read_io 1
+push 7000012 write_mem 1 pop 1
+read_io 1
+push 7000013 write_mem 1 pop 1
+read_io 1
+push 7000014 write_mem 1 pop 1
+read_io 1
+push 7000015 write_mem 1 pop 1
+read_io 1
+push 7000016 write_mem 1 pop 1
+read_io 1
+push 7000017 write_mem 1 pop 1
+read_io 1
+push 7000018 write_mem 1 pop 1
+read_io 1
+push 7000019 write_mem 1 pop 1
+push 0
+push 7000020 write_mem 1 pop 1
+push 0
+push 7000021 write_mem 1 pop 1
+push 0
+push 7000022 write_mem 1 pop 1
+push 0
+push 7000023 write_mem 1 pop 1
+push 0
+push 7000024 write_mem 1 pop 1
+push 0
+push 7000025 write_mem 1 pop 1
+push 8000000
+push 7000026 write_mem 1 pop 1
+push 7000010 read_mem 1 pop 1
+push 7000027 write_mem 1 pop 1
+push 7000011 read_mem 1 pop 1
+push 7000028 write_mem 1 pop 1
+push 7000012 read_mem 1 pop 1
+push 7000029 write_mem 1 pop 1
+push 7000013 read_mem 1 pop 1
+push 7000030 write_mem 1 pop 1
+push 7000014 read_mem 1 pop 1
+push 7000031 write_mem 1 pop 1
+call __load_list call __sum_list
+push 7000032 read_mem 1 pop 1
+push 7000033 write_mem 1 pop 1
+push 8010000
+push 7000026 write_mem 1 pop 1
+push 7000015 read_mem 1 pop 1
+push 7000027 write_mem 1 pop 1
+push 7000016 read_mem 1 pop 1
+push 7000028 write_mem 1 pop 1
+push 7000017 read_mem 1 pop 1
+push 7000029 write_mem 1 pop 1
+push 7000018 read_mem 1 pop 1
+push 7000030 write_mem 1 pop 1
+push 7000019 read_mem 1 pop 1
+push 7000031 write_mem 1 pop 1
+call __load_list call __sum_list
+push 7000032 read_mem 1 pop 1
+push 7000034 write_mem 1 pop 1
+push 7000020 read_mem 1 pop 1
+push 0 eq push 0 eq assert
+push 7000033 read_mem 1 pop 1
+push 7000034 read_mem 1 pop 1
+eq push 0 eq
+skiz call __conditional_tmp1
+halt
+__conditional_tmp1:
+push 7000021 read_mem 1 pop 1
+push 0 eq
+push 7000022 read_mem 1 pop 1
+push 0 eq
+mul
+push 7000023 read_mem 1 pop 1
+push 0 eq
+mul
+push 7000024 read_mem 1 pop 1
+push 0 eq
+mul
+push 7000025 read_mem 1 pop 1
+push 0 eq
+mul
+push 0 eq assert
+divine 1
+push 7000035 write_mem 1 pop 1
+divine 1
+push 7000036 write_mem 1 pop 1
+divine 1
+push 7000037 write_mem 1 pop 1
+divine 1
+push 7000038 write_mem 1 pop 1
+divine 1
+push 7000039 write_mem 1 pop 1
+push 0
+push 0
+push 0
+push 3
+push 2
+push 7000039 read_mem 1 pop 1
+push 7000038 read_mem 1 pop 1
+push 7000037 read_mem 1 pop 1
+push 7000036 read_mem 1 pop 1
+push 7000035 read_mem 1 pop 1
+hash
+push 7000040 write_mem 1 pop 1
+push 7000041 write_mem 1 pop 1
+push 7000042 write_mem 1 pop 1
+push 7000043 write_mem 1 pop 1
+push 7000044 write_mem 1 pop 1
+push 7000040 read_mem 1 pop 1
+push 7000021 read_mem 1 pop 1
+eq assert
+push 7000041 read_mem 1 pop 1
+push 7000022 read_mem 1 pop 1
+eq assert
+push 7000042 read_mem 1 pop 1
+push 7000023 read_mem 1 pop 1
+eq assert
+push 7000043 read_mem 1 pop 1
+push 7000024 read_mem 1 pop 1
+eq assert
+push 7000044 read_mem 1 pop 1
+push 7000025 read_mem 1 pop 1
+eq assert
+return
+__read_words:
+divine 1
+push 7000049 write_mem 1 pop 1
+push 7000049 read_mem 1 pop 1
+push 7000026 read_mem 1 pop 1
+push 7000048 read_mem 1 pop 1
+add write_mem 1 pop 1
+push 7000048 read_mem 1 pop 1
+push 1
+add
+push 7000050 write_mem 1 pop 1
+push 7000050 read_mem 1 pop 1
+push 7000048 write_mem 1 pop 1
+push 7000045 read_mem 1 pop 1
+push 7000048 read_mem 1 pop 1
+lt
+skiz recurse
+return
+__pad_words:
+push 0
+push 7000026 read_mem 1 pop 1
+push 7000048 read_mem 1 pop 1
+add write_mem 1 pop 1
+push 7000048 read_mem 1 pop 1
+push 1
+add
+push 7000053 write_mem 1 pop 1
+push 7000053 read_mem 1 pop 1
+push 7000048 write_mem 1 pop 1
+push 7000052 read_mem 1 pop 1
+push 7000048 read_mem 1 pop 1
+lt
+skiz recurse
+return
+__absorb_words:
+push 0 push 0 push 0 push 0
+push 7000026 read_mem 1 pop 1
+push 7000048 read_mem 1 pop 1
+add sponge_absorb_mem pop 5
+push 7000048 read_mem 1 pop 1
+push 10
+add
+push 7000054 write_mem 1 pop 1
+push 7000054 read_mem 1 pop 1
+push 7000048 write_mem 1 pop 1
+push 7000052 read_mem 1 pop 1
+push 7000048 read_mem 1 pop 1
+lt
+skiz recurse
+return
+__load_list:
+divine 1
+push 7000045 write_mem 1 pop 1
+push 7000045 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 4096
+push 7000045 read_mem 1 pop 1
+push -1 mul
+add
+push 7000046 write_mem 1 pop 1
+push 7000046 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000045 read_mem 1 pop 1
+push 5
+push -1 mul
+add
+push 7000047 write_mem 1 pop 1
+push 7000047 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 0
+push 7000048 write_mem 1 pop 1
+push 7000045 read_mem 1 pop 1
+push 7000048 read_mem 1 pop 1
+lt
+skiz call __read_words
+push 1
+push 7000026 read_mem 1 pop 1
+push 7000045 read_mem 1 pop 1
+add write_mem 1 pop 1
+push 7000045 read_mem 1 pop 1
+push 1
+add
+push 7000051 write_mem 1 pop 1
+push 7000051 read_mem 1 pop 1
+push 7000048 write_mem 1 pop 1
+push 10
+push 7000045 read_mem 1 pop 1
+div_mod pop 1 push 1 add push 10 mul
+push 7000052 write_mem 1 pop 1
+push 7000052 read_mem 1 pop 1
+push 7000048 read_mem 1 pop 1
+lt
+skiz call __pad_words
+sponge_init
+push 0
+push 7000048 write_mem 1 pop 1
+push 7000052 read_mem 1 pop 1
+push 7000048 read_mem 1 pop 1
+lt
+skiz call __absorb_words
+sponge_squeeze
+push 7000031 read_mem 1 pop 1
+eq assert
+push 7000030 read_mem 1 pop 1
+eq assert
+push 7000029 read_mem 1 pop 1
+eq assert
+push 7000028 read_mem 1 pop 1
+eq assert
+push 7000027 read_mem 1 pop 1
+eq assert
+pop 5
+return
+__conditional_tmp67:
+push 7000116 read_mem 1 pop 1
+push 7000021 read_mem 1 pop 1
+eq assert
+push 7000118 read_mem 1 pop 1
+push 7000022 read_mem 1 pop 1
+eq assert
+push 7000120 read_mem 1 pop 1
+push 7000023 read_mem 1 pop 1
+eq assert
+push 7000122 read_mem 1 pop 1
+push 7000024 read_mem 1 pop 1
+eq assert
+push 7000124 read_mem 1 pop 1
+push 7000025 read_mem 1 pop 1
+eq assert
+return
+__conditional_tmp68:
+push 7000116 read_mem 1 pop 1
+push 7000021 write_mem 1 pop 1
+push 7000118 read_mem 1 pop 1
+push 7000022 write_mem 1 pop 1
+push 7000120 read_mem 1 pop 1
+push 7000023 write_mem 1 pop 1
+push 7000122 read_mem 1 pop 1
+push 7000024 write_mem 1 pop 1
+push 7000124 read_mem 1 pop 1
+push 7000025 write_mem 1 pop 1
+return
+__conditional_tmp51:
+push 7000089 read_mem 1 pop 1
+push 7
+eq assert
+push 7000082 read_mem 1 pop 1
+push 2
+add
+push 7000110 write_mem 1 pop 1
+push 7000110 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000084 read_mem 1 pop 1
+push 7000110 read_mem 1 pop 1
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 7000110 read_mem 1 pop 1
+add read_mem 1 pop 1
+push 7000111 write_mem 1 pop 1
+push 7000111 read_mem 1 pop 1
+push 2
+eq assert
+push 7000082 read_mem 1 pop 1
+push 3
+add
+push 7000112 write_mem 1 pop 1
+push 7000112 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000084 read_mem 1 pop 1
+push 7000112 read_mem 1 pop 1
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 7000112 read_mem 1 pop 1
+add read_mem 1 pop 1
+push 7000113 write_mem 1 pop 1
+push 7000113 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000032 read_mem 1 pop 1
+push 7000113 read_mem 1 pop 1
+add
+push 7000114 write_mem 1 pop 1
+push 7000114 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000114 read_mem 1 pop 1
+push 7000032 write_mem 1 pop 1
+push 7000082 read_mem 1 pop 1
+push 4
+add
+push 7000115 write_mem 1 pop 1
+push 7000115 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000084 read_mem 1 pop 1
+push 7000115 read_mem 1 pop 1
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 7000115 read_mem 1 pop 1
+add read_mem 1 pop 1
+push 7000116 write_mem 1 pop 1
+push 7000082 read_mem 1 pop 1
+push 5
+add
+push 7000117 write_mem 1 pop 1
+push 7000117 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000084 read_mem 1 pop 1
+push 7000117 read_mem 1 pop 1
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 7000117 read_mem 1 pop 1
+add read_mem 1 pop 1
+push 7000118 write_mem 1 pop 1
+push 7000082 read_mem 1 pop 1
+push 6
+add
+push 7000119 write_mem 1 pop 1
+push 7000119 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000084 read_mem 1 pop 1
+push 7000119 read_mem 1 pop 1
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 7000119 read_mem 1 pop 1
+add read_mem 1 pop 1
+push 7000120 write_mem 1 pop 1
+push 7000082 read_mem 1 pop 1
+push 7
+add
+push 7000121 write_mem 1 pop 1
+push 7000121 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000084 read_mem 1 pop 1
+push 7000121 read_mem 1 pop 1
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 7000121 read_mem 1 pop 1
+add read_mem 1 pop 1
+push 7000122 write_mem 1 pop 1
+push 7000082 read_mem 1 pop 1
+push 8
+add
+push 7000123 write_mem 1 pop 1
+push 7000123 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000084 read_mem 1 pop 1
+push 7000123 read_mem 1 pop 1
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 7000123 read_mem 1 pop 1
+add read_mem 1 pop 1
+push 7000124 write_mem 1 pop 1
+push 7000020 read_mem 1 pop 1
+skiz call __conditional_tmp67
+push 7000020 read_mem 1 pop 1
+push 0 eq
+skiz call __conditional_tmp68
+push 1
+push 7000020 write_mem 1 pop 1
+return
+__coins:
+push 7000078 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000072 read_mem 1 pop 1
+push 7000078 read_mem 1 pop 1
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 7000078 read_mem 1 pop 1
+add read_mem 1 pop 1
+push 7000080 write_mem 1 pop 1
+push 7000080 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000078 read_mem 1 pop 1
+push 1
+add
+push 7000081 write_mem 1 pop 1
+push 7000081 read_mem 1 pop 1
+push 7000082 write_mem 1 pop 1
+push 7000082 read_mem 1 pop 1
+push 7000080 read_mem 1 pop 1
+add
+push 7000083 write_mem 1 pop 1
+push 7000083 read_mem 1 pop 1
+push 7000084 write_mem 1 pop 1
+push 7000084 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000072 read_mem 1 pop 1
+push 1
+add
+push 7000085 write_mem 1 pop 1
+push 7000085 read_mem 1 pop 1
+push 7000084 read_mem 1 pop 1
+lt
+assert
+push 7000082 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000084 read_mem 1 pop 1
+push 7000082 read_mem 1 pop 1
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 7000082 read_mem 1 pop 1
+add read_mem 1 pop 1
+push 7000086 write_mem 1 pop 1
+push 7000086 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000082 read_mem 1 pop 1
+push 1
+add
+push 7000087 write_mem 1 pop 1
+push 7000087 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000084 read_mem 1 pop 1
+push 7000087 read_mem 1 pop 1
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 7000087 read_mem 1 pop 1
+add read_mem 1 pop 1
+push 7000088 write_mem 1 pop 1
+push 7000088 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000088 read_mem 1 pop 1
+push 7000089 write_mem 1 pop 1
+push 7000089 read_mem 1 pop 1
+push 1
+add
+push 7000090 write_mem 1 pop 1
+push 7000086 read_mem 1 pop 1
+push 7000090 read_mem 1 pop 1
+eq assert
+push 7000082 read_mem 1 pop 1
+push 1
+add
+push 7000091 write_mem 1 pop 1
+push 7000091 read_mem 1 pop 1
+push 7000086 read_mem 1 pop 1
+add
+push 7000092 write_mem 1 pop 1
+push 7000092 read_mem 1 pop 1
+push 7000093 write_mem 1 pop 1
+push 7000093 read_mem 1 pop 1
+push 5
+add
+push 7000094 write_mem 1 pop 1
+push 7000094 read_mem 1 pop 1
+push 7000084 read_mem 1 pop 1
+eq assert
+push 7000093 read_mem 1 pop 1
+push 0
+add
+push 7000095 write_mem 1 pop 1
+push 7000095 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000084 read_mem 1 pop 1
+push 7000095 read_mem 1 pop 1
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 7000095 read_mem 1 pop 1
+add read_mem 1 pop 1
+push 7000096 write_mem 1 pop 1
+push 7000096 read_mem 1 pop 1
+push 7000000 read_mem 1 pop 1
+eq
+push 7000097 write_mem 1 pop 1
+push 7000093 read_mem 1 pop 1
+push 1
+add
+push 7000098 write_mem 1 pop 1
+push 7000098 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000084 read_mem 1 pop 1
+push 7000098 read_mem 1 pop 1
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 7000098 read_mem 1 pop 1
+add read_mem 1 pop 1
+push 7000099 write_mem 1 pop 1
+push 7000099 read_mem 1 pop 1
+push 7000001 read_mem 1 pop 1
+eq
+push 7000100 write_mem 1 pop 1
+push 7000093 read_mem 1 pop 1
+push 2
+add
+push 7000101 write_mem 1 pop 1
+push 7000101 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000084 read_mem 1 pop 1
+push 7000101 read_mem 1 pop 1
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 7000101 read_mem 1 pop 1
+add read_mem 1 pop 1
+push 7000102 write_mem 1 pop 1
+push 7000102 read_mem 1 pop 1
+push 7000002 read_mem 1 pop 1
+eq
+push 7000103 write_mem 1 pop 1
+push 7000093 read_mem 1 pop 1
+push 3
+add
+push 7000104 write_mem 1 pop 1
+push 7000104 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000084 read_mem 1 pop 1
+push 7000104 read_mem 1 pop 1
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 7000104 read_mem 1 pop 1
+add read_mem 1 pop 1
+push 7000105 write_mem 1 pop 1
+push 7000105 read_mem 1 pop 1
+push 7000003 read_mem 1 pop 1
+eq
+push 7000106 write_mem 1 pop 1
+push 7000093 read_mem 1 pop 1
+push 4
+add
+push 7000107 write_mem 1 pop 1
+push 7000107 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000084 read_mem 1 pop 1
+push 7000107 read_mem 1 pop 1
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 7000107 read_mem 1 pop 1
+add read_mem 1 pop 1
+push 7000108 write_mem 1 pop 1
+push 7000108 read_mem 1 pop 1
+push 7000004 read_mem 1 pop 1
+eq
+push 7000109 write_mem 1 pop 1
+push 7000097 read_mem 1 pop 1
+push 7000100 read_mem 1 pop 1
+mul
+push 7000103 read_mem 1 pop 1
+mul
+push 7000106 read_mem 1 pop 1
+mul
+push 7000109 read_mem 1 pop 1
+mul
+skiz call __conditional_tmp51
+push 7000084 read_mem 1 pop 1
+push 7000078 write_mem 1 pop 1
+push 7000079 read_mem 1 pop 1
+push 1
+add
+push 7000125 write_mem 1 pop 1
+push 7000125 read_mem 1 pop 1
+push 7000079 write_mem 1 pop 1
+push 7000075 read_mem 1 pop 1
+push 7000079 read_mem 1 pop 1
+lt
+skiz recurse
+return
+__utxos:
+push 7000061 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000045 read_mem 1 pop 1
+push 7000061 read_mem 1 pop 1
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 7000061 read_mem 1 pop 1
+add read_mem 1 pop 1
+push 7000062 write_mem 1 pop 1
+push 7000062 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000061 read_mem 1 pop 1
+push 1
+add
+push 7000063 write_mem 1 pop 1
+push 7000063 read_mem 1 pop 1
+push 7000064 write_mem 1 pop 1
+push 7000064 read_mem 1 pop 1
+push 7000062 read_mem 1 pop 1
+add
+push 7000065 write_mem 1 pop 1
+push 7000065 read_mem 1 pop 1
+push 7000066 write_mem 1 pop 1
+push 7000066 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000045 read_mem 1 pop 1
+push 1
+add
+push 7000067 write_mem 1 pop 1
+push 7000067 read_mem 1 pop 1
+push 7000066 read_mem 1 pop 1
+lt
+assert
+push 7000064 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000066 read_mem 1 pop 1
+push 7000064 read_mem 1 pop 1
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 7000064 read_mem 1 pop 1
+add read_mem 1 pop 1
+push 7000068 write_mem 1 pop 1
+push 7000068 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000064 read_mem 1 pop 1
+push 1
+add
+push 7000069 write_mem 1 pop 1
+push 7000069 read_mem 1 pop 1
+push 7000070 write_mem 1 pop 1
+push 7000070 read_mem 1 pop 1
+push 7000068 read_mem 1 pop 1
+add
+push 7000071 write_mem 1 pop 1
+push 7000071 read_mem 1 pop 1
+push 7000072 write_mem 1 pop 1
+push 7000072 read_mem 1 pop 1
+push 5
+add
+push 7000073 write_mem 1 pop 1
+push 7000073 read_mem 1 pop 1
+push 7000066 read_mem 1 pop 1
+eq assert
+push 7000070 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000072 read_mem 1 pop 1
+push 7000070 read_mem 1 pop 1
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 7000070 read_mem 1 pop 1
+add read_mem 1 pop 1
+push 7000074 write_mem 1 pop 1
+push 7000074 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000074 read_mem 1 pop 1
+push 7000075 write_mem 1 pop 1
+push 7000075 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 64
+push 7000075 read_mem 1 pop 1
+push -1 mul
+add
+push 7000076 write_mem 1 pop 1
+push 7000076 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000070 read_mem 1 pop 1
+push 1
+add
+push 7000077 write_mem 1 pop 1
+push 7000077 read_mem 1 pop 1
+push 7000078 write_mem 1 pop 1
+push 0
+push 7000079 write_mem 1 pop 1
+push 7000075 read_mem 1 pop 1
+push 7000079 read_mem 1 pop 1
+lt
+skiz call __coins
+push 7000078 read_mem 1 pop 1
+push 7000072 read_mem 1 pop 1
+eq assert
+push 7000066 read_mem 1 pop 1
+push 7000061 write_mem 1 pop 1
+push 7000060 read_mem 1 pop 1
+push 1
+add
+push 7000126 write_mem 1 pop 1
+push 7000126 read_mem 1 pop 1
+push 7000060 write_mem 1 pop 1
+push 7000058 read_mem 1 pop 1
+push 7000060 read_mem 1 pop 1
+lt
+skiz recurse
+return
+__sum_list:
+push 3
+split swap 1 push 0 eq assert pop 1
+push 7000045 read_mem 1 pop 1
+push 3
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 3
+add read_mem 1 pop 1
+push 7000055 write_mem 1 pop 1
+push 7000055 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000055 read_mem 1 pop 1
+push 4
+add
+push 7000056 write_mem 1 pop 1
+push 7000056 read_mem 1 pop 1
+push 7000045 read_mem 1 pop 1
+eq assert
+push 4
+split swap 1 push 0 eq assert pop 1
+push 7000045 read_mem 1 pop 1
+push 4
+lt
+assert
+push 7000026 read_mem 1 pop 1
+push 4
+add read_mem 1 pop 1
+push 7000057 write_mem 1 pop 1
+push 7000057 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 7000057 read_mem 1 pop 1
+push 7000058 write_mem 1 pop 1
+push 7000058 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 64
+push 7000058 read_mem 1 pop 1
+push -1 mul
+add
+push 7000059 write_mem 1 pop 1
+push 7000059 read_mem 1 pop 1
+split swap 1 push 0 eq assert pop 1
+push 0
+push 7000060 write_mem 1 pop 1
+push 5
+push 7000061 write_mem 1 pop 1
+push 0
+push 7000032 write_mem 1 pop 1
+push 7000058 read_mem 1 pop 1
+push 7000060 read_mem 1 pop 1
+lt
+skiz call __utxos
+push 7000061 read_mem 1 pop 1
+push 7000045 read_mem 1 pop 1
+eq assert
+return

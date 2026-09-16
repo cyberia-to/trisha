@@ -1,0 +1,6 @@
+source = "main.tri"
+hand = "../../std/crypto/ecdsa.tasm"
+input = [1, 0, 0, 0, 0, 0, 0, 0, 3493216577, 3218235020, 2940772411, 3132021990, 4294967294, 4294967295, 4294967295, 4294967295, 3493216577, 3218235020, 2940772411, 3132021990, 4294967294, 4294967295, 4294967295, 4294967295, 0, 0, 0, 0, 0, 0, 0, 0]
+output = [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3493216577, 3218235020, 2940772411, 3132021990, 4294967294, 4294967295, 4294967295, 4294967295]
+reference = "Python exact integer range and low-S boundary plus complete signature limb roundtrip; curve-agnostic scalar policy, not ECDSA curve verification."
+hand_prefix = "call std_crypto_ecdsa__read_signature push 4100024 call __store_u256 push 4100032 call __store_u256 call std_crypto_ecdsa__read_signature pop 5 pop 3 push 4100016 call __store_u256 push 4100032 call __load_u256 push 4100024 call __load_u256 push 4100016 call __load_u256 call std_crypto_ecdsa__valid_range write_io 1 push 4100032 call __load_u256 push 4100024 call __load_u256 push 4100016 call __load_u256 call std_crypto_ecdsa__is_low_s write_io 1 push 4100032 call __load_u256 push 4100024 call __load_u256 call std_crypto_ecdsa__write_signature halt"

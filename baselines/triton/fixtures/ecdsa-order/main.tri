@@ -1,0 +1,11 @@
+program ecdsa_scalar_policy
+use std.crypto.ecdsa
+fn flag(b: Bool) -> Field { if b { 1 } else { 0 } }
+fn main() {
+    let sig = ecdsa.read_signature()
+    let ord = ecdsa.read_signature()
+    let order = ord.r
+    pub_write(flag(ecdsa.valid_range(sig,order)))
+    pub_write(flag(ecdsa.is_low_s(sig,order)))
+    ecdsa.write_signature(sig)
+}

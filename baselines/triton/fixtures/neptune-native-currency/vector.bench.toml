@@ -1,0 +1,9 @@
+source = "../../../../examples/neptune/types/native_currency.tri"
+hand = "../../os/neptune/types/native_currency.tasm"
+target = "neptune"
+input = ["4586798725930750550","18288128851883601400","13735459663907749193","9237227006091662658","17031206504620107738","2627901524369627983","8605870039530057065","12130852945834863049","1434926961274837920","12282736504934028962","14622759001824341761","10314974712191182122","10972003190263168531","17065020132692866450","5458806851435148895"]
+output = []
+witness_files = ["../neptune-native-currency/witness.toml"]
+expect_failure = false
+max_cycles = 3000000
+reference = "Fresh proof of pinned Neptune0.15.1 full NativeCurrency program: authenticated10input=7output+3kernelFee, canonical program/version5/all15inputwords/emptyoutput."

@@ -1,0 +1,14 @@
+source = "../../../../examples/neptune/locks/timelock.tri"
+hand = "../../os/neptune/locks/timelock.tasm"
+target = "neptune"
+input = ["14329515731788381556", 3827815838500477559, "9574073180482250751", 8882237803091421092, 8268958998701679952]
+output = []
+reference = "Canonical native Tip5 path authenticates timestamp17; unlock16/17 pass, unlock18 rejects. Tests example relation; witness-supplied lock policy is not deployment authorization."
+expect_failure = false
+hand_prefix = """
+call os_neptune_locks_timelock__main halt
+"""
+
+secret = [4408327636961664588, 5943842829551551655, 3379382678685355342, "11648689933025290314", "12133979335321832126", 1, 2, 3, 4, 5, 17, 0, 0, 0, 0, 16]
+digests = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+hand_libraries = ["../../std/crypto/auth.tasm", "../../os/neptune/kernel.tasm", "../../std/crypto/merkle.tasm"]
