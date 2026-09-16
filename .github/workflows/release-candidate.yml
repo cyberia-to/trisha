@@ -8,21 +8,37 @@ permissions:
   # The bootstrap removes the token before compiling/running archive code.
   contents: write
 jobs:
+  select:
+    runs-on: ubuntu-22.04
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - id: matrix
+        run: |
+          python3 - <<'PY'
+          import json, os
+          platforms = {
+              'x86_64-unknown-linux-gnu': 'ubuntu-22.04',
+              'aarch64-unknown-linux-gnu': 'ubuntu-22.04-arm',
+              'x86_64-pc-windows-msvc': 'windows-2022',
+              'aarch64-pc-windows-msvc': 'windows-11-arm',
+              'x86_64-apple-darwin': 'macos-15-intel',
+          }
+          spec = json.load(open('.github/release-candidate.json'))
+          selected = spec.get('targets', list(platforms))
+          assert selected and len(selected) == len(set(selected)) and set(selected) <= platforms.keys()
+          matrix = {'include': [{'runner': platforms[t], 'target': t} for t in selected]}
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('matrix=' + json.dumps(matrix) + '\n')
+          PY
   native:
+    needs: select
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - runner: ubuntu-22.04
-            target: x86_64-unknown-linux-gnu
-          - runner: ubuntu-22.04-arm
-            target: aarch64-unknown-linux-gnu
-          - runner: windows-2022
-            target: x86_64-pc-windows-msvc
-          - runner: windows-11-arm
-            target: aarch64-pc-windows-msvc
-          - runner: macos-15-intel
-            target: x86_64-apple-darwin
+      matrix: ${{ fromJSON(needs.select.outputs.matrix) }}
     runs-on: ${{ matrix.runner }}
     timeout-minutes: 360
     steps:

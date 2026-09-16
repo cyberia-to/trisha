@@ -1,5 +1,9 @@
 {
-  "asset_id": 568096294,
-  "source_sha256": "5dcda6975ddec1c7b423655c8e2a94fb06561b8cbb9e53f1059e5c8a2393b947",
-  "full_baselines": true
+  "asset_id": 568106678,
+  "source_sha256": "27cda35f4754ec80205b46d9f61d5c7bb54bd7580a5e9e49f3bcfe1cdabf17a4",
+  "full_baselines": true,
+  "targets": [
+    "x86_64-pc-windows-msvc",
+    "aarch64-pc-windows-msvc"
+  ]
 }
