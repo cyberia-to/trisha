@@ -91,6 +91,8 @@ def main():
     try:
         archive = work/'source.tar.gz'
         download(dict(asset_id=spec['asset_id'], sha256=spec['source_sha256']), archive, env)
+        if spec.get('neptune_intent'):
+            download(spec['neptune_intent'], work/'deployment-intent.json', env)
         extension = '.zip' if os.name == 'nt' else '.tar.gz'
         if spec.get('phase') == 'verify':
             download(spec['binaries'][target], work/('binary'+extension), env)
@@ -161,6 +163,13 @@ def main():
             else:
                 command += ['--workspace']
             run(command + ['--', '--test-threads=1'], results/(project+'-tests.log'), env, work)
+        if spec.get('neptune_intent'):
+            env['TRISHA_DEPLOY_INTENT'] = str(work/'deployment-intent.json')
+            run(['cargo', 'test', '--manifest-path', source/'trisha/Cargo.toml', '--release',
+                 '--locked', '-p', 'trisha', '--test', 'deploy_transaction',
+                 'genuine_transaction_prepare_and_mock_gateway_process', '--', '--ignored',
+                 '--exact', '--test-threads=1'], results/'neptune-client.log', env, work)
+            env.pop('TRISHA_DEPLOY_INTENT')
         smoke = work/'smoke пробел'
         run([nu, '--no-config-file', scripts/'smoke-release.nu', candidate/'bin', smoke],
             results/'smoke.log', env, work)
