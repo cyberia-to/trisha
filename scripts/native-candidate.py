@@ -154,15 +154,21 @@ def main():
         # identities. CPU/default feature suites match the shipped feature set.
         env['CARGO_TARGET_DIR'] = str(candidate/'build')
         env['PATH'] = str(candidate/'bin') + os.pathsep + env['PATH']
+        test_failures = []
         for project in ('trident', 'trisha', 'joy'):
             command = ['cargo', 'test', '--manifest-path', source/project/'Cargo.toml',
-                       '--release', '--locked']
+                       '--release', '--locked', '--no-fail-fast']
             if project == 'trisha':
                 for package in ('trisha', 'trisha-rs', 'trisha-neptune', 'trisha-honeycrisp'):
                     command += ['-p', package]
             else:
                 command += ['--workspace']
-            run(command + ['--', '--test-threads=1'], results/(project+'-tests.log'), env, work)
+            try:
+                run(command + ['--', '--test-threads=1'], results/(project+'-tests.log'), env, work)
+            except RuntimeError as error:
+                test_failures.append(str(error))
+        if test_failures:
+            raise RuntimeError('workspace tests failed: ' + '; '.join(test_failures))
         if spec.get('neptune_intent'):
             env['TRISHA_DEPLOY_INTENT'] = str(work/'deployment-intent.json')
             run(['cargo', 'test', '--manifest-path', source/'trisha/Cargo.toml', '--release',

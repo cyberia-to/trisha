@@ -8,6 +8,7 @@ import argparse
 import hashlib
 import importlib.util
 import json
+import ntpath
 import os
 from pathlib import Path
 import re
@@ -36,9 +37,21 @@ def write(path, value):
         stream.write('\n')
 
 
+def fixture_key(path, windows=os.name == 'nt'):
+    # Rust canonicalize emits extended-length Windows paths; Python resolve
+    # usually emits drive paths. They identify the same inventoried fixture.
+    if windows:
+        if path.startswith('\\\\?\\UNC\\'):
+            path = '\\\\' + path[8:]
+        elif path.startswith('\\\\?\\'):
+            path = path[4:]
+        return ntpath.normcase(ntpath.normpath(path))
+    return path
+
+
 def checked_log(log, fixtures, baseline_count):
     """Require exact fixture rows and verified proof pairs, never infer proofs from PASS."""
-    expected = {f['absolute_path']: f for f in fixtures}
+    expected = {fixture_key(f['absolute_path']): f for f in fixtures}
     if len(expected) != len(fixtures):
         raise ValueError('duplicate fixture identity')
     completed, proofs = set(), {}
@@ -49,9 +62,13 @@ def checked_log(log, fixtures, baseline_count):
             summaries += 1
         if line.startswith('TRISHA_PROOF_VERIFIED\t'):
             event = json.loads(line.split('\t', 1)[1])
-            fixture = expected.get(event.get('fixture'))
+            event_path = event.get('fixture')
+            if not isinstance(event_path, str):
+                raise ValueError('proof event is missing its fixture path')
+            event_path = fixture_key(event_path)
+            fixture = expected.get(event_path)
             implementation = event.get('implementation')
-            key = (event.get('fixture'), implementation)
+            key = (event_path, implementation)
             if (fixture is None or fixture['negative'] or implementation not in ('classic', 'hand')
                     or key in proofs or key[0] in completed):
                 raise ValueError('unexpected, duplicate or late proof event')
@@ -71,17 +88,18 @@ def checked_log(log, fixtures, baseline_count):
         columns = line.split('\t')
         if columns[-1] not in ('PASS', 'PASS (both executions rejected)'):
             continue
-        fixture = expected.get(columns[0])
-        if len(columns) != 5 or fixture is None or columns[0] in completed:
+        row_path = fixture_key(columns[0])
+        fixture = expected.get(row_path)
+        if len(columns) != 5 or fixture is None or row_path in completed:
             raise ValueError('unexpected or duplicate fixture result')
         if fixture['negative']:
             if columns[1:] != ['-', '-', '-', 'PASS (both executions rejected)']:
                 raise ValueError('negative fixture did not reject')
         elif (columns[-1] != 'PASS' or not columns[1].isdigit() or not columns[2].isdigit()
               or columns[3] != f'{columns[2]}/{columns[1]}'
-              or any((columns[0], impl) not in proofs for impl in ('classic', 'hand'))):
+              or any((row_path, impl) not in proofs for impl in ('classic', 'hand'))):
             raise ValueError('positive fixture lacks its verified proof pair')
-        completed.add(columns[0])
+        completed.add(row_path)
     if completed != set(expected) or summaries != 1:
         raise ValueError('incomplete fixture coverage or missing exact summary')
     positive = sum(not f['negative'] for f in fixtures)

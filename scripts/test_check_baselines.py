@@ -44,6 +44,23 @@ class BaselineGate(unittest.TestCase):
     def test_complete_explicit_verified_pairs_bind_distinct_implementation_inputs(self):
         self.assertEqual(gate.checked_log(self.log(), self.fixtures, 1), self.events)
 
+    def test_windows_extended_paths_bind_the_same_fixture_and_still_reject_unknowns(self):
+        fixtures = copy.deepcopy(self.fixtures)
+        events = copy.deepcopy(self.events)
+        for fixture in fixtures:
+            fixture['absolute_path'] = fixture['absolute_path'].replace('/f/', 'C:\\source\\')
+        for event in events:
+            event['fixture'] = '\\\\?\\' + fixtures[0]['absolute_path']
+        rows = [row.replace('/f/', 'C:\\source\\') for row in self.rows]
+        normalize = gate.fixture_key
+        with patch.object(gate, 'fixture_key', side_effect=lambda path: normalize(path, windows=True)):
+            self.assertEqual(gate.checked_log(self.log(events, rows), fixtures, 1), events)
+            events[0]['fixture'] += '.unknown'
+            with self.assertRaises(ValueError):
+                gate.checked_log(self.log(events, rows), fixtures, 1)
+        self.assertEqual(normalize('\\\\?\\UNC\\host\\share\\file', windows=True),
+                         normalize('\\\\host\\share\\file', windows=True))
+
     def test_execution_only_and_generation_only_logs_cannot_claim_proofs(self):
         for log in [self.log([]), 'Proof generated (10 cycles, padded height 256)\n'*2+self.log([])]:
             with self.assertRaises(ValueError): gate.checked_log(log, self.fixtures, 1)

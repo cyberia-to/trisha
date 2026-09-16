@@ -109,3 +109,14 @@ This preserves complete proof coverage while accounting separately for native
 execution coverage and proof-worker capacity (hosted workers have14–16GiB).
 The proof-corpus matrix verifies every native producer on every native consumer.
 The full gate remains mandatory; execution rows are never counted as proofs.
+
+## Windows native build and test corrections
+
+Source03 Windows ARM64 compiled all four release binaries with Rust1.89 and
+zero warnings in run35106910222. The native workspace then found the census
+test comparing Windows separators against POSIX names. The test now compares
+path components; the production Z3 locator also searches native PATH directly
+instead of depending on Unix `which`. Local differential9 and formal17 tests
+pass after this correction, plus the native-path unit test. Windows rerun is
+required. Baseline proof accounting likewise canonicalizes Rust's Windows
+extended-length names and Python's drive paths before matching fixture events.
