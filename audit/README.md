@@ -1,9 +1,11 @@
 # Trisha validation records
 
-The full release is still being prepared. The coordinated work ledger is
-`trident/audit/full-release-preparation.md` in the complete source tree.
-These reports distinguish local runtime/node evidence from publication and
-public-network operation. No release has been published.
+The coordinated CPU release is published: **Trident 0.3.0, Trisha 0.3.0 and Joy 0.5.0**.
+[Current release report](release-2026-09-16.md) records all six native targets, exact sources/binaries and completed acceptance gates.
+
+## Historical validation records
+
+These dated reports preserve earlier candidates and findings; their open-item status is superseded by the published release report.
 
 - [Native release execution](native-release-20260916.md): current native builds,
   Windows fixes, installed proofs and exact CI/source identities.

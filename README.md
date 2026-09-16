@@ -6,6 +6,11 @@ Trisha is the Triton VM warrior for Trident. It lowers typed Trident IR to TASM,
 Trident source -> resolved typed IR -> Trisha lowering -> Triton VM -> STARK proof
 ```
 
+Current CPU release: **Trisha 0.3.0**, with Trident 0.3.0 and Joy 0.5.0.
+[Download native archives](https://github.com/cyberia-to/trisha/releases/tag/v0.3.0)
+for macOS, Linux or Windows on ARM64/x64, or use the coordinated source archive.
+See [release notes](audit/release-notes-v0.3.0.md) and [validation](audit/release-2026-09-16.md).
+
 ## Commands
 
 ```sh
@@ -20,7 +25,7 @@ trisha verify batch proofs/*.proof.toml
 
 Source commands accept project directories and named compilation profiles. The default terrain is Triton; `--target neptune` selects the same VM. Unsupported targets fail. Library builds retain their function definitions; execution and proving require a program entry.
 
-The CLI uses the CPU backend. The separate wgpu backend provides GPU acceleration hooks; enabling a mining GPU feature does not switch the proving backend. Program inspection verifies the native hash and any attached proof. Neptune's separate [transaction interface](docs/reference/neptune-submission.md) constructs outputs, validates complete caller-authorized transaction intent and submits through an authenticated gateway. A genuine SingleProof transaction passed [isolated node admission](audit/neptune-local-node-validation.md); funded wallet construction, public-network operation and block confirmation remain separate requirements. Current gates are recorded in [audit](audit/README.md).
+The CLI uses the CPU backend. The separate wgpu backend provides GPU acceleration hooks; enabling a mining GPU feature does not switch the proving backend. Program inspection verifies the native hash and any attached proof. Neptune's separate [transaction interface](docs/reference/neptune-submission.md) constructs outputs, validates complete caller-authorized transaction intent and submits through an authenticated gateway. A genuine SingleProof transaction passed [isolated node admission](audit/neptune-local-node-validation.md); funded wallet construction, public-network operation and block confirmation remain separate requirements. Release evidence is recorded in [audit](audit/README.md).
 
 ## Building
 
