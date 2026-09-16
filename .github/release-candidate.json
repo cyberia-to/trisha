@@ -1,9 +1,9 @@
 {
-  "asset_id": 568106678,
-  "source_sha256": "27cda35f4754ec80205b46d9f61d5c7bb54bd7580a5e9e49f3bcfe1cdabf17a4",
+  "asset_id": 568149487,
+  "source_sha256": "b333304b9e61ffd3277b6fe9ae9fbb1a3990c5b4a25c2124cb04322bd061593b",
   "full_baselines": true,
-  "targets": [
-    "x86_64-pc-windows-msvc",
-    "aarch64-pc-windows-msvc"
-  ]
+  "neptune_intent": {
+    "asset_id": 568147730,
+    "sha256": "404ba33e683103e9cceaa7c21fcd6443401f8ba4216b8e77230ed34b24e249d0"
+  }
 }

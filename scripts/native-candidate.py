@@ -25,6 +25,15 @@ NU = {
     'x86_64-pc-windows-msvc': 'db57750ec878365135e7baebee9f5ec74b84c80158ed0168f1ccbe15d6ec251d',
 }
 
+Z3 = {
+    'aarch64-apple-darwin': ('z3-4.15.3-arm64-osx-13.7.6.zip', '941659417b5464a361c49089658509f3118a0c3e8d4f8a1dc999f8b5cd1f3c71'),
+    'x86_64-apple-darwin': ('z3-4.15.3-x64-osx-13.7.6.zip', '82df675b8b7c4af2e7d8ef94056fcd6fb626198e2855d976134c878f243c96a0'),
+    'aarch64-unknown-linux-gnu': ('z3-4.15.3-arm64-glibc-2.34.zip', '78b383374905a20af7f38cb3e8e9e8e38c5cb3d23a8c2fbf8f54ff4b41a9c605'),
+    'x86_64-unknown-linux-gnu': ('z3_solver-4.15.3.0-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl', 'a9afd9ceb290482097474d43f08415bcc1874f433189d1449f6c1508e9c68384'),
+    'aarch64-pc-windows-msvc': ('z3-4.15.3-arm64-win.zip', '3883e683d81c54a43a5d5bd7d8a6e87174223e0f9b8c76d64d19de7b7bcca373'),
+    'x86_64-pc-windows-msvc': ('z3-4.15.3-x64-win.zip', '5091684243e7d7cd57da81991d27ee50aa97333757e53d42d0fc1b7429c99408'),
+}
+
 
 def sha(path):
     with path.open('rb') as stream:
@@ -43,7 +52,7 @@ def run(command, log, env, cwd):
 
 def extract(archive, destination):
     destination.mkdir()
-    if archive.suffix == '.zip':
+    if archive.suffix in ('.zip', '.whl'):
         with zipfile.ZipFile(archive) as content:
             for entry in content.infolist():
                 if not (destination / entry.filename).resolve().is_relative_to(destination.resolve()):
@@ -52,6 +61,15 @@ def extract(archive, destination):
     else:
         with tarfile.open(archive) as content:
             content.extractall(destination, filter='data')
+
+
+def download(asset, destination, env):
+    with destination.open('xb') as stream:
+        subprocess.run(['gh', 'api', '-H', 'Accept: application/octet-stream',
+                        f"repos/cyberia-to/trisha/releases/assets/{int(asset['asset_id'])}"],
+                       stdout=stream, check=True, env=env)
+    if sha(destination) != asset['sha256']:
+        raise ValueError(f'asset hash mismatch: {destination.name}')
 
 
 def main():
@@ -72,10 +90,14 @@ def main():
     env.pop('CARGO_ENCODED_RUSTFLAGS', None)
     try:
         archive = work/'source.tar.gz'
-        with archive.open('xb') as stream:
-            subprocess.run(['gh', 'api', '-H', 'Accept: application/octet-stream',
-                            f"repos/cyberia-to/trisha/releases/assets/{int(spec['asset_id'])}"],
-                           stdout=stream, check=True, env=env)
+        download(dict(asset_id=spec['asset_id'], sha256=spec['source_sha256']), archive, env)
+        if spec.get('neptune_intent'):
+            download(spec['neptune_intent'], work/'deployment-intent.json', env)
+        extension = '.zip' if os.name == 'nt' else '.tar.gz'
+        if spec.get('phase') == 'verify':
+            download(spec['binaries'][target], work/('binary'+extension), env)
+            for index, corpus in enumerate(spec['corpora']):
+                download(corpus, work/f'corpus-{index}.tar.gz', env)
         env.pop('GH_TOKEN', None)
         env.pop('GITHUB_TOKEN', None)
         if sha(archive) != spec['source_sha256']:
@@ -84,7 +106,18 @@ def main():
         source = work/'unpacked/cyber-source'
         scripts = source/'trisha/scripts'
         run([sys.executable, '-B', scripts/'verify-source.py', source], results/'source.log', env, work)
-        extension = '.zip' if os.name == 'nt' else '.tar.gz'
+        if spec.get('phase') == 'verify':
+            extract(work/('binary'+extension), work/'installed')
+            candidate = json.loads((work/'installed/cyber-tools/candidate.json').read_text())
+            if candidate['provenance_sha256'] != sha(source/'sources.json'):
+                raise ValueError('validator and installed binaries have different source inventories')
+            for index, corpus in enumerate(spec['corpora']):
+                extract(work/f'corpus-{index}.tar.gz', work/f'corpus-{index}')
+                run([sys.executable, '-B', scripts/'verify-corpus.py',
+                     work/f'corpus-{index}/proof-corpus', '--candidate', work/'installed/cyber-tools',
+                     '--receipt', results/f'verification-{index}.json'],
+                    results/f'verification-{index}.log', env, work)
+            return
         nu_archive = work/('nu'+extension)
         url = f'https://github.com/nushell/nushell/releases/download/0.112.2/nu-0.112.2-{target}{extension}'
         with urllib.request.urlopen(url, timeout=60) as response, nu_archive.open('xb') as stream:
@@ -95,6 +128,19 @@ def main():
         nu = next((work/'nu').rglob('nu.exe' if os.name == 'nt' else 'nu'))
         # Python is a build/test tool, never a dependency of the shipped binaries.
         env['PATH'] = os.pathsep.join([str(nu.parent), str(Path(sys.executable).parent), env['PATH']])
+        z3_name, z3_sha = Z3[target]
+        z3_archive = work/z3_name
+        with urllib.request.urlopen('https://github.com/Z3Prover/z3/releases/download/z3-4.15.3/' + z3_name,
+                                    timeout=60) as response, z3_archive.open('xb') as stream:
+            shutil.copyfileobj(response, stream)
+        if sha(z3_archive) != z3_sha:
+            raise ValueError('Z3 archive hash mismatch')
+        extract(z3_archive, work/'z3')
+        z3 = next(p for p in (work/'z3').rglob('z3.exe' if os.name == 'nt' else 'z3') if p.is_file())
+        if os.name != 'nt':
+            z3.chmod(0o755)
+        env['PATH'] = str(z3.parent) + os.pathsep + env['PATH']
+        run([z3, '--version'], results/'z3.log', env, work)
         run(['rustup', 'toolchain', 'install', '1.89.0', '--profile', 'minimal'], results/'toolchain.log', env, work)
         actual_target = subprocess.check_output(['rustc', '-vV'], env=env, text=True)
         if f'host: {target}\n' not in actual_target:
@@ -107,6 +153,7 @@ def main():
         # Reuse Cargo outputs, while the installed copies keep their exact build
         # identities. CPU/default feature suites match the shipped feature set.
         env['CARGO_TARGET_DIR'] = str(candidate/'build')
+        env['PATH'] = str(candidate/'bin') + os.pathsep + env['PATH']
         for project in ('trident', 'trisha', 'joy'):
             command = ['cargo', 'test', '--manifest-path', source/project/'Cargo.toml',
                        '--release', '--locked']
@@ -116,9 +163,21 @@ def main():
             else:
                 command += ['--workspace']
             run(command + ['--', '--test-threads=1'], results/(project+'-tests.log'), env, work)
+        if spec.get('neptune_intent'):
+            env['TRISHA_DEPLOY_INTENT'] = str(work/'deployment-intent.json')
+            run(['cargo', 'test', '--manifest-path', source/'trisha/Cargo.toml', '--release',
+                 '--locked', '-p', 'trisha', '--test', 'deploy_transaction',
+                 'genuine_transaction_prepare_and_mock_gateway_process', '--', '--ignored',
+                 '--exact', '--test-threads=1'], results/'neptune-client.log', env, work)
+            env.pop('TRISHA_DEPLOY_INTENT')
         smoke = work/'smoke пробел'
         run([nu, '--no-config-file', scripts/'smoke-release.nu', candidate/'bin', smoke],
             results/'smoke.log', env, work)
+        run([sys.executable, '-B', scripts/'verify-corpus.py', smoke, '--seal'],
+            results/'corpus-seal.log', env, work)
+        run([sys.executable, '-B', scripts/'verify-corpus.py', smoke,
+             '--candidate', candidate, '--receipt', results/'local-corpus-verification.json'],
+            results/'local-corpus-verification.log', env, work)
         output = results/f'cyber-tools-{target}{extension}'
         run([nu, '--no-config-file', scripts/'package-binaries.nu', candidate, output,
              '--smoke', smoke/'smoke.json'], results/'package.log', env, work)
@@ -139,6 +198,9 @@ def main():
         for name in ('candidate.json', 'source-verification.json'):
             shutil.copyfile(candidate/name, results/name)
         shutil.copytree(smoke, results/'proof-corpus')
+        run([sys.executable, '-B', scripts/'archive-source.py', smoke,
+             results/f'proof-corpus-{target}.tar.gz', '--prefix', 'proof-corpus', '--epoch', '0'],
+            results/'corpus-package.log', env, work)
         (results/'archive.json').write_text(json.dumps(dict(target=target, source=spec,
             archive=output.name, sha256=sha(output), platform=platform.platform(),
             runner_revision=os.environ.get('GITHUB_SHA')), indent=2))
