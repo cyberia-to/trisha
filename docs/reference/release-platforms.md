@@ -62,8 +62,12 @@ runtime linkage and any required redistributable; test on a clean Windows host.
    contracts on Windows rather than silently dropping Unix-only suites.
 3. Generate and verify fresh Triton, recursive and Joy public/private/state
    proofs, including malformed artifacts, changed claims and the RAM repairs.
-   Retain the full baseline proof gate, with platform and fixture accounting.
-   Timeouts or memory exhaustion are incomplete gates, never passes.
+   Execute all133 baseline fixtures (99 positive,34 rejection vectors covering
+   all43 hand programs) on every native target. Separately, the same committed
+   source must pass the full198-proof baseline gate on the dedicated proof
+   worker. Record that worker's platform and exact binary identity; this does
+   not claim198 generated proofs on every desktop. Timeouts or memory
+   exhaustion are incomplete gates, never passes.
 4. Collect a compact proof corpus from every target. Every target verifies the
    corpus from every other target, with expected program/input/output/state
    pinned, and rejects corresponding tampering. Proof bytes need not match.
@@ -110,7 +114,7 @@ not part of this proposal.
   archives after the core matrix passes. They are distribution work.
 - Web/WASM, Android/iOS, FreeBSD, RISC-V and 32-bit hosts remain separate ports.
   Browser/mobile constraints and prover memory require their own product scope;
-  they are not implied by producing the six desktop/server artifacts.
+they are not implied by producing the six desktop/server artifacts.
 
 Observed gaps and historical evidence are in
 [the platform review](../../audit/platform-scope-review.md).

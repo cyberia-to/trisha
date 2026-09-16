@@ -194,6 +194,8 @@ inventory. Authenticate each corpus archive SHA-256 before extraction.
 `native-candidate.py` is the CI bootstrap. Its selector pins a source release
 asset and SHA-256; Rust1.89.0, Nushell0.112.2 and Z3 4.15.3 are pinned too.
 The bootstrap runs CPU workspace suites, installed proofs, deterministic
-packaging, unpacked LSP and complete baseline proofs. A separate `verify` phase
+packaging, unpacked LSP and all133 baseline executions. The dedicated proof
+worker additionally runs the complete198-proof gate; `full_baselines` can
+request that additional gate from a sufficiently provisioned native runner. A separate `verify` phase
 consumes authenticated binary/corpus archives for the cross-platform matrix.
 GitHub credentials are removed before archived implementations execute.

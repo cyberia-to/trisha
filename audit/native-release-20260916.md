@@ -87,3 +87,25 @@ proofs,29 rejection checks). Cross-platform execution remains separate.
 Run35106273708 Linux x64/ARM64 builds succeeded; workspace suites then detected
 missing Z3 in the runner PATH. The bootstrap now supplies hash-pinned native
 Z3 4.15.3 instead of dropping the17 formal CLI tests.
+
+## Committed source and workload allocation
+
+All11 source repositories are frozen on `chore/coordinated-release-20260916`;
+working directories remain unchanged. Product draft PRs: Trident47, Trisha7,
+Joy2. RC1 source archive SHA-256 is
+`b333304b9e61ffd3277b6fe9ae9fbb1a3990c5b4a25c2124cb04322bd061593b`.
+It is superseded for publication by the next lockfile correction.
+
+Trisha's lockfile now selects rustls-webpki0.103.15 and rand0.9.5, consistent
+with the corrected versions already selected by its companion workspaces.
+GitHub's high gix-fs and low lru alerts refer to optional Burn training
+dependencies; neither package is in the default CPU Trisha dependency graph.
+The CPU release does not certify the optional training dependency closure.
+
+Native acceptance runs all133 execution fixtures on every target and produces
+the installed smoke's fresh proofs on every target. The full198-proof baseline
+gate runs on the48GiB dedicated Mac worker against the same committed source.
+This preserves complete proof coverage while accounting separately for native
+execution coverage and proof-worker capacity (hosted workers have14–16GiB).
+The proof-corpus matrix verifies every native producer on every native consumer.
+The full gate remains mandatory; execution rows are never counted as proofs.

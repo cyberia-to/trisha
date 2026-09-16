@@ -675,7 +675,7 @@ dependencies = [
  "derive-new",
  "hashbrown 0.16.1",
  "num-traits",
- "rand 0.9.2",
+ "rand 0.9.5",
  "rand_distr",
  "serde",
  "thiserror 2.0.18",
@@ -757,7 +757,7 @@ dependencies = [
  "num-traits",
  "portable-atomic",
  "portable-atomic-util",
- "rand 0.9.2",
+ "rand 0.9.5",
  "regex",
  "rmp-serde",
  "serde",
@@ -839,7 +839,7 @@ dependencies = [
  "image",
  "r2d2",
  "r2d2_sqlite",
- "rand 0.9.2",
+ "rand 0.9.5",
  "rmp-serde",
  "rusqlite",
  "sanitize-filename",
@@ -912,7 +912,7 @@ dependencies = [
  "paste",
  "portable-atomic",
  "portable-atomic-util",
- "rand 0.9.2",
+ "rand 0.9.5",
  "rayon",
  "seq-macro",
 ]
@@ -1196,7 +1196,7 @@ dependencies = [
  "memmap2",
  "num-traits",
  "num_cpus",
- "rand 0.9.2",
+ "rand 0.9.5",
  "rand_distr",
  "rayon",
  "safetensors 0.7.0",
@@ -1775,7 +1775,7 @@ dependencies = [
  "parking_lot",
  "portable-atomic",
  "portable-atomic-util",
- "rand 0.9.2",
+ "rand 0.9.5",
  "sanitize-filename",
  "serde",
  "serde_bytes",
@@ -2130,7 +2130,7 @@ dependencies = [
  "cubecl-common",
  "half",
  "num-traits",
- "rand 0.9.2",
+ "rand 0.9.5",
  "serde",
 ]
 
@@ -2393,7 +2393,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c54e03a951783e8b327515db3f2a2fd0e3bed362a96b066f341ce66ed49b4ead"
 dependencies = [
  "data-encoding",
- "syn 2.0.116",
+ "syn 1.0.109",
 ]
 
 [[package]]
@@ -2898,7 +2898,7 @@ checksum = "719a903cc23e4a89e87962c2a80fdb45cdaad0983a89bd150bb57b4c8571a7d5"
 dependencies = [
  "half",
  "num-traits",
- "rand 0.9.2",
+ "rand 0.9.5",
  "rand_distr",
 ]
 
@@ -3487,7 +3487,7 @@ dependencies = [
  "cfg-if",
  "crunchy",
  "num-traits",
- "rand 0.9.2",
+ "rand 0.9.5",
  "rand_distr",
  "serde",
  "zerocopy",
@@ -4655,7 +4655,7 @@ dependencies = [
  "num-bigint",
  "num-rational",
  "num-traits",
- "rand 0.9.2",
+ "rand 0.9.5",
  "rayon",
  "readonly",
  "regex",
@@ -4675,7 +4675,7 @@ version = "0.15.1"
 source = "git+https://github.com/Neptune-Crypto/neptune-core?rev=9869b5e35b659dc520fad51ba5a9c812fed46db0#9869b5e35b659dc520fad51ba5a9c812fed46db0"
 dependencies = [
  "async-trait",
- "rand 0.9.2",
+ "rand 0.9.5",
  "strum 0.27.2",
  "thiserror 1.0.69",
  "tokio",
@@ -4708,7 +4708,7 @@ dependencies = [
  "itertools 0.14.0",
  "num-bigint",
  "num-traits",
- "rand 0.9.2",
+ "rand 0.9.5",
  "serde",
  "strum 0.27.2",
  "tasm-lib",
@@ -4767,7 +4767,7 @@ dependencies = [
  "neptune-mutator-set",
  "neptune-primitives",
  "num-traits",
- "rand 0.9.2",
+ "rand 0.9.5",
  "regex",
  "serde",
  "serde_json",
@@ -5091,7 +5091,7 @@ dependencies = [
  "p3-maybe-rayon",
  "p3-util",
  "paste",
- "rand 0.9.2",
+ "rand 0.9.5",
  "serde",
  "tracing",
 ]
@@ -5111,7 +5111,7 @@ dependencies = [
  "p3-symmetric",
  "p3-util",
  "paste",
- "rand 0.9.2",
+ "rand 0.9.5",
  "serde",
 ]
 
@@ -5125,7 +5125,7 @@ dependencies = [
  "p3-field",
  "p3-maybe-rayon",
  "p3-util",
- "rand 0.9.2",
+ "rand 0.9.5",
  "serde",
  "tracing",
  "transpose",
@@ -5147,7 +5147,7 @@ dependencies = [
  "p3-field",
  "p3-symmetric",
  "p3-util",
- "rand 0.9.2",
+ "rand 0.9.5",
 ]
 
 [[package]]
@@ -5167,7 +5167,7 @@ dependencies = [
  "p3-symmetric",
  "p3-util",
  "paste",
- "rand 0.9.2",
+ "rand 0.9.5",
  "serde",
  "spin",
  "tracing",
@@ -5184,7 +5184,7 @@ dependencies = [
  "p3-mds",
  "p3-symmetric",
  "p3-util",
- "rand 0.9.2",
+ "rand 0.9.5",
 ]
 
 [[package]]
@@ -5717,9 +5717,9 @@ dependencies = [
 
 [[package]]
 name = "rand"
-version = "0.9.2"
+version = "0.9.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6db2770f06117d490610c7488547d543617b21bfa07796d7a12f6f1bd53850d1"
+checksum = "b9ef1d0d795eb7d84685bca4f72f3649f064e6641543d3a8c415898726a57b41"
 dependencies = [
  "rand_chacha 0.9.0",
  "rand_core 0.9.5",
@@ -5787,7 +5787,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6a8615d50dcf34fa31f7ab52692afec947c4dd0ab803cc87cb3b0b4570ff7463"
 dependencies = [
  "num-traits",
- "rand 0.9.2",
+ "rand 0.9.5",
 ]
 
 [[package]]
@@ -5854,7 +5854,7 @@ dependencies = [
  "num-traits",
  "paste",
  "profiling",
- "rand 0.9.2",
+ "rand 0.9.5",
  "rand_chacha 0.9.0",
  "simd_helpers",
  "thiserror 2.0.18",
@@ -6259,9 +6259,9 @@ dependencies = [
 
 [[package]]
 name = "rustls-webpki"
-version = "0.103.9"
+version = "0.103.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d7df23109aa6c1567d1c575b9952556388da57401e4ace1d15f79eedad0d8f53"
+checksum = "f3c3cf1d8b1e7d4927e2d154c3fcb02979afb9939629c62cd9048d4f07b60ac2"
 dependencies = [
  "ring",
  "rustls-pki-types",
@@ -7007,7 +7007,7 @@ dependencies = [
  "ndarray 0.17.2",
  "num",
  "num-traits",
- "rand 0.9.2",
+ "rand 0.9.5",
  "serde",
  "serde_json",
  "strum 0.27.2",
@@ -7859,7 +7859,7 @@ dependencies = [
  "num-traits",
  "prettyplease",
  "proc-macro2",
- "rand 0.9.2",
+ "rand 0.9.5",
  "rayon",
  "serde",
  "strum 0.27.2",
@@ -7891,7 +7891,7 @@ dependencies = [
  "http",
  "httparse",
  "log",
- "rand 0.9.2",
+ "rand 0.9.5",
  "sha1",
  "thiserror 2.0.18",
  "utf-8",
@@ -7908,7 +7908,7 @@ dependencies = [
  "http",
  "httparse",
  "log",
- "rand 0.9.2",
+ "rand 0.9.5",
  "sha1",
  "thiserror 2.0.18",
 ]
@@ -7926,7 +7926,7 @@ dependencies = [
  "num-bigint",
  "num-traits",
  "phf",
- "rand 0.9.2",
+ "rand 0.9.5",
  "rayon",
  "serde",
  "serde-big-array",
