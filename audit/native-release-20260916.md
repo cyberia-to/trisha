@@ -142,3 +142,29 @@ packaging; its extra full-proof workload then hit the hosted machine's memory
 guard at15,202,697,216 bytes RSS after1529 seconds. This remains an incomplete
 full gate. Complete198-proof acceptance belongs to the48GiB dedicated worker,
 with all133 execution fixtures and fresh installed proofs on every native host.
+
+## Final native follow-up corrections
+
+The Windows wallet reader now canonicalizes both the selected file and absolute
+data-directory override before comparison, skips incomplete drive prefixes and
+rejects all reparse-point components. Eight wallet CLI regressions and the node
+status regression pass locally after this change. The native process probe also
+checks directory-link removal rejection.
+
+The upstream triton-vm and tasm-lib manifests now build hashed `rlib` outputs
+only, matching the existing twenty-first policy. No C ABI is shipped; the Rust
+verifier/consensus code is unchanged. An inventory comparison against RC4 finds
+exactly those two vendor manifest changes. The two fetch boundary tests pass.
+Separate Cargo workspace output directories remain in place.
+
+RC4 macOS default CPU workspace tests pass: Trident853 and Trisha411 (six
+explicit heavy/fixture gates ignored in the ordinary suite), zero warnings.
+These results diagnose the isolation fix; RC4 is superseded by the wallet and
+manifest corrections and cannot supply the final full-proof receipt. Its full
+baseline work directory was deliberately reserved with a cancellation notice to
+prevent spending that proof workload on superseded source.
+
+The native bootstrap explicitly invokes both genuine Neptune intent gates with
+the fresh fixture. Typed-entry, imported-generic and recursive ignored gates
+are exercised through the mandatory installed proof suite; tagged experimental
+proofs remain outside this CPU release.

@@ -179,6 +179,16 @@ def main():
                  '--locked', '-p', 'trisha', '--test', 'deploy_transaction',
                  'genuine_transaction_prepare_and_mock_gateway_process', '--', '--ignored',
                  '--exact', '--test-threads=1'], results/'neptune-client.log', env, work)
+            assembly = results/'neptune-lock.tasm'
+            run([candidate/'bin'/('trisha'+('.exe' if os.name == 'nt' else '')), 'build',
+                 source/'trisha/neptune/tests/fixtures/custom_lock.tri', '--target', 'neptune',
+                 '--profile', 'release', '--output', assembly], results/'neptune-lock.log', env, work)
+            env['TRISHA_DEPLOY_ASSEMBLY'] = str(assembly)
+            run(['cargo', 'test', '--manifest-path', source/'trisha/Cargo.toml', '--release',
+                 '--locked', '-p', 'trisha-neptune', '--test', 'deployment',
+                 'genuine_custom_lock_transaction_and_binding_mutations', '--', '--ignored',
+                 '--exact', '--test-threads=1'], results/'neptune-binding.log', env, work)
+            env.pop('TRISHA_DEPLOY_ASSEMBLY')
             env.pop('TRISHA_DEPLOY_INTENT')
         suffix = '.exe' if os.name == 'nt' else ''
         run([candidate/'bin'/('trisha'+suffix), 'bench', source/'trisha/baselines/triton'],
