@@ -1,6 +1,6 @@
 # Coordinated local candidates
 
-The coordinated candidate uses Trident 0.4, Trisha 0.3 and Joy 0.5. Installed
+The coordinated candidate uses Trident 0.3, Trisha 0.3 and Joy 0.5. Installed
 warriors must expose compiler API 3 with target schema 1; API 1 and 2 packages are
 rejected. These are source-candidate versions, not a registry publication claim.
 

@@ -105,12 +105,7 @@ fn compile_triton_profile(source: &str, filename: &str, profile: &str) -> Result
 fn compile_project_triton(path: &Path) -> Result<String, String> {
     trisha_rs::build_tasm(
         path,
-        if path.to_string_lossy().contains("os/neptune/")
-            || path
-                .to_string_lossy()
-                .contains("examples/experimental/neptune/")
-            || path.to_string_lossy().contains("examples/neptune/")
-        {
+        if path.components().any(|part| part.as_os_str() == "neptune") {
             "neptune"
         } else {
             "triton"

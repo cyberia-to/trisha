@@ -23,7 +23,7 @@ trisha-neptune = { version = "0.3.0", path = "../neptune", optional = true }
 # A warrior never trains: default-features = false keeps burn/cubecl/wgpu out
 # of trisha's graph entirely (build weight, not correctness — trisha#1's real
 # cause was twenty-first's cdylib crate-type, patched in patches/apply.nu).
-trident-lang = { version = "0.4.0", path = "../../trident", optional = true, default-features = false }
+trident-lang = { version = "0.3.0", path = "../../trident", optional = true, default-features = false }
 trisha-rs = { version = "0.3.0", path = "../rs", optional = true }
 trisha-wgpu = { version = "0.3.0", path = "../wgpu", optional = true }
 trisha-honeycrisp = { version = "0.3.0", path = "../honeycrisp" }

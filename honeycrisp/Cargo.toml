@@ -15,7 +15,7 @@ triton = ["dep:trident-lang"]
 gpu    = ["dep:aruminium"]
 
 [dependencies]
-trident-lang = { version = "0.4.0", path = "../../trident", optional = true, default-features = false }
+trident-lang = { version = "0.3.0", path = "../../trident", optional = true, default-features = false }
 triton-vm = "=7.0.0"
 twenty-first = "1"
 bincode = "1"

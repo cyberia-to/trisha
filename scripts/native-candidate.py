@@ -73,6 +73,10 @@ def download(asset, destination, env):
 
 
 def main():
+    # Native Windows redirected consoles otherwise use cp1252, including when
+    # printing a failing Rust diagnostic or the Unicode smoke directory.
+    sys.stdout.reconfigure(encoding='utf-8', errors='backslashreplace')
+    sys.stderr.reconfigure(encoding='utf-8', errors='backslashreplace')
     checkout = Path.cwd()
     spec = json.loads((checkout/'.github/release-candidate.json').read_text())
     target = os.environ['RELEASE_TARGET']
@@ -85,7 +89,8 @@ def main():
     results = checkout/'release-results'
     results.mkdir()
     env = dict(os.environ, RUSTUP_TOOLCHAIN='1.89.0', CARGO_BUILD_JOBS='2',
-               RAYON_NUM_THREADS='4', TVM_LDE_TRACE='no_cache', PYTHONDONTWRITEBYTECODE='1')
+               RAYON_NUM_THREADS='4', TVM_LDE_TRACE='no_cache', PYTHONDONTWRITEBYTECODE='1',
+               PYTHONUTF8='1')
     env.pop('RUSTFLAGS', None)
     env.pop('CARGO_ENCODED_RUSTFLAGS', None)
     try:

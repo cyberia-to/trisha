@@ -15,7 +15,7 @@ neural = ["trident-lang/neural", "dep:burn"]
 
 [dependencies]
 tasm-lib = "=7.0.0"
-trident-lang = { version = "0.4.0", path = "../../trident", default-features = false }
+trident-lang = { version = "0.3.0", path = "../../trident", default-features = false }
 nebu = { package = "strata-nebu", version = "0.1", path = "../../strata/nebu/rs" }
 zheng = { version = "0.4.0", path = "../../zheng/rs" }
 triton-vm = "=7.0.0"

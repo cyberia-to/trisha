@@ -2,7 +2,7 @@
 
 ## [0.3.0] — 2026-09-16
 
-Coordinated release: **Trisha 0.3.0**, with Trident 0.4.0/compiler API 3 and
+Coordinated release: **Trisha 0.3.0**, with Trident 0.3.0/compiler API 3 and
 Joy 0.5.0. Validation receipts accompany the release archives.
 
 - Own Triton lowering/emission, cost and neural target integration, Neptune

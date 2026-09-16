@@ -42,12 +42,14 @@ fn compile(path: &Path) -> Result<trident::runtime::ProgramBundle, String> {
 
 #[test]
 fn run_hello_world() {
+    let dir = tempfile::tempdir().unwrap();
+    let path = dir.path().join("test_hello.tri");
     std::fs::write(
-        "/tmp/test_hello.tri",
+        &path,
         "program test_hello\nfn main() {\n    pub_write(42)\n}\n",
     )
     .unwrap();
-    let bundle = compile(Path::new("/tmp/test_hello.tri")).unwrap();
+    let bundle = compile(&path).unwrap();
     let warrior = Warrior::new();
     let input = ProgramInput {
         public: vec![],
@@ -60,12 +62,14 @@ fn run_hello_world() {
 
 #[test]
 fn run_with_public_input() {
+    let dir = tempfile::tempdir().unwrap();
+    let path = dir.path().join("test_square.tri");
     std::fs::write(
-        "/tmp/test_square.tri",
+        &path,
         "program test_square\nfn main() {\n    let x = pub_read()\n    pub_write(x * x)\n}\n",
     )
     .unwrap();
-    let bundle = compile(Path::new("/tmp/test_square.tri")).unwrap();
+    let bundle = compile(&path).unwrap();
     let warrior = Warrior::new();
     let input = ProgramInput {
         public: vec![7],
@@ -78,12 +82,14 @@ fn run_with_public_input() {
 
 #[test]
 fn run_multiple_outputs() {
+    let dir = tempfile::tempdir().unwrap();
+    let path = dir.path().join("test_multi.tri");
     std::fs::write(
-        "/tmp/test_multi.tri",
+        &path,
         "program test_multi\nfn main() {\n    pub_write(10)\n    pub_write(20)\n    pub_write(30)\n}\n",
     )
     .unwrap();
-    let bundle = compile(Path::new("/tmp/test_multi.tri")).unwrap();
+    let bundle = compile(&path).unwrap();
     let warrior = Warrior::new();
     let input = ProgramInput {
         public: vec![],
@@ -98,12 +104,14 @@ fn run_multiple_outputs() {
 
 #[test]
 fn prove_and_verify_hello() {
+    let dir = tempfile::tempdir().unwrap();
+    let path = dir.path().join("test_pv_hello.tri");
     std::fs::write(
-        "/tmp/test_pv_hello.tri",
+        &path,
         "program test_pv_hello\nfn main() {\n    pub_write(42)\n}\n",
     )
     .unwrap();
-    let bundle = compile(Path::new("/tmp/test_pv_hello.tri")).unwrap();
+    let bundle = compile(&path).unwrap();
     let warrior = Warrior::new();
     let input = ProgramInput {
         public: vec![],
@@ -123,12 +131,14 @@ fn prove_and_verify_hello() {
 
 #[test]
 fn prove_and_verify_with_input() {
+    let dir = tempfile::tempdir().unwrap();
+    let path = dir.path().join("test_pv_sq.tri");
     std::fs::write(
-        "/tmp/test_pv_sq.tri",
+        &path,
         "program test_pv_sq\nfn main() {\n    let x = pub_read()\n    pub_write(x * x)\n}\n",
     )
     .unwrap();
-    let bundle = compile(Path::new("/tmp/test_pv_sq.tri")).unwrap();
+    let bundle = compile(&path).unwrap();
     let warrior = Warrior::new();
     let input = ProgramInput {
         public: vec![5],
@@ -146,12 +156,14 @@ fn prove_and_verify_with_input() {
 
 #[test]
 fn tampered_proof_fails_verification() {
+    let dir = tempfile::tempdir().unwrap();
+    let path = dir.path().join("test_tamper.tri");
     std::fs::write(
-        "/tmp/test_tamper.tri",
+        &path,
         "program test_tamper\nfn main() {\n    pub_write(99)\n}\n",
     )
     .unwrap();
-    let bundle = compile(Path::new("/tmp/test_tamper.tri")).unwrap();
+    let bundle = compile(&path).unwrap();
     let warrior = Warrior::new();
     let input = ProgramInput {
         public: vec![],
@@ -199,7 +211,8 @@ fn empty_input_conversion() {
 
 #[test]
 fn missing_file_compile_error() {
-    let result = compile(Path::new("/tmp/nonexistent_file_12345.tri"));
+    let dir = tempfile::tempdir().unwrap();
+    let result = compile(&dir.path().join("nonexistent.tri"));
     assert!(result.is_err());
 }
 
