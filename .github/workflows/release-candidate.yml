@@ -4,7 +4,9 @@ on:
     branches: ['release/native-*']
   workflow_dispatch:
 permissions:
-  contents: read
+  # GitHub requires push access to download assets of an unpublished draft.
+  # The bootstrap removes the token before compiling/running archive code.
+  contents: write
 jobs:
   native:
     strategy:
@@ -27,6 +29,9 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.13.7'
       - name: Build and validate the exact source archive
         shell: bash
         env:

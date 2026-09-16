@@ -76,6 +76,8 @@ def main():
             subprocess.run(['gh', 'api', '-H', 'Accept: application/octet-stream',
                             f"repos/cyberia-to/trisha/releases/assets/{int(spec['asset_id'])}"],
                            stdout=stream, check=True, env=env)
+        env.pop('GH_TOKEN', None)
+        env.pop('GITHUB_TOKEN', None)
         if sha(archive) != spec['source_sha256']:
             raise ValueError('source archive hash mismatch')
         extract(archive, work/'unpacked')
