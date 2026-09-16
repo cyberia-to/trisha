@@ -1,0 +1,45 @@
+name: Native release candidate
+on:
+  push:
+    branches: ['release/native-*']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-22.04
+            target: x86_64-unknown-linux-gnu
+          - runner: ubuntu-22.04-arm
+            target: aarch64-unknown-linux-gnu
+          - runner: windows-2022
+            target: x86_64-pc-windows-msvc
+          - runner: windows-11-arm
+            target: aarch64-pc-windows-msvc
+          - runner: macos-15-intel
+            target: x86_64-apple-darwin
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Build and validate the exact source archive
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TARGET: ${{ matrix.target }}
+        run: python3 -B scripts/native-candidate.py
+      - name: Preserve binaries, proof corpus and failure evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: candidate-${{ matrix.target }}
+          path: release-results/
+          if-no-files-found: error
+          retention-days: 30
+# Native macOS ARM64 runs the identical archived scripts on the local 48 GiB
+# Apple Silicon host. Hosted ARM Macs have insufficient RAM for this proof gate.
