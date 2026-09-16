@@ -154,15 +154,21 @@ def main():
         # identities. CPU/default feature suites match the shipped feature set.
         env['CARGO_TARGET_DIR'] = str(candidate/'build')
         env['PATH'] = str(candidate/'bin') + os.pathsep + env['PATH']
+        test_failures = []
         for project in ('trident', 'trisha', 'joy'):
             command = ['cargo', 'test', '--manifest-path', source/project/'Cargo.toml',
-                       '--release', '--locked']
+                       '--release', '--locked', '--no-fail-fast']
             if project == 'trisha':
                 for package in ('trisha', 'trisha-rs', 'trisha-neptune', 'trisha-honeycrisp'):
                     command += ['-p', package]
             else:
                 command += ['--workspace']
-            run(command + ['--', '--test-threads=1'], results/(project+'-tests.log'), env, work)
+            try:
+                run(command + ['--', '--test-threads=1'], results/(project+'-tests.log'), env, work)
+            except RuntimeError as error:
+                test_failures.append(str(error))
+        if test_failures:
+            raise RuntimeError('workspace tests failed: ' + '; '.join(test_failures))
         if spec.get('neptune_intent'):
             env['TRISHA_DEPLOY_INTENT'] = str(work/'deployment-intent.json')
             run(['cargo', 'test', '--manifest-path', source/'trisha/Cargo.toml', '--release',
@@ -170,6 +176,19 @@ def main():
                  'genuine_transaction_prepare_and_mock_gateway_process', '--', '--ignored',
                  '--exact', '--test-threads=1'], results/'neptune-client.log', env, work)
             env.pop('TRISHA_DEPLOY_INTENT')
+        suffix = '.exe' if os.name == 'nt' else ''
+        run([candidate/'bin'/('trisha'+suffix), 'bench', source/'trisha/baselines/triton'],
+            results/'baseline-execution.log', env, work)
+        execution = (results/'baseline-execution.log').read_text(encoding='utf-8').splitlines()
+        if (execution.count('133 / 133 fixtures passed; 43 / 43 baselines verified') != 1
+                or sum(line.endswith('\tPASS') for line in execution) != 99
+                or sum(line.endswith('\tPASS (both executions rejected)') for line in execution) != 34):
+            raise ValueError('native baseline execution coverage is incomplete')
+        (results/'baseline-execution.json').write_text(json.dumps(dict(
+            all_checks_passed=True, source_provenance_sha256=sha(source/'sources.json'),
+            candidate_sha256=sha(candidate/'candidate.json'), log_sha256=sha(results/'baseline-execution.log'),
+            target=target, baselines=43, positive_fixtures=99, negative_fixtures=34,
+            generated_proofs=0), indent=2))
         smoke = work/'smoke пробел'
         run([nu, '--no-config-file', scripts/'smoke-release.nu', candidate/'bin', smoke],
             results/'smoke.log', env, work)
@@ -204,7 +223,7 @@ def main():
         (results/'archive.json').write_text(json.dumps(dict(target=target, source=spec,
             archive=output.name, sha256=sha(output), platform=platform.platform(),
             runner_revision=os.environ.get('GITHUB_SHA')), indent=2))
-        if spec.get('full_baselines', True):
+        if spec.get('full_baselines', False):
             run([sys.executable, '-B', scripts/'check-baselines.py', candidate,
                  work/'baselines', '--rss-limit-gib', '28'], results/'baseline-monitor.log', env, work)
             shutil.copytree(work/'baselines', results/'baselines')
