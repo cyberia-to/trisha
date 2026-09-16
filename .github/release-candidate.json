@@ -1,9 +1,75 @@
 {
   "asset_id": 568258266,
   "source_sha256": "5918806be44e25e59a6fbb9836297159a04e81bf923deb4d6ca00508b94ee861",
-  "full_baselines": false,
-  "neptune_intent": {
-    "asset_id": 568147730,
-    "sha256": "404ba33e683103e9cceaa7c21fcd6443401f8ba4216b8e77230ed34b24e249d0"
-  }
+  "phase": "verify",
+  "binaries": {
+    "aarch64-apple-darwin": {
+      "asset_id": 568405883,
+      "sha256": "dca19d65224f9e99a6ac3d1f8d84961f4361f300246380903fb3b37718d314ae",
+      "name": "cyber-tools-aarch64-apple-darwin.tar.gz"
+    },
+    "aarch64-pc-windows-msvc": {
+      "asset_id": 568379749,
+      "sha256": "ffbf704d2f698b6a479c9be3a59e1129aff27dcb6c965fa20c5416bd09fb2f2a",
+      "name": "cyber-tools-aarch64-pc-windows-msvc.zip"
+    },
+    "aarch64-unknown-linux-gnu": {
+      "asset_id": 568382807,
+      "sha256": "9920d4edaf4e99b6dc229dd27640cf5e5f999d8e3053533ef5eac8229a91c6b2",
+      "name": "cyber-tools-aarch64-unknown-linux-gnu.tar.gz"
+    },
+    "x86_64-apple-darwin": {
+      "asset_id": 568405377,
+      "sha256": "7607b172c7cd22c03d87f4d18a094bf21db59310745ceaede0a92267a03ebf55",
+      "name": "cyber-tools-x86_64-apple-darwin.tar.gz"
+    },
+    "x86_64-pc-windows-msvc": {
+      "asset_id": 568382408,
+      "sha256": "bc714cd156662c2f6bedbbafd41d2184985a54c67f8b70719e91971490316c40",
+      "name": "cyber-tools-x86_64-pc-windows-msvc.zip"
+    },
+    "x86_64-unknown-linux-gnu": {
+      "asset_id": 568380244,
+      "sha256": "86f6cd4e8e11be264d7da14305121021dd433d597dd58045d3104624000d124d",
+      "name": "cyber-tools-x86_64-unknown-linux-gnu.tar.gz"
+    }
+  },
+  "corpora": [
+    {
+      "asset_id": 568406042,
+      "sha256": "a01397aff48d01c2350434dba78605b031224494319659fa55584eb836334bbd",
+      "name": "proof-corpus-aarch64-apple-darwin.tar.gz",
+      "target": "aarch64-apple-darwin"
+    },
+    {
+      "asset_id": 568379812,
+      "sha256": "3644d7d1ce00f44aaf1dac8a9ac88813e303f06ca99037f1d5eabb05543b4425",
+      "name": "proof-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "target": "aarch64-pc-windows-msvc"
+    },
+    {
+      "asset_id": 568382912,
+      "sha256": "499f92bdc6325a8e17e5815773c32a65090c6d70ccfb57b7d6fbd637bfd5154a",
+      "name": "proof-corpus-aarch64-unknown-linux-gnu.tar.gz",
+      "target": "aarch64-unknown-linux-gnu"
+    },
+    {
+      "asset_id": 568405521,
+      "sha256": "efc24705138152a6a210b28b022e69f58becef37d81d2d116149898ed198a399",
+      "name": "proof-corpus-x86_64-apple-darwin.tar.gz",
+      "target": "x86_64-apple-darwin"
+    },
+    {
+      "asset_id": 568382495,
+      "sha256": "8a927a014822f3ca54ab41f60ead932a5f935f525be663c36f0c0e0d51775277",
+      "name": "proof-corpus-x86_64-pc-windows-msvc.tar.gz",
+      "target": "x86_64-pc-windows-msvc"
+    },
+    {
+      "asset_id": 568381937,
+      "sha256": "784c54f38a684a197b37e74236892ac2a7338576db65f8a3efa888fb43e76890",
+      "name": "proof-corpus-x86_64-unknown-linux-gnu.tar.gz",
+      "target": "x86_64-unknown-linux-gnu"
+    }
+  ]
 }
