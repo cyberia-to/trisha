@@ -14,7 +14,12 @@ archive links and paths escaping that prefix are excluded. A checksum or
 extraction error preserves the previous vendor directory.
 
 After extraction `apply.nu` applies the owned GPU overlay and pinned warning
-fixes; `tasm.nu` installs the official recursive verifier crates. The source
+fixes; `tasm.nu` installs the official recursive verifier crates.
+The Rust dependencies `twenty-first`, `triton-vm` and `tasm-lib` build only `rlib`:
+the shipped tools expose no C ABI, and hashed Rust artifacts prevent distinct
+dependency resolutions from sharing an unversioned multi-crate-type output.
+This changes library packaging, not their verifier or consensus implementation.
+The source
 packager records the resulting vendor file inventory separately from upstream
 pins. Rust/manifest bytes must be compared when changing bootstrap mechanics;
 an archive of different verifier code cannot inherit earlier proof receipts.

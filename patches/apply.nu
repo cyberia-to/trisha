@@ -43,18 +43,18 @@ for name in [triton-air triton-isa triton-constraint-circuit triton-constraint-b
 # TWENTY-FIRST PATCHES
 # ══════════════════════════════════════════════════════════════════
 
-print "  [T0] twenty-first: rlib only (drop cdylib)"
+print "  [T0] twenty-first and triton-vm: hashed Rust library outputs"
 
-# Upstream ships `crate-type = ["cdylib", "rlib"]`. A cdylib bundles its
-# dependencies' metadata, so rustc sees TWO versions of serde/rand once the
-# rlib and the dylib both land in the search path — which is what broke the
-# release build with "multiple different versions of crate `rand`" and
-# "BFieldElement: Serialize is not satisfied" (trisha#1). Nothing here needs
-# a C ABI, so build a plain rlib.
-let tf_manifest = ".vendor/twenty-first/Cargo.toml"
-(open --raw $tf_manifest
-    | str replace "crate-type = [\n    \"cdylib\",\n    \"rlib\",\n]" 'crate-type = ["rlib"]'
-    | save -f $tf_manifest)
+# Multi-crate-type targets use an unversioned rlib output name. Reusing that
+# output with another lockfile can mix serde/rand/number type identities.
+# These tools require Rust libraries only; no C ABI is shipped.
+for name in [twenty-first triton-vm] {
+    let manifest = $".vendor/($name)/Cargo.toml"
+    let original = (open --raw $manifest)
+    let anchor = "crate-type = [\n    \"cdylib\",\n    \"rlib\",\n]"
+    if not ($original | str contains $anchor) { error make {msg: $"review changed library crate types: ($name)"} }
+    $original | str replace $anchor 'crate-type = ["rlib"]' | save -f $manifest
+}
 
 print "  [T1] twenty-first: MerkleTree::from_nodes constructor"
 
