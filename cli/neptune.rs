@@ -282,7 +282,19 @@ impl NeptuneClient {
         let mut prefix = PathBuf::new();
         for part in file.components() {
             prefix.push(part.as_os_str());
-            if std::fs::symlink_metadata(&prefix)?.file_type().is_symlink() {
+            // A drive prefix alone (C:) denotes a drive-relative current
+            // directory; inspect it only after the absolute root is joined.
+            if matches!(part, std::path::Component::Prefix(_)) {
+                continue;
+            }
+            let metadata = std::fs::symlink_metadata(&prefix)?;
+            let symbolic = metadata.file_type().is_symlink();
+            #[cfg(windows)]
+            let symbolic = {
+                use std::os::windows::fs::MetadataExt;
+                symbolic || metadata.file_attributes() & 0x400 != 0
+            };
+            if symbolic {
                 return Err(TrishaError::Node(
                     "wallet path contains a symbolic link".into(),
                 ));
@@ -293,6 +305,7 @@ impl NeptuneClient {
                 "wallet path is not a regular file".into(),
             ));
         }
+        let file = std::fs::canonicalize(file)?;
         if let Some(base) = std::env::var_os("NEPTUNE_DATA_DIR") {
             // Absolute overrides name the base exactly. Relative upstream project
             // paths are OS-specific; trust which-wallet rather than guessing them.

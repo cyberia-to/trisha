@@ -24,6 +24,12 @@ Remove first discovers the selected wallet with `which-wallet`. It requires
 symlink components, and removes only that wallet directory. It does not remove
 the blockchain or wallet database. Stop the node before local wallet changes;
 import may also require moving its existing wallet database using upstream tools.
+
+On Windows, all reparse-point components are rejected, including junctions.
+Drive/UNC prefixes are inspected only after their root component is joined.
+Both the upstream wallet file and an absolute data-directory override are
+canonicalized before comparison, so ordinary and extended-length native paths
+refer to the same selected wallet.
 Hidden-address preferences are stored separately for each network in Trisha's
 configuration directory. No command in this implementation's tests uses a real
 wallet or node: tests substitute `neptune-cli` and temporary directories.

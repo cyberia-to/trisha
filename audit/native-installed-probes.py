@@ -115,6 +115,13 @@ def verify(prefix, receipt):
         assert wallet('main').is_file()
         neuron(['remove', '--confirm'])
         assert not wallet().exists() and wallet('main').is_file()
+        wallet().parent.symlink_to(wallet('main').parent, target_is_directory=True)
+        neuron(['remove', '--confirm'], success=False)
+        assert wallet('main').is_file()
+        if os.name == 'nt':
+            os.rmdir(wallet().parent)
+        else:
+            wallet().parent.unlink()
         imported = neuron(['import'], stdin='private-test-words\n')
         assert wallet().is_file() and 'private-test-words' not in imported.stdout+imported.stderr+calls()
         neuron(['address', 'hide', 'mock-address-0'])
