@@ -120,3 +120,25 @@ instead of depending on Unix `which`. Local differential9 and formal17 tests
 pass after this correction, plus the native-path unit test. Windows rerun is
 required. Baseline proof accounting likewise canonicalizes Rust's Windows
 extended-length names and Python's drive paths before matching fixture events.
+
+## Native runtime and Cargo workspace isolation
+
+The release builder now isolates each independently locked root workspace and
+the fixture helper in its own Cargo output directory. RC1 Linux ARM64 exposed
+shared upstream cdylib/rlib filenames being overwritten by Joy's different
+serde/number dependency resolution: builds completed, but the next Trisha test
+build linked incompatible cached types. Native tests now reuse only their own
+workspace outputs. This is a build isolation correction, not a skipped suite.
+
+Windows release builds statically link the MSVC CRT. The independent installed
+process/file probe checks actual PE imports to reject a separately required
+VC++ runtime, exercises Neptune status/wallet wrappers through a native Rust
+process fixture, and rejects file links/special inputs. Its27 macOS cases pass
+on the source01 installed binaries. Windows adds native device/pipe paths;
+those tests remain pending until the new native build runs.
+
+Source01 Linux x64 completed native installed proof smoke and deterministic
+packaging; its extra full-proof workload then hit the hosted machine's memory
+guard at15,202,697,216 bytes RSS after1529 seconds. This remains an incomplete
+full gate. Complete198-proof acceptance belongs to the48GiB dedicated worker,
+with all133 execution fixtures and fresh installed proofs on every native host.

@@ -97,7 +97,12 @@ nu scripts/smoke-release.nu /tmp/installed-candidate/bin /tmp/smoke-candidate
 
 `build-candidate.nu` uses the three root lockfiles, builds the CPU binaries,
 requires the coordinated Triton/tasm-lib7.0.0 dependency set, rejects compiler
-warnings, and installs them into one local `bin` directory. It checks every
+warnings, and installs them into one local `bin` directory. It builds each
+workspace in its own Cargo output directory, including the separately locked
+fixture helper, so upstream cdylib outputs cannot clobber another resolution.
+Windows release binaries statically link the MSVC CRT; native validation checks
+the actual PE imports and process/file behavior without Unix shell helpers.
+It checks every
 recorded source/vendor byte, file kind and symlink target before Cargo and after
 compilation. Source changes or manifest rewriting during the build reject.
 Only a completed build moves its private staging directory into the final

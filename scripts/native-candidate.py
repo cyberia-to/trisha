@@ -152,10 +152,11 @@ def main():
             results/'build.log', env, work)
         # Reuse Cargo outputs, while the installed copies keep their exact build
         # identities. CPU/default feature suites match the shipped feature set.
-        env['CARGO_TARGET_DIR'] = str(candidate/'build')
+        env['RUSTFLAGS'] = json.loads((candidate/'candidate.json').read_text())['rustflags']
         env['PATH'] = str(candidate/'bin') + os.pathsep + env['PATH']
         test_failures = []
         for project in ('trident', 'trisha', 'joy'):
+            env['CARGO_TARGET_DIR'] = str(candidate/'build'/project)
             command = ['cargo', 'test', '--manifest-path', source/project/'Cargo.toml',
                        '--release', '--locked', '--no-fail-fast']
             if project == 'trisha':
@@ -169,7 +170,10 @@ def main():
                 test_failures.append(str(error))
         if test_failures:
             raise RuntimeError('workspace tests failed: ' + '; '.join(test_failures))
+        run([sys.executable, '-B', source/'trisha/audit/native-installed-probes.py',
+             candidate, results/'native-process-files.json'], results/'native-process-files.log', env, work)
         if spec.get('neptune_intent'):
+            env['CARGO_TARGET_DIR'] = str(candidate/'build/trisha')
             env['TRISHA_DEPLOY_INTENT'] = str(work/'deployment-intent.json')
             run(['cargo', 'test', '--manifest-path', source/'trisha/Cargo.toml', '--release',
                  '--locked', '-p', 'trisha', '--test', 'deploy_transaction',

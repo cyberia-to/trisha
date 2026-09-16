@@ -37,6 +37,9 @@ Use default CPU features, portable target CPU settings and pinned toolchain,
 lockfiles and vendor inputs. Do not build public binaries with
 `target-cpu=native`. Neural training and GPU acceleration need separate feature
 and device evidence; they do not multiply the default release matrix.
+Each root workspace and the fixture helper require separate Cargo output
+directories. Their independent lockfiles can select distinct dependencies;
+upstream cdylib/rlib outputs must not overwrite another workspace's artifacts.
 
 Formal audit integration tests require an actual Z3 executable. The native CI
 bootstrap pins Z3 4.15.3 assets by SHA-256 and records its version before tests.
@@ -48,7 +51,8 @@ Initial OS-floor candidates are macOS 14, Windows 11 and Linux glibc 2.35
 minimum requirements. Finalize them through dependency/link inspection and
 execution on the oldest claimed OS, including ARM64. A build on a newer Linux
 distribution alone cannot establish the older glibc floor. Record the MSVC
-runtime linkage and any required redistributable; test on a clean Windows host.
+runtime linkage: release Windows binaries statically link the CRT so users do
+not need a separate Visual C++ redistributable. Verify the actual PE imports.
 
 ## Acceptance on each supported target
 

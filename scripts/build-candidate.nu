@@ -32,9 +32,11 @@ def main [source: path, prefix: path] {
     if $temporary.exit_code != 0 { error make {msg: $"cannot create private candidate staging directory: ($temporary.stderr)"} }
     if not $owned_staging or ($prefix | path type) != dir { error make {msg: "mktemp did not return the expected staging directory"} }
     cd $source
+    # A portable release must not inherit a caller's native CPU or cross target.
+    hide-env -i CARGO_ENCODED_RUSTFLAGS CARGO_BUILD_TARGET
+    $env.RUSTFLAGS = (if $nu.os-info.name == windows { '-C target-feature=+crt-static' } else { '' })
     $initial.stdout | save ($prefix | path join source-verification.json)
     mkdir ($prefix | path join bin)
-    $env.CARGO_TARGET_DIR = ($prefix | path join build)
     for project in [trident trisha joy] {
         let manifest = ($source | path join $project Cargo.toml)
         let metadata = (^cargo metadata --manifest-path $manifest --format-version 1 --all-features --locked | complete)
@@ -52,16 +54,22 @@ def main [source: path, prefix: path] {
         let contained = (^python3 $verifier --check-contained $source ...$local | complete)
         if $contained.exit_code != 0 { error make {msg: $contained.stderr} }
     }
-    build ($source | path join trident Cargo.toml) trident-lang ($prefix | path join trident-build.log)
-    build ($source | path join trisha Cargo.toml) trisha ($prefix | path join trisha-build.log)
-    build ($source | path join joy Cargo.toml) cyber-joy ($prefix | path join joy-build.log)
-    for name in [trident trident-lsp trisha joy] {
-        let file = (executable $name)
-        cp ($prefix | path join build release $file) ($prefix | path join bin $file)
+    for task in [
+        {project: trident, package: trident-lang, binaries: [trident trident-lsp]}
+        {project: trisha, package: trisha, binaries: [trisha]}
+        {project: joy, package: cyber-joy, binaries: [joy]}
+    ] {
+        $env.CARGO_TARGET_DIR = ($prefix | path join build $task.project)
+        build ($source | path join $task.project Cargo.toml) $task.package ($prefix | path join $"($task.project)-build.log")
+        for name in $task.binaries {
+            let file = (executable $name)
+            cp ($env.CARGO_TARGET_DIR | path join release $file) ($prefix | path join bin $file)
+        }
     }
     # A small fixture helper links to the archived BBG implementation. It creates
     # complete public certificates instead of embedding opaque stale state roots.
     let helper = ($source | path join trisha scripts fixtures Cargo.toml)
+    $env.CARGO_TARGET_DIR = ($prefix | path join build fixtures)
     let fixtures = ($prefix | path join share trisha-release-smoke)
     let generated = (^cargo run --manifest-path $helper --release --locked --offline -- $fixtures | complete)
     $"($generated.stdout)($generated.stderr)" | save ($prefix | path join fixture-build.log)
@@ -76,7 +84,7 @@ def main [source: path, prefix: path] {
     if $final_check.stdout != $initial.stdout { error make {msg: "source provenance changed during build"} }
     let toolchain = (^rustc -vV | complete)
     if $toolchain.exit_code != 0 { error make {msg: $toolchain.stderr} }
-    {schema_version: 2, platform: $nu.os-info, toolchain: $toolchain.stdout, source: $source, source_verified: true, source_verification_sha256: (open --raw ($prefix | path join source-verification.json) | hash sha256), provenance_sha256: (open --raw ($source | path join sources.json) | hash sha256), binaries: $binaries}
+    {schema_version: 2, platform: $nu.os-info, toolchain: $toolchain.stdout, rustflags: $env.RUSTFLAGS, source: $source, source_verified: true, source_verification_sha256: (open --raw ($prefix | path join source-verification.json) | hash sha256), provenance_sha256: (open --raw ($source | path join sources.json) | hash sha256), binaries: $binaries}
         | to json | save ($prefix | path join candidate.json)
     let publish_check = (^python3 $verifier --check-destination $source $destination | complete)
     if $publish_check.exit_code != 0 { error make {msg: $publish_check.stderr} }
