@@ -104,6 +104,18 @@ def main():
         candidate = work/'candidate'
         run([nu, '--no-config-file', scripts/'build-candidate.nu', source, candidate],
             results/'build.log', env, work)
+        # Reuse Cargo outputs, while the installed copies keep their exact build
+        # identities. CPU/default feature suites match the shipped feature set.
+        env['CARGO_TARGET_DIR'] = str(candidate/'build')
+        for project in ('trident', 'trisha', 'joy'):
+            command = ['cargo', 'test', '--manifest-path', source/project/'Cargo.toml',
+                       '--release', '--locked']
+            if project == 'trisha':
+                for package in ('trisha', 'trisha-rs', 'trisha-neptune', 'trisha-honeycrisp'):
+                    command += ['-p', package]
+            else:
+                command += ['--workspace']
+            run(command + ['--', '--test-threads=1'], results/(project+'-tests.log'), env, work)
         smoke = work/'smoke пробел'
         run([nu, '--no-config-file', scripts/'smoke-release.nu', candidate/'bin', smoke],
             results/'smoke.log', env, work)
