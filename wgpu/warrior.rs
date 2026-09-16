@@ -50,13 +50,13 @@ impl Warrior {
         let program =
             Program::from_code(&bundle.assembly).map_err(|e| format!("TASM parse error: {}", e))?;
 
-        let (pub_in, non_det) = convert::to_triton_inputs(input);
+        let (pub_in, non_det) = convert::to_triton_inputs(input)?;
 
         let op_count = bundle.assembly.lines().count();
         eprintln!("Proving {} ({} ops)...", bundle.name, op_count);
 
         let (aet, output) = VM::trace_execution(program.clone(), pub_in.clone(), non_det)
-            .map_err(|e| format!("execution error: {}", e))?;
+            .map_err(|e| convert::execution_error(e, input))?;
 
         let cycle_count = aet.processor_trace.nrows() as u64;
         let padded_height = aet.padded_height() as u64;
@@ -78,7 +78,7 @@ impl Warrior {
             proof_data: ProofData {
                 claim: convert::to_trident_claim(&claim),
                 proof_bytes: convert::proof_to_bytes(&proof),
-                format: "stark-triton-v2".to_string(),
+                format: "stark-triton-v7".to_string(),
             },
             cycle_count,
             padded_height,
@@ -92,13 +92,13 @@ impl Runner for Warrior {
         let program =
             Program::from_code(&bundle.assembly).map_err(|e| format!("TASM parse error: {}", e))?;
 
-        let (pub_in, non_det) = convert::to_triton_inputs(input);
+        let (pub_in, non_det) = convert::to_triton_inputs(input)?;
 
         let op_count = bundle.assembly.lines().count();
         eprintln!("Executing {} ({} ops)...", bundle.name, op_count);
 
         let (aet, output) = VM::trace_execution(program, pub_in, non_det)
-            .map_err(|e| format!("execution error: {}", e))?;
+            .map_err(|e| convert::execution_error(e, input))?;
         let cycle_count = aet.processor_trace.nrows() as u64;
         Ok(convert::to_execution_result(&output, cycle_count))
     }
@@ -112,7 +112,7 @@ impl Prover for Warrior {
 
 impl Verifier for Warrior {
     fn verify(&self, proof_data: &ProofData) -> Result<bool, String> {
-        if proof_data.format != "stark-triton-v2" {
+        if proof_data.format != "stark-triton-v7" {
             return Err(format!("unsupported proof format: {}", proof_data.format));
         }
         let claim = convert::to_triton_claim_native(
@@ -121,8 +121,7 @@ impl Verifier for Warrior {
             &proof_data.claim.public_output,
         )?;
         let proof = convert::bytes_to_proof(&proof_data.proof_bytes)?;
-        let stark = Stark::default();
-        Ok(triton_vm::verify(stark, &claim, &proof))
+        Ok(convert::verify_native_proof(&claim, &proof).is_ok())
     }
 }
 
@@ -214,5 +213,50 @@ impl Guesser for Warrior {
             "no solution found within {} attempts",
             max_attempts
         ))
+    }
+}
+
+#[cfg(test)]
+mod input_boundary_tests {
+    use super::*;
+    use triton_vm::{proof_item::ProofItem, proof_stream::ProofStream};
+
+    #[test]
+    fn gpu_backend_obeys_native_codec_and_exact_proof_consumption() {
+        let program = Program::from_code("halt").unwrap();
+        let (trace, output) = VM::trace_execution(
+            program.clone(),
+            PublicInput::default(),
+            NonDeterminism::default(),
+        )
+        .unwrap();
+        let claim = Claim::about_program(&program).with_output(output);
+        let proof = Stark::default().prove(&claim, &trace).unwrap();
+        let mut artifact = ProofData {
+            claim: convert::to_trident_claim(&claim),
+            proof_bytes: convert::proof_to_bytes(&proof),
+            format: "stark-triton-v7".into(),
+        };
+        let warrior = Warrior { gpu: false };
+        assert!(warrior.verify(&artifact).unwrap());
+        let mut extra = ProofStream::try_from(&proof).unwrap();
+        extra.enqueue(ProofItem::MerkleRoot(Digest::default()));
+        artifact.proof_bytes = convert::proof_to_bytes(&extra.into());
+        assert!(!warrior.verify(&artifact).unwrap());
+        artifact.proof_bytes = convert::proof_to_bytes(&proof);
+        artifact.proof_bytes.extend_from_slice(&[0; 8]);
+        assert!(warrior.verify(&artifact).is_err());
+        artifact.proof_bytes = convert::proof_to_bytes(&proof);
+        artifact.proof_bytes[8..16].copy_from_slice(&BFieldElement::P.to_le_bytes());
+        assert!(warrior.verify(&artifact).is_err());
+        let invalid = ProgramInput {
+            secret: vec![BFieldElement::P],
+            ..Default::default()
+        };
+        assert!(convert::to_triton_inputs(&invalid).is_err());
+        assert_eq!(
+            convert::execution_error("sensitive witness", &invalid),
+            "execution error: program rejected private witness"
+        );
     }
 }

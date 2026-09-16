@@ -1,0 +1,53 @@
+{
+  "date": "2026-09-12",
+  "all_checks_passed": true,
+  "scope": "live release tooling tests; no frozen installed artifact or full proof claim",
+  "tests_passed": 24,
+  "tests_failed": 0,
+  "log": "/tmp/current-release-python-gates.log",
+  "log_sha256": "7d9f8bfdf5a281de7b6cc2fea7549a95f384cd22f83a9a3cff87b323d807aa25",
+  "suites": [
+    {
+      "script": "test_archive_source.py",
+      "script_sha256": "ed713441edd739d67ca90c6504111e2fab20e0b4bccc100a51d6944958714b63",
+      "passed": 1,
+      "exit_code": 0,
+      "elapsed_seconds": 0.063
+    },
+    {
+      "script": "test_check_baselines.py",
+      "script_sha256": "d35fd44ce2af02496cabfcc124b58b0f5c0991228fb079f2be77602d0ccb9321",
+      "passed": 10,
+      "exit_code": 0,
+      "elapsed_seconds": 0.186
+    },
+    {
+      "script": "test_package_binaries.py",
+      "script_sha256": "59c512fdfaa6566470952e8927bbcb3c87b557235245eabbf3cd3914c1ed8c7a",
+      "passed": 3,
+      "exit_code": 0,
+      "elapsed_seconds": 1.217
+    },
+    {
+      "script": "test_snapshot_source.py",
+      "script_sha256": "b76b17511b663d632214ce7530d42d80ab039c93d1233cf2965b47b589292dd1",
+      "passed": 1,
+      "exit_code": 0,
+      "elapsed_seconds": 0.369
+    },
+    {
+      "script": "test_verify_source.py",
+      "script_sha256": "dfc4bceaed68c81a62791e666b2d6342012bb7006df929322e56453a7dcc795d",
+      "passed": 9,
+      "exit_code": 0,
+      "elapsed_seconds": 2.633
+    }
+  ],
+  "production_scripts": {
+    "archive-source.py": "7a7379eb2f596f949991682ac9341be5e9b28b6510a2e64bf331bf3737557cc9",
+    "check-baselines.py": "5a84d27a2b53761bf66e4e207c84e5a673e30ef5a97f69fa2e4c5c5d8ea8f481",
+    "quantum_ram.py": "0836bd50ea480466c35e7271e8a330115373de91ae7462f15877cca32615a486",
+    "snapshot-source.py": "9b430568cc15a93791ab7bc8a6e9e475a07dde234d662c124eaf042571cc422f",
+    "verify-source.py": "11433915da6d39ea46bc7be4353decba0531ac35f6e556318792882a4b2a737a"
+  }
+}

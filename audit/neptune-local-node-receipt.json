@@ -1,0 +1,26 @@
+{
+  "format": "trisha-neptune-local-node-gate-v1",
+  "network": "testnet-1",
+  "chain_id": 4,
+  "upstream_revision": "9869b5e35b659dc520fad51ba5a9c812fed46db0",
+  "node_sha256": "442dc3da0977a6cba54db45cc9c251893351e690ca6807ff061693783d9dda00",
+  "trisha_sha256": "83e31b2ed475fa00bc681dd76e1f5bf8cee6eb5798b1fe0bc47868cb46bc220b",
+  "intent_sha256": "4f3d8d38bef5911a57d07ff7f1fba83819b10388f26a9c2dd9974fe0b013c839",
+  "kernel_digest": [
+    5124810281256640655,
+    17058749878579669645,
+    7526317689152899308,
+    16768354721829010526,
+    5404401937098795058
+  ],
+  "mempool_transaction_id": "ecd163d6f3f588fe97cab442a81002e7d867caca5236c7a6b229e2d750d7c3787ee8cfbe5167a82c",
+  "actual_single_proof_verified": true,
+  "exact_kernel_observed_in_mempool": true,
+  "altered_kernel_rejected": true,
+  "incorrect_gateway_credentials_rejected": true,
+  "loopback_only_namespace": true,
+  "wallet_funds_used": false,
+  "block_confirmation": false,
+  "elapsed_seconds": 1.6078244499999528,
+  "local_work_directory": "/tmp/trisha-neptune-local-gate-9pzhkyvv"
+}

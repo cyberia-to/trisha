@@ -1,0 +1,22 @@
+[package]
+name = "trisha-neptune"
+version = "0.3.0"
+edition = "2021"
+publish = false
+license-file = "../LICENSE"
+description = "Pinned Neptune transaction intent validation and submission adapter"
+
+[lib]
+path = "lib.rs"
+
+[dependencies]
+neptune-consensus = { git = "https://github.com/Neptune-Crypto/neptune-core", rev = "9869b5e35b659dc520fad51ba5a9c812fed46db0" }
+neptune-primitives = { git = "https://github.com/Neptune-Crypto/neptune-core", rev = "9869b5e35b659dc520fad51ba5a9c812fed46db0" }
+neptune-mutator-set = { git = "https://github.com/Neptune-Crypto/neptune-core", rev = "9869b5e35b659dc520fad51ba5a9c812fed46db0" }
+neptune-rpc-api = { git = "https://github.com/Neptune-Crypto/neptune-core", rev = "9869b5e35b659dc520fad51ba5a9c812fed46db0" }
+tasm-lib = "=7.0.0"
+trisha-rs = { version = "0.3.0", path = "../rs" }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["arbitrary_precision"] }
+ureq = { version = "2", features = ["json"] }
+url = "2"

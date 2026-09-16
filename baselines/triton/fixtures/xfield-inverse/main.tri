@@ -1,0 +1,3 @@
+program baseline_xfield_inverse
+use os.neptune.xfield
+fn main() { let v=xfield.inv(xfield.new(2,3,4)) let (a,b,c)=v pub_write(a) pub_write(b) pub_write(c) }

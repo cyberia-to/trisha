@@ -1,0 +1,3 @@
+program baseline_bigint_carry
+use std.crypto.bigint
+fn main() { let a=bigint.U256 { l0:as_u32(4294967295), l1:as_u32(4294967295), l2:as_u32(4294967295), l3:as_u32(4294967295), l4:as_u32(4294967295), l5:as_u32(4294967295), l6:as_u32(4294967295), l7:as_u32(4294967295) } let b=bigint.from_u32(as_u32(1)) let (result,carry)=bigint.add256(a,b) pub_write(as_field(result.l0)) pub_write(as_field(result.l1)) pub_write(as_field(result.l2)) pub_write(as_field(result.l3)) pub_write(as_field(result.l4)) pub_write(as_field(result.l5)) pub_write(as_field(result.l6)) pub_write(as_field(result.l7)) pub_write(as_field(carry)) }

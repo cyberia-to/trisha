@@ -7,11 +7,11 @@
 name = "testnet"
 display_name = "Neptune Testnet"
 union = "neptune"
-chain_id = "2"
+chain_id = "3"
 is_default = false
 
 [endpoints]
-rpc_url = "https://rpc.testnet.neptune.cash"
+rpc_url = "http://127.0.0.1:9899"
 explorer_url = "https://explorer.testnet.neptune.cash"
 
 [currency]
@@ -19,4 +19,4 @@ symbol = "tNEPT"
 
 [node]
 rpc_port = 9899
-network_flag = "testnet"
+network_flag = "testnet-0"

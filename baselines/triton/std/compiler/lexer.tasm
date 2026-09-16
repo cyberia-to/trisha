@@ -1,30 +1,411 @@
-// Self-hosted lexer baseline (placeholder).
-// The lexer is the first self-hosting component — hand optimization
-// comes after the compiler reaches correctness parity.
-//
-// This placeholder enables `trident bench` discovery while the real
-// baseline is developed alongside the self-hosting effort.
-
-__lex:
-    return
-
-__classify_keyword:
-    return
-
-__skip_ws_and_comments:
-    return
-
-__scan_ident_or_keyword:
-    return
-
-__scan_number:
-    return
-
-__scan_symbol:
-    return
-
+// Independent handwritten RAM algorithm; regenerate with scripts/generate_compiler_baselines.py.
+__read_source:
+read_io 1 push 3000001 write_mem 1 pop 1 push 1025 push 3000001 read_mem 1 pop 1 lt assert
+push 0 push 3000000 write_mem 1 pop 1
+call __read_loop
+push 0 push 3000000 write_mem 1 pop 1
+push 0 push 3000006 write_mem 1 pop 1
+call __lex_loop
+push 56 push 3000004 write_mem 1 pop 1
+push 3000000 read_mem 1 pop 1 push 3000003 write_mem 1 pop 1
+push 0 push 3000005 write_mem 1 pop 1
+call __emit_token
+return
+__read_loop:
+push 3000000 read_mem 1 pop 1 push 3000001 read_mem 1 pop 1 eq skiz return
+read_io 1 push 3000000 read_mem 1 pop 1 push 3010000 add write_mem 1 pop 1
+push 3000000 read_mem 1 pop 1 push 1 add push 3000000 write_mem 1 pop 1
+recurse
+__peek:
+push 3000000 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 3000002 write_mem 1 pop 1 return
+__lex_loop:
+push 3000000 read_mem 1 pop 1 push 3000001 read_mem 1 pop 1 eq skiz return
+call __peek
+push 3000000 read_mem 1 pop 1 push 3000003 write_mem 1 pop 1
+push 0 push 3000004 write_mem 1 pop 1
+push 0 push 3000005 write_mem 1 pop 1
+push 3000002 read_mem 1 pop 1 push 32 eq
+push 3000002 read_mem 1 pop 1 push 10 eq
+push 3000002 read_mem 1 pop 1 push 13 eq
+push 3000002 read_mem 1 pop 1 push 9 eq
+add
+add
+add
+skiz call __space
+push 3000004 read_mem 1 pop 1 push 999 eq skiz recurse
+call __is_digit
+skiz call __number
+push 3000004 read_mem 1 pop 1 push 0 eq skiz call __not_number
+call __emit_token
+recurse
+__space:
+push 3000000 read_mem 1 pop 1 push 1 add push 3000000 write_mem 1 pop 1
+push 999 push 3000004 write_mem 1 pop 1
+return
+__is_digit:
+push 58 push 3000002 read_mem 1 pop 1 lt push 3000002 read_mem 1 pop 1 push 47 lt mul return
+__is_alpha:
+push 123 push 3000002 read_mem 1 pop 1 lt push 3000002 read_mem 1 pop 1 push 96 lt mul push 91 push 3000002 read_mem 1 pop 1 lt push 3000002 read_mem 1 pop 1 push 64 lt mul add push 3000002 read_mem 1 pop 1 push 95 eq add return
+__number:
+push 53 push 3000004 write_mem 1 pop 1
+call __number_loop
+return
+__number_loop:
+push 3000000 read_mem 1 pop 1 push 3000001 read_mem 1 pop 1 eq skiz return
+call __peek
+call __is_digit
+push 0 eq skiz return
+push 3000005 read_mem 1 pop 1 push 10 mul push 3000002 read_mem 1 pop 1 push -48 add add push 3000005 write_mem 1 pop 1
+push 3000000 read_mem 1 pop 1 push 1 add push 3000000 write_mem 1 pop 1
+recurse
+__not_number:
+call __is_alpha
+skiz call __ident
+push 3000004 read_mem 1 pop 1 push 0 eq skiz call __symbol
+return
+__ident:
+push 54 push 3000004 write_mem 1 pop 1
+call __ident_loop
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 7 eq skiz call __word_1
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 6 eq skiz call __word_2
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 3 eq skiz call __word_3
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 2 eq skiz call __word_4
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 3 eq skiz call __word_5
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 3 eq skiz call __word_6
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 3 eq skiz call __word_7
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 3 eq skiz call __word_8
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 5 eq skiz call __word_9
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 6 eq skiz call __word_10
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 2 eq skiz call __word_11
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 4 eq skiz call __word_12
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 3 eq skiz call __word_13
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 2 eq skiz call __word_14
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 7 eq skiz call __word_15
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 6 eq skiz call __word_16
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 4 eq skiz call __word_17
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 5 eq skiz call __word_18
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 5 eq skiz call __word_19
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 6 eq skiz call __word_20
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 4 eq skiz call __word_21
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 5 eq skiz call __word_22
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 5 eq skiz call __word_23
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 6 eq skiz call __word_24
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 4 eq skiz call __word_25
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 3 eq skiz call __word_26
+push 3000000 read_mem 1 pop 1 push 3000003 read_mem 1 pop 1 push -1 mul add push 6 eq skiz call __word_27
+return
+__ident_loop:
+push 3000000 read_mem 1 pop 1 push 3000001 read_mem 1 pop 1 eq skiz return
+call __peek
+call __is_alpha
+call __is_digit
+add push 0 eq skiz return
+push 3000000 read_mem 1 pop 1 push 1 add push 3000000 write_mem 1 pop 1
+recurse
+__word_1:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 112 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 114 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 111 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010003 add read_mem 1 pop 1 push 103 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010004 add read_mem 1 pop 1 push 114 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010005 add read_mem 1 pop 1 push 97 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010006 add read_mem 1 pop 1 push 109 eq push 0 eq skiz return
+push 1 push 3000004 write_mem 1 pop 1
+return
+__word_2:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 109 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 111 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 100 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010003 add read_mem 1 pop 1 push 117 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010004 add read_mem 1 pop 1 push 108 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010005 add read_mem 1 pop 1 push 101 eq push 0 eq skiz return
+push 2 push 3000004 write_mem 1 pop 1
+return
+__word_3:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 117 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 115 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 101 eq push 0 eq skiz return
+push 3 push 3000004 write_mem 1 pop 1
+return
+__word_4:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 102 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 110 eq push 0 eq skiz return
+push 4 push 3000004 write_mem 1 pop 1
+return
+__word_5:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 112 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 117 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 98 eq push 0 eq skiz return
+push 5 push 3000004 write_mem 1 pop 1
+return
+__word_6:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 115 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 101 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 99 eq push 0 eq skiz return
+push 6 push 3000004 write_mem 1 pop 1
+return
+__word_7:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 108 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 101 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 116 eq push 0 eq skiz return
+push 7 push 3000004 write_mem 1 pop 1
+return
+__word_8:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 109 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 117 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 116 eq push 0 eq skiz return
+push 8 push 3000004 write_mem 1 pop 1
+return
+__word_9:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 99 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 111 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 110 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010003 add read_mem 1 pop 1 push 115 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010004 add read_mem 1 pop 1 push 116 eq push 0 eq skiz return
+push 9 push 3000004 write_mem 1 pop 1
+return
+__word_10:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 115 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 116 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 114 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010003 add read_mem 1 pop 1 push 117 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010004 add read_mem 1 pop 1 push 99 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010005 add read_mem 1 pop 1 push 116 eq push 0 eq skiz return
+push 10 push 3000004 write_mem 1 pop 1
+return
+__word_11:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 105 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 102 eq push 0 eq skiz return
+push 11 push 3000004 write_mem 1 pop 1
+return
+__word_12:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 101 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 108 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 115 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010003 add read_mem 1 pop 1 push 101 eq push 0 eq skiz return
+push 12 push 3000004 write_mem 1 pop 1
+return
+__word_13:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 102 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 111 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 114 eq push 0 eq skiz return
+push 13 push 3000004 write_mem 1 pop 1
+return
+__word_14:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 105 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 110 eq push 0 eq skiz return
+push 14 push 3000004 write_mem 1 pop 1
+return
+__word_15:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 98 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 111 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 117 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010003 add read_mem 1 pop 1 push 110 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010004 add read_mem 1 pop 1 push 100 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010005 add read_mem 1 pop 1 push 101 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010006 add read_mem 1 pop 1 push 100 eq push 0 eq skiz return
+push 15 push 3000004 write_mem 1 pop 1
+return
+__word_16:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 114 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 101 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 116 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010003 add read_mem 1 pop 1 push 117 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010004 add read_mem 1 pop 1 push 114 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010005 add read_mem 1 pop 1 push 110 eq push 0 eq skiz return
+push 16 push 3000004 write_mem 1 pop 1
+return
+__word_17:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 116 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 114 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 117 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010003 add read_mem 1 pop 1 push 101 eq push 0 eq skiz return
+push 17 push 3000004 write_mem 1 pop 1
+return
+__word_18:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 102 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 97 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 108 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010003 add read_mem 1 pop 1 push 115 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010004 add read_mem 1 pop 1 push 101 eq push 0 eq skiz return
+push 18 push 3000004 write_mem 1 pop 1
+return
+__word_19:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 101 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 118 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 101 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010003 add read_mem 1 pop 1 push 110 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010004 add read_mem 1 pop 1 push 116 eq push 0 eq skiz return
+push 19 push 3000004 write_mem 1 pop 1
+return
+__word_20:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 114 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 101 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 118 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010003 add read_mem 1 pop 1 push 101 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010004 add read_mem 1 pop 1 push 97 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010005 add read_mem 1 pop 1 push 108 eq push 0 eq skiz return
+push 20 push 3000004 write_mem 1 pop 1
+return
+__word_21:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 115 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 101 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 97 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010003 add read_mem 1 pop 1 push 108 eq push 0 eq skiz return
+push 21 push 3000004 write_mem 1 pop 1
+return
+__word_22:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 109 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 97 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 116 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010003 add read_mem 1 pop 1 push 99 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010004 add read_mem 1 pop 1 push 104 eq push 0 eq skiz return
+push 22 push 3000004 write_mem 1 pop 1
+return
+__word_23:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 70 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 105 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 101 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010003 add read_mem 1 pop 1 push 108 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010004 add read_mem 1 pop 1 push 100 eq push 0 eq skiz return
+push 23 push 3000004 write_mem 1 pop 1
+return
+__word_24:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 88 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 70 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 105 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010003 add read_mem 1 pop 1 push 101 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010004 add read_mem 1 pop 1 push 108 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010005 add read_mem 1 pop 1 push 100 eq push 0 eq skiz return
+push 24 push 3000004 write_mem 1 pop 1
+return
+__word_25:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 66 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 111 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 111 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010003 add read_mem 1 pop 1 push 108 eq push 0 eq skiz return
+push 25 push 3000004 write_mem 1 pop 1
+return
+__word_26:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 85 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 51 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 50 eq push 0 eq skiz return
+push 26 push 3000004 write_mem 1 pop 1
+return
+__word_27:
+push 3000003 read_mem 1 pop 1 push 3010000 add read_mem 1 pop 1 push 68 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010001 add read_mem 1 pop 1 push 105 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010002 add read_mem 1 pop 1 push 103 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010003 add read_mem 1 pop 1 push 101 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010004 add read_mem 1 pop 1 push 115 eq push 0 eq skiz return
+push 3000003 read_mem 1 pop 1 push 3010005 add read_mem 1 pop 1 push 116 eq push 0 eq skiz return
+push 27 push 3000004 write_mem 1 pop 1
+return
+__symbol:
+push 3000002 read_mem 1 pop 1 push 40 eq skiz call __sym_28
+push 3000002 read_mem 1 pop 1 push 41 eq skiz call __sym_29
+push 3000002 read_mem 1 pop 1 push 123 eq skiz call __sym_30
+push 3000002 read_mem 1 pop 1 push 125 eq skiz call __sym_31
+push 3000002 read_mem 1 pop 1 push 91 eq skiz call __sym_32
+push 3000002 read_mem 1 pop 1 push 93 eq skiz call __sym_33
+push 3000002 read_mem 1 pop 1 push 44 eq skiz call __sym_34
+push 3000002 read_mem 1 pop 1 push 58 eq skiz call __sym_35
+push 3000002 read_mem 1 pop 1 push 59 eq skiz call __sym_36
+push 3000002 read_mem 1 pop 1 push 46 eq skiz call __sym_37
+push 3000002 read_mem 1 pop 1 push 61 eq skiz call __sym_40
+push 3000002 read_mem 1 pop 1 push 43 eq skiz call __sym_43
+push 3000002 read_mem 1 pop 1 push 42 eq skiz call __sym_44
+push 3000002 read_mem 1 pop 1 push 60 eq skiz call __sym_46
+push 3000002 read_mem 1 pop 1 push 62 eq skiz call __sym_47
+push 3000002 read_mem 1 pop 1 push 38 eq skiz call __sym_48
+push 3000002 read_mem 1 pop 1 push 94 eq skiz call __sym_49
+push 3000002 read_mem 1 pop 1 push 35 eq skiz call __sym_51
+push 3000002 read_mem 1 pop 1 push 95 eq skiz call __sym_52
+push 3000002 read_mem 1 pop 1 push 45 eq skiz call __arrow
+push 3000004 read_mem 1 pop 1 push 0 eq push 0 eq assert
+push 3000000 read_mem 1 pop 1 push 1 add push 3000000 write_mem 1 pop 1
+return
+__sym_28:
+push 28 push 3000004 write_mem 1 pop 1
+return
+__sym_29:
+push 29 push 3000004 write_mem 1 pop 1
+return
+__sym_30:
+push 30 push 3000004 write_mem 1 pop 1
+return
+__sym_31:
+push 31 push 3000004 write_mem 1 pop 1
+return
+__sym_32:
+push 32 push 3000004 write_mem 1 pop 1
+return
+__sym_33:
+push 33 push 3000004 write_mem 1 pop 1
+return
+__sym_34:
+push 34 push 3000004 write_mem 1 pop 1
+return
+__sym_35:
+push 35 push 3000004 write_mem 1 pop 1
+return
+__sym_36:
+push 36 push 3000004 write_mem 1 pop 1
+return
+__sym_37:
+push 37 push 3000004 write_mem 1 pop 1
+return
+__sym_40:
+push 40 push 3000004 write_mem 1 pop 1
+return
+__sym_43:
+push 43 push 3000004 write_mem 1 pop 1
+return
+__sym_44:
+push 44 push 3000004 write_mem 1 pop 1
+return
+__sym_46:
+push 46 push 3000004 write_mem 1 pop 1
+return
+__sym_47:
+push 47 push 3000004 write_mem 1 pop 1
+return
+__sym_48:
+push 48 push 3000004 write_mem 1 pop 1
+return
+__sym_49:
+push 49 push 3000004 write_mem 1 pop 1
+return
+__sym_51:
+push 51 push 3000004 write_mem 1 pop 1
+return
+__sym_52:
+push 52 push 3000004 write_mem 1 pop 1
+return
+__arrow:
+push 3000000 read_mem 1 pop 1 push 1 add push 3000000 write_mem 1 pop 1
+call __peek
+push 3000002 read_mem 1 pop 1 push 62 eq assert
+push 39 push 3000004 write_mem 1 pop 1
+return
 __emit_token:
-    return
-
-__emit_error:
-    return
+push 3000004 read_mem 1 pop 1 push 3000006 read_mem 1 pop 1 push 4 mul push 3020000 add write_mem 1 pop 1
+push 3000003 read_mem 1 pop 1 push 3000006 read_mem 1 pop 1 push 4 mul push 3020001 add write_mem 1 pop 1
+push 3000000 read_mem 1 pop 1 push 3000006 read_mem 1 pop 1 push 4 mul push 3020002 add write_mem 1 pop 1
+push 3000005 read_mem 1 pop 1 push 3000006 read_mem 1 pop 1 push 4 mul push 3020003 add write_mem 1 pop 1
+push 3000006 read_mem 1 pop 1 push 1 add push 3000006 write_mem 1 pop 1
+return
+__lexer_main:
+call __read_source
+push 3000006 read_mem 1 pop 1 write_io 1 push 0 write_io 1
+push 0 push 3000007 write_mem 1 pop 1
+call __tokens_out
+return
+__tokens_out:
+push 3000007 read_mem 1 pop 1 push 3000006 read_mem 1 pop 1 eq skiz return
+push 3000007 read_mem 1 pop 1 push 4 mul push 3020000 add read_mem 1 pop 1 write_io 1
+push 3000007 read_mem 1 pop 1 push 4 mul push 3020001 add read_mem 1 pop 1 write_io 1
+push 3000007 read_mem 1 pop 1 push 4 mul push 3020002 add read_mem 1 pop 1 write_io 1
+push 3000007 read_mem 1 pop 1 push 4 mul push 3020003 add read_mem 1 pop 1 write_io 1
+push 3000007 read_mem 1 pop 1 push 1 add push 3000007 write_mem 1 pop 1
+recurse

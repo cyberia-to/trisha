@@ -36,12 +36,20 @@ class SnapshotTest(unittest.TestCase):
             (root / "code.rs").write_text("current")
             (root / "deleted.rs").unlink()
             (root / "new.json").write_text('{"capability": true}')
+            (root / "shader.metal").write_text("// kernel\n")
+            (root / "baseline.tasm").write_text("halt\n")
+            (root / "source.unusual-extension").write_text("build input\n")
             (root / "ignored.rs").write_text("ignored")
             (root / "target").mkdir()
             (root / "target/cache.rs").write_text("cache")
             (nested / "target").mkdir()
             (nested / "target/cache.rs").write_text("nested Cargo output")
             before = git("status", "--porcelain=v1")
+            changed = MODULE.changes(root)
+            for name in ["code.rs", "deleted.rs", "new.json", "shader.metal", "baseline.tasm", "source.unusual-extension"]:
+                self.assertIn(name, changed)
+            for name in ["ignored.rs", "target/cache.rs", "crates/helper/target/cache.rs"]:
+                self.assertNotIn(name, changed)
             destination = Path(temporary) / "copy"
             record = MODULE.snapshot(root, destination)
             self.assertEqual(before, git("status", "--porcelain=v1"))

@@ -197,3 +197,19 @@ fn embedded_libraries_and_project_profiles_work_outside_checkout() {
         .status
         .success());
 }
+
+#[test]
+fn test_cli_runs_assertions_and_reports_failures_and_skips() {
+    let f = Fixture::new();
+    std::fs::write(f.0.join("main.tri"), "program suite\nfn main() { assert(false) }\n#[test]\nfn good() { assert(2 + 3 == 5) }\n#[cfg(release)]\n#[test]\nfn bad() { assert(false) }").unwrap();
+    let debug = f.run(&["test", "main.tri"]);
+    assert!(
+        debug.status.success(),
+        "{}",
+        String::from_utf8_lossy(&debug.stderr)
+    );
+    assert!(String::from_utf8_lossy(&debug.stderr).contains("1 passed; 0 failed; 1 skipped"));
+    let release = f.run(&["test", "main.tri", "--profile", "release"]);
+    assert!(!release.status.success());
+    assert!(String::from_utf8_lossy(&release.stderr).contains("1 passed; 1 failed; 0 skipped"));
+}

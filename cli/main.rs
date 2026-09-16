@@ -9,10 +9,15 @@ mod compile;
 #[cfg(feature = "triton")]
 mod deploy;
 mod error;
+#[cfg(feature = "triton")]
+mod input_file;
 mod mine;
 mod neptune;
 mod neuron;
 mod node;
+mod platform_paths;
+#[cfg(feature = "triton")]
+mod policy_witness;
 #[cfg(feature = "triton")]
 mod proof_file;
 #[cfg(feature = "triton")]
@@ -21,6 +26,8 @@ mod prove;
 mod run;
 mod state;
 mod state_cmd;
+#[cfg(feature = "triton")]
+mod test_cmd;
 #[cfg(feature = "triton")]
 mod verify;
 
@@ -62,11 +69,17 @@ enum Command {
     /// Execute a Trident program on Triton VM
     Run(run::RunArgs),
     #[cfg(feature = "triton")]
+    /// Execute active Trident tests with isolated, bounded Triton machines
+    Test(test_cmd::TestArgs),
+    #[cfg(feature = "triton")]
     /// Generate a STARK proof of correct execution
     Prove(prove::ProveArgs),
     #[cfg(feature = "triton")]
     /// Verify a STARK proof
     Verify(verify::VerifyArgs),
+    #[cfg(feature = "triton")]
+    /// Prepare a private recursive witness for an explicit expected full claim
+    Witness(input_file::WitnessArgs),
     #[cfg(feature = "triton")]
     /// Deploy a program (package artifact + optional on-chain)
     Deploy(deploy::DeployArgs),
@@ -144,6 +157,26 @@ pub(crate) fn make_input(
 }
 
 #[cfg(feature = "triton")]
+pub(crate) fn make_input_from_file(
+    input_values: &Option<Vec<u64>>,
+    secret: &Option<Vec<u64>>,
+    digests: &Option<Vec<u64>>,
+    input_file: &Option<std::path::PathBuf>,
+) -> ProgramInput {
+    if let Some(path) = input_file {
+        if input_values.is_some() || secret.is_some() || digests.is_some() {
+            eprintln!("error: --input-file conflicts with explicit input flags");
+            std::process::exit(1);
+        }
+        return input_file::load(path).unwrap_or_else(|error| {
+            eprintln!("error: {error}");
+            std::process::exit(1);
+        });
+    }
+    make_input(input_values, secret, digests)
+}
+
+#[cfg(feature = "triton")]
 pub(crate) fn bundle_from_tasm(
     tasm_path: &std::path::Path,
 ) -> Result<trident::runtime::ProgramBundle, TrishaError> {
@@ -218,11 +251,20 @@ fn main() {
             }
         }
         #[cfg(feature = "triton")]
+        Command::Test(args) => test_cmd::cmd_test(args),
+        #[cfg(feature = "triton")]
         Command::Run(args) => run::cmd_run(args),
         #[cfg(feature = "triton")]
         Command::Prove(args) => prove::cmd_prove(args),
         #[cfg(feature = "triton")]
         Command::Verify(args) => verify::cmd_verify(args),
+        #[cfg(feature = "triton")]
+        Command::Witness(args) => {
+            if let Err(error) = input_file::cmd_witness(args) {
+                eprintln!("error: {error}");
+                std::process::exit(1);
+            }
+        }
         #[cfg(feature = "triton")]
         Command::Deploy(args) => deploy::cmd_deploy(args),
         Command::Mine(args) => mine::cmd_mine(args),

@@ -1,0 +1,4 @@
+program baseline_auth_preimage
+use os.neptune.auth
+use vm.io.io
+fn main() { auth.verify_preimage(io.read_digest()) pub_write(1) }

@@ -1,0 +1,15 @@
+[package]
+name = "release-state-fixture"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[workspace]
+
+[[bin]]
+name = "release-state-fixture"
+path = "../release-fixture.rs"
+
+[dependencies]
+bbg = { path = "../../../bbg/rs", version = "0.3.0", features = ["serde"] }
+serde_json = "1"

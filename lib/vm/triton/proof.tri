@@ -1,0 +1,10 @@
+module vm.triton.proof
+
+// Verify an official Triton7 proof for the caller-authenticated complete Claim.
+// expected_claim = native Tip5::hash(Claim), including program digest, version,
+// all public input/output fields and their lengths. Read this commitment from
+// public input or authenticate it from the application's trusted statement.
+// Consume the version1 bounded witness prepared by trisha_rs::recursive::encode.
+// Reserved RAM and limits: docs/reference/recursive-proof.md.
+#[intrinsic(triton_stark_verify_v1)]
+pub fn verify(expected_claim: Digest)

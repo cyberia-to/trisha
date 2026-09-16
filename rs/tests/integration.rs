@@ -114,7 +114,7 @@ fn prove_and_verify_hello() {
     let proof_data = warrior.prove(&bundle, &input).unwrap();
 
     assert_eq!(proof_data.claim.public_output, vec![42]);
-    assert_eq!(proof_data.format, "stark-triton-v2");
+    assert_eq!(proof_data.format, "stark-triton-v7");
     assert!(!proof_data.proof_bytes.is_empty());
 
     let valid = warrior.verify(&proof_data).unwrap();
@@ -190,7 +190,7 @@ fn empty_input_conversion() {
         secret: vec![],
         digests: vec![],
     };
-    let (pub_in, non_det) = convert::to_triton_inputs(&input);
+    let (pub_in, non_det) = convert::to_triton_inputs(&input).unwrap();
     assert!(pub_in.individual_tokens.is_empty());
     assert!(non_det.individual_tokens.is_empty());
 }
@@ -308,7 +308,9 @@ fn sha256_empty_block_matches_fips_digest() {
         .chain(std::iter::repeat_n("convert.as_u32(0)", 15))
         .collect::<Vec<_>>()
         .join(", ");
-    let mut source = format!("program sha_empty\nuse std.crypto.sha256\nuse vm.core.convert\nfn main() {{\nlet result = sha256.compress(sha256.init(), {words})\n");
+    let mut source = format!(
+        "program sha_empty\nuse std.crypto.sha256\nuse vm.core.convert\nfn main() {{\nlet result = sha256.compress(sha256.init(), {words})\n"
+    );
     for i in 0..8 {
         source.push_str(&format!("pub_write(convert.as_field(result.h{i}))\n"));
     }
@@ -447,4 +449,37 @@ fn sha256_helpers_match_rust_integer_operations() {
             .collect::<Vec<_>>(),
         "round"
     );
+}
+
+#[test]
+fn private_witness_failures_do_not_dump_vm_state() {
+    let directory = tempfile::tempdir().unwrap();
+    let path = directory.path().join("private_failure.tri");
+    std::fs::write(
+        &path,
+        "program private_failure\nfn main() { assert_eq(divine(), 0) }\n",
+    )
+    .unwrap();
+    let bundle = compile(&path).unwrap();
+    let input = ProgramInput {
+        public: vec![],
+        secret: vec![987654321012345],
+        digests: vec![],
+    };
+    let warrior = Warrior::new();
+    for error in [
+        warrior.run(&bundle, &input).unwrap_err(),
+        warrior.run_bounded(&bundle, &input, 1000).unwrap_err(),
+        warrior
+            .prove_full(&bundle, &input)
+            .err()
+            .expect("invalid witness"),
+    ] {
+        assert_eq!(error, "execution error: program rejected private witness");
+        assert!(!error.contains("987654321012345"));
+    }
+    let mut looping = bundle;
+    looping.assembly = "call forever halt forever: recurse".into();
+    let error = warrior.run_bounded(&looping, &input, 32).unwrap_err();
+    assert_eq!(error, "execution budget exceeded: 32 cycles");
 }

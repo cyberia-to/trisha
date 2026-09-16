@@ -1,6 +1,5 @@
 module os.neptune.utxo
 
-use vm.io.io
 
 use vm.core.assert
 

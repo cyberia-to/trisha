@@ -1,0 +1,18 @@
+[package]
+name = "trisha-neptune-policy-oracle"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[workspace]
+
+[dependencies]
+neptune-consensus = { git = "https://github.com/Neptune-Crypto/neptune-core", rev = "9869b5e35b659dc520fad51ba5a9c812fed46db0" }
+neptune-primitives = { git = "https://github.com/Neptune-Crypto/neptune-core", rev = "9869b5e35b659dc520fad51ba5a9c812fed46db0" }
+tasm-lib = "=7.0.0"
+serde_json = "1"
+neptune-mutator-set = { git = "https://github.com/Neptune-Crypto/neptune-core", rev = "9869b5e35b659dc520fad51ba5a9c812fed46db0" }
+base64 = "0.22"
+toml = "0.8"
+
+neptune-rpc-api = { git = "https://github.com/Neptune-Crypto/neptune-core", rev = "9869b5e35b659dc520fad51ba5a9c812fed46db0" }

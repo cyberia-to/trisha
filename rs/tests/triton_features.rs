@@ -8,6 +8,20 @@
 //! trident); this is now the warrior's own correctness suite.
 
 use std::path::Path;
+use triton_vm::prelude::{BFieldElement, NonDeterminism, Program, PublicInput, VM};
+
+fn execute_generic(source: &str, profile: &str, input: &[u64]) -> Vec<u64> {
+    let assembly = compile_triton_profile(source, "test.tri", profile).unwrap();
+    VM::run(
+        Program::from_code(&assembly).unwrap(),
+        PublicInput::new(input.iter().copied().map(BFieldElement::new).collect()),
+        NonDeterminism::default(),
+    )
+    .unwrap()
+    .into_iter()
+    .map(|word| word.value())
+    .collect()
+}
 
 /// Compile a Triton source string, temp-file bridged (`build_tasm` takes a
 /// path, not a source string).
@@ -69,23 +83,14 @@ fn first<N>(arr: [Field; N]) -> Field {
 arr[0]
 }
 
-fn main() {
-let a: [Field; 3] = [1, 2, 3]
+fn main(a: [Field; 3]) {
 let s: Field = first<3>(a)
 pub_write(s)
 }
 "#;
-    let result = compile_triton(source, "test.tri");
-    assert!(
-        result.is_ok(),
-        "generic fn should compile: {:?}",
-        result.err()
-    );
-    let tasm = result.unwrap();
-    assert!(
-        tasm.contains("__first__N3:"),
-        "should emit monomorphized label"
-    );
+    for profile in ["debug", "release"] {
+        assert_eq!(execute_generic(source, profile, &[7, 19, 31]), [7]);
+    }
 }
 
 #[test]
@@ -102,12 +107,9 @@ let s: Field = first(a)
 pub_write(s)
 }
 "#;
-    let result = compile_triton(source, "test.tri");
-    assert!(
-        result.is_ok(),
-        "generic fn with inference should compile: {:?}",
-        result.err()
-    );
+    for profile in ["debug", "release"] {
+        assert_eq!(execute_generic(source, profile, &[]), [1]);
+    }
 }
 
 #[test]
@@ -135,21 +137,13 @@ fn first<N>(arr: [Field; N]) -> Field {
 arr[0]
 }
 
-fn main() {
-let a: [Field; 3] = [1, 2, 3]
-let b: [Field; 5] = [1, 2, 3, 4, 5]
+fn main(a: [Field; 3], b: [Field; 5]) {
 pub_write(first<3>(a) + first<5>(b))
 }
 "#;
-    let result = compile_triton(source, "test.tri");
-    assert!(
-        result.is_ok(),
-        "multiple instantiations should compile: {:?}",
-        result.err()
-    );
-    let tasm = result.unwrap();
-    assert!(tasm.contains("__first__N3:"));
-    assert!(tasm.contains("__first__N5:"));
+    for profile in ["debug", "release"] {
+        assert_eq!(execute_generic(source, profile, &[7, 1, 3, 19, 2, 4, 6, 8]), [26]);
+    }
 }
 
 #[test]

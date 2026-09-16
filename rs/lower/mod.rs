@@ -9,12 +9,16 @@
 //! and control-flow structure. The speculative lowering wraps the classical
 //! path with an optional neural v2 optimizer.
 
-mod linker;
+mod entry;
 mod legalize;
+mod linker;
+mod sequence;
 pub mod report;
+mod target_call;
 #[cfg(test)]
 mod tests;
 mod triton;
+pub use target_call::{lower_checked, validate_target_calls};
 
 use crate::cost::scorer;
 use report::{BlockDecision, DecisionReason, OptimizerReport, OptimizerStatus, Winner};
@@ -336,6 +340,9 @@ pub fn build_tasm(input: &std::path::Path, target: &str, profile: &str) -> Resul
             .join("; ")
     })?;
 
+    for module in &modules {
+        validate_target_calls(&module.ops)?;
+    }
     let lowering = create_stack_lowering(&options.target_config.name);
     let lowered: Vec<ModuleTasm> = modules
         .into_iter()

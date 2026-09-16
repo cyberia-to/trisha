@@ -1,0 +1,23 @@
+{
+  "archive_sha256": "0219287c79902bad8b31433a065310766d5f8f3c9f0701f11422998e786ec0c3",
+  "platform": "aarch64-unknown-linux-gnu",
+  "rust": "1.89.0",
+  "candidate": "/home/master.guest/release-validation/final6-20260912/candidate",
+  "build_exit": 0,
+  "build_elapsed_seconds": 450.42,
+  "time_max_rss_kib": 4974512,
+  "swaps": 0,
+  "input_checks": 26,
+  "input_gate_pass": true,
+  "node_started": false,
+  "node_deferred_reason": "preserved intent older than authorized10hours",
+  "full_smoke_run": false,
+  "receipts": {
+    "cyber-final6-linux-build.log": "e4c5bcd8295fb6875faf2598340bf7cdd2a1e375ab8266cacf86d8cf8f8ba472",
+    "cyber-final6-linux-preflight.log": "98fbd65f862a564dc513a84b7cc9db67a7ef68748d369b53675ce66ce55f81b1",
+    "cyber-final6-linux-identities.log": "7a74d47f55cd66ea299be19e43cc19dd99cca4fa3018ff8961b0a3a552fa1cab",
+    "cyber-final6-linux-candidate.json": "80155e9589ab01f3d4db6b766dd11f72f93c5915c5ffa9d611b69592ca588638",
+    "cyber-final6-linux-input-admission-receipt.json": "93fd0e7ceb1a07b79b982244530ce9d63585327fadb92a76968be9295c4e7066",
+    "cyber-final6-linux-node-age.json": "1531183dd9bb431fd362cb8a12fa86bd6a67227b03a347dd72e5fbbe319a68e8"
+  }
+}

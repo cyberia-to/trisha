@@ -8,40 +8,17 @@
 # Usage: nu patches/apply.nu
 # Result: .vendor/triton-vm/ and .vendor/twenty-first/ ready to build with GPU hooks.
 
-let tv_version = "2.0.0"
+let tv_version = "7.0.0"
 let tf_version = "1.1.0"
 let project_root = ($env.FILE_PWD | path join "..")
 
 cd $project_root
 
-let cargo_home = ($env | get -o CARGO_HOME | default $"($env.HOME)/.cargo")
-let registry_src = $"($cargo_home)/registry/src"
-
 # ── Helper: fetch a crate from registry ─────────────────────────
 
 def fetch_crate [name: string, version: string, vendor_dir: string] {
-    rm -rf $vendor_dir
-
-    let crate_name = $"($name)-($version)"
-    let initial = (glob $"($registry_src)/**/($crate_name)")
-
-    if ($initial | is-empty) {
-        print $"  downloading ($name) ($version) via cargo..."
-        # direct CDN download — survives yanked versions (2.0.0 was yanked)
-        let tmp = (mktemp -d)
-        http get $"https://static.crates.io/crates/($name)/($name)-($version).crate" | save $"($tmp)/c.crate"
-        mkdir $"($registry_src)/manual"
-        tar -xzf $"($tmp)/c.crate" -C $"($registry_src)/manual"
-        rm -rf $tmp
-    }
-
-    let found = (glob $"($registry_src)/**/($crate_name)" | first)
-    if ($found | is-empty) {
-        error make { msg: $"failed to download ($name) ($version)" }
-    }
-
-    print $"  found: ($found)"
-    cp -r $found $vendor_dir
+    ^python3 -B patches/fetch.py $name $version $vendor_dir
+    if $env.LAST_EXIT_CODE != 0 { error make {msg: $"verified upstream fetch failed: ($name) ($version)"} }
 }
 
 # ── Fetch upstream crates ───────────────────────────────────────
@@ -53,6 +30,12 @@ fetch_crate "twenty-first" $tf_version ".vendor/twenty-first"
 
 print $"Fetching triton-vm ($tv_version)..."
 fetch_crate "triton-vm" $tv_version ".vendor/triton-vm"
+
+# The compiler family is part of the same pinned source input.
+for name in [triton-air triton-isa triton-constraint-circuit triton-constraint-builder] {
+    print $"Fetching ($name) ($tv_version)..."
+    fetch_crate $name $tv_version $".vendor/($name)"
+}
 
 # triton-vm's twenty-first dep is redirected by [patch.crates-io] in Cargo.toml
 
@@ -444,4 +427,19 @@ print "  [8] GEMV dispatch — weighted_sum_of_columns"
         };')
     | save -f $mt)
 
-print "Done. GPU overlay applied to .vendor/"
+
+# Version-pinned upstream warning fixes. Fail if an upstream anchor changes.
+def exact_patch [file: path, before: string, after: string] {
+    let source = (open --raw $file)
+    if not ($source | str contains $before) { error make {msg: $"missing upstream patch anchor in ($file): ($before)"} }
+    $source | str replace $before $after | save --force $file
+}
+print "  [9] explicit crate reexports and Copy metadata"
+exact_patch $lib_rs 'pub use isa;' 'pub use ::isa;'
+exact_patch $lib_rs 'pub use twenty_first;' 'pub use ::twenty_first;'
+exact_patch $aux '#[derive(Debug, Clone, Eq, PartialEq, Ord, PartialOrd)]' '#[derive(Debug, Clone, Copy, Eq, PartialEq, Ord, PartialOrd)]'
+
+nu patches/tasm.nu
+if $env.LAST_EXIT_CODE != 0 { error make {msg: "recursive verifier bootstrap failed"} }
+
+print "Done. GPU overlay and pinned upstream fixes applied to .vendor/"

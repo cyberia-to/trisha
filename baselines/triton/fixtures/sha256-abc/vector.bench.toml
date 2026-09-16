@@ -1,0 +1,8 @@
+source = "main.tri"
+hand = "../../std/crypto/sha256.tasm"
+target = "triton"
+input = [1633837952, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24]
+output = [1334526658, 768832155, 1369155318, 2368579532, 1529700461, 98233690, 3574762688, 1047290712]
+max_cycles = 1000000
+reference = "Full double-SHA256, caller-owned RAM API, FIPS180-4 single-block padding and independent hashlib.sha256 twice; all256 output bits. Struct API is separately regression-tested against the same vectors."
+hand_prefix = "read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 call __double_sha256_single_block swap 7 swap 1 swap 6 swap 1 swap 2 swap 5 swap 2 swap 3 swap 4 swap 3 write_io 5 write_io 3 halt"

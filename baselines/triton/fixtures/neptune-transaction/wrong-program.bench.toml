@@ -1,0 +1,10 @@
+source = "../../../../examples/neptune/transaction_validation.tri"
+hand = "../../os/neptune/programs/transaction_validation.tasm"
+target = "neptune"
+input = ["6291297362820891773","9233590203370888013","12574622553565393484","2032845787094211603","4180492825238697079"]
+output = ["1"]
+witness_files = ["../neptune-transaction-witnesses/wrong-program.toml"]
+hand_prefix = "call __main halt"
+expect_failure = true
+max_cycles = 3000000
+reference = "Pinned Neptune0.15.1 revision9869b5e35b659dc520fad51ba5a9c812fed46db0 HardforkGamma SingleProof generated independently by tools/neptune-policy-oracle/examples/single_proof.rs. Complete empty transaction includes four integrity/collector proofs and mandatory native currency proof; fixed program, nativeversion5, reversed kernel and empty output authenticated in VM. Mutated cases bypass host validation deliberately."

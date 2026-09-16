@@ -1,0 +1,3 @@
+program baseline_convert_overflow
+use vm.core.convert
+fn main() { pub_write(convert.as_field(convert.as_u32(pub_read()))) }

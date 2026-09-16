@@ -1,0 +1,5 @@
+program custom_lock
+
+fn main() {
+    assert(pub_read() == 7)
+}

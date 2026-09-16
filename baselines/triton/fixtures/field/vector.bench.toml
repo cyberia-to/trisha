@@ -1,0 +1,10 @@
+source = "main.tri"
+hand = "../../vm/core/field.tasm"
+target = "triton"
+input = ["18446744069414584319", 7]
+output = [5, "18446744069414584307", "18446744069414584312", 2, 2635249152773512046]
+reference = "Integer arithmetic modulo p; modular inverse computed by extended Euclidean algorithm (Python pow)."
+expect_failure = false
+hand_prefix = """
+read_io 1 read_io 1 dup 1 dup 1 call vm_core_field__add write_io 1 dup 1 dup 1 call vm_core_field__mul write_io 1 dup 1 dup 1 call vm_core_field__sub write_io 1 dup 1 call vm_core_field__neg write_io 1 call vm_core_field__inv write_io 1 pop 1 halt
+"""

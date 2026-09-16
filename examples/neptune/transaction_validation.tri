@@ -1,0 +1,9 @@
+program neptune_transaction_validation
+use vm.io.io
+use os.neptune.transaction
+
+fn main() {
+    let kernel: Digest = io.read_digest()
+    transaction.verify(kernel)
+    io.write(1)
+}

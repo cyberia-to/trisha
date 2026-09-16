@@ -1,0 +1,10 @@
+source = "main.tri"
+hand = "../../os/neptune/utxo.tasm"
+target = "neptune"
+input = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+output = [1]
+reference = "Digest equality: all five coordinates must agree."
+expect_failure = false
+hand_prefix = """
+read_io 5 read_io 5 call __authenticate push 1 write_io 1 halt
+"""

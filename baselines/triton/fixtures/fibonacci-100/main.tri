@@ -1,0 +1,3 @@
+program baseline_fibonacci_100
+use std.math.fibonacci
+fn main() { pub_write(fibonacci.fib256(pub_read())) }

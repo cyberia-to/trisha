@@ -6,76 +6,39 @@ alias: trisha GPU backend
 ---
 # GPU backend
 
-trisha accelerates seven hot paths via custom WGSL compute shaders dispatched through wgpu. a single backend targets Metal (macOS), Vulkan (Linux/Windows), and DX12 (Windows) without platform-specific code.
+The default Trisha CLI executes and proves with the CPU backend. Its optional
+`gpu` feature selects Apple mining support; it does not select GPU proving.
+The separate `trisha-wgpu` library contains cross-platform GPU hooks and WGSL
+kernels. CPU and wgpu use the same canonical proof codec and verifier.
 
-## seven shaders
+The vendor overlay exposes acceleration hooks to the pinned Triton7 prover.
+Each hook must preserve the upstream field/hash semantics and fall back when
+unsupported. A compiled shader or available adapter alone does not establish
+that a complete proof used every GPU stage correctly. Current end-to-end proof
+release receipts refer to CPU unless they explicitly record another backend.
 
-| shader | operation | role in prover |
-|--------|-----------|---------------|
-| `goldilocks.wgsl` | field arithmetic | foundation for all other shaders |
-| `ntt.wgsl` | radix-2 NTT | polynomial interpolation (iNTT) and evaluation (NTT) |
-| `poseidon2.wgsl` | Poseidon2 permutation | Merkle tree hashing |
-| `fri.wgsl` | FRI fold + query | FRI low-degree test |
-| `gemv.wgsl` | matrix-vector multiply | polynomial evaluation at challenge points |
-| `tip5.wgsl` | Tip5 batch hash | Fiat-Shamir transcript, commitment hashing |
-| `mine.wgsl` | nonce search | `trisha guess` mining kernel |
+WGSL kernels cover Goldilocks arithmetic, NTT, FRI, matrix multiplication,
+Tip5, a separate Poseidon2 experiment and nonce search. Goldilocks words use
+low/high u32 halves because WGSL lacks native u64. Triton commitments use Tip5;
+a Poseidon2 shader is not interchangeable with the Triton transcript hash.
 
-## Goldilocks field in WGSL
+The Honeycrisp mining library uses acpu Tip5 and affinity helpers only on
+Apple Silicon macOS. Other CPU hosts use the official portable Tip5 operations
+for the same nonce/hash algorithm. Apple-only dependencies must not be loaded
+by a default Linux CPU build. This fallback does not advertise AMX/Metal support
+on other hosts.
 
-WGSL has no native u64. every field element is stored as `vec2<u32>` — (lo, hi) pair in little-endian 32-bit halves. Montgomery form is used for multiplication to avoid 128-bit intermediates.
-
-```wgsl
-// Goldilocks: p = 2^64 - 2^32 + 1
-// R = 2^32 - 1, R^2 mod p = 0xFFFFFFFE00000001
-struct Gl { lo: u32, hi: u32 }
-
-fn gl_add(a: Gl, b: Gl) -> Gl { ... }
-fn gl_mul(a: Gl, b: Gl) -> Gl { ... } // Montgomery
-fn gl_inv(a: Gl) -> Gl { ... }        // Fermat: a^(p-2)
+```sh
+cargo build --release --locked -p trisha
+cargo check --workspace --all-features --locked
 ```
 
-## kernel fusion
+The first command builds the normal CPU warrior. `--no-default-features` builds
+the restricted mining CLI without the Trident warrior commands; it is not the
+option for a complete CPU warrior. Apple GPU mining may be selected explicitly
+with `--features gpu` on a supported host.
 
-NTT and Merkle hashing share a single command encoder with zero per-layer CPU sync. the CPU submits the full sequence — butterfly passes → hash layers — and the GPU executes without round-tripping to host between stages.
-
-## VRAM budget management
-
-at init, wgpu queries the adapter for `max_buffer_size` and `max_storage_buffers_per_shader_stage`. trisha computes a VRAM budget and:
-- buffers that fit → GPU dispatch
-- buffers that overflow → chunked GPU dispatch or CPU fallback
-
-this means trisha handles 4GB GPU laptops and 192GB M1 Ultra workstations with the same code path.
-
-## persistent buffers
-
-three buffers are allocated once and reused across proofs:
-- twiddle factors (NTT roots of unity)
-- `two_inverse` (constant for butterfly normalization)
-- Tip5 round constants (256 × u64)
-
-allocation cost is paid once at `WgpuBackend::new()`.
-
-## staging pool
-
-GPU results must be readback to CPU for verification. eight staging buffers are pre-allocated in a pool. `acquire()` / `release()` prevent re-allocation across the 7 readback sites.
-
-## current speedup
-
-on poseidon2.tri (2-op program, M1 Max):
-
-| operation | CPU time | GPU time | speedup |
-|-----------|----------|----------|---------|
-| prove | 1.2s | 280ms | 4.3× |
-| mine (nonces/s) | 2M | 24M | 12× |
-
-large programs (2^25+ trace rows) fall back to CPU at NTT; [[gpu-proving-at-scale]] is the fix.
-
-## enabling / disabling GPU
-
-GPU is on by default (`--features gpu`). CPU-only build:
-
-```
-cargo build --no-default-features
-```
-
-`GpuBackend::try_new()` returns `None` if no GPU is found; `TrishaWarrior` falls back to `CpuBackend` automatically.
+Performance claims need a pinned program, input, backend/device, dependency
+revision and real proof verification. Unqualified timings from the earlier
+GPU document are retained as unverified historical claims in
+[audit/gpu-claims.md](../../audit/gpu-claims.md); they are not release benchmarks.

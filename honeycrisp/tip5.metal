@@ -284,7 +284,7 @@ kernel void npt_mine(
     device   ulong*       result     [[buffer(4)]],   // MineState     offset 8   : attempt + nonce[5]
     constant ulong*       mds_column [[buffer(5)]],   // 16 u64s
     constant ulong*       round_cs   [[buffer(6)]],   // 80 u64s
-    constant ulong&       nonce_base [[buffer(7)]],
+    constant ulong*       nonce_range [[buffer(7)]],
     uint                  tid        [[thread_index_in_threadgroup]],
     uint                  gid        [[thread_position_in_grid]]
 ) {
@@ -292,9 +292,9 @@ kernel void npt_mine(
     if (tid < 30) tg_mast[tid] = mast_paths[tid];
     threadgroup_barrier(mem_flags::mem_threadgroup);
 
-    if (atomic_load_explicit(found, memory_order_relaxed) != 0) return;
+    if (ulong(gid) >= nonce_range[1]) return;
 
-    ulong attempt = nonce_base + gid;
+    ulong attempt = nonce_range[0] + gid;
     ulong nonce_bfe[5];
     nonce_bfe[0] = gl_new(attempt);
     nonce_bfe[1] = gl_new(attempt ^ 0xA5A5A5A5A5A5A5A5UL);
@@ -308,9 +308,12 @@ kernel void npt_mine(
     if (!digest_le(digest, target)) return;
 
     uint expected = 0;
-    if (atomic_compare_exchange_weak_explicit(
-            found, &expected, 1u,
-            memory_order_relaxed, memory_order_relaxed)) {
+    bool won = false;
+    do {
+        won = atomic_compare_exchange_weak_explicit(found, &expected, 1u,
+            memory_order_relaxed, memory_order_relaxed);
+    } while (!won && expected == 0);
+    if (won) {
         result[0] = attempt;
         for (int i = 0; i < 5; i++) result[i + 1] = nonce_bfe[i];
     }

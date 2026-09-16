@@ -1,0 +1,7 @@
+program baseline_plumb_config
+use os.neptune.standards.plumb
+fn main(){let expected:Digest=pub_read5()
+let a:Digest=divine5() let b:Digest=divine5() let c:Digest=divine5() let d:Digest=divine5() let e:Digest=divine5()
+let h0=divine() let h1=divine() let h2=divine() let h3=divine() let h4=divine()
+plumb.verify_config(a,b,c,d,e,h0,h1,h2,h3,h4,expected)
+pub_write(1)}

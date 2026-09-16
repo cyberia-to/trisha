@@ -1,0 +1,734 @@
+{
+  "source_archive_sha256": "515cf5a8d5565ad5f2551533c76847c0052c65c6510f4bd449189d341b28dc9b",
+  "binary_archive_sha256": "7d7ab29ad6c35cf69a41277e7535daa55fbe796c0594fc8c0797836abac29d47",
+  "candidate": {
+    "source": "/private/tmp/cyber-release-extracted-v7-final3/cyber-source",
+    "source_verified": true,
+    "source_verification_sha256": "1d08cde1a6061c3c7e2cb0564031b889e862704c3517969b29616dfc5423ecaa",
+    "provenance_sha256": "cc831a7da282d7998eb63756e96fc56915a8c1fa0c23f24daac06cb840a88a87",
+    "binaries": [
+      {
+        "name": "trident",
+        "sha256": "ad08f94931bc21a01d5f2f42ea398ae63feee910b047150a43d3986e4e693132"
+      },
+      {
+        "name": "trisha",
+        "sha256": "40af17aca4b853ae019cc2373f44155056daff20c246915bdb9ded4d430013ff"
+      },
+      {
+        "name": "joy",
+        "sha256": "fbeccb1cffd171e94ac3f5b73775a7a4ca52ece46d3182a3ef87ba828efdbb24"
+      }
+    ]
+  },
+  "source_verification": {
+    "format": "trisha-source-verification-v1",
+    "manifests": {
+      "sources.json": "cc831a7da282d7998eb63756e96fc56915a8c1fa0c23f24daac06cb840a88a87",
+      "vendor-sources.json": "c80346aea2594e3a51a6ed3f2fc78f0421ebc25601e7cbaaf99efd745f9fdcbf",
+      "BUILD.txt": "dd8867d8d5446b5b69eb8b832eccfd6f41bbf38a8e60cc0ed9bce9f92e70e938"
+    },
+    "repository_files": {
+      "bbg": 167,
+      "hemera": 131,
+      "honeycrisp": 307,
+      "joy": 43,
+      "lens": 53,
+      "neuron": 78,
+      "nox": 148,
+      "strata": 244,
+      "trident": 581,
+      "trisha": 581,
+      "zheng": 109
+    },
+    "vendor_files": 557
+  },
+  "smoke": {
+    "schema_version": 1,
+    "suite": "installed-compiler-warrior-v1",
+    "all_checks_passed": true,
+    "source_provenance_sha256": "cc831a7da282d7998eb63756e96fc56915a8c1fa0c23f24daac06cb840a88a87",
+    "binaries": [
+      {
+        "name": "trident",
+        "sha256": "ad08f94931bc21a01d5f2f42ea398ae63feee910b047150a43d3986e4e693132"
+      },
+      {
+        "name": "trisha",
+        "sha256": "40af17aca4b853ae019cc2373f44155056daff20c246915bdb9ded4d430013ff"
+      },
+      {
+        "name": "joy",
+        "sha256": "fbeccb1cffd171e94ac3f5b73775a7a4ca52ece46d3182a3ef87ba828efdbb24"
+      }
+    ],
+    "source_verification_sha256": "1d08cde1a6061c3c7e2cb0564031b889e862704c3517969b29616dfc5423ecaa",
+    "smoke_script_sha256": "616ef0406a71c2a68b501cd423048d83f5a4d744d6deebc17464a483de5156c3",
+    "fixture_files": [
+      {
+        "name": "state.json",
+        "sha256": "8953a46858800afc0b9e9cd3a2a9869efec0f3fea1177c2b63c4180458b3b2e8"
+      },
+      {
+        "name": "other-state.json",
+        "sha256": "16b1bab42e8f64781c9723cc1b5122ea43690b98eda5673e2dfddd97eb72ab5f"
+      },
+      {
+        "name": "state-all.json",
+        "sha256": "2a0e6d0d29ab36f8259dc3512e9db0b05fb1ea7f62a780a274c36df9d864b02c"
+      }
+    ],
+    "platform": {
+      "name": "macos",
+      "arch": "aarch64",
+      "family": "unix",
+      "kernel_version": "25.4.0"
+    }
+  },
+  "monitor": {
+    "exit_code": 0,
+    "guard_stopped": false,
+    "elapsed_seconds": 140.6329858329991,
+    "peak_rss_bytes": 9120186368,
+    "log": "/tmp/cyber-release-smoke-v7-darwin-final3.log"
+  },
+  "build": {
+    "exit_code": 0,
+    "wall_seconds": 368.78,
+    "maximum_rss_bytes": 5006589952,
+    "warnings": 0,
+    "swaps": 0
+  },
+  "smoke_time": {
+    "wall_seconds": 138.77,
+    "maximum_rss_bytes": 9096413184,
+    "swaps": 0
+  },
+  "installed_loop_checks": {
+    "all_checks_passed": true,
+    "elapsed_seconds": 12.74929091699596,
+    "native_shadow_executions": 12,
+    "public_proofs": 6,
+    "private_proofs": 1,
+    "checks": [
+      {
+        "binary": "trident",
+        "args": [
+          "run",
+          "shadow.tri",
+          "--target",
+          "nox",
+          "--profile",
+          "debug",
+          "--input-values",
+          "0"
+        ],
+        "exit_code": 0,
+        "stdout": "11",
+        "stderr": "Executed in 19 reductions"
+      },
+      {
+        "binary": "trisha",
+        "args": [
+          "run",
+          "shadow-triton.tri",
+          "--target",
+          "triton",
+          "--profile",
+          "debug",
+          "--input-values",
+          "0"
+        ],
+        "exit_code": 0,
+        "stdout": "11",
+        "stderr": "Backend: cpu\nExecuting shadow-triton (117 ops)...\nExecuted in 75 cycles"
+      },
+      {
+        "binary": "trident",
+        "args": [
+          "run",
+          "shadow.tri",
+          "--target",
+          "nox",
+          "--profile",
+          "debug",
+          "--input-values",
+          "1"
+        ],
+        "exit_code": 0,
+        "stdout": "11",
+        "stderr": "Executed in 48 reductions"
+      },
+      {
+        "binary": "trisha",
+        "args": [
+          "run",
+          "shadow-triton.tri",
+          "--target",
+          "triton",
+          "--profile",
+          "debug",
+          "--input-values",
+          "1"
+        ],
+        "exit_code": 0,
+        "stdout": "11",
+        "stderr": "Backend: cpu\nExecuting shadow-triton (117 ops)...\nExecuted in 116 cycles"
+      },
+      {
+        "binary": "trident",
+        "args": [
+          "run",
+          "shadow.tri",
+          "--target",
+          "nox",
+          "--profile",
+          "debug",
+          "--input-values",
+          "9"
+        ],
+        "exit_code": 0,
+        "stdout": "11",
+        "stderr": "Executed in 68 reductions"
+      },
+      {
+        "binary": "trisha",
+        "args": [
+          "run",
+          "shadow-triton.tri",
+          "--target",
+          "triton",
+          "--profile",
+          "debug",
+          "--input-values",
+          "9"
+        ],
+        "exit_code": 0,
+        "stdout": "11",
+        "stderr": "Backend: cpu\nExecuting shadow-triton (117 ops)...\nExecuted in 121 cycles"
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "prove",
+          "return.tri",
+          "--target",
+          "nox",
+          "--profile",
+          "debug",
+          "--input-values",
+          "0",
+          "--output",
+          "return-debug-0.zheng"
+        ],
+        "exit_code": 0,
+        "stdout": "return-debug-0.zheng",
+        "stderr": "Proved public execution in 73 ms: 214 reductions, 82935 bytes\nOutput: [110]"
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "verify",
+          "return-debug-0.zheng",
+          "--input-values",
+          "0",
+          "--claim",
+          "110"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (public execution; non-ZK)\n  public input: [0]\n  public output: [110]\n  reductions: 214",
+        "stderr": ""
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "verify",
+          "return-debug-0.zheng",
+          "--claim",
+          "111"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Verification: FAIL (execution proof differs from requested input, output or budget)"
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "prove",
+          "return.tri",
+          "--target",
+          "nox",
+          "--profile",
+          "debug",
+          "--input-values",
+          "1",
+          "--output",
+          "return-debug-1.zheng"
+        ],
+        "exit_code": 0,
+        "stdout": "return-debug-1.zheng",
+        "stderr": "Proved public execution in 72 ms: 239 reductions, 82935 bytes\nOutput: [112]"
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "verify",
+          "return-debug-1.zheng",
+          "--input-values",
+          "1",
+          "--claim",
+          "112"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (public execution; non-ZK)\n  public input: [1]\n  public output: [112]\n  reductions: 239",
+        "stderr": ""
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "verify",
+          "return-debug-1.zheng",
+          "--claim",
+          "113"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Verification: FAIL (execution proof differs from requested input, output or budget)"
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "prove",
+          "return.tri",
+          "--target",
+          "nox",
+          "--profile",
+          "debug",
+          "--input-values",
+          "3",
+          "--output",
+          "return-debug-3.zheng"
+        ],
+        "exit_code": 0,
+        "stdout": "return-debug-3.zheng",
+        "stderr": "Proved public execution in 70 ms: 174 reductions, 82933 bytes\nOutput: [12]"
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "verify",
+          "return-debug-3.zheng",
+          "--input-values",
+          "3",
+          "--claim",
+          "12"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (public execution; non-ZK)\n  public input: [3]\n  public output: [12]\n  reductions: 174",
+        "stderr": ""
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "verify",
+          "return-debug-3.zheng",
+          "--claim",
+          "13"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Verification: FAIL (execution proof differs from requested input, output or budget)"
+      },
+      {
+        "binary": "trident",
+        "args": [
+          "run",
+          "shadow.tri",
+          "--target",
+          "nox",
+          "--profile",
+          "release",
+          "--input-values",
+          "0"
+        ],
+        "exit_code": 0,
+        "stdout": "11",
+        "stderr": "Executed in 19 reductions"
+      },
+      {
+        "binary": "trisha",
+        "args": [
+          "run",
+          "shadow-triton.tri",
+          "--target",
+          "triton",
+          "--profile",
+          "release",
+          "--input-values",
+          "0"
+        ],
+        "exit_code": 0,
+        "stdout": "11",
+        "stderr": "Backend: cpu\nExecuting shadow-triton (117 ops)...\nExecuted in 75 cycles"
+      },
+      {
+        "binary": "trident",
+        "args": [
+          "run",
+          "shadow.tri",
+          "--target",
+          "nox",
+          "--profile",
+          "release",
+          "--input-values",
+          "1"
+        ],
+        "exit_code": 0,
+        "stdout": "11",
+        "stderr": "Executed in 48 reductions"
+      },
+      {
+        "binary": "trisha",
+        "args": [
+          "run",
+          "shadow-triton.tri",
+          "--target",
+          "triton",
+          "--profile",
+          "release",
+          "--input-values",
+          "1"
+        ],
+        "exit_code": 0,
+        "stdout": "11",
+        "stderr": "Backend: cpu\nExecuting shadow-triton (117 ops)...\nExecuted in 116 cycles"
+      },
+      {
+        "binary": "trident",
+        "args": [
+          "run",
+          "shadow.tri",
+          "--target",
+          "nox",
+          "--profile",
+          "release",
+          "--input-values",
+          "9"
+        ],
+        "exit_code": 0,
+        "stdout": "11",
+        "stderr": "Executed in 68 reductions"
+      },
+      {
+        "binary": "trisha",
+        "args": [
+          "run",
+          "shadow-triton.tri",
+          "--target",
+          "triton",
+          "--profile",
+          "release",
+          "--input-values",
+          "9"
+        ],
+        "exit_code": 0,
+        "stdout": "11",
+        "stderr": "Backend: cpu\nExecuting shadow-triton (117 ops)...\nExecuted in 121 cycles"
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "prove",
+          "return.tri",
+          "--target",
+          "nox",
+          "--profile",
+          "release",
+          "--input-values",
+          "0",
+          "--output",
+          "return-release-0.zheng"
+        ],
+        "exit_code": 0,
+        "stdout": "return-release-0.zheng",
+        "stderr": "Proved public execution in 73 ms: 214 reductions, 82935 bytes\nOutput: [110]"
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "verify",
+          "return-release-0.zheng",
+          "--input-values",
+          "0",
+          "--claim",
+          "110"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (public execution; non-ZK)\n  public input: [0]\n  public output: [110]\n  reductions: 214",
+        "stderr": ""
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "verify",
+          "return-release-0.zheng",
+          "--claim",
+          "111"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Verification: FAIL (execution proof differs from requested input, output or budget)"
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "prove",
+          "return.tri",
+          "--target",
+          "nox",
+          "--profile",
+          "release",
+          "--input-values",
+          "1",
+          "--output",
+          "return-release-1.zheng"
+        ],
+        "exit_code": 0,
+        "stdout": "return-release-1.zheng",
+        "stderr": "Proved public execution in 72 ms: 239 reductions, 82935 bytes\nOutput: [112]"
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "verify",
+          "return-release-1.zheng",
+          "--input-values",
+          "1",
+          "--claim",
+          "112"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (public execution; non-ZK)\n  public input: [1]\n  public output: [112]\n  reductions: 239",
+        "stderr": ""
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "verify",
+          "return-release-1.zheng",
+          "--claim",
+          "113"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Verification: FAIL (execution proof differs from requested input, output or budget)"
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "prove",
+          "return.tri",
+          "--target",
+          "nox",
+          "--profile",
+          "release",
+          "--input-values",
+          "3",
+          "--output",
+          "return-release-3.zheng"
+        ],
+        "exit_code": 0,
+        "stdout": "return-release-3.zheng",
+        "stderr": "Proved public execution in 70 ms: 174 reductions, 82933 bytes\nOutput: [12]"
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "verify",
+          "return-release-3.zheng",
+          "--input-values",
+          "3",
+          "--claim",
+          "12"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (public execution; non-ZK)\n  public input: [3]\n  public output: [12]\n  reductions: 174",
+        "stderr": ""
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "verify",
+          "return-release-3.zheng",
+          "--claim",
+          "13"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Verification: FAIL (execution proof differs from requested input, output or budget)"
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "prove",
+          "private.tri",
+          "--target",
+          "nox",
+          "--profile",
+          "release",
+          "--input-values",
+          "5",
+          "--secret",
+          "37",
+          "--output",
+          "private.zheng"
+        ],
+        "exit_code": 0,
+        "stdout": "private.zheng",
+        "stderr": "Proved private execution (Triton ZK) in 11481 ms: 35 reductions, 874345 bytes\nOutput: [42]"
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "verify",
+          "private.zheng",
+          "--claim",
+          "42",
+          "--input-values",
+          "5"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (private execution; Triton ZK)\n  public input: [5]\n  public output: [42]\n  reductions: 35",
+        "stderr": ""
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "verify",
+          "private.zheng",
+          "--claim",
+          "43"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Verification: FAIL (private proof differs from requested input, output or budget)"
+      },
+      {
+        "binary": "joy",
+        "args": [
+          "verify",
+          "private.zheng",
+          "--input-values",
+          "6"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Verification: FAIL (private proof differs from requested input, output or budget)"
+      }
+    ],
+    "binaries": [
+      {
+        "name": "trident",
+        "sha256": "ad08f94931bc21a01d5f2f42ea398ae63feee910b047150a43d3986e4e693132"
+      },
+      {
+        "name": "trisha",
+        "sha256": "40af17aca4b853ae019cc2373f44155056daff20c246915bdb9ded4d430013ff"
+      },
+      {
+        "name": "joy",
+        "sha256": "fbeccb1cffd171e94ac3f5b73775a7a4ca52ece46d3182a3ef87ba828efdbb24"
+      }
+    ],
+    "sources": {
+      "return.tri": "34cd6e5ff35c741de5a7bdfd4df941b225b4acba4eca7c0a22304258f4aa4e53",
+      "shadow.tri": "9470b373d4f911bfd9fae6b72238d77ed0d6ad06672b46a575e8c658626be771",
+      "shadow-triton.tri": "7136c29c1226a5959b7a36ed67bc27cfad998e7fda38348c7be57837c0e267b0",
+      "private.tri": "dc3c7e7fa151e1c1a1aa2a999d08b849880b6ac1c854c0dd0658de4f90e28367"
+    }
+  },
+  "unpacked_checks": {
+    "archive_sha256": "7d7ab29ad6c35cf69a41277e7535daa55fbe796c0594fc8c0797836abac29d47",
+    "repeat_identical": true,
+    "checks": [
+      {
+        "command": [
+          "trident",
+          "--version"
+        ],
+        "exit_code": 0,
+        "stdout": "trident 0.4.0",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "trisha",
+          "--version"
+        ],
+        "exit_code": 0,
+        "stdout": "trisha 0.3.0",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "joy",
+          "--version"
+        ],
+        "exit_code": 0,
+        "stdout": "joy 0.5.0",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "trisha",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final3/outer.proof.toml"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS",
+        "stderr": "Backend: cpu"
+      },
+      {
+        "command": [
+          "joy",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final3/arithmetic.zheng"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (public execution; non-ZK)\n  public input: [5]\n  public output: [38]\n  reductions: 10",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "joy",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final3/private.zheng"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (private execution; Triton ZK)\n  public input: [5]\n  public output: [1769]\n  reductions: 17",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "joy",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final3/state.zheng"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (authenticated public state execution; non-ZK)\n  public input: [11]\n  public output: [82]\n  reductions: 17",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "joy",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final3/private-state.zheng"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (private execution; Triton ZK)\n  public input: [5]\n  public output: [82]\n  reductions: 24",
+        "stderr": ""
+      }
+    ],
+    "all_checks_passed": true
+  }
+}

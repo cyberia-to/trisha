@@ -1,19 +1,19 @@
 // Hand-optimized TASM baseline: std.private.poly
-//
+
 // Written from first principles: algorithm + Triton VM stack machine.
 // NOT derived from compiler output.
-//
+
 // Triton VM memory semantics:
 //   read_mem 1:  [addr, rest...] -> [addr-1, mem[addr], rest...]
 //   write_mem 1: [val, addr, rest...] -> [addr+1, rest...]
 //   pop N: removes top N elements
 //   lt: [b, a, ...] -> [(a < b), ...]  (u32 comparison)
-//
+
 // Stack convention: first arg deepest, last arg on top.
 //   eval(coeff_addr, x, n):           st0=n, st1=x, st2=coeff_addr
 //   add(a_addr, b_addr, out_addr, n): st0=n, st1=out_addr, st2=b_addr, st3=a_addr
 //   ntt(a_addr, omega, log_n):        st0=log_n, st1=omega, st2=a_addr
-//
+
 // Design principles:
 //   - Entry functions match compiler's calling convention exactly.
 //     No stack rearrangement before calling loops.
@@ -27,7 +27,7 @@
 // ===========================================================================
 // Entry: [n, x, coeff_addr]
 // Exit:  [result]
-//
+
 // Horner loop stack: [counter, accum, coeff_addr, x]
 // Counter counts down; after decrement it equals the coefficient index.
 __eval:
@@ -72,7 +72,7 @@ __eval_loop:
 // ===========================================================================
 // Entry: [n, out_addr, b_addr, a_addr]
 // Exit:  [] (stack cleaned)
-//
+
 // Loop works with native arg order: [idx, out, b, a]
 // No rearrangement needed.
 __add:
@@ -261,7 +261,7 @@ __pow2:
 // ===========================================================================
 // Entry: [log_n, omega, a_addr]
 // Exit:  [] (stack cleaned)
-//
+
 // Algorithm: compute n = 2^log_n, then run stage/j/butterfly loops.
 __ntt:
     // Compute n = 2^log_n
@@ -338,7 +338,7 @@ __ntt_j:
 
 // Butterfly: [k, j_ctr, j, w, sc, len, ws, a, n]
 // positions:  0    1     2  3   4   5    6   7  8
-//
+
 // Guard: k < n. Uses direct lt (no push 0; eq negation).
 // Triton lt: [b, a] -> (a < b). We want: if k >= n, exit.
 // Push n, then k: [k, n] -> lt -> (n < k)? No: lt gives (a < b) where a=n, b=k.
@@ -357,7 +357,7 @@ __ntt_j:
 // But next instruction after skiz should be return. So: lt; skiz; return; <loop body>.
 // When lt=0 (k>=n): skiz pops 0, doesn't skip, executes return. Correct.
 // When lt=1 (k<n): skiz pops 1, skips return, enters loop body. Correct!
-//
+
 // So the guard is: dup 0; dup 9; lt; skiz; return  (5 ops, saves 2 vs old 7)
 // Wait: dup 0 pushes k. dup 9 pushes n (shifted by 1). lt pops both, pushes (k < n).
 // But lt is defined as [b, a] -> (a < b). st0=n (b), st1=k (a) after dup 0; dup 9.
@@ -380,12 +380,12 @@ __ntt_j:
 // After lt: st0 = (k < n) which is 1 or 0.
 // If k < n: st0=1, skiz skips next (return), loop continues. GOOD.
 // If k >= n: st0=0, skiz does NOT skip, return executes. GOOD.
-//
+
 // BUT WAIT. There's a subtlety with `lt` in Triton VM. From the spec:
 // lt: top of stack is treated as unsigned 32-bit integers.
 // Our k and n are field elements used as indices. If they're within u32 range, lt works.
 // Since n = 2^log_n and k < n in all valid iterations, this is fine.
-//
+
 // HOWEVER: I realize the issue. `dup 0; dup 9` gives us [n, k, ...] where n is at
 // st0 and k is at st1. Then lt gives us (st1 < st0) = (k < n). The result replaces
 // both and goes to st0.
@@ -395,7 +395,7 @@ __ntt_j:
 // After dup 0; dup 9: st0=n, st1=k. So a=n, b=k. lt gives (n < k).
 // That's the OPPOSITE of what we want! (n < k) is true when k > n.
 // So: when k < n, lt = 0, skiz doesn't skip, return executes -> WRONG!
-//
+
 // Fix: swap the order. Use dup 8; dup 1 instead:
 // After dup 8: st0=n (n was at pos 8, no shift since we haven't pushed yet...
 // wait, the original stack is [k, j_ctr, j, w, sc, len, ws, a, n].
@@ -405,7 +405,7 @@ __ntt_j:
 // lt: st0=k (a), st1=n (b). Result: (k < n). YES!
 // When k < n: result=1, skiz skips return. Correct.
 // When k >= n: result=0, skiz doesn't skip. Correct.
-//
+
 // Guard: dup 8; dup 1; lt; skiz; return  (5 ops)
 __ntt_bfly:
     dup 8
@@ -501,7 +501,7 @@ __intt:
 // ===========================================================================
 // Entry: [log_n, n_inv, omega_inv, omega, tmp, out, b, a]
 // Exit:  []
-//
+
 // Steps: size = 2^log_n, copy a->out & b->tmp, NTT(out), NTT(tmp),
 //        pointwise_mul(out, tmp, out), INTT(out)
 __poly_mul:

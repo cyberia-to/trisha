@@ -1,5 +1,5 @@
 // Hand-optimized TASM baseline: vm.core.assert
-//
+
 // VM intrinsics — each function is a single Triton VM instruction.
 
 // assert.is_true(cond: Bool) — halt if st0 == 0

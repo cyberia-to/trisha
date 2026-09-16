@@ -1,0 +1,209 @@
+--- a/src/verifier/vm_proof_iter/dequeue_next_as.rs
++++ b/src/verifier/vm_proof_iter/dequeue_next_as.rs
+@@ -8,6 +8,7 @@
+ use twenty_first::math::x_field_element::EXTENSION_DEGREE;
+ use twenty_first::prelude::Polynomial;
+ 
++use crate::hashing::absorb_multiple::AbsorbMultiple;
+ use crate::hashing::sponge_hasher::pad_and_absorb_all::PadAndAbsorbAll;
+ use crate::prelude::*;
+ 
+@@ -24,6 +25,8 @@
+ }
+ 
+ impl DequeueNextAs {
++    const BAD_PROOF_ITEM_SIZE_INDICATOR_STATIC_SIZE_PAYLOAD: i128 = 620;
++
+     pub fn new(proof_item: ProofItemVariant) -> Self {
+         Self { proof_item }
+     }
+@@ -97,8 +100,25 @@
+     /// AFTER:  _ *proof_item_size
+     /// ```
+     fn assert_consistent_size_indicators(&self, library: &mut Library) -> Vec<LabelledInstruction> {
+-        if self.proof_item.payload_static_length().is_some() {
+-            return vec![];
++        // For statically-sized items, the list-element size word is implied by
++        // the type and is not otherwise consulted (the iterator advance and the
++        // payload pointer both use the static length). Absorbing aside, leaving
++        // it unchecked would make the proof encoding malleable in this field, so
++        // we pin it to its only canonical value: 1 (discriminant) + payload.
++        if let Some(static_length) = self.proof_item.payload_static_length() {
++            let expected_item_size = static_length + 1;
++            return triton_asm! {
++                // _ *proof_item_size
++                dup 0
++                read_mem 1
++                pop 1
++                // _ *proof_item_size indicated_item_size
++
++                push {expected_item_size}
++                eq
++                assert error_id {Self::BAD_PROOF_ITEM_SIZE_INDICATOR_STATIC_SIZE_PAYLOAD}
++                // _ *proof_item_size
++            };
+         }
+ 
+         let calculate_own_size = self.proof_item_calculate_size(library);
+@@ -106,6 +126,7 @@
+         triton_asm! {
+             // _ *proof_item_size
+ 
++            /* Add 3: Skip proof_item_si, disc, payload_si (of field 0) */
+             dup 0
+             addi 3
+             {&calculate_own_size}
+@@ -151,6 +172,31 @@
+             return vec![];
+         }
+ 
++        // For statically-sized items the absorb length must NOT be read from the
++        // prover-controlled in-memory size word: doing so would let a malicious
++        // prover shorten the absorb and exclude the committed payload (e.g. a
++        // Merkle root) from the Fiat-Shamir transcript. Absorb a fixed number
++        // of words instead — 1 (discriminant) + the static payload length —
++        // exactly the canonical encoding of the proof item.
++        //`assert_consistent_size_indicators` separately pins the size word,
++        // so the encoding stays non-malleable.
++        if let Some(static_length) = self.proof_item.payload_static_length() {
++            let absorb_length = static_length + 1;
++            let absorb_multiple = library.import(Box::new(AbsorbMultiple));
++            return triton_asm! {
++                // _ *proof_item_size
++                dup 0
++                addi 1              // _ *proof_item_size *discriminant
++                push {absorb_length}
++                                    // _ *proof_item_size *discriminant absorb_length
++                call {absorb_multiple}
++                                    // _ *proof_item_size
++            };
++        }
++
++        // Dynamically-sized items: the size word was validated against the
++        // recomputed payload size in `assert_consistent_size_indicators`, so it
++        // is safe to drive the absorb from the memory word.
+         let pad_and_absorb_all = library.import(Box::new(PadAndAbsorbAll));
+         triton_asm! {
+             dup 0           // _ *proof_item_size *proof_item_size
+--- a/src/structure/manual_tasm_object_implementations.rs
++++ b/src/structure/manual_tasm_object_implementations.rs
+@@ -8,6 +8,10 @@
+ 
+ use super::tasm_object::Result;
+ use crate::prelude::*;
++use crate::structure::tasm_object::DEFAULT_MAX_DYN_FIELD_SIZE;
++
++const VEC_LEN_EXCEEDS_MAX: i128 = 212;
++const POLYNOMIAL_LEN_EXCEEDS_MAX: i128 = 213;
+ 
+ impl<const N: usize, T> TasmObject for [T; N]
+ where
+@@ -60,11 +64,34 @@
+     fn compute_size_and_assert_valid_size_indicator(
+         library: &mut Library,
+     ) -> Vec<LabelledInstruction> {
+-        if T::static_length().is_some() {
++        if let Some(static_size) = T::static_length() {
++            // Assert length is bounded such that `len * elem_size` cannot
++            // wrap around modulus p.
++            let assert_len_is_u32 = if static_size == 1 {
++                // _ nop because check is not needed, and because it would
++                // change downstream program hashes in committed-to UTXOs.
++                triton_asm!()
++            } else {
++                triton_asm!(
++                    // _ list_len g
++
++                    push {DEFAULT_MAX_DYN_FIELD_SIZE}
++                    dup 2
++                    lt
++                    // _ list_len g (max > list_len)
++
++                    assert error_id {VEC_LEN_EXCEEDS_MAX}
++                    // _ list_len g
++                )
++            };
++
+             return triton_asm!(
+                 // _ *list_len
+ 
+                 read_mem 1
++                // _ list_len *elem[0]
++
++                {&assert_len_is_u32}
+                 // _ list_len *elem[0]
+ 
+                 {&T::compute_size_and_assert_valid_size_indicator(library)}
+@@ -427,6 +454,19 @@
+     }
+ 
+     fn compute_size_and_assert_valid_size_indicator(_: &mut Library) -> Vec<LabelledInstruction> {
++        // Assert length is bounded such that `len * 3` cannot
++        // wrap around modulus p.
++        let assert_len_is_u32 = triton_asm!(
++            // _ list_len g
++
++            push {DEFAULT_MAX_DYN_FIELD_SIZE}
++            dup 2
++            lt
++            // _ list_len g (max > list_len)
++
++            assert error_id {POLYNOMIAL_LEN_EXCEEDS_MAX}
++        );
++
+         triton_asm!(
+             // _ *field_size
+ 
+@@ -436,6 +476,8 @@
+             read_mem 2
+             pop 1
+             // _ list_length field_size
++
++            {&assert_len_is_u32}
+ 
+             push {Self::MAX_OFFSET}
+             dup 1
+@@ -463,7 +505,9 @@
+         iterator.next().ok_or(BFieldCodecError::SequenceTooShort)?;
+         let coefficients = *Vec::<XFieldElement>::decode_iter(iterator)?;
+         if coefficients.last().is_some_and(|c| c.is_zero()) {
+-            return Err(PolynomialBFieldCodecError::TrailingZerosInPolynomialEncoding)?;
++            return Err(Box::new(
++                PolynomialBFieldCodecError::TrailingZerosInPolynomialEncoding,
++            ));
+         }
+ 
+         Ok(Box::new(Self::new(coefficients)))
+--- a/src/verifier/stark_verify.rs
++++ b/src/verifier/stark_verify.rs
+@@ -56,6 +56,7 @@
+ 
+ impl StarkVerify {
+     const LOG2_PADDED_HEIGHT_TOO_LARGE: i128 = 238;
++    const LOG2_PADDED_HEIGHT_TOO_SMALL: i128 = 239;
+ 
+     pub fn new_with_static_layout(stark: Stark) -> Self {
+         Self {
+@@ -746,7 +747,7 @@
+                 pop 1
+                 // _ *clm *p_iter log_2_padded_height
+ 
+-                /* Verify log_2_padded_height <= 31 */
++                /* Verify log_2_padded_height <= 31 && log_2_padded_height >= 8 */
+                 push 32
+                 dup 1
+                 lt
+@@ -754,6 +755,13 @@
+ 
+                 assert error_id {Self::LOG2_PADDED_HEIGHT_TOO_LARGE}
+                 // _ *clm *p_iter log_2_padded_height
++
++                push 8
++                dup 1
++                lt
++                push 0
++                eq
++                assert error_id {Self::LOG2_PADDED_HEIGHT_TOO_SMALL}
+ 
+                 push 2
+                 pow

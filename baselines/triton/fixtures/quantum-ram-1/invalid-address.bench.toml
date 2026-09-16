@@ -1,0 +1,7 @@
+source = "main.tri"
+hand = "../../std/quantum/gates.tasm"
+input = ["4294967293", "1", "0"]
+output = []
+expect_failure = true
+reference = "Independent integer complex 2x2 matrix arithmetic modulo Goldilocks, every target n=1..3; neighboring cells unchanged. Hand scratch [2^40,2^40+64) is benchmark-private and clobbered."
+hand_prefix = "push 987 push 99 write_mem 1 pop 1 push 3 push 100 write_mem 1 pop 1 push 6 push 101 write_mem 1 pop 1 push 9 push 102 write_mem 1 pop 1 push 12 push 103 write_mem 1 pop 1 push 654 push 104 write_mem 1 pop 1 read_io 1 read_io 1 read_io 1 push 2 push 3 push 5 push 7 push 11 push 13 push 17 push 19 call __apply_single_gate push 99 read_mem 1 pop 1 write_io 1 push 100 read_mem 1 pop 1 write_io 1 push 101 read_mem 1 pop 1 write_io 1 push 102 read_mem 1 pop 1 write_io 1 push 103 read_mem 1 pop 1 write_io 1 push 104 read_mem 1 pop 1 write_io 1 halt"

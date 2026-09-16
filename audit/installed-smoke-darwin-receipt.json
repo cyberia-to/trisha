@@ -1,0 +1,141 @@
+{
+  "date": "2026-09-12",
+  "kind": "working-tree-rehearsal",
+  "smoke": {
+    "schema_version": 1,
+    "suite": "installed-compiler-warrior-v1",
+    "all_checks_passed": true,
+    "source_provenance_sha256": "6837745f8669d541a559f3d502d5cac978afbd8832dda4548892aa4b0d2190fd",
+    "binaries": [
+      {
+        "name": "trident",
+        "sha256": "073cf89b9ad102a503ed89c46d7aac5a2490c44f97f2c6e42e61539e5e6341a3"
+      },
+      {
+        "name": "trisha",
+        "sha256": "fb1c0dd4de5a9b076542301a93914ab9e41c222781a4bd6579047314614bafae"
+      },
+      {
+        "name": "joy",
+        "sha256": "1931c793c4e868f9fb212e2e4a918a6ceafe0b25514dfadfa5b886e33da5b5ca"
+      }
+    ],
+    "fixture_files": [
+      {
+        "name": "state.json",
+        "sha256": "8953a46858800afc0b9e9cd3a2a9869efec0f3fea1177c2b63c4180458b3b2e8"
+      },
+      {
+        "name": "other-state.json",
+        "sha256": "16b1bab42e8f64781c9723cc1b5122ea43690b98eda5673e2dfddd97eb72ab5f"
+      },
+      {
+        "name": "state-all.json",
+        "sha256": "2a0e6d0d29ab36f8259dc3512e9db0b05fb1ea7f62a780a274c36df9d864b02c"
+      }
+    ],
+    "platform": {
+      "name": "macos",
+      "arch": "aarch64",
+      "family": "unix",
+      "kernel_version": "25.4.0"
+    }
+  },
+  "monitor": {
+    "exit_code": 0,
+    "guard_stopped": false,
+    "elapsed_seconds": 145.63364495900169,
+    "peak_rss_bytes": 9351577600,
+    "log": "/tmp/cyber-release-smoke-v7-darwin-final.log"
+  },
+  "command_wall_seconds": 141.5,
+  "command_maximum_rss_bytes": 9278767104,
+  "swaps": 0,
+  "log_sha256": "2b2c6df7f351c7104c4aa73e8110819aa0074017b936e08a456a2604d0538dda",
+  "smoke_script_sha256": "c2b3627e97c8ef99561c78fbfd2e71930dacf5f468ee8af7ba2d380e1086504b",
+  "source_archive_sha256": "9bce1a685bc5568277f01865c505008c43e733e1d242611ca047a228f0ae1961",
+  "binary_archive_sha256": "3bc8a02090bd91e80364e0368f65a945391889c2ade078776dd7b96b0ca1d544",
+  "unpacked_archive_checks": {
+    "archive_sha256": "3bc8a02090bd91e80364e0368f65a945391889c2ade078776dd7b96b0ca1d544",
+    "checks": [
+      {
+        "command": [
+          "trident",
+          "--version"
+        ],
+        "exit_code": 0,
+        "stdout": "trident 0.4.0",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "trisha",
+          "--version"
+        ],
+        "exit_code": 0,
+        "stdout": "trisha 0.3.0",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "joy",
+          "--version"
+        ],
+        "exit_code": 0,
+        "stdout": "joy 0.5.0",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "trisha",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final/outer.proof.toml"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS",
+        "stderr": "Backend: cpu"
+      },
+      {
+        "command": [
+          "joy",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final/arithmetic.zheng"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (public execution; non-ZK)\n  public input: [5]\n  public output: [38]\n  reductions: 10",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "joy",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final/private.zheng"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (private execution; Triton ZK)\n  public input: [5]\n  public output: [1769]\n  reductions: 17",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "joy",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final/state.zheng"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (authenticated public state execution; non-ZK)\n  public input: [11]\n  public output: [82]\n  reductions: 17",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "joy",
+          "verify",
+          "/tmp/cyber-release-smoke-v7-darwin-final/private-state.zheng"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (private execution; Triton ZK)\n  public input: [5]\n  public output: [82]\n  reductions: 24",
+        "stderr": ""
+      }
+    ]
+  },
+  "repeated_archive_sha256": "3bc8a02090bd91e80364e0368f65a945391889c2ade078776dd7b96b0ca1d544"
+}

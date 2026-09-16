@@ -1,0 +1,10 @@
+source = "main.tri"
+hand = "../../vm/core/u32.tasm"
+target = "triton"
+input = [255]
+output = [7, 8, 243]
+reference = "255=2^8-1; floor(log2)=7; eight set bits; 3^5=243."
+expect_failure = false
+hand_prefix = """
+read_io 1 dup 0 call vm_core_u32__log2 write_io 1 call vm_core_u32__popcount write_io 1 push 3 push 5 call vm_core_u32__pow write_io 1 halt
+"""

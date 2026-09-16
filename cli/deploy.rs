@@ -1,3 +1,4 @@
+mod transaction;
 use std::path::PathBuf;
 use std::process;
 
@@ -34,6 +35,12 @@ pub struct DeployArgs {
 
 #[derive(Subcommand)]
 pub enum DeployMode {
+    /// Construct a canonical custom-lock UTXO and its addition commitment.
+    Output(transaction::OutputArgs),
+    /// Validate a complete transaction and write its exact RPC request offline.
+    Prepare(transaction::PrepareArgs),
+    /// Submit an independently revalidated complete transaction to an explicit gateway.
+    Submit(transaction::SubmitArgs),
     Batch(DeployBatchArgs),
 }
 
@@ -53,11 +60,14 @@ pub struct DeployBatchArgs {
 }
 
 pub fn cmd_deploy(args: DeployArgs) {
-    let (state, _rpc_port) = args.network.resolve().unwrap_or_else(|e| {
+    let (state, rpc_port) = args.network.resolve().unwrap_or_else(|e| {
         eprintln!("error: {}", e);
         process::exit(1);
     });
     match args.mode {
+        Some(DeployMode::Output(args)) => finish(transaction::output(args)),
+        Some(DeployMode::Prepare(args)) => finish(transaction::prepare(args)),
+        Some(DeployMode::Submit(args)) => finish(transaction::submit(args)),
         Some(DeployMode::Batch(batch_args)) => cmd_deploy_batch(batch_args),
         None => {
             let input = match args.input {
@@ -72,6 +82,7 @@ pub fn cmd_deploy(args: DeployArgs) {
                 &args.vm,
                 state.union,
                 state.name,
+                rpc_port,
                 &args.profile,
                 args.proof,
                 args.dry_run,
@@ -85,6 +96,7 @@ fn cmd_deploy_single(
     vm: &str,
     union: &str,
     state: &str,
+    rpc_port: u16,
     profile: &str,
     proof_path: Option<PathBuf>,
     dry_run: bool,
@@ -107,21 +119,15 @@ fn cmd_deploy_single(
     } else {
         None
     };
-    let digest = trident::hash::content_hash_bytes(bundle.assembly.as_bytes());
-    let digest_hex = trident::hash::ContentHash(digest).to_hex();
+    let inspection =
+        trisha_rs::deployment::inspect(&bundle, proof_data.as_ref()).unwrap_or_else(|error| {
+            eprintln!("error: {error}");
+            process::exit(1)
+        });
     if dry_run {
-        eprintln!("Dry run — would deploy:");
-        eprintln!("  Program : {}", bundle.name);
-        eprintln!("  Union   : {}", union);
-        eprintln!("  State   : {}", state);
-        eprintln!("  Digest  : {}", digest_hex);
-        eprintln!(
-            "  Proof   : {}",
-            if proof_path.is_some() {
-                "attached"
-            } else {
-                "none"
-            }
+        println!(
+            "{}",
+            inspection_json(&bundle, &inspection, union, state, rpc_port)
         );
         return;
     }
@@ -140,7 +146,7 @@ fn cmd_deploy_batch(args: DeployBatchArgs) {
         eprintln!("error: no input files specified");
         process::exit(1);
     }
-    let (state, _rpc_port) = args.network.resolve().unwrap_or_else(|e| {
+    let (state, rpc_port) = args.network.resolve().unwrap_or_else(|e| {
         eprintln!("error: {}", e);
         process::exit(1);
     });
@@ -151,15 +157,21 @@ fn cmd_deploy_batch(args: DeployBatchArgs) {
     let state_name = state.name;
     let count = args.inputs.len();
     eprintln!(
-        "Deploying {} programs to {}/{} (max {} parallel)...",
-        count, union, state_name, args.max_parallel
+        "{} {} programs for {}/{} (max {} parallel)...",
+        if dry_run { "Inspecting" } else { "Deploying" },
+        count,
+        union,
+        state_name,
+        args.max_parallel
     );
     let results = batch::run_batch(args.inputs, args.max_parallel, |path| {
         let bundle = compile_source(&path, &vm, &profile)?;
-        let digest = trident::hash::content_hash_bytes(bundle.assembly.as_bytes());
-        let digest_hex = trident::hash::ContentHash(digest).to_hex();
+        let inspection =
+            trisha_rs::deployment::inspect(&bundle, None).map_err(TrishaError::Deploy)?;
         if dry_run {
-            return Ok::<String, TrishaError>(format!("dry-run: {} ({})", bundle.name, digest_hex));
+            return Ok::<String, TrishaError>(
+                inspection_json(&bundle, &inspection, union, state_name, rpc_port).to_string(),
+            );
         }
         let warrior = Warrior::new();
         warrior.deploy(&bundle, None).map_err(TrishaError::Deploy)
@@ -167,15 +179,51 @@ fn cmd_deploy_batch(args: DeployBatchArgs) {
     let mut failures = 0;
     for r in &results {
         match &r.result {
-            Ok(msg) => eprintln!("  [{}] {} ({} ms)", r.index, msg, r.elapsed_ms),
+            Ok(msg) => println!("{msg}"),
             Err(e) => {
                 eprintln!("  [{}] FAIL: {}", r.index, e);
                 failures += 1;
             }
         }
     }
-    eprintln!("{}/{} deployed", count - failures, count);
+    eprintln!(
+        "{}/{} {}",
+        count - failures,
+        count,
+        if dry_run { "inspected" } else { "deployed" }
+    );
     if failures > 0 {
+        process::exit(1);
+    }
+}
+
+fn inspection_json(
+    bundle: &trident::runtime::ProgramBundle,
+    inspection: &trisha_rs::deployment::ProgramInspection,
+    union: &str,
+    state: &str,
+    rpc_port: u16,
+) -> serde_json::Value {
+    serde_json::json!({
+        "format": "trisha-neptune-program-plan-v1",
+        "operation": "inspect-program",
+        "program": bundle.name,
+        "source_hash": bundle.source_hash,
+        "target_vm": bundle.target_vm,
+        "target_os": bundle.target_os,
+        "union": union,
+        "state": state,
+        "rpc_port": rpc_port,
+        "lock_script_hash": inspection.lock_script_hash.map(|v| v.to_string()),
+        "execution_proof_verified": inspection.execution_proof_verified,
+        "submission_supported": false,
+        "transaction": null,
+    })
+}
+
+fn finish(result: Result<(), String>) {
+    if let Err(error) = result {
+        eprintln!("error: {error}");
         process::exit(1);
     }
 }

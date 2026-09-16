@@ -1,0 +1,21 @@
+source = "main.tri"
+hand = "../../std/crypto/bigint.tasm"
+target = "triton"
+input = []
+output = [0, 0, 0, 0, 0, 0, 0, 0, 1]
+reference = "Independent integer boundary (2^256-1)+1=0 mod2^256, with carry1; tests carry propagation across all8limbs."
+expect_failure = false
+hand_prefix = """
+push 4294967295 push 4294967295 push 4294967295 push 4294967295 push 4294967295 push 4294967295 push 4294967295 push 4294967295 push 1 push 0 push 0 push 0 push 0 push 0 push 0 push 0 call __add256
+    swap 8
+    swap 1
+    swap 7
+    swap 1
+    swap 2
+    swap 6
+    swap 2
+    swap 3
+    swap 5
+    swap 3
+write_io 5 write_io 4 halt
+"""

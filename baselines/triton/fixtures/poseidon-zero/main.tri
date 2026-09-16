@@ -1,0 +1,14 @@
+program poseidon_zero
+use std.crypto.poseidon
+fn main() {
+let initial: poseidon.State = poseidon.State { s0: 0, s1: 0, s2: 0, s3: 0, s4: 0, s5: 0, s6: 0, s7: 0 }
+let result: poseidon.State = poseidon.permute(initial)
+pub_write(result.s0)
+pub_write(result.s1)
+pub_write(result.s2)
+pub_write(result.s3)
+pub_write(result.s4)
+pub_write(result.s5)
+pub_write(result.s6)
+pub_write(result.s7)
+}

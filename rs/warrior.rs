@@ -23,6 +23,32 @@ impl Warrior {
         Warrior
     }
 
+    /// Execute an untrusted candidate without collecting an unbounded trace.
+    pub fn run_bounded(
+        &self,
+        bundle: &ProgramBundle,
+        input: &ProgramInput,
+        max_cycles: u32,
+    ) -> Result<ExecutionResult, String> {
+        crate::bundle::validate(bundle)?;
+        let program =
+            Program::from_code(&bundle.assembly).map_err(|e| format!("TASM parse error: {e}"))?;
+        let (public, secret) = convert::to_triton_inputs(input)?;
+        let mut state = VMState::new(program, public, secret);
+        while !state.halting {
+            if state.cycle_count >= max_cycles {
+                return Err(format!("execution budget exceeded: {max_cycles} cycles"));
+            }
+            state
+                .step()
+                .map_err(|e| convert::execution_error(e, input))?;
+        }
+        Ok(convert::to_execution_result(
+            &state.public_output,
+            u64::from(state.cycle_count),
+        ))
+    }
+
     pub fn prove_full(
         &self,
         bundle: &ProgramBundle,
@@ -32,13 +58,13 @@ impl Warrior {
         let program =
             Program::from_code(&bundle.assembly).map_err(|e| format!("TASM parse error: {}", e))?;
 
-        let (pub_in, non_det) = convert::to_triton_inputs(input);
+        let (pub_in, non_det) = convert::to_triton_inputs(input)?;
 
         let op_count = bundle.assembly.lines().count();
         eprintln!("Proving {} ({} ops)...", bundle.name, op_count);
 
         let (aet, output) = VM::trace_execution(program.clone(), pub_in.clone(), non_det)
-            .map_err(|e| format!("execution error: {}", e))?;
+            .map_err(|e| convert::execution_error(e, input))?;
 
         let cycle_count = aet.processor_trace.nrows() as u64;
         let padded_height = aet.padded_height() as u64;
@@ -60,7 +86,7 @@ impl Warrior {
             proof_data: ProofData {
                 claim: convert::to_trident_claim(&claim),
                 proof_bytes: convert::proof_to_bytes(&proof),
-                format: "stark-triton-v2".to_string(),
+                format: "stark-triton-v7".to_string(),
             },
             cycle_count,
             padded_height,
@@ -74,13 +100,13 @@ impl Runner for Warrior {
         let program =
             Program::from_code(&bundle.assembly).map_err(|e| format!("TASM parse error: {}", e))?;
 
-        let (pub_in, non_det) = convert::to_triton_inputs(input);
+        let (pub_in, non_det) = convert::to_triton_inputs(input)?;
 
         let op_count = bundle.assembly.lines().count();
         eprintln!("Executing {} ({} ops)...", bundle.name, op_count);
 
         let (aet, output) = VM::trace_execution(program, pub_in, non_det)
-            .map_err(|e| format!("execution error: {}", e))?;
+            .map_err(|e| convert::execution_error(e, input))?;
         let cycle_count = aet.processor_trace.nrows() as u64;
         Ok(convert::to_execution_result(&output, cycle_count))
     }
@@ -94,7 +120,7 @@ impl Prover for Warrior {
 
 impl Verifier for Warrior {
     fn verify(&self, proof_data: &ProofData) -> Result<bool, String> {
-        if proof_data.format != "stark-triton-v2" {
+        if proof_data.format != "stark-triton-v7" {
             return Err(format!("unsupported proof format: {}", proof_data.format));
         }
         let claim = convert::to_triton_claim_native(
@@ -103,8 +129,7 @@ impl Verifier for Warrior {
             &proof_data.claim.public_output,
         )?;
         let proof = convert::bytes_to_proof(&proof_data.proof_bytes)?;
-        let stark = Stark::default();
-        Ok(triton_vm::verify(stark, &claim, &proof))
+        Ok(crate::convert::verify_native_proof(&claim, &proof).is_ok())
     }
 }
 

@@ -7,11 +7,11 @@
 name = "mainnet"
 display_name = "Neptune Mainnet"
 union = "neptune"
-chain_id = "1"
+chain_id = "0"
 is_default = true
 
 [endpoints]
-rpc_url = "https://rpc.neptune.cash"
+rpc_url = "http://127.0.0.1:9799"
 explorer_url = "https://explorer.neptune.cash"
 
 [currency]
@@ -19,4 +19,4 @@ symbol = "NEPT"
 
 [node]
 rpc_port = 9799
-network_flag = "alpha-mainnet"
+network_flag = "main"

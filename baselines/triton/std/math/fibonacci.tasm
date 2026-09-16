@@ -1,26 +1,24 @@
 // Hand-optimized TASM baseline: std.math.fibonacci
-//
+
 // Fibonacci on Triton VM. Pure field addition in a tight loop.
 // Stack: [n] -> [fib(n)]
-//
+
 // Loop body (5 insns per iteration):
 //   swap 2, dup 1, add, swap 1, swap 2
 // Loop overhead (8 insns): dup 0, push 0, eq, skiz, return, push -1, add, recurse
 // Total: 13 insns/iteration
-//
+
 // All four variants share a single loop body — only bounds differ at runtime.
 
 // fib256/fib1k/fib10k/fib100k: n -> fib(n)
-// Setup: [n] -> [n, 0, 1] -> call loop -> [0, a, b] -> [a]
+// Setup: [n] -> [0, 1, n] -> call loop -> [a, b, 0] -> [a]
 std_math_fibonacci__fib256:
     push 0
     swap 1
     push 1
     swap 1
     call __fib_loop
-    pop 1
-    swap 1
-    pop 1
+    pop 2
     return
 
 std_math_fibonacci__fib1k:
@@ -29,9 +27,7 @@ std_math_fibonacci__fib1k:
     push 1
     swap 1
     call __fib_loop
-    pop 1
-    swap 1
-    pop 1
+    pop 2
     return
 
 std_math_fibonacci__fib10k:
@@ -40,9 +36,7 @@ std_math_fibonacci__fib10k:
     push 1
     swap 1
     call __fib_loop
-    pop 1
-    swap 1
-    pop 1
+    pop 2
     return
 
 std_math_fibonacci__fib100k:
@@ -51,12 +45,10 @@ std_math_fibonacci__fib100k:
     push 1
     swap 1
     call __fib_loop
-    pop 1
-    swap 1
-    pop 1
+    pop 2
     return
 
-// Shared tight loop. Stack: [counter, a, b]
+// Shared tight loop. Stack: [a, b, counter]
 // Body: next=a+b, shift a=b, b=next
 __fib_loop:
     dup 0

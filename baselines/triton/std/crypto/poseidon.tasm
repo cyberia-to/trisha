@@ -1,236 +1,286 @@
-// Hand-optimized TASM baseline: std.crypto.poseidon
-//
-// First principles rewrite. Key decisions:
-//   - sbox (x^5): 6 insns — dup/dup/mul/dup/mul/mul
-//   - mix2: 12 insns — S=a+b, new_a=S+a, new_b=S+2b, pure stack
-//   - mix4: 26 insns — S=a+b+c+d, pure stack swap-replace (no memory)
-//   - hash2/hash4: call subroutines (call is ~1 cycle on Triton VM)
-//   - round2/round4: call sbox/mix inline
-//
-// Formulas:
-//   sbox(x) = x^5
-//   mix2(a, b) = (2a+b, a+3b)
-//   mix4(a,b,c,d) = (S+a, S+b, S+c, S+d) where S=a+b+c+d
-
-
-// sbox: x -> x^5
-// Input: x  Output: x^5
-// x -> x,x -> x,x^2 -> x,x^2,x^2 -> x,x^4 -> x^5
-std_crypto_poseidon__sbox:
-    dup 0
-    dup 0
-    mul
-    dup 0
-    mul
-    mul
-    return
-
-
-// mix2: (a, b) -> (2a+b, a+3b)
-// Input: a b  (b on top)  Output: new_a new_b  (new_b on top)
-// S = a + b.  new_a = S+a = 2a+b.  new_b = S+2b = a+3b.
-std_crypto_poseidon__mix2:
-    dup 0
-    dup 2
-    add
-    // Stack: a b S
-    dup 0
-    dup 3
-    add
-    // Stack: a b S new_a
-    swap 3
-    pop 1
-    // Stack: new_a b S
-    swap 1
-    dup 0
-    add
-    add
-    // Stack: new_a new_b
-    return
-
-
-// mix4: (a,b,c,d) -> (S+a, S+b, S+c, S+d) where S=a+b+c+d
-// Input: a b c d  (d on top)  Output: na nb nc nd  (nd on top)
-// Pure stack — no memory operations.
-std_crypto_poseidon__mix4:
-    // Compute S = a+b+c+d
-    dup 3
-    dup 3
-    add
-    dup 3
-    add
-    dup 2
-    add
-    // Stack: a b c d S
-    // na = S + a
-    dup 0
-    dup 5
-    add
-    swap 5
-    pop 1
-    // Stack: na b c d S
-    // nb = S + b
-    dup 0
-    dup 4
-    add
-    swap 4
-    pop 1
-    // Stack: na nb c d S
-    // nc = S + c
-    dup 0
-    dup 3
-    add
-    swap 3
-    pop 1
-    // Stack: na nb nc d S
-    // nd = S + d
-    dup 1
-    add
-    swap 1
-    pop 1
-    // Stack: na nb nc nd
-    return
-
-
-// round2: one full round for 2-element state
-// Input: a b rc0 rc1  (rc1 on top)  Output: new_a new_b
-std_crypto_poseidon__round2:
-    // Add round constants: b1 = b + rc1 (rc1 on top, b at pos 2)
-    dup 2
-    add
-    swap 2
-    pop 1
-    // Stack: a b1 rc0
-    // a1 = a + rc0
-    swap 2
-    add
-    swap 1
-    // Stack: a1 b1
-    // sbox both
-    call std_crypto_poseidon__sbox
-    swap 1
-    call std_crypto_poseidon__sbox
-    swap 1
-    // Stack: a2 b2
-    // mix2
-    call std_crypto_poseidon__mix2
-    return
-
-
-// round4: one full round for 4-element state
-// Input: a b c d rc0 rc1 rc2 rc3  (rc3 on top)  Output: na nb nc nd
-std_crypto_poseidon__round4:
-    // d1 = d + rc3
-    dup 4
-    add
-    swap 4
-    pop 1
-    // c1 = c + rc2
-    dup 4
-    add
-    swap 4
-    pop 1
-    // b1 = b + rc1
-    dup 4
-    add
-    swap 4
-    pop 1
-    // a1 = a + rc0
-    dup 4
-    add
-    swap 4
-    pop 1
-    // Stack: a1 b1 c1 d1
-    // sbox all 4
-    call std_crypto_poseidon__sbox
-    swap 1
-    call std_crypto_poseidon__sbox
-    swap 1
-    swap 2
-    call std_crypto_poseidon__sbox
-    swap 2
-    swap 3
-    call std_crypto_poseidon__sbox
-    swap 3
-    // Stack: a2 b2 c2 d2
-    call std_crypto_poseidon__mix4
-    return
-
-
-// hash2: Poseidon hash of 2 field elements -> 1 field element
-// Input: a b  (b on top)  Output: result
-// 4 rounds with constants (3,7), (11,13), (17,19), (23,29)
-std_crypto_poseidon__hash2:
-    // Round 1
-    push 7
-    push 3
-    call std_crypto_poseidon__round2
-    // Round 2
-    push 13
-    push 11
-    call std_crypto_poseidon__round2
-    // Round 3
-    push 19
-    push 17
-    call std_crypto_poseidon__round2
-    // Round 4
-    push 29
-    push 23
-    call std_crypto_poseidon__round2
-    // Return first element
-    pop 1
-    return
-
-
-// hash4: Poseidon hash of 4 field elements -> 1 field element
-// Input: a b c d  (d on top)  Output: result
-// 4 rounds with constants (3,7,11,13), (17,19,23,29), (31,37,41,43), (47,53,59,61)
-std_crypto_poseidon__hash4:
-    // Round 1
-    push 13
-    push 11
-    push 7
-    push 3
-    call std_crypto_poseidon__round4
-    // Round 2
-    push 29
-    push 23
-    push 19
-    push 17
-    call std_crypto_poseidon__round4
-    // Round 3
-    push 43
-    push 41
-    push 37
-    push 31
-    call std_crypto_poseidon__round4
-    // Round 4
-    push 61
-    push 59
-    push 53
-    push 47
-    call std_crypto_poseidon__round4
-    // Return first element
-    pop 1
-    pop 1
-    pop 1
-    return
-
-
-// hash1: hash single field element (domain tag = 1)
-// Input: a  Output: result
-std_crypto_poseidon__hash1:
-    push 1
-    call std_crypto_poseidon__hash2
-    return
-
-
-// hash3: hash 3 field elements via chained hash2
-// Input: a b c  (c on top)  Output: result
-std_crypto_poseidon__hash3:
-    swap 2
-    swap 1
-    call std_crypto_poseidon__hash2
-    swap 1
-    call std_crypto_poseidon__hash2
-    return
+// Poseidon2 HL8, upstream constants pinned in scripts/generate_poseidon_baseline.py
+// Scratch RAM [2000000,2000016); hashN returns explicitly truncated lane0.
+std_crypto_poseidon__hash1: call __hash1 return
+__hash1:
+push 2000000 write_mem 1 pop 1
+push 0 push 2000001 write_mem 1 pop 1
+push 0 push 2000002 write_mem 1 pop 1
+push 0 push 2000003 write_mem 1 pop 1
+push 1 push 2000004 write_mem 1 pop 1
+push 0 push 2000005 write_mem 1 pop 1
+push 0 push 2000006 write_mem 1 pop 1
+push 0 push 2000007 write_mem 1 pop 1
+call __poseidon_ram
+push 2000000 read_mem 1 pop 1
+return
+std_crypto_poseidon__hash1_digest: call __hash1_digest return
+__hash1_digest:
+push 2000000 write_mem 1 pop 1
+push 0 push 2000001 write_mem 1 pop 1
+push 0 push 2000002 write_mem 1 pop 1
+push 0 push 2000003 write_mem 1 pop 1
+push 1 push 2000004 write_mem 1 pop 1
+push 0 push 2000005 write_mem 1 pop 1
+push 0 push 2000006 write_mem 1 pop 1
+push 0 push 2000007 write_mem 1 pop 1
+call __poseidon_ram
+push 2000000 read_mem 1 pop 1
+push 2000001 read_mem 1 pop 1
+push 2000002 read_mem 1 pop 1
+push 2000003 read_mem 1 pop 1
+return
+std_crypto_poseidon__hash2: call __hash2 return
+__hash2:
+push 2000001 write_mem 1 pop 1
+push 2000000 write_mem 1 pop 1
+push 0 push 2000002 write_mem 1 pop 1
+push 0 push 2000003 write_mem 1 pop 1
+push 2 push 2000004 write_mem 1 pop 1
+push 0 push 2000005 write_mem 1 pop 1
+push 0 push 2000006 write_mem 1 pop 1
+push 0 push 2000007 write_mem 1 pop 1
+call __poseidon_ram
+push 2000000 read_mem 1 pop 1
+return
+std_crypto_poseidon__hash2_digest: call __hash2_digest return
+__hash2_digest:
+push 2000001 write_mem 1 pop 1
+push 2000000 write_mem 1 pop 1
+push 0 push 2000002 write_mem 1 pop 1
+push 0 push 2000003 write_mem 1 pop 1
+push 2 push 2000004 write_mem 1 pop 1
+push 0 push 2000005 write_mem 1 pop 1
+push 0 push 2000006 write_mem 1 pop 1
+push 0 push 2000007 write_mem 1 pop 1
+call __poseidon_ram
+push 2000000 read_mem 1 pop 1
+push 2000001 read_mem 1 pop 1
+push 2000002 read_mem 1 pop 1
+push 2000003 read_mem 1 pop 1
+return
+std_crypto_poseidon__hash3: call __hash3 return
+__hash3:
+push 2000002 write_mem 1 pop 1
+push 2000001 write_mem 1 pop 1
+push 2000000 write_mem 1 pop 1
+push 0 push 2000003 write_mem 1 pop 1
+push 3 push 2000004 write_mem 1 pop 1
+push 0 push 2000005 write_mem 1 pop 1
+push 0 push 2000006 write_mem 1 pop 1
+push 0 push 2000007 write_mem 1 pop 1
+call __poseidon_ram
+push 2000000 read_mem 1 pop 1
+return
+std_crypto_poseidon__hash3_digest: call __hash3_digest return
+__hash3_digest:
+push 2000002 write_mem 1 pop 1
+push 2000001 write_mem 1 pop 1
+push 2000000 write_mem 1 pop 1
+push 0 push 2000003 write_mem 1 pop 1
+push 3 push 2000004 write_mem 1 pop 1
+push 0 push 2000005 write_mem 1 pop 1
+push 0 push 2000006 write_mem 1 pop 1
+push 0 push 2000007 write_mem 1 pop 1
+call __poseidon_ram
+push 2000000 read_mem 1 pop 1
+push 2000001 read_mem 1 pop 1
+push 2000002 read_mem 1 pop 1
+push 2000003 read_mem 1 pop 1
+return
+std_crypto_poseidon__hash4: call __hash4 return
+__hash4:
+push 2000003 write_mem 1 pop 1
+push 2000002 write_mem 1 pop 1
+push 2000001 write_mem 1 pop 1
+push 2000000 write_mem 1 pop 1
+push 4 push 2000004 write_mem 1 pop 1
+push 0 push 2000005 write_mem 1 pop 1
+push 0 push 2000006 write_mem 1 pop 1
+push 0 push 2000007 write_mem 1 pop 1
+call __poseidon_ram
+push 2000000 read_mem 1 pop 1
+return
+std_crypto_poseidon__hash4_digest: call __hash4_digest return
+__hash4_digest:
+push 2000003 write_mem 1 pop 1
+push 2000002 write_mem 1 pop 1
+push 2000001 write_mem 1 pop 1
+push 2000000 write_mem 1 pop 1
+push 4 push 2000004 write_mem 1 pop 1
+push 0 push 2000005 write_mem 1 pop 1
+push 0 push 2000006 write_mem 1 pop 1
+push 0 push 2000007 write_mem 1 pop 1
+call __poseidon_ram
+push 2000000 read_mem 1 pop 1
+push 2000001 read_mem 1 pop 1
+push 2000002 read_mem 1 pop 1
+push 2000003 read_mem 1 pop 1
+return
+std_crypto_poseidon__permute: call __permute return
+__permute:
+push 2000007 write_mem 1 pop 1
+push 2000006 write_mem 1 pop 1
+push 2000005 write_mem 1 pop 1
+push 2000004 write_mem 1 pop 1
+push 2000003 write_mem 1 pop 1
+push 2000002 write_mem 1 pop 1
+push 2000001 write_mem 1 pop 1
+push 2000000 write_mem 1 pop 1
+call __poseidon_ram
+push 2000000 read_mem 1 pop 1
+push 2000001 read_mem 1 pop 1
+push 2000002 read_mem 1 pop 1
+push 2000003 read_mem 1 pop 1
+push 2000004 read_mem 1 pop 1
+push 2000005 read_mem 1 pop 1
+push 2000006 read_mem 1 pop 1
+push 2000007 read_mem 1 pop 1
+return
+__poseidon_sbox: dup 0 dup 0 mul dup 1 mul dup 0 mul mul return
+__poseidon_external:
+push 2000000 read_mem 1 pop 1 push 5 mul push 2000001 read_mem 1 pop 1 push 7 mul add push 2000002 read_mem 1 pop 1 push 1 mul add push 2000003 read_mem 1 pop 1 push 3 mul add push 2000008 write_mem 1 pop 1
+push 2000000 read_mem 1 pop 1 push 4 mul push 2000001 read_mem 1 pop 1 push 6 mul add push 2000002 read_mem 1 pop 1 push 1 mul add push 2000003 read_mem 1 pop 1 push 1 mul add push 2000009 write_mem 1 pop 1
+push 2000000 read_mem 1 pop 1 push 1 mul push 2000001 read_mem 1 pop 1 push 3 mul add push 2000002 read_mem 1 pop 1 push 5 mul add push 2000003 read_mem 1 pop 1 push 7 mul add push 2000010 write_mem 1 pop 1
+push 2000000 read_mem 1 pop 1 push 1 mul push 2000001 read_mem 1 pop 1 push 1 mul add push 2000002 read_mem 1 pop 1 push 4 mul add push 2000003 read_mem 1 pop 1 push 6 mul add push 2000011 write_mem 1 pop 1
+push 2000004 read_mem 1 pop 1 push 5 mul push 2000005 read_mem 1 pop 1 push 7 mul add push 2000006 read_mem 1 pop 1 push 1 mul add push 2000007 read_mem 1 pop 1 push 3 mul add push 2000012 write_mem 1 pop 1
+push 2000004 read_mem 1 pop 1 push 4 mul push 2000005 read_mem 1 pop 1 push 6 mul add push 2000006 read_mem 1 pop 1 push 1 mul add push 2000007 read_mem 1 pop 1 push 1 mul add push 2000013 write_mem 1 pop 1
+push 2000004 read_mem 1 pop 1 push 1 mul push 2000005 read_mem 1 pop 1 push 3 mul add push 2000006 read_mem 1 pop 1 push 5 mul add push 2000007 read_mem 1 pop 1 push 7 mul add push 2000014 write_mem 1 pop 1
+push 2000004 read_mem 1 pop 1 push 1 mul push 2000005 read_mem 1 pop 1 push 1 mul add push 2000006 read_mem 1 pop 1 push 4 mul add push 2000007 read_mem 1 pop 1 push 6 mul add push 2000015 write_mem 1 pop 1
+push 2000008 read_mem 1 pop 1 push 2000008 read_mem 1 pop 1 add push 2000012 read_mem 1 pop 1 add push 2000000 write_mem 1 pop 1
+push 2000009 read_mem 1 pop 1 push 2000009 read_mem 1 pop 1 add push 2000013 read_mem 1 pop 1 add push 2000001 write_mem 1 pop 1
+push 2000010 read_mem 1 pop 1 push 2000010 read_mem 1 pop 1 add push 2000014 read_mem 1 pop 1 add push 2000002 write_mem 1 pop 1
+push 2000011 read_mem 1 pop 1 push 2000011 read_mem 1 pop 1 add push 2000015 read_mem 1 pop 1 add push 2000003 write_mem 1 pop 1
+push 2000012 read_mem 1 pop 1 push 2000008 read_mem 1 pop 1 add push 2000012 read_mem 1 pop 1 add push 2000004 write_mem 1 pop 1
+push 2000013 read_mem 1 pop 1 push 2000009 read_mem 1 pop 1 add push 2000013 read_mem 1 pop 1 add push 2000005 write_mem 1 pop 1
+push 2000014 read_mem 1 pop 1 push 2000010 read_mem 1 pop 1 add push 2000014 read_mem 1 pop 1 add push 2000006 write_mem 1 pop 1
+push 2000015 read_mem 1 pop 1 push 2000011 read_mem 1 pop 1 add push 2000015 read_mem 1 pop 1 add push 2000007 write_mem 1 pop 1
+return
+__poseidon_internal:
+push 2000000 read_mem 1 pop 1 push 2000001 read_mem 1 pop 1 add push 2000002 read_mem 1 pop 1 add push 2000003 read_mem 1 pop 1 add push 2000004 read_mem 1 pop 1 add push 2000005 read_mem 1 pop 1 add push 2000006 read_mem 1 pop 1 add push 2000007 read_mem 1 pop 1 add
+dup 0 push 2000000 read_mem 1 pop 1 push 12216033376705242021 mul add push 2000000 write_mem 1 pop 1
+dup 0 push 2000001 read_mem 1 pop 1 push 2072934925475504800 mul add push 2000001 write_mem 1 pop 1
+dup 0 push 2000002 read_mem 1 pop 1 push 16432743296706583078 mul add push 2000002 write_mem 1 pop 1
+dup 0 push 2000003 read_mem 1 pop 1 push 1287600597097751715 mul add push 2000003 write_mem 1 pop 1
+dup 0 push 2000004 read_mem 1 pop 1 push 10482065724875379356 mul add push 2000004 write_mem 1 pop 1
+dup 0 push 2000005 read_mem 1 pop 1 push 3057917794534811537 mul add push 2000005 write_mem 1 pop 1
+dup 0 push 2000006 read_mem 1 pop 1 push 4460508886913832365 mul add push 2000006 write_mem 1 pop 1
+dup 0 push 2000007 read_mem 1 pop 1 push 4574242228824269566 mul add push 2000007 write_mem 1 pop 1
+pop 1 return
+__poseidon_ram: call __poseidon_external
+push 2000000 read_mem 1 pop 1 push 15949291268843349465 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+push 2000001 read_mem 1 pop 1 push 14644164809401934923 add call __poseidon_sbox push 2000001 write_mem 1 pop 1
+push 2000002 read_mem 1 pop 1 push 18420360874837380316 add call __poseidon_sbox push 2000002 write_mem 1 pop 1
+push 2000003 read_mem 1 pop 1 push 4756469047455716334 add call __poseidon_sbox push 2000003 write_mem 1 pop 1
+push 2000004 read_mem 1 pop 1 push 8685499049481102115 add call __poseidon_sbox push 2000004 write_mem 1 pop 1
+push 2000005 read_mem 1 pop 1 push 3799221349720045367 add call __poseidon_sbox push 2000005 write_mem 1 pop 1
+push 2000006 read_mem 1 pop 1 push 13676397835037157930 add call __poseidon_sbox push 2000006 write_mem 1 pop 1
+push 2000007 read_mem 1 pop 1 push 6566439050423619635 add call __poseidon_sbox push 2000007 write_mem 1 pop 1
+call __poseidon_external
+push 2000000 read_mem 1 pop 1 push 17428268347612331188 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+push 2000001 read_mem 1 pop 1 push 2833135872454503769 add call __poseidon_sbox push 2000001 write_mem 1 pop 1
+push 2000002 read_mem 1 pop 1 push 4767009016213040191 add call __poseidon_sbox push 2000002 write_mem 1 pop 1
+push 2000003 read_mem 1 pop 1 push 2797635963551733652 add call __poseidon_sbox push 2000003 write_mem 1 pop 1
+push 2000004 read_mem 1 pop 1 push 5312339450141126694 add call __poseidon_sbox push 2000004 write_mem 1 pop 1
+push 2000005 read_mem 1 pop 1 push 5356668452102813289 add call __poseidon_sbox push 2000005 write_mem 1 pop 1
+push 2000006 read_mem 1 pop 1 push 1234059326449530173 add call __poseidon_sbox push 2000006 write_mem 1 pop 1
+push 2000007 read_mem 1 pop 1 push 7724302552453704877 add call __poseidon_sbox push 2000007 write_mem 1 pop 1
+call __poseidon_external
+push 2000000 read_mem 1 pop 1 push 14868588146468890290 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+push 2000001 read_mem 1 pop 1 push 12825281145595371185 add call __poseidon_sbox push 2000001 write_mem 1 pop 1
+push 2000002 read_mem 1 pop 1 push 13097885453579304196 add call __poseidon_sbox push 2000002 write_mem 1 pop 1
+push 2000003 read_mem 1 pop 1 push 7905326782341128063 add call __poseidon_sbox push 2000003 write_mem 1 pop 1
+push 2000004 read_mem 1 pop 1 push 14167525334039893569 add call __poseidon_sbox push 2000004 write_mem 1 pop 1
+push 2000005 read_mem 1 pop 1 push 2082169701994688927 add call __poseidon_sbox push 2000005 write_mem 1 pop 1
+push 2000006 read_mem 1 pop 1 push 12190787523818595537 add call __poseidon_sbox push 2000006 write_mem 1 pop 1
+push 2000007 read_mem 1 pop 1 push 12602917751946636 add call __poseidon_sbox push 2000007 write_mem 1 pop 1
+call __poseidon_external
+push 2000000 read_mem 1 pop 1 push 14890907856876319003 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+push 2000001 read_mem 1 pop 1 push 16552240149997473409 add call __poseidon_sbox push 2000001 write_mem 1 pop 1
+push 2000002 read_mem 1 pop 1 push 5634093690795187558 add call __poseidon_sbox push 2000002 write_mem 1 pop 1
+push 2000003 read_mem 1 pop 1 push 4883714163685656967 add call __poseidon_sbox push 2000003 write_mem 1 pop 1
+push 2000004 read_mem 1 pop 1 push 12440776365164557866 add call __poseidon_sbox push 2000004 write_mem 1 pop 1
+push 2000005 read_mem 1 pop 1 push 3923800234666204307 add call __poseidon_sbox push 2000005 write_mem 1 pop 1
+push 2000006 read_mem 1 pop 1 push 9858064884105950259 add call __poseidon_sbox push 2000006 write_mem 1 pop 1
+push 2000007 read_mem 1 pop 1 push 16040043470428402038 add call __poseidon_sbox push 2000007 write_mem 1 pop 1
+call __poseidon_external
+push 2000000 read_mem 1 pop 1 push 5226594323142090582 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 1243120476974621208 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 12100812801659301173 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 11228203327983058121 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 13891617888374767564 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 5742893160230537107 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 3763472116988983643 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 2466655769425769160 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 6254574254498162968 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 14183251225809189357 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 11565357354521717084 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 17300657704266685688 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 310485250821938281 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 16853586468012618118 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 1978800426240373849 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 6948188224235462572 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 1486402152218690509 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 5669161690283398991 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 17943970877073781734 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 17926851897715769433 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 13052837496695000666 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 18138113741095562305 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+call __poseidon_internal
+push 2000000 read_mem 1 pop 1 push 94277733998400326 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+push 2000001 read_mem 1 pop 1 push 10891359798487446420 add call __poseidon_sbox push 2000001 write_mem 1 pop 1
+push 2000002 read_mem 1 pop 1 push 18280773820738154043 add call __poseidon_sbox push 2000002 write_mem 1 pop 1
+push 2000003 read_mem 1 pop 1 push 13714589910668449566 add call __poseidon_sbox push 2000003 write_mem 1 pop 1
+push 2000004 read_mem 1 pop 1 push 10639034072771185213 add call __poseidon_sbox push 2000004 write_mem 1 pop 1
+push 2000005 read_mem 1 pop 1 push 14148790895768484219 add call __poseidon_sbox push 2000005 write_mem 1 pop 1
+push 2000006 read_mem 1 pop 1 push 18341268649720100165 add call __poseidon_sbox push 2000006 write_mem 1 pop 1
+push 2000007 read_mem 1 pop 1 push 3096672942770686236 add call __poseidon_sbox push 2000007 write_mem 1 pop 1
+call __poseidon_external
+push 2000000 read_mem 1 pop 1 push 12277596046563557393 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+push 2000001 read_mem 1 pop 1 push 400461754528604020 add call __poseidon_sbox push 2000001 write_mem 1 pop 1
+push 2000002 read_mem 1 pop 1 push 12955488253560265444 add call __poseidon_sbox push 2000002 write_mem 1 pop 1
+push 2000003 read_mem 1 pop 1 push 11773677676764285572 add call __poseidon_sbox push 2000003 write_mem 1 pop 1
+push 2000004 read_mem 1 pop 1 push 4833837465239476573 add call __poseidon_sbox push 2000004 write_mem 1 pop 1
+push 2000005 read_mem 1 pop 1 push 17645852643693996619 add call __poseidon_sbox push 2000005 write_mem 1 pop 1
+push 2000006 read_mem 1 pop 1 push 6605134696140007471 add call __poseidon_sbox push 2000006 write_mem 1 pop 1
+push 2000007 read_mem 1 pop 1 push 588040525114200273 add call __poseidon_sbox push 2000007 write_mem 1 pop 1
+call __poseidon_external
+push 2000000 read_mem 1 pop 1 push 11001741536026769411 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+push 2000001 read_mem 1 pop 1 push 17917086578469406776 add call __poseidon_sbox push 2000001 write_mem 1 pop 1
+push 2000002 read_mem 1 pop 1 push 14893530806420712543 add call __poseidon_sbox push 2000002 write_mem 1 pop 1
+push 2000003 read_mem 1 pop 1 push 727997185253761138 add call __poseidon_sbox push 2000003 write_mem 1 pop 1
+push 2000004 read_mem 1 pop 1 push 3443873847340254325 add call __poseidon_sbox push 2000004 write_mem 1 pop 1
+push 2000005 read_mem 1 pop 1 push 13095911531247069692 add call __poseidon_sbox push 2000005 write_mem 1 pop 1
+push 2000006 read_mem 1 pop 1 push 8330737046680948619 add call __poseidon_sbox push 2000006 write_mem 1 pop 1
+push 2000007 read_mem 1 pop 1 push 6014364575875986011 add call __poseidon_sbox push 2000007 write_mem 1 pop 1
+call __poseidon_external
+push 2000000 read_mem 1 pop 1 push 16851679856681761121 add call __poseidon_sbox push 2000000 write_mem 1 pop 1
+push 2000001 read_mem 1 pop 1 push 17817965496543149594 add call __poseidon_sbox push 2000001 write_mem 1 pop 1
+push 2000002 read_mem 1 pop 1 push 12823640325246269760 add call __poseidon_sbox push 2000002 write_mem 1 pop 1
+push 2000003 read_mem 1 pop 1 push 13685256787930775147 add call __poseidon_sbox push 2000003 write_mem 1 pop 1
+push 2000004 read_mem 1 pop 1 push 4682652317564502291 add call __poseidon_sbox push 2000004 write_mem 1 pop 1
+push 2000005 read_mem 1 pop 1 push 4233879762155685988 add call __poseidon_sbox push 2000005 write_mem 1 pop 1
+push 2000006 read_mem 1 pop 1 push 11097258179564187322 add call __poseidon_sbox push 2000006 write_mem 1 pop 1
+push 2000007 read_mem 1 pop 1 push 10804761421745472094 add call __poseidon_sbox push 2000007 write_mem 1 pop 1
+call __poseidon_external
+return

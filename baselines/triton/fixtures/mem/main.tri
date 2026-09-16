@@ -1,0 +1,3 @@
+program baseline_mem
+use vm.io.mem
+fn main() { mem.write(100,17) mem.write(101,29) pub_write(mem.read(100)) pub_write(mem.read(101)) }

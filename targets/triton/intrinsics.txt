@@ -36,6 +36,8 @@ sponge_absorb_mem
 sponge_init
 sponge_squeeze
 sub
+triton_program_digest
+triton_stark_verify_v1
 xb_dot_step
 xfield
 xinvert

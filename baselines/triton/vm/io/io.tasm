@@ -1,5 +1,5 @@
 // Hand-optimized TASM baseline: vm.io.io
-//
+
 // I/O intrinsics — single Triton VM instructions.
 
 // read() -> Field

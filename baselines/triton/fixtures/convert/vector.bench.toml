@@ -1,0 +1,10 @@
+source = "main.tri"
+hand = "../../vm/core/convert.tasm"
+target = "triton"
+input = [4294967295]
+output = [4294967295]
+reference = "U32 inclusive bound is 4294967295; 4294967296 must reject."
+expect_failure = false
+hand_prefix = """
+read_io 1 call vm_core_convert__as_u32 call vm_core_convert__as_field write_io 1 halt
+"""

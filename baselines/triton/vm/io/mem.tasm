@@ -1,5 +1,5 @@
 // Hand-optimized TASM baseline: vm.io.mem
-//
+
 // RAM intrinsics — Triton VM memory operations.
 
 // read(addr) -> Field

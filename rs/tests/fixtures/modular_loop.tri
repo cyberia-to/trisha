@@ -1,0 +1,27 @@
+program modular_loop
+use std.crypto.bigint
+use vm.core.convert
+fn reduce_limb_mod(remainder: bigint.U256, limb: U32, m: bigint.U256) -> bigint.U256 {
+    let mut result: bigint.U256 = remainder
+    let mut word: U32 = limb
+    let mut mask: U32 = convert.as_u32(2147483648)
+    let two: U32 = convert.as_u32(2)
+    for i in 0..32 {
+        pub_write(convert.as_field(mask))
+        result = bigint.add_mod(result, result, m)
+        pub_write(convert.as_field(mask))
+        let (bit, rest) = word /% mask
+        word = rest
+        if bit == convert.as_u32(1) {
+            result = bigint.add_mod(result, bigint.one256(), m)
+        }
+        let (next_mask, unused) = mask /% two
+        mask = next_mask
+    }
+    result
+}
+
+
+fn main() { let m: bigint.U256 = bigint.U256 { l0: as_u32(4294967295), l1: as_u32(4294967295), l2: as_u32(4294967295), l3: as_u32(4294967295), l4: as_u32(4294967295), l5: as_u32(4294967295), l6: as_u32(4294967295), l7: as_u32(4294967295) }
+ let result: bigint.U256 = reduce_limb_mod(bigint.zero256(),as_u32(4294967295),m)
+ pub_write(as_field(result.l0)) }

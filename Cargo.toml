@@ -1,5 +1,5 @@
 [workspace]
-members = ["cli", "rs", "wgpu", "honeycrisp"]
+members = ["cli", "rs", "wgpu", "honeycrisp", "neptune"]
 resolver = "2"
 
 [patch.crates-io]
@@ -9,3 +9,5 @@ triton-air               = { path = ".vendor/triton-air" }
 triton-isa               = { path = ".vendor/triton-isa" }
 triton-constraint-circuit = { path = ".vendor/triton-constraint-circuit" }
 triton-constraint-builder = { path = ".vendor/triton-constraint-builder" }
+tasm-lib                 = { path = ".vendor/tasm-lib" }
+tasm-object-derive       = { path = ".vendor/tasm-object-derive" }
