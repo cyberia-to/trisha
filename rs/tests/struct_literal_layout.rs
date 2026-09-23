@@ -93,7 +93,7 @@ fn unchecked_builder_errors_cannot_become_executable_stack_values() {
     ] {
         let file = trident::parse_source_silent(source, "bad.tri").unwrap();
         let ops = TIRBuilder::new(trisha_rs::target::package("triton").unwrap().terrain)
-            .build_file(&file);
+            .build_file(&file).unwrap();
         let error = trisha_rs::lower::lower_checked(&ops).unwrap_err();
         assert!(error.contains("ERROR:"), "{error}");
     }

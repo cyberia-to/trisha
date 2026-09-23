@@ -171,7 +171,7 @@ use trident::tir::builder::TIRBuilder;
 fn compile_to_tasm(source: &str) -> String {
     let file = trident::parse_source_silent(source, "test.tri").unwrap();
     let config = crate::target::terrain().expect("embedded Triton target");
-    let ir = TIRBuilder::new(config).build_file(&file);
+    let ir = TIRBuilder::new(config).build_file(&file).unwrap();
     let lowering = TritonLowering::new();
     lowering.lower(&ir).join("\n")
 }
