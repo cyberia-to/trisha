@@ -1,6 +1,6 @@
 [package]
 name = "trisha-rs"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 description = "Trisha Triton compiler backend and CPU warrior"
 license-file = "../LICENSE"
@@ -14,13 +14,20 @@ default = []
 neural = ["trident-lang/neural", "dep:burn"]
 
 [dependencies]
-trident-lang = { version = "0.3", path = "../../trident", default-features = false }
+tasm-lib = "=7.0.0"
+trident-lang = { version = "0.3.0", path = "../../trident", default-features = false }
 nebu = { package = "strata-nebu", version = "0.1", path = "../../strata/nebu/rs" }
-triton-vm = "2"
+zheng = { version = "0.4.0", path = "../../zheng/rs" }
+triton-vm = "=7.0.0"
 twenty-first = "1"
 bincode = "1"
 burn = { version = "0.20", features = ["wgpu", "autodiff", "ndarray"], optional = true }
 rayon = "1.10"
 
 [dev-dependencies]
+serde_json = "1"
 tempfile = "3"
+p3-goldilocks = "=0.4.2"
+p3-poseidon2 = "=0.4.2"
+p3-symmetric = "=0.4.2"
+p3-field = "=0.4.2"

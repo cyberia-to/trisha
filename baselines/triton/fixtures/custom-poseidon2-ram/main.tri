@@ -1,0 +1,8 @@
+program custom_ram
+use std.crypto.poseidon2
+use vm.io.mem
+use vm.core.convert
+use vm.io.io
+fn main() { let a=pub_read() let b=pub_read() let c=pub_read() let d=pub_read()
+for i in 0..86 bounded 86 { mem.write(1000 + convert.as_field(i),io.divine()) }
+pub_write(poseidon2.hash4_to_digest(a,b,c,d,1000)) }

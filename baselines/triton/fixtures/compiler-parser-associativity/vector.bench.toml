@@ -1,0 +1,8 @@
+source = "main.tri"
+hand = "../../std/compiler/parser.tasm"
+target = "triton"
+input = [55, 112, 114, 111, 103, 114, 97, 109, 32, 99, 104, 97, 105, 110, 32, 102, 110, 32, 109, 97, 105, 110, 40, 41, 32, 45, 62, 32, 70, 105, 101, 108, 100, 32, 123, 32, 49, 49, 32, 42, 32, 50, 32, 42, 32, 51, 32, 43, 32, 52, 32, 43, 32, 53, 32, 125]
+output = [13, 0, 1, 1, 1, 1, 0, 1, 1, 0, 3, 3, 2, 0, 2, 3, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 26, 4, 0, 12, 0, 0, 0, 0, 40, 11, 0, 0, 0, 0, 0, 0, 40, 2, 0, 0, 0, 0, 0, 0, 43, 4, 4, 5, 0, 0, 0, 0, 40, 3, 0, 0, 0, 0, 0, 0, 43, 4, 6, 7, 0, 0, 0, 0, 40, 4, 0, 0, 0, 0, 0, 0, 43, 3, 8, 9, 0, 0, 0, 0, 40, 5, 0, 0, 0, 0, 0, 0, 43, 3, 10, 11, 0, 0, 0, 0]
+max_cycles = 500000
+reference = "Independent byte tokenization and Pratt AST/postfix TIR oracle; complete parser records; associativity. See std/compiler/README.md."
+hand_prefix = "call __parser_main halt"

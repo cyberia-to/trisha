@@ -75,7 +75,15 @@ fn embedded_package_owns_network_and_modules() {
     let package = trisha_rs::target::package("neptune").expect("embedded package");
     package.validate().expect("package integrity");
     assert_eq!(package.terrain.digest_width, 5);
-    assert_eq!(package.states.len(), 2);
+    assert_eq!(package.states.len(), 3);
+    let local = package
+        .states
+        .iter()
+        .find(|state| state.name == "local-testnet1")
+        .expect("explicit local real-proof state");
+    assert_eq!(local.chain_id, "4");
+    assert_eq!(local.rpc_url, "http://127.0.0.1:29799");
+    assert!(!local.is_default);
     assert!(package.modules.contains_key("os.neptune.kernel"));
     assert!(!package.runtime.deploy);
     let actual: std::collections::BTreeSet<_> = triton_vm::isa::instruction::ALL_INSTRUCTION_NAMES
@@ -209,4 +217,69 @@ fn checked_u32_wrapper_rejects_high_limbs() {
         NonDeterminism::default()
     )
     .is_err());
+}
+
+#[test]
+fn power_uses_base_then_exponent_source_order() {
+    for (base, exponent, expected) in [(3, 5, 243), (5, 3, 125), (7, 0, 1)] {
+        assert_eq!(
+            execute(
+                vec![
+                    TIROp::Push(base),
+                    TIROp::Push(exponent),
+                    TIROp::Pow,
+                    TIROp::WriteIo(1)
+                ],
+                vec![]
+            ),
+            vec![expected]
+        );
+    }
+}
+
+#[test]
+fn owner_legalizes_wide_source_frames_in_both_profiles() {
+    let width = 40;
+    let reverse = (0..width)
+        .rev()
+        .map(|i| format!("words[{i}]"))
+        .collect::<Vec<_>>()
+        .join(", ");
+    let reads = vec!["pub_read()"; width].join(", ");
+    let mut source = format!("program deep_frames\nfn reverse(words: [Field; {width}]) -> [Field; {width}] {{ [{reverse}] }}\nfn main() {{ let sentinel: Field = 997\nlet words: [Field; {width}] = [{reads}]\nlet reversed = reverse(words)\n");
+    for name in ["reversed", "words"] {
+        for i in 0..width {
+            source.push_str(&format!("pub_write({name}[{i}])\n"));
+        }
+    }
+    source.push_str("pub_write(sentinel)\n}");
+    let dir = tempfile::tempdir().unwrap();
+    let path = dir.path().join("deep_frames.tri");
+    std::fs::write(&path, source).unwrap();
+    let input: Vec<u64> = (1..=width as u64).collect();
+    let expected: Vec<u64> = input
+        .iter()
+        .rev()
+        .chain(input.iter())
+        .copied()
+        .chain([997])
+        .collect();
+    for profile in ["debug", "release"] {
+        let assembly = trisha_rs::build_tasm(&path, "triton", profile).unwrap();
+        assert!(
+            assembly.contains("stack_scratch"),
+            "owner scratch must handle deep access"
+        );
+        let actual = VM::run(
+            Program::from_code(&assembly).unwrap(),
+            PublicInput::new(input.iter().copied().map(BFieldElement::new).collect()),
+            NonDeterminism::default(),
+        )
+        .unwrap();
+        assert_eq!(
+            actual.iter().map(|v| v.value()).collect::<Vec<_>>(),
+            expected,
+            "{profile}"
+        );
+    }
 }

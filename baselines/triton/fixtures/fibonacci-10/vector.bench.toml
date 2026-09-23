@@ -1,0 +1,10 @@
+source = "main.tri"
+hand = "../../std/math/fibonacci.tasm"
+target = "triton"
+input = [10]
+output = [55]
+reference = "Independent integer recurrence F0=0,F1=1,F(n+2)=F(n+1)+F(n), reduced modulo Goldilocks."
+expect_failure = false
+hand_prefix = """
+read_io 1 call std_math_fibonacci__fib256 write_io 1 halt
+"""

@@ -1,0 +1,7 @@
+source = "main.tri"
+hand = "../../std/crypto/poseidon2.tasm"
+input = [1, 2, 3, 4, 5, 6, 7, 8]
+secret = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86]
+output = ["10388013486560038104", "9763029932659173687", "8082074554662162868", "16461988811982332486", "10306439844775794597", "7729307474914476547", "4706039160167184311", "6593021388868875258"]
+reference = "Independent Python modular exponentiation and explicit custom I+J/diagonal+J matrices over all eight lanes and 86 nonzero caller constants. This historical custom permutation is not standard Poseidon2 and has no cryptographic security claim."
+hand_prefix = "read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 swap 7 swap 1 swap 6 swap 1 swap 2 swap 5 swap 2 swap 3 swap 4 swap 3 call __permute write_io 5 write_io 3 halt"

@@ -10,7 +10,7 @@ use crate::compile::compile_source;
 use crate::error::TrishaError;
 use crate::proof_file::{ClaimSection, DataSection, ProofFile, ProofMeta};
 
-use super::{bundle_from_tasm, make_input};
+use super::{bundle_from_tasm, make_input_from_file};
 
 #[derive(Args)]
 #[command(args_conflicts_with_subcommands = true)]
@@ -31,6 +31,9 @@ pub struct ProveArgs {
     pub secret: Option<Vec<u64>>,
     #[arg(long, value_delimiter = ',')]
     pub digests: Option<Vec<u64>>,
+    /// Version1 ProgramInput JSON (for large private witnesses)
+    #[arg(long, conflicts_with_all = ["input_values", "secret", "digests"])]
+    pub input_file: Option<PathBuf>,
     #[arg(long)]
     pub output: Option<PathBuf>,
 }
@@ -53,6 +56,9 @@ pub struct ProveBatchArgs {
     pub secret: Option<Vec<u64>>,
     #[arg(long, value_delimiter = ',')]
     pub digests: Option<Vec<u64>>,
+    /// Version1 ProgramInput JSON (for large private witnesses)
+    #[arg(long, conflicts_with_all = ["input_values", "secret", "digests"])]
+    pub input_file: Option<PathBuf>,
     #[arg(long, default_value = ".")]
     pub output: PathBuf,
     #[arg(long, default_value = "4")]
@@ -73,6 +79,7 @@ pub fn cmd_prove(args: ProveArgs) {
                     &args.input_values,
                     &args.secret,
                     &args.digests,
+                    &args.input_file,
                     args.output,
                 );
                 return;
@@ -91,6 +98,7 @@ pub fn cmd_prove(args: ProveArgs) {
                 &args.input_values,
                 &args.secret,
                 &args.digests,
+                &args.input_file,
                 args.output,
             );
         }
@@ -122,6 +130,7 @@ fn cmd_prove_single(
     input_values: &Option<Vec<u64>>,
     secret: &Option<Vec<u64>>,
     digests: &Option<Vec<u64>>,
+    input_file: &Option<PathBuf>,
     output: Option<PathBuf>,
 ) {
     let bundle = match compile_source(&input, target, profile) {
@@ -131,7 +140,7 @@ fn cmd_prove_single(
             process::exit(1);
         }
     };
-    let pi = make_input(input_values, secret, digests);
+    let pi = make_input_from_file(input_values, secret, digests, input_file);
     let start = std::time::Instant::now();
     let warrior = Warrior::new();
     let result = match warrior.prove_full(&bundle, &pi) {
@@ -183,6 +192,7 @@ fn cmd_prove_tasm(
     input_values: &Option<Vec<u64>>,
     secret: &Option<Vec<u64>>,
     digests: &Option<Vec<u64>>,
+    input_file: &Option<PathBuf>,
     output: Option<PathBuf>,
 ) {
     let bundle = match bundle_from_tasm(tasm_path) {
@@ -192,7 +202,7 @@ fn cmd_prove_tasm(
             process::exit(1);
         }
     };
-    let pi = make_input(input_values, secret, digests);
+    let pi = make_input_from_file(input_values, secret, digests, input_file);
     let start = std::time::Instant::now();
     let warrior = Warrior::new();
     let result = match warrior.prove_full(&bundle, &pi) {
@@ -271,9 +281,12 @@ fn cmd_prove_batch(args: ProveBatchArgs) {
         process::exit(1);
     }
     let profile = args.profile.clone();
-    let input_values = args.input_values.clone();
-    let secret = args.secret.clone();
-    let digests = args.digests.clone();
+    let pi = make_input_from_file(
+        &args.input_values,
+        &args.secret,
+        &args.digests,
+        &args.input_file,
+    );
     let output_dir = args.output.clone();
     let count = args.inputs.len();
     eprintln!(
@@ -282,7 +295,6 @@ fn cmd_prove_batch(args: ProveBatchArgs) {
     );
     let results = batch::run_batch(jobs, args.max_parallel, |(path, target)| {
         let bundle = compile_source(&path, &target, &profile)?;
-        let pi = make_input(&input_values, &secret, &digests);
         let warrior = Warrior::new();
         let start = std::time::Instant::now();
         let result = warrior

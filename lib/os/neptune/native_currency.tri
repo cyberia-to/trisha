@@ -1,0 +1,9 @@
+module os.neptune.native_currency
+
+// Complete pinned Neptune 0.15.1 NativeCurrency relation, native proof version 5.
+// Binds kernel MAST and both salted UTXO list digests, with empty native output.
+// Program digest: 11305007904490302261,9599338968880624023,13137634647446694715,16075658688778637089,7210249028992940817.
+// The owner constructs the fixed canonical Claim and verifies its actual proof.
+// This predicate is one component of Neptune's complete SingleProof graph.
+#[intrinsic(neptune_native_currency_verify_v1)]
+pub fn verify(kernel: Digest, inputs: Digest, outputs: Digest)

@@ -1,0 +1,15 @@
+source = "main.tri"
+hand = "../../os/neptune/recursive.tasm"
+target = "neptune"
+input = []
+output = [10, 15, 20, 103, 201]
+reference = "Independent coefficientwise multiplication (2+3X+4X\u00b2)*5, RAM strides3 and1."
+expect_failure = false
+hand_prefix = """
+push 2 push 100 write_mem 1 pop 1 push 3 push 101 write_mem 1 pop 1 push 4 push 102 write_mem 1 pop 1 push 5 push 200 write_mem 1 pop 1 push 100 push 200 push 1 call __xb_inner_product
+    swap 4
+    swap 1
+    swap 3
+    swap 1
+write_io 5 halt
+"""

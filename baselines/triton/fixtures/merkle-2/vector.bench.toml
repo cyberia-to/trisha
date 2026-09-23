@@ -1,0 +1,20 @@
+source = "main.tri"
+hand = "../../vm/crypto/merkle.tasm"
+target = "triton"
+input = [2]
+output = [1, "10818500669765797222", 7750847691288459381, "17271032843874487437", 1108553480921430050, 6029014391627118288]
+reference = "Independent twenty-first Tip5::hash_pair for both sibling orientations; rs/examples/baseline_vectors.rs."
+expect_failure = false
+hand_prefix = """
+read_io 1 push 1 push 2 push 3 push 4 push 5 call vm_crypto_merkle__step
+    swap 5
+    swap 1
+    swap 4
+    swap 1
+    swap 2
+    swap 3
+    swap 2
+write_io 5 write_io 1 halt
+"""
+
+digests = [6,7,8,9,10]

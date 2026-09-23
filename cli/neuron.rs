@@ -2,7 +2,7 @@ use std::process;
 
 use clap::{Args, Subcommand};
 
-use crate::neptune::{load_hidden_addresses, neuron_dir, save_hidden_addresses, NeptuneClient};
+use crate::neptune::{load_hidden_addresses, save_hidden_addresses, NeptuneClient};
 use crate::NetworkArgs;
 
 #[derive(Args)]
@@ -23,7 +23,7 @@ pub enum NeuronCmd {
     Boxes,
     /// Create a new neuron
     Create,
-    /// Instructions for importing a neuron from seed phrase
+    /// Import a wallet through the upstream interactive seed dialog
     Import(NeuronImportArgs),
     /// Remove local neuron files
     Remove(NeuronRemoveArgs),
@@ -64,10 +64,15 @@ pub struct NeuronAddressTargetArgs {
 pub struct NeuronAddressListArgs {
     #[arg(long)]
     pub all: bool,
+    #[arg(long, default_value_t = 0)]
+    pub start: u64,
+    #[arg(long, default_value_t = 100, value_parser = clap::value_parser!(u16).range(1..=1000))]
+    pub limit: u16,
 }
 
 #[derive(Args)]
 pub struct NeuronImportArgs {
+    #[arg(hide = true)]
     pub words: Vec<String>,
 }
 
@@ -83,17 +88,27 @@ pub fn cmd_neuron(args: NeuronArgs) {
         process::exit(1);
     });
     match args.cmd {
-        NeuronCmd::Balance => cmd_neuron_balance(rpc_port, state.currency_symbol),
-        NeuronCmd::Address(a) => cmd_neuron_address(rpc_port, a),
-        NeuronCmd::Boxes => cmd_neuron_boxes(rpc_port),
-        NeuronCmd::Create => cmd_neuron_create(),
-        NeuronCmd::Import(a) => cmd_neuron_import(&a.words),
-        NeuronCmd::Remove(a) => cmd_neuron_remove(a.confirm),
+        NeuronCmd::Balance => {
+            cmd_neuron_balance(rpc_port, state.network_flag, state.currency_symbol)
+        }
+        NeuronCmd::Address(a) => cmd_neuron_address(rpc_port, state.network_flag, a),
+        NeuronCmd::Boxes => cmd_neuron_boxes(rpc_port, state.network_flag),
+        NeuronCmd::Create => cmd_neuron_create(rpc_port, state.network_flag, false),
+        NeuronCmd::Import(a) => {
+            if !a.words.is_empty() {
+                eprintln!(
+                    "error: seed words must be entered only in the interactive upstream dialog; run neuron import without positional arguments"
+                );
+                process::exit(1);
+            }
+            cmd_neuron_create(rpc_port, state.network_flag, true)
+        }
+        NeuronCmd::Remove(a) => cmd_neuron_remove(rpc_port, state.network_flag, a.confirm),
     }
 }
 
-fn cmd_neuron_balance(rpc_port: u16, currency: &str) {
-    let client = NeptuneClient::new(rpc_port);
+fn cmd_neuron_balance(rpc_port: u16, network: &str, currency: &str) {
+    let client = NeptuneClient::for_network(rpc_port, network);
 
     let confirmed = client.confirmed_balance().unwrap_or_else(|e| {
         eprintln!("error: {}", e);
@@ -108,17 +123,17 @@ fn cmd_neuron_balance(rpc_port: u16, currency: &str) {
     println!("Unconfirmed : {} {}", unconfirmed, currency);
 }
 
-fn cmd_neuron_address(rpc_port: u16, args: NeuronAddressArgs) {
+fn cmd_neuron_address(rpc_port: u16, network: &str, args: NeuronAddressArgs) {
     match args.cmd {
-        NeuronAddressCmd::Add(a) => cmd_address_add(rpc_port, a),
-        NeuronAddressCmd::Hide(a) => cmd_address_hide(a.address),
-        NeuronAddressCmd::Show(a) => cmd_address_show(a.address),
-        NeuronAddressCmd::List(a) => cmd_address_list(rpc_port, a.all),
+        NeuronAddressCmd::Add(a) => cmd_address_add(rpc_port, network, a),
+        NeuronAddressCmd::Hide(a) => cmd_address_hide(network, a.address),
+        NeuronAddressCmd::Show(a) => cmd_address_show(network, a.address),
+        NeuronAddressCmd::List(a) => cmd_address_list(rpc_port, network, a),
     }
 }
 
-fn cmd_address_add(rpc_port: u16, args: NeuronAddressAddArgs) {
-    let client = NeptuneClient::new(rpc_port);
+fn cmd_address_add(rpc_port: u16, network: &str, args: NeuronAddressAddArgs) {
+    let client = NeptuneClient::for_network(rpc_port, network);
 
     let address = if let Some(idx) = args.index {
         client
@@ -142,14 +157,14 @@ fn cmd_address_add(rpc_port: u16, args: NeuronAddressAddArgs) {
     }
 }
 
-fn cmd_address_hide(address: String) {
-    let mut hidden = load_hidden_addresses();
+fn cmd_address_hide(network: &str, address: String) {
+    let mut hidden = load_hidden_addresses(network);
     if hidden.contains(&address) {
         eprintln!("already hidden: {}", address);
         return;
     }
     hidden.push(address.clone());
-    match save_hidden_addresses(&hidden) {
+    match save_hidden_addresses(network, &hidden) {
         Ok(()) => eprintln!("hidden: {}", address),
         Err(e) => {
             eprintln!("error: {}", e);
@@ -158,15 +173,15 @@ fn cmd_address_hide(address: String) {
     }
 }
 
-fn cmd_address_show(address: String) {
-    let mut hidden = load_hidden_addresses();
+fn cmd_address_show(network: &str, address: String) {
+    let mut hidden = load_hidden_addresses(network);
     let before = hidden.len();
     hidden.retain(|a| a != &address);
     if hidden.len() == before {
         eprintln!("not in hidden list: {}", address);
         return;
     }
-    match save_hidden_addresses(&hidden) {
+    match save_hidden_addresses(network, &hidden) {
         Ok(()) => eprintln!("visible: {}", address),
         Err(e) => {
             eprintln!("error: {}", e);
@@ -175,26 +190,28 @@ fn cmd_address_show(address: String) {
     }
 }
 
-fn cmd_address_list(rpc_port: u16, show_all: bool) {
-    let client = NeptuneClient::new(rpc_port);
-    let output = client.known_keys().unwrap_or_else(|e| {
-        eprintln!("error: {}", e);
-        process::exit(1);
-    });
+fn cmd_address_list(rpc_port: u16, network: &str, args: NeuronAddressListArgs) {
+    let client = NeptuneClient::for_network(rpc_port, network);
+    let output = client
+        .known_keys(args.start, args.limit)
+        .unwrap_or_else(|e| {
+            eprintln!("error: {}", e);
+            process::exit(1);
+        });
 
     if output.is_empty() {
         println!("No addresses found.");
         return;
     }
 
-    let hidden = load_hidden_addresses();
+    let hidden = load_hidden_addresses(network);
     let mut displayed = 0u32;
     for line in output.lines() {
         let trimmed = line.trim();
         if trimmed.is_empty() {
             continue;
         }
-        if !show_all && hidden.iter().any(|h| trimmed.contains(h.as_str())) {
+        if !args.all && hidden.iter().any(|h| trimmed.contains(h.as_str())) {
             continue;
         }
         println!("{}", trimmed);
@@ -206,8 +223,8 @@ fn cmd_address_list(rpc_port: u16, show_all: bool) {
     }
 }
 
-fn cmd_neuron_boxes(rpc_port: u16) {
-    let client = NeptuneClient::new(rpc_port);
+fn cmd_neuron_boxes(rpc_port: u16, network: &str) {
+    let client = NeptuneClient::for_network(rpc_port, network);
     let boxes = client.list_utxos().unwrap_or_else(|e| {
         eprintln!("error: {}", e);
         process::exit(1);
@@ -219,73 +236,51 @@ fn cmd_neuron_boxes(rpc_port: u16) {
     }
 }
 
-fn cmd_neuron_create() {
-    match NeptuneClient::create_neuron() {
-        Ok(output) => {
-            if output.is_empty() {
-                eprintln!("Neuron created successfully.");
-            } else {
-                eprintln!("=== WRITE DOWN YOUR SEED PHRASE ===");
-                println!("{}", output);
-                eprintln!("===================================");
-                eprintln!("Store the seed phrase in a safe place. It cannot be recovered.");
-            }
-        }
+fn cmd_neuron_create(rpc_port: u16, network: &str, import: bool) {
+    match NeptuneClient::for_network(rpc_port, network).create_neuron(import) {
+        Ok(path) => eprintln!(
+            "Wallet {}: {}",
+            if import { "imported" } else { "created" },
+            path.display()
+        ),
         Err(e) => {
-            eprintln!("error: {}", e);
+            eprintln!("error: {e}");
             process::exit(1);
         }
     }
 }
 
-fn cmd_neuron_import(words: &[String]) {
-    if words.is_empty() {
-        eprintln!("Usage: trisha neuron import <word1> <word2> ... <word24>");
+fn cmd_neuron_remove(rpc_port: u16, network: &str, confirmed: bool) {
+    let client = NeptuneClient::for_network(rpc_port, network);
+    let wallet = client.wallet_file().unwrap_or_else(|e| {
+        eprintln!("error: {e}");
+        process::exit(1);
+    });
+    let Some(wallet) = wallet else {
+        eprintln!("No wallet found for {network}.");
+        return;
+    };
+    let directory = wallet.parent().expect("validated wallet path");
+    if !confirmed {
+        eprintln!("Wallet directory: {}", directory.display());
+        eprintln!(
+            "Removal requires --confirm. Stop the node and ensure your wallet backup exists before removing it."
+        );
+        return;
+    }
+    // Revalidate immediately before deletion, including all symlink components.
+    let current = client.wallet_file().unwrap_or_else(|e| {
+        eprintln!("error: {e}");
+        process::exit(1);
+    });
+    if current.as_ref() != Some(&wallet) {
+        eprintln!("error: selected wallet changed before removal");
         process::exit(1);
     }
-    let phrase = words.join(" ");
-    eprintln!("Importing a neuron from seed phrase requires neptune-core:");
-    eprintln!();
-    eprintln!("  1. Stop neptune-core if it is running.");
-    eprintln!("  2. Remove the existing neuron:");
-    eprintln!("       trisha neuron remove --confirm");
-    eprintln!("  3. Start neptune-core and enter your seed phrase when prompted:");
-    eprintln!("       neptune-core --network alpha-mainnet");
-    eprintln!();
-    eprintln!("Seed phrase ({} words): {}", words.len(), phrase);
-}
-
-fn cmd_neuron_remove(confirmed: bool) {
-    let neuron_path = neuron_dir();
-
-    if !neuron_path.exists() {
-        eprintln!("Neuron directory not found at: {}", neuron_path.display());
-        eprintln!("Nothing to remove.");
-        return;
-    }
-
-    eprintln!("Neuron directory: {}", neuron_path.display());
-
-    if let Ok(entries) = std::fs::read_dir(&neuron_path) {
-        for entry in entries.flatten() {
-            eprintln!("  {}", entry.file_name().to_string_lossy());
-        }
-    }
-
-    if !confirmed {
-        eprintln!();
-        eprintln!("This will permanently remove your neuron. All funds will be");
-        eprintln!("lost unless you have the seed phrase.");
-        eprintln!();
-        eprintln!("Re-run with --confirm to proceed:");
-        eprintln!("  trisha neuron remove --confirm");
-        return;
-    }
-
-    match std::fs::remove_dir_all(&neuron_path) {
-        Ok(()) => eprintln!("Neuron removed: {}", neuron_path.display()),
+    match std::fs::remove_dir_all(directory) {
+        Ok(()) => eprintln!("Wallet directory removed: {}", directory.display()),
         Err(e) => {
-            eprintln!("error: failed to remove neuron: {}", e);
+            eprintln!("error: wallet removal failed: {e}");
             process::exit(1);
         }
     }

@@ -1,8 +1,8 @@
 //! Apple Silicon GPU mining via aruminium + MSL Tip5 kernel.
 //!
 //! Buffers are allocated as `aruminium::Buffer` (MTLStorageModeShared) and
-//! accessed via typed views over the same physical pages — no marshalling,
-//! no `to_le_bytes()`. CPU and GPU literally read and write the same memory.
+//! accessed through exclusive typed views over the same physical pages.
+//! Only the small nonce-range dispatch argument is serialized separately.
 
 use aruminium::{Buffer, Dispatch, Gpu, GpuError, Pipeline, Queue};
 use twenty_first::prelude::*;
@@ -15,17 +15,8 @@ const THREADS_PER_GROUP: usize = 256;
 const NUM_GROUPS: usize = 4096;
 pub const THREADS_TOTAL: usize = THREADS_PER_GROUP * NUM_GROUPS; // 1 048 576 nonces/launch
 
-/// Apple Silicon GPU miner. Compiled once, reused across block templates.
-///
-/// `template_buf` and `state_buf` are sized for `BlockTemplate` and `MineState`
-/// respectively and are addressed by both CPU and GPU. The CPU writes the
-/// template via `set_template`, the GPU reads it during dispatch; both can
-/// race on `state.found` to claim a winning nonce.
-///
-/// Safety: Metal command queues, buffers and pipelines are thread-safe per
-/// Apple's documentation. The constraint is that command-buffer encoding
-/// (`dispatch_batch`) must be serialized — only ONE thread may call it at
-/// a time. The shared `state()` view is atomic-safe for concurrent access.
+/// Exclusively borrowed synchronous GPU miner. No mapped reference escapes.
+/// CPU workers publish separately through the host winner slot.
 pub struct AruMine {
     #[allow(dead_code)]
     gpu: Gpu,
@@ -37,12 +28,8 @@ pub struct AruMine {
     state_buf: Buffer,
     mds_buf: Buffer,
     rc_buf: Buffer,
+    configured: bool,
 }
-
-// Safety: see doc comment on `AruMine` — Metal objects are thread-safe;
-// the only constraint is single-threaded `dispatch_batch` calls.
-unsafe impl Send for AruMine {}
-unsafe impl Sync for AruMine {}
 
 impl AruMine {
     /// Compile the MSL kernel and allocate GPU/CPU shared buffers.
@@ -76,8 +63,19 @@ impl AruMine {
         upload_mds(&mds_buf);
         upload_rc(&rc_buf);
 
-        // Zero-initialise the shared state.
-        unsafe { state_view_mut(&state_buf) }.reset();
+        // Initialize every mapped byte before creating typed references.
+        unsafe {
+            std::ptr::write_bytes(
+                template_buf.as_bytes().as_ptr() as *mut u8,
+                0,
+                template_buf.size(),
+            );
+            std::ptr::write_bytes(
+                state_buf.as_bytes().as_ptr() as *mut u8,
+                0,
+                state_buf.size(),
+            );
+        }
 
         Some(Self {
             gpu,
@@ -88,24 +86,13 @@ impl AruMine {
             state_buf,
             mds_buf,
             rc_buf,
+            configured: false,
         })
     }
 
-    /// Borrow the shared `MineState` (atomic-friendly). CPU and GPU workers
-    /// race on `state().found` to claim a winning nonce.
-    pub fn state(&self) -> &MineState {
-        unsafe { state_view(&self.state_buf) }
-    }
-
-    /// Borrow the shared `BlockTemplate` (read-only after `set_template`).
-    pub fn template(&self) -> &BlockTemplate {
-        unsafe { template_view(&self.template_buf) }
-    }
-
-    /// Write a fresh template into the shared buffer and reset mining state.
-    /// CPU and GPU both see the new template on the next read.
+    /// Configure only while exclusively borrowed and no dispatch is in flight.
     pub fn set_template(
-        &self,
+        &mut self,
         path_a: &[Digest; HEIGHT],
         mast_paths: &PowMastPaths,
         target: &Digest,
@@ -140,29 +127,31 @@ impl AruMine {
             tmpl.target[i] = bfe.value();
         }
 
-        self.state().reset();
+        unsafe { state_view_mut(&self.state_buf) }.reset();
+        self.configured = true;
     }
 
-    /// Dispatch one batch of [`THREADS_TOTAL`] nonces starting at `nonce_base`.
-    ///
-    /// Coordination is via the shared [`MineState::found`] atomic — callers
-    /// read `state()` after dispatch (or concurrently from CPU workers) to
-    /// observe wins. This call does NOT reset `found`; the session-level
-    /// reset happens in [`Self::set_template`].
-    ///
-    /// The kernel sees 7 separate `constant ulong*` views into the merged
-    /// `template_buf` (path_a / mast / target) and `state_buf` (found /
-    /// result) at the offsets defined by `BlockTemplate` and `MineState`.
-    /// Passing struct pointers directly was ~3-4× slower in measurement —
-    /// MSL generates better code for direct `constant ulong*` arguments.
-    pub fn dispatch_batch(&self, nonce_base: u64) {
+    /// Execute exactly `count` nonce hashes, then copy the winning nonce.
+    /// The command completes before any mapped result is read or returned.
+    pub fn dispatch_batch(&mut self, nonce_base: u64, count: usize) -> Option<Digest> {
+        assert!(self.configured, "configure mining template before dispatch");
+        assert!(count <= THREADS_TOTAL);
+        if count == 0 {
+            return None;
+        }
+        nonce_base
+            .checked_add(count as u64 - 1)
+            .expect("nonce range overflow");
+        unsafe { state_view_mut(&self.state_buf) }.reset();
         const OFF_PATH_A: usize = 0;
         const OFF_MAST: usize = OFF_PATH_A + 145 * 8; // 1160
         const OFF_TARGET: usize = OFF_MAST + 30 * 8; // 1400
         const OFF_FOUND: usize = 0;
         const OFF_RESULT: usize = 8; // skip past found + _pad
 
-        let nonce_bytes = nonce_base.to_le_bytes();
+        let mut nonce_bytes = [0u8; 16];
+        nonce_bytes[..8].copy_from_slice(&nonce_base.to_le_bytes());
+        nonce_bytes[8..].copy_from_slice(&(count as u64).to_le_bytes());
         unsafe {
             self.dispatch.dispatch_with_bytes(
                 &self.pipeline,
@@ -177,19 +166,21 @@ impl AruMine {
                 ],
                 &nonce_bytes,
                 7,
-                (THREADS_TOTAL, 1, 1),
+                (count.div_ceil(THREADS_PER_GROUP) * THREADS_PER_GROUP, 1, 1),
                 (THREADS_PER_GROUP, 1, 1),
             );
         }
+        let state = unsafe { state_view(&self.state_buf) };
+        if state.found.load(std::sync::atomic::Ordering::Acquire) == 0 {
+            return None;
+        }
+        Some(Digest::new(
+            state.winning_nonce.map(BFieldElement::from_raw_u64),
+        ))
     }
 }
 
 // ── typed view helpers (shared CPU/GPU memory; aliasing checked by API) ──
-
-unsafe fn template_view(buf: &Buffer) -> &BlockTemplate {
-    debug_assert!(buf.size() >= std::mem::size_of::<BlockTemplate>());
-    &*(buf.as_bytes().as_ptr() as *const BlockTemplate)
-}
 
 #[allow(clippy::mut_from_ref)]
 unsafe fn template_view_mut(buf: &Buffer) -> &mut BlockTemplate {
@@ -211,16 +202,14 @@ unsafe fn state_view_mut(buf: &Buffer) -> &mut MineState {
 // ── Constant upload helpers ───────────────────────────────────────────────────
 
 fn upload_mds(buf: &Buffer) {
-    let view: &mut [u64; 16] =
-        unsafe { &mut *(buf.as_bytes().as_ptr() as *mut [u64; 16]) };
+    let view: &mut [u64; 16] = unsafe { &mut *(buf.as_bytes().as_ptr() as *mut [u64; 16]) };
     for (i, &v) in MDS_MATRIX_FIRST_COLUMN.iter().enumerate() {
         view[i] = BFieldElement::new(v as u64).raw_u64();
     }
 }
 
 fn upload_rc(buf: &Buffer) {
-    let view: &mut [u64; 80] =
-        unsafe { &mut *(buf.as_bytes().as_ptr() as *mut [u64; 80]) };
+    let view: &mut [u64; 80] = unsafe { &mut *(buf.as_bytes().as_ptr() as *mut [u64; 80]) };
     for (i, &bfe) in ROUND_CONSTANTS.iter().enumerate() {
         view[i] = bfe.raw_u64();
     }

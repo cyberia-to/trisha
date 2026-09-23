@@ -9,6 +9,66 @@
 
 use std::path::Path;
 
+#[allow(dead_code)]
+#[path = "support/plumb_v2.rs"]
+mod plumb_vectors;
+
+fn assert_plumb_v2_path_authentication(tasm: &str, case: plumb_vectors::Case) {
+    use triton_vm::prelude::*;
+    assert!(tasm.contains("os_neptune_standards_plumb__update_leaf:"));
+    assert!(
+        tasm.contains("assert_vector"),
+        "missing full digest assertion"
+    );
+    let program = Program::from_code(tasm).unwrap();
+    let run = |public: &[u64], secret: &[u64]| {
+        VM::run(
+            program.clone(),
+            PublicInput::new(
+                public
+                    .iter()
+                    .copied()
+                    .map(BFieldElement::new)
+                    .collect::<Vec<_>>(),
+            ),
+            NonDeterminism::new(
+                secret
+                    .iter()
+                    .copied()
+                    .map(BFieldElement::new)
+                    .collect::<Vec<_>>(),
+            ),
+        )
+    };
+    let output =
+        run(&case.public, &case.secret).expect("independent same-path transition must execute");
+    assert_eq!(
+        output.iter().map(|x| x.value()).collect::<Vec<_>>(),
+        case.output
+    );
+    for root_start in [1, 6] {
+        for coordinate in 0..5 {
+            let mut public = case.public.clone();
+            public[root_start + coordinate] ^= 1;
+            assert!(
+                run(&public, &case.secret).is_err(),
+                "unauthenticated root coordinate accepted"
+            );
+        }
+    }
+    let mut secret = case.secret.clone();
+    *secret.last_mut().unwrap() ^= 1;
+    assert!(
+        run(&case.public, &secret).is_err(),
+        "changed shared path accepted"
+    );
+    secret.pop();
+    assert!(
+        run(&case.public, &secret).is_err(),
+        "truncated shared path accepted"
+    );
+}
+
 /// Compile a Triton source string, temp-file bridged (`build_tasm` takes a
 /// path, not a source string).
 #[allow(dead_code)]
@@ -45,12 +105,7 @@ fn compile_triton_profile(source: &str, filename: &str, profile: &str) -> Result
 fn compile_project_triton(path: &Path) -> Result<String, String> {
     trisha_rs::build_tasm(
         path,
-        if path.to_string_lossy().contains("os/neptune/")
-            || path
-                .to_string_lossy()
-                .contains("examples/experimental/neptune/")
-            || path.to_string_lossy().contains("examples/neptune/")
-        {
+        if path.components().any(|part| part.as_os_str() == "neptune") {
             "neptune"
         } else {
             "triton"
@@ -65,8 +120,13 @@ fn compile_project_triton(path: &Path) -> Result<String, String> {
 #[allow(dead_code)]
 fn trident_repo_path(rel: &str) -> std::path::PathBuf {
     if let Some(name) = rel.strip_prefix("os/neptune/") {
-        if name.starts_with("locks/") || name.starts_with("types/") || matches!(name, "standards/coin.tri" | "standards/card.tri") {
-            return Path::new(env!("CARGO_MANIFEST_DIR")).join("../examples/neptune").join(name);
+        if name.starts_with("locks/")
+            || name.starts_with("types/")
+            || matches!(name, "standards/coin.tri" | "standards/card.tri")
+        {
+            return Path::new(env!("CARGO_MANIFEST_DIR"))
+                .join("../examples/neptune")
+                .join(name);
         }
     }
     if let Some(name) = rel.strip_prefix("os/neptune/programs/") {
@@ -430,11 +490,7 @@ fn test_coin_compiles() {
         assert_count
     );
 
-    // Verify Merkle root authentication is present
-    assert!(
-        tasm.contains("merkle_step"),
-        "should authenticate leaves against Merkle root"
-    );
+    assert_plumb_v2_path_authentication(&tasm, plumb_vectors::coin_cases().remove(0));
 
     eprintln!(
         "Token TASM: {} lines, {} instructions",
@@ -475,9 +531,5 @@ fn test_card_compiles() {
         "missing verify_config function"
     );
 
-    // Verify Merkle root authentication is present
-    assert!(
-        tasm.contains("merkle_step"),
-        "should authenticate leaves against Merkle root"
-    );
+    assert_plumb_v2_path_authentication(&tasm, plumb_vectors::card_cases().remove(0));
 }

@@ -6,6 +6,11 @@ Trisha is the Triton VM warrior for Trident. It lowers typed Trident IR to TASM,
 Trident source -> resolved typed IR -> Trisha lowering -> Triton VM -> STARK proof
 ```
 
+Current CPU release: **Trisha 0.3.0**, with Trident 0.3.0 and Joy 0.5.0.
+[Download native archives](https://github.com/cyberia-to/trisha/releases/tag/v0.3.0)
+for macOS, Linux or Windows on ARM64/x64, or use the coordinated source archive.
+See [release notes](audit/release-notes-v0.3.0.md) and [validation](audit/release-2026-09-16.md).
+
 ## Commands
 
 ```sh
@@ -20,7 +25,7 @@ trisha verify batch proofs/*.proof.toml
 
 Source commands accept project directories and named compilation profiles. The default terrain is Triton; `--target neptune` selects the same VM. Unsupported targets fail. Library builds retain their function definitions; execution and proving require a program entry.
 
-The CLI uses the CPU backend. The separate wgpu backend provides GPU acceleration hooks; enabling a mining GPU feature does not switch the proving backend. Neptune on-chain deployment is not implemented: `deploy` fails explicitly, while `deploy --dry-run` describes an artifact.
+The CLI uses the CPU backend. The separate wgpu backend provides GPU acceleration hooks; enabling a mining GPU feature does not switch the proving backend. Program inspection verifies the native hash and any attached proof. Neptune's separate [transaction interface](docs/reference/neptune-submission.md) constructs outputs, validates complete caller-authorized transaction intent and submits through an authenticated gateway. A genuine SingleProof transaction passed [isolated node admission](audit/neptune-local-node-validation.md); funded wallet construction, public-network operation and block confirmation remain separate requirements. Release evidence is recorded in [audit](audit/README.md).
 
 ## Building
 
@@ -43,7 +48,7 @@ trisha bench baselines/triton/reference --full --skip-neural
 trisha bench baselines/triton --full --skip-neural
 ```
 
-Benchmark fixtures contain independent expected outputs. Both classic and hand programs must match the same vector before a cycle ratio is printed; `--full` also proves and verifies both. Uncovered baselines are reported as `UNVERIFIED`, and incomplete coverage returns a failing exit status. Existing hand baselines still require reference fixtures before the whole collection can pass this gate.
+Benchmark fixtures contain independent expected outputs. Both classic and hand programs must match independent expected outputs before a cycle ratio is printed. Self-identifying type scripts disclose the implementation-specific program hashes and derived authenticated inputs used for the same semantic transaction; `--full` also proves and verifies both. Uncovered baselines are reported as `UNVERIFIED`, and incomplete coverage returns a failing exit status. Every one of the43 hand baselines has explicit positive reference fixtures, with rejection vectors where applicable. Current execution and full-proof receipts are recorded separately in the [release ledger](../trident/audit/full-release-preparation.md).
 
 Regression tests exercise source CLI run/prove/verify and tampered claims, wide stacks, imported structures, SHA-256 against the empty-message FIPS digest, malformed inputs, and colliding batch proof destinations.
 
@@ -52,7 +57,8 @@ Regression tests exercise source CLI run/prove/verify and tampered claims, wide 
 - `cli/`: command-line interface and reference benchmark runner.
 - `rs/`: CPU runtime, Triton lowering, AET cost model and neural target integration.
 - `wgpu/`: GPU runtime backend and WGSL kernels.
-- `honeycrisp/`: Apple Silicon mining integration.
+- `honeycrisp/`: portable CPU mining and optional Apple acceleration.
+- `neptune/`: pinned consensus/RPC transaction intent and submission adapter.
 - `lib/os/neptune/`: Neptune source modules.
 - `targets/triton/`: authoritative Triton machine manifest.
 - `networks/neptune/`: Neptune network and state manifests.
@@ -72,4 +78,4 @@ trisha describe --target neptune
 
 The JSON includes compiler API compatibility, the machine ABI, content hashes for embedded SDK modules, network/state descriptors, and supported proof formats. Neptune state commands consume the same owned state manifests. Fixed ABI libraries use `vm.triton.hash`, `vm.triton.merkle`, `vm.triton.merkle_proof`, and `os.neptune.auth`; they are not portable compiler libraries.
 
-The Neptune package excludes the unfinished `os.neptune.proof` verifier. Its previous implementation failed to constrain FRI/OOD/constraint consistency; the source and dependent transaction/proof entry programs are preserved in `examples/experimental/neptune`. Production imports fail closed. Low-level extension-field helpers do not claim complete recursive verification.
+The retired handwritten `os.neptune.proof` module remains excluded; its FRI/OOD/constraint checks were incomplete. Historical prototypes are preserved under `examples/experimental/neptune`. The production replacement is `vm.triton.proof.verify`, which invokes the official Triton7 verifier with a complete caller-authorized claim. Neptune exports fixed canonical0.15.1 policies through `os.neptune.transaction.verify` and `os.neptune.native_currency.verify`. See the [recursive proof contract](docs/reference/recursive-proof.md) for witness preparation and the distinction between consensus proof verification and network admission.

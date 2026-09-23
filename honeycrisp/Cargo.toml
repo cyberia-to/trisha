@@ -1,6 +1,6 @@
 [package]
 name = "trisha-honeycrisp"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 
 [lib]
@@ -15,10 +15,12 @@ triton = ["dep:trident-lang"]
 gpu    = ["dep:aruminium"]
 
 [dependencies]
-trident-lang = { version = "0.3", path = "../../trident", optional = true, default-features = false }
-triton-vm = "2"
+trident-lang = { version = "0.3.0", path = "../../trident", optional = true, default-features = false }
+triton-vm = "=7.0.0"
 twenty-first = "1"
 bincode = "1"
 rayon = "1"
-acpu = { path = "../../honeycrisp/acpu" }
-aruminium = { path = "../../honeycrisp/aruminium", optional = true }
+
+[target.'cfg(all(target_os = "macos", target_arch = "aarch64"))'.dependencies]
+acpu = { version = "0.2.0", path = "../../honeycrisp/acpu" }
+aruminium = { version = "0.2.0", path = "../../honeycrisp/aruminium", optional = true }

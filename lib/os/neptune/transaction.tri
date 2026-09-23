@@ -1,0 +1,9 @@
+module os.neptune.transaction
+
+// Complete pinned Neptune0.15.1 HardforkGamma SingleProof relation.
+// Native proof version5; caller must authenticate kernel against intended state.
+// Program digest: 17162881904615831636,12772901116553038606,7422951533421993946,14441376456998198752,13597937147074334762.
+// The owner builds the complete fixed Claim (kernel reversed, empty output)
+// and invokes the official default-security recursive verifier. No RPC/deploy.
+#[intrinsic(neptune_transaction_verify_v1)]
+pub fn verify(kernel: Digest)

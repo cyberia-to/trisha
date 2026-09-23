@@ -1,0 +1,6 @@
+module vm.triton.context
+
+// VM-authenticated current program hash, captured before source execution.
+// Reserved context RAM [2^26+320,2^26+325) must not be overwritten by callers.
+#[intrinsic(triton_program_digest)]
+pub fn program_digest() -> Digest

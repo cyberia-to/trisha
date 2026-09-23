@@ -1,5 +1,5 @@
 // Hand-optimized TASM baseline: vm.core.field
-//
+
 // Field arithmetic intrinsics — single Triton VM instructions.
 
 // add(a, b) -> a + b

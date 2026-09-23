@@ -1,0 +1,3 @@
+program baseline_assert_mismatch
+use vm.core.assert
+fn main() { assert.eq(pub_read(),pub_read()) pub_write(1) }

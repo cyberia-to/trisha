@@ -1,0 +1,487 @@
+{
+  "candidate": {
+    "source": "/private/tmp/cyber-release-extracted-v7-final6/cyber-source",
+    "source_verified": true,
+    "source_verification_sha256": "f5e806c3c1e7525162428bbd3b42735371f89c753f7671cb5a75568a48e4a8cd",
+    "provenance_sha256": "cf3efc05cd34f64098f82ae2dcbe421d96c086d5d3ef544f072a348d5591df9e",
+    "binaries": [
+      {
+        "name": "trident",
+        "sha256": "d50943edf5c611042b2a9d23aa511c36ad6aad995bfe7d2382a694de654058cb"
+      },
+      {
+        "name": "trisha",
+        "sha256": "9dce2a104e6a01b21535a068f742bc5857c3cfebfc195016621e973fb204addf"
+      },
+      {
+        "name": "joy",
+        "sha256": "146d046b994926c04a330ad669d181fa167df8953adaf3ab7e453294df3dc309"
+      }
+    ]
+  },
+  "build": {
+    "all_checks_passed": true,
+    "exit_code": 0,
+    "elapsed_seconds": 489.59,
+    "time_max_process_rss_bytes": 4952784896,
+    "swaps": 0,
+    "rust_warnings": 0,
+    "jobs": 2,
+    "platform": "macOS-26.4.1-arm64-arm-64bit-Mach-O",
+    "rustc": "rustc 1.95.0 (59807616e 2026-04-14) (Homebrew)",
+    "log_sha256": "64502598435963cf6f758db592277d186607143afa203d82e572e96a2e1afaa0",
+    "component_logs": {
+      "trident-build.log": "db462cd4a57248fd48a468db2c95b2a264bca0fb56b7b6eba5085a1385c84fa2",
+      "trisha-build.log": "98e1d33757b6d584f44d56abf1f436b94c731f66940086c11eecd4784418960a",
+      "fixture-build.log": "79a831a26af731b9faf8d827f8a614b6aa9aa2ae9417922f99b398a32de84707",
+      "joy-build.log": "9bb4c9fa3dc44364305cc6b0a9f29704ee0a8aa8003c5fc81800bc4f3a11c4a1"
+    }
+  },
+  "source_receipt": {
+    "all_checks_passed": true,
+    "archive": "/tmp/cyber-release-source-v7-20260912-final6.tar.gz",
+    "archive_sha256": "0219287c79902bad8b31433a065310766d5f8f3c9f0701f11422998e786ec0c3",
+    "archive_bytes": 29493434,
+    "repositories": 11,
+    "source_entries": 2534,
+    "vendor_entries": 557,
+    "source_provenance_sha256": "cf3efc05cd34f64098f82ae2dcbe421d96c086d5d3ef544f072a348d5591df9e",
+    "source_verification_sha256": "f5e806c3c1e7525162428bbd3b42735371f89c753f7671cb5a75568a48e4a8cd",
+    "extracted_source": "/tmp/cyber-release-extracted-v7-final6/cyber-source",
+    "repack_sha256": "0219287c79902bad8b31433a065310766d5f8f3c9f0701f11422998e786ec0c3",
+    "repack_byte_identical": true,
+    "epoch": 1789245170
+  },
+  "input_gate": {
+    "schema_version": 1,
+    "all_checks_passed": true,
+    "candidate_prefix": "/private/tmp/cyber-release-installed-v7-darwin-final6",
+    "candidate_json_sha256": "4859dc320052712f0d231ce0b227e0e013d30bf34d9f075007082a95bd029a77",
+    "candidate_source_verified": true,
+    "source_inventory_verification_performed": false,
+    "binary_sha256_before": {
+      "trident": "d50943edf5c611042b2a9d23aa511c36ad6aad995bfe7d2382a694de654058cb",
+      "trisha": "9dce2a104e6a01b21535a068f742bc5857c3cfebfc195016621e973fb204addf",
+      "joy": "146d046b994926c04a330ad669d181fa167df8953adaf3ab7e453294df3dc309"
+    },
+    "binary_sha256_after": {
+      "trident": "d50943edf5c611042b2a9d23aa511c36ad6aad995bfe7d2382a694de654058cb",
+      "trisha": "9dce2a104e6a01b21535a068f742bc5857c3cfebfc195016621e973fb204addf",
+      "joy": "146d046b994926c04a330ad669d181fa167df8953adaf3ab7e453294df3dc309"
+    },
+    "script_sha256": "bad284cd537cb803cf10433fa63697e003cb600e817fba41c96f4d0992921e5b",
+    "platform": "macOS-26.4.1-arm64-arm-64bit-Mach-O",
+    "elapsed_seconds": 1.1186129580019042,
+    "timeout_seconds_per_command": 10,
+    "proofs_generated": 0,
+    "build_tools_invoked": false,
+    "source_processed_by_installed_run": true,
+    "optional_proof": {
+      "path": "/tmp/cyber-final5-darwin-artifact-gate/fresh.proof.toml",
+      "sha256": "3b37592eef9e5af1dd46d83f5feb3ac56dbab2ef60dbc5713a5dbd25db0cf7d4"
+    },
+    "commands": [
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/trisha",
+          "run",
+          "entry.tri",
+          "--target",
+          "triton",
+          "--input-file",
+          "valid.json"
+        ],
+        "exit_code": 0,
+        "stdout": "5\n",
+        "stderr": "Backend: cpu\nExecuting entry (8 ops)...\nExecuted in 7 cycles\n",
+        "elapsed_seconds": 0.3900249159996747
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/joy",
+          "verify",
+          "formula.nox",
+          "--target",
+          "nox",
+          "--claim",
+          "7"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS (re-execution; for a zheng proof use joy prove + --proof)\n",
+        "stderr": "",
+        "elapsed_seconds": 0.3464059170000837
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/trisha",
+          "run",
+          "entry.tri",
+          "--target",
+          "triton",
+          "--input-file",
+          "fifo.nox"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: I/O error: input/claim file must be a regular file (no symbolic links)\n",
+        "elapsed_seconds": 0.014925000003131572
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/trisha",
+          "verify",
+          "fifo.nox",
+          "--target",
+          "triton"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: verify error: proof file must be a regular file (no symbolic links)\n",
+        "elapsed_seconds": 0.011759666995203588
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/joy",
+          "verify",
+          "main.tri",
+          "--target",
+          "nox",
+          "--proof",
+          "fifo.nox"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: verification input must be a regular file or source project\n",
+        "elapsed_seconds": 0.011911665998923127
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/joy",
+          "verify",
+          "fifo.nox",
+          "--target",
+          "nox"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: verification input must be a regular file or source project\n",
+        "elapsed_seconds": 0.01345745800063014
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/trisha",
+          "run",
+          "entry.tri",
+          "--target",
+          "triton",
+          "--input-file",
+          "directory"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: I/O error: input/claim file must be a regular file (no symbolic links)\n",
+        "elapsed_seconds": 0.013466958997014444
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/trisha",
+          "verify",
+          "directory",
+          "--target",
+          "triton"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: verify error: proof file must be a regular file (no symbolic links)\n",
+        "elapsed_seconds": 0.013486999996530358
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/joy",
+          "verify",
+          "main.tri",
+          "--target",
+          "nox",
+          "--proof",
+          "directory"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: verification input must be a regular file or source project\n",
+        "elapsed_seconds": 0.0162672919977922
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/trisha",
+          "run",
+          "entry.tri",
+          "--target",
+          "triton",
+          "--input-file",
+          "link.json"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: I/O error: input/claim file must be a regular file (no symbolic links)\n",
+        "elapsed_seconds": 0.016241707999142818
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/trisha",
+          "verify",
+          "link.json",
+          "--target",
+          "triton"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: verify error: proof file must be a regular file (no symbolic links)\n",
+        "elapsed_seconds": 0.01626395800121827
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/joy",
+          "verify",
+          "main.tri",
+          "--target",
+          "nox",
+          "--proof",
+          "link.json"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: verification input must be a regular file or source project\n",
+        "elapsed_seconds": 0.016203833001782186
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/joy",
+          "verify",
+          "link.json",
+          "--target",
+          "nox"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: verification input must be a regular file or source project\n",
+        "elapsed_seconds": 0.015992874999938067
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/trisha",
+          "run",
+          "entry.tri",
+          "--target",
+          "triton",
+          "--input-file",
+          "link-fifo.nox"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: I/O error: input/claim file must be a regular file (no symbolic links)\n",
+        "elapsed_seconds": 0.013517457999114413
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/trisha",
+          "verify",
+          "link-fifo.nox",
+          "--target",
+          "triton"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: verify error: proof file must be a regular file (no symbolic links)\n",
+        "elapsed_seconds": 0.016634332998364698
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/joy",
+          "verify",
+          "main.tri",
+          "--target",
+          "nox",
+          "--proof",
+          "link-fifo.nox"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: verification input must be a regular file or source project\n",
+        "elapsed_seconds": 0.012018417000945192
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/joy",
+          "verify",
+          "link-fifo.nox",
+          "--target",
+          "nox"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: verification input must be a regular file or source project\n",
+        "elapsed_seconds": 0.0166723330039531
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/joy",
+          "verify",
+          "oversized.json",
+          "--target",
+          "nox",
+          "--claim",
+          "7"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: I/O error: cannot read 'oversized.json': artifact file size limit\n",
+        "elapsed_seconds": 0.016255500006082002
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/joy",
+          "verify",
+          "oversized.nox",
+          "--target",
+          "nox",
+          "--claim",
+          "7"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: I/O error: cannot read 'oversized.nox': artifact file size limit\n",
+        "elapsed_seconds": 0.011945250000280794
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/trisha",
+          "run",
+          "entry.tri",
+          "--target",
+          "triton",
+          "--input-file",
+          "oversized.json"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: I/O error: input/claim file exceeds 64MiB limit\n",
+        "elapsed_seconds": 0.016324750002240762
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/trisha",
+          "verify",
+          "oversized.json",
+          "--target",
+          "triton"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: verify error: proof file exceeds 64MiB limit\n",
+        "elapsed_seconds": 0.016287625003315043
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/trisha",
+          "run",
+          "entry.tri",
+          "--target",
+          "triton",
+          "--input-file",
+          "invalid.json"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: I/O error: invalid version 1 input/claim file: require canonical fields and the documented schema\n",
+        "elapsed_seconds": 0.014686999995319638
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/trisha",
+          "verify",
+          "invalid.toml",
+          "--target",
+          "triton"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: verify error: invalid proof file\n",
+        "elapsed_seconds": 0.01626787499844795
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/trisha",
+          "verify",
+          "invalid-utf8.toml",
+          "--target",
+          "triton"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "error: verify error: invalid proof file: expected UTF-8\n",
+        "elapsed_seconds": 0.01625887499540113
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/joy",
+          "verify",
+          "invalid-private.zheng",
+          "--target",
+          "nox"
+        ],
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Verification: FAIL (invalid private execution artifact)\n",
+        "elapsed_seconds": 0.01236612500360934
+      },
+      {
+        "command": [
+          "/private/tmp/cyber-release-installed-v7-darwin-final6/bin/trisha",
+          "verify",
+          "/tmp/cyber-final5-darwin-artifact-gate/fresh.proof.toml",
+          "--target",
+          "triton"
+        ],
+        "exit_code": 0,
+        "stdout": "Verification: PASS\n",
+        "stderr": "Backend: cpu\n",
+        "elapsed_seconds": 0.01504195800225716
+      }
+    ]
+  },
+  "input_gate_receipt_sha256": "402d44aacc84841d3b2df29eae38e9932b287ac29b9b4593470f0e86e5af0934",
+  "baseline_execution": {
+    "all_checks_passed": true,
+    "scope": "execution only; no proof generation or verification counted",
+    "command": [
+      "/tmp/cyber-release-installed-v7-darwin-final6/bin/trisha",
+      "bench",
+      "/private/tmp/cyber-release-extracted-v7-final6/cyber-source/trisha/baselines/triton"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 10.616192082998168,
+    "source_provenance_sha256": "cf3efc05cd34f64098f82ae2dcbe421d96c086d5d3ef544f072a348d5591df9e",
+    "binaries": [
+      {
+        "name": "trident",
+        "sha256": "d50943edf5c611042b2a9d23aa511c36ad6aad995bfe7d2382a694de654058cb"
+      },
+      {
+        "name": "trisha",
+        "sha256": "9dce2a104e6a01b21535a068f742bc5857c3cfebfc195016621e973fb204addf"
+      },
+      {
+        "name": "joy",
+        "sha256": "146d046b994926c04a330ad669d181fa167df8953adaf3ab7e453294df3dc309"
+      }
+    ],
+    "fixtures_passed": 133,
+    "positive_fixtures": 99,
+    "negative_fixtures": 34,
+    "manual_baselines": 43,
+    "fresh_proofs": 0,
+    "log_sha256": "8bf2e446505995b577a15e77419c1c2eb9c5363b731ed436d0cfe69ec69f316b"
+  },
+  "full_smoke_completed": false,
+  "full_baseline_proofs_completed": false
+}

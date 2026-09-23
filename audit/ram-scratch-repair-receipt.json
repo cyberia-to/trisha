@@ -1,0 +1,4115 @@
+{
+  "schema_version": 2,
+  "date": "2026-09-16",
+  "scope": "live working tree RAM repair; not a frozen release candidate",
+  "release_ready": false,
+  "final": {
+    "binary_sha256": "129660aaac3ac27e4a4704ec66581cd7772918cdd710ec3dc888ffaa9f9ef8be",
+    "benchmarks": [
+      {
+        "label": "fused",
+        "command": [
+          "/tmp/cyber-ram-repair/trisha-fused",
+          "bench",
+          "baselines/triton"
+        ],
+        "binary_sha256": "129660aaac3ac27e4a4704ec66581cd7772918cdd710ec3dc888ffaa9f9ef8be",
+        "exit_code": 0,
+        "seconds": 9.663780083996244,
+        "log_sha256": "a46a6e0157143726ad5733e5b9d142883d225668c3aa3a85a43c71b3bf1ff015"
+      },
+      {
+        "label": "keccak-struct-before",
+        "command": [
+          "/tmp/cyber-ram-repair/trisha-before",
+          "bench",
+          "/tmp/cyber-ram-repair/keccak-struct-fixtures"
+        ],
+        "binary_sha256": "498e3c496711ef0f55ba08fa376ef00c3300878fe90daf940804b3136c6ebbc9",
+        "exit_code": 0,
+        "seconds": 3.435412708000513,
+        "log_sha256": "df239c94bdbf0b9c23c78509ca5727f2628e98657053d7adaf2da3fbb05196c5"
+      },
+      {
+        "label": "keccak-struct-fused",
+        "command": [
+          "/tmp/cyber-ram-repair/trisha-fused",
+          "bench",
+          "/tmp/cyber-ram-repair/keccak-struct-fixtures"
+        ],
+        "binary_sha256": "129660aaac3ac27e4a4704ec66581cd7772918cdd710ec3dc888ffaa9f9ef8be",
+        "exit_code": 0,
+        "seconds": 0.6753100839996478,
+        "log_sha256": "267d59f7690eb97fd8be6080ac60435509b9ddee71e2f61076b8322d2a71f053"
+      }
+    ],
+    "comparison": [
+      {
+        "fixture": "baselines/triton/fixtures/assert/vector.bench.toml",
+        "before": 9,
+        "after": 9,
+        "hand_before": 9,
+        "hand_after": 9,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/auth-preimage/vector.bench.toml",
+        "before": 52,
+        "after": 52,
+        "hand_before": 36,
+        "hand_after": 36,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/bigint-carry/vector.bench.toml",
+        "before": 1675,
+        "after": 1274,
+        "hand_before": 124,
+        "hand_after": 124,
+        "delta": -401,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/compiler-lexer-associativity/vector.bench.toml",
+        "before": 35519,
+        "after": 35519,
+        "hand_before": 13284,
+        "hand_after": 13284,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/compiler-lexer-parentheses/vector.bench.toml",
+        "before": 35738,
+        "after": 35738,
+        "hand_before": 14041,
+        "hand_after": 14041,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/compiler-lexer-precedence/vector.bench.toml",
+        "before": 28976,
+        "after": 28976,
+        "hand_before": 11426,
+        "hand_after": 11426,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/compiler-parser-associativity/vector.bench.toml",
+        "before": 69428,
+        "after": 69428,
+        "hand_before": 14979,
+        "hand_after": 14979,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/compiler-parser-parentheses/vector.bench.toml",
+        "before": 72870,
+        "after": 72870,
+        "hand_before": 15377,
+        "hand_after": 15377,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/compiler-parser-precedence/vector.bench.toml",
+        "before": 54581,
+        "after": 54581,
+        "hand_before": 12441,
+        "hand_after": 12441,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/compiler-pipeline-associativity/vector.bench.toml",
+        "before": 144453,
+        "after": 139570,
+        "hand_before": 14297,
+        "hand_after": 14297,
+        "delta": -4883,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/compiler-pipeline-parentheses/vector.bench.toml",
+        "before": 139636,
+        "after": 134753,
+        "hand_before": 14767,
+        "hand_after": 14767,
+        "delta": -4883,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/compiler-pipeline-precedence/vector.bench.toml",
+        "before": 112452,
+        "after": 107569,
+        "hand_before": 11903,
+        "hand_after": 11903,
+        "delta": -4883,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/convert/vector.bench.toml",
+        "before": 10,
+        "after": 10,
+        "hand_before": 12,
+        "hand_after": 12,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/custom-poseidon2-lanes/vector.bench.toml",
+        "before": 107687,
+        "after": 50335,
+        "hand_before": 4139,
+        "hand_after": 4139,
+        "delta": -57352,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/custom-poseidon2-ram/vector.bench.toml",
+        "before": 107933,
+        "after": 50491,
+        "hand_before": 5711,
+        "hand_after": 5711,
+        "delta": -57442,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/custom-poseidon2-zero/vector.bench.toml",
+        "before": 107687,
+        "after": 50335,
+        "hand_before": 4139,
+        "hand_after": 4139,
+        "delta": -57352,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/custom-token-v2-burn/vector.bench.toml",
+        "before": 25317,
+        "after": 18177,
+        "hand_before": 8437,
+        "hand_after": 8437,
+        "delta": -7140,
+        "self_hash_rebound": true
+      },
+      {
+        "fixture": "baselines/triton/fixtures/custom-token-v2-mint/vector.bench.toml",
+        "before": 25317,
+        "after": 18177,
+        "hand_before": 8437,
+        "hand_after": 8437,
+        "delta": -7140,
+        "self_hash_rebound": true
+      },
+      {
+        "fixture": "baselines/triton/fixtures/custom-token-v2-transfer/vector.bench.toml",
+        "before": 24680,
+        "after": 17777,
+        "hand_before": 8307,
+        "hand_after": 8307,
+        "delta": -6903,
+        "self_hash_rebound": true
+      },
+      {
+        "fixture": "baselines/triton/fixtures/ecdsa-cross-limb/vector.bench.toml",
+        "before": 27788,
+        "after": 6119,
+        "hand_before": 2927,
+        "hand_after": 2927,
+        "delta": -21669,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/ecdsa-even-order/vector.bench.toml",
+        "before": 28070,
+        "after": 6305,
+        "hand_before": 3039,
+        "hand_after": 3039,
+        "delta": -21765,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/ecdsa-half/vector.bench.toml",
+        "before": 27614,
+        "after": 5945,
+        "hand_before": 2819,
+        "hand_after": 2819,
+        "delta": -21669,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/ecdsa-high/vector.bench.toml",
+        "before": 27614,
+        "after": 5945,
+        "hand_before": 2819,
+        "hand_after": 2819,
+        "delta": -21669,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/ecdsa-invalid-r/vector.bench.toml",
+        "before": 25660,
+        "after": 5532,
+        "hand_before": 2819,
+        "hand_after": 2819,
+        "delta": -20128,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/ecdsa-order/vector.bench.toml",
+        "before": 27610,
+        "after": 5941,
+        "hand_before": 2819,
+        "hand_after": 2819,
+        "delta": -21669,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/ecdsa-zero/vector.bench.toml",
+        "before": 21655,
+        "after": 4509,
+        "hand_before": 2709,
+        "hand_after": 2709,
+        "delta": -17146,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/fibonacci-0/vector.bench.toml",
+        "before": 25,
+        "after": 25,
+        "hand_before": 16,
+        "hand_after": 16,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/fibonacci-1/vector.bench.toml",
+        "before": 45,
+        "after": 45,
+        "hand_before": 28,
+        "hand_after": 28,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/fibonacci-10/vector.bench.toml",
+        "before": 225,
+        "after": 225,
+        "hand_before": 136,
+        "hand_after": 136,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/fibonacci-100/vector.bench.toml",
+        "before": 2025,
+        "after": 2025,
+        "hand_before": 1216,
+        "hand_after": 1216,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/field/vector.bench.toml",
+        "before": 27,
+        "after": 27,
+        "hand_before": 34,
+        "hand_after": 34,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/generation/vector.bench.toml",
+        "before": 50,
+        "after": 50,
+        "hand_before": 36,
+        "hand_after": 36,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/io/vector.bench.toml",
+        "before": 10,
+        "after": 10,
+        "hand_before": 14,
+        "hand_after": 14,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/keccak-lanes/vector.bench.toml",
+        "before": 824862,
+        "after": 755070,
+        "hand_before": 98515,
+        "hand_after": 98515,
+        "delta": -69792,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/keccak-zero/vector.bench.toml",
+        "before": 824862,
+        "after": 755070,
+        "hand_before": 98515,
+        "hand_after": 98515,
+        "delta": -69792,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/kernel-timestamp/vector.bench.toml",
+        "before": 1520,
+        "after": 720,
+        "hand_before": 75,
+        "hand_after": 75,
+        "delta": -800,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/mem/vector.bench.toml",
+        "before": 21,
+        "after": 21,
+        "hand_before": 27,
+        "hand_after": 27,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/merkle-2/vector.bench.toml",
+        "before": 43,
+        "after": 43,
+        "hand_before": 27,
+        "hand_after": 27,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/merkle-3/vector.bench.toml",
+        "before": 43,
+        "after": 43,
+        "hand_before": 27,
+        "hand_after": 27,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/merkle-proof/vector.bench.toml",
+        "before": 1481,
+        "after": 692,
+        "hand_before": 73,
+        "hand_after": 73,
+        "delta": -789,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/multisig-3/vector.bench.toml",
+        "before": 132,
+        "after": 132,
+        "hand_before": 109,
+        "hand_after": 109,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/multisig-5/vector.bench.toml",
+        "before": 141,
+        "after": 141,
+        "hand_before": 109,
+        "hand_after": 109,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/multisig-6/vector.bench.toml",
+        "before": 150,
+        "after": 150,
+        "hand_before": 109,
+        "hand_after": 109,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/neptune-native-currency/vector.bench.toml",
+        "before": 578365,
+        "after": 578365,
+        "hand_before": 578310,
+        "hand_after": 578310,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/neptune-transaction/valid.bench.toml",
+        "before": 833066,
+        "after": 833066,
+        "hand_before": 833060,
+        "hand_after": 833060,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/plumb-config/vector.bench.toml",
+        "before": 19575,
+        "after": 3372,
+        "hand_before": 451,
+        "hand_after": 451,
+        "delta": -16203,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/plumb-v2-card-0/vector.bench.toml",
+        "before": 73208,
+        "after": 33491,
+        "hand_before": 5761,
+        "hand_after": 5761,
+        "delta": -39717,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/plumb-v2-card-1/vector.bench.toml",
+        "before": 72571,
+        "after": 33452,
+        "hand_before": 5729,
+        "hand_after": 5729,
+        "delta": -39119,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/plumb-v2-card-2/vector.bench.toml",
+        "before": 68712,
+        "after": 31516,
+        "hand_before": 5557,
+        "hand_after": 5557,
+        "delta": -37196,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/plumb-v2-card-3/vector.bench.toml",
+        "before": 68026,
+        "after": 33552,
+        "hand_before": 5584,
+        "hand_after": 5584,
+        "delta": -34474,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/plumb-v2-card-4/vector.bench.toml",
+        "before": 67831,
+        "after": 32506,
+        "hand_before": 5580,
+        "hand_after": 5580,
+        "delta": -35325,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/plumb-v2-card-config/vector.bench.toml",
+        "before": 44071,
+        "after": 8517,
+        "hand_before": 1216,
+        "hand_after": 1216,
+        "delta": -35554,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/plumb-v2-coin-0/vector.bench.toml",
+        "before": 106894,
+        "after": 56612,
+        "hand_before": 10109,
+        "hand_after": 10109,
+        "delta": -50282,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/plumb-v2-coin-1/vector.bench.toml",
+        "before": 64268,
+        "after": 30741,
+        "hand_before": 5489,
+        "hand_after": 5489,
+        "delta": -33527,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/plumb-v2-coin-2/vector.bench.toml",
+        "before": 43736,
+        "after": 8943,
+        "hand_before": 1198,
+        "hand_after": 1198,
+        "delta": -34793,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/plumb-v2-coin-3/vector.bench.toml",
+        "before": 62078,
+        "after": 30005,
+        "hand_before": 5369,
+        "hand_after": 5369,
+        "delta": -32073,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/plumb-v2-coin-4/vector.bench.toml",
+        "before": 65705,
+        "after": 32169,
+        "hand_before": 5585,
+        "hand_after": 5585,
+        "delta": -33536,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/poly-eval/vector.bench.toml",
+        "before": 137,
+        "after": 137,
+        "hand_before": 84,
+        "hand_after": 84,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/poseidon-range/vector.bench.toml",
+        "before": 7105,
+        "after": 6863,
+        "hand_before": 7027,
+        "hand_after": 7027,
+        "delta": -242,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/poseidon-zero/vector.bench.toml",
+        "before": 7105,
+        "after": 6863,
+        "hand_before": 7027,
+        "hand_after": 7027,
+        "delta": -242,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/quantum-cnot/vector.bench.toml",
+        "before": 65,
+        "after": 65,
+        "hand_before": 27,
+        "hand_after": 27,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/quantum-pure/0.bench.toml",
+        "before": 27232,
+        "after": 12002,
+        "hand_before": 739,
+        "hand_after": 739,
+        "delta": -15230,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/quantum-pure/1.bench.toml",
+        "before": 27230,
+        "after": 12000,
+        "hand_before": 739,
+        "hand_after": 739,
+        "delta": -15230,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/quantum-pure/2.bench.toml",
+        "before": 27232,
+        "after": 12002,
+        "hand_before": 739,
+        "hand_after": 739,
+        "delta": -15230,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/quantum-pure/3.bench.toml",
+        "before": 27232,
+        "after": 12002,
+        "hand_before": 739,
+        "hand_after": 739,
+        "delta": -15230,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/quantum-ram-1/target-0.bench.toml",
+        "before": 3407,
+        "after": 2830,
+        "hand_before": 516,
+        "hand_after": 516,
+        "delta": -577,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/quantum-ram-2/target-0.bench.toml",
+        "before": 6686,
+        "after": 5532,
+        "hand_before": 855,
+        "hand_after": 855,
+        "delta": -1154,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/quantum-ram-2/target-1.bench.toml",
+        "before": 6702,
+        "after": 5548,
+        "hand_before": 882,
+        "hand_after": 882,
+        "delta": -1154,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/quantum-ram-3/target-0.bench.toml",
+        "before": 13228,
+        "after": 10920,
+        "hand_before": 1506,
+        "hand_after": 1506,
+        "delta": -2308,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/quantum-ram-3/target-1.bench.toml",
+        "before": 13244,
+        "after": 10936,
+        "hand_before": 1533,
+        "hand_after": 1533,
+        "delta": -2308,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/quantum-ram-3/target-2.bench.toml",
+        "before": 13260,
+        "after": 10952,
+        "hand_before": 1560,
+        "hand_after": 1560,
+        "delta": -2308,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/recursive-aggregate-two/vector.bench.toml",
+        "before": 862385,
+        "after": 862385,
+        "hand_before": 862330,
+        "hand_after": 862330,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/recursive-dot/vector.bench.toml",
+        "before": 136,
+        "after": 129,
+        "hand_before": 76,
+        "hand_after": 76,
+        "delta": -7,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/recursive-proof/vector.bench.toml",
+        "before": 430449,
+        "after": 430449,
+        "hand_before": 430441,
+        "hand_after": 430441,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/recursive-relay/vector.bench.toml",
+        "before": 430463,
+        "after": 430463,
+        "hand_before": 430450,
+        "hand_after": 430450,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/recursive-verifier/vector.bench.toml",
+        "before": 430449,
+        "after": 430449,
+        "hand_before": 430442,
+        "hand_after": 430442,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/sha256-55bytes/vector.bench.toml",
+        "before": 188106,
+        "after": 188106,
+        "hand_before": 29259,
+        "hand_after": 29259,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/sha256-abc/vector.bench.toml",
+        "before": 188106,
+        "after": 188106,
+        "hand_before": 29259,
+        "hand_after": 29259,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/sha256-carry/vector.bench.toml",
+        "before": 188106,
+        "after": 188106,
+        "hand_before": 29259,
+        "hand_after": 29259,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/sha256-empty/vector.bench.toml",
+        "before": 188106,
+        "after": 188106,
+        "hand_before": 29259,
+        "hand_after": 29259,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/sha256-two-blocks/vector.bench.toml",
+        "before": 187053,
+        "after": 187053,
+        "hand_before": 29263,
+        "hand_after": 29263,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/symmetric/vector.bench.toml",
+        "before": 650,
+        "after": 298,
+        "hand_before": 32,
+        "hand_after": 32,
+        "delta": -352,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/tensor-boundaries/ascending.bench.toml",
+        "before": 304,
+        "after": 304,
+        "hand_before": 710,
+        "hand_after": 710,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/tensor-boundaries/cross-high.bench.toml",
+        "before": 302,
+        "after": 302,
+        "hand_before": 710,
+        "hand_after": 710,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/tensor-boundaries/descending.bench.toml",
+        "before": 292,
+        "after": 292,
+        "hand_before": 696,
+        "hand_after": 696,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/tensor-boundaries/negative.bench.toml",
+        "before": 262,
+        "after": 262,
+        "hand_before": 564,
+        "hand_after": 564,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/tensor-boundaries/same-high.bench.toml",
+        "before": 304,
+        "after": 304,
+        "hand_before": 710,
+        "hand_after": 710,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/tensor-boundaries/threshold-reversed.bench.toml",
+        "before": 270,
+        "after": 270,
+        "hand_before": 564,
+        "hand_after": 564,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/tensor-boundaries/threshold.bench.toml",
+        "before": 210,
+        "after": 210,
+        "hand_before": 550,
+        "hand_after": 550,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/tensor-matvec/vector.bench.toml",
+        "before": 258,
+        "after": 258,
+        "hand_before": 198,
+        "hand_after": 198,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/timelock-16/vector.bench.toml",
+        "before": 2170,
+        "after": 1018,
+        "hand_before": 112,
+        "hand_after": 112,
+        "delta": -1152,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/timelock-17/vector.bench.toml",
+        "before": 2170,
+        "after": 1018,
+        "hand_before": 112,
+        "hand_after": 112,
+        "delta": -1152,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/tip5/vector.bench.toml",
+        "before": 42,
+        "after": 42,
+        "hand_before": 36,
+        "hand_after": 36,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/trinity-ascending/vector.bench.toml",
+        "before": 138220,
+        "after": 74188,
+        "hand_before": 21364,
+        "hand_after": 21364,
+        "delta": -64032,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/trinity-descending/vector.bench.toml",
+        "before": 138154,
+        "after": 74122,
+        "hand_before": 21332,
+        "hand_after": 21332,
+        "delta": -64032,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/u32/vector.bench.toml",
+        "before": 31,
+        "after": 31,
+        "hand_before": 18,
+        "hand_after": 18,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/utxo/vector.bench.toml",
+        "before": 11,
+        "after": 11,
+        "hand_before": 9,
+        "hand_after": 9,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/fixtures/xfield-inverse/vector.bench.toml",
+        "before": 20,
+        "after": 20,
+        "hand_before": 11,
+        "hand_after": 11,
+        "delta": 0,
+        "self_hash_rebound": false
+      },
+      {
+        "fixture": "baselines/triton/reference/arithmetic.bench.toml",
+        "before": 11,
+        "after": 11,
+        "hand_before": 7,
+        "hand_after": 7,
+        "delta": 0,
+        "self_hash_rebound": false
+      }
+    ],
+    "improved": 51,
+    "unchanged": 48,
+    "regressed": 0,
+    "tests": {
+      "trident_workspace": {
+        "log": "/tmp/cyber-ram-trident-workspace.log",
+        "sha256": "c943cce509b65ba018e6151f045d95a04b2676224ee0f904fc3c2379d883e973",
+        "groups": 19,
+        "passed": 896,
+        "failed": 0,
+        "ignored": 0,
+        "ignored_tests": [],
+        "rust_warnings": 0
+      },
+      "trisha_workspace": {
+        "log": "/tmp/cyber-ram-trisha-workspace-final.log",
+        "sha256": "6fba35d704745d3626d82ab65acc4c4cfda174d46e2fbbd1dac5f51024293f81",
+        "groups": 63,
+        "passed": 460,
+        "failed": 0,
+        "ignored": 6,
+        "ignored_tests": [
+          [
+            "genuine_transaction_prepare_and_mock_gateway_process",
+            ", requires generated canonical custom-lock SingleProof deployment intent"
+          ],
+          [
+            "genuine_custom_lock_transaction_and_binding_mutations",
+            ", requires fresh pinned SingleProof with compiled custom-lock UTXO"
+          ],
+          [
+            "actual_proof_binds_typed_entry_input_and_explicit_output",
+            ", serialized real proof gate; run when the release proof slot is free"
+          ],
+          [
+            "genuine_proof_binds_imported_generic_to_program_input_and_output",
+            ", serialized default-security proof gate; run with the release proof slot"
+          ],
+          [
+            "outer_proof_binds_compiled_recursive_sdk_to_public_claim",
+            ", full outer STARK proof; run explicitly in release mode with four Rayon threads"
+          ],
+          [
+            "genuine_tagged_ccs_proofs_bind_atom_pair_topology_under_same_matrices",
+            ", experimental genuine tagged CCS STARK; coordinate the heavy proof slot"
+          ]
+        ],
+        "rust_warnings": 0
+      },
+      "trisha_pre_fusion_failure": {
+        "log": "/tmp/cyber-ram-trisha-workspace.log",
+        "sha256": "d5e9383088ceeb42295cb0ffc63fddb071bc3bc804ee89b51db159263e5d52be",
+        "groups": 23,
+        "passed": 225,
+        "failed": 1,
+        "ignored": 2,
+        "ignored_tests": [
+          [
+            "genuine_transaction_prepare_and_mock_gateway_process",
+            ", requires generated canonical custom-lock SingleProof deployment intent"
+          ],
+          [
+            "genuine_custom_lock_transaction_and_binding_mutations",
+            ", requires fresh pinned SingleProof with compiled custom-lock UTXO"
+          ]
+        ],
+        "rust_warnings": 0
+      },
+      "joy_workspace": {
+        "log": "/tmp/cyber-ram-joy-workspace.log",
+        "sha256": "e6ad828df6bea7d3060489734642885447efe21111aadd85a46e58df4e096724",
+        "groups": 16,
+        "passed": 71,
+        "failed": 0,
+        "ignored": 0,
+        "ignored_tests": [],
+        "rust_warnings": 0
+      },
+      "fused_regressions": {
+        "log": "/tmp/cyber-ram-fused-regressions-fixed.log",
+        "sha256": "58ccdf90f34741927877d22219bba8fa3414ec194d3057066feec63e35d4e3ed",
+        "groups": 4,
+        "passed": 25,
+        "failed": 0,
+        "ignored": 0,
+        "ignored_tests": [],
+        "rust_warnings": 0
+      },
+      "build": {
+        "log": "/tmp/cyber-ram-fused-cli-build.log",
+        "sha256": "4ea8c449216d3c0d4156638accfc52b614c5ae7963a8b7bb530eb660c2da80b6",
+        "groups": 0,
+        "passed": 0,
+        "failed": 0,
+        "ignored": 0,
+        "ignored_tests": [],
+        "rust_warnings": 0
+      },
+      "fixture_rebind": {
+        "log": "/tmp/cyber-ram-fused-fixture-rebind.log",
+        "sha256": "867c846439b9e7a78efbcdeca684e39f950f0a801a68a8e1312b57623d9db459",
+        "groups": 1,
+        "passed": 1,
+        "failed": 0,
+        "ignored": 0,
+        "ignored_tests": [],
+        "rust_warnings": 0
+      }
+    },
+    "cli_proofs": {
+      "schema_version": 1,
+      "binary": "/Users/master/cyber/trisha/target/release/trisha",
+      "binary_sha256": "129660aaac3ac27e4a4704ec66581cd7772918cdd710ec3dc888ffaa9f9ef8be",
+      "all_checks_passed": true,
+      "fresh_proofs": 6,
+      "verified_proofs": 6,
+      "wrong_output_rejections": 6,
+      "commands": [
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "run",
+            "/tmp/cyber-ram-repair/deep.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "debug"
+          ],
+          "exit_code": 0,
+          "seconds": 0.012793792004231364,
+          "stdout": "1\n999\n",
+          "stderr": "Backend: cpu\nExecuting deep (146 ops)...\nExecuted in 250 cycles\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "prove",
+            "/tmp/cyber-ram-repair/deep.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "debug",
+            "--output",
+            "/tmp/cyber-ram-repair/fused-cli/deep-debug.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.46535391599172726,
+          "stdout": "1\n999\n",
+          "stderr": "Backend: cpu\nProving deep (146 ops)...\nProof generated (250 cycles, padded height 2048)\nProof written to /tmp/cyber-ram-repair/fused-cli/deep-debug.proof.toml (451 ms, 250 cycles)\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/fused-cli/deep-debug.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.0206605830026092,
+          "stdout": "Verification: PASS\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/fused-cli/deep-debug-wrong-output.proof.toml"
+          ],
+          "exit_code": 1,
+          "seconds": 0.013737624991335906,
+          "stdout": "Verification: FAIL\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": false
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "run",
+            "/tmp/cyber-ram-repair/deep.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "release"
+          ],
+          "exit_code": 0,
+          "seconds": 0.011582916995394044,
+          "stdout": "1\n999\n",
+          "stderr": "Backend: cpu\nExecuting deep (146 ops)...\nExecuted in 250 cycles\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "prove",
+            "/tmp/cyber-ram-repair/deep.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "release",
+            "--output",
+            "/tmp/cyber-ram-repair/fused-cli/deep-release.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.6149364580051042,
+          "stdout": "1\n999\n",
+          "stderr": "Backend: cpu\nProving deep (146 ops)...\nProof generated (250 cycles, padded height 2048)\nProof written to /tmp/cyber-ram-repair/fused-cli/deep-release.proof.toml (601 ms, 250 cycles)\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/fused-cli/deep-release.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.01795533399854321,
+          "stdout": "Verification: PASS\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/fused-cli/deep-release-wrong-output.proof.toml"
+          ],
+          "exit_code": 1,
+          "seconds": 0.012817040988011286,
+          "stdout": "Verification: FAIL\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": false
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "run",
+            "/tmp/cyber-ram-repair/cleanup.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "debug"
+          ],
+          "exit_code": 0,
+          "seconds": 0.012495457995100878,
+          "stdout": "7\n8\n999\n",
+          "stderr": "Backend: cpu\nExecuting cleanup (30 ops)...\nExecuted in 27 cycles\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "prove",
+            "/tmp/cyber-ram-repair/cleanup.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "debug",
+            "--output",
+            "/tmp/cyber-ram-repair/fused-cli/cleanup-debug.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.19135449999885168,
+          "stdout": "7\n8\n999\n",
+          "stderr": "Backend: cpu\nProving cleanup (30 ops)...\nProof generated (27 cycles, padded height 512)\nProof written to /tmp/cyber-ram-repair/fused-cli/cleanup-debug.proof.toml (177 ms, 27 cycles)\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/fused-cli/cleanup-debug.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.017439542003558017,
+          "stdout": "Verification: PASS\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/fused-cli/cleanup-debug-wrong-output.proof.toml"
+          ],
+          "exit_code": 1,
+          "seconds": 0.013710165992961265,
+          "stdout": "Verification: FAIL\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": false
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "run",
+            "/tmp/cyber-ram-repair/cleanup.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "release"
+          ],
+          "exit_code": 0,
+          "seconds": 0.01114620899898,
+          "stdout": "7\n8\n999\n",
+          "stderr": "Backend: cpu\nExecuting cleanup (30 ops)...\nExecuted in 27 cycles\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "prove",
+            "/tmp/cyber-ram-repair/cleanup.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "release",
+            "--output",
+            "/tmp/cyber-ram-repair/fused-cli/cleanup-release.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.20890941700781696,
+          "stdout": "7\n8\n999\n",
+          "stderr": "Backend: cpu\nProving cleanup (30 ops)...\nProof generated (27 cycles, padded height 512)\nProof written to /tmp/cyber-ram-repair/fused-cli/cleanup-release.proof.toml (195 ms, 27 cycles)\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/fused-cli/cleanup-release.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.017262167006265372,
+          "stdout": "Verification: PASS\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/fused-cli/cleanup-release-wrong-output.proof.toml"
+          ],
+          "exit_code": 1,
+          "seconds": 0.013288707996252924,
+          "stdout": "Verification: FAIL\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": false
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "run",
+            "/tmp/cyber-ram-repair/asm.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "debug",
+            "--input-values",
+            "97"
+          ],
+          "exit_code": 0,
+          "seconds": 0.012043374998029321,
+          "stdout": "999\n97\n999\n",
+          "stderr": "Backend: cpu\nExecuting asm (18 ops)...\nExecuted in 20 cycles\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "prove",
+            "/tmp/cyber-ram-repair/asm.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "debug",
+            "--input-values",
+            "97",
+            "--output",
+            "/tmp/cyber-ram-repair/fused-cli/asm-debug.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.2082402079977328,
+          "stdout": "999\n97\n999\n",
+          "stderr": "Backend: cpu\nProving asm (18 ops)...\nProof generated (20 cycles, padded height 512)\nProof written to /tmp/cyber-ram-repair/fused-cli/asm-debug.proof.toml (195 ms, 20 cycles)\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/fused-cli/asm-debug.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.016604459000518546,
+          "stdout": "Verification: PASS\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/fused-cli/asm-debug-wrong-output.proof.toml"
+          ],
+          "exit_code": 1,
+          "seconds": 0.01320754199696239,
+          "stdout": "Verification: FAIL\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": false
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "run",
+            "/tmp/cyber-ram-repair/asm.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "release",
+            "--input-values",
+            "97"
+          ],
+          "exit_code": 0,
+          "seconds": 0.010778416006360203,
+          "stdout": "999\n97\n999\n",
+          "stderr": "Backend: cpu\nExecuting asm (18 ops)...\nExecuted in 20 cycles\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "prove",
+            "/tmp/cyber-ram-repair/asm.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "release",
+            "--input-values",
+            "97",
+            "--output",
+            "/tmp/cyber-ram-repair/fused-cli/asm-release.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.17042791699350346,
+          "stdout": "999\n97\n999\n",
+          "stderr": "Backend: cpu\nProving asm (18 ops)...\nProof generated (20 cycles, padded height 512)\nProof written to /tmp/cyber-ram-repair/fused-cli/asm-release.proof.toml (157 ms, 20 cycles)\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/fused-cli/asm-release.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.01690554100787267,
+          "stdout": "Verification: PASS\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/fused-cli/asm-release-wrong-output.proof.toml"
+          ],
+          "exit_code": 1,
+          "seconds": 0.013283209002111107,
+          "stdout": "Verification: FAIL\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": false
+        }
+      ],
+      "proofs": [
+        {
+          "path": "/tmp/cyber-ram-repair/fused-cli/asm-debug.proof.toml",
+          "sha256": "9b141d1c84cca1ee63278e51d7a52ec48ad3be911563304f9477126d37dba880",
+          "bytes": 756391,
+          "claim": {
+            "program_hash": [
+              "17823487166271579113",
+              "8645553311978449427",
+              "3098851028827287911",
+              "10102373387370545620",
+              "3478843582046947838"
+            ],
+            "public_input": [
+              "97"
+            ],
+            "public_output": [
+              "999",
+              "97",
+              "999"
+            ]
+          }
+        },
+        {
+          "path": "/tmp/cyber-ram-repair/fused-cli/asm-release.proof.toml",
+          "sha256": "ccf8f8538658a116d5d38002fce3745680215b15f095d9d967e5ebcb482aa7df",
+          "bytes": 764711,
+          "claim": {
+            "program_hash": [
+              "17823487166271579113",
+              "8645553311978449427",
+              "3098851028827287911",
+              "10102373387370545620",
+              "3478843582046947838"
+            ],
+            "public_input": [
+              "97"
+            ],
+            "public_output": [
+              "999",
+              "97",
+              "999"
+            ]
+          }
+        },
+        {
+          "path": "/tmp/cyber-ram-repair/fused-cli/cleanup-debug.proof.toml",
+          "sha256": "66e40489d00036dc3e5a159264a76f8c8ea2fa45f9522e85c819e00edeab63c4",
+          "bytes": 759481,
+          "claim": {
+            "program_hash": [
+              "11630959268995086536",
+              "2198513559787239250",
+              "8726774228899963017",
+              "13227557890378569250",
+              "13022534366686837678"
+            ],
+            "public_input": [],
+            "public_output": [
+              "7",
+              "8",
+              "999"
+            ]
+          }
+        },
+        {
+          "path": "/tmp/cyber-ram-repair/fused-cli/cleanup-release.proof.toml",
+          "sha256": "1c8980039dc9848a19ce90e15beca040194a7f536fd906b90a545c5d32d81e4f",
+          "bytes": 761189,
+          "claim": {
+            "program_hash": [
+              "11630959268995086536",
+              "2198513559787239250",
+              "8726774228899963017",
+              "13227557890378569250",
+              "13022534366686837678"
+            ],
+            "public_input": [],
+            "public_output": [
+              "7",
+              "8",
+              "999"
+            ]
+          }
+        },
+        {
+          "path": "/tmp/cyber-ram-repair/fused-cli/deep-debug.proof.toml",
+          "sha256": "0b8eb992fb65403dbe897d755f8ed82edc6126968e10b15868ce97daed537b93",
+          "bytes": 849669,
+          "claim": {
+            "program_hash": [
+              "15246507686124126121",
+              "4303504411286696646",
+              "2151321149974037110",
+              "417981104404683264",
+              "18401497129094737632"
+            ],
+            "public_input": [],
+            "public_output": [
+              "1",
+              "999"
+            ]
+          }
+        },
+        {
+          "path": "/tmp/cyber-ram-repair/fused-cli/deep-release.proof.toml",
+          "sha256": "3263c9e66ef6b0a7d58f7ffd692813aecda1fb2d4274a903dec04bea970867c6",
+          "bytes": 849565,
+          "claim": {
+            "program_hash": [
+              "15246507686124126121",
+              "4303504411286696646",
+              "2151321149974037110",
+              "417981104404683264",
+              "18401497129094737632"
+            ],
+            "public_input": [],
+            "public_output": [
+              "1",
+              "999"
+            ]
+          }
+        }
+      ]
+    },
+    "release_tooling": {
+      "log": "/tmp/cyber-ram-release-tooling.log",
+      "sha256": "24713bf9c9b73b8966d92cc4f93fb94703b07eb13525d663511bd4a733d4b754",
+      "tests": 24,
+      "passed": true
+    },
+    "repair_source_sha256_at_checkpoint": {
+      "trident/src/ir/tir/builder/cleanup.rs": "47ad4c2721ccc052b8c88efe541278048c91276e23ec814a27b639dd8c15a92d",
+      "trident/src/ir/tir/builder/stmt.rs": "703ee9d1399328dfef91ec4557baf82a6e930abb666342d883a792e79ffece6b",
+      "trident/src/ir/tir/stack/mod.rs": "abf12f071ad269d70880463864225ef642f52a6f66d17a648c3c8280d158332b",
+      "trident/src/ir/tir/stack/tests.rs": "7b989c0e8df6c23bafd7af78d38b11bec8e81ea699719bcb9435d2ec11d76d93",
+      "trisha/rs/lower/legalize.rs": "ddc362ebc050ba91e89109cdb205d6d942fa398c9c5b0c05e54602cb7a2a88b2",
+      "trisha/rs/lower/legalize/tests.rs": "a3978a3b105b8a861370181e924ab7a9ee0b52880b522bbb61365f00367b9b23",
+      "trisha/rs/lower/triton.rs": "866a6f16cfeb27eca6e24da5526c350979ffad755faf03c88e9c2d2c4fc12ca9",
+      "trisha/rs/tests/stack_ram.rs": "06fb26ee1ba27fac996dcb9e1220f8715c624387ba15591121df4eb6734446d2",
+      "trisha/rs/tests/target_ownership.rs": "9cadf0d82e9c8d55ebe2f40170bcd1a75f6d20faa83e001e8bdab0b937a1e480",
+      "trisha/rs/lower/sequence.rs": "f19aa701e521e67d8314df5d83c59acbce38d30300059811c40961480aa9d14a",
+      "trisha/rs/lower/mod.rs": "3c0d056c9651c540946e7af4477842b4d99083910549e052e7d29ae6f6940f88",
+      "trisha/scripts/smoke-release.nu": "e39072dcbe0309580091890c6eca761a4c73b422839056477c2210af9589935d"
+    },
+    "local_smoke_section": {
+      "scope": "extracted exact RAM section, local binaries; not full installed smoke",
+      "script_sha256": "b9a0fb096e908dd1b6c742923848a4a03aed82ba0d2275affc7dd0e0b4734bc3",
+      "log_sha256": "db78a7325c114ef36a6ba6b73b68e0438397201adcfa48a31aafa38a11c650eb",
+      "trident_sha256": "d8ec13f993f5c20f26bbd5379b163fdfb13428d1a64c059459ca82320e9d4fa5",
+      "trisha_sha256": "129660aaac3ac27e4a4704ec66581cd7772918cdd710ec3dc888ffaa9f9ef8be",
+      "fresh_verified_proofs": 2,
+      "wrong_output_rejections": 2,
+      "proofs": [
+        {
+          "file": "stack-ram-debug.proof.toml",
+          "sha256": "2d35cf58870109fdbfc89a3210bf5078aef876f5db7a8775d097de204b056d63",
+          "claim": {
+            "program_hash": [
+              "16096163181463783067",
+              "1651536005331236066",
+              "11833753146327163687",
+              "1334712556818928624",
+              "5812309172244668541"
+            ],
+            "public_input": [
+              "97"
+            ],
+            "public_output": [
+              "1001",
+              "1",
+              "7",
+              "8",
+              "97",
+              "999",
+              "1001"
+            ]
+          }
+        },
+        {
+          "file": "stack-ram-release.proof.toml",
+          "sha256": "6400e95d69114d15688a11c1ce7c86b65b79a8aba13bc253ceeb7565d5faf1cc",
+          "claim": {
+            "program_hash": [
+              "16096163181463783067",
+              "1651536005331236066",
+              "11833753146327163687",
+              "1334712556818928624",
+              "5812309172244668541"
+            ],
+            "public_input": [
+              "97"
+            ],
+            "public_output": [
+              "1001",
+              "1",
+              "7",
+              "8",
+              "97",
+              "999",
+              "1001"
+            ]
+          }
+        }
+      ]
+    },
+    "keccak_struct": {
+      "before": {
+        "/tmp/cyber-ram-repair/keccak-struct-fixtures/lanes.bench.toml": [
+          8117373,
+          98515
+        ],
+        "/tmp/cyber-ram-repair/keccak-struct-fixtures/zero.bench.toml": [
+          8117373,
+          98515
+        ]
+      },
+      "fused": {
+        "/tmp/cyber-ram-repair/keccak-struct-fixtures/lanes.bench.toml": [
+          2240003,
+          98515
+        ],
+        "/tmp/cyber-ram-repair/keccak-struct-fixtures/zero.bench.toml": [
+          2240003,
+          98515
+        ]
+      }
+    },
+    "fixture_changes": {
+      "burn": {
+        "changed_keys": [
+          "input",
+          "secret"
+        ],
+        "before_sha256": "8ec56688679fec8eb88496b4fb0da6191ad9425d52cfadff0a55bb4ed18c5bfc",
+        "after_sha256": "4ebff38a253b9b13165bc2378e4e41ca06b102a2dfbab47853b3c728aa132d30"
+      },
+      "mint": {
+        "changed_keys": [
+          "input",
+          "secret"
+        ],
+        "before_sha256": "5f89b8af80232a69ea6828151d6e2ab32e50ab6579c3460505f4729562e9c3cb",
+        "after_sha256": "fa5d173986cd2fe15f0e9fe9fb5c47453217f6f2bf63c7727995445269428618"
+      },
+      "transfer": {
+        "changed_keys": [
+          "input",
+          "secret"
+        ],
+        "before_sha256": "f95690343cd41e8d2eebf8fa1a6c5593ea244f36836a8a62b779cf8eb1f29659",
+        "after_sha256": "605402ad7aa3f1d4f249acf055128f0870f99245e450db70c7707e754caa5468"
+      },
+      "wrong-selfhash": {
+        "changed_keys": [],
+        "before_sha256": "a250c0fe7d815ec43f09baa3c2b3f3cd1ac65e8a8643f66094417c738ff87af5",
+        "after_sha256": "a250c0fe7d815ec43f09baa3c2b3f3cd1ac65e8a8643f66094417c738ff87af5"
+      }
+    }
+  },
+  "pre_fusion_checkpoint": {
+    "schema_version": 1,
+    "date": "2026-09-16",
+    "scope": "live working tree RAM repair; not a frozen release candidate",
+    "release_ready": false,
+    "tests": {
+      "trident_library": {
+        "log_path": "/tmp/cyber-ram-trident-lib-final.log",
+        "log_sha256": "47da3473d84dab2190dee8ae935af5e693dcf940fc8c027125689408fc3b090a",
+        "test_groups": 1,
+        "passed": 682,
+        "failed": 0,
+        "ignored": 0,
+        "rust_warnings": 0
+      },
+      "joy_workspace": {
+        "log_path": "/tmp/cyber-ram-joy-workspace.log",
+        "log_sha256": "e6ad828df6bea7d3060489734642885447efe21111aadd85a46e58df4e096724",
+        "test_groups": 16,
+        "passed": 71,
+        "failed": 0,
+        "ignored": 0,
+        "rust_warnings": 0
+      },
+      "trisha_focused": {
+        "log_path": "/tmp/cyber-ram-fast-regressions.log",
+        "log_sha256": "2925ba4e6351633c454ec98aa298f8dc84a88022dafee4d7b0a921f3ef23bd3f",
+        "test_groups": 4,
+        "passed": 112,
+        "failed": 0,
+        "ignored": 0,
+        "rust_warnings": 0
+      },
+      "trisha_ram_final": {
+        "log_path": "/tmp/cyber-ram-final-preservation-tests.log",
+        "log_sha256": "bc42751995a01c1c8619a4151769be8f345d08e3449af4851c4ce4056d57f7a1",
+        "test_groups": 1,
+        "passed": 5,
+        "failed": 0,
+        "ignored": 0,
+        "rust_warnings": 0
+      },
+      "independent_custom_rebind": {
+        "log_path": "/tmp/cyber-ram-custom-fixture-rebind.log",
+        "log_sha256": "d4ed362fae89489f5a41a13b37269b1b4e768909e4312513bbf94b3b3388a9d8",
+        "test_groups": 1,
+        "passed": 1,
+        "failed": 0,
+        "ignored": 0,
+        "rust_warnings": 0
+      },
+      "cli_build": {
+        "log_path": "/tmp/cyber-ram-fast-cli-build.log",
+        "log_sha256": "dfdd0db844ee49e2ea08e60b1759122d93de9b410a92d5cef9765d0d92247d6e",
+        "test_groups": 0,
+        "passed": 0,
+        "failed": 0,
+        "ignored": 0,
+        "rust_warnings": 0
+      }
+    },
+    "before_benchmark": {
+      "binary_sha256": "498e3c496711ef0f55ba08fa376ef00c3300878fe90daf940804b3136c6ebbc9",
+      "command": [
+        "/tmp/cyber-ram-repair/trisha-before",
+        "bench"
+      ],
+      "exit_code": 0,
+      "seconds": 13.708187208001618,
+      "log_sha256": "9fd5e1d3c5468b9ada3608465502dafd666c233110ee48ebf0e1ee295dbd95e4"
+    },
+    "linear_search_benchmark": {
+      "binary_sha256": "f826491ff65513c92979d711b3977f0c47c06a9eb1d9527d6ae2f8dc8e64ea41",
+      "exit_code": 1,
+      "seconds": 13.250766041004681,
+      "log_sha256": "7e10d34ff5a25257d356d79e843bff0289def3ea37ee7e80b5b4643798072e52"
+    },
+    "linear_search_comparison": {
+      "compared": 96,
+      "missing": [
+        "baselines/triton/fixtures/custom-token-v2-burn/vector.bench.toml",
+        "baselines/triton/fixtures/custom-token-v2-mint/vector.bench.toml",
+        "baselines/triton/fixtures/custom-token-v2-transfer/vector.bench.toml"
+      ],
+      "better": 5,
+      "same": 48,
+      "worse": 43,
+      "changes": [
+        {
+          "fixture": "baselines/triton/fixtures/assert/vector.bench.toml",
+          "before": 9,
+          "after": 9,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/auth-preimage/vector.bench.toml",
+          "before": 52,
+          "after": 52,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/bigint-carry/vector.bench.toml",
+          "before": 1675,
+          "after": 2219,
+          "delta": 544,
+          "ratio": 1.324776119402985
+        },
+        {
+          "fixture": "baselines/triton/fixtures/compiler-lexer-associativity/vector.bench.toml",
+          "before": 35519,
+          "after": 35519,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/compiler-lexer-parentheses/vector.bench.toml",
+          "before": 35738,
+          "after": 35738,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/compiler-lexer-precedence/vector.bench.toml",
+          "before": 28976,
+          "after": 28976,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/compiler-parser-associativity/vector.bench.toml",
+          "before": 69428,
+          "after": 69428,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/compiler-parser-parentheses/vector.bench.toml",
+          "before": 72870,
+          "after": 72870,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/compiler-parser-precedence/vector.bench.toml",
+          "before": 54581,
+          "after": 54581,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/compiler-pipeline-associativity/vector.bench.toml",
+          "before": 144453,
+          "after": 157368,
+          "delta": 12915,
+          "ratio": 1.0894062428609999
+        },
+        {
+          "fixture": "baselines/triton/fixtures/compiler-pipeline-parentheses/vector.bench.toml",
+          "before": 139636,
+          "after": 152551,
+          "delta": 12915,
+          "ratio": 1.0924904752356126
+        },
+        {
+          "fixture": "baselines/triton/fixtures/compiler-pipeline-precedence/vector.bench.toml",
+          "before": 112452,
+          "after": 125367,
+          "delta": 12915,
+          "ratio": 1.114849002240956
+        },
+        {
+          "fixture": "baselines/triton/fixtures/convert/vector.bench.toml",
+          "before": 10,
+          "after": 10,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/custom-poseidon2-lanes/vector.bench.toml",
+          "before": 107687,
+          "after": 337435,
+          "delta": 229748,
+          "ratio": 3.1334794357721916
+        },
+        {
+          "fixture": "baselines/triton/fixtures/custom-poseidon2-ram/vector.bench.toml",
+          "before": 107933,
+          "after": 337768,
+          "delta": 229835,
+          "ratio": 3.1294228827142763
+        },
+        {
+          "fixture": "baselines/triton/fixtures/custom-poseidon2-zero/vector.bench.toml",
+          "before": 107687,
+          "after": 337435,
+          "delta": 229748,
+          "ratio": 3.1334794357721916
+        },
+        {
+          "fixture": "baselines/triton/fixtures/ecdsa-cross-limb/vector.bench.toml",
+          "before": 27788,
+          "after": 58495,
+          "delta": 30707,
+          "ratio": 2.1050453433136607
+        },
+        {
+          "fixture": "baselines/triton/fixtures/ecdsa-even-order/vector.bench.toml",
+          "before": 28070,
+          "after": 58761,
+          "delta": 30691,
+          "ratio": 2.0933737085856787
+        },
+        {
+          "fixture": "baselines/triton/fixtures/ecdsa-half/vector.bench.toml",
+          "before": 27614,
+          "after": 58321,
+          "delta": 30707,
+          "ratio": 2.112008401535453
+        },
+        {
+          "fixture": "baselines/triton/fixtures/ecdsa-high/vector.bench.toml",
+          "before": 27614,
+          "after": 58321,
+          "delta": 30707,
+          "ratio": 2.112008401535453
+        },
+        {
+          "fixture": "baselines/triton/fixtures/ecdsa-invalid-r/vector.bench.toml",
+          "before": 25660,
+          "after": 55894,
+          "delta": 30234,
+          "ratio": 2.1782540919719406
+        },
+        {
+          "fixture": "baselines/triton/fixtures/ecdsa-order/vector.bench.toml",
+          "before": 27610,
+          "after": 58317,
+          "delta": 30707,
+          "ratio": 2.1121695038029697
+        },
+        {
+          "fixture": "baselines/triton/fixtures/ecdsa-zero/vector.bench.toml",
+          "before": 21655,
+          "after": 48023,
+          "delta": 26368,
+          "ratio": 2.2176402678365275
+        },
+        {
+          "fixture": "baselines/triton/fixtures/fibonacci-0/vector.bench.toml",
+          "before": 25,
+          "after": 25,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/fibonacci-1/vector.bench.toml",
+          "before": 45,
+          "after": 45,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/fibonacci-10/vector.bench.toml",
+          "before": 225,
+          "after": 225,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/fibonacci-100/vector.bench.toml",
+          "before": 2025,
+          "after": 2025,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/field/vector.bench.toml",
+          "before": 27,
+          "after": 27,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/generation/vector.bench.toml",
+          "before": 50,
+          "after": 50,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/io/vector.bench.toml",
+          "before": 10,
+          "after": 10,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/keccak-lanes/vector.bench.toml",
+          "before": 824862,
+          "after": 791070,
+          "delta": -33792,
+          "ratio": 0.9590331473628316
+        },
+        {
+          "fixture": "baselines/triton/fixtures/keccak-zero/vector.bench.toml",
+          "before": 824862,
+          "after": 791070,
+          "delta": -33792,
+          "ratio": 0.9590331473628316
+        },
+        {
+          "fixture": "baselines/triton/fixtures/kernel-timestamp/vector.bench.toml",
+          "before": 1520,
+          "after": 4198,
+          "delta": 2678,
+          "ratio": 2.761842105263158
+        },
+        {
+          "fixture": "baselines/triton/fixtures/mem/vector.bench.toml",
+          "before": 21,
+          "after": 21,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/merkle-2/vector.bench.toml",
+          "before": 43,
+          "after": 43,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/merkle-3/vector.bench.toml",
+          "before": 43,
+          "after": 43,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/merkle-proof/vector.bench.toml",
+          "before": 1481,
+          "after": 4170,
+          "delta": 2689,
+          "ratio": 2.8156650911546253
+        },
+        {
+          "fixture": "baselines/triton/fixtures/multisig-3/vector.bench.toml",
+          "before": 132,
+          "after": 132,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/multisig-5/vector.bench.toml",
+          "before": 141,
+          "after": 141,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/multisig-6/vector.bench.toml",
+          "before": 150,
+          "after": 150,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/neptune-native-currency/vector.bench.toml",
+          "before": 578365,
+          "after": 578365,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/neptune-transaction/valid.bench.toml",
+          "before": 833066,
+          "after": 833066,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-config/vector.bench.toml",
+          "before": 19575,
+          "after": 47935,
+          "delta": 28360,
+          "ratio": 2.448786717752235
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-card-0/vector.bench.toml",
+          "before": 73208,
+          "after": 148938,
+          "delta": 75730,
+          "ratio": 2.0344497869085347
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-card-1/vector.bench.toml",
+          "before": 72571,
+          "after": 146182,
+          "delta": 73611,
+          "ratio": 2.0143307932920864
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-card-2/vector.bench.toml",
+          "before": 68712,
+          "after": 135252,
+          "delta": 66540,
+          "ratio": 1.9683898009081384
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-card-3/vector.bench.toml",
+          "before": 68026,
+          "after": 142399,
+          "delta": 74373,
+          "ratio": 2.093302560785582
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-card-4/vector.bench.toml",
+          "before": 67831,
+          "after": 135784,
+          "delta": 67953,
+          "ratio": 2.001798587666406
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-card-config/vector.bench.toml",
+          "before": 44071,
+          "after": 109441,
+          "delta": 65370,
+          "ratio": 2.483288330194459
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-coin-0/vector.bench.toml",
+          "before": 106894,
+          "after": 206579,
+          "delta": 99685,
+          "ratio": 1.9325593578685427
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-coin-1/vector.bench.toml",
+          "before": 64268,
+          "after": 128018,
+          "delta": 63750,
+          "ratio": 1.9919400012447874
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-coin-2/vector.bench.toml",
+          "before": 43736,
+          "after": 107698,
+          "delta": 63962,
+          "ratio": 2.46245655752698
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-coin-3/vector.bench.toml",
+          "before": 62078,
+          "after": 122611,
+          "delta": 60533,
+          "ratio": 1.9751119559264152
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-coin-4/vector.bench.toml",
+          "before": 65705,
+          "after": 132289,
+          "delta": 66584,
+          "ratio": 2.0133779773228824
+        },
+        {
+          "fixture": "baselines/triton/fixtures/poly-eval/vector.bench.toml",
+          "before": 137,
+          "after": 137,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/poseidon-range/vector.bench.toml",
+          "before": 7105,
+          "after": 6863,
+          "delta": -242,
+          "ratio": 0.9659394792399718
+        },
+        {
+          "fixture": "baselines/triton/fixtures/poseidon-zero/vector.bench.toml",
+          "before": 7105,
+          "after": 6863,
+          "delta": -242,
+          "ratio": 0.9659394792399718
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-cnot/vector.bench.toml",
+          "before": 65,
+          "after": 65,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-pure/0.bench.toml",
+          "before": 27232,
+          "after": 88805,
+          "delta": 61573,
+          "ratio": 3.2610531727379555
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-pure/1.bench.toml",
+          "before": 27230,
+          "after": 88803,
+          "delta": 61573,
+          "ratio": 3.261219243481454
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-pure/2.bench.toml",
+          "before": 27232,
+          "after": 88805,
+          "delta": 61573,
+          "ratio": 3.2610531727379555
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-pure/3.bench.toml",
+          "before": 27232,
+          "after": 88805,
+          "delta": 61573,
+          "ratio": 3.2610531727379555
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-ram-1/target-0.bench.toml",
+          "before": 3407,
+          "after": 7618,
+          "delta": 4211,
+          "ratio": 2.2359847373055475
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-ram-2/target-0.bench.toml",
+          "before": 6686,
+          "after": 15108,
+          "delta": 8422,
+          "ratio": 2.2596470236314685
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-ram-2/target-1.bench.toml",
+          "before": 6702,
+          "after": 15124,
+          "delta": 8422,
+          "ratio": 2.2566398090122353
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-ram-3/target-0.bench.toml",
+          "before": 13228,
+          "after": 30072,
+          "delta": 16844,
+          "ratio": 2.2733595403689146
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-ram-3/target-1.bench.toml",
+          "before": 13244,
+          "after": 30088,
+          "delta": 16844,
+          "ratio": 2.27182120205376
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-ram-3/target-2.bench.toml",
+          "before": 13260,
+          "after": 30104,
+          "delta": 16844,
+          "ratio": 2.270286576168929
+        },
+        {
+          "fixture": "baselines/triton/fixtures/recursive-aggregate-two/vector.bench.toml",
+          "before": 862385,
+          "after": 862385,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/recursive-dot/vector.bench.toml",
+          "before": 136,
+          "after": 129,
+          "delta": -7,
+          "ratio": 0.9485294117647058
+        },
+        {
+          "fixture": "baselines/triton/fixtures/recursive-proof/vector.bench.toml",
+          "before": 430449,
+          "after": 430449,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/recursive-relay/vector.bench.toml",
+          "before": 430463,
+          "after": 430463,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/recursive-verifier/vector.bench.toml",
+          "before": 430449,
+          "after": 430449,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/sha256-55bytes/vector.bench.toml",
+          "before": 188106,
+          "after": 188106,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/sha256-abc/vector.bench.toml",
+          "before": 188106,
+          "after": 188106,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/sha256-carry/vector.bench.toml",
+          "before": 188106,
+          "after": 188106,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/sha256-empty/vector.bench.toml",
+          "before": 188106,
+          "after": 188106,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/sha256-two-blocks/vector.bench.toml",
+          "before": 187053,
+          "after": 187053,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/symmetric/vector.bench.toml",
+          "before": 650,
+          "after": 895,
+          "delta": 245,
+          "ratio": 1.376923076923077
+        },
+        {
+          "fixture": "baselines/triton/fixtures/tensor-boundaries/ascending.bench.toml",
+          "before": 304,
+          "after": 304,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/tensor-boundaries/cross-high.bench.toml",
+          "before": 302,
+          "after": 302,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/tensor-boundaries/descending.bench.toml",
+          "before": 292,
+          "after": 292,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/tensor-boundaries/negative.bench.toml",
+          "before": 262,
+          "after": 262,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/tensor-boundaries/same-high.bench.toml",
+          "before": 304,
+          "after": 304,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/tensor-boundaries/threshold-reversed.bench.toml",
+          "before": 270,
+          "after": 270,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/tensor-boundaries/threshold.bench.toml",
+          "before": 210,
+          "after": 210,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/tensor-matvec/vector.bench.toml",
+          "before": 258,
+          "after": 258,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/timelock-16/vector.bench.toml",
+          "before": 2170,
+          "after": 5093,
+          "delta": 2923,
+          "ratio": 2.347004608294931
+        },
+        {
+          "fixture": "baselines/triton/fixtures/timelock-17/vector.bench.toml",
+          "before": 2170,
+          "after": 5093,
+          "delta": 2923,
+          "ratio": 2.347004608294931
+        },
+        {
+          "fixture": "baselines/triton/fixtures/tip5/vector.bench.toml",
+          "before": 42,
+          "after": 42,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/trinity-ascending/vector.bench.toml",
+          "before": 138220,
+          "after": 379006,
+          "delta": 240786,
+          "ratio": 2.7420489075387064
+        },
+        {
+          "fixture": "baselines/triton/fixtures/trinity-descending/vector.bench.toml",
+          "before": 138154,
+          "after": 378940,
+          "delta": 240786,
+          "ratio": 2.7428811326490727
+        },
+        {
+          "fixture": "baselines/triton/fixtures/u32/vector.bench.toml",
+          "before": 31,
+          "after": 31,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/utxo/vector.bench.toml",
+          "before": 11,
+          "after": 11,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/fixtures/xfield-inverse/vector.bench.toml",
+          "before": 20,
+          "after": 20,
+          "delta": 0,
+          "ratio": 1.0
+        },
+        {
+          "fixture": "baselines/triton/reference/arithmetic.bench.toml",
+          "before": 11,
+          "after": 11,
+          "delta": 0,
+          "ratio": 1.0
+        }
+      ]
+    },
+    "final_benchmark": {
+      "command": [
+        "/Users/master/cyber/trisha/target/release/trisha",
+        "bench"
+      ],
+      "binary_sha256": "8ecd32d661ebefbd111ef8e9e7165d587d3beb33aa79a52f62c68175de31bc44",
+      "exit_code": 0,
+      "seconds": 13.957889958008309,
+      "log_sha256": "b67849f4a814276b2f98c210a5a32436717ea129dbc579905a12d7aabc6043d2"
+    },
+    "final_comparison": {
+      "compared": 99,
+      "missing": [],
+      "better": 51,
+      "same": 48,
+      "worse": 0,
+      "changes": [
+        {
+          "fixture": "baselines/triton/fixtures/assert/vector.bench.toml",
+          "before": 9,
+          "after": 9,
+          "hand_before": 9,
+          "hand_after": 9,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/auth-preimage/vector.bench.toml",
+          "before": 52,
+          "after": 52,
+          "hand_before": 36,
+          "hand_after": 36,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/bigint-carry/vector.bench.toml",
+          "before": 1675,
+          "after": 1274,
+          "hand_before": 124,
+          "hand_after": 124,
+          "delta": -401,
+          "ratio": 0.7605970149253731,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/compiler-lexer-associativity/vector.bench.toml",
+          "before": 35519,
+          "after": 35519,
+          "hand_before": 13284,
+          "hand_after": 13284,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/compiler-lexer-parentheses/vector.bench.toml",
+          "before": 35738,
+          "after": 35738,
+          "hand_before": 14041,
+          "hand_after": 14041,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/compiler-lexer-precedence/vector.bench.toml",
+          "before": 28976,
+          "after": 28976,
+          "hand_before": 11426,
+          "hand_after": 11426,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/compiler-parser-associativity/vector.bench.toml",
+          "before": 69428,
+          "after": 69428,
+          "hand_before": 14979,
+          "hand_after": 14979,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/compiler-parser-parentheses/vector.bench.toml",
+          "before": 72870,
+          "after": 72870,
+          "hand_before": 15377,
+          "hand_after": 15377,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/compiler-parser-precedence/vector.bench.toml",
+          "before": 54581,
+          "after": 54581,
+          "hand_before": 12441,
+          "hand_after": 12441,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/compiler-pipeline-associativity/vector.bench.toml",
+          "before": 144453,
+          "after": 139570,
+          "hand_before": 14297,
+          "hand_after": 14297,
+          "delta": -4883,
+          "ratio": 0.9661966175849585,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/compiler-pipeline-parentheses/vector.bench.toml",
+          "before": 139636,
+          "after": 134753,
+          "hand_before": 14767,
+          "hand_after": 14767,
+          "delta": -4883,
+          "ratio": 0.9650305078919477,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/compiler-pipeline-precedence/vector.bench.toml",
+          "before": 112452,
+          "after": 107569,
+          "hand_before": 11903,
+          "hand_after": 11903,
+          "delta": -4883,
+          "ratio": 0.9565770284210152,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/convert/vector.bench.toml",
+          "before": 10,
+          "after": 10,
+          "hand_before": 12,
+          "hand_after": 12,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/custom-poseidon2-lanes/vector.bench.toml",
+          "before": 107687,
+          "after": 104558,
+          "hand_before": 4139,
+          "hand_after": 4139,
+          "delta": -3129,
+          "ratio": 0.970943567932991,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/custom-poseidon2-ram/vector.bench.toml",
+          "before": 107933,
+          "after": 104714,
+          "hand_before": 5711,
+          "hand_after": 5711,
+          "delta": -3219,
+          "ratio": 0.9701759424828366,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/custom-poseidon2-zero/vector.bench.toml",
+          "before": 107687,
+          "after": 104558,
+          "hand_before": 4139,
+          "hand_after": 4139,
+          "delta": -3129,
+          "ratio": 0.970943567932991,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/custom-token-v2-burn/vector.bench.toml",
+          "before": 25317,
+          "after": 21817,
+          "hand_before": 8437,
+          "hand_after": 8437,
+          "delta": -3500,
+          "ratio": 0.8617529723110953,
+          "self_hash_rebound": true
+        },
+        {
+          "fixture": "baselines/triton/fixtures/custom-token-v2-mint/vector.bench.toml",
+          "before": 25317,
+          "after": 21817,
+          "hand_before": 8437,
+          "hand_after": 8437,
+          "delta": -3500,
+          "ratio": 0.8617529723110953,
+          "self_hash_rebound": true
+        },
+        {
+          "fixture": "baselines/triton/fixtures/custom-token-v2-transfer/vector.bench.toml",
+          "before": 24680,
+          "after": 21417,
+          "hand_before": 8307,
+          "hand_after": 8307,
+          "delta": -3263,
+          "ratio": 0.8677876823338736,
+          "self_hash_rebound": true
+        },
+        {
+          "fixture": "baselines/triton/fixtures/ecdsa-cross-limb/vector.bench.toml",
+          "before": 27788,
+          "after": 21106,
+          "hand_before": 2927,
+          "hand_after": 2927,
+          "delta": -6682,
+          "ratio": 0.7595364905714697,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/ecdsa-even-order/vector.bench.toml",
+          "before": 28070,
+          "after": 21292,
+          "hand_before": 3039,
+          "hand_after": 3039,
+          "delta": -6778,
+          "ratio": 0.7585322408265052,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/ecdsa-half/vector.bench.toml",
+          "before": 27614,
+          "after": 20932,
+          "hand_before": 2819,
+          "hand_after": 2819,
+          "delta": -6682,
+          "ratio": 0.7580212935467516,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/ecdsa-high/vector.bench.toml",
+          "before": 27614,
+          "after": 20932,
+          "hand_before": 2819,
+          "hand_after": 2819,
+          "delta": -6682,
+          "ratio": 0.7580212935467516,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/ecdsa-invalid-r/vector.bench.toml",
+          "before": 25660,
+          "after": 19825,
+          "hand_before": 2819,
+          "hand_after": 2819,
+          "delta": -5835,
+          "ratio": 0.7726032735775527,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/ecdsa-order/vector.bench.toml",
+          "before": 27610,
+          "after": 20928,
+          "hand_before": 2819,
+          "hand_after": 2819,
+          "delta": -6682,
+          "ratio": 0.757986236870699,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/ecdsa-zero/vector.bench.toml",
+          "before": 21655,
+          "after": 16914,
+          "hand_before": 2709,
+          "hand_after": 2709,
+          "delta": -4741,
+          "ratio": 0.7810667282382822,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/fibonacci-0/vector.bench.toml",
+          "before": 25,
+          "after": 25,
+          "hand_before": 16,
+          "hand_after": 16,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/fibonacci-1/vector.bench.toml",
+          "before": 45,
+          "after": 45,
+          "hand_before": 28,
+          "hand_after": 28,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/fibonacci-10/vector.bench.toml",
+          "before": 225,
+          "after": 225,
+          "hand_before": 136,
+          "hand_after": 136,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/fibonacci-100/vector.bench.toml",
+          "before": 2025,
+          "after": 2025,
+          "hand_before": 1216,
+          "hand_after": 1216,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/field/vector.bench.toml",
+          "before": 27,
+          "after": 27,
+          "hand_before": 34,
+          "hand_after": 34,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/generation/vector.bench.toml",
+          "before": 50,
+          "after": 50,
+          "hand_before": 36,
+          "hand_after": 36,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/io/vector.bench.toml",
+          "before": 10,
+          "after": 10,
+          "hand_before": 14,
+          "hand_after": 14,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/keccak-lanes/vector.bench.toml",
+          "before": 824862,
+          "after": 755070,
+          "hand_before": 98515,
+          "hand_after": 98515,
+          "delta": -69792,
+          "ratio": 0.9153894833317573,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/keccak-zero/vector.bench.toml",
+          "before": 824862,
+          "after": 755070,
+          "hand_before": 98515,
+          "hand_after": 98515,
+          "delta": -69792,
+          "ratio": 0.9153894833317573,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/kernel-timestamp/vector.bench.toml",
+          "before": 1520,
+          "after": 1373,
+          "hand_before": 75,
+          "hand_after": 75,
+          "delta": -147,
+          "ratio": 0.9032894736842105,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/mem/vector.bench.toml",
+          "before": 21,
+          "after": 21,
+          "hand_before": 27,
+          "hand_after": 27,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/merkle-2/vector.bench.toml",
+          "before": 43,
+          "after": 43,
+          "hand_before": 27,
+          "hand_after": 27,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/merkle-3/vector.bench.toml",
+          "before": 43,
+          "after": 43,
+          "hand_before": 27,
+          "hand_after": 27,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/merkle-proof/vector.bench.toml",
+          "before": 1481,
+          "after": 1345,
+          "hand_before": 73,
+          "hand_after": 73,
+          "delta": -136,
+          "ratio": 0.9081701553004726,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/multisig-3/vector.bench.toml",
+          "before": 132,
+          "after": 132,
+          "hand_before": 109,
+          "hand_after": 109,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/multisig-5/vector.bench.toml",
+          "before": 141,
+          "after": 141,
+          "hand_before": 109,
+          "hand_after": 109,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/multisig-6/vector.bench.toml",
+          "before": 150,
+          "after": 150,
+          "hand_before": 109,
+          "hand_after": 109,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/neptune-native-currency/vector.bench.toml",
+          "before": 578365,
+          "after": 578365,
+          "hand_before": 578310,
+          "hand_after": 578310,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/neptune-transaction/valid.bench.toml",
+          "before": 833066,
+          "after": 833066,
+          "hand_before": 833060,
+          "hand_after": 833060,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-config/vector.bench.toml",
+          "before": 19575,
+          "after": 15925,
+          "hand_before": 451,
+          "hand_after": 451,
+          "delta": -3650,
+          "ratio": 0.8135376756066411,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-card-0/vector.bench.toml",
+          "before": 73208,
+          "after": 56368,
+          "hand_before": 5761,
+          "hand_after": 5761,
+          "delta": -16840,
+          "ratio": 0.7699704950278659,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-card-1/vector.bench.toml",
+          "before": 72571,
+          "after": 55666,
+          "hand_before": 5729,
+          "hand_after": 5729,
+          "delta": -16905,
+          "ratio": 0.767055710958923,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-card-2/vector.bench.toml",
+          "before": 68712,
+          "after": 52224,
+          "hand_before": 5557,
+          "hand_after": 5557,
+          "delta": -16488,
+          "ratio": 0.7600419140761439,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-card-3/vector.bench.toml",
+          "before": 68026,
+          "after": 53256,
+          "hand_before": 5584,
+          "hand_after": 5584,
+          "delta": -14770,
+          "ratio": 0.7828771352130068,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-card-4/vector.bench.toml",
+          "before": 67831,
+          "after": 51903,
+          "hand_before": 5580,
+          "hand_after": 5580,
+          "delta": -15928,
+          "ratio": 0.7651811118809984,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-card-config/vector.bench.toml",
+          "before": 44071,
+          "after": 36148,
+          "hand_before": 1216,
+          "hand_after": 1216,
+          "delta": -7923,
+          "ratio": 0.8202219146377436,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-coin-0/vector.bench.toml",
+          "before": 106894,
+          "after": 81344,
+          "hand_before": 10109,
+          "hand_after": 10109,
+          "delta": -25550,
+          "ratio": 0.7609781652852359,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-coin-1/vector.bench.toml",
+          "before": 64268,
+          "after": 49196,
+          "hand_before": 5489,
+          "hand_after": 5489,
+          "delta": -15072,
+          "ratio": 0.7654820439409971,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-coin-2/vector.bench.toml",
+          "before": 43736,
+          "after": 35735,
+          "hand_before": 1198,
+          "hand_after": 1198,
+          "delta": -8001,
+          "ratio": 0.8170614596670934,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-coin-3/vector.bench.toml",
+          "before": 62078,
+          "after": 47380,
+          "hand_before": 5369,
+          "hand_after": 5369,
+          "delta": -14698,
+          "ratio": 0.7632333515899352,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/plumb-v2-coin-4/vector.bench.toml",
+          "before": 65705,
+          "after": 50588,
+          "hand_before": 5585,
+          "hand_after": 5585,
+          "delta": -15117,
+          "ratio": 0.7699261852218249,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/poly-eval/vector.bench.toml",
+          "before": 137,
+          "after": 137,
+          "hand_before": 84,
+          "hand_after": 84,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/poseidon-range/vector.bench.toml",
+          "before": 7105,
+          "after": 6863,
+          "hand_before": 7027,
+          "hand_after": 7027,
+          "delta": -242,
+          "ratio": 0.9659394792399718,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/poseidon-zero/vector.bench.toml",
+          "before": 7105,
+          "after": 6863,
+          "hand_before": 7027,
+          "hand_after": 7027,
+          "delta": -242,
+          "ratio": 0.9659394792399718,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-cnot/vector.bench.toml",
+          "before": 65,
+          "after": 65,
+          "hand_before": 27,
+          "hand_after": 27,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-pure/0.bench.toml",
+          "before": 27232,
+          "after": 26366,
+          "hand_before": 739,
+          "hand_after": 739,
+          "delta": -866,
+          "ratio": 0.9681991774383079,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-pure/1.bench.toml",
+          "before": 27230,
+          "after": 26364,
+          "hand_before": 739,
+          "hand_after": 739,
+          "delta": -866,
+          "ratio": 0.9681968417186926,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-pure/2.bench.toml",
+          "before": 27232,
+          "after": 26366,
+          "hand_before": 739,
+          "hand_after": 739,
+          "delta": -866,
+          "ratio": 0.9681991774383079,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-pure/3.bench.toml",
+          "before": 27232,
+          "after": 26366,
+          "hand_before": 739,
+          "hand_after": 739,
+          "delta": -866,
+          "ratio": 0.9681991774383079,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-ram-1/target-0.bench.toml",
+          "before": 3407,
+          "after": 2830,
+          "hand_before": 516,
+          "hand_after": 516,
+          "delta": -577,
+          "ratio": 0.8306427942471383,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-ram-2/target-0.bench.toml",
+          "before": 6686,
+          "after": 5532,
+          "hand_before": 855,
+          "hand_after": 855,
+          "delta": -1154,
+          "ratio": 0.8274005384385282,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-ram-2/target-1.bench.toml",
+          "before": 6702,
+          "after": 5548,
+          "hand_before": 882,
+          "hand_after": 882,
+          "delta": -1154,
+          "ratio": 0.8278125932557445,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-ram-3/target-0.bench.toml",
+          "before": 13228,
+          "after": 10920,
+          "hand_before": 1506,
+          "hand_after": 1506,
+          "delta": -2308,
+          "ratio": 0.8255216208043544,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-ram-3/target-1.bench.toml",
+          "before": 13244,
+          "after": 10936,
+          "hand_before": 1533,
+          "hand_after": 1533,
+          "delta": -2308,
+          "ratio": 0.825732407127756,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/quantum-ram-3/target-2.bench.toml",
+          "before": 13260,
+          "after": 10952,
+          "hand_before": 1560,
+          "hand_after": 1560,
+          "delta": -2308,
+          "ratio": 0.8259426847662141,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/recursive-aggregate-two/vector.bench.toml",
+          "before": 862385,
+          "after": 862385,
+          "hand_before": 862330,
+          "hand_after": 862330,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/recursive-dot/vector.bench.toml",
+          "before": 136,
+          "after": 129,
+          "hand_before": 76,
+          "hand_after": 76,
+          "delta": -7,
+          "ratio": 0.9485294117647058,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/recursive-proof/vector.bench.toml",
+          "before": 430449,
+          "after": 430449,
+          "hand_before": 430441,
+          "hand_after": 430441,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/recursive-relay/vector.bench.toml",
+          "before": 430463,
+          "after": 430463,
+          "hand_before": 430450,
+          "hand_after": 430450,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/recursive-verifier/vector.bench.toml",
+          "before": 430449,
+          "after": 430449,
+          "hand_before": 430442,
+          "hand_after": 430442,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/sha256-55bytes/vector.bench.toml",
+          "before": 188106,
+          "after": 188106,
+          "hand_before": 29259,
+          "hand_after": 29259,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/sha256-abc/vector.bench.toml",
+          "before": 188106,
+          "after": 188106,
+          "hand_before": 29259,
+          "hand_after": 29259,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/sha256-carry/vector.bench.toml",
+          "before": 188106,
+          "after": 188106,
+          "hand_before": 29259,
+          "hand_after": 29259,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/sha256-empty/vector.bench.toml",
+          "before": 188106,
+          "after": 188106,
+          "hand_before": 29259,
+          "hand_after": 29259,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/sha256-two-blocks/vector.bench.toml",
+          "before": 187053,
+          "after": 187053,
+          "hand_before": 29263,
+          "hand_after": 29263,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/symmetric/vector.bench.toml",
+          "before": 650,
+          "after": 410,
+          "hand_before": 32,
+          "hand_after": 32,
+          "delta": -240,
+          "ratio": 0.6307692307692307,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/tensor-boundaries/ascending.bench.toml",
+          "before": 304,
+          "after": 304,
+          "hand_before": 710,
+          "hand_after": 710,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/tensor-boundaries/cross-high.bench.toml",
+          "before": 302,
+          "after": 302,
+          "hand_before": 710,
+          "hand_after": 710,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/tensor-boundaries/descending.bench.toml",
+          "before": 292,
+          "after": 292,
+          "hand_before": 696,
+          "hand_after": 696,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/tensor-boundaries/negative.bench.toml",
+          "before": 262,
+          "after": 262,
+          "hand_before": 564,
+          "hand_after": 564,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/tensor-boundaries/same-high.bench.toml",
+          "before": 304,
+          "after": 304,
+          "hand_before": 710,
+          "hand_after": 710,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/tensor-boundaries/threshold-reversed.bench.toml",
+          "before": 270,
+          "after": 270,
+          "hand_before": 564,
+          "hand_after": 564,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/tensor-boundaries/threshold.bench.toml",
+          "before": 210,
+          "after": 210,
+          "hand_before": 550,
+          "hand_after": 550,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/tensor-matvec/vector.bench.toml",
+          "before": 258,
+          "after": 258,
+          "hand_before": 198,
+          "hand_after": 198,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/timelock-16/vector.bench.toml",
+          "before": 2170,
+          "after": 1783,
+          "hand_before": 112,
+          "hand_after": 112,
+          "delta": -387,
+          "ratio": 0.8216589861751152,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/timelock-17/vector.bench.toml",
+          "before": 2170,
+          "after": 1783,
+          "hand_before": 112,
+          "hand_after": 112,
+          "delta": -387,
+          "ratio": 0.8216589861751152,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/tip5/vector.bench.toml",
+          "before": 42,
+          "after": 42,
+          "hand_before": 36,
+          "hand_after": 36,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/trinity-ascending/vector.bench.toml",
+          "before": 138220,
+          "after": 129642,
+          "hand_before": 21364,
+          "hand_after": 21364,
+          "delta": -8578,
+          "ratio": 0.9379395167124873,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/trinity-descending/vector.bench.toml",
+          "before": 138154,
+          "after": 129576,
+          "hand_before": 21332,
+          "hand_after": 21332,
+          "delta": -8578,
+          "ratio": 0.9379098686972509,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/u32/vector.bench.toml",
+          "before": 31,
+          "after": 31,
+          "hand_before": 18,
+          "hand_after": 18,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/utxo/vector.bench.toml",
+          "before": 11,
+          "after": 11,
+          "hand_before": 9,
+          "hand_after": 9,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/fixtures/xfield-inverse/vector.bench.toml",
+          "before": 20,
+          "after": 20,
+          "hand_before": 11,
+          "hand_after": 11,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        },
+        {
+          "fixture": "baselines/triton/reference/arithmetic.bench.toml",
+          "before": 11,
+          "after": 11,
+          "hand_before": 7,
+          "hand_after": 7,
+          "delta": 0,
+          "ratio": 1.0,
+          "self_hash_rebound": false
+        }
+      ]
+    },
+    "cli_proofs": {
+      "schema_version": 1,
+      "binary": "/Users/master/cyber/trisha/target/release/trisha",
+      "binary_sha256": "8ecd32d661ebefbd111ef8e9e7165d587d3beb33aa79a52f62c68175de31bc44",
+      "all_checks_passed": true,
+      "fresh_proofs": 6,
+      "verified_proofs": 6,
+      "wrong_output_rejections": 6,
+      "counterexamples": [
+        {
+          "case": "deep",
+          "profile": "debug",
+          "source": "program alias\nuse vm.io.mem\nfn main() {\nlet words: [Field;20]=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]\nmem.write(2147483648,999)\npub_write(words[0])\npub_write(mem.read(2147483648))\n}",
+          "expected": [
+            1,
+            999
+          ],
+          "command": [
+            "/tmp/cyber-ram-repair/trisha-before",
+            "run",
+            "/tmp/cyber-ram-repair/deep.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "debug"
+          ],
+          "exit_code": 0,
+          "stdout": "1\n20\n",
+          "stderr": "Backend: cpu\nExecuting deep (159 ops)...\nExecuted in 158 cycles\n"
+        },
+        {
+          "case": "deep",
+          "profile": "release",
+          "source": "program alias\nuse vm.io.mem\nfn main() {\nlet words: [Field;20]=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]\nmem.write(2147483648,999)\npub_write(words[0])\npub_write(mem.read(2147483648))\n}",
+          "expected": [
+            1,
+            999
+          ],
+          "command": [
+            "/tmp/cyber-ram-repair/trisha-before",
+            "run",
+            "/tmp/cyber-ram-repair/deep.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "release"
+          ],
+          "exit_code": 0,
+          "stdout": "1\n20\n",
+          "stderr": "Backend: cpu\nExecuting deep (159 ops)...\nExecuted in 158 cycles\n"
+        },
+        {
+          "case": "cleanup",
+          "profile": "debug",
+          "source": "program alias\nuse vm.io.mem\nfn pair(x:Field)->(Field,Field) { (x,x+1) }\nfn main() { mem.write(1073741824,999)\nlet(x,y)=pair(7)\npub_write(x)\npub_write(y)\npub_write(mem.read(1073741824))\n}",
+          "expected": [
+            7,
+            8,
+            999
+          ],
+          "command": [
+            "/tmp/cyber-ram-repair/trisha-before",
+            "run",
+            "/tmp/cyber-ram-repair/cleanup.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "debug"
+          ],
+          "exit_code": 0,
+          "stdout": "7\n8\n8\n",
+          "stderr": "Backend: cpu\nExecuting cleanup (39 ops)...\nExecuted in 36 cycles\n"
+        },
+        {
+          "case": "cleanup",
+          "profile": "release",
+          "source": "program alias\nuse vm.io.mem\nfn pair(x:Field)->(Field,Field) { (x,x+1) }\nfn main() { mem.write(1073741824,999)\nlet(x,y)=pair(7)\npub_write(x)\npub_write(y)\npub_write(mem.read(1073741824))\n}",
+          "expected": [
+            7,
+            8,
+            999
+          ],
+          "command": [
+            "/tmp/cyber-ram-repair/trisha-before",
+            "run",
+            "/tmp/cyber-ram-repair/cleanup.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "release"
+          ],
+          "exit_code": 0,
+          "stdout": "7\n8\n8\n",
+          "stderr": "Backend: cpu\nExecuting cleanup (39 ops)...\nExecuted in 36 cycles\n"
+        },
+        {
+          "case": "asm",
+          "profile": "debug",
+          "source": "program alias\nuse vm.io.mem\nfn main() { let sentinel = pub_read()\nmem.write(1073741824,999)\nasm { push 1073741824 read_mem 1 pop 1 write_io 1 }\npub_write(sentinel)\npub_write(mem.read(1073741824))\n}",
+          "expected": [
+            999,
+            97,
+            999
+          ],
+          "command": [
+            "/tmp/cyber-ram-repair/trisha-before",
+            "run",
+            "/tmp/cyber-ram-repair/asm.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "debug",
+            "--input-values",
+            "97"
+          ],
+          "exit_code": 0,
+          "stdout": "97\n97\n97\n",
+          "stderr": "Backend: cpu\nExecuting asm (24 ops)...\nExecuted in 26 cycles\n"
+        },
+        {
+          "case": "asm",
+          "profile": "release",
+          "source": "program alias\nuse vm.io.mem\nfn main() { let sentinel = pub_read()\nmem.write(1073741824,999)\nasm { push 1073741824 read_mem 1 pop 1 write_io 1 }\npub_write(sentinel)\npub_write(mem.read(1073741824))\n}",
+          "expected": [
+            999,
+            97,
+            999
+          ],
+          "command": [
+            "/tmp/cyber-ram-repair/trisha-before",
+            "run",
+            "/tmp/cyber-ram-repair/asm.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "release",
+            "--input-values",
+            "97"
+          ],
+          "exit_code": 0,
+          "stdout": "97\n97\n97\n",
+          "stderr": "Backend: cpu\nExecuting asm (24 ops)...\nExecuted in 26 cycles\n"
+        }
+      ],
+      "commands": [
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "run",
+            "/tmp/cyber-ram-repair/deep.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "debug"
+          ],
+          "exit_code": 0,
+          "seconds": 0.011531083000591025,
+          "stdout": "1\n999\n",
+          "stderr": "Backend: cpu\nExecuting deep (146 ops)...\nExecuted in 250 cycles\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "prove",
+            "/tmp/cyber-ram-repair/deep.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "debug",
+            "--output",
+            "/tmp/cyber-ram-repair/deep-debug.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.47810199999366887,
+          "stdout": "1\n999\n",
+          "stderr": "Backend: cpu\nProving deep (146 ops)...\nProof generated (250 cycles, padded height 2048)\nProof written to /tmp/cyber-ram-repair/deep-debug.proof.toml (464 ms, 250 cycles)\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/deep-debug.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.017641541999182664,
+          "stdout": "Verification: PASS\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/deep-debug-wrong-output.proof.toml"
+          ],
+          "exit_code": 1,
+          "seconds": 0.01261745800729841,
+          "stdout": "Verification: FAIL\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": false
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "run",
+            "/tmp/cyber-ram-repair/deep.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "release"
+          ],
+          "exit_code": 0,
+          "seconds": 0.010748417000286281,
+          "stdout": "1\n999\n",
+          "stderr": "Backend: cpu\nExecuting deep (146 ops)...\nExecuted in 250 cycles\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "prove",
+            "/tmp/cyber-ram-repair/deep.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "release",
+            "--output",
+            "/tmp/cyber-ram-repair/deep-release.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.504465291989618,
+          "stdout": "1\n999\n",
+          "stderr": "Backend: cpu\nProving deep (146 ops)...\nProof generated (250 cycles, padded height 2048)\nProof written to /tmp/cyber-ram-repair/deep-release.proof.toml (490 ms, 250 cycles)\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/deep-release.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.01774579098855611,
+          "stdout": "Verification: PASS\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/deep-release-wrong-output.proof.toml"
+          ],
+          "exit_code": 1,
+          "seconds": 0.012710209004580975,
+          "stdout": "Verification: FAIL\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": false
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "run",
+            "/tmp/cyber-ram-repair/cleanup.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "debug"
+          ],
+          "exit_code": 0,
+          "seconds": 0.010929333002422936,
+          "stdout": "7\n8\n999\n",
+          "stderr": "Backend: cpu\nExecuting cleanup (30 ops)...\nExecuted in 27 cycles\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "prove",
+            "/tmp/cyber-ram-repair/cleanup.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "debug",
+            "--output",
+            "/tmp/cyber-ram-repair/cleanup-debug.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.16492670800653286,
+          "stdout": "7\n8\n999\n",
+          "stderr": "Backend: cpu\nProving cleanup (30 ops)...\nProof generated (27 cycles, padded height 512)\nProof written to /tmp/cyber-ram-repair/cleanup-debug.proof.toml (152 ms, 27 cycles)\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/cleanup-debug.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.01583679199393373,
+          "stdout": "Verification: PASS\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/cleanup-debug-wrong-output.proof.toml"
+          ],
+          "exit_code": 1,
+          "seconds": 0.012250792002305388,
+          "stdout": "Verification: FAIL\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": false
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "run",
+            "/tmp/cyber-ram-repair/cleanup.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "release"
+          ],
+          "exit_code": 0,
+          "seconds": 0.010617874999297783,
+          "stdout": "7\n8\n999\n",
+          "stderr": "Backend: cpu\nExecuting cleanup (30 ops)...\nExecuted in 27 cycles\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "prove",
+            "/tmp/cyber-ram-repair/cleanup.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "release",
+            "--output",
+            "/tmp/cyber-ram-repair/cleanup-release.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.18267833300342318,
+          "stdout": "7\n8\n999\n",
+          "stderr": "Backend: cpu\nProving cleanup (30 ops)...\nProof generated (27 cycles, padded height 512)\nProof written to /tmp/cyber-ram-repair/cleanup-release.proof.toml (170 ms, 27 cycles)\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/cleanup-release.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.015954665999743156,
+          "stdout": "Verification: PASS\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/cleanup-release-wrong-output.proof.toml"
+          ],
+          "exit_code": 1,
+          "seconds": 0.012299459005589597,
+          "stdout": "Verification: FAIL\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": false
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "run",
+            "/tmp/cyber-ram-repair/asm.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "debug",
+            "--input-values",
+            "97"
+          ],
+          "exit_code": 0,
+          "seconds": 0.010832708008820191,
+          "stdout": "999\n97\n999\n",
+          "stderr": "Backend: cpu\nExecuting asm (18 ops)...\nExecuted in 20 cycles\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "prove",
+            "/tmp/cyber-ram-repair/asm.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "debug",
+            "--input-values",
+            "97",
+            "--output",
+            "/tmp/cyber-ram-repair/asm-debug.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.21369491699442733,
+          "stdout": "999\n97\n999\n",
+          "stderr": "Backend: cpu\nProving asm (18 ops)...\nProof generated (20 cycles, padded height 512)\nProof written to /tmp/cyber-ram-repair/asm-debug.proof.toml (201 ms, 20 cycles)\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/asm-debug.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.016232374997343868,
+          "stdout": "Verification: PASS\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/asm-debug-wrong-output.proof.toml"
+          ],
+          "exit_code": 1,
+          "seconds": 0.012068625001120381,
+          "stdout": "Verification: FAIL\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": false
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "run",
+            "/tmp/cyber-ram-repair/asm.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "release",
+            "--input-values",
+            "97"
+          ],
+          "exit_code": 0,
+          "seconds": 0.011060584001825191,
+          "stdout": "999\n97\n999\n",
+          "stderr": "Backend: cpu\nExecuting asm (18 ops)...\nExecuted in 20 cycles\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "prove",
+            "/tmp/cyber-ram-repair/asm.tri",
+            "--target",
+            "triton",
+            "--profile",
+            "release",
+            "--input-values",
+            "97",
+            "--output",
+            "/tmp/cyber-ram-repair/asm-release.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.19104104199504945,
+          "stdout": "999\n97\n999\n",
+          "stderr": "Backend: cpu\nProving asm (18 ops)...\nProof generated (20 cycles, padded height 512)\nProof written to /tmp/cyber-ram-repair/asm-release.proof.toml (177 ms, 20 cycles)\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/asm-release.proof.toml"
+          ],
+          "exit_code": 0,
+          "seconds": 0.01594108299468644,
+          "stdout": "Verification: PASS\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": true
+        },
+        {
+          "command": [
+            "/Users/master/cyber/trisha/target/release/trisha",
+            "verify",
+            "/tmp/cyber-ram-repair/asm-release-wrong-output.proof.toml"
+          ],
+          "exit_code": 1,
+          "seconds": 0.013045291998423636,
+          "stdout": "Verification: FAIL\n",
+          "stderr": "Backend: cpu\n",
+          "expected_success": false
+        }
+      ],
+      "proofs": [
+        {
+          "path": "/tmp/cyber-ram-repair/asm-debug.proof.toml",
+          "sha256": "abac02c75445dde12f0307bb6b86d68348c5e409eee52fa6637508eaecb20d54",
+          "bytes": 750735,
+          "claim": {
+            "program_hash": [
+              "17823487166271579113",
+              "8645553311978449427",
+              "3098851028827287911",
+              "10102373387370545620",
+              "3478843582046947838"
+            ],
+            "public_input": [
+              "97"
+            ],
+            "public_output": [
+              "999",
+              "97",
+              "999"
+            ]
+          }
+        },
+        {
+          "path": "/tmp/cyber-ram-repair/asm-release.proof.toml",
+          "sha256": "ff7a688c5d840f145ce2c8fdf62fb1b0f3e16de39626e857ce165f8273d71e32",
+          "bytes": 759911,
+          "claim": {
+            "program_hash": [
+              "17823487166271579113",
+              "8645553311978449427",
+              "3098851028827287911",
+              "10102373387370545620",
+              "3478843582046947838"
+            ],
+            "public_input": [
+              "97"
+            ],
+            "public_output": [
+              "999",
+              "97",
+              "999"
+            ]
+          }
+        },
+        {
+          "path": "/tmp/cyber-ram-repair/cleanup-debug.proof.toml",
+          "sha256": "b47848d2e6707798df0b8a80fd371249494a3ee0d8687710cddacf5d234bce46",
+          "bytes": 760761,
+          "claim": {
+            "program_hash": [
+              "11630959268995086536",
+              "2198513559787239250",
+              "8726774228899963017",
+              "13227557890378569250",
+              "13022534366686837678"
+            ],
+            "public_input": [],
+            "public_output": [
+              "7",
+              "8",
+              "999"
+            ]
+          }
+        },
+        {
+          "path": "/tmp/cyber-ram-repair/cleanup-release.proof.toml",
+          "sha256": "a43c183df43e2f1a55e48f6a5f2e714a25a4d2b793229e993fc76bdf7cfa0c50",
+          "bytes": 760281,
+          "claim": {
+            "program_hash": [
+              "11630959268995086536",
+              "2198513559787239250",
+              "8726774228899963017",
+              "13227557890378569250",
+              "13022534366686837678"
+            ],
+            "public_input": [],
+            "public_output": [
+              "7",
+              "8",
+              "999"
+            ]
+          }
+        },
+        {
+          "path": "/tmp/cyber-ram-repair/deep-debug.proof.toml",
+          "sha256": "a9940d839a785a5573d7e050e6828ace781f74e3e045ade4da014ceea4d9eac7",
+          "bytes": 845457,
+          "claim": {
+            "program_hash": [
+              "15246507686124126121",
+              "4303504411286696646",
+              "2151321149974037110",
+              "417981104404683264",
+              "18401497129094737632"
+            ],
+            "public_input": [],
+            "public_output": [
+              "1",
+              "999"
+            ]
+          }
+        },
+        {
+          "path": "/tmp/cyber-ram-repair/deep-release.proof.toml",
+          "sha256": "51da2d6037eb9b92ed422820021d6811525ed0f936708b765a73f0a461cde587",
+          "bytes": 856977,
+          "claim": {
+            "program_hash": [
+              "15246507686124126121",
+              "4303504411286696646",
+              "2151321149974037110",
+              "417981104404683264",
+              "18401497129094737632"
+            ],
+            "public_input": [],
+            "public_output": [
+              "1",
+              "999"
+            ]
+          }
+        }
+      ]
+    },
+    "repair_source_sha256_at_checkpoint": {
+      "trident/src/ir/tir/builder/cleanup.rs": "47ad4c2721ccc052b8c88efe541278048c91276e23ec814a27b639dd8c15a92d",
+      "trident/src/ir/tir/builder/stmt.rs": "703ee9d1399328dfef91ec4557baf82a6e930abb666342d883a792e79ffece6b",
+      "trident/src/ir/tir/stack/mod.rs": "abf12f071ad269d70880463864225ef642f52a6f66d17a648c3c8280d158332b",
+      "trident/src/ir/tir/stack/tests.rs": "7b989c0e8df6c23bafd7af78d38b11bec8e81ea699719bcb9435d2ec11d76d93",
+      "trisha/rs/lower/legalize.rs": "08577cc070bcf66a1f85b9314650d52959aad94a9f7d799017f9edcbb1080fca",
+      "trisha/rs/lower/legalize/tests.rs": "a3978a3b105b8a861370181e924ab7a9ee0b52880b522bbb61365f00367b9b23",
+      "trisha/rs/lower/triton.rs": "4a12960eec534dae9c372b6b314706e197cdc23ad7de04750ba5581946c1dfbf",
+      "trisha/rs/tests/stack_ram.rs": "62e04e84979e05a645e11ae9d5c7eda53eef9c89088d651922e93c50636b9f79",
+      "trisha/rs/tests/target_ownership.rs": "9cadf0d82e9c8d55ebe2f40170bcd1a75f6d20faa83e001e8bdab0b937a1e480"
+    },
+    "fixture_changes": {
+      "burn": {
+        "changed_keys": [
+          "input",
+          "secret"
+        ],
+        "before_sha256": "8ec56688679fec8eb88496b4fb0da6191ad9425d52cfadff0a55bb4ed18c5bfc",
+        "after_sha256": "2260bb1fedabc4dc03d276e537077998d7365377b1812f0dce904f4dbe34b739"
+      },
+      "mint": {
+        "changed_keys": [
+          "input",
+          "secret"
+        ],
+        "before_sha256": "5f89b8af80232a69ea6828151d6e2ab32e50ab6579c3460505f4729562e9c3cb",
+        "after_sha256": "c35e3849dd78958a2e377edf52d9b22b8160afaa1b68f85ba11c5ba37e254b46"
+      },
+      "transfer": {
+        "changed_keys": [
+          "input",
+          "secret"
+        ],
+        "before_sha256": "f95690343cd41e8d2eebf8fa1a6c5593ea244f36836a8a62b779cf8eb1f29659",
+        "after_sha256": "1bddcb6b2232989522be2cb69e4124c54d1529a2422401d180f7cfeb6b612f8c"
+      },
+      "wrong-selfhash": {
+        "changed_keys": [],
+        "before_sha256": "a250c0fe7d815ec43f09baa3c2b3f3cd1ac65e8a8643f66094417c738ff87af5",
+        "after_sha256": "a250c0fe7d815ec43f09baa3c2b3f3cd1ac65e8a8643f66094417c738ff87af5"
+      }
+    }
+  }
+}

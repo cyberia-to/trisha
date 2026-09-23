@@ -1,0 +1,3 @@
+program baseline_merkle_3
+use vm.triton.merkle
+fn main() { let (idx,d)=merkle.step(as_u32(pub_read()),1,2,3,4,5) let (a,b,c,e,f)=d pub_write(as_field(idx)) pub_write(a) pub_write(b) pub_write(c) pub_write(e) pub_write(f) }

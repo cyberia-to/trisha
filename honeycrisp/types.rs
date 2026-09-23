@@ -8,9 +8,9 @@
 //! Conventions:
 //! - `path_a`, `mast_*` digests are Montgomery-raw u64s (`BFieldElement::raw_u64()`)
 //!   — matches the MSL Tip5 kernel and avoids a per-template conversion pass.
-//! - `target` is canonical u64s (reverse-indexed for `Digest::cmp` order).
-//! - `MineState::found` is the shared atomic flag used to coordinate
-//!   CPU and GPU workers; first writer wins.
+//! - `target` is canonical u64s in forward order (`Digest::cmp` traverses backwards).
+//! - `MineState::found` coordinates GPU threads only. The host reads the
+//!   payload after synchronous dispatch completion; CPU workers use a separate winner.
 
 use std::sync::atomic::AtomicU32;
 
@@ -29,7 +29,7 @@ pub const DIGEST_LEN: usize = 5;
 /// 145..160  mast_pow            (3  × 5 raw_u64)
 /// 160..170  mast_header         (2  × 5 raw_u64)
 /// 170..175  mast_kernel         (1  × 5 raw_u64)
-/// 175..180  target              (5 × canonical u64, reverse-indexed)
+/// 175..180  target              (5 × canonical u64, forward order)
 /// ```
 #[repr(C)]
 pub struct BlockTemplate {
@@ -40,8 +40,8 @@ pub struct BlockTemplate {
     pub target: [u64; DIGEST_LEN],
 }
 
-/// Shared mining result + coordination state. Both CPU and GPU workers
-/// race to CAS `found` from 0 → 1; the winning worker writes the rest.
+/// GPU dispatch result. GPU threads race to CAS `found` from 0 → 1;
+/// the host reads the payload only after the complete command finishes.
 ///
 /// Layout (56 bytes, 8-byte aligned):
 /// ```text
@@ -61,8 +61,7 @@ pub struct MineState {
 impl MineState {
     /// Reset for a fresh mining run. Caller must ensure no workers are
     /// currently racing on this state.
-    pub fn reset(&self) {
-        self.found
-            .store(0, std::sync::atomic::Ordering::Relaxed);
+    pub fn reset(&mut self) {
+        self.found.store(0, std::sync::atomic::Ordering::Relaxed);
     }
 }

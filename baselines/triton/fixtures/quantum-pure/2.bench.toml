@@ -1,0 +1,256 @@
+source = "main.tri"
+hand = "../../std/quantum/gates.tasm"
+target = "triton"
+input = ["18446744069414584320", "18446744069414584319", "1", "2", "3", "5", "7", "11"]
+output = ["0", "0", "1", "0", "0", "0", "18446744069414584319", "18446744069414584317", "3", "18446744069414584317", "2", "18446744069414584320", "18446744069414584320", "2", "5", "1", "0", "0", "0", "0", "0", "1", "0", "1", "2", "18446744069414584320", "18446744069414584319", "18446744069414584320", "18446744069414584319", "18446744069414584320", "18446744069414584319", "2", "18446744069414584320", "2", "18446744069414584320", "0", "0", "18446744069414584319", "18446744069414584317", "18446744069414584320", "18446744069414584319", "18446744069414584319", "1", "18446744069414584320", "18446744069414584319", "18446744069414584320", "3", "7", "18446744069414584310", "15", "18446744069414584296", "18446744069414584314", "11", "18446744069414584306", "25", "18446744069414584320", "18446744069414584319", "1", "2", "7", "11", "3", "5", "18446744069414584320", "18446744069414584319", "1", "2", "3", "5", "18446744069414584314", "18446744069414584310", "18446744069414584320", "18446744069414584319", "3", "5", "1", "2", "7", "11", "1"]
+reference = "Independent Rust u128 modular complex arithmetic and explicit gate matrices; all21 pure gate routines, every output coordinate. Measurement checks the documented signed-field surrogate."
+hand_prefix = """
+read_io 1 push 10000 write_mem 1 pop 1
+read_io 1 push 10001 write_mem 1 pop 1
+read_io 1 push 10002 write_mem 1 pop 1
+read_io 1 push 10003 write_mem 1 pop 1
+read_io 1 push 10004 write_mem 1 pop 1
+read_io 1 push 10005 write_mem 1 pop 1
+read_io 1 push 10006 write_mem 1 pop 1
+read_io 1 push 10007 write_mem 1 pop 1
+call __complex_zero
+pick 1
+write_io 1
+write_io 1
+call __complex_one
+pick 1
+write_io 1
+write_io 1
+push 10000 read_mem 1 pop 1
+push 10001 read_mem 1 pop 1
+push 10002 read_mem 1 pop 1
+push 10003 read_mem 1 pop 1
+call __complex_add
+pick 1
+write_io 1
+write_io 1
+push 10000 read_mem 1 pop 1
+push 10001 read_mem 1 pop 1
+push 10002 read_mem 1 pop 1
+push 10003 read_mem 1 pop 1
+call __complex_sub
+pick 1
+write_io 1
+write_io 1
+push 10000 read_mem 1 pop 1
+push 10001 read_mem 1 pop 1
+push 10002 read_mem 1 pop 1
+push 10003 read_mem 1 pop 1
+call __complex_mul
+pick 1
+write_io 1
+write_io 1
+push 10000 read_mem 1 pop 1
+push 10001 read_mem 1 pop 1
+push 10002 read_mem 1 pop 1
+call __complex_scale
+pick 1
+write_io 1
+write_io 1
+push 10000 read_mem 1 pop 1
+push 10001 read_mem 1 pop 1
+call __complex_conj
+pick 1
+write_io 1
+write_io 1
+push 10000 read_mem 1 pop 1
+push 10001 read_mem 1 pop 1
+call __complex_norm_sq
+write_io 1
+call __init_zero
+pick 3
+write_io 1
+pick 2
+write_io 1
+pick 1
+write_io 1
+write_io 1
+call __init_one
+pick 3
+write_io 1
+pick 2
+write_io 1
+pick 1
+write_io 1
+write_io 1
+push 10000 read_mem 1 pop 1
+push 10001 read_mem 1 pop 1
+push 10002 read_mem 1 pop 1
+push 10003 read_mem 1 pop 1
+call __paulix
+pick 3
+write_io 1
+pick 2
+write_io 1
+pick 1
+write_io 1
+write_io 1
+push 10000 read_mem 1 pop 1
+push 10001 read_mem 1 pop 1
+push 10002 read_mem 1 pop 1
+push 10003 read_mem 1 pop 1
+call __pauliz
+pick 3
+write_io 1
+pick 2
+write_io 1
+pick 1
+write_io 1
+write_io 1
+push 10000 read_mem 1 pop 1
+push 10001 read_mem 1 pop 1
+push 10002 read_mem 1 pop 1
+push 10003 read_mem 1 pop 1
+call __pauliy
+pick 3
+write_io 1
+pick 2
+write_io 1
+pick 1
+write_io 1
+write_io 1
+push 10000 read_mem 1 pop 1
+push 10001 read_mem 1 pop 1
+push 10002 read_mem 1 pop 1
+push 10003 read_mem 1 pop 1
+call __hadamard
+pick 3
+write_io 1
+pick 2
+write_io 1
+pick 1
+write_io 1
+write_io 1
+push 10000 read_mem 1 pop 1
+push 10001 read_mem 1 pop 1
+push 10002 read_mem 1 pop 1
+push 10003 read_mem 1 pop 1
+call __sgate
+pick 3
+write_io 1
+pick 2
+write_io 1
+pick 1
+write_io 1
+write_io 1
+push 10000 read_mem 1 pop 1
+push 10001 read_mem 1 pop 1
+push 10002 read_mem 1 pop 1
+push 10003 read_mem 1 pop 1
+call __tgate
+pick 3
+write_io 1
+pick 2
+write_io 1
+pick 1
+write_io 1
+write_io 1
+push 10000 read_mem 1 pop 1
+push 10001 read_mem 1 pop 1
+push 10002 read_mem 1 pop 1
+push 10003 read_mem 1 pop 1
+push 10004 read_mem 1 pop 1
+push 10005 read_mem 1 pop 1
+push 10006 read_mem 1 pop 1
+push 10007 read_mem 1 pop 1
+call __two_qubit_product
+pick 7
+write_io 1
+pick 6
+write_io 1
+pick 5
+write_io 1
+pick 4
+write_io 1
+pick 3
+write_io 1
+pick 2
+write_io 1
+pick 1
+write_io 1
+write_io 1
+push 10000 read_mem 1 pop 1
+push 10001 read_mem 1 pop 1
+push 10002 read_mem 1 pop 1
+push 10003 read_mem 1 pop 1
+push 10004 read_mem 1 pop 1
+push 10005 read_mem 1 pop 1
+push 10006 read_mem 1 pop 1
+push 10007 read_mem 1 pop 1
+call __cnot
+pick 7
+write_io 1
+pick 6
+write_io 1
+pick 5
+write_io 1
+pick 4
+write_io 1
+pick 3
+write_io 1
+pick 2
+write_io 1
+pick 1
+write_io 1
+write_io 1
+push 10000 read_mem 1 pop 1
+push 10001 read_mem 1 pop 1
+push 10002 read_mem 1 pop 1
+push 10003 read_mem 1 pop 1
+push 10004 read_mem 1 pop 1
+push 10005 read_mem 1 pop 1
+push 10006 read_mem 1 pop 1
+push 10007 read_mem 1 pop 1
+call __cz
+pick 7
+write_io 1
+pick 6
+write_io 1
+pick 5
+write_io 1
+pick 4
+write_io 1
+pick 3
+write_io 1
+pick 2
+write_io 1
+pick 1
+write_io 1
+write_io 1
+push 10000 read_mem 1 pop 1
+push 10001 read_mem 1 pop 1
+push 10002 read_mem 1 pop 1
+push 10003 read_mem 1 pop 1
+push 10004 read_mem 1 pop 1
+push 10005 read_mem 1 pop 1
+push 10006 read_mem 1 pop 1
+push 10007 read_mem 1 pop 1
+call __swap
+pick 7
+write_io 1
+pick 6
+write_io 1
+pick 5
+write_io 1
+pick 4
+write_io 1
+pick 3
+write_io 1
+pick 2
+write_io 1
+pick 1
+write_io 1
+write_io 1
+push 10000 read_mem 1 pop 1
+push 10001 read_mem 1 pop 1
+push 10002 read_mem 1 pop 1
+push 10003 read_mem 1 pop 1
+call __measure_deterministic
+write_io 1
+halt
+"""

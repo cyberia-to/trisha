@@ -1,0 +1,12 @@
+source = "../../../../examples/neptune/locks/multisig.tri"
+hand = "../../os/neptune/locks/multisig.tasm"
+target = "neptune"
+input = [1, 2, 3, 4, 5]
+output = []
+reference = "Three distinct native Tip5 key preimages17,18,19; valid2-of3 masks3,5,6; mask7 rejected. Tests example relation, not witness-supplied key policy."
+expect_failure = false
+hand_prefix = """
+call os_neptune_locks_multisig__main halt
+"""
+
+secret = [8246125568716920169, "16596689167115763045", "13164597619125278720", 862365898050978412, "12476256998795049071", "12298637976001470289", "10923222407415838477", "16727126425516496731", 6830902117021376938, "10117577429706743983", "9899387043123694091", 544363611929455582, "16131814628377947136", 1676336575890582441, "16337929228542080643", 6, 18, 19]

@@ -1,0 +1,12 @@
+source = "main.tri"
+hand = "../../std/crypto/auth.tasm"
+target = "neptune"
+input = [8246125568716920169, "16596689167115763045", "13164597619125278720", 862365898050978412, "12476256998795049071"]
+output = []
+reference = "Canonical expected public postimage is Tip5([17,0,...,0]); secret18 must reject."
+expect_failure = true
+hand_prefix = """
+read_io 5 call __verify_preimage push 1 write_io 1 halt
+"""
+
+secret = [18]

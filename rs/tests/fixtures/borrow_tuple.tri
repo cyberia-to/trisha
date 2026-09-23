@@ -1,0 +1,31 @@
+program borrow_tuple
+use vm.core.convert
+use vm.core.field
+fn sub_u32_borrow(a: U32, b: U32, borrow_in: U32) -> (U32, U32) {
+    let fa: Field = convert.as_field(a)
+    let fb: Field = convert.as_field(b)
+    let fbi: Field = convert.as_field(borrow_in)
+    // Add 2^32 to a to ensure non-negative, then subtract b and borrow_in.
+    // Result = (2^32 + a) - b - borrow_in
+    // If a >= b + borrow_in: result >= 2^32, so hi = 1, borrow_out = 0.
+    // If a < b + borrow_in:  result < 2^32,  so hi = 0, borrow_out = 1.
+    // We need the constant 2^32. We can get it via field arithmetic.
+    // 2^32 = 4294967296. We build it as 65536 * 65536.
+    let half: Field = convert.as_field(convert.as_u32(65536))
+    let pow2_32: Field = half * half
+    let diff_field: Field = pow2_32 + fa + field.neg(fb) + field.neg(fbi)
+    let (hi, lo) = convert.split(diff_field)
+    // hi = 1 means no borrow needed, hi = 0 means borrow was needed
+    // borrow_out = 1 - hi
+    if hi == convert.as_u32(1) {
+        let zero_borrow: U32 = convert.as_u32(0)
+        (lo, zero_borrow)
+    } else {
+        let one_borrow: U32 = convert.as_u32(1)
+        (lo, one_borrow)
+    }
+}
+
+fn main() { let (low,borrow) = sub_u32_borrow(as_u32(4294967295),as_u32(1),as_u32(0))
+ pub_write(as_field(low))
+ pub_write(as_field(borrow)) }

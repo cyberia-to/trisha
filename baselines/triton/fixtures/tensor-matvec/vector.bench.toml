@@ -1,0 +1,10 @@
+source = "main.tri"
+hand = "../../std/nn/tensor.tasm"
+target = "triton"
+input = []
+output = [61, 146]
+reference = "Independent integer matrix-vector multiplication [[2,3],[5,7]]*[11,13]=[61,146]."
+expect_failure = false
+hand_prefix = """
+push 2 push 100 write_mem 1 pop 1 push 3 push 101 write_mem 1 pop 1 push 5 push 102 write_mem 1 pop 1 push 7 push 103 write_mem 1 pop 1 push 11 push 200 write_mem 1 pop 1 push 13 push 201 write_mem 1 pop 1 push 100 push 200 push 300 push 2 push 2 call __matvec push 300 read_mem 1 pop 1 write_io 1 push 301 read_mem 1 pop 1 write_io 1 halt
+"""

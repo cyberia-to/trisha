@@ -1,0 +1,21 @@
+program compiler_lexer_fixture
+use vm.io.mem
+use vm.core.convert
+use std.compiler.lexer
+fn main() {
+let n = pub_read()
+assert(convert.as_u32(n) < convert.as_u32(1025))
+for i in 0..n bounded 1024 { mem.write(1000 + convert.as_field(i), pub_read()) }
+lexer.lex(1000,n,2000,7000,7500)
+assert(mem.read(7502) == 0)
+let count = mem.read(7501)
+let base = 2000
+pub_write(count)
+pub_write(0)
+for i in 0..count bounded 1024 {
+pub_write(mem.read(base + convert.as_field(i) * 4 + 0))
+pub_write(mem.read(base + convert.as_field(i) * 4 + 1))
+pub_write(mem.read(base + convert.as_field(i) * 4 + 2))
+pub_write(mem.read(base + convert.as_field(i) * 4 + 3))
+}
+}

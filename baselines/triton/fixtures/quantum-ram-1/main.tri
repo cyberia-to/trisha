@@ -1,0 +1,21 @@
+program quantum_ram
+use std.quantum.gates
+use vm.io.mem
+fn main(){
+mem.write(99,987)
+mem.write(100,3)
+mem.write(101,6)
+mem.write(102,9)
+mem.write(103,12)
+mem.write(104,654)
+let addr:Field=pub_read()
+let n:Field=pub_read()
+let target:Field=pub_read()
+gates.apply_single_gate(addr,n,target,gates.Complex{re:2,im:3},gates.Complex{re:5,im:7},gates.Complex{re:11,im:13},gates.Complex{re:17,im:19})
+pub_write(mem.read(99))
+pub_write(mem.read(100))
+pub_write(mem.read(101))
+pub_write(mem.read(102))
+pub_write(mem.read(103))
+pub_write(mem.read(104))
+}

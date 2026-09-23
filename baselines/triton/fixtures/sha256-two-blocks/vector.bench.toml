@@ -1,0 +1,7 @@
+source = "main.tri"
+hand = "../../std/crypto/sha256.tasm"
+input = [66051, 67438087, 134810123, 202182159, 269554195, 336926231, 404298267, 471670303, 539042339, 606414375, 673786411, 741158447, 808530483, 875902519, 943274555, 1010646591, 2147483648, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 512]
+output = [4260018604, 4084269922, 3173406925, 3382877839, 2624946127, 2551275578, 2353298641, 3642036488]
+max_cycles = 1000000
+reference = "Two full SHA256 compression blocks with non-IV chaining state on second invocation; hashlib.sha256(bytes(range(64))), all256 output bits."
+hand_prefix = "call __init read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 call __compress read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 read_io 1 call __compress swap 7 swap 1 swap 6 swap 1 swap 2 swap 5 swap 2 swap 3 swap 4 swap 3 write_io 5 write_io 3 halt"

@@ -18,13 +18,12 @@ def main [output: path, --snapshot-worktrees] {
     } | uniq | sort)
     let commits = ($repos | each {|name|
         let dir = ($workspace | path join $name)
-        let changes = ((^git -C $dir diff --name-only HEAD | lines)
-            | append (^git -C $dir ls-files --others --exclude-standard | lines)
-            | where {|p|
-            (($p | path parse | get extension) in [rs tri toml nu wgsl msl c h txt json py]) or ($p == "Cargo.lock" and $name in [trisha joy trident])
-        })
+        let status = (^python3 ($repo | path join scripts snapshot-source.py) --changes $dir | complete)
+        if $status.exit_code != 0 { error make {msg: $status.stderr} }
+        let changes = ($status.stdout | from json)
         if not $snapshot_worktrees and ($changes | is-not-empty) { error make {msg: $"uncommitted source in ($name): ($changes | str join ', ')"} }
-        {repository: $name, commit: (^git -C $dir rev-parse HEAD | str trim)}
+        {repository: $name, commit: (^git -C $dir rev-parse HEAD | str trim),
+         commit_epoch: (^git -C $dir show -s --format=%ct HEAD | str trim | into int)}
     })
     mkdir $output
     let provenance = ($commits | each {|item|
@@ -37,24 +36,29 @@ def main [output: path, --snapshot-worktrees] {
         } else {
             ^git -C ($workspace | path join $item.repository) archive $item.commit | ^tar -xf - -C $destination
             if $env.LAST_EXIT_CODE != 0 { error make {msg: $"archive failed: ($item.repository)"} }
-            $item | insert mode committed
+            let inventory = (^python3 ($repo | path join scripts snapshot-source.py) --inventory $destination | complete)
+            if $inventory.exit_code != 0 { error make {msg: $inventory.stderr} }
+            $item | insert mode committed | insert files ($inventory.stdout | from json)
         }
     })
-    for required in [trident/src/config/target/mod.rs trident/src/config/target/package.rs trident/src/config/target/discover.rs trisha/cli/build.rs trisha/bundle.rs joy/targets/nox/capabilities.json] {
+    for required in [trident/src/config/target/mod.rs trident/src/config/target/package.rs trident/src/config/target/discover.rs trisha/cli/build.rs trisha/bundle.rs joy/targets/nox/capabilities.json trisha/rs/ccs.rs joy/rs/state_execution.rs bbg/rs/src/certificate.rs] {
         if not ($output | path join $required | path exists) {
             error make {msg: $"source archive is missing required build input: ($required)"}
         }
     }
     # Workspace patches are build inputs. Registry dependency patches do not travel
     # through cargo publish, so the source distribution carries the actual source.
-    cp -r ($repo | path join .vendor) ($output | path join trisha .vendor)
+    let bootstrap = (^nu ($output | path join trisha patches apply.nu) | complete)
+    if $bootstrap.exit_code != 0 { error make {msg: $bootstrap.stderr} }
+    $bootstrap.stdout | save $"($output).vendor-bootstrap.log"
     $provenance | to json | save ($output | path join sources.json)
     let inventory = (^python3 ($repo | path join scripts snapshot-source.py) --inventory ($output | path join trisha .vendor) | complete)
     if $inventory.exit_code != 0 { error make {msg: $inventory.stderr} }
     $inventory.stdout | save ($output | path join vendor-sources.json)
-    "Build all binaries from this archive:\n  cargo build --manifest-path trident/Cargo.toml --release --locked\n  cargo build --manifest-path trisha/Cargo.toml --release --locked -p trisha\n  cargo build --manifest-path joy/Cargo.toml --release --locked -p cyber-joy\nInstall into one prefix:\n  cargo install --path trident --locked --root <prefix>\n  cargo install --path trisha/cli --locked --root <prefix>\n  cargo install --path joy/cli --locked --root <prefix>\nCompiler, machine contracts, SDK modules, network/state data, and Joy capability metadata are embedded. Root workspace lockfiles govern each build.\n" | save ($output | path join BUILD.txt)
+    "Build and smoke a coordinated local candidate:\n  nu trisha/scripts/build-candidate.nu . /tmp/candidate-prefix\n  nu trisha/scripts/smoke-release.nu /tmp/candidate-prefix/bin /tmp/candidate-smoke\n\nOr build individual binaries from this archive:\n  cargo build --manifest-path trident/Cargo.toml --release --locked\n  cargo build --manifest-path trisha/Cargo.toml --release --locked -p trisha\n  cargo build --manifest-path joy/Cargo.toml --release --locked -p cyber-joy\nInstall into one prefix:\n  cargo install --path trident --locked --root <prefix>\n  cargo install --path trisha/cli --locked --root <prefix>\n  cargo install --path joy/cli --locked --root <prefix>\nCompiler, machine contracts, SDK modules, network/state data, and Joy capability metadata are embedded. Root workspace lockfiles govern each build.\n" | save ($output | path join BUILD.txt)
     let archive = $"($output).tar.gz"
-    ^tar -czf $archive -C ($output | path dirname) ($output | path basename)
+    let epoch = ($commits | get commit_epoch | math max)
+    ^python3 ($repo | path join scripts archive-source.py) $output $archive --epoch ($epoch | into string)
     if $env.LAST_EXIT_CODE != 0 { error make {msg: "source archive failed"} }
     print {archive: $archive, sha256: (open --raw $archive | hash sha256)}
 }

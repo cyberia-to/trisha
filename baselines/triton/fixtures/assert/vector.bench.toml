@@ -1,0 +1,10 @@
+source = "main.tri"
+hand = "../../vm/core/assert.tasm"
+target = "triton"
+input = [19, 19]
+output = [1]
+reference = "Equality accepts identical field elements and rejects distinct ones."
+expect_failure = false
+hand_prefix = """
+read_io 1 read_io 1 call vm_core_assert__eq push 1 write_io 1 halt
+"""

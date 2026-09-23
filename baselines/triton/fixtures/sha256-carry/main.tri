@@ -1,0 +1,9 @@
+program sha256_ram
+use std.crypto.sha256
+use vm.core.convert
+use vm.io.mem
+fn main() {
+    for i in 0..16 bounded 16 { mem.write(1000 + convert.as_field(i),pub_read()) }
+    sha256.double_sha256_single_block_in_ram(1000,2000,3000)
+    for i in 0..8 bounded 8 { pub_write(mem.read(2000 + convert.as_field(i))) }
+}

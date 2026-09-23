@@ -285,13 +285,13 @@ impl<'a> CostAnalyzer<'a> {
                 }
             }
             Stmt::Reveal { fields, .. } => {
-                // push tag + write_io 1 + (field expr + write_io 1) per field
+                // Events are bounded to nine flattened words, not nine scalar
+                // expressions. Reserve the full payload and permutation envelope
+                // because this AST estimator does not carry checked type layouts.
                 let io_cost = self.cost_model.builtin_cost("pub_write");
-                let mut cost = stack_op.clone(); // push tag
-                cost = cost.add(&io_cost); // write_io 1 for tag
+                let mut cost = stack_op.scale(28).add(&io_cost.scale(10));
                 for (_name, val) in fields {
                     cost = cost.add(&self.cost_expr(&val.node));
-                    cost = cost.add(&io_cost); // write_io 1
                 }
                 cost
             }
@@ -324,22 +324,13 @@ impl<'a> CostAnalyzer<'a> {
                 scrutinee_cost.add(&check_cost).add(&max_body)
             }
             Stmt::Seal { fields, .. } => {
-                // push tag + field exprs + padding pushes + hash + write_io 5
-                // Hash rate is 10 (tag + up to 9 fields); excess fields need extra hashes.
-                let mut cost = stack_op.clone(); // push tag
+                // One fixed ten-word hash block: tag + <=9 flattened words +
+                // zeros. Reserve padding and native ABI permutation conservatively.
+                let mut cost = stack_op.scale(40);
                 for (_name, val) in fields {
                     cost = cost.add(&self.cost_expr(&val.node));
                 }
-                let padding = 9usize.saturating_sub(fields.len());
-                for _ in 0..padding {
-                    cost = cost.add(&stack_op); // push 0 padding
-                }
-                // hash (one per 10 elements; extra hashes if >9 fields)
-                let hash_count = (1 + fields.len()).div_ceil(10);
-                for _ in 0..hash_count {
-                    cost = cost.add(&self.cost_model.builtin_cost("hash"));
-                }
-                // write_io 5
+                cost = cost.add(&self.cost_model.builtin_cost("hash"));
                 cost = cost.add(&self.cost_model.builtin_cost("pub_write5"));
                 cost
             }

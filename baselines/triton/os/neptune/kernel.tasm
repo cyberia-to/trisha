@@ -1,6 +1,6 @@
 // Hand-optimized TASM baseline: os.neptune.kernel
 // Transaction kernel MAST tree authentication.
-//
+
 // Stack conventions follow Trident calling convention:
 //   first arg deepest, Digest = 5 field elements (d0 deepest, d4 on top).
 
@@ -72,25 +72,6 @@ __tree_height:
     push 3
     return
 
-// authenticate_leaf3(idx: U32, hash: Digest) -> Digest
-//   Merkle authentication path at depth 3.
-//   In the full system this is provided by the merkle module.
-//   Standalone stub: reads 3 authentication path siblings from divine,
-//   performs 3 merkle_step operations.
-//   Stack entry: idx d4 d3 d2 d1 d0
-//   10 instructions
-__authenticate_leaf3:
-    divine 5
-    merkle_step
-    divine 5
-    merkle_step
-    divine 5
-    merkle_step
-    // idx still on stack below digest, swap out
-    swap 5
-    pop 1
-    return
-
 // authenticate_field(kernel_hash: Digest, leaf_idx: U32) -> Digest
 //   Delegates to merkle.authenticate_leaf3.
 //   Stack entry: idx d4 d3 d2 d1 d0
@@ -105,11 +86,6 @@ __authenticate_field:
 //   8 instructions
 __authenticate_fee:
     push 3
-    swap 1
-    swap 2
-    swap 3
-    swap 4
-    swap 5
     call __authenticate_leaf3
     return
 
@@ -119,10 +95,5 @@ __authenticate_fee:
 //   8 instructions
 __authenticate_timestamp:
     push 5
-    swap 1
-    swap 2
-    swap 3
-    swap 4
-    swap 5
     call __authenticate_leaf3
     return

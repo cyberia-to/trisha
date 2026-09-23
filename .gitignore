@@ -2,3 +2,5 @@
 .audit/
 .vendor/
 *.proof.toml
+
+__pycache__/

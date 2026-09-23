@@ -8,7 +8,7 @@
 
 [target]
 name = "triton"
-display_name = "TRITON"
+display_name = "Triton 7"
 architecture = "stack"
 output_extension = ".tasm"
 
@@ -44,4 +44,10 @@ lowering = "Trisha Triton lowering"
 lowering_path = "tir"
 cost_model = true
 tests = true
-notes = "Trisha-owned CPU execution and STARK proof backend. Live Neptune deployment is unsupported."
+notes = "Triton VM 7.0.0 and tasm-lib 7.0.0; native proof version 5, stark-triton-v7. Legacy Triton2 proofs are rejected. Live Neptune deployment is unsupported."
+
+[compatibility]
+triton_vm = "7.0.0"
+tasm_lib = "7.0.0"
+native_proof_version = 5
+proof_format = "stark-triton-v7"

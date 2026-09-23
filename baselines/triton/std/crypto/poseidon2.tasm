@@ -1,6 +1,9 @@
 // Hand-optimized TASM baseline: std.crypto.poseidon2
-//
-// Poseidon2 permutation over the Goldilocks field (p = 2^64 - 2^32 + 1).
+
+// Historical custom Poseidon-style permutation over Goldilocks.
+// Not standard Poseidon2: caller constants and custom matrices carry no
+// independently established cryptographic security guarantee. Standard vectors
+// belong to poseidon.tasm; these vectors cover the exact custom arithmetic.
 //   - State width t = 8, rate = 4, capacity = 4
 //   - S-box: x^7
 //   - 8 full rounds (4 initial + 4 final), 22 partial rounds
@@ -9,16 +12,16 @@
 //   - Internal linear layer: diag(2,3,5,9,17,33,65,129) + ones_matrix
 //     new[i] = d_i * state[i] + sum(state)
 //   - 86 round constants divined from nondeterministic input
-//
+
 // Stack convention:
 //   State = 8 field elements: s0 on top, s7 deepest.
 //   [s0, s1, s2, s3, s4, s5, s6, s7] (s0 = top = index 0)
 //   Rate = s0..s3, capacity = s4..s7.
-//
+
 // Round constants are divined per-round (divine 1 per constant).
 // The nondeterministic input stream supplies constants in round order:
 //   4 full (8 each) + 22 partial (1 each) + 4 full (8 each) = 86 total.
-//
+
 // Optimization vs compiler output:
 //   - sbox (x^7) in 8 ops as subroutine (compiler: function call overhead
 //     per invocation + redundant stack copies + struct packing)
@@ -28,14 +31,14 @@
 //     static instruction count, called 8x and 22x respectively
 //   - divine-and-add per element avoids stack gymnastics for 86 constants
 //   - Entire state on operational stack (no memory access)
-//
+
 // Instruction count rules:
 //   - Comments (// ...) are NOT counted
 //   - Labels (ending with :) are NOT counted
 //   - halt is NOT counted
 //   - Blank lines are NOT counted
 //   - Everything else IS counted (including return)
-//
+
 // Static instruction count summary:
 //   Entry point (hash2 demo)   :  13
 //   __sbox                     :   9
@@ -63,7 +66,7 @@
 // Reads 2 field elements from public input, computes Poseidon2 hash with
 // domain tag 2, writes 1 field element output.
 // Nondeterministic input: 86 round constants.
-//
+
 // State: s0=a, s1=b, s2..s3=0, s4=2(domain), s5..s7=0.
 // Build state bottom-up: push s7..s2 first, read inputs last.
 // 13 counted instructions (halt excluded).
@@ -96,15 +99,15 @@
 // ---------------------------------------------------------------------------
 // S-box for Poseidon2: x^7 is a permutation over Goldilocks since
 // gcd(7, p-1) = 1 for p = 2^64 - 2^32 + 1.
-//
+
 // Decomposition: x^2, x^3 = x^2*x, x^6 = x^3^2, x^7 = x^6*x.
-//
+
 // Stack trace:
 //   [x] -> dup 0 -> [x, x] -> dup 0 -> [x, x, x]
 //   -> mul -> [x, x^2] -> dup 1 -> [x, x^2, x]
 //   -> mul -> [x, x^3] -> dup 0 -> [x, x^3, x^3]
 //   -> mul -> [x, x^6] -> mul -> [x^7]
-//
+
 // 9 counted instructions.
 __sbox:
     dup 0
@@ -122,13 +125,13 @@ __sbox:
 // __external_linear: state -> state
 // ---------------------------------------------------------------------------
 // Circulant(2,1,1,...,1): new[i] = state[i] + sum(state).
-//
+
 // Phase 1 (15 ops): Compute SUM on top via dup-chain.
 // Phase 2 (30 ops): Add SUM to each element via swap-chain.
 //   For s_i (i=7 down to 1): dup 0, swap(d+1), add, swap(d)
 //     where d = 9-element depth of s_i.
 //   For s_0 (last): swap 1, add (consumes SUM).
-//
+
 // 46 counted instructions.
 __external_linear:
     // --- Phase 1: compute SUM ---
@@ -205,12 +208,12 @@ __external_linear:
 // Diagonal matrix diag(2,3,5,9,17,33,65,129) + ones_matrix:
 //   new[i] = d_i * state[i] + sum(state)
 // where d_i = 1 + 2^i: [2, 3, 5, 9, 17, 33, 65, 129].
-//
+
 // Phase 1 (15 ops): Compute SUM (same dup-chain).
 // Phase 2 (46 ops): For each element, multiply by d_i, add SUM.
 //   For s_i (i=7 down to 1): dup 0, swap(d+1), push d_i, mul, add, swap(d)
 //   For s_0 (last, d_0=2): swap 1, push 2, mul, add.
-//
+
 // 62 counted instructions.
 __internal_linear:
     // --- Phase 1: compute SUM ---
@@ -301,55 +304,55 @@ __internal_linear:
 // __full_round: state -> state (divines 8 round constants)
 // ---------------------------------------------------------------------------
 // Full round: add 8 round constants, apply sbox to all 8, external linear.
-//
+
 // Phase 1 (30 ops): divine and add constants.
 //   s0: divine 1, add (2 ops).
 //   s_i (i=1..7): swap i, divine 1, add, swap i (4 ops each).
-//
+
 // Phase 2 (22 ops): apply sbox to all 8.
 //   s0: call __sbox (1 op).
 //   s_i (i=1..7): swap i, call __sbox, swap i (3 ops each).
-//
+
 // Phase 3 (1 op): call __external_linear.
-//
+
 // 54 counted instructions.
 __full_round:
     // --- Phase 1: add round constants ---
-    divine 1
+    call __read_constant
     add
 
     swap 1
-    divine 1
+    call __read_constant
     add
     swap 1
 
     swap 2
-    divine 1
+    call __read_constant
     add
     swap 2
 
     swap 3
-    divine 1
+    call __read_constant
     add
     swap 3
 
     swap 4
-    divine 1
+    call __read_constant
     add
     swap 4
 
     swap 5
-    divine 1
+    call __read_constant
     add
     swap 5
 
     swap 6
-    divine 1
+    call __read_constant
     add
     swap 6
 
     swap 7
-    divine 1
+    call __read_constant
     add
     swap 7
 
@@ -394,10 +397,10 @@ __full_round:
 // __partial_round: state -> state (divines 1 round constant)
 // ---------------------------------------------------------------------------
 // Partial round: add constant to s0, sbox s0, internal linear.
-//
+
 // 5 counted instructions.
 __partial_round:
-    divine 1
+    call __read_constant
     add
     call __sbox
     call __internal_linear
@@ -408,9 +411,14 @@ __partial_round:
 // __permute: state -> state (divines 86 round constants)
 // ---------------------------------------------------------------------------
 // Full Poseidon2 permutation: 4 full + 22 partial + 4 full rounds.
-//
+
 // 31 counted instructions.
 __permute:
+    push 0 push 4200000 write_mem 1 pop 1
+    call __permute_body
+    return
+
+__permute_body:
     // 4 initial full rounds (32 constants)
     call __full_round
     call __full_round
@@ -478,7 +486,7 @@ __zero_state:
 // Adds 1 field element to s0. Caller permutes after.
 // Stack in:  [a, s0, s1, s2, s3, s4, s5, s6, s7]
 // Stack out: [s0+a, s1, s2, s3, s4, s5, s6, s7]
-//
+
 // 2 counted instructions.
 __absorb1:
     add
@@ -491,7 +499,7 @@ __absorb1:
 // Adds a to s0, b to s1.
 // Stack in:  [b, a, s0, s1, s2, s3, s4, s5, s6, s7]
 // Stack out: [s0+a, s1+b, s2, s3, s4, s5, s6, s7]
-//
+
 // Trace:
 //   [b, a, s0, s1, ...]
 //   swap 3  -> [s1, a, s0, b, ...]     bring s1 to top
@@ -500,7 +508,7 @@ __absorb1:
 //   add     -> [s1+b, s0, a, ...]      s1 done
 //   swap 2  -> [a, s0, s1', ...]       bring a adjacent to s0
 //   add     -> [s0+a, s1', s2, ...]    s0 done
-//
+
 // 7 counted instructions.
 __absorb2:
     swap 3
@@ -518,11 +526,11 @@ __absorb2:
 // Adds a to s0, b to s1, c to s2, d to s3.
 // Stack in:  [d, c, b, a, s0, s1, s2, s3, s4, s5, s6, s7]
 // Stack out: [s0+a, s1+b, s2+c, s3+d, s4, s5, s6, s7]
-//
+
 // Process from deepest target (s3) to shallowest (s0).
 // Each step: swap-chain to pair input and state element, add, swap result
 // into position.
-//
+
 // 17 counted instructions.
 __absorb4:
     // s3 += d: d@0, s3@7 -> pair via swap-chain
@@ -592,14 +600,14 @@ __squeeze4:
 // Domain tag s4 = 1.
 // Stack in:  [input]
 // Stack out: [hash]
-//
+
 // Build state: push s6..s1 as padding (s4=1 domain tag among them),
 // then push 0 on top and swap with input at bottom to place input as s0.
-//
+
 // Pushes (1st..7th): s6=0, s5=0, s4=1, s3=0, s2=0, s1=0, swap_target=0
 // These occupy indices 6,5,4,3,2,1,0 after pushing (input at idx 7).
 // swap 7 brings input to idx 0 (s0), pushes 0 to idx 7 (s7).
-//
+
 // 13 counted instructions.
 __hash1:
     push 0
@@ -627,14 +635,14 @@ __hash1:
 // Domain tag s4 = 2.
 // Stack in:  [a, b]   (a on top)
 // Stack out: [hash]
-//
+
 // Build state: push s6..s2 padding, swap to place a at s0 and b at s1.
-//
+
 // After 6 pushes on [a, b]:
 //   indices: 0=p6, 1=p5, 2=p4, 3=p3, 4=p2, 5=p1, 6=a, 7=b
 // Push order: s6=0, s5=0, s4=2, s3=0, s2=0, s1_swap=0
 // Then: swap 6 -> a to idx 0; swap 1,swap 7,swap 1 -> b to idx 1.
-//
+
 // 15 counted instructions.
 __hash2:
     push 0
@@ -664,16 +672,16 @@ __hash2:
 // Domain tag s4 = 4.
 // Stack in:  [a, b, c, d]   (a on top)
 // Stack out: [s0', s1', s2', s3']
-//
+
 // Build state: push s7=0,s6=0,s5=0,s4=4 on top, then block-swap the two
 // halves to place inputs a,b,c,d at s0..s3.
-//
+
 // After 4 pushes: [4, 0, 0, 0, a, b, c, d]
 // Block-swap via: swap 7,swap 3 moves d; swap 6,swap 2 moves c;
 //   swap 5,swap 1 moves b; swap 4 moves a.
-//
+
 // After permute, remove capacity s4..s7 by cycling them to top and popping.
-//
+
 // 21 counted instructions.
 __hash4:
     push 0
@@ -700,4 +708,39 @@ __hash4:
     swap 4
     pop 1
     // [s0', s1', s2', s3']
+    return
+
+// Constant reader: normal entry uses witness; RAM entry uses caller86-word table.
+// Scratch4200000..4200005 is private to this hand baseline adapter.
+__read_constant:
+    push 4200000 read_mem 1 pop 1
+    skiz call __read_ram_constant
+    push 4200000 read_mem 1 pop 1
+    push 0 eq
+    skiz divine 1
+    return
+
+__read_ram_constant:
+    push 4200001 read_mem 1 pop 1
+    read_mem 1 pop 1
+    push 4200001 read_mem 1 pop 1
+    push 1 add push 4200001 write_mem 1 pop 1
+    return
+
+// (a,b,c,d,rc_addr), first argument deepest, returns first output lane.
+__poseidon2_hash4_to_digest:
+    push 4200001 write_mem 1 pop 1
+    push 4200005 write_mem 1 pop 1
+    push 4200004 write_mem 1 pop 1
+    push 4200003 write_mem 1 pop 1
+    push 4200002 write_mem 1 pop 1
+    push 1 push 4200000 write_mem 1 pop 1
+    push 0 push 0 push 0 push 4
+    push 4200005 read_mem 1 pop 1
+    push 4200004 read_mem 1 pop 1
+    push 4200003 read_mem 1 pop 1
+    push 4200002 read_mem 1 pop 1
+    call __permute_body
+    swap 7 pop 5 pop 2
+    push 0 push 4200000 write_mem 1 pop 1
     return

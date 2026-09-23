@@ -1,0 +1,4 @@
+program baseline_recursive_dot
+use os.neptune.recursive
+use vm.io.mem
+fn main() { mem.write(100,2) mem.write(101,3) mem.write(102,4) mem.write(200,5) let (acc,a,b)=recursive.xb_inner_product(100,200,1) let (x,y,z)=acc pub_write(x) pub_write(y) pub_write(z) pub_write(a) pub_write(b) }

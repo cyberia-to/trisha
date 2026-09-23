@@ -4,55 +4,54 @@ crystal-type: pattern
 crystal-domain: cyber
 alias: trisha proof file format, .proof.toml
 ---
-# proof file format
+# Proof file format
 
-trisha serializes proofs as `.proof.toml` files: a human-readable TOML envelope wrapping base64-encoded bincode proof bytes.
-
-## structure
+Trisha stores a native Triton proof in a `.proof.toml` envelope. The current
+format is `stark-triton-v7`: pinned Triton VM7.0.0, native claim version5,
+default upstream security parameters. Earlier formats require regeneration.
 
 ```toml
 [proof]
-format = "stark-triton-v2"
+format = "stark-triton-v7"
 program_name = "hello"
-cycle_count = 0          # stub: not yet captured from VM
-padded_height = 0        # stub: not yet captured from Stark
+cycle_count = 42
+padded_height = 256
+proving_time_ms = 1000
 
 [claim]
-program_hash = [
-    "1460305242624279511",   # Goldilocks elements as decimal strings
-    "5843494972284683383",   # (exceed i64 range — cannot use TOML integers)
-    ...
-]
+program_hash = ["1", "2", "3", "4", "5"]
 public_input = []
 public_output = ["42"]
 
 [data]
-proof = "AgIAAAAAAAD..."   # base64(bincode(triton_vm::proof::Proof))
+proof = "base64-encoded-native-proof-bytes"
 ```
 
-## why TOML + bincode
+These values illustrate the schema; they are not a proof or measured result.
+Real metadata comes from the executed trace and proof generation timer.
+Cycle count, padded height and timing are informational envelope fields; the
+cryptographic verifier authenticates the actual native claim and proof.
 
-- TOML outer layer: human-readable header, diffable, greppable
-- bincode inner layer: triton-vm `Proof` has no stable TOML representation; bincode preserves the exact type without a custom serializer
-- base64: TOML has no binary type; base64 is self-describing in the file
+The claim contains the five-word native `Program.hash()`, complete public input
+and complete public output in VM stream order. Goldilocks elements are unsigned
+decimal strings because TOML integers cannot represent every canonical field
+value. Claim fields must be less than the Goldilocks modulus. The format selects
+the native claim version; untrusted metadata cannot override it.
 
-## field elements as strings
+The decoded proof bytes retain the fixed-width bincode representation used by
+earlier implementations: one little-endian u64 field count followed by exactly
+that many little-endian u64 canonical field values. The owner-side codec rejects
+modular aliases, inconsistent lengths and trailing bytes. Native proof bytes
+and the outer TOML input are each bounded at64MiB before deserialization.
 
-Goldilocks field elements are u64 values that can exceed `i64::MAX`. TOML integer is signed 64-bit. serializing as decimal strings avoids the range problem while remaining human-readable.
+All default-security verification paths use the same owner-side checks: native
+version5, a leading supported padded-height item, a FRI domain representable by
+u32 indices, exactly the expected number of proof items, and upstream verification
+against the complete expected claim. This also rejects appended proof items
+that upstream native verification alone tolerates but recursive verification
+rejects. A well-formed file is accepted only if its proof verifies.
 
-## proving time metadata
-
-`proving_time_ms` is populated at prove time. `cycle_count` and `padded_height` are currently 0 — see [[missing-metadata]].
-
-## roundtrip
-
-```rust
-let proof_file = ProofFile::from_proof(&proof, claim, "program_name", proving_time_ms);
-let toml_str = proof_file.to_toml_string()?;
-
-// later
-let proof_file = ProofFile::from_toml_str(&toml_str)?;
-let (proof, claim) = proof_file.to_proof()?;
-```
-
-roundtrip is tested in `tests/integration.rs` via `proof_roundtrip_toml`.
+`rs/tests/proof_wire.rs` tests canonical binary encoding;
+`rs/tests/proof_consumption.rs` tests native/recursive acceptance consistency and
+hostile height handling. CLI tests exercise TOML proof roundtrips and rejection
+of changed claims in fresh processes.

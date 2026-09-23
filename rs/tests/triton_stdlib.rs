@@ -45,12 +45,7 @@ fn compile_triton_profile(source: &str, filename: &str, profile: &str) -> Result
 fn compile_project_triton(path: &Path) -> Result<String, String> {
     trisha_rs::build_tasm(
         path,
-        if path.to_string_lossy().contains("os/neptune/")
-            || path
-                .to_string_lossy()
-                .contains("examples/experimental/neptune/")
-            || path.to_string_lossy().contains("examples/neptune/")
-        {
+        if path.components().any(|part| part.as_os_str() == "neptune") {
             "neptune"
         } else {
             "triton"
@@ -65,8 +60,13 @@ fn compile_project_triton(path: &Path) -> Result<String, String> {
 #[allow(dead_code)]
 fn trident_repo_path(rel: &str) -> std::path::PathBuf {
     if let Some(name) = rel.strip_prefix("os/neptune/") {
-        if name.starts_with("locks/") || name.starts_with("types/") || matches!(name, "standards/coin.tri" | "standards/card.tri") {
-            return Path::new(env!("CARGO_MANIFEST_DIR")).join("../examples/neptune").join(name);
+        if name.starts_with("locks/")
+            || name.starts_with("types/")
+            || matches!(name, "standards/coin.tri" | "standards/card.tri")
+        {
+            return Path::new(env!("CARGO_MANIFEST_DIR"))
+                .join("../examples/neptune")
+                .join(name);
         }
     }
     if let Some(name) = rel.strip_prefix("os/neptune/programs/") {

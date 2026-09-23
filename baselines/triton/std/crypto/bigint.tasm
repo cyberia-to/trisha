@@ -1,12 +1,12 @@
 // Hand-optimized TASM baseline: std.crypto.bigint
 // 256-bit integer arithmetic over 8 U32 limbs (little-endian).
-//
+
 // U256 on stack (8 elements): [l7 l6 l5 l4 l3 l2 l1 l0]
 //   l7 = MSB (st0), l0 = LSB (st7)
-//
+
 // Calling convention: first arg deepest.
 //   fn(a, b): [b on top | a below]
-//
+
 // Memory layout (non-overlapping scratch regions):
 //   0..7    slot A     (store/load helpers, inline carry chains)
 //   10..17  slot B     (store/load helpers, inline carry chains)
@@ -15,13 +15,13 @@
 //   40..47  orig A     (mul256_low, mod_reduce_once, sub_mod)
 //   50..57  orig B     (mul256_low, mod_reduce_once, sub_mod)
 //   60..67  modulus    (add_mod, sub_mod, mul_mod)
-//
+
 // Triton VM memory ops:
 //   write_mem N: st0=addr, st1..stN=vals -> writes st1..[addr] etc -> [addr+N]
 //   read_mem 1:  st0=addr -> [mem[addr], addr-1]
 //   split:       [x] -> st0=lo(32bit), st1=hi(32bit)
 //   skiz:        pops st0; if nonzero, executes next instruction
-//
+
 // Counting: comments, labels (:), halt, blanks NOT counted.
 
 // ===================================================================

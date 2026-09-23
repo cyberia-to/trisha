@@ -1,0 +1,15 @@
+source = "main.tri"
+hand = "../../vm/crypto/hash.tasm"
+target = "triton"
+input = []
+output = [3110372704410120700, 8302474967766940368, 7132587465497701049, 4643011738479212626, 8384034896017378691]
+reference = "twenty-first Tip5::hash_10([0,1,2,3,4,5,6,7,8,9]); reproducible rs/examples/baseline_vectors.rs."
+expect_failure = false
+hand_prefix = """
+push 0 push 1 push 2 push 3 push 4 push 5 push 6 push 7 push 8 push 9 call vm_crypto_hash__tip5
+    swap 4
+    swap 3
+    swap 1
+    swap 3
+write_io 5 halt
+"""

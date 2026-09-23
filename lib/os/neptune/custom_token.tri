@@ -1,0 +1,123 @@
+module os.neptune.custom_token
+
+// Complete bounded canonical-UTXO predicate. See neptune-custom-token-v2.md.
+use vm.io.mem
+use vm.triton.hash
+use vm.triton.context
+
+fn checked(value: Field) -> Field { let _: U32 = as_u32(value) value }
+fn read(base: Field, offset: Field, length: Field) -> Field {
+    assert(as_u32(offset) < as_u32(length))
+    mem.read(base + offset)
+}
+fn count(base: Field, offset: Field, length: Field) -> Field {
+    checked(read(base,offset,length))
+}
+fn equal_at(base: Field, offset: Field, length: Field, digest: Digest) -> Bool {
+    let (a,b,c,d,e) = digest
+    if read(base,offset,length) == a {
+        if read(base,offset+1,length) == b {
+            if read(base,offset+2,length) == c {
+                if read(base,offset+3,length) == d {
+                    read(base,offset+4,length) == e
+                } else { false }
+            } else { false }
+        } else { false }
+    } else { false }
+}
+
+// Authenticate the complete raw encoding before interpreting any coin.
+fn load_list(base: Field, native_digest: Digest) -> Field {
+    let length: Field = checked(divine())
+    assert(as_u32(length) < as_u32(4097))
+    assert(as_u32(4) < as_u32(length))
+    for i in 0..length bounded 4096 { mem.write(base+as_field(i),divine()) }
+    mem.write(base+length,1)
+    let (blocks, remainder): (U32,U32) = as_u32(length) /% as_u32(10)
+    let padded: Field = (as_field(blocks)+1)*10
+    for i in length+1..padded bounded 10 { mem.write(base+as_field(i),0) }
+    hash.sponge_init()
+    for block in 0..as_field(blocks)+1 bounded 410 {
+        hash.sponge_absorb_mem(base+as_field(block)*10)
+    }
+    let result: [Field;10] = hash.sponge_squeeze()
+    let (e,d,c,b,a) = native_digest
+    assert_eq(result[0],a) assert_eq(result[1],b) assert_eq(result[2],c)
+    assert_eq(result[3],d) assert_eq(result[4],e)
+    length
+}
+
+fn sum_list(base: Field, length: Field, own: Digest, previous: [Field;5], had_previous: Bool) -> (Field,[Field;5],Bool) {
+    let vector_length = count(base,3,length)
+    assert_eq(vector_length+4,length)
+    let n = count(base,4,length)
+    assert(as_u32(n) < as_u32(65))
+    let mut cursor: Field = 5
+    let mut total: Field = 0
+    let mut authority: [Field;5] = previous
+    let mut seen: Bool = had_previous
+    for u in 0..n bounded 64 {
+        let utxo_length = count(base,cursor,length)
+        let begin = cursor+1
+        let end = begin+utxo_length
+        assert(as_u32(end) < as_u32(length+1))
+        let coins_length = count(base,begin,end)
+        let coins_begin = begin+1
+        let coins_end = coins_begin+coins_length
+        assert_eq(coins_end+5,end)
+        let num_coins = count(base,coins_begin,coins_end)
+        assert(as_u32(num_coins) < as_u32(65))
+        let mut coin_cursor = coins_begin+1
+        for c in 0..num_coins bounded 64 {
+            let coin_length = count(base,coin_cursor,coins_end)
+            let coin_begin = coin_cursor+1
+            let coin_end = coin_begin+coin_length
+            assert(as_u32(coin_end) < as_u32(coins_end+1))
+            let state_length = count(base,coin_begin,coin_end)
+            let state_count = count(base,coin_begin+1,coin_end)
+            assert_eq(state_length,state_count+1)
+            let type_start = coin_begin+1+state_length
+            assert_eq(type_start+5,coin_end)
+            if equal_at(base,type_start,coin_end,own) {
+                assert_eq(state_count,7)
+                assert_eq(read(base,coin_begin+2,coin_end),2)
+                let amount = count(base,coin_begin+3,coin_end)
+                total = checked(total+amount)
+                let a0=read(base,coin_begin+4,coin_end)
+                let a1=read(base,coin_begin+5,coin_end)
+                let a2=read(base,coin_begin+6,coin_end)
+                let a3=read(base,coin_begin+7,coin_end)
+                let a4=read(base,coin_begin+8,coin_end)
+                if seen {
+                    assert_eq(authority[0],a0) assert_eq(authority[1],a1)
+                    assert_eq(authority[2],a2) assert_eq(authority[3],a3) assert_eq(authority[4],a4)
+                } else { authority=[a0,a1,a2,a3,a4] seen=true }
+            }
+            coin_cursor=coin_end
+        }
+        assert_eq(coin_cursor,coins_end)
+        cursor=end
+    }
+    assert_eq(cursor,length)
+    (total,authority,seen)
+}
+
+pub fn verify(input_hash: Digest, output_hash: Digest) {
+    let own: Digest = context.program_digest()
+    let input_length=load_list(8000000,input_hash)
+    let output_length=load_list(8010000,output_hash)
+    let zero: [Field;5]=[0,0,0,0,0]
+    let (inputs,authority,seen)=sum_list(8000000,input_length,own,zero,false)
+    let (outputs,final_authority,any)=sum_list(8010000,output_length,own,authority,seen)
+    assert(any)
+    if inputs == outputs { } else {
+        let zero0=final_authority[0]==0 let zero1=final_authority[1]==0
+        let zero2=final_authority[2]==0 let zero3=final_authority[3]==0
+        let zero4=final_authority[4]==0
+        if zero0 { if zero1 { if zero2 { if zero3 { assert(zero4==false) } } } }
+        let (a,b,c,d,e)=divine5()
+        let (h0,h1,h2,h3,h4)=hash(a,b,c,d,e,2,3,0,0,0)
+        assert_eq(final_authority[0],h0) assert_eq(final_authority[1],h1)
+        assert_eq(final_authority[2],h2) assert_eq(final_authority[3],h3) assert_eq(final_authority[4],h4)
+    }
+}

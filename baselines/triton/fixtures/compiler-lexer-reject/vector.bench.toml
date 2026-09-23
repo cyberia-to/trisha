@@ -1,0 +1,9 @@
+source = "main.tri"
+hand = "../../std/compiler/lexer.tasm"
+target = "triton"
+input = [13, 112, 114, 111, 103, 114, 97, 109, 32, 98, 97, 100, 32, 64]
+output = []
+expect_failure = true
+max_cycles = 500000
+reference = "Malformed source must report an error; driver asserts zero errors. Hand reference rejects the invalid token/expression directly."
+hand_prefix = "call __lexer_main halt"

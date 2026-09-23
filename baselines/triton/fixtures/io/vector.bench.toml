@@ -1,0 +1,10 @@
+source = "main.tri"
+hand = "../../vm/io/io.tasm"
+target = "triton"
+input = [17, 29]
+output = [17, 29]
+reference = "Public input/output round trip preserves order."
+expect_failure = false
+hand_prefix = """
+call vm_io_io__read call vm_io_io__read swap 1 call vm_io_io__write call vm_io_io__write halt
+"""

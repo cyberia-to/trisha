@@ -1,0 +1,21 @@
+source = "main.tri"
+hand = "../../std/quantum/gates.tasm"
+target = "triton"
+input = []
+output = [1, 2, 3, 4, 7, 8, 5, 6]
+reference = "Independent CNOT matrix: |00>,|01> unchanged; amplitudes of |10>,|11> exchange (both real and imaginary coordinates)."
+expect_failure = false
+hand_prefix = """
+push 1 push 2 push 3 push 4 push 5 push 6 push 7 push 8 call __cnot
+    swap 7
+    swap 1
+    swap 6
+    swap 1
+    swap 2
+    swap 5
+    swap 2
+    swap 3
+    swap 4
+    swap 3
+write_io 5 write_io 3 halt
+"""

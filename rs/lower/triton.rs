@@ -28,6 +28,8 @@ pub struct TritonLowering {
     deferred: Vec<DeferredBlock>,
     /// Label counter for generating unique deferred block labels.
     label_counter: u32,
+    /// One RAM-preserving scratch search subroutine per lowered module.
+    scratch_search: Option<String>,
 }
 
 impl TritonLowering {
@@ -49,10 +51,13 @@ impl TritonLowering {
     fn lower_op(&mut self, op: &TIROp, out: &mut Vec<String>) {
         match op {
             // ── Stack ──
-            TIROp::Push(v) => out.push(format!("    push {}", v)),
+            TIROp::Push(v) => out.push(format!(
+                "    push {}",
+                triton_vm::prelude::BFieldElement::new(*v).value()
+            )),
             TIROp::Pop(n) => super::legalize::batch("pop", *n, out),
-            TIROp::Dup(d) => super::legalize::access(*d, true, out),
-            TIROp::Swap(d) => super::legalize::access(*d, false, out),
+            TIROp::Dup(d) => self.stack_access(*d, true, out),
+            TIROp::Swap(d) => self.stack_access(*d, false, out),
 
             // ── Arithmetic ──
             TIROp::Add => out.push("    add".to_string()),
@@ -79,17 +84,22 @@ impl TritonLowering {
                 out.push("    mul".to_string());
             }
             TIROp::Shr => {
-                // divide by 2^n: push 2; pow; div_mod; swap 1; pop 1
+                // TIR has (value, shift); native div_mod wants the numerator
+                // on top and returns (quotient, remainder). Keep the quotient.
                 out.push("    push 2".to_string());
                 out.push("    pow".to_string());
-                out.push("    div_mod".to_string());
                 out.push("    swap 1".to_string());
+                out.push("    div_mod".to_string());
                 out.push("    pop 1".to_string());
             }
             TIROp::Invert => out.push("    invert".to_string()),
             TIROp::Split => out.push("    split".to_string()),
             TIROp::Log2 => out.push("    log_2_floor".to_string()),
-            TIROp::Pow => out.push("    pow".to_string()),
+            TIROp::Pow => {
+                // TIR passes (base, exponent); Triton pow consumes base on top.
+                out.push("    swap 1".to_string());
+                out.push("    pow".to_string());
+            }
             TIROp::PopCount => out.push("    pop_count".to_string()),
 
             // ── Recursion — extension field & FRI ──
@@ -133,13 +143,48 @@ impl TritonLowering {
             TIROp::WriteMem(n) => super::legalize::batch("write_mem", *n, out),
 
             // ── Crypto ──
-            TIROp::Hash { .. } => out.push("    hash".to_string()),
+            TIROp::Hash { .. } => {
+                super::legalize::reverse(10, out);
+                out.push("    hash".into());
+                super::legalize::reverse(5, out);
+            }
             TIROp::SpongeInit => out.push("    sponge_init".to_string()),
-            TIROp::SpongeAbsorb => out.push("    sponge_absorb".to_string()),
-            TIROp::SpongeSqueeze => out.push("    sponge_squeeze".to_string()),
-            TIROp::SpongeLoad => out.push("    sponge_absorb_mem".to_string()),
-            TIROp::MerkleStep => out.push("    merkle_step".to_string()),
-            TIROp::MerkleLoad => out.push("    merkle_step_mem".to_string()),
+            TIROp::SpongeAbsorb => {
+                super::legalize::reverse(10, out);
+                out.push("    sponge_absorb".into());
+            }
+            TIROp::SpongeSqueeze => {
+                out.push("    sponge_squeeze".into());
+                super::legalize::reverse(10, out);
+            }
+            TIROp::SpongeLoad => {
+                // Native instruction overwrites four stack words and returns an advanced pointer.
+                out.extend(
+                    [
+                        "    push 0",
+                        "    push 0",
+                        "    push 0",
+                        "    push 0",
+                        "    swap 4",
+                        "    sponge_absorb_mem",
+                        "    pop 5",
+                    ]
+                    .map(str::to_string),
+                );
+            }
+            TIROp::MerkleStep => {
+                super::legalize::reverse(5, out);
+                out.push("    merkle_step".into());
+                super::legalize::reverse(5, out);
+            }
+            TIROp::MerkleLoad => {
+                // Native layout has an unused word between pointer and index.
+                out.push("    push 0".into());
+                super::legalize::permute(&[6, 7, 0, 5, 4, 3, 2, 1], out);
+                out.push("    merkle_step_mem".into());
+                super::legalize::permute(&[2, 7, 6, 5, 4, 3, 0, 1], out);
+                out.push("    pop 1".into());
+            }
 
             // ── Assertions ──
             TIROp::Assert(1) => out.push("    assert".to_string()),
@@ -149,7 +194,11 @@ impl TritonLowering {
             TIROp::Reveal {
                 tag, field_count, ..
             } => {
-                // Triton: write tag then each field to public output.
+                // TIR payload is bottom-first declaration order; native output
+                // consumes its first word from the top.
+                if *field_count > 1 {
+                    super::legalize::reverse(*field_count as usize, out);
+                }
                 out.push(format!("    push {}", tag));
                 out.push("    write_io 1".to_string());
                 for _ in 0..*field_count {
@@ -165,23 +214,39 @@ impl TritonLowering {
                     out.push("    push 0".to_string());
                 }
                 out.push(format!("    push {}", tag));
+                // Hash preimage: tag, flattened declaration-order words, zeros.
+                // Native hash reads its first input from the top.
+                let count = *field_count as usize;
+                let order = (count..9)
+                    .chain((0..count).rev())
+                    .chain([9])
+                    .collect::<Vec<_>>();
+                super::legalize::permute(&order, out);
                 out.push("    hash".to_string());
                 out.push("    write_io 5".to_string());
             }
             TIROp::RamRead { width } => {
-                // Triton: read_mem + pop address.
-                out.push(format!("    read_mem {}", width));
-                out.push("    pop 1".to_string());
+                // Abstract block addresses name the first ascending RAM cell.
+                if *width > 1 {
+                    out.push(format!("    push {}", width - 1));
+                    out.push("    add".into());
+                }
+                super::legalize::batch("read_mem", *width, out);
+                out.push("    pop 1".into());
+                super::legalize::reverse(*width as usize, out);
             }
             TIROp::RamWrite { width } => {
-                // Args are pushed left-to-right: addr then value(s).
-                // Stack: val_N..val_1 | addr (addr at position width).
-                // write_mem needs addr at st0: swap it up.
-                out.push(format!("    swap {}", width));
-                out.push(format!("    write_mem {}", width));
-                out.push("    pop 1".to_string());
+                // Native write consumes pointer then the first coordinate on top.
+                super::legalize::reverse(*width as usize + 1, out);
+                super::legalize::batch("write_mem", *width, out);
+                out.push("    pop 1".into());
             }
             // ── Control flow (flat) ──
+            TIROp::TargetCall {
+                name,
+                inputs,
+                outputs,
+            } => super::target_call::emit(name, *inputs, *outputs, out),
             TIROp::Call(label) => {
                 let formatted = if label.starts_with("__") || label.starts_with("@") {
                     // Already prefixed (__) or cross-module (@) — pass through
@@ -262,6 +327,7 @@ impl TritonLowering {
                 out.push("    ".to_string());
                 self.flush_deferred(out);
             }
+            TIROp::EntryParameters(leaves) => super::entry::emit(leaves, out),
             TIROp::Entry(main_label) => {
                 let formatted = if main_label.starts_with("__") {
                     main_label.clone()
@@ -288,6 +354,37 @@ impl TritonLowering {
         }
     }
 
+    fn ensure_scratch_search(&mut self) {
+        if self.scratch_search.is_none() {
+            self.scratch_search = Some(self.fresh_label("stack_scratch"));
+        }
+    }
+
+    fn lower_ops(&mut self, mut ops: &[TIROp], out: &mut Vec<String>) {
+        while let Some((first, rest)) = ops.split_first() {
+            if let Some(plan) = super::sequence::Shuffle::plan(ops) {
+                self.ensure_scratch_search();
+                plan.emit(self.scratch_search.as_deref().unwrap_or(""), out);
+                ops = &ops[plan.consumed..];
+            } else {
+                self.lower_op(first, out);
+                ops = rest;
+            }
+        }
+    }
+
+    fn stack_access(&mut self, depth: u32, duplicate: bool, out: &mut Vec<String>) {
+        if depth >= 16 {
+            self.ensure_scratch_search();
+        }
+        super::legalize::access(
+            depth,
+            duplicate,
+            self.scratch_search.as_deref().unwrap_or(""),
+            out,
+        );
+    }
+
     /// Flush all deferred blocks, emitting them as labeled subroutines.
     fn flush_deferred(&mut self, out: &mut Vec<String>) {
         while !self.deferred.is_empty() {
@@ -305,9 +402,7 @@ impl TritonLowering {
                     out.push("    push -1".to_string());
                     out.push("    add".to_string());
 
-                    for op in &block.ops {
-                        self.lower_op(op, out);
-                    }
+                    self.lower_ops(&block.ops, out);
 
                     out.push("    recurse".to_string());
                     out.push(String::new());
@@ -316,9 +411,7 @@ impl TritonLowering {
                         out.push("    pop 1".to_string());
                     }
 
-                    for op in &block.ops {
-                        self.lower_op(op, out);
-                    }
+                    self.lower_ops(&block.ops, out);
 
                     if block.clears_flag {
                         out.push("    push 0".to_string());
@@ -336,8 +429,12 @@ impl StackLowering for TritonLowering {
         let mut lowerer = TritonLowering::new();
         let mut out = Vec::new();
 
-        for op in ops {
-            lowerer.lower_op(op, &mut out);
+        lowerer.lower_ops(ops, &mut out);
+        if let Some(label) = lowerer.scratch_search {
+            // A module's functions terminate explicitly. The barrier also
+            // allows standalone flat TIR programs to terminate before helpers.
+            out.push("    halt".into());
+            super::legalize::search(&label, &mut out);
         }
         out
     }

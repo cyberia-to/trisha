@@ -1,89 +1,99 @@
 module os.neptune.standards.plumb
 
-// PLUMB framework — shared utilities for TSP-1 (Coin) and TSP-2 (Card).
-//
-// Config = hash(5 authorities + 5 hooks)
-// Authority semantics:
-//   Account ops (pay/lock/burn): 0 = self, else dual
-//   Config ops (mint/update):    0 = off, else auth
+// PLUMBv2: full-Digest authorities and atomic same-sibling tree transitions.
+// Normative contract: Trident reference/plumb-v2.md. Legacyv1 is experimental.
 
-// Depth of the Merkle tree (2^20 = ~1M leaves).
-pub fn tree_depth() -> Field {
-    20
+pub fn tree_depth() -> Field { 20 }
+
+pub fn pair(left: Digest, right: Digest) -> Digest {
+    let (a,b,c,d,e) = left
+    let (f,g,h,i,j) = right
+    hash(a,b,c,d,e,f,g,h,i,j)
 }
 
-// --- Config hashing (5 authorities + 5 hooks, all 10 slots used) ---
+pub fn is_zero(value: Digest) -> Bool {
+    let (a,b,c,d,e) = value
+    if a == 0 {
+        if b == 0 {
+            if c == 0 {
+                if d == 0 { e == 0 } else { false }
+            } else { false }
+        } else { false }
+    } else { false }
+}
+
 pub fn hash_config(
-    admin_auth: Field,
-    pay_auth: Field,
-    lock_auth: Field,
-    mint_auth: Field,
-    burn_auth: Field,
-    pay_hook: Field,
-    lock_hook: Field,
-    update_hook: Field,
-    mint_hook: Field,
-    burn_hook: Field
+    admin_auth: Digest, pay_auth: Digest, lock_auth: Digest,
+    mint_auth: Digest, burn_auth: Digest,
+    pay_hook: Field, lock_hook: Field, update_hook: Field,
+    mint_hook: Field, burn_hook: Field
 ) -> Digest {
-    hash(
-        admin_auth,
-        pay_auth,
-        lock_auth,
-        mint_auth,
-        burn_auth,
-        pay_hook,
-        lock_hook,
-        update_hook,
-        mint_hook,
-        burn_hook
-    )
+    let a = pair(admin_auth,pay_auth)
+    let b = pair(lock_auth,mint_auth)
+    let hooks = hash(pay_hook,lock_hook,update_hook,mint_hook,burn_hook,2,2,0,0,0)
+    let c = pair(burn_auth,hooks)
+    pair(pair(a,b),c)
 }
 
 pub fn verify_config(
-    admin_auth: Field,
-    pay_auth: Field,
-    lock_auth: Field,
-    mint_auth: Field,
-    burn_auth: Field,
-    pay_hook: Field,
-    lock_hook: Field,
-    update_hook: Field,
-    mint_hook: Field,
-    burn_hook: Field,
-    expected: Digest
+    admin_auth: Digest, pay_auth: Digest, lock_auth: Digest,
+    mint_auth: Digest, burn_auth: Digest,
+    pay_hook: Field, lock_hook: Field, update_hook: Field,
+    mint_hook: Field, burn_hook: Field, expected: Digest
 ) {
-    let computed: Digest = hash_config(
-        admin_auth,
-        pay_auth,
-        lock_auth,
-        mint_auth,
-        burn_auth,
-        pay_hook,
-        lock_hook,
-        update_hook,
-        mint_hook,
-        burn_hook
-    )
-    assert_digest(computed, expected)
+    assert_digest(hash_config(admin_auth,pay_auth,lock_auth,mint_auth,burn_auth,
+        pay_hook,lock_hook,update_hook,mint_hook,burn_hook),expected)
 }
 
-// --- Authorization: prove knowledge of secret matching auth_hash ---
-pub fn verify_auth(auth_hash: Field) {
-    let secret: Field = divine()
-    let computed: Digest = hash(secret, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-    let (h0, _, _, _, _) = computed
-    assert_eq(auth_hash, h0)
+pub fn verify_auth(authority: Digest) {
+    assert(is_zero(authority) == false)
+    let secret: Digest = divine5()
+    let (a,b,c,d,e) = secret
+    assert_digest(hash(a,b,c,d,e,2,1,0,0,0),authority)
 }
 
-// --- Hook signaling: output hook program ID for external composition ---
+// Hook IDs are requests to the integrating verifier, not verified hook proofs.
 pub fn signal_hook(hook: Field) {
-    if hook == 0 {
-    } else {
-        pub_write(hook)
-    }
+    if hook == 0 { } else { pub_write(hook) }
 }
 
-// --- Range check: assert value fits in u32 (non-negative in field) ---
-pub fn assert_non_negative(val: Field) {
-    let _: U32 = as_u32(val)
+pub fn assert_non_negative(value: Field) { let _: U32 = as_u32(value) }
+
+pub fn next_nonce(nonce: Field) -> Field {
+    assert_non_negative(nonce)
+    let next = nonce + 1
+    assert_non_negative(next)
+    next
+}
+
+pub fn check_index(id: Field, index: U32) {
+    assert((id == 0) == false)
+    assert_eq(id,as_field(index))
+    assert(index < as_u32(1048576))
+}
+
+pub fn empty_leaf() -> Digest { hash(0,0,0,0,0,0,0,0,2,0) }
+
+// Recompute old and new roots from exactly the same20 sibling Digests.
+// Return the new root only after authenticating the original leaf and index.
+pub fn update_leaf(old_leaf: Digest, new_leaf: Digest, old_root: Digest, index: U32) -> Digest {
+    assert(index < as_u32(1048576))
+    let mut old_node: Digest = old_leaf
+    let mut new_node: Digest = new_leaf
+    let mut idx: U32 = index
+    for level in 0..20 bounded 20 {
+        let sibling: Digest = divine5()
+        let (parent, side): (U32,U32) = idx /% as_u32(2)
+        if side == as_u32(0) {
+            old_node = pair(old_node,sibling)
+            new_node = pair(new_node,sibling)
+        } else {
+            old_node = pair(sibling,old_node)
+            new_node = pair(sibling,new_node)
+        }
+        idx = parent
+    }
+    assert(idx == as_u32(0))
+    assert_digest(old_node,old_root)
+    new_node
 }

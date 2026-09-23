@@ -11,17 +11,31 @@ __new:
 // inv(a: XField) -> XField
 //   2 instructions
 __inv:
-    xinvert
+    swap 2
+    x_invert
+    swap 2
     return
 
-// xx_dot_step(acc0, acc1, acc2, ptr_a, ptr_b) -> Digest
+// xx_dot_step(acc: XField, ptr_a, ptr_b) -> (XField, Field, Field)
 //   2 instructions
 __xx_dot_step:
+    swap 2
+    swap 4
+    swap 2
     xx_dot_step
+    swap 2
+    swap 4
+    swap 2
     return
 
-// xb_dot_step(acc0, acc1, acc2, ptr_a, ptr_b) -> Digest
+// xb_dot_step(acc: XField, ptr_a, ptr_b) -> (XField, Field, Field)
 //   2 instructions
 __xb_dot_step:
+    swap 2
+    swap 4
+    swap 2
     xb_dot_step
+    swap 2
+    swap 4
+    swap 2
     return

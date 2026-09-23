@@ -1,0 +1,6 @@
+source = "main.tri"
+hand = "../../std/nn/tensor.tasm"
+input = ["2", "1"]
+output = ["0", "2", "1"]
+reference = "Independent canonical integer ordering with signed threshold (p-1)/2; argmax index then ReLU of each input."
+hand_prefix = "read_io 1 dup 0 push 100 write_mem 1 pop 1 read_io 1 dup 0 push 101 write_mem 1 pop 1 pop 2 push 100 push 2 call __argmax write_io 1 push 100 read_mem 1 pop 1 call __relu write_io 1 push 101 read_mem 1 pop 1 call __relu write_io 1 halt"
