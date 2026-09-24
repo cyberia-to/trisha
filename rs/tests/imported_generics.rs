@@ -30,7 +30,7 @@ const ALPHA: &str = "module alpha
 const OFFSET:Field=7
 const N:U32=9
 const FIXED:U32=2
-pub struct Pair { left:Field, right:Field }
+pub struct Pair { pub left:Field, pub right:Field }
 fn helper(x:Field)->Field { x+OFFSET }
 pub fn fold<N>(x:[Field;N])->Field {
  let mut sum:Field=0

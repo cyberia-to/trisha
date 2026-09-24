@@ -110,7 +110,7 @@ fn imported_library_main_keeps_normal_call_abi() {
 #[test]
 fn imported_nested_aggregate_entry_layout_and_leaf_validation() {
     let directory = tempfile::tempdir().unwrap();
-    std::fs::write(directory.path().join("helper.tri"), "module helper\npub struct Inner { value: U32, flag: Bool }\npub struct Outer { head: Field, inner: Inner, tail: Field }\npub fn echo(x: Field) -> Field { x }\n").unwrap();
+    std::fs::write(directory.path().join("helper.tri"), "module helper\npub struct Inner { pub value: U32, pub flag: Bool }\npub struct Outer { pub head: Field, pub inner: Inner, pub tail: Field }\npub fn echo(x: Field) -> Field { x }\n").unwrap();
     let path = directory.path().join("entry.tri");
     std::fs::write(&path,"program entry\nuse helper\nfn main(value: helper.Outer) { pub_write(helper.echo(value.head))\n pub_write(as_field(value.inner.value))\n assert(value.inner.flag)\n pub_write(value.tail) }\n").unwrap();
     for profile in ["debug", "release"] {
