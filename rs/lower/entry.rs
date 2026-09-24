@@ -23,11 +23,13 @@ fn validate_structure(ops: &[TIROp], top_level: bool) -> Result<(), String> {
                     return Err("typed entry metadata must precede the program entry".into());
                 }
                 seen = true;
-                if leaves
-                    .iter()
-                    .any(|leaf| matches!(leaf, EntryLeaf::Unresolved(_)))
-                {
-                    return Err("unresolved type in program entry signature".into());
+                if let Some(reason) = leaves.iter().find_map(|leaf| match leaf {
+                    EntryLeaf::Unresolved(reason) => Some(reason),
+                    _ => None,
+                }) {
+                    return Err(format!(
+                        "unresolved type in program entry signature: {reason}"
+                    ));
                 }
             }
             TIROp::Entry(_) => {
