@@ -92,9 +92,14 @@ fn unchecked_builder_errors_cannot_become_executable_stack_values() {
         "program bad\nstruct Pair { a: Field, b: Field }\nfn main() { let p = Pair { a: 7, a: 19 } }",
     ] {
         let file = trident::parse_source_silent(source, "bad.tri").unwrap();
-        let ops = TIRBuilder::new(trisha_rs::target::package("triton").unwrap().terrain)
-            .build_file(&file).unwrap();
-        let error = trisha_rs::lower::lower_checked(&ops).unwrap_err();
-        assert!(error.contains("ERROR:"), "{error}");
+        let errors = TIRBuilder::new(trisha_rs::target::package("triton").unwrap().terrain)
+            .build_file(&file).unwrap_err();
+        assert!(!errors.is_empty(), "{source}");
     }
+    // Warrior admission also rejects malformed IR from external producers.
+    let ops = [trident::tir::TIROp::Comment(
+        "ERROR: unresolved variable".into(),
+    )];
+    let error = trisha_rs::lower::lower_checked(&ops).unwrap_err();
+    assert!(error.contains("ERROR:"), "{error}");
 }

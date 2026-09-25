@@ -5,6 +5,8 @@ The full release is still being prepared. The coordinated work ledger is
 These reports distinguish local runtime/node evidence from publication and
 public-network operation. No release has been published.
 
+- [Explicit import fixture compatibility](explicit-import-fixtures.md): pinned
+  compiler/warrior scope checks, execution and unchanged baseline rows.
 - [Native release execution](native-release-20260916.md): current native builds,
   Windows fixes, installed proofs and exact CI/source identities.
 - [Release platform review](platform-scope-review.md): Windows requirement,
