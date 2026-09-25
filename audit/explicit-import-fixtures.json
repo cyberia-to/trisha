@@ -1,0 +1,483 @@
+{
+  "source_revisions": {
+    "trident": "ef4ea23f75446a4f87a12714653f37e1315b9e44",
+    "joy": "d662ef9f07b6904783c98fd215f75764dfca5254",
+    "trisha": "ef186c359e9e268c815055ff69356fa7ff84fd60",
+    "nox": "c9f7486a74fe81bfc194b598da40f6343ecb2ef1",
+    "bbg": "1d39975ad199b48c350fa4cc011cbf6f289480ee",
+    "hemera": "a931a0a8e7ed369852ce0f8bc6451a59745ee692",
+    "honeycrisp": "ff735e6c262926bc9bab7534786a575020cbe442",
+    "lens": "17cafe91431977b738e5b72361187cd01ad93638",
+    "neuron": "fd24e768d623604b67e20b4b93fa8e82c83ac373",
+    "strata": "d2eb1763b8caf04e6c7647ac6fe99761519c2ef9",
+    "zheng": "80a8ca90208c3b49c4f2a8507d75fd17785fdfe3"
+  },
+  "host": {
+    "uname -ms": "Darwin arm64",
+    "rustc -Vv": "rustc 1.95.0 (59807616e 2026-04-14) (Homebrew)\nbinary: rustc\ncommit-hash: 59807616e1fa2540724bfbac14d7976d7e4a3860\ncommit-date: 2026-04-14\nhost: aarch64-apple-darwin\nrelease: 1.95.0\nLLVM version: 22.1.3",
+    "sw_vers": "ProductName:\t\tmacOS\nProductVersion:\t\t26.4.1\nBuildVersion:\t\t25E253",
+    "sysctl -n machdep.cpu.brand_string": "Apple M4 Max"
+  },
+  "gates": [
+    {
+      "repository": "trident",
+      "command": [
+        "cargo",
+        "check",
+        "--workspace",
+        "--all-targets",
+        "--locked",
+        "--offline"
+      ],
+      "environment": {
+        "CARGO_TARGET_DIR": "/Users/master/cyber/.worktrees/selfhost-0.4-constants/target"
+      },
+      "exit_code": 0,
+      "log": "/tmp/trident-04-explicit-imports-final6-check.log",
+      "sha256": "f2638cfe82dad6310d040f2494201e6dd23f35e3242e9d214d38d4fe83251a62",
+      "rust_warnings": 0,
+      "revision": "ef4ea23f75446a4f87a12714653f37e1315b9e44"
+    },
+    {
+      "repository": "trident",
+      "command": [
+        "cargo",
+        "test",
+        "--release",
+        "--locked",
+        "--offline",
+        "--workspace"
+      ],
+      "environment": {
+        "CARGO_TARGET_DIR": "/Users/master/cyber/.worktrees/selfhost-0.4-constants/target"
+      },
+      "exit_code": 0,
+      "log": "/tmp/trident-04-explicit-imports-final6-tests.log",
+      "sha256": "fae982a75b30ac91f772e32f81b9bd6d9a2a7e59350ac87c4ab6c15db6910588",
+      "rust_warnings": 0,
+      "tests": {
+        "passed": 1114,
+        "failed": 0,
+        "ignored": 0
+      },
+      "revision": "ef4ea23f75446a4f87a12714653f37e1315b9e44"
+    },
+    {
+      "repository": "joy",
+      "command": [
+        "cargo",
+        "check",
+        "--workspace",
+        "--all-targets",
+        "--locked",
+        "--offline"
+      ],
+      "environment": {
+        "CARGO_TARGET_DIR": "/Users/master/cyber/.worktrees/selfhost-0.4-constants/target"
+      },
+      "exit_code": 0,
+      "log": "/tmp/joy-04-explicit-imports-final6-check.log",
+      "sha256": "22f6d537a88b2b21f4206654a7ed796f256bd190353c53897da5e87244e66b77",
+      "rust_warnings": 0,
+      "revision": "d662ef9f07b6904783c98fd215f75764dfca5254"
+    },
+    {
+      "repository": "joy",
+      "command": [
+        "cargo",
+        "test",
+        "--release",
+        "--locked",
+        "--offline",
+        "--workspace"
+      ],
+      "environment": {
+        "CARGO_TARGET_DIR": "/Users/master/cyber/.worktrees/selfhost-0.4-constants/target"
+      },
+      "exit_code": 0,
+      "log": "/tmp/joy-04-explicit-imports-final6-tests.log",
+      "sha256": "a03b3da5d892ba9e0ab446dc046adc3f69b06e5e15cad6c9ca512eec2465d0dc",
+      "rust_warnings": 0,
+      "tests": {
+        "passed": 122,
+        "failed": 0,
+        "ignored": 0
+      },
+      "revision": "d662ef9f07b6904783c98fd215f75764dfca5254"
+    },
+    {
+      "repository": "trisha",
+      "command": [
+        "cargo",
+        "check",
+        "--workspace",
+        "--all-targets",
+        "--locked",
+        "--offline"
+      ],
+      "environment": {
+        "CARGO_TARGET_DIR": "/Users/master/cyber/.worktrees/selfhost-0.4-constants/target"
+      },
+      "exit_code": 0,
+      "log": "/tmp/trisha-04-explicit-imports-final6-check.log",
+      "sha256": "200f1ffb2e47b269f9e37af43fd88a5a170853f9418186e015824739b2a6946f",
+      "rust_warnings": 0,
+      "revision": "ef186c359e9e268c815055ff69356fa7ff84fd60"
+    },
+    {
+      "repository": "trisha",
+      "command": [
+        "cargo",
+        "test",
+        "--release",
+        "--locked",
+        "--offline",
+        "-p",
+        "trisha-rs",
+        "--no-fail-fast"
+      ],
+      "environment": {
+        "CARGO_TARGET_DIR": "/Users/master/cyber/.worktrees/selfhost-0.4-constants/target"
+      },
+      "exit_code": 0,
+      "log": "/tmp/trisha-04-explicit-imports-final6-tests.log",
+      "sha256": "8ce987aff2fcc026fef9cab1e998c5638d0c7268f04892bb02714f840b9544eb",
+      "rust_warnings": 0,
+      "tests": {
+        "passed": 380,
+        "failed": 0,
+        "ignored": 4
+      },
+      "revision": "ef186c359e9e268c815055ff69356fa7ff84fd60"
+    },
+    {
+      "repository": "trisha",
+      "command": [
+        "cargo",
+        "run",
+        "--release",
+        "--locked",
+        "--offline",
+        "-p",
+        "trisha",
+        "--",
+        "bench"
+      ],
+      "environment": {
+        "CARGO_TARGET_DIR": "/Users/master/cyber/.worktrees/selfhost-0.4-constants/target"
+      },
+      "exit_code": 0,
+      "log": "/tmp/trisha-04-explicit-imports-final6-bench.log",
+      "sha256": "b581e7a56ee15b5d2c014b3b7e8d465bb4f07c5541a3d9fc80b414a30554d618",
+      "rust_warnings": 0,
+      "revision": "ef186c359e9e268c815055ff69356fa7ff84fd60"
+    }
+  ],
+  "post_commit_installs": [
+    {
+      "repository": "joy",
+      "command": [
+        "cargo",
+        "install",
+        "--path",
+        "cli",
+        "--locked",
+        "--offline",
+        "--force",
+        "--root",
+        "../install"
+      ],
+      "environment": {
+        "CARGO_TARGET_DIR": "/Users/master/cyber/.worktrees/selfhost-0.4-constants/target"
+      },
+      "exit_code": 0,
+      "sha256": "6a19044c37d216ff64f679bf8e0ae79e9feb8cada37b837e4614e4d855129eff",
+      "log": "/tmp/joy-04-explicit-imports-install.log",
+      "rust_warnings": 0
+    },
+    {
+      "repository": "trisha",
+      "command": [
+        "cargo",
+        "install",
+        "--path",
+        "cli",
+        "--locked",
+        "--offline",
+        "--force",
+        "--root",
+        "../install"
+      ],
+      "environment": {
+        "CARGO_TARGET_DIR": "/Users/master/cyber/.worktrees/selfhost-0.4-constants/target"
+      },
+      "exit_code": 0,
+      "sha256": "a651ea4bf5604ab339f0d7a6748cdbc7e39b9f4ceb086c17c4723d89d3641ff6",
+      "log": "/tmp/trisha-04-explicit-imports-install.log",
+      "rust_warnings": 0
+    },
+    {
+      "repository": "trident",
+      "command": [
+        "cargo",
+        "install",
+        "--path",
+        ".",
+        "--locked",
+        "--offline",
+        "--force",
+        "--root",
+        "../install"
+      ],
+      "environment": {
+        "CARGO_TARGET_DIR": "/Users/master/cyber/.worktrees/selfhost-0.4-constants/target"
+      },
+      "exit_code": 0,
+      "sha256": "8b449809990b420e8586e4060a7e798c8f3ed2804ea02ae8afdbd32e0c9f580a",
+      "log": "/tmp/trident-04-explicit-imports-install.log",
+      "rust_warnings": 0
+    }
+  ],
+  "post_commit_consistency": {
+    "source_revision": "ef4ea23f75446a4f87a12714653f37e1315b9e44",
+    "tested_tree": "8cef1bc58c3ebd09e81fed459cd754a425725bca",
+    "binary_sha256_before_rebuild": {
+      "joy": "f4ec7af433cb4add3e8560e531c21b4aba8975dee3463dd9c0a1a725ced1db79",
+      "trisha": "26066e1371b183db595f1e736ae5a591b19eccc92b7f391c39968a38c253ebe0",
+      "trident": "122a6f0eaa0afa508793f065dba8f6bf84151f5d8b6ce47222037fa6fa921d14"
+    },
+    "binary_sha256_after_rebuild": {
+      "joy": "f4ec7af433cb4add3e8560e531c21b4aba8975dee3463dd9c0a1a725ced1db79",
+      "trisha": "26066e1371b183db595f1e736ae5a591b19eccc92b7f391c39968a38c253ebe0",
+      "trident": "122a6f0eaa0afa508793f065dba8f6bf84151f5d8b6ce47222037fa6fa921d14"
+    },
+    "all_binary_bytes_identical": true,
+    "compiler_rebuild": {
+      "command": [
+        "../install/bin/joy",
+        "build",
+        "compiler/nox/main.tri",
+        "--emit",
+        "artifact",
+        "--artifact-profile",
+        "compiler-job",
+        "-o",
+        "/tmp/explicit-imports-committed-c1.dag",
+        "--force"
+      ],
+      "exit_code": 0,
+      "stdout": "/tmp/explicit-imports-committed-c1.dag\n",
+      "stderr": "",
+      "sha256": "430c7bdcece5a59e90f0206d2772411a4fe1859c7bc38a6157b5d5ddf0f2ada6",
+      "particle": "6ee70c5d760a2c01844ac738b08e3ce6977f5ca525d14f9b20829cf26e1e0048",
+      "identical_to_attributes_c1": true
+    }
+  },
+  "installed_cli": {
+    "command": [
+      "python3",
+      "audit/self-hosting/check-explicit-imports.py",
+      "--joy",
+      "../install/bin/joy",
+      "--trisha",
+      "../install/bin/trisha",
+      "--trident",
+      "../install/bin/trident",
+      "--output",
+      "/tmp/explicit-imports-final-cli.json"
+    ],
+    "path": "audit/self-hosting/explicit-imports-cli.json",
+    "sha256": "933297a0c7db8b0f2f437b4c65140060da93c1330662c5d979efea8ead13cc40",
+    "commands": 79,
+    "observations": 27,
+    "positive_cross_backend_projects": 12,
+    "rejected_cross_backend_projects": 15
+  },
+  "direct_tir": {
+    "command": [
+      "python3",
+      "audit/self-hosting/check-callable-tir.py",
+      "--output",
+      "/tmp/explicit-imports-final-direct-tir.json"
+    ],
+    "path": "audit/self-hosting/explicit-imports-direct-tir.json",
+    "sha256": "b924ee1450d2bf8426e55fb2f86bad117f4e73415c1d61c4fba8e83d77ce4dfb",
+    "executions": 15
+  },
+  "library_checks": {
+    "path": "audit/self-hosting/explicit-imports-libraries.json",
+    "sha256": "ab8ef16c548f9170933d0abea2a4d99a0328d05e9d252687c621992d3bcc44f1",
+    "trident": 106,
+    "trisha": 14,
+    "all_passed": true
+  },
+  "trisha_baseline": {
+    "command": [
+      "cargo",
+      "run",
+      "--release",
+      "--locked",
+      "--offline",
+      "-p",
+      "trisha",
+      "--",
+      "bench"
+    ],
+    "reference": "audit/self-hosting/final-callable-exports-validation.json",
+    "rows": [
+      "baselines/triton/fixtures/assert/vector.bench.toml\t9\t9\t9/9\tPASS",
+      "baselines/triton/fixtures/assert-mismatch/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/auth-preimage/vector.bench.toml\t52\t36\t36/52\tPASS",
+      "baselines/triton/fixtures/auth-preimage-bad/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/bigint-carry/vector.bench.toml\t1274\t124\t124/1274\tPASS",
+      "baselines/triton/fixtures/compiler-lexer-associativity/vector.bench.toml\t35519\t13284\t13284/35519\tPASS",
+      "baselines/triton/fixtures/compiler-lexer-parentheses/vector.bench.toml\t35738\t14041\t14041/35738\tPASS",
+      "baselines/triton/fixtures/compiler-lexer-precedence/vector.bench.toml\t28976\t11426\t11426/28976\tPASS",
+      "baselines/triton/fixtures/compiler-lexer-reject/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/compiler-parser-associativity/vector.bench.toml\t69428\t14979\t14979/69428\tPASS",
+      "baselines/triton/fixtures/compiler-parser-parentheses/vector.bench.toml\t72870\t15377\t15377/72870\tPASS",
+      "baselines/triton/fixtures/compiler-parser-precedence/vector.bench.toml\t54581\t12441\t12441/54581\tPASS",
+      "baselines/triton/fixtures/compiler-parser-reject/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/compiler-pipeline-associativity/vector.bench.toml\t139570\t14297\t14297/139570\tPASS",
+      "baselines/triton/fixtures/compiler-pipeline-parentheses/vector.bench.toml\t134753\t14767\t14767/134753\tPASS",
+      "baselines/triton/fixtures/compiler-pipeline-precedence/vector.bench.toml\t107569\t11903\t11903/107569\tPASS",
+      "baselines/triton/fixtures/compiler-pipeline-reject/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/compiler-pipeline-type-reject/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/convert/vector.bench.toml\t10\t12\t12/10\tPASS",
+      "baselines/triton/fixtures/convert-overflow/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/custom-poseidon2-lanes/vector.bench.toml\t50335\t4139\t4139/50335\tPASS",
+      "baselines/triton/fixtures/custom-poseidon2-ram/vector.bench.toml\t50491\t5711\t5711/50491\tPASS",
+      "baselines/triton/fixtures/custom-poseidon2-zero/vector.bench.toml\t50335\t4139\t4139/50335\tPASS",
+      "baselines/triton/fixtures/custom-token-v2-burn/vector.bench.toml\t18177\t8437\t8437/18177\tPASS",
+      "baselines/triton/fixtures/custom-token-v2-mint/vector.bench.toml\t18177\t8437\t8437/18177\tPASS",
+      "baselines/triton/fixtures/custom-token-v2-transfer/vector.bench.toml\t17777\t8307\t8307/17777\tPASS",
+      "baselines/triton/fixtures/custom-token-v2-wrong-selfhash/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/ecdsa-cross-limb/vector.bench.toml\t6119\t2927\t2927/6119\tPASS",
+      "baselines/triton/fixtures/ecdsa-even-order/vector.bench.toml\t6305\t3039\t3039/6305\tPASS",
+      "baselines/triton/fixtures/ecdsa-half/vector.bench.toml\t5945\t2819\t2819/5945\tPASS",
+      "baselines/triton/fixtures/ecdsa-high/vector.bench.toml\t5945\t2819\t2819/5945\tPASS",
+      "baselines/triton/fixtures/ecdsa-invalid-r/vector.bench.toml\t5532\t2819\t2819/5532\tPASS",
+      "baselines/triton/fixtures/ecdsa-order/vector.bench.toml\t5941\t2819\t2819/5941\tPASS",
+      "baselines/triton/fixtures/ecdsa-oversized-limb/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/ecdsa-zero/vector.bench.toml\t4509\t2709\t2709/4509\tPASS",
+      "baselines/triton/fixtures/fibonacci-0/vector.bench.toml\t25\t16\t16/25\tPASS",
+      "baselines/triton/fixtures/fibonacci-1/vector.bench.toml\t45\t28\t28/45\tPASS",
+      "baselines/triton/fixtures/fibonacci-10/vector.bench.toml\t225\t136\t136/225\tPASS",
+      "baselines/triton/fixtures/fibonacci-100/vector.bench.toml\t2025\t1216\t1216/2025\tPASS",
+      "baselines/triton/fixtures/field/vector.bench.toml\t27\t34\t34/27\tPASS",
+      "baselines/triton/fixtures/generation/vector.bench.toml\t50\t36\t36/50\tPASS",
+      "baselines/triton/fixtures/generation-bad-preimage/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/io/vector.bench.toml\t10\t14\t14/10\tPASS",
+      "baselines/triton/fixtures/keccak-lanes/vector.bench.toml\t755070\t98515\t98515/755070\tPASS",
+      "baselines/triton/fixtures/keccak-zero/vector.bench.toml\t755070\t98515\t98515/755070\tPASS",
+      "baselines/triton/fixtures/kernel-timestamp/vector.bench.toml\t720\t75\t75/720\tPASS",
+      "baselines/triton/fixtures/kernel-timestamp-bad-path/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/mem/vector.bench.toml\t21\t27\t27/21\tPASS",
+      "baselines/triton/fixtures/merkle-2/vector.bench.toml\t43\t27\t27/43\tPASS",
+      "baselines/triton/fixtures/merkle-3/vector.bench.toml\t43\t27\t27/43\tPASS",
+      "baselines/triton/fixtures/merkle-proof/vector.bench.toml\t692\t73\t73/692\tPASS",
+      "baselines/triton/fixtures/merkle-proof-bad-path/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/multisig-3/vector.bench.toml\t132\t109\t109/132\tPASS",
+      "baselines/triton/fixtures/multisig-5/vector.bench.toml\t141\t109\t109/141\tPASS",
+      "baselines/triton/fixtures/multisig-6/vector.bench.toml\t150\t109\t109/150\tPASS",
+      "baselines/triton/fixtures/multisig-7/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/neptune-native-currency/vector.bench.toml\t578365\t578310\t578310/578365\tPASS",
+      "baselines/triton/fixtures/neptune-native-currency-wrong-input/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/neptune-transaction/valid.bench.toml\t833066\t833060\t833060/833066\tPASS",
+      "baselines/triton/fixtures/neptune-transaction/wrong-kernel.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/neptune-transaction/wrong-output.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/neptune-transaction/wrong-program.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/neptune-transaction/wrong-version.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/plumb-config/vector.bench.toml\t3372\t451\t451/3372\tPASS",
+      "baselines/triton/fixtures/plumb-config-bad/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/plumb-v2-card-0/vector.bench.toml\t33491\t5761\t5761/33491\tPASS",
+      "baselines/triton/fixtures/plumb-v2-card-1/vector.bench.toml\t33452\t5729\t5729/33452\tPASS",
+      "baselines/triton/fixtures/plumb-v2-card-2/vector.bench.toml\t31516\t5557\t5557/31516\tPASS",
+      "baselines/triton/fixtures/plumb-v2-card-3/vector.bench.toml\t33552\t5584\t5584/33552\tPASS",
+      "baselines/triton/fixtures/plumb-v2-card-4/vector.bench.toml\t32506\t5580\t5580/32506\tPASS",
+      "baselines/triton/fixtures/plumb-v2-card-config/vector.bench.toml\t8517\t1216\t1216/8517\tPASS",
+      "baselines/triton/fixtures/plumb-v2-coin-0/vector.bench.toml\t56612\t10109\t10109/56612\tPASS",
+      "baselines/triton/fixtures/plumb-v2-coin-1/vector.bench.toml\t30741\t5489\t5489/30741\tPASS",
+      "baselines/triton/fixtures/plumb-v2-coin-2/vector.bench.toml\t8943\t1198\t1198/8943\tPASS",
+      "baselines/triton/fixtures/plumb-v2-coin-3/vector.bench.toml\t30005\t5369\t5369/30005\tPASS",
+      "baselines/triton/fixtures/plumb-v2-coin-4/vector.bench.toml\t32169\t5585\t5585/32169\tPASS",
+      "baselines/triton/fixtures/poly-eval/vector.bench.toml\t137\t84\t84/137\tPASS",
+      "baselines/triton/fixtures/poseidon-range/vector.bench.toml\t6863\t7027\t7027/6863\tPASS",
+      "baselines/triton/fixtures/poseidon-zero/vector.bench.toml\t6863\t7027\t7027/6863\tPASS",
+      "baselines/triton/fixtures/quantum-cnot/vector.bench.toml\t65\t27\t27/65\tPASS",
+      "baselines/triton/fixtures/quantum-pure/0.bench.toml\t12002\t739\t739/12002\tPASS",
+      "baselines/triton/fixtures/quantum-pure/1.bench.toml\t12000\t739\t739/12000\tPASS",
+      "baselines/triton/fixtures/quantum-pure/2.bench.toml\t12002\t739\t739/12002\tPASS",
+      "baselines/triton/fixtures/quantum-pure/3.bench.toml\t12002\t739\t739/12002\tPASS",
+      "baselines/triton/fixtures/quantum-ram-1/invalid-address.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/quantum-ram-1/invalid-target.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/quantum-ram-1/invalid-too-many.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/quantum-ram-1/target-0.bench.toml\t2830\t516\t516/2830\tPASS",
+      "baselines/triton/fixtures/quantum-ram-2/target-0.bench.toml\t5532\t855\t855/5532\tPASS",
+      "baselines/triton/fixtures/quantum-ram-2/target-1.bench.toml\t5548\t882\t882/5548\tPASS",
+      "baselines/triton/fixtures/quantum-ram-3/target-0.bench.toml\t10920\t1506\t1506/10920\tPASS",
+      "baselines/triton/fixtures/quantum-ram-3/target-1.bench.toml\t10936\t1533\t1533/10936\tPASS",
+      "baselines/triton/fixtures/quantum-ram-3/target-2.bench.toml\t10952\t1560\t1560/10952\tPASS",
+      "baselines/triton/fixtures/recursive-aggregate-bad-second/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/recursive-aggregate-count-0/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/recursive-aggregate-count-17/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/recursive-aggregate-count-4294967296/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/recursive-aggregate-two/vector.bench.toml\t862385\t862330\t862330/862385\tPASS",
+      "baselines/triton/fixtures/recursive-dot/vector.bench.toml\t129\t76\t76/129\tPASS",
+      "baselines/triton/fixtures/recursive-proof/vector.bench.toml\t430449\t430441\t430441/430449\tPASS",
+      "baselines/triton/fixtures/recursive-proof-bad-claim/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/recursive-relay/vector.bench.toml\t430463\t430450\t430450/430463\tPASS",
+      "baselines/triton/fixtures/recursive-relay-bad-claim/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/recursive-verifier/vector.bench.toml\t430449\t430442\t430442/430449\tPASS",
+      "baselines/triton/fixtures/recursive-verifier-bad-claim/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/sha256-55bytes/vector.bench.toml\t188106\t29259\t29259/188106\tPASS",
+      "baselines/triton/fixtures/sha256-abc/vector.bench.toml\t188106\t29259\t29259/188106\tPASS",
+      "baselines/triton/fixtures/sha256-carry/vector.bench.toml\t188106\t29259\t29259/188106\tPASS",
+      "baselines/triton/fixtures/sha256-empty/vector.bench.toml\t188106\t29259\t29259/188106\tPASS",
+      "baselines/triton/fixtures/sha256-two-blocks/vector.bench.toml\t187053\t29263\t29263/187053\tPASS",
+      "baselines/triton/fixtures/symmetric/vector.bench.toml\t298\t32\t32/298\tPASS",
+      "baselines/triton/fixtures/symmetric-bad-preimage/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/tensor-boundaries/ascending.bench.toml\t304\t710\t710/304\tPASS",
+      "baselines/triton/fixtures/tensor-boundaries/cross-high.bench.toml\t302\t710\t710/302\tPASS",
+      "baselines/triton/fixtures/tensor-boundaries/descending.bench.toml\t292\t696\t696/292\tPASS",
+      "baselines/triton/fixtures/tensor-boundaries/negative.bench.toml\t262\t564\t564/262\tPASS",
+      "baselines/triton/fixtures/tensor-boundaries/same-high.bench.toml\t304\t710\t710/304\tPASS",
+      "baselines/triton/fixtures/tensor-boundaries/threshold-reversed.bench.toml\t270\t564\t564/270\tPASS",
+      "baselines/triton/fixtures/tensor-boundaries/threshold.bench.toml\t210\t550\t550/210\tPASS",
+      "baselines/triton/fixtures/tensor-matvec/vector.bench.toml\t258\t198\t198/258\tPASS",
+      "baselines/triton/fixtures/timelock-16/vector.bench.toml\t1018\t112\t112/1018\tPASS",
+      "baselines/triton/fixtures/timelock-17/vector.bench.toml\t1018\t112\t112/1018\tPASS",
+      "baselines/triton/fixtures/timelock-18/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/tip5/vector.bench.toml\t42\t36\t36/42\tPASS",
+      "baselines/triton/fixtures/trinity-ascending/vector.bench.toml\t74188\t21364\t21364/74188\tPASS",
+      "baselines/triton/fixtures/trinity-ascending/wrong-witness.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/trinity-descending/vector.bench.toml\t74122\t21332\t21332/74122\tPASS",
+      "baselines/triton/fixtures/trinity-descending/wrong-witness.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/u32/vector.bench.toml\t31\t18\t18/31\tPASS",
+      "baselines/triton/fixtures/utxo/vector.bench.toml\t11\t9\t9/11\tPASS",
+      "baselines/triton/fixtures/utxo-mismatch/vector.bench.toml\t-\t-\t-\tPASS (both executions rejected)",
+      "baselines/triton/fixtures/xfield-inverse/vector.bench.toml\t20\t11\t11/20\tPASS",
+      "baselines/triton/reference/arithmetic.bench.toml\t11\t7\t7/11\tPASS"
+    ],
+    "row_count": 133,
+    "manual_baselines": 43,
+    "unchanged": true
+  },
+  "development_failures": [
+    {
+      "stage": "Trisha halting fixtures",
+      "reason": "Four fixtures imported paths different from their declared owners; fixed paths and direct uses, retaining execution assertions."
+    },
+    {
+      "stage": "Trisha malformed TIR fixture",
+      "reason": "Builder now rejects unresolved source names before producing TIR; test retains both compiler rejection and an explicit external IR rejection."
+    },
+    {
+      "stage": "Trinity library closure",
+      "reason": "PBS depended on transitive field.neg; PBS and RLWE now import vm.core.field directly."
+    }
+  ],
+  "schema": "trisha/explicit-import-fixtures/v1",
+  "kind": "local-development",
+  "coordinated_receipt": "../../trident/audit/self-hosting/explicit-imports-validation.json"
+}
