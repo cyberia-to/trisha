@@ -103,14 +103,14 @@ fn ordinary_assert_function_executes_and_continues() {
 fn imported_assertions_and_active_aliases_keep_resolved_semantics() {
     let ordinary="program ordinary\nuse assert\nfn main(n:Field) { assert.is_true(false) pub_write(assert.is_true(false)) pub_write(97) }";
     let library = "module assert\npub fn is_true(c:Bool)->Field {7}";
-    let cfg="module std.failure\n#[cfg(debug)] #[intrinsic(assert)] pub fn stop(c:Bool)\n#[cfg(release)] pub fn stop(c:Bool)->Field {7}";
-    let source="program configured\nuse failure\nfn choose()->Field {failure.stop(false)}\nfn main(n:Field) {let sentinel=97 pub_write(choose()) pub_write(sentinel)}";
+    let cfg="module ext.failure\n#[cfg(debug)] #[intrinsic(assert)] pub fn stop(c:Bool)\n#[cfg(release)] pub fn stop(c:Bool)->Field {7}";
+    let source="program configured\nuse ext.failure\nfn choose()->Field {failure.stop(false)}\nfn main(n:Field) {let sentinel=97 pub_write(choose()) pub_write(sentinel)}";
     for profile in ["debug", "release"] {
         assert_eq!(
             run_with_modules(ordinary, &[("assert.tri", library)], 0, profile).unwrap(),
             [7, 97]
         );
-        let result = run_with_modules(source, &[("failure.tri", cfg)], 0, profile);
+        let result = run_with_modules(source, &[("ext/failure.tri", cfg)], 0, profile);
         assert_eq!(
             result,
             if profile == "debug" {
@@ -149,12 +149,12 @@ fn main(n:U32) {let sentinel=97 pub_write(choose(n)) pub_write(sentinel)}";
 #[test]
 fn imported_private_intrinsics_do_not_capture_caller_builtins() {
     let library =
-        "module std.other\n#[intrinsic(pub_write)] fn assert(value:Field)\npub fn ok()->Field {7}";
+        "module ext.other\n#[intrinsic(pub_write)] fn assert(value:Field)\npub fn ok()->Field {7}";
     let source =
-        "program private\nuse other\nfn main(n:Field) {pub_write(other.ok()) assert(false)}";
+        "program private\nuse ext.other\nfn main(n:Field) {pub_write(other.ok()) assert(false)}";
     for profile in ["debug", "release"] {
         assert_eq!(
-            run_with_modules(source, &[("other.tri", library)], 0, profile),
+            run_with_modules(source, &[("ext/other.tri", library)], 0, profile),
             Err(vec![7])
         );
     }
@@ -175,42 +175,42 @@ fn canonical_loop_bounds_preserve_the_continuing_result() {
 
 #[test]
 fn callable_aliases_follow_each_modules_typechecked_scope() {
-    let first = "module std.same\n#[intrinsic(assert)] pub fn stop(c:Bool)";
-    let second = "module os.same\npub fn stop(c:Bool)->Field {7}";
-    let entry = "program aliases\nuse first\nuse second\nfn main(n:Field) {pub_write(same.stop(false)) pub_write(97)}";
-    let early = "module os.same\npub fn stop(c:Bool)->Field {7}\npub const FLAG:Field=0";
-    let helper = "module helper\nuse early\npub fn value()->Field {if same.FLAG {assert(false)} else {same.stop(false)}}";
-    let late = "module std.same\n#[intrinsic(assert)] pub fn stop(c:Bool)\npub const FLAG:Field=1";
-    let scope = "program scopes\nuse helper\nuse late\nfn main(n:Field) {pub_write(helper.value()) same.stop(false)}";
-    let parts = "program parts\nuse first\nuse second\nfn main(n:Field) {let p=same.a() pub_write(p.a) pub_write(p.b) pub_write(same.b())}";
-    let aggregate = "module std.same\npub struct Pair {pub a:Field,pub b:Field}\npub fn a()->Pair {Pair{a:7,b:11}}";
-    let scalar = "module os.same\npub fn b()->Field {13}";
+    let first = "module ext.same\n#[intrinsic(assert)] pub fn stop(c:Bool)";
+    let second = "module a.same\npub fn stop(c:Bool)->Field {7}";
+    let entry = "program aliases\nuse ext.same\nuse a.same\nfn main(n:Field) {pub_write(same.stop(false)) pub_write(97)}";
+    let early = "module a.same\npub fn stop(c:Bool)->Field {7}\npub const FLAG:Field=0";
+    let helper = "module helper\nuse a.same\npub fn value()->Field {if same.FLAG {assert(false)} else {same.stop(false)}}";
+    let late = "module ext.same\n#[intrinsic(assert)] pub fn stop(c:Bool)\npub const FLAG:Field=1";
+    let scope = "program scopes\nuse helper\nuse ext.same\nfn main(n:Field) {pub_write(helper.value()) same.stop(false)}";
+    let parts = "program parts\nuse ext.same\nuse a.same\nfn main(n:Field) {let p=same.a() pub_write(p.a) pub_write(p.b) pub_write(same.b())}";
+    let aggregate = "module ext.same\npub struct Pair {pub a:Field,pub b:Field}\npub fn a()->Pair {Pair{a:7,b:11}}";
+    let scalar = "module a.same\npub fn b()->Field {13}";
     for profile in ["debug", "release"] {
         assert_eq!(
             run_with_modules(
                 entry,
-                &[("first.tri", first), ("second.tri", second)],
+                &[("ext/same.tri", first), ("a/same.tri", second)],
                 0,
                 profile
             ),
             Ok(vec![7, 97])
         );
-        let generic = "module os.same\npub fn stop<N>(c:Bool)->Field {7}";
+        let generic = "module a.same\npub fn stop<N>(c:Bool)->Field {7}";
         let generic_entry = entry.replace("same.stop(false)", "same.stop<2>(false)");
         assert_eq!(
             run_with_modules(
                 &generic_entry,
-                &[("first.tri", first), ("second.tri", generic)],
+                &[("ext/same.tri", first), ("a/same.tri", generic)],
                 0,
                 profile
             ),
             Ok(vec![7, 97])
         );
-        let early_generic = "module std.same\npub fn stop<N>(c:Bool)->Field {19}";
+        let early_generic = "module ext.same\npub fn stop<N>(c:Bool)->Field {19}";
         assert_eq!(
             run_with_modules(
                 entry,
-                &[("first.tri", early_generic), ("second.tri", second)],
+                &[("ext/same.tri", early_generic), ("a/same.tri", second)],
                 0,
                 profile
             ),
@@ -220,9 +220,9 @@ fn callable_aliases_follow_each_modules_typechecked_scope() {
             run_with_modules(
                 scope,
                 &[
-                    ("early.tri", early),
+                    ("a/same.tri", early),
                     ("helper.tri", helper),
-                    ("late.tri", late)
+                    ("ext/same.tri", late)
                 ],
                 0,
                 profile
@@ -232,7 +232,7 @@ fn callable_aliases_follow_each_modules_typechecked_scope() {
         assert_eq!(
             run_with_modules(
                 parts,
-                &[("first.tri", aggregate), ("second.tri", scalar)],
+                &[("ext/same.tri", aggregate), ("a/same.tri", scalar)],
                 0,
                 profile
             ),
@@ -243,11 +243,11 @@ fn callable_aliases_follow_each_modules_typechecked_scope() {
 
 #[test]
 fn private_later_constant_cannot_change_a_proved_halting_condition() {
-    let first = "module os.same\npub const FLAG:Field=1";
-    let second = "module std.same\nconst FLAG:Field=0";
-    let source="program constants\nuse first\nuse second\nfn choose(n:Field)->Field {if n==0 {if same.FLAG {assert(false)}} else {7}}\nfn main(n:Field) {let sentinel=97 pub_write(choose(n)) pub_write(sentinel)}";
+    let first = "module a.same\npub const FLAG:Field=1";
+    let second = "module ext.same\nconst FLAG:Field=0";
+    let source="program constants\nuse a.same\nuse ext.same\nfn choose(n:Field)->Field {if n==0 {if same.FLAG {assert(false)}} else {7}}\nfn main(n:Field) {let sentinel=97 pub_write(choose(n)) pub_write(sentinel)}";
     for profile in ["debug", "release"] {
-        let modules = [("first.tri", first), ("second.tri", second)];
+        let modules = [("a/same.tri", first), ("ext/same.tri", second)];
         assert_eq!(run_with_modules(source, &modules, 0, profile), Err(vec![]));
         assert_eq!(
             run_with_modules(source, &modules, 1, profile),
