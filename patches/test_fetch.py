@@ -24,6 +24,17 @@ def crate(extra=None):
 
 
 class FetchTests(unittest.TestCase):
+    def test_version_qualified_pins_preserve_each_reviewed_resolution(self):
+        old = {"version": "0.7.0", "sha256": "old"}
+        new = {"version": "0.7.1", "sha256": "new"}
+        pins = {"codec@0.7.0": old, "codec@0.7.1": new, "legacy": old}
+        self.assertEqual(fetch.reviewed_pin(pins, "codec", "0.7.0"), old)
+        self.assertEqual(fetch.reviewed_pin(pins, "codec", "0.7.1"), new)
+        self.assertEqual(fetch.reviewed_pin(pins, "legacy", "0.7.0"), old)
+        for name, version in [("codec", "0.7.2"), ("legacy", "0.7.1"), ("unknown", "0.7.0")]:
+            with self.assertRaises(ValueError):
+                fetch.reviewed_pin(pins, name, version)
+
     def test_archive_bytes_override_mutable_source_cache(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

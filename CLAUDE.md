@@ -62,7 +62,7 @@ After cloning or when upgrading triton-vm:
 nu patches/apply.nu
 ```
 
-This fetches the eight pinned upstream crates through `patches/fetch.py`,
+This fetches the ten pinned upstream crates through `patches/fetch.py`,
 verifies their archive SHA-256 values against `patches/upstream.json`, applies
 patches, and places the result in `.vendor/`. Cached `.crate` bytes are verified
 before extraction; unpacked Cargo source directories are not trusted inputs.

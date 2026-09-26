@@ -30,5 +30,13 @@
   "tasm-object-derive": {
     "version": "7.0.0",
     "sha256": "2dd2733bd907d9dcd39df837cfe4feba2ef10aeba6547e8688e6b35efafdd3d7"
+  },
+  "bfieldcodec_derive@0.7.0": {
+    "version": "0.7.0",
+    "sha256": "4265eba9f15a272bf097026963df8badd58ea1b12b9fe4c01666bffef5aa6a9b"
+  },
+  "bfieldcodec_derive@0.7.1": {
+    "version": "0.7.1",
+    "sha256": "c4f7308e7d82c44dc1acb583abc3d2fc9c6453920312ef98a1c29ced05512a62"
   }
 }
