@@ -1,6 +1,6 @@
 # Pinned upstream bootstrap
 
-Run `nu patches/apply.nu` to regenerate the eight patched registry crates.
+Run `nu patches/apply.nu` to regenerate the ten patched registry crates.
 Python 3.11 or newer is required. `upstream.json` fixes the exact crate version
 and SHA-256 of each published `.crate` archive; these pins match the independent
 Neptune policy oracle's Cargo.lock for Triton/tasm-lib 7.0.0 and twenty-first
@@ -25,3 +25,15 @@ pins. Rust/manifest bytes must be compared when changing bootstrap mechanics;
 an archive of different verifier code cannot inherit earlier proof receipts.
 
 Validate the bootstrap boundary with `python3 -B patches/test_fetch.py`.
+
+The codec derive macro is vendored at both existing lockfile versions (0.7.0
+for Trisha, 0.7.1 for Joy). Version-qualified upstream keys preserve each
+workspace resolution. Its generated error enum and display arms follow sorted
+error keys instead of randomized map iteration. Source enum wire discriminants,
+field order and encode/decode logic retain their upstream definitions. The
+upstream error enum has no stable Rust discriminant ABI.
+
+`codec.nu` applies this deterministic code-generation patch. Its included
+regression expands complete derives repeatedly in one process; the same test
+fails against the original randomized macro. Run each pinned macro's unit tests
+and compare clean warrior builds to establish binary reproducibility.

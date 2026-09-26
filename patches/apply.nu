@@ -439,6 +439,9 @@ exact_patch $lib_rs 'pub use isa;' 'pub use ::isa;'
 exact_patch $lib_rs 'pub use twenty_first;' 'pub use ::twenty_first;'
 exact_patch $aux '#[derive(Debug, Clone, Eq, PartialEq, Ord, PartialOrd)]' '#[derive(Debug, Clone, Copy, Eq, PartialEq, Ord, PartialOrd)]'
 
+nu patches/codec.nu
+if $env.LAST_EXIT_CODE != 0 { error make {msg: "deterministic codec bootstrap failed"} }
+
 nu patches/tasm.nu
 if $env.LAST_EXIT_CODE != 0 { error make {msg: "recursive verifier bootstrap failed"} }
 

@@ -3,6 +3,7 @@ members = ["cli", "rs", "wgpu", "honeycrisp", "neptune"]
 resolver = "2"
 
 [patch.crates-io]
+bfieldcodec_derive = { path = ".vendor/bfieldcodec_derive-0.7.0" }
 triton-vm                = { path = ".vendor/triton-vm" }
 twenty-first             = { path = ".vendor/twenty-first" }
 triton-air               = { path = ".vendor/triton-air" }

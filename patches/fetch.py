@@ -63,6 +63,15 @@ def install(data, name, version, expected, destination):
         source.rename(destination)
 
 
+def reviewed_pin(pins, name, version):
+    pin = pins.get(f"{name}@{version}", pins.get(name))
+    if pin is None:
+        raise ValueError("requested crate/version has no reviewed upstream pin")
+    if pin["version"] != version:
+        raise ValueError("requested version differs from reviewed upstream pin")
+    return pin
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("name")
@@ -70,9 +79,7 @@ if __name__ == "__main__":
     parser.add_argument("destination", type=Path)
     args = parser.parse_args()
     pins = json.loads(Path(__file__).with_name("upstream.json").read_text())
-    pin = pins[args.name]
-    if pin["version"] != args.version:
-        raise ValueError("requested version differs from reviewed upstream pin")
+    pin = reviewed_pin(pins, args.name, args.version)
     cargo_home = Path(os.environ.get("CARGO_HOME", str(Path.home() / ".cargo")))
     data = source_bytes(args.name, args.version, pin["sha256"], cargo_home)
     install(data, args.name, args.version, pin["sha256"], args.destination)
