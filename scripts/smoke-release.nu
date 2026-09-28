@@ -293,7 +293,7 @@ def main [bin: path, work: path, --fixtures: path] {
     checked $joy [verify loop-private.zheng --input-values 6] 1 | ignore
 
     # Imported concrete generics, declaration-order structs and terminal branches.
-    "module release_helper\nconst OFFSET:Field=18446744069414584328\npub struct Pair { a:Field,b:Field }\nfn add(x:Field)->Field {x+OFFSET}\npub fn fold<N>(words:[Field;N])->Field {let mut value:Field=0\nfor i in 0..N {value=value*10+words[i]}\nif value==35 {add(value)} else {value}}\npub fn pair()->Pair {Pair {b:19,a:7}}\n" | save release_helper.tri
+    "module release_helper\nconst OFFSET:Field=18446744069414584328\npub struct Pair { pub a:Field,pub b:Field }\nfn add(x:Field)->Field {x+OFFSET}\npub fn fold<N>(words:[Field;N])->Field {let mut value:Field=0\nfor i in 0..N {value=value*10+words[i]}\nif value==35 {add(value)} else {value}}\npub fn pair()->Pair {Pair {b:19,a:7}}\n" | save release_helper.tri
     "program imported\nuse release_helper\nconst OFFSET:Field=1000\nfn main(words:[Field;2])->Field {let p=release_helper.pair()\nrelease_helper.fold<2>(words)+release_helper.fold(words)+p.a*100+p.b}\n" | save imported-nox.tri
     "program imported\nuse release_helper\nconst OFFSET:Field=1000\nfn main(words:[Field;2]) {let p=release_helper.pair()\npub_write(release_helper.fold<2>(words)+release_helper.fold(words)+p.a*100+p.b)}\n" | save imported-triton.tri
     for profile in [debug release] {
