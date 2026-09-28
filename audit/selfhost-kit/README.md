@@ -1,9 +1,18 @@
-# Portable compiler kit rehearsal
+# Portable compiler kit evidence
 
-Status: implementation guards and local historical-C2 rehearsal passed.
-Production accepted-kit assembly remains pending the original 36-phase native
-matrix and original successful aggregate. No accepted kit fixture was fabricated.
-No new SH6 run or SH7/SH8 proof acceptance is claimed.
+Status: actual accepted-kit assembly and local installed/unpacked production
+packaging passed after the original 36-phase native matrix and aggregate.
+[Accepted delivery](accepted/README.md) retains the fresh authority replay,
+portable kit, both five-command Joy smokes, deterministic package/repack and
+default accepted-mode source preparation bound to the completed full self-build.
+The implementation remains unchanged from `4b81af3b`. Wider coordinated release
+platform acceptance and SH7/SH8 proofs remain separate.
+
+## Historical implementation and rehearsal
+
+The original implementation guards and historical-C2 rehearsal below passed
+before accepted-kit assembly was available. No accepted fixture was fabricated;
+its raw evidence and failed attempts remain unchanged.
 
 `frozen-source.json` records the ten exact implementation/test/document files
 on Trisha parent `13c5c24b93d7136624d8725f911b2aa45a175129` plus the uncommitted
@@ -40,10 +49,10 @@ check the real stderr diagnostic, empty stdout, exit1 and unchanged output.
 The pinned final36 authority remains Trident commit
 `8576570d745139b733bb7dec090035dca938abe1`, validator SHA256
 `72cd11ec62e410e908590a785c79011989ea2c6c32872c5db31d72a62947c0ec`.
-It is not invoked against invented success inputs. Production packaging rejects
-the retained rehearsal archive. The native candidate and unpacked-package
-accepted-kit path still need the actual accepted archive and native release
-run; the local rehearsal is supplementary distribution evidence.
+It was not invoked against invented success inputs. Production packaging rejects
+the retained rehearsal archive. The later actual accepted archive and local
+installed/unpacked production path are recorded in [accepted delivery](accepted/README.md);
+the wider native release run remains separate from both local measurements.
 
 ## Retained bytes and commands
 

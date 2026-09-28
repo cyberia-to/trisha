@@ -1,0 +1,121 @@
+{
+  "schema": "trident/accepted-kit-independent-review/v1",
+  "status": "clear",
+  "started_ns": 1790588909864008000,
+  "reviewer": {
+    "bytes": 11823,
+    "sha256": "22c553855ad2f6e5dcd569c35a00f691e7d63adf205c393874573a5db2233b75"
+  },
+  "findings": [],
+  "receipt": {
+    "bytes": 26278,
+    "sha256": "ca60b94f17441a22aa2d1afc8fd4ed02382d46935fcad00f4c53f45ee6ca5b04"
+  },
+  "driver": {
+    "bytes": 15665,
+    "sha256": "f2387607d48577bd94ca1b3fe3a87dd8a0e508a385af2acbce852d856b2c2aa0"
+  },
+  "original_acceptance": {
+    "bytes": 1159982,
+    "sha256": "be6d76f37c0daf9694e75dad83e200adc25a32b05e593fdbeec11f4d67a69f81"
+  },
+  "fresh_authority": {
+    "bytes": 1160091,
+    "sha256": "97eff2249ffb13df3e9aa28f59e76ba44f555f68fbf9451345ca0ef7c826a39d"
+  },
+  "outer_commands": 12,
+  "original_phases": 36,
+  "producer": {
+    "compiler_path": "repeat-1/c2.dag",
+    "name": "bootstrap-phase-aarch64-apple-darwin-repeat-1-producer-attempt-1",
+    "receipt_sha256": "b8aaef747eeaf03756799fd11f02898538f2404597af216afbe17044b7d175a9"
+  },
+  "kit": {
+    "bytes": 4377450,
+    "sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd"
+  },
+  "kit_manifest": {
+    "bytes": 2155,
+    "sha256": "4096a513d439adda55e62731f461ff0a7a72fa0c85d79292090be048b7f55ae8"
+  },
+  "kit_file_members": 13,
+  "package": {
+    "bytes": 16774577,
+    "sha256": "93d44a9fa9778cc5019282facfd2101613e832026a60871bcf94a64b68935762"
+  },
+  "package_file_members": 31,
+  "deterministic_package_bytes_equal": true,
+  "smokes": {
+    "installed-smoke": {
+      "receipt": {
+        "bytes": 6558,
+        "sha256": "f5fba4d8f725e80127ce72c2d6531598687e82bf12fcc7546f27a8983722f2a9"
+      },
+      "commands": 5,
+      "exits": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "answer": {
+        "bytes": 85,
+        "sha256": "348d22b1dca51095cf13e13a4674727db537c8cd07f21af53009022b5e7bb94a"
+      },
+      "joy": {
+        "bytes": 5233200,
+        "sha256": "4035bca898e760666206f445c939c784ea248bff4f82c2c4f0a75254c3c48885"
+      }
+    },
+    "unpacked-smoke": {
+      "receipt": {
+        "bytes": 6415,
+        "sha256": "48f766e7a251d7528ad1cbab0e55e54958ce5e40747f4708c22d4153491a57d5"
+      },
+      "commands": 5,
+      "exits": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "answer": {
+        "bytes": 85,
+        "sha256": "348d22b1dca51095cf13e13a4674727db537c8cd07f21af53009022b5e7bb94a"
+      },
+      "joy": {
+        "bytes": 5233200,
+        "sha256": "4035bca898e760666206f445c939c784ea248bff4f82c2c4f0a75254c3c48885"
+      }
+    }
+  },
+  "default_accepted_preparation": {
+    "bytes": 37730,
+    "sha256": "9f18a820c0a813cee9a07826d736a5269deef853034d39ace59849de73080a85"
+  },
+  "prepared_source_files": 94,
+  "exact_full_run_bridge": {
+    "compiler.dag": {
+      "bytes": 9691488,
+      "sha256": "76a07c08265bd2ef525164472b6b53ac3f0e6cbbedce3250c4202f40ffba34c8"
+    },
+    "job.dag": {
+      "bytes": 6762002,
+      "sha256": "3474e5583e7b3ac36bdd526435bb2ae584691774a009e29ca02407c22589f13d"
+    },
+    "package.json": {
+      "bytes": 16119,
+      "sha256": "30f12d2ac0e7be839ff8151f9b96d1b5c88c26998c665765eb1d45439317e022"
+    }
+  },
+  "prior_full_execution": {
+    "bytes": 51414,
+    "sha256": "b245c51efb4afb5db7babc356f64987b1daf5805343a00edb2b59e4abd493159"
+  },
+  "prior_elapsed_micros": 1323775018,
+  "host_limits_equal": true,
+  "scope": "Evidence-only review. Actual accepted kit and local installed/unpacked runtime compatibility; prior full self-build linked by exact compiler/JOB/package/runtime/limits identity. No new guest execution, proof, native CI or release publication.",
+  "ended_ns": 1790588910087252000
+}
