@@ -41,7 +41,15 @@ def main [output: path, --snapshot-worktrees] {
             $item | insert mode committed | insert files ($inventory.stdout | from json)
         }
     })
-    for required in [trident/src/config/target/mod.rs trident/src/config/target/package.rs trident/src/config/target/discover.rs trisha/cli/build.rs trisha/bundle.rs joy/targets/nox/capabilities.json trisha/rs/ccs.rs joy/rs/state_execution.rs bbg/rs/src/certificate.rs] {
+    for required in [
+        trident/src/config/target/mod.rs
+        trident/src/config/target/package.rs
+        trident/src/config/target/discover.rs
+        trisha/cli/build.rs trisha/bundle.rs trisha/rs/ccs.rs
+        joy/targets/nox/capabilities.json joy/rs/state_execution.rs
+        joy/scripts/check-soft3-boundary.py joy/scripts/smoke-native.py
+        bbg/rs/src/certificate.rs
+    ] {
         if not ($output | path join $required | path exists) {
             error make {msg: $"source archive is missing required build input: ($required)"}
         }

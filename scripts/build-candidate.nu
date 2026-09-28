@@ -42,7 +42,7 @@ def main [source: path, prefix: path] {
         let metadata = (^cargo metadata --manifest-path $manifest --format-version 1 --all-features --locked | complete)
         if $metadata.exit_code != 0 { error make {msg: $metadata.stderr} }
         let packages = ($metadata.stdout | from json | get packages)
-        if $project in [trisha joy] {
+        if $project == trisha {
             for dependency in [triton-vm triton-air triton-isa triton-constraint-circuit triton-constraint-builder tasm-lib tasm-object-derive] {
                 let versions = ($packages | where name == $dependency | get version | uniq)
                 if $versions != ['7.0.0'] {
@@ -54,6 +54,10 @@ def main [source: path, prefix: path] {
         let contained = (^python3 $verifier --check-contained $source ...$local | complete)
         if $contained.exit_code != 0 { error make {msg: $contained.stderr} }
     }
+    let joy_boundary = (^python3 -B ($source | path join joy scripts check-soft3-boundary.py) | complete)
+    if $joy_boundary.exit_code != 0 { error make {msg: $"Joy soft3 dependency boundary failed: ($joy_boundary.stderr)"} }
+    if ($joy_boundary.stdout | from json | get ok) != true { error make {msg: "Joy soft3 dependency boundary did not pass"} }
+    $joy_boundary.stdout | save ($prefix | path join joy-boundary.json)
     for task in [
         {project: trident, package: trident-lang, binaries: [trident trident-lsp]}
         {project: trisha, package: trisha, binaries: [trisha]}

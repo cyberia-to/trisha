@@ -80,9 +80,9 @@ packaging with synthetic fixtures.
 The source closure currently includes BBG, Hemera, Honeycrisp, Joy, Lens,
 Neuron (the dependency-free neuron-id crate), nox, Strata, Trident, Trisha and
 Zheng. Cargo metadata determines the closure rather
-than a fixed repository list. Joy now depends on Trisha's Triton prover and its
-workspace patches resolve to `../trisha/.vendor`; keep these sibling directories
-in the archive. `package-source.nu` regenerates all eight pinned vendor crates
+than a fixed repository list. Joy resolves its native soft3 dependencies
+independently; Trisha owns the Triton vendor directory. The coordinated archive
+carries both dependency families. `package-source.nu` regenerates all pinned vendor crates
 inside the archive using `patches/apply.nu`, including warning fixes, and records
 the resulting files. Bootstrap verifies each upstream `.crate` against the
 reviewed SHA-256 in `patches/upstream.json` before extraction and patching.
@@ -96,7 +96,8 @@ nu scripts/smoke-release.nu /tmp/installed-candidate/bin /tmp/smoke-candidate
 ```
 
 `build-candidate.nu` uses the three root lockfiles, builds the CPU binaries,
-requires the coordinated Triton/tasm-lib7.0.0 dependency set, rejects compiler
+requires Trisha's Triton/tasm-lib7.0.0 dependency set and Joy's own soft3 dependency
+boundary, rejects compiler
 warnings, and installs them into one local `bin` directory. It builds each
 workspace in its own Cargo output directory, including the separately locked
 fixture helper, so upstream cdylib outputs cannot clobber another resolution.
@@ -117,7 +118,7 @@ remain in the candidate prefix. This creates a reviewable local candidate and
 performs no upload, tagging or publication.
 
 The smoke checks unchanged sources with helper calls through the public
-`JOYEXEC2`, private `JOYZK003` and authenticated public-state `JOYST001` paths.
+`JOYEXEC2`, native private `JOYZH001` and authenticated public-state `JOYST001` paths.
 Private state queries use all ten bounded public dimension tables. Verifiers
 run in fresh processes without witness arguments, reject changed claims/inputs
 and state roots, and reject incomplete private-state certificates. An installed
@@ -199,8 +200,12 @@ inventory. Authenticate each corpus archive SHA-256 before extraction.
 `native-candidate.py` is the CI bootstrap. Its selector pins a source release
 asset and SHA-256; Rust1.89.0, Nushell0.112.2 and Z3 4.15.3 are pinned too.
 The bootstrap runs CPU workspace suites, installed proofs, deterministic
-packaging, unpacked LSP and all133 baseline executions. The dedicated proof
-worker additionally runs the complete198-proof gate; `full_baselines` can
+packaging, unpacked LSP and all133 baseline executions. It also runs Joy's
+archived `scripts/smoke-native.py` with the installed
+Joy binary and public fixture certificates. It independently exercises the
+existing native public/private/state proof routes and retains all command
+results under `joy-native-smoke`; dynamic compiler proofs remain SH7/SH8.
+The dedicated proof worker additionally runs the complete198-proof gate; `full_baselines` can
 request that additional gate from a sufficiently provisioned native runner. A separate `verify` phase
 consumes authenticated binary/corpus archives for the cross-platform matrix.
 GitHub credentials are removed before archived implementations execute.

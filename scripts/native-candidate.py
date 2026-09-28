@@ -175,6 +175,11 @@ def main():
                 test_failures.append(str(error))
         if test_failures:
             raise RuntimeError('workspace tests failed: ' + '; '.join(test_failures))
+        # Joy owns the native soft3 proof profiles independently of Trisha.
+        run([sys.executable, '-B', source/'joy/scripts/smoke-native.py',
+             '--joy', candidate/'bin'/('joy.exe' if os.name == 'nt' else 'joy'),
+             '--fixtures', candidate/'share/trisha-release-smoke',
+             '--output', results/'joy-native-smoke'], results/'joy-native-smoke.log', env, work)
         run([sys.executable, '-B', source/'trisha/audit/native-installed-probes.py',
              candidate, results/'native-process-files.json'], results/'native-process-files.log', env, work)
         if spec.get('neptune_intent'):

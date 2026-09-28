@@ -216,7 +216,7 @@ def main [bin: path, work: path, --fixtures: path] {
     checked $joy [verify arithmetic.zheng --claim 38 --input-values 6] 1 | ignore
     "program private_execution\nfn helper(x: Field) -> Field { let witness: Field = divine()\n witness * witness + x }\nfn main(x: Field) -> Field { helper(x) }\n" | save private.tri
     checked $trident [prove private.tri --target nox --input-values 5 --secret 42 --output private.zheng] | ignore
-    expect-magic private.zheng JOYZK003
+    expect-magic private.zheng JOYZH001
     checked $joy [verify private.zheng --claim 1769 --input-values 5] | ignore
     checked $joy [verify private.tri --target nox --profile release --proof private.zheng --claim 1769] | ignore
     checked $joy [verify private.zheng --claim 1770] 1 | ignore
@@ -240,7 +240,7 @@ def main [bin: path, work: path, --fixtures: path] {
 
     "program private_state_execution\nfn helper(k: Field) -> Field { os.state.read(k) }\nfn main(x: Field) -> Field { let key: Field = divine()\n helper(key) + x }\n" | save private-state.tri
     checked $joy [prove private-state.tri --target nox --state state-all.json --input-values 5 --secret 11 --output private-state.zheng] | ignore
-    expect-magic private-state.zheng JOYZK003
+    expect-magic private-state.zheng JOYZH001
     checked $joy [verify private-state.zheng --claim 82 --input-values 5 --state state-all.json] | ignore
     checked $joy [verify private-state.tri --target nox --proof private-state.zheng --claim 82] | ignore
     checked $joy [verify private-state.zheng --claim 83] 1 | ignore
@@ -267,7 +267,7 @@ def main [bin: path, work: path, --fixtures: path] {
     }
     "program typed_private\nfn main(n: U32, flag: Bool)->Field { assert(flag)\n let hidden: Field = divine()\n as_field(n)+hidden }\n" | save typed-private.tri
     checked $joy [prove typed-private.tri --target nox --profile release --input-values '19,0' --secret 23 --output typed-private.zheng] | ignore
-    expect-magic typed-private.zheng JOYZK003
+    expect-magic typed-private.zheng JOYZH001
     checked $joy [verify typed-private.zheng --claim 42 --input-values '19,0'] | ignore
     checked $joy [verify typed-private.zheng --input-values '4294967296,0'] 1 | ignore
     checked $joy [verify typed-private.zheng --input-values '19,2'] 1 | ignore
@@ -287,7 +287,7 @@ def main [bin: path, work: path, --fixtures: path] {
     }
     "program private_return\nfn main(n: Field) -> Field {\n let witness: Field = divine()\n for i in 0..2 { if as_field(i) == 1 { return witness + n } }\n let unused: Field = divine()\n unused\n}\n" | save loop-private.tri
     checked $joy [prove loop-private.tri --target nox --profile release --input-values 5 --secret 37 --output loop-private.zheng] | ignore
-    expect-magic loop-private.zheng JOYZK003
+    expect-magic loop-private.zheng JOYZH001
     checked $joy [verify loop-private.zheng --claim 42 --input-values 5] | ignore
     checked $joy [verify loop-private.zheng --claim 43] 1 | ignore
     checked $joy [verify loop-private.zheng --input-values 6] 1 | ignore
@@ -353,5 +353,5 @@ def main [bin: path, work: path, --fixtures: path] {
      lsp_script_sha256: $lsp_script_hash,
      fixture_files: $fixture_files, platform: $nu.os-info} | to json | save smoke.json
     print "PASS: installed Trident/Trisha/Joy packages, Joy build, target selection, owned Neptune states, typed entry parameters, loop returns and scope, artifact extensions, execution/proving/verification, recursive Triton outer proof, offline program inspection and tamper rejection."
-    print "Public JOYEXEC2, private JOYZK003 and authenticated-public-state JOYST001 paths passed. Private queries use bounded, fully public state tables. Neptune transaction validation and live deployment remain separate gates."
+    print "Public JOYEXEC2, private JOYZH001 and authenticated-public-state JOYST001 paths passed. Private queries use bounded, fully public state tables. Neptune transaction validation and live deployment remain separate gates."
 }
