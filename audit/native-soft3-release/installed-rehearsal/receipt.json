@@ -1,0 +1,261 @@
+{
+  "schema": "local/installed-rehearsal-retention/v1",
+  "status": "passed",
+  "scope": "Completed third installed rehearsal only; no CPU/198, SH6, platform matrix or release verdict",
+  "started_ns": 1790579795566787000,
+  "ended_ns": 1790579803523897000,
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-B",
+    "-W",
+    "error",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3-retention/retain.py"
+  ],
+  "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3-retention",
+  "driver": {
+    "bytes": 12276,
+    "sha256": "e0ea39b40293091bc355820f51cfc48a4fbda0f091fa636a20281b4962703e57"
+  },
+  "source_root": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3",
+  "source_revisions": {
+    "bbg": "1d39975ad199b48c350fa4cc011cbf6f289480ee",
+    "hemera": "a931a0a8e7ed369852ce0f8bc6451a59745ee692",
+    "honeycrisp": "ff735e6c262926bc9bab7534786a575020cbe442",
+    "joy": "adb424023ae11a2264567d21171c3c2b3aa06f64",
+    "lens": "17cafe91431977b738e5b72361187cd01ad93638",
+    "neuron": "fd24e768d623604b67e20b4b93fa8e82c83ac373",
+    "nox": "172811b7746cdcd6ab198a3ed976dc6c19f55d5b",
+    "strata": "d2eb1763b8caf04e6c7647ac6fe99761519c2ef9",
+    "trident": "57491633fbccb58ae44dca2da438ee31430be1bc",
+    "trisha": "13c5c24b93d7136624d8725f911b2aa45a175129",
+    "zheng": "633e5ba980db94ca10d9d6b67cf24d9d3aef63a7"
+  },
+  "original_receipts": {
+    "prepare.json": {
+      "bytes": 11771,
+      "sha256": "cdbfb6abdf84db48b39974edcd81c3f327d0b38d870643a8ba4d9e36f8479391"
+    },
+    "build.json": {
+      "bytes": 6801,
+      "sha256": "0917c17616416f8592f2c9e009a63a019dd1e5d75daac23754e097f2dce23f99"
+    },
+    "smoke.json": {
+      "bytes": 18318,
+      "sha256": "3724cff21f513fe2dd94bb7e454de5f84f3e11e60cd323512018a1d4f0921dcc"
+    }
+  },
+  "independent_review": {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3-independent-review/review.json",
+    "bytes": 7172,
+    "sha256": "05664d80fa09b1361f716ad8aacc92c61d2e44cdf0fb8d57913ac7bf2a3ed270"
+  },
+  "archive": {
+    "path": "installed-evidence.tar.gz",
+    "bytes": 44749500,
+    "sha256": "90df5f7bab58980a316fe0b3c5df314e682079ac099930e55b4523f236bb9875"
+  },
+  "manifest_pages": [
+    {
+      "path": "files-00.json",
+      "bytes": 76885,
+      "sha256": "a0470197d341e912b0e07bf6392a91d2764d9bd5c6bcebec09392f2d3ee50733"
+    },
+    {
+      "path": "files-01.json",
+      "bytes": 98666,
+      "sha256": "3794e67629960e69d490373474e8f5b6a3e6dbbe990c9c6a92d59c8bf3327c63"
+    },
+    {
+      "path": "files-02.json",
+      "bytes": 26275,
+      "sha256": "1deef39c6834d2407e50e96733421de7be20cfd0df5a87a9c38e3787ef6d808c"
+    }
+  ],
+  "external_files": {
+    "path": "external-files.json",
+    "bytes": 6459,
+    "sha256": "7a47456aa515269286516838c5ca5dcda0b5152eeb4915aa1163a202bddd4851"
+  },
+  "verification": {
+    "members": 570,
+    "raw_bytes": 75967071,
+    "direct_original_byte_comparison": true,
+    "repeat_archive_byte_identity": true,
+    "all_original_files_unchanged": true,
+    "compressed_ceiling_bytes": 50000000,
+    "gzip_mtime": 0,
+    "tar_mtime": 0,
+    "ordinary_files_only": true
+  },
+  "retained_review_checks": {
+    "outer_commands": {
+      "name": "outer_commands",
+      "prepare": 8,
+      "build": 3,
+      "installed": 12
+    },
+    "committed_source_blobs": {
+      "name": "committed_source_blobs",
+      "repositories": 11,
+      "files": 3917,
+      "pins": {
+        "bbg": "1d39975ad199b48c350fa4cc011cbf6f289480ee",
+        "hemera": "a931a0a8e7ed369852ce0f8bc6451a59745ee692",
+        "honeycrisp": "ff735e6c262926bc9bab7534786a575020cbe442",
+        "joy": "adb424023ae11a2264567d21171c3c2b3aa06f64",
+        "lens": "17cafe91431977b738e5b72361187cd01ad93638",
+        "neuron": "fd24e768d623604b67e20b4b93fa8e82c83ac373",
+        "nox": "172811b7746cdcd6ab198a3ed976dc6c19f55d5b",
+        "strata": "d2eb1763b8caf04e6c7647ac6fe99761519c2ef9",
+        "trident": "57491633fbccb58ae44dca2da438ee31430be1bc",
+        "trisha": "13c5c24b93d7136624d8725f911b2aa45a175129",
+        "zheng": "633e5ba980db94ca10d9d6b67cf24d9d3aef63a7"
+      },
+      "archive": {
+        "bytes": 114339704,
+        "sha256": "b7159819cd4192289391f09fcf8965daefa87b84ab0f345aab566d66541d8f4c"
+      }
+    },
+    "native_build_and_full_smoke": {
+      "name": "native_build_and_full_smoke",
+      "binaries": {
+        "trident": "d88eb8256b592f04b59c6e6c61c59c7a284475aaa97767e7e3abe0065476a034",
+        "trident-lsp": "8d434c52b6ceee04572c402b2930fd9ed70a759e80e489863025b51597ac4b02",
+        "trisha": "8eac0ab7b0dc93af77d2f9afe6f5bd0a78e3f4b6fbbbe84b2d9419a631e7c9e0",
+        "joy": "4035bca898e760666206f445c939c784ea248bff4f82c2c4f0a75254c3c48885"
+      },
+      "toolchain": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: aarch64-apple-darwin\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+      "build_warnings": {
+        "trident-build.log": 0,
+        "trisha-build.log": 0,
+        "fixture-build.log": 0,
+        "joy-build.log": 0
+      },
+      "smoke_script": "1545e133c1dfe90cdc04c7af3d86e3fa26918f77abdd83a1c31ae0cae7b33520"
+    },
+    "joy_native_routes": {
+      "name": "joy_native_routes",
+      "commands": 49,
+      "headers": {
+        "public": "JOYEXEC2",
+        "private": "JOYZH001",
+        "state": "JOYST001",
+        "private-state": "JOYZH001"
+      },
+      "retained_work_files": 22
+    },
+    "sealed_corpus": {
+      "name": "sealed_corpus",
+      "distinct_cases": 47,
+      "positive": 18,
+      "negative": 29,
+      "files": 69,
+      "headers": {
+        "arithmetic": "JOYEXEC2",
+        "private": "JOYZH001",
+        "state": "JOYST001",
+        "private-state": "JOYZH001",
+        "typed-nox-debug": "JOYEXEC2",
+        "typed-nox-release": "JOYEXEC2",
+        "typed-private": "JOYZH001",
+        "loop-private": "JOYZH001",
+        "imported": "JOYEXEC2"
+      },
+      "cryptographic_verification": "recorded original verification; no proofs rerun by reviewer"
+    },
+    "native_process_files": {
+      "name": "native_process_files",
+      "checks": 28,
+      "scope": "Recorded local mock/process/file probes; no live Neptune action"
+    },
+    "baseline_execution": {
+      "name": "baseline_execution",
+      "fixtures": 133,
+      "positive": 99,
+      "negative": 34,
+      "baselines": 43,
+      "generated_proofs": 0
+    },
+    "archives": {
+      "name": "archives",
+      "binary": {
+        "files": 16,
+        "raw_file_bytes": 35078238,
+        "archive": {
+          "bytes": 12396837,
+          "sha256": "14ee94d9cd0572a0a59abfd99189310561abe6d4fd186fdae3a81f7a5e90c0c7"
+        }
+      },
+      "proof_corpus": {
+        "files": 70,
+        "raw_file_bytes": 32560176,
+        "archive": {
+          "bytes": 25240265,
+          "sha256": "261b83d95fd4ae506117f2e93854384befd06179bef74a3579c87331b78dfb9c"
+        }
+      },
+      "source": {
+        "files": 4488,
+        "raw_file_bytes": 279378413,
+        "archive": {
+          "bytes": 114339704,
+          "sha256": "b7159819cd4192289391f09fcf8965daefa87b84ab0f345aab566d66541d8f4c"
+        }
+      },
+      "deterministic_repack": true,
+      "unpacked_lsp": true
+    },
+    "independent_source_guard": {
+      "name": "independent_source_guard",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/unpacked/cyber-source/trisha/scripts/verify-source.py",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/unpacked/cyber-source",
+        "--expect",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/candidate пробел/source-verification.json"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 516,
+        "sha256": "2a3cf4fb83310104dab3cbf75108a8bbd548cf226f685e7efdfadb85e39216cc"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "joy_boundary": {
+        "ok": true,
+        "packages": 145,
+        "compiler_features": [],
+        "command": [
+          "cargo",
+          "metadata",
+          "--format-version",
+          "1",
+          "--locked",
+          "--offline",
+          "--all-features"
+        ]
+      }
+    }
+  },
+  "excluded_mutable_paths": [
+    "cpu-and-proofs.py",
+    "cpu-and-proofs.json",
+    "cpu-results/**",
+    "temporary/**",
+    "candidate пробел/build/**"
+  ],
+  "excluded_scope": [
+    "CPU suites",
+    "198-proof gate",
+    "SH6",
+    "other native platforms",
+    "release/publication"
+  ],
+  "large_files_policy": "Exact local path, size and SHA retained; executables/source and repeated archive containers are external.",
+  "replay_note": "Original JSON paths and commands remain unchanged. Restore or explicitly map roots and supply exact external executable bytes. No proof/build was run during retention."
+}

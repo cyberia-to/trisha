@@ -57,6 +57,14 @@ class SourceVerification(unittest.TestCase):
             repo.mkdir()
             (repo / 'Cargo.toml').write_text('[package]\nname="fixture"\n')
             (repo / 'lib.rs').write_text('original')
+        boundary = self.source / 'joy/scripts/check-soft3-boundary.py'
+        boundary.parent.mkdir()
+        boundary.write_text('''import json,os,sys
+if os.environ.get('FAIL_BOUNDARY'):
+ print('fixture foreign dependency',file=sys.stderr)
+ sys.exit(1)
+print(json.dumps({'ok':True,'scope':'builder routing fixture'}))
+''')
         (self.source / 'trident' / 'link.rs').symlink_to('lib.rs')
         self.record()
         vendor = self.source / 'trisha' / '.vendor'
@@ -198,7 +206,8 @@ if mode=='created_nonzero': sys.exit(9)
 import json,os,pathlib,sys
 args=sys.argv[1:]
 if args[0]=='metadata':
- names=['triton-vm','triton-air','triton-isa','triton-constraint-circuit','triton-constraint-builder','tasm-lib','tasm-object-derive']
+ manifest=pathlib.Path(args[args.index('--manifest-path')+1])
+ names=[] if manifest.parent.name=='joy' else ['triton-vm','triton-air','triton-isa','triton-constraint-circuit','triton-constraint-builder','tasm-lib','tasm-object-derive']
  print(json.dumps({'packages':[{'name':n,'version':'7.0.0','source':'registry'} for n in names]}))
 elif args[0]=='build':
  release=pathlib.Path(os.environ['CARGO_TARGET_DIR'])/'release';release.mkdir(parents=True,exist_ok=True)
@@ -211,7 +220,7 @@ elif args[0]=='run':
         cargo.chmod(0o755)
         environment = dict(os.environ, PATH=str(bindir)+os.pathsep+os.environ['PATH'])
         builder = SCRIPT.with_name('build-candidate.nu')
-        for mode in ('FAIL_FIXTURE', 'MUTATE_SOURCE', 'SUCCESS'):
+        for mode in ('FAIL_BOUNDARY', 'FAIL_FIXTURE', 'MUTATE_SOURCE', 'SUCCESS'):
             with self.subTest(mode=mode):
                 prefix = self.root/mode
                 result = subprocess.run(builder_command(self.source, prefix),
@@ -220,10 +229,14 @@ elif args[0]=='run':
                     self.assertEqual(result.returncode, 0, result.stderr)
                     self.assertTrue((prefix/'candidate.json').is_file())
                     self.assertTrue((prefix/'source-verification.json').is_file())
+                    self.assertEqual(json.loads((prefix/'joy-boundary.json').read_text()),
+                                     {'ok': True, 'scope': 'builder routing fixture'})
                     candidate = json.loads((prefix/'candidate.json').read_text())
                     self.assertEqual(candidate['source_verification_sha256'], hashlib.sha256((prefix/'source-verification.json').read_bytes()).hexdigest())
                 else:
                     self.assertNotEqual(result.returncode, 0)
+                    if mode == 'FAIL_BOUNDARY':
+                        self.assertIn('Joy soft3 dependency boundary failed', result.stderr)
                     self.assertFalse(prefix.exists())
                     self.assertEqual(list(self.root.glob(mode+'.building.*')), [])
                     (self.source/'joy/lib.rs').write_text('original')

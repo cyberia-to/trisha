@@ -1,0 +1,135 @@
+[
+  {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/source-export.tar.gz",
+    "role": "complete source and vendor archive",
+    "binding": "original producer receipt",
+    "bytes": 114339704,
+    "sha256": "b7159819cd4192289391f09fcf8965daefa87b84ab0f345aab566d66541d8f4c"
+  },
+  {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/cyber-tools-aarch64-apple-darwin.tar.gz",
+    "role": "installed binary package",
+    "binding": "original producer receipt",
+    "bytes": 12396837,
+    "sha256": "14ee94d9cd0572a0a59abfd99189310561abe6d4fd186fdae3a81f7a5e90c0c7"
+  },
+  {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/repacked.tar.gz",
+    "role": "byte-identical repeated binary package",
+    "binding": "original producer receipt",
+    "bytes": 12396837,
+    "sha256": "14ee94d9cd0572a0a59abfd99189310561abe6d4fd186fdae3a81f7a5e90c0c7"
+  },
+  {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/proof-corpus-aarch64-apple-darwin.tar.gz",
+    "role": "original container; full raw tree retained",
+    "binding": "original producer receipt",
+    "bytes": 25240265,
+    "sha256": "261b83d95fd4ae506117f2e93854384befd06179bef74a3579c87331b78dfb9c"
+  },
+  {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/candidate пробел/bin/trident",
+    "role": "installed executable",
+    "binding": "original smoke start/end and candidate receipt",
+    "bytes": 9088912,
+    "sha256": "d88eb8256b592f04b59c6e6c61c59c7a284475aaa97767e7e3abe0065476a034"
+  },
+  {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/installed/cyber-tools/bin/trident",
+    "role": "installed executable",
+    "binding": "original smoke start/end and candidate receipt",
+    "bytes": 9088912,
+    "sha256": "d88eb8256b592f04b59c6e6c61c59c7a284475aaa97767e7e3abe0065476a034"
+  },
+  {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/candidate пробел/bin/trident-lsp",
+    "role": "installed executable",
+    "binding": "original smoke start/end and candidate receipt",
+    "bytes": 6637056,
+    "sha256": "8d434c52b6ceee04572c402b2930fd9ed70a759e80e489863025b51597ac4b02"
+  },
+  {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/installed/cyber-tools/bin/trident-lsp",
+    "role": "installed executable",
+    "binding": "original smoke start/end and candidate receipt",
+    "bytes": 6637056,
+    "sha256": "8d434c52b6ceee04572c402b2930fd9ed70a759e80e489863025b51597ac4b02"
+  },
+  {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/candidate пробел/bin/trisha",
+    "role": "installed executable",
+    "binding": "original smoke start/end and candidate receipt",
+    "bytes": 14074848,
+    "sha256": "8eac0ab7b0dc93af77d2f9afe6f5bd0a78e3f4b6fbbbe84b2d9419a631e7c9e0"
+  },
+  {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/installed/cyber-tools/bin/trisha",
+    "role": "installed executable",
+    "binding": "original smoke start/end and candidate receipt",
+    "bytes": 14074848,
+    "sha256": "8eac0ab7b0dc93af77d2f9afe6f5bd0a78e3f4b6fbbbe84b2d9419a631e7c9e0"
+  },
+  {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/candidate пробел/bin/joy",
+    "role": "installed executable",
+    "binding": "original smoke start/end and candidate receipt",
+    "bytes": 5233200,
+    "sha256": "4035bca898e760666206f445c939c784ea248bff4f82c2c4f0a75254c3c48885"
+  },
+  {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/installed/cyber-tools/bin/joy",
+    "role": "installed executable",
+    "binding": "original smoke start/end and candidate receipt",
+    "bytes": 5233200,
+    "sha256": "4035bca898e760666206f445c939c784ea248bff4f82c2c4f0a75254c3c48885"
+  },
+  {
+    "path": "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/cargo",
+    "role": "measurement tool: cargo",
+    "binding": "producer SHA and retention recheck",
+    "bytes": 28655992,
+    "sha256": "798a97c06e6fc3a63f1b7e3141f87e515e6bc8da1527bc32e19ba27d86bb89c5"
+  },
+  {
+    "path": "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/rustc",
+    "role": "measurement tool: rustc",
+    "binding": "producer SHA and retention recheck",
+    "bytes": 414776,
+    "sha256": "af4a9eb303553510e9d74220636dc4b21f8574ddeab73741bf6b892adc49c21c"
+  },
+  {
+    "path": "/opt/homebrew/Cellar/nushell/0.112.2/bin/nu",
+    "role": "measurement tool: nu",
+    "binding": "producer path/version; SHA first recorded at retention",
+    "bytes": 50700096,
+    "sha256": "6183fc5479db0dc99defa4b536d41de9defb537cbd1236486b3f0c505199e40e"
+  },
+  {
+    "path": "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "role": "measurement tool: python3",
+    "binding": "producer path/version; SHA first recorded at retention",
+    "bytes": 52448,
+    "sha256": "2477b47fa3ae65b9574eb18a15edb364e96948eaa1875ad3f1c80d780efc9c12"
+  },
+  {
+    "path": "/Users/master/.cargo/bin/rustup",
+    "role": "measurement tool: rustup",
+    "binding": "producer path/version; SHA first recorded at retention",
+    "bytes": 11319056,
+    "sha256": "ec1b9233e7f72990ecd8e62063fa7f6c3dfc2bec8e97f88bff165f9100ac696a"
+  },
+  {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/tools/z3-4.15.3-arm64-osx-13.7.6.zip",
+    "role": "Z3 archive",
+    "binding": "original pinned-Z3 receipt",
+    "bytes": 36905824,
+    "sha256": "941659417b5464a361c49089658509f3118a0c3e8d4f8a1dc999f8b5cd1f3c71"
+  },
+  {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/tools/z3/z3-4.15.3-arm64-osx-13.7.6/bin/z3",
+    "role": "Z3 binary",
+    "binding": "original pinned-Z3 receipt",
+    "bytes": 25601056,
+    "sha256": "b93a874ccdeb27feb29e7c0a92b999f6531014a7a12976c96fc422b8202ac766"
+  }
+]

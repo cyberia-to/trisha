@@ -1,0 +1,35 @@
+{
+  "status": "retention-consistent",
+  "original_gate_status": "passed",
+  "cpu": {
+    "trident": {
+      "passed": 1231,
+      "failed": 0,
+      "ignored": 5,
+      "summaries": 49,
+      "warnings": 0,
+      "exit_code": 0
+    },
+    "trisha": {
+      "passed": 429,
+      "failed": 0,
+      "ignored": 6,
+      "summaries": 64,
+      "warnings": 0,
+      "exit_code": 0
+    },
+    "joy": {
+      "passed": 172,
+      "failed": 0,
+      "ignored": 0,
+      "summaries": 27,
+      "warnings": 0,
+      "exit_code": 0
+    }
+  },
+  "retained_files": 36,
+  "fresh_verified_proofs": 198,
+  "oracle_rejection_checks": 3,
+  "proof_payloads_retained": false,
+  "scope": "Archive integrity and recorded oracle replay; no cryptographic proof re-verification"
+}

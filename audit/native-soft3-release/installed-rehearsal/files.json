@@ -1,0 +1,100 @@
+{
+  "scope": "All delivery files except this index; original raw files are indexed inside files-00..02.json",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 5561,
+      "sha256": "c7da1f1dc9f9cf06eaa8bbe567bfc7f1b0b0a1643e9365ee3d2074d748cbb655"
+    },
+    {
+      "path": "deterministic-replay.combined.log",
+      "bytes": 429,
+      "sha256": "1d0822f4cb7f0b1b988ea2795873be4e4f86f917e9425527efbb7b2088f05659"
+    },
+    {
+      "path": "deterministic-replay.json",
+      "bytes": 469,
+      "sha256": "6c82fed0dba5fb27d0259e5d5e10a6cefbaeb51a5ea0f943d5371ef5eec8345b"
+    },
+    {
+      "path": "deterministic-replay.py",
+      "bytes": 905,
+      "sha256": "643d4d832db1bc3cf259496c853e93a8dc786a9e77225679cf5162930ef749f0"
+    },
+    {
+      "path": "external-files.json",
+      "bytes": 6459,
+      "sha256": "7a47456aa515269286516838c5ca5dcda0b5152eeb4915aa1163a202bddd4851"
+    },
+    {
+      "path": "files-00.json",
+      "bytes": 76885,
+      "sha256": "a0470197d341e912b0e07bf6392a91d2764d9bd5c6bcebec09392f2d3ee50733"
+    },
+    {
+      "path": "files-01.json",
+      "bytes": 98666,
+      "sha256": "3794e67629960e69d490373474e8f5b6a3e6dbbe990c9c6a92d59c8bf3327c63"
+    },
+    {
+      "path": "files-02.json",
+      "bytes": 26275,
+      "sha256": "1deef39c6834d2407e50e96733421de7be20cfd0df5a87a9c38e3787ef6d808c"
+    },
+    {
+      "path": "installed-evidence.tar.gz",
+      "bytes": 44749500,
+      "sha256": "90df5f7bab58980a316fe0b3c5df314e682079ac099930e55b4523f236bb9875"
+    },
+    {
+      "path": "portable-verification.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable-verification.stdout",
+      "bytes": 531,
+      "sha256": "dcdbae83dcfa24d965f0687cc90821d23be14e3482f9636966201d6fd9bc2808"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 9333,
+      "sha256": "d6a61584758d41353662f26e34bddb5362f51f25e630e330eca9baf5e11c1ec7"
+    },
+    {
+      "path": "retain.py",
+      "bytes": 12276,
+      "sha256": "e0ea39b40293091bc355820f51cfc48a4fbda0f091fa636a20281b4962703e57"
+    },
+    {
+      "path": "retain.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retain.stdout",
+      "bytes": 207,
+      "sha256": "57f3f54accf8d460d6a23fbf5579e004f3695817d6942a2ca49ed6276ff03e71"
+    },
+    {
+      "path": "verification.json",
+      "bytes": 589,
+      "sha256": "02ebebce2283077aa4e72a94b82c67c2ebbb3cbc00a0adeeda385acf3f5360f6"
+    },
+    {
+      "path": "verification.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "verification.stdout",
+      "bytes": 531,
+      "sha256": "95735e312c99448269efbaec4c65593a80241c759fbaf25d5c7f5c9fb27ade29"
+    },
+    {
+      "path": "verify-retention.py",
+      "bytes": 2930,
+      "sha256": "77a207a44b62b9b9c6163a217dbab2bf4afd1e33ef01957104e683fbf3646ceb"
+    }
+  ]
+}

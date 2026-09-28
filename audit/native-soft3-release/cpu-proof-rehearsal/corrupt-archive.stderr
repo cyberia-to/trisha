@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/retention-corruption-guard-hdge6qiz/check.py", line 166, in <module>
+    print(json.dumps(check(args.directory), indent=2))
+                     ~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/retention-corruption-guard-hdge6qiz/check.py", line 46, in check
+    require(identity(archive) == index['archive'], 'compressed archive identity')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/retention-corruption-guard-hdge6qiz/check.py", line 23, in require
+    raise ValueError(message)
+ValueError: compressed archive identity

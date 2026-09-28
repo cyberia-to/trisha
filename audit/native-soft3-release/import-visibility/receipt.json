@@ -1,0 +1,44 @@
+{
+  "schema": "local/release-import-visibility-retention/v1",
+  "status": "fixture-repair-passed-complete-rehearsal-pending",
+  "revision": "13c5c24b93d7136624d8725f911b2aa45a175129",
+  "source_sha256": "1545e133c1dfe90cdc04c7af3d86e3fa26918f77abdd83a1c31ae0cae7b33520",
+  "second_export": {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-2/source-export.tar.gz",
+    "bytes": 113614569,
+    "sha256": "87e5967777607d9669f3645f419ae5f8534f6dd5a483fdb90050b767f1d280ad"
+  },
+  "second_export_pins": {
+    "bbg": "1d39975ad199b48c350fa4cc011cbf6f289480ee",
+    "hemera": "a931a0a8e7ed369852ce0f8bc6451a59745ee692",
+    "honeycrisp": "ff735e6c262926bc9bab7534786a575020cbe442",
+    "joy": "adb424023ae11a2264567d21171c3c2b3aa06f64",
+    "lens": "17cafe91431977b738e5b72361187cd01ad93638",
+    "neuron": "fd24e768d623604b67e20b4b93fa8e82c83ac373",
+    "nox": "172811b7746cdcd6ab198a3ed976dc6c19f55d5b",
+    "strata": "d2eb1763b8caf04e6c7647ac6fe99761519c2ef9",
+    "trident": "57491633fbccb58ae44dca2da438ee31430be1bc",
+    "trisha": "4f7074bbc61b86fd2355c542e0fffa2c823af755",
+    "zheng": "633e5ba980db94ca10d9d6b67cf24d9d3aef63a7"
+  },
+  "original_smoke_status": "failed",
+  "repair": {
+    "positive_routes": 16,
+    "private_rejections": 2
+  },
+  "archive": {
+    "bytes": 50148,
+    "sha256": "4f3c41484c5ae97aaff318b7930fb48f72c93eaebc25a330607358cdf9df9825",
+    "files": 110,
+    "raw_bytes": 284349
+  },
+  "files_sha256": "b318d8745b92123a3daa17f0c9e8cb40dc6a6a3ae96423437fc8f5939e5d6ff7",
+  "large_inputs_retained_locally": {
+    "partial_smoke": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-2/smoke \u043f\u0440\u043e\u0431\u0435\u043b",
+    "partial_manifest": "second-export/partial-smoke-files.json",
+    "source_archive": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-2/source-export.tar.gz",
+    "candidate": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-2/candidate \u043f\u0440\u043e\u0431\u0435\u043b",
+    "joy_smoke": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-2/joy-native-smoke"
+  },
+  "generator_sha256": "a833219d91ed9232aed04f4ec69558d0e38c07c46c8a8cbb86dbf398594e63eb"
+}

@@ -1,0 +1,81 @@
+{
+  "schema": "local/release-warrior-boundary-retention/v1",
+  "status": "component-checks-passed-full-rehearsal-pending",
+  "core_revision": "8f4a2d883a47df4bfeab0f880ee7f6adba55c7e1",
+  "fixture_lock_revision": "4f7074bbc61b86fd2355c542e0fffa2c823af755",
+  "rust_tests": {
+    "passed": 429,
+    "failed": 0,
+    "ignored": 6,
+    "summaries": 64
+  },
+  "packaging_guards": 16,
+  "source_guards_repeated": 10,
+  "fixture_rust_tests": 0,
+  "source_files": {
+    "Cargo.lock": {
+      "bytes": 217675,
+      "sha256": "baf9fb32e07e9e42a3a0b7c8e17adf69b8ab0705e1386b199f188a536ddda19c"
+    },
+    "docs/reference/release-platforms.md": {
+      "bytes": 8069,
+      "sha256": "2caa98e4328b4e43e75e8cf61dcd051c46d2c102378ef12a9c37549188563f64"
+    },
+    "scripts/README.md": {
+      "bytes": 13392,
+      "sha256": "906e0beabf8d5c74d14d23c1f4d8e5f6ca5c2765b0ad70641507f87f965e74aa"
+    },
+    "scripts/build-candidate.nu": {
+      "bytes": 7001,
+      "sha256": "52b16560c5f37f5ad58afae4820ab70cf91d640a6324d91eb9e520b5c065bd74"
+    },
+    "scripts/smoke-release.nu": {
+      "bytes": 29454,
+      "sha256": "9cdf8211c768a3cfa81fe3217442e6cd57e69a61a8fe2852806433def6e1d841"
+    },
+    "scripts/package-source.nu": {
+      "bytes": 5329,
+      "sha256": "a209fa8150fd044a8f2c8521a91e319f7bd6e6d3b5f9b3fde3689eb6eb02bbc0"
+    },
+    "scripts/native-candidate.py": {
+      "bytes": 15850,
+      "sha256": "4f66e2e0411a43366eae8d19da2aefdf9e250271d6fddc5ef6dd764b0195b1a5"
+    },
+    "scripts/test_verify_source.py": {
+      "bytes": 12014,
+      "sha256": "72f290a91ed30ea565d795f1bf4fd48e513fd094a8dcbcb2b356d95024e714b6"
+    }
+  },
+  "first_rehearsal": {
+    "status": "failed",
+    "candidate_published": false,
+    "source_archive": {
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release/source-export.tar.gz",
+      "bytes": 113613446,
+      "sha256": "e62c62421fe3ab93d69722891cf187c83568ef074cade921b8eda0f3de9af30f"
+    },
+    "scope": "Strict committed local feature-branch family; not an origin/default-branch release candidate or SH6/platform verdict",
+    "exported_pins": {
+      "bbg": "1d39975ad199b48c350fa4cc011cbf6f289480ee",
+      "hemera": "a931a0a8e7ed369852ce0f8bc6451a59745ee692",
+      "honeycrisp": "ff735e6c262926bc9bab7534786a575020cbe442",
+      "joy": "adb424023ae11a2264567d21171c3c2b3aa06f64",
+      "lens": "17cafe91431977b738e5b72361187cd01ad93638",
+      "neuron": "fd24e768d623604b67e20b4b93fa8e82c83ac373",
+      "nox": "172811b7746cdcd6ab198a3ed976dc6c19f55d5b",
+      "strata": "d2eb1763b8caf04e6c7647ac6fe99761519c2ef9",
+      "trident": "57491633fbccb58ae44dca2da438ee31430be1bc",
+      "trisha": "8f4a2d883a47df4bfeab0f880ee7f6adba55c7e1",
+      "zheng": "633e5ba980db94ca10d9d6b67cf24d9d3aef63a7"
+    }
+  },
+  "archive": {
+    "file": "raw-evidence.tar.gz",
+    "bytes": 712999,
+    "sha256": "d64e466de8f3966c63dcf7e6f9af84c1c3e87ae5e65a969e9a7aa8f1e0479d02",
+    "files": 86,
+    "raw_bytes": 5729371
+  },
+  "files_sha256": "56797ae2d310f61e938cf5529c19e0c25e92e34f4bed0eb064a7b2443f41aa5c",
+  "generator_sha256": "6c4263f1a5fad86ab37d14879ad029afd79a2c4c67b34402d155305b0523c951"
+}

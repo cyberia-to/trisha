@@ -4,11 +4,13 @@ Status: release acceptance contract, 2026-09-16. Windows is an explicit owner
 requirement alongside macOS and Linux. The six CPU/ABI targets below define the
 release matrix; completion is recorded separately in the native release audit.
 
-The release covers the implemented, documented Trident/Trisha/Joy CPU surface.
-Dynamic nox continuations, tagged-protocol integration, live state databases,
-language expansion, full compiler self-hosting and secure FHE remain roadmap
-work. They do not block this release. Defects in supported behavior and missing
-validation for a promised release platform do block it.
+These gates cover the implemented, documented Trident/Trisha/Joy CPU surface.
+Trident 0.4 additionally requires SH6 reproducible native self-hosting under its
+[delivery policy](../../../trident/reference/self-hosting.md#release-04-delivery-policy).
+SH7/SH8 compilation proofs have separate acceptance criteria. Tagged-protocol
+integration, live state databases, further language expansion and secure FHE
+remain separate roadmap work. Defects in supported behavior and missing
+validation for a promised release platform block release acceptance.
 
 Source inventories encode relative paths and symbolic link targets with POSIX
 separators. Native Windows link spellings are normalized to that same relative
@@ -37,6 +39,12 @@ Use default CPU features, portable target CPU settings and pinned toolchain,
 lockfiles and vendor inputs. Do not build public binaries with
 `target-cpu=native`. Neural training and GPU acceleration need separate feature
 and device evidence; they do not multiply the default release matrix.
+Trisha owns the pinned Triton/tasm-lib dependency family. Joy owns the native
+soft3 proof path and passes its archived `scripts/check-soft3-boundary.py`
+before any candidate binary is built. That check rejects foreign VM packages
+and external compiler resources in Joy's resolved feature graph. Current Joy
+private execution and private state proofs use `JOYZH001`; public execution and
+authenticated public state retain `JOYEXEC2` and `JOYST001` respectively.
 Each root workspace and the fixture helper require separate Cargo output
 directories. Their independent lockfiles can select distinct dependencies;
 upstream cdylib/rlib outputs must not overwrite another workspace's artifacts.
