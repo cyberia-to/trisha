@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "started_ns": 1790579896670689000,
+  "ended_ns": 1790579896934254000,
+  "receipt": {
+    "bytes": 9333,
+    "sha256": "d6a61584758d41353662f26e34bddb5362f51f25e630e330eca9baf5e11c1ec7"
+  },
+  "checker": {
+    "bytes": 2930,
+    "sha256": "77a207a44b62b9b9c6163a217dbab2bf4afd1e33ef01957104e683fbf3646ceb"
+  },
+  "verification": {
+    "members": 570,
+    "raw_bytes": 75967071,
+    "direct_original_byte_comparison": true
+  },
+  "external_files_rechecked": 19,
+  "scope": "Byte retention only; no build, compiler, proof generation or proof verification invoked"
+}

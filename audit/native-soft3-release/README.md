@@ -1,11 +1,18 @@
 # Native soft3 release coordination
 
-Status: component checks passed; complete coordinated rehearsal pending.
+Status: component checks and the complete local installed rehearsal passed;
+archived CPU suites and the full baseline proof gate remain in progress.
 These local feature-branch measurements establish neither a release candidate
 from default branches, native platform acceptance nor SH6/SH7/SH8 closure.
 The subsequent archive build and stale imported-field fixture repair are
 retained in [the follow-up](import-visibility/README.md), including its original
-failed smoke and independent checks.
+failed smoke and independent checks. The [third installed rehearsal](installed-rehearsal/README.md)
+then built the repaired committed closure on Rust 1.89 and passed Joy native
+proof checks, complete coordinated smoke, corpus verification, process probes,
+baseline executions, deterministic packaging and unpacked LSP validation.
+Its original proof payloads, commands and independent review are retained.
+The [root byte check](installed-rehearsal-root-check.json) additionally compares
+all 570 retained files with their originals and rechecks 19 external identities.
 
 Trisha `8f4a2d883a47df4bfeab0f880ee7f6adba55c7e1` makes candidate preparation
 check Joy's own soft3 dependency boundary and installed proof smoke. Triton
