@@ -1,0 +1,65 @@
+{
+  "first-install-receipt.json": {
+    "raw_bytes": 12607,
+    "raw_sha256": "34aef00f33351d1a7cf1383dd774c568457725fdd461fd76bba672ff10b74ecd",
+    "retained": "first-install-receipt.json.gz",
+    "bytes": 1705,
+    "sha256": "88e979235989f0272ed7f2e1b879edb10ad499da6c5521107e77e3cb14bfd4e3"
+  },
+  "install-path-explicit.log": {
+    "raw_bytes": 616,
+    "raw_sha256": "4a26b5d9b152c8d8b8c4b1f52c71ebd6e965ec0f4d7287afe12046f8d4a2c72e",
+    "retained": "install-path-explicit.log.gz",
+    "bytes": 243,
+    "sha256": "96c27f790f9b79e367bb30b45fc01a826a5f1bbde32bebfa20810169affcb3d5"
+  },
+  "install.log": {
+    "raw_bytes": 15369,
+    "raw_sha256": "412947f351c6d9efb72b144aac8b048c53bcf1d7fdedac2a94d8e7a7159c606e",
+    "retained": "install.log.gz",
+    "bytes": 3368,
+    "sha256": "5492f188722610f83654d2ff0a430beff5d15006e60e4c5d480781295cc5586f"
+  },
+  "metadata.log": {
+    "raw_bytes": 2049643,
+    "raw_sha256": "64262a7b8a08a593fb7d99fc1f356b647028daa8d174923309a0be2386bcf9e8",
+    "retained": "metadata.log.gz",
+    "bytes": 169188,
+    "sha256": "2de15989dbf15f1bed5360794bdccccb61b644ed087e09e8341232e69b054f8f"
+  },
+  "receipt.json": {
+    "raw_bytes": 14685,
+    "raw_sha256": "a882c4731c05d6c058bf407cece1ad0e32244de89a35da3457ef8c2b21e19e2a",
+    "retained": "receipt.json.gz",
+    "bytes": 2181,
+    "sha256": "1bc15854100830acf4892b7a48053630f1f58edee337cbcf9be417a1302b9673"
+  },
+  "rustc.log": {
+    "raw_bytes": 192,
+    "raw_sha256": "a3138eb77dfe19d4cdb1d83ceb7c34944715564062936cf209d247cbf5208fae",
+    "retained": "rustc.log.gz",
+    "bytes": 163,
+    "sha256": "58521508f1e8be2f1d70fd7ad05c0156b381a8bf75693df132565221f4ec5441"
+  },
+  "vendor.log": {
+    "raw_bytes": 1932,
+    "raw_sha256": "68e91319e825c48db2263213b5f1e62771050bcde464175e26e4f84658b8f30b",
+    "retained": "vendor.log.gz",
+    "bytes": 995,
+    "sha256": "4fccb45a8dd483a10b4a7ba3933a16bedf8c3b58901ce459e0d8091cc3b9a520"
+  },
+  "version.log": {
+    "raw_bytes": 13,
+    "raw_sha256": "90517818a6cc48baf15f8b5fc8f4ace81b35c01766efc481d8b52c9902acc3a0",
+    "retained": "version.log.gz",
+    "bytes": 33,
+    "sha256": "86affe0418ff4f941f76ede527fdca82859987c734467f039c5d166eed9bfb56"
+  },
+  "postinstall.py": {
+    "raw_bytes": 3042,
+    "raw_sha256": "fe757e3cf748b008ffb3809fa2cd244060dbd7af6ed6aa603eb7955eaa95ba7c",
+    "retained": "postinstall.py.gz",
+    "bytes": 1392,
+    "sha256": "20e9fab524d2fa0e29a7b05fa94d969dc4eaf8f8be263832042d022dc6cefb3a"
+  }
+}

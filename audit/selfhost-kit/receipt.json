@@ -1,0 +1,31 @@
+{
+  "scope": "Local actual historical-C2 kit rehearsal and packaging guards; accepted kit and native package acceptance pending original36 authority",
+  "raw_files": 165,
+  "raw_bytes": 72622640,
+  "distinct_raw_files": 68,
+  "archive": {
+    "path": "raw-evidence.tar.gz",
+    "bytes": 8210985,
+    "sha256": "a009e8c9f75c28761af55ad0d46017bd18dd0898f135aeaf369cbdb7b0a4e388"
+  },
+  "retention": "Standard tar hardlinks deduplicate identical raw payloads; every original file path and byte hash independently checked via extractfile",
+  "gate_receipt": "10af1d5a13c0f60c08476e2d6cf25f9cab97887acca77d2dd81654034abe13fc",
+  "source_snapshot": "8099aafa210392046904bab3bdb0f2cd612ce44b58013c20e2eb7d354a53315b",
+  "files_manifest": {
+    "path": "files.json",
+    "bytes": 24897,
+    "sha256": "ccffa9b05e04da278315bf6514b9e0a0867f07a2e631ad53a320cad7f668c29a"
+  },
+  "committed_source_revision": "a0996b2a180eaf6f1c70c4a4a43fa25a0f2e1360",
+  "committed_source_matches_capture": true,
+  "independent_review_manifest": {
+    "path": "independent-review/files.json",
+    "bytes": 1635,
+    "sha256": "ae423d6f5a98e0403b31ef37dcd9810b7e7f88e577fd731ac3f470973caf9dd2"
+  },
+  "postinstall_manifest": {
+    "path": "postinstall/files.json",
+    "bytes": 2467,
+    "sha256": "74c98459acd9f0b4a0f6b98ca102963ed88942040c08313f35f3a0af87983ae0"
+  }
+}

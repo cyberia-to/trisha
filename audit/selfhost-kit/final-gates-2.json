@@ -1,0 +1,262 @@
+{
+  "status": "passed",
+  "base_revision": "13c5c24b93d7136624d8725f911b2aa45a175129",
+  "source": {
+    "bytes": 1903,
+    "sha256": "8099aafa210392046904bab3bdb0f2cd612ce44b58013c20e2eb7d354a53315b"
+  },
+  "files": {
+    "docs/reference/release-platforms.md": {
+      "bytes": 10663,
+      "sha256": "964751d9b83246f9c6205b46415c10b28417d59fca35c522f45423a9d6f9ac61"
+    },
+    "scripts/README.md": {
+      "bytes": 15025,
+      "sha256": "474d16598137895300d303b7b1a4ba5fa421d413b92032bc53a924de07685c59"
+    },
+    "scripts/native-candidate.py": {
+      "bytes": 18078,
+      "sha256": "2c5c8dbc21dbb96474c3219f884a6cd4a14cb623e3fc7aa06a0bdb5b2ccc9572"
+    },
+    "scripts/package-binaries.nu": {
+      "bytes": 10294,
+      "sha256": "cac3aaec3a1c55415d021d677e613cadfb7ccf28db7f7ccb160037304875daff"
+    },
+    "scripts/package-source.nu": {
+      "bytes": 5447,
+      "sha256": "cd26bc5a718d99a56572bfb4853338dabf4d8bb81d1006cf0babc97f0540093d"
+    },
+    "scripts/test_package_binaries.py": {
+      "bytes": 9268,
+      "sha256": "28e69e08738966b33490135ca570db17d0121892aa06cb659b437df662b08aa1"
+    },
+    "scripts/selfhost-kit.py": {
+      "bytes": 2394,
+      "sha256": "e196728a2c94e13175c5954271bfab50ed186ca8a0136a65b0e35ddf8395a624"
+    },
+    "scripts/selfhost_kit.py": {
+      "bytes": 18040,
+      "sha256": "d4d0f47728c97a8762979a32504de41d99630bac5797db5ecb703ec2bb190752"
+    },
+    "scripts/selfhost_kit_assembly.py": {
+      "bytes": 7100,
+      "sha256": "358db287e7f49ba2980e4a0ee6fb0275f54f6919f89ec6826781bff2b3288ea5"
+    },
+    "scripts/test_selfhost_kit.py": {
+      "bytes": 12468,
+      "sha256": "aeeb6d2232c6d93dec6b42da4facfbaf3963c5595579c57f1d33482d0094df78"
+    }
+  },
+  "joy": {
+    "bytes": 5216784,
+    "sha256": "6e4be9bc27bc090dc2bc040dca3f3c8ad84aea6555825aac1eb06990bfe93b0a"
+  },
+  "candidate": {
+    "bytes": 1238,
+    "sha256": "ed01ea956dc84040a5f7bc1e26c578f77d8b24ea6f1cd12787d5b9b58d90a383"
+  },
+  "commands": [
+    {
+      "name": "kit-normal",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/trisha-selfhost-kit/scripts/test_selfhost_kit.py",
+        "--rehearsal",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/selfhost-kit/rehearsal-1/kit",
+        "--trident",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-2/unpacked/cyber-source/trident",
+        "--joy",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-2/candidate \u043f\u0440\u043e\u0431\u0435\u043b/bin/joy",
+        "-v"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/trisha-selfhost-kit",
+      "exit_code": 0,
+      "started_ns": 1790577788434623000,
+      "ended_ns": 1790577794140709000,
+      "log": {
+        "path": "final2-kit-normal.log",
+        "bytes": 2284,
+        "sha256": "a9a34675daabdbe80b67267fb75002a23b098d37bf05efe107d97a076b2de1e1"
+      }
+    },
+    {
+      "name": "kit-optimized",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/trisha-selfhost-kit/scripts/test_selfhost_kit.py",
+        "--rehearsal",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/selfhost-kit/rehearsal-1/kit",
+        "--trident",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-2/unpacked/cyber-source/trident",
+        "--joy",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-2/candidate \u043f\u0440\u043e\u0431\u0435\u043b/bin/joy",
+        "-v"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/trisha-selfhost-kit",
+      "exit_code": 0,
+      "started_ns": 1790577794141085000,
+      "ended_ns": 1790577799869240000,
+      "log": {
+        "path": "final2-kit-optimized.log",
+        "bytes": 2284,
+        "sha256": "cfc08d827366c60282638af16392519c5fc85c861d46fe89d558a14d6001455d"
+      }
+    },
+    {
+      "name": "test_archive_source.py",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/trisha-selfhost-kit/scripts/test_archive_source.py",
+        "-v"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/trisha-selfhost-kit",
+      "exit_code": 0,
+      "started_ns": 1790577799869594000,
+      "ended_ns": 1790577799920758000,
+      "log": {
+        "path": "final2-test_archive_source.py.log",
+        "bytes": 432,
+        "sha256": "98fd5217ece5000d9a0b809b82222e6891fc9ede70c8f4ac869c43c9a3ca2dc7"
+      }
+    },
+    {
+      "name": "test_snapshot_source.py",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/trisha-selfhost-kit/scripts/test_snapshot_source.py",
+        "-v"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/trisha-selfhost-kit",
+      "exit_code": 0,
+      "started_ns": 1790577799921073000,
+      "ended_ns": 1790577800074920000,
+      "log": {
+        "path": "final2-test_snapshot_source.py.log",
+        "bytes": 248,
+        "sha256": "a0e48411656e59da458ba997f3f9c399eb284c28ab2e6be97bf11fce3a458bf3"
+      }
+    },
+    {
+      "name": "test_verify_source.py",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/trisha-selfhost-kit/scripts/test_verify_source.py",
+        "-v"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/trisha-selfhost-kit",
+      "exit_code": 0,
+      "started_ns": 1790577800075213000,
+      "ended_ns": 1790577802955217000,
+      "log": {
+        "path": "final2-test_verify_source.py.log",
+        "bytes": 1461,
+        "sha256": "8a8e72db67351dfe8a8e9b76ea84322b054f2fcf0b72aeb02475ba7ff62558cd"
+      }
+    },
+    {
+      "name": "test_package_binaries.py",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/trisha-selfhost-kit/scripts/test_package_binaries.py",
+        "-v"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/trisha-selfhost-kit",
+      "exit_code": 0,
+      "started_ns": 1790577802955590000,
+      "ended_ns": 1790577804503398000,
+      "log": {
+        "path": "final2-test_package_binaries.py.log",
+        "bytes": 710,
+        "sha256": "1cf0bb30f9d75046322a62527f702001b88446a25b050095e42040e9b7f924ec"
+      }
+    },
+    {
+      "name": "test_check_baselines.py",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/trisha-selfhost-kit/scripts/test_check_baselines.py",
+        "-v"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/trisha-selfhost-kit",
+      "exit_code": 0,
+      "started_ns": 1790577804503697000,
+      "ended_ns": 1790577804647554000,
+      "log": {
+        "path": "final2-test_check_baselines.py.log",
+        "bytes": 1800,
+        "sha256": "07ae1ebdc159c95c3cff29ccda9da0ef10bdafe60f0d6aeb1607150593b9e176"
+      }
+    },
+    {
+      "name": "actual-candidate-smoke",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/trisha-selfhost-kit/scripts/selfhost-kit.py",
+        "smoke",
+        "--kit",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/selfhost-kit/rehearsal-1/kit",
+        "--joy",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-2/candidate \u043f\u0440\u043e\u0431\u0435\u043b/bin/joy",
+        "--trident",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-2/unpacked/cyber-source/trident",
+        "--output",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/selfhost-kit/final2-candidate-smoke \u043f\u0440\u043e\u0431\u0435\u043b",
+        "--rehearsal"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/trisha-selfhost-kit",
+      "exit_code": 0,
+      "started_ns": 1790577804647842000,
+      "ended_ns": 1790577809767867000,
+      "log": {
+        "path": "final2-actual-candidate-smoke.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "diff-check",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/trisha-selfhost-kit",
+      "exit_code": 0,
+      "started_ns": 1790577809768239000,
+      "ended_ns": 1790577809779727000,
+      "log": {
+        "path": "final2-diff-check.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "scope": "Kit guards, routing-only packaging and actual historical-C2 rehearsal; accepted kit positive pending original36 authority",
+  "source_unchanged": true,
+  "joy_unchanged": true
+}
