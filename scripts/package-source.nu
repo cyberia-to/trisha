@@ -48,6 +48,8 @@ def main [output: path, --snapshot-worktrees] {
         trisha/cli/build.rs trisha/bundle.rs trisha/rs/ccs.rs
         joy/targets/nox/capabilities.json joy/rs/state_execution.rs
         joy/scripts/check-soft3-boundary.py joy/scripts/smoke-native.py
+        trisha/scripts/selfhost-kit.py trisha/scripts/selfhost_kit.py
+        trisha/scripts/selfhost_kit_assembly.py
         bbg/rs/src/certificate.rs
     ] {
         if not ($output | path join $required | path exists) {

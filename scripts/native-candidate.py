@@ -63,11 +63,27 @@ def extract(archive, destination):
             content.extractall(destination, filter='data')
 
 
-def download(asset, destination, env):
+def download(asset, destination, env, maximum=None):
     with destination.open('xb') as stream:
-        subprocess.run(['gh', 'api', '-H', 'Accept: application/octet-stream',
-                        f"repos/cyberia-to/trisha/releases/assets/{int(asset['asset_id'])}"],
-                       stdout=stream, check=True, env=env)
+        command = ['gh', 'api', '-H', 'Accept: application/octet-stream',
+                   f"repos/cyberia-to/trisha/releases/assets/{int(asset['asset_id'])}"]
+        if maximum is None:
+            subprocess.run(command, stdout=stream, check=True, env=env)
+        else:
+            with subprocess.Popen(command, stdout=subprocess.PIPE, env=env) as child:
+                try:
+                    remaining = maximum
+                    while block := child.stdout.read(min(1 << 20, remaining + 1)):
+                        if len(block) > remaining:
+                            raise ValueError('download byte limit exceeded')
+                        stream.write(block)
+                        remaining -= len(block)
+                    if child.wait():
+                        raise ValueError('asset download failed')
+                finally:
+                    if child.poll() is None:
+                        child.kill()
+                        child.wait()
     if sha(destination) != asset['sha256']:
         raise ValueError(f'asset hash mismatch: {destination.name}')
 
@@ -96,6 +112,8 @@ def main():
     try:
         archive = work/'source.tar.gz'
         download(dict(asset_id=spec['asset_id'], sha256=spec['source_sha256']), archive, env)
+        kit_archive = work/'selfhost-kit.tar.gz'
+        download(spec['selfhost_kit'], kit_archive, env, maximum=128 << 20)
         if spec.get('neptune_intent'):
             download(spec['neptune_intent'], work/'deployment-intent.json', env)
         extension = '.zip' if os.name == 'nt' else '.tar.gz'
@@ -111,11 +129,24 @@ def main():
         source = work/'unpacked/cyber-source'
         scripts = source/'trisha/scripts'
         run([sys.executable, '-B', scripts/'verify-source.py', source], results/'source.log', env, work)
+        kit = work/'selfhost-kit'
+        run([sys.executable, '-B', scripts/'selfhost-kit.py', 'unpack', '--archive', kit_archive,
+             '--sha256', spec['selfhost_kit']['sha256'], '--trident', source/'trident', '--output', kit],
+            results/'selfhost-kit.log', env, work)
+        def kit_smoke(binary_root, inputs, output):
+            if sha(inputs/'kit.json') != sha(kit/'kit.json'):
+                raise ValueError('shipped kit differs from selected portable archive')
+            run([sys.executable, '-B', scripts/'selfhost-kit.py', 'smoke', '--kit', inputs,
+                 '--joy', binary_root/'bin'/('joy.exe' if os.name == 'nt' else 'joy'),
+                 '--trident', source/'trident', '--output', output],
+                output.with_suffix('.log'), env, work)
         if spec.get('phase') == 'verify':
             extract(work/('binary'+extension), work/'installed')
             candidate = json.loads((work/'installed/cyber-tools/candidate.json').read_text())
             if candidate['provenance_sha256'] != sha(source/'sources.json'):
                 raise ValueError('validator and installed binaries have different source inventories')
+            kit_smoke(work/'installed/cyber-tools', work/'installed/cyber-tools/share/trident-selfhost',
+                      results/'verified-selfhost-smoke')
             for index, corpus in enumerate(spec['corpora']):
                 extract(work/f'corpus-{index}.tar.gz', work/f'corpus-{index}')
                 run([sys.executable, '-B', scripts/'verify-corpus.py',
@@ -155,6 +186,7 @@ def main():
         candidate = work/'candidate'
         run([nu, '--no-config-file', scripts/'build-candidate.nu', source, candidate],
             results/'build.log', env, work)
+        kit_smoke(candidate, kit, results/'installed-selfhost-smoke')
         # Reuse Cargo outputs, while the installed copies keep their exact build
         # identities. CPU/default feature suites match the shipped feature set.
         env['RUSTFLAGS'] = json.loads((candidate/'candidate.json').read_text())['rustflags']
@@ -222,12 +254,14 @@ def main():
              '--candidate', candidate, '--receipt', results/'local-corpus-verification.json'],
             results/'local-corpus-verification.log', env, work)
         output = results/f'cyber-tools-{target}{extension}'
+        kit_flags = ['--selfhost-kit', kit_archive, '--selfhost-kit-sha256', spec['selfhost_kit']['sha256'],
+                     '--selfhost-smoke', results/'installed-selfhost-smoke/receipt.json']
         run([nu, '--no-config-file', scripts/'package-binaries.nu', candidate, output,
-             '--smoke', smoke/'smoke.json'], results/'package.log', env, work)
+             '--smoke', smoke/'smoke.json', *kit_flags], results/'package.log', env, work)
         # Repack the exact same validated inputs and compare bytes.
         duplicate = work/('repacked'+extension)
         run([nu, '--no-config-file', scripts/'package-binaries.nu', candidate, duplicate,
-             '--smoke', smoke/'smoke.json'], results/'repack.log', env, work)
+             '--smoke', smoke/'smoke.json', *kit_flags], results/'repack.log', env, work)
         if sha(output) != sha(duplicate):
             raise ValueError('binary archives do not reproduce')
         extract(output, work/'installed')
@@ -236,6 +270,7 @@ def main():
         for entry in json.loads((candidate/'candidate.json').read_text())['binaries']:
             if sha(installed/'bin'/(entry['name']+suffix)) != entry['sha256']:
                 raise ValueError('unpacked binary identity changed')
+        kit_smoke(installed, installed/'share/trident-selfhost', results/'unpacked-selfhost-smoke')
         run([sys.executable, '-B', scripts/'smoke-lsp.py', installed/'bin'/('trident-lsp'+suffix)],
             results/'unpacked-lsp.log', env, work)
         for name in ('candidate.json', 'source-verification.json'):

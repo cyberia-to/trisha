@@ -35,6 +35,46 @@ existing compiler binary and requires its own installed protocol smoke.
 Standalone nox/Zheng developer CLIs are separate artifacts if
 requested; their libraries remain in the coordinated source closure.
 
+### Portable self-hosted compiler kit
+
+The coordinated 0.4 binary archive additionally carries
+`share/trident-selfhost/`: the accepted portable C2 `compiler.dag`, its original
+`inventory.json`, and `sample.tri`, `package.json`, `zero.dag` guide inputs.
+`kit.json` hashes every payload file and binds the original producer C2 role,
+fixed-point source map, native phase acceptance and compiler particle. This is
+data alongside the same four binaries; the existing proof corpus is unchanged.
+
+Assemble this kit once with `scripts/selfhost-kit.py assemble`. Acceptance is
+delegated to the exact Trident final 36-phase validator from commit
+`8576570d745139b733bb7dec090035dca938abe1`, SHA256
+`72cd11ec62e410e908590a785c79011989ea2c6c32872c5db31d72a62947c0ec`.
+The explicit configuration supplies its original ZIP/API downloads, three
+stores, restored trees, pinned indices, frozen runner/expected contract, final
+run and aggregate job. The assembler runs it into fresh retained evidence;
+an earlier local result or producer-only receipt cannot replace that check.
+The kit retains the raw selected producer, manifest, fixed-point and aggregate
+receipts plus the validator's full provenance report. Original archive/store
+identities remain references to the durable Trident audit; the compact kit does
+not duplicate every native corpus. `rehearse` creates an explicitly unaccepted
+kit from historical actual C2 evidence. Production packaging rejects it.
+
+The candidate selector pins a separately downloaded kit archive SHA256. Before
+packaging, compare all 94 compiler source bytes in the verified Trident source
+archive against the accepted fixed-point map. Validate the complete kit file
+set, lengths and hashes. Inputs are ordinary files, bounded to 32 files and
+128 MiB total; archives have a single fixed prefix, no links, aliases or special
+entries. Staging/output directories must be fresh and separate from inputs.
+Archives use deterministic metadata and exclusive creation.
+
+Both installed and unpacked native Joy binaries run the supplied kit through
+`pack-job`, `run-artifact --emit program`, and `run-artifact`, obtaining the
+canonical atom 13. A rejected source must leave an existing output unchanged.
+The smoke binds actual Joy/compiler bytes, kit manifest and the unchanged guide
+options/limits. It never builds Joy, invokes a host compiler, or substitutes a
+seed. The smoke establishes distribution compatibility with the shipped Joy;
+original native bootstrap pins and current package pins remain distinct.
+These checks do not establish SH7/SH8 compilation proofs or a new SH6 run.
+
 Use default CPU features, portable target CPU settings and pinned toolchain,
 lockfiles and vendor inputs. Do not build public binaries with
 `target-cpu=native`. Neural training and GPU acceleration need separate feature

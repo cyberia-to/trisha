@@ -2,7 +2,7 @@
 def executable [name: string] {
     if $nu.os-info.name == windows { $"($name).exe" } else { $name }
 }
-def main [prefix: path, output: path, --smoke: path] {
+def main [prefix: path, output: path, --smoke: path, --selfhost-kit: path, --selfhost-kit-sha256: string, --selfhost-smoke: path] {
     let repo = ($env.FILE_PWD | path dirname)
     let prefix = ($prefix | path expand)
     let output = ($output | path expand)
@@ -60,6 +60,10 @@ def main [prefix: path, output: path, --smoke: path] {
         let tested = ($receipt.fixture_files | where name == $name | first | get sha256)
         if $actual != $tested { error make {msg: $"untested or changed fixture: ($name)"} }
     }
+    if $selfhost_kit == null or $selfhost_kit_sha256 == null or $selfhost_smoke == null {
+        error make {msg: "accepted --selfhost-kit, pinned --selfhost-kit-sha256 and --selfhost-smoke are required"}
+    }
+    let selfhost_receipt_sha = (open --raw $selfhost_smoke | hash sha256)
     # Validation precedes staging and archive creation. Fixed archive epoch and
     # normalized tar metadata make identical inputs produce identical bytes.
     let temporary = (if $nu.os-info.name == windows {
@@ -69,6 +73,11 @@ def main [prefix: path, output: path, --smoke: path] {
     let staging = ($temporary.stdout | str trim)
     if ($staging | is-empty) or not ($staging | path exists) { error make {msg: "mktemp did not create a staging directory"} }
     try {
+        let kit = ($staging | path join share trident-selfhost)
+        let unpacked_kit = (^python3 ($repo | path join scripts selfhost-kit.py) unpack --archive ($selfhost_kit | path expand) --sha256 $selfhost_kit_sha256 --trident ($source | path join trident) --output $kit | complete)
+        if $unpacked_kit.exit_code != 0 { error make {msg: $"selfhost kit rejected: ($unpacked_kit.stderr)"} }
+        let checked_kit = (^python3 ($repo | path join scripts selfhost-kit.py) check --kit $kit --trident ($source | path join trident) --joy ($prefix | path join bin (executable joy)) --receipt ($selfhost_smoke | path expand) | complete)
+        if $checked_kit.exit_code != 0 { error make {msg: $"selfhost smoke rejected: ($checked_kit.stderr)"} }
         mkdir ($staging | path join bin)
         mkdir ($staging | path join share trisha-release-smoke)
         mkdir ($staging | path join licenses)
@@ -98,7 +107,12 @@ def main [prefix: path, output: path, --smoke: path] {
         if (open --raw ($staging | path join share trisha-release-smoke smoke-lsp.py) | hash sha256) != $receipt.lsp_script_sha256 { error make {msg: "LSP smoke changed during packaging"} }
         if (open --raw ($staging | path join share trisha-release-smoke smoke-release.nu) | hash sha256) != $receipt.smoke_script_sha256 { error make {msg: "smoke script changed during packaging"} }
         $receipt | to json | save ($staging | path join smoke.json)
-        "Cyber compiler and warriors — tested local binary candidate\n\nExtract cyber-tools and add its bin directory to PATH. Keep trident, trident-lsp, trisha and joy together. Z3 is an optional dependency for trident audit --z3. Inspect each command with --version and --help. Exact binary SHA256 identities are in candidate.json and smoke.json. The smoke receipt records the tested platform; this archive is not portable to arbitrary OS/CPU combinations.\n\nshare/trisha-release-smoke contains public test certificates, not wallet data. licenses contains the three project licenses.\n\nFull installed compiler/warrior smoke passed for these binary hashes. This includes recursive and public/private/state proof paths; private state tables are bounded and public. Live Neptune admission/deployment, GPU proving, registry publication and universal formal verification are separate gates. This local archive is not a publication or network action.\n" | save ($staging | path join README.txt)
+        cp $selfhost_smoke ($staging | path join selfhost-smoke.json)
+        if (open --raw ($staging | path join selfhost-smoke.json) | hash sha256) != $selfhost_receipt_sha {
+            error make {msg: "selfhost smoke receipt changed during packaging"}
+        }
+        {sha256: $selfhost_kit_sha256, manifest_sha256: (open --raw ($kit | path join kit.json) | hash sha256)} | to json | save ($staging | path join selfhost-kit.json)
+        "Cyber compiler and warriors — tested local binary candidate\n\nExtract cyber-tools and add its bin directory to PATH. Keep trident, trident-lsp, trisha and joy together. Z3 is an optional dependency for trident audit --z3. Inspect each command with --version and --help. Exact binary SHA256 identities are in candidate.json and smoke.json. The smoke receipt records the tested platform; this archive is not portable to arbitrary OS/CPU combinations.\n\nshare/trident-selfhost contains the portable accepted compiler and its three guide inputs; follow its README.md to compile through Joy. selfhost-kit.json pins the separately assembled archive and selfhost-smoke.json binds this installed Joy. share/trisha-release-smoke contains public test certificates, not wallet data. licenses contains the three project licenses.\n\nFull installed compiler/warrior smoke passed for these binary hashes. This includes recursive and public/private/state proof paths; private state tables are bounded and public. Live Neptune admission/deployment, GPU proving, registry publication and universal formal verification are separate gates. This local archive is not a publication or network action.\n" | save ($staging | path join README.txt)
         ^python3 ($repo | path join scripts archive-source.py) $staging $output --epoch 0 --prefix cyber-tools
         if $env.LAST_EXIT_CODE != 0 { error make {msg: "binary archive creation failed"} }
     } catch {|failure|
