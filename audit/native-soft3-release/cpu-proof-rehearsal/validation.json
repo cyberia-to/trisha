@@ -1,0 +1,87 @@
+{
+  "status": "passed",
+  "scope": "Post-run retention/hash/oracle-event checks, not guest or cryptographic proof reruns",
+  "commands": [
+    {
+      "name": "normal",
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/cpu-proof-delivery/check.py",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/cpu-proof-delivery"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3",
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 756,
+        "sha256": "2fd3d2026990e94c79c0f76814244222441384cf9ea9fa6b04e293a3fe0c4faf"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "optimized",
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/cpu-proof-delivery/check.py",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/cpu-proof-delivery"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3",
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 756,
+        "sha256": "2fd3d2026990e94c79c0f76814244222441384cf9ea9fa6b04e293a3fe0c4faf"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "corrupt-archive",
+      "scope": "Synthetic one-byte storage corruption, original archive unchanged",
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/retention-corruption-guard-hdge6qiz/check.py",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3/retention-corruption-guard-hdge6qiz"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/coordinated-soft3-release-3",
+      "exit_code": 1,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 892,
+        "sha256": "5ea3ff8b18e39b5f236a4b9587b9b59b967697c10a56b99af50110d434f516ad"
+      }
+    }
+  ],
+  "files_index": {
+    "bytes": 7168,
+    "sha256": "6d47c10faf15cd6cf6d1ecb8656f54b62cb00e5323382b80c6691064e6ed689f"
+  },
+  "checker": {
+    "bytes": 9935,
+    "sha256": "40e8ac566f430423225c5177e3c742884452429fea81355d5405c786835d2ddb"
+  },
+  "collector": {
+    "bytes": 5148,
+    "sha256": "e9b092537c87e598da5da649067c694f48ef25432cfb9e6ecef75c882634eb8e"
+  },
+  "memory_samples": 791,
+  "sampled_peak_rss_bytes": 19917635584,
+  "original_receipt": {
+    "bytes": 13999,
+    "sha256": "14eddac1d4441877293a8ef801c0e0e1293b698f51cdb57cd28a4651f5059040"
+  },
+  "original_proof_receipt": {
+    "bytes": 235664,
+    "sha256": "b0cee8b7a66f31638d72cfad631caaa2639d33e0ffba5963fe6eaef87cd04970"
+  }
+}

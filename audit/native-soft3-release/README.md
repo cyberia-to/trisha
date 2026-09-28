@@ -1,7 +1,7 @@
 # Native soft3 release coordination
 
-Status: component checks and the complete local installed rehearsal passed;
-archived CPU suites and the full baseline proof gate remain in progress.
+Status: component checks, the complete local installed rehearsal, archived
+CPU suites and the full baseline proof gate passed.
 These local feature-branch measurements establish neither a release candidate
 from default branches, native platform acceptance nor SH6/SH7/SH8 closure.
 The subsequent archive build and stale imported-field fixture repair are
@@ -13,6 +13,19 @@ baseline executions, deterministic packaging and unpacked LSP validation.
 Its original proof payloads, commands and independent review are retained.
 The [root byte check](installed-rehearsal-root-check.json) additionally compares
 all 570 retained files with their originals and rechecks 19 external identities.
+
+The [archived CPU and baseline-proof rehearsal](cpu-proof-rehearsal/README.md)
+then passed with the same source closure, actual Rust 1.89 and pinned Z3 4.15.3.
+Trident workspace tests passed 1231 cases with five existing ignores; Trisha
+passed 429 with six existing ignores; Joy passed 172. All commands had zero
+failures and warnings. The separate baseline gate generated and verified all
+198 fresh proofs for 99 positive fixtures, rejected 34 negative fixtures and
+covered all 43 hand baselines. Its exact commands, raw events, logs and tool
+identities are retained. The benchmark drops those proof payloads after its
+in-process verification; the retained events support recorded-claim replay.
+The [independent root review](cpu-proof-rehearsal-root-check.json) compared every
+original file and checked committed source, current binary/tool identities and
+the original memory samples.
 
 Trisha `8f4a2d883a47df4bfeab0f880ee7f6adba55c7e1` makes candidate preparation
 check Joy's own soft3 dependency boundary and installed proof smoke. Triton
