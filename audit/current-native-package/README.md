@@ -93,3 +93,14 @@ Mac CPU raw reference files, public-profile receipt and future frozen-run API
 reference. The sole whitespace exception still applies only to the original
 Mac CPU log. Production source archive contents and selected revisions are
 unchanged by this bootstrap metadata correction.
+
+## Original matrix gate binding
+
+The source-impact guard now requires all five distinct original producer
+inspections as well as the successful original run API record. Each must bind
+the exact frozen source/provenance, original runner and actual native Rust 1.89
+host, with inspected compiler CPU evidence. A successful Actions badge alone
+cannot authorize inheritance if a hosted compiler was shadowed by another
+installation. `original-matrix-rejections.json` records rejection of the four
+currently available real producers and of a duplicate substituted for the
+missing Intel Mac. The complete positive check waits for actual Intel evidence.

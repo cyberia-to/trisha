@@ -11,6 +11,8 @@ PROFILE = 'cda54f7ee5f34f01566cc728c22b3dd97bee63247c646c518039d9906309717f'
 VENDOR = 'cf324959661a85fc94cf4345beaf5dbf274c1dbd5fc66960155e0750ace35d1b'
 FROZEN_HEAD = 'c94da47247457f9e819c2682e74d34f5f1756f62'
 PROFILE_HEAD = '2b7017f89a495eb43c0feca6818eb68f35c21a02'
+REMOTE_TARGETS = {'x86_64-apple-darwin', 'aarch64-unknown-linux-gnu',
+                  'x86_64-unknown-linux-gnu', 'aarch64-pc-windows-msvc', 'x86_64-pc-windows-msvc'}
 # These reporting/automation paths are excluded explicitly. Compiler and
 # runtime implementation, manifests, fixtures, examples and test code remain.
 REPORTING = ('.claude/plans/', 'audit/', 'docs/', 'roadmap/', 'reference/')
@@ -59,6 +61,23 @@ def compare(name, actual, previous, exclude):
                 excluded_current=excluded_current, excluded_reference=excluded_previous)
 
 
+def original_producers(rows):
+    require(len(rows) == 5 and {row['target'] for row in rows} == REMOTE_TARGETS,
+            'all five inspected original native producers are required')
+    require(len({row['artifact_id'] for row in rows}) == 5
+            and len({row['artifact_sha256'] for row in rows}) == 5,
+            'original native containers must be distinct')
+    for row in rows:
+        target = row['target']
+        require(row['status'] == 'producer_receipts_checked' and row['run_id'] == 36949324686
+                and row['runner_revision'] == FROZEN_HEAD and row['source_provenance_sha256'] == FROZEN
+                and row['source_sha256'] == 'e4bac7ff7260a5f395febc196b3e4792653e0ff81d7887d688e16ea0959aa361'
+                and row['actual_rustc'].startswith('rustc 1.89.0 ')
+                and 'release: 1.89.0\n' in row['actual_rustc'] and 'host: ' + target + '\n' in row['actual_rustc']
+                and row['cpu']['trident']['passed'] > 0 and row['retained_files'] > 0,
+                'original producer source/toolchain/CPU evidence differs: ' + target)
+
+
 def check(source, selector, references):
     inputs = json.loads(selector.read_text())
     require(inputs['validation_profile'] == 'current-package-v1', 'unknown validation profile')
@@ -80,6 +99,7 @@ def check(source, selector, references):
     run = json.loads((references / 'frozen-run.json').read_text())
     require(run['id'] == 36949324686 and run['head_sha'] == FROZEN_HEAD
             and run['status'] == 'completed' and run['conclusion'] == 'success', 'frozen native matrix has not passed')
+    original_producers(json.loads((references / 'frozen-producers.json').read_text()))
     local = json.loads((references / 'frozen-local-cpu.json').read_text())
     require(local['status'] == 'passed' and local['source_provenance_sha256'] == FROZEN
             and local['actual_rustc'].startswith('rustc 1.89.0 ')
@@ -121,6 +141,7 @@ def check(source, selector, references):
                 source_provenance_sha256=digest((source / 'sources.json').read_bytes()),
                 selector_sha256=digest(selector.read_bytes()), vendor_sha256=VENDOR,
                 checker_sha256=digest(Path(__file__).read_bytes()),
+                inherited_producers_sha256=digest((references / 'frozen-producers.json').read_bytes()),
                 inherited_frozen_run_id=run['id'], inherited_frozen_runner=FROZEN_HEAD,
                 inherited_public_profile_run_id=36958147193, inherited_public_profile_runner=PROFILE_HEAD,
                 comparisons=comparisons)

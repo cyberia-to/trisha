@@ -5,3 +5,4 @@
 /audit/current-native-package/references/frozen-local-trident-tests.log -text -whitespace
 /audit/current-native-package/references/public-profile-receipt.json -text
 /audit/current-native-package/references/frozen-run.json -text
+/audit/current-native-package/references/frozen-producers.json -text
