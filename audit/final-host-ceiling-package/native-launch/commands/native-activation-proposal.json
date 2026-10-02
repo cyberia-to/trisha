@@ -1,0 +1,33 @@
+{
+  "scope": "Proposed final native activation; no build dispatched before completed source readback/root review",
+  "selector_sha256": "0ff11aab6d5ee47f1778965074069cbcb473455e54143419368895343117f3e5",
+  "local_command": [
+    "python3",
+    "-B",
+    "-W",
+    "error",
+    "scripts/native-rehearsal-local.py",
+    "--family",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution",
+    "--output-name",
+    "local-macos-final-rust189",
+    "--selector",
+    ".github/final-package-candidate.json",
+    "--cache",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/local-native-asset-cache.json"
+  ],
+  "source_readback_receipt": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-reproduction-readback/receipt.json",
+  "admission": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-review/receipt.json",
+  "fixed_source_pins": {
+    "trisha": "c8836be0103c8d2ead07c409bb117af04cae3449",
+    "joy": "dd61df9128f6da1f97d4698f45f154f05312fe51"
+  },
+  "resource_policy": {
+    "cargo_jobs": 2,
+    "rayon_threads": 4,
+    "local_outer_rss_gib": 28,
+    "full198_rss_gib": 28,
+    "full198_host_free_percent": 8,
+    "remote_full_baselines": false
+  }
+}

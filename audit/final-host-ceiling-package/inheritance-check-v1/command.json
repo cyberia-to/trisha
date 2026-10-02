@@ -1,0 +1,17 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-W",
+    "error",
+    "audit/final-host-ceiling-package/check-inheritance.py",
+    "--current-family",
+    "../../current-distribution",
+    "--output",
+    "../measurements/inheritance-check-v1"
+  ],
+  "exit_code": 0,
+  "scope": "Replay of actual original source734 worker; final candidate not built",
+  "stdout_sha256": "958c2ef0c54ab5a617e4b68d10160c4103605766dab9e4d9a84fe7d6af023ccc",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

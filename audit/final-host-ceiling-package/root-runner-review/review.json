@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "scope": "Root source and runner review before export; no final package, new CI or full198 observation claimed",
+  "head": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+  "tree": "8f5604555283027cfcc77d078e1a467166bcba33",
+  "checks_sha256": "f5185b2ef33abebce219d970e3e9c7731d0a1fa484171d1f6a99d5eef3456555",
+  "files": {
+    "scripts/final-source-impact.py": "a80578694041fe432df21819b166140165fe98d27ff3d0a6dcfb8a9621faa86d",
+    "scripts/inherit-full-baselines.py": "6d37ed18d894bbfb8b3a745d06f360441177cc07f0da83eff9573b78c5d12761",
+    "scripts/check-installed-host-ceiling.py": "20c434ab117fe2e54e7e1a80e39f232fac4ef32f92803326bf9213e78fceebf7",
+    "scripts/native-candidate.py": "2087fc9ebe0f02d28de0234a59e447d66dc5af4b2323ed8ec3a0f564bfae345d",
+    "scripts/native-rehearsal-local.py": "e6b8dc12af1dbf81fcbf76ed2f94be2165621006797be950100db854230a220b",
+    "scripts/native-rehearsal-macos-floor.py": "57b6354c41c7e1c5d379f4f5dd0629607f788f9a94158d29cac36567cbc93853",
+    "scripts/prepare-native-rehearsal.py": "45c5036b799726a4514921f142cfa3601f7ed37581fd12b628cf089f68ec6191",
+    "scripts/transport-native-rehearsal.py": "1b1caf8db57829f45e0fd3cf447409f2d22b757868f5d5e380956af0cd168161",
+    "scripts/test_final_native_gate.py": "3874d570374fd2a95f6e8bcb412029cfd723b3f1ad20b24b8a31bb52cdc014da",
+    ".github/final-package-assets.json": "b392bd187d70d6882cc62cc9e8275f0f772a9ee86d6cbe7527966eac301faa0f",
+    ".github/final-package-candidate.json": "7f62731a82ce92a68ac3508344c5ea83f45273f4a7c54994e01d7ef53f8be390",
+    ".github/final-package-inputs.json": "a780cd96d65aa742833a90af02315f35014c4d895793a17b79fbe6114ac76284",
+    ".github/final-package-macos-floor.json": "696e070a875df1d3017664d412a1df015f7c39daf1bacf952e28250ac9806891",
+    ".github/final-package-source.json": "59bfed879afda8e20e81b0b52e98d773ee178c6ccfc266e53cf7eed91e1a4902",
+    ".github/workflows/final-package-assets.yml": "6d3c9a744e4650e654fb9d0b7da502319b857d4c254d9bc8a45f6896bb7c306e",
+    ".github/workflows/final-package-macos-floor.yml": "9f0b7c10c93e39ff3d70cd2103ad58f16ab426d885f614c5fb5cc09c79aa60da",
+    ".github/workflows/final-package-native.yml": "27477b80d145cbcad6c559d801df7f67ffe16fd3f6ac06bcd6c355fdd091e087",
+    ".github/workflows/final-package-source.yml": "9352deee130868bc76c98ce4c749db10f8c2fca7ee5e15a326eab85e8e81c351"
+  },
+  "exporter": {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/prepare-final-source.py",
+    "sha256": "44602e7cd65830adf2631f098323001f70042460e97dac85575ccdd9e66ff220"
+  },
+  "findings": [],
+  "verified": [
+    "Exact committed eleven-repository source preview passed and six protected source mutations rejected.",
+    "Actual runner tests enforce original-evidence failure vs conditional exact-binary inheritance vs guarded fresh198 fallback.",
+    "Original source734 full198 reference SHA is fixed; inherited results retain original source/run identity.",
+    "Final Joy inventory is complete dd61; one production constant change is checked against actual old source bytes.",
+    "All native producer and consumer paths execute installed deadline helper on actual extracted package.",
+    "Transport binds installed helper to actual Joy executable, candidate and source provenance; final artifacts still require original event replay.",
+    "All five selectors are inactive. Native/source/transport/Mac14 gates use distinct final selectors and exact profile.",
+    "Local exporter admits sixteen GiB free, exact reviewed clean bootstrap, native Rust1.89/Nushell, eleven detached committed worktrees, actual locked Cargo closure, strict archive/source/kit/impact checks, and pre/post selected origin observations."
+  ],
+  "remaining": [
+    "Independent peer review before export authorization.",
+    "Actual local source export and independent remote byte-for-byte reproduction.",
+    "All six actual native builds and cross-consumer evidence; fresh198 if final Trisha differs."
+  ],
+  "reviewed_at": "2026-10-02T07:46:21.225666+00:00"
+}

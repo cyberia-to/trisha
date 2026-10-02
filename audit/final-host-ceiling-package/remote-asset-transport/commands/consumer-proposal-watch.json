@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "scope": "Proposal files only; no active selector writes or native launch",
+  "started": "2026-10-02T11:48:07.546261+00:00",
+  "script_sha256": "06bd7d6e67c13ab485c5753c96514d41fa338afe80a89f72f7a8f090066c6b92",
+  "command": [
+    "python3",
+    "-B",
+    "-W",
+    "error",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/prepare-final-consumers.py"
+  ],
+  "exit_code": 0,
+  "ended": "2026-10-02T11:49:48.595277+00:00"
+}

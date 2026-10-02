@@ -1,0 +1,92 @@
+{
+  "scope": "Root supplemental runner/source activation checks only",
+  "head": "9f38a66e970fdabbf814e937ac39c42b82985ab5",
+  "commands": [
+    {
+      "name": "orchestration",
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_final_native_gate.py"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 3516,
+        "sha256": "59022fb7c3072b17dab173b89257a94a781a80c92a194412e91cbc04a8d44195"
+      },
+      "stderr": {
+        "bytes": 105,
+        "sha256": "209637c5270ea62667d3505f25f6e8e713fd220b3020983b799e40ff6ae4138a"
+      }
+    },
+    {
+      "name": "transport",
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_transport_native_rehearsal.py"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 103,
+        "sha256": "d03ce458f2a6cd2b4f27522f3aacad03ce1872c028853507c3ad02ca621bdcad"
+      }
+    },
+    {
+      "name": "actionlint",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/native-proof-ci/actionlint-1.7.12/actionlint"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "01f8a80",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "status": "passed",
+  "finished": "2026-10-02T08:00:37.512098+00:00"
+}

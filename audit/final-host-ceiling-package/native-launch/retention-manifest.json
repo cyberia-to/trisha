@@ -1,0 +1,207 @@
+{
+  "scope": "Exact native launch/admission observations, not completed native gates",
+  "observed_at": "2026-10-02T09:38:52.344373+00:00",
+  "runner_revision": "5de26a93eb4d489d90f150882adec2c47d14bea4",
+  "files": [
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-launch/cache-verification.json",
+      "stored": "admission/cache-verification.json",
+      "encoding": "identity",
+      "original_bytes": 984,
+      "original_sha256": "46d00c8c625de57c32c57b7468d98496400f29aa0e9ef854515eede330c72593",
+      "stored_sha256": "46d00c8c625de57c32c57b7468d98496400f29aa0e9ef854515eede330c72593"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-launch/cpus.stderr",
+      "stored": "admission/cpus.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-launch/cpus.stdout",
+      "stored": "admission/cpus.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 3,
+      "original_sha256": "e6c21e8d260fe71882debdb339d2402a2ca7648529bc2303f48649bce0380017",
+      "stored_sha256": "39d91a535023c5c026fd8ea7a04054dafc8e411c7c1fa207bd31d8ecfb3b632d"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-launch/host.stderr",
+      "stored": "admission/host.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-launch/host.stdout",
+      "stored": "admission/host.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 66,
+      "original_sha256": "2ad5e57776ecb4b37b741f751521e2c77d58bf2d6d64e54c61507eabd39dea31",
+      "stored_sha256": "7226bd7f214bb6e74b1910c65f1e019066b864a48b875d29150fd677392deef3"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-launch/memory-pressure.stderr",
+      "stored": "admission/memory-pressure.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-launch/memory-pressure.stdout",
+      "stored": "admission/memory-pressure.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 110,
+      "original_sha256": "5e21e0f6ee6af87490a78343061b62fa1f680a5e9d702f3acd23f7febc85cb6c",
+      "stored_sha256": "16aa5bc035259f4fe23db7c7df797536625b6a79800b0c4a2686e675b492e6d7"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-launch/memory.stderr",
+      "stored": "admission/memory.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-launch/memory.stdout",
+      "stored": "admission/memory.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 12,
+      "original_sha256": "1a4675111e2b0f970616c374fc0a90aad997171ca22da371c998275950af4481",
+      "stored_sha256": "3a7f5ed46509caf77a8fa470bc621b890a9135ccad33b4d2f76d2d45e802d977"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-launch/processes.stderr",
+      "stored": "admission/processes.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-launch/processes.stdout",
+      "stored": "admission/processes.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 52710,
+      "original_sha256": "0c3bd8406ad293e5c35da9cb66f601bf057e4bc8080f6bee000a2c6140154a4e",
+      "stored_sha256": "154de52b6d23af884dc7af71e53767fc8ccdfd8a94b5003397af7a617459eae9"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-launch/receipt.json",
+      "stored": "admission/receipt.json",
+      "encoding": "identity",
+      "original_bytes": 2835,
+      "original_sha256": "6f9e48e8b8cbb0579c7f5cbe16262b3f53936bbb8d185cf4b2ed5ade37606947",
+      "stored_sha256": "6f9e48e8b8cbb0579c7f5cbe16262b3f53936bbb8d185cf4b2ed5ade37606947"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/check-native-admission.py",
+      "stored": "commands/check-native-admission.py",
+      "encoding": "identity",
+      "original_bytes": 2071,
+      "original_sha256": "5fbfb4ead5cf0beae8d745764c46a07d8e917effb48839353ec9a52f346195db",
+      "stored_sha256": "5fbfb4ead5cf0beae8d745764c46a07d8e917effb48839353ec9a52f346195db"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/proposed-native-candidate.json",
+      "stored": "commands/proposed-native-candidate.json",
+      "encoding": "identity",
+      "original_bytes": 1039,
+      "original_sha256": "0ff11aab6d5ee47f1778965074069cbcb473455e54143419368895343117f3e5",
+      "stored_sha256": "0ff11aab6d5ee47f1778965074069cbcb473455e54143419368895343117f3e5"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/proposed-native-activation.diff",
+      "stored": "commands/proposed-native-activation.diff",
+      "encoding": "identity",
+      "original_bytes": 673,
+      "original_sha256": "938f51e519c2c456aa7a8308f2dd90064747968dc0f2a7875707cc4f515cf79a",
+      "stored_sha256": "938f51e519c2c456aa7a8308f2dd90064747968dc0f2a7875707cc4f515cf79a"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-activation-proposal.json",
+      "stored": "commands/native-activation-proposal.json",
+      "encoding": "identity",
+      "original_bytes": 1362,
+      "original_sha256": "19b36a3955f75f4db20d65881d2da4d5842a9c665616de51b505034927e1fac8",
+      "stored_sha256": "19b36a3955f75f4db20d65881d2da4d5842a9c665616de51b505034927e1fac8"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/local-macos-final-rust189/driver.json",
+      "stored": "local-launch-observation/driver.json",
+      "encoding": "identity",
+      "original_bytes": 1820,
+      "original_sha256": "dd94db12dd3600d56548592a4b648be790e4b2f61b47c77e025814ae71cb96ce",
+      "stored_sha256": "dd94db12dd3600d56548592a4b648be790e4b2f61b47c77e025814ae71cb96ce"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/local-macos-final-rust189/toolchain-preflight.json",
+      "stored": "local-launch-observation/toolchain-preflight.json",
+      "encoding": "identity",
+      "original_bytes": 2768,
+      "original_sha256": "86c6ea56dc14989963c499b2c8f1a4c1f13cc3b78895800e70801eacd32d0e8f",
+      "stored_sha256": "86c6ea56dc14989963c499b2c8f1a4c1f13cc3b78895800e70801eacd32d0e8f"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/local-macos-final-rust189/rustc-preflight.stdout",
+      "stored": "local-launch-observation/rustc-preflight.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 192,
+      "original_sha256": "a3138eb77dfe19d4cdb1d83ceb7c34944715564062936cf209d247cbf5208fae",
+      "stored_sha256": "58521508f1e8be2f1d70fd7ad05c0156b381a8bf75693df132565221f4ec5441"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/local-macos-final-rust189/rustc-preflight.stderr",
+      "stored": "local-launch-observation/rustc-preflight.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/local-macos-final-rust189/cargo-preflight.stdout",
+      "stored": "local-launch-observation/cargo-preflight.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 335,
+      "original_sha256": "930ba319a4044e5620604b209d876301cf1bfb05212aed1d0f68381d3fc6c81e",
+      "stored_sha256": "52e670b48f03fc5f7ba24e632ee4d43a6fa67d35363dfe6fc21b7ec2cda87e24"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/local-macos-final-rust189/cargo-preflight.stderr",
+      "stored": "local-launch-observation/cargo-preflight.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/local-macos-final-rust189/rustdoc-preflight.stdout",
+      "stored": "local-launch-observation/rustdoc-preflight.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 196,
+      "original_sha256": "ede1778259883fc1cb1fa13e5dad16841dec1d24a2eb3bf76f273feb63db2b29",
+      "stored_sha256": "43512d8f8ae6aedba40376705ea0643ebcd3720c5ea08c74187b525ba1b8dffb"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/local-macos-final-rust189/rustdoc-preflight.stderr",
+      "stored": "local-launch-observation/rustdoc-preflight.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/20261002T093756937007Z/run.json",
+      "stored": "remote-run-observation.json",
+      "encoding": "identity",
+      "original_bytes": 13306,
+      "original_sha256": "b56175400ceb43d63ff087bf6a59ce35a2c4fb6741c086c179c20a7866184bd0",
+      "stored_sha256": "b56175400ceb43d63ff087bf6a59ce35a2c4fb6741c086c179c20a7866184bd0"
+    }
+  ]
+}

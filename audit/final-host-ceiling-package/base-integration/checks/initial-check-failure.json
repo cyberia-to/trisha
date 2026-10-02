@@ -1,0 +1,1 @@
+{"status":"failed-before-test-execution","reason":"The local audit helper resolved actionlint one directory too high; source attributes/blob checks and both diff checks had passed. Corrected replay uses a distinct output directory; original check.py and streams are preserved."}

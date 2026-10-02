@@ -1,0 +1,14 @@
+{
+  "status": "running",
+  "asset": {
+    "kind": "evidence",
+    "target": "aarch64-pc-windows-msvc",
+    "asset_id": 605444778,
+    "name": "rehearsal-20261002-final-dd61-remote-aarch64-pc-windows-msvc.zip",
+    "sha256": "4959b0f9a3c19a750ed7bc595f80fff562d025d3e583b9dc826a2724a2066ce6",
+    "bytes": 81027031,
+    "producer_run_id": 36990413939,
+    "producer_artifact_id": 11221602815
+  },
+  "commands": []
+}

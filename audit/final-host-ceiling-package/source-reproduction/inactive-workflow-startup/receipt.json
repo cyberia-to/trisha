@@ -1,0 +1,81 @@
+{
+  "status": "checked",
+  "scope": "Initial inactive workflow registration only; no native/transport/Mac14 gate observation",
+  "workflows": [
+    {
+      "name": "native",
+      "run_id": 36987731208,
+      "status": "gates_skipped",
+      "commands": [
+        {
+          "command": [
+            "gh",
+            "api",
+            "repos/cyberia-to/trisha/actions/runs/36987731208"
+          ],
+          "exit_code": 0,
+          "stdout_sha256": "e3173d3c0f328c8e98ae4512e6a8e95a5969d90e7aa3feb563a79e9b04103166"
+        },
+        {
+          "command": [
+            "gh",
+            "api",
+            "repos/cyberia-to/trisha/actions/runs/36987731208/jobs"
+          ],
+          "exit_code": 0,
+          "stdout_sha256": "0246f41919b5c04b8d4837b7c5cfc2edad9850df193b060ee8e78d5c1520ac3f"
+        }
+      ]
+    },
+    {
+      "name": "transport",
+      "run_id": 36987731172,
+      "status": "gates_skipped",
+      "commands": [
+        {
+          "command": [
+            "gh",
+            "api",
+            "repos/cyberia-to/trisha/actions/runs/36987731172"
+          ],
+          "exit_code": 0,
+          "stdout_sha256": "a6203261c7d88769c181a8dd8134e8defb1e3ae82c0ec27199d41dfa0841ad86"
+        },
+        {
+          "command": [
+            "gh",
+            "api",
+            "repos/cyberia-to/trisha/actions/runs/36987731172/jobs"
+          ],
+          "exit_code": 0,
+          "stdout_sha256": "5426f0da055659e18232cd1ed17dd2547042c6397e5d87b46e08c5286a19453f"
+        }
+      ]
+    },
+    {
+      "name": "macos14",
+      "run_id": 36987731115,
+      "status": "gates_skipped",
+      "commands": [
+        {
+          "command": [
+            "gh",
+            "api",
+            "repos/cyberia-to/trisha/actions/runs/36987731115"
+          ],
+          "exit_code": 0,
+          "stdout_sha256": "aa5c548d8deb75f3a8d69d95985f72afb59bd4ba72855b89ebbfa57a04f9c0c5"
+        },
+        {
+          "command": [
+            "gh",
+            "api",
+            "repos/cyberia-to/trisha/actions/runs/36987731115/jobs"
+          ],
+          "exit_code": 0,
+          "stdout_sha256": "33750684d2ae4f77d656cecd0a8a4eb560e3ffab773fa1317574503fc5322f8b"
+        }
+      ]
+    }
+  ]
+}

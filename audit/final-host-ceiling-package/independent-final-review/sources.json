@@ -1,0 +1,167 @@
+{
+  ".claude/plans/final-host-ceiling-package.md": {
+    "bytes": 6028,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "2410f71c2ffb6ee195193be90a7e5344b9c36969b425125d23c65f6cf6907423"
+  },
+  ".gitattributes": {
+    "bytes": 5280,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "0c480d7e64ab3a296f4ac2c03353c595bb5d76fdd3160ad08c02ce2183027376"
+  },
+  ".github/final-package-assets.json": {
+    "bytes": 534,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "b392bd187d70d6882cc62cc9e8275f0f772a9ee86d6cbe7527966eac301faa0f"
+  },
+  ".github/final-package-candidate.json": {
+    "bytes": 924,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "7f62731a82ce92a68ac3508344c5ea83f45273f4a7c54994e01d7ef53f8be390"
+  },
+  ".github/final-package-inputs.json": {
+    "bytes": 2984,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "a780cd96d65aa742833a90af02315f35014c4d895793a17b79fbe6114ac76284"
+  },
+  ".github/final-package-macos-floor.json": {
+    "bytes": 402,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "696e070a875df1d3017664d412a1df015f7c39daf1bacf952e28250ac9806891"
+  },
+  ".github/final-package-source.json": {
+    "bytes": 2875,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "59bfed879afda8e20e81b0b52e98d773ee178c6ccfc266e53cf7eed91e1a4902"
+  },
+  ".github/workflows/final-package-assets.yml": {
+    "bytes": 1628,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "6d3c9a744e4650e654fb9d0b7da502319b857d4c254d9bc8a45f6896bb7c306e"
+  },
+  ".github/workflows/final-package-macos-floor.yml": {
+    "bytes": 1702,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "9f0b7c10c93e39ff3d70cd2103ad58f16ab426d885f614c5fb5cc09c79aa60da"
+  },
+  ".github/workflows/final-package-native.yml": {
+    "bytes": 2886,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "27477b80d145cbcad6c559d801df7f67ffe16fd3f6ac06bcd6c355fdd091e087"
+  },
+  ".github/workflows/final-package-source.yml": {
+    "bytes": 1620,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "9352deee130868bc76c98ce4c749db10f8c2fca7ee5e15a326eab85e8e81c351"
+  },
+  "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/prepare-final-source.py": {
+    "bytes": 7350,
+    "scope": "External reviewed local exporter, uncommitted; exact bytes copied",
+    "sha256": "44602e7cd65830adf2631f098323001f70042460e97dac85575ccdd9e66ff220"
+  },
+  "CLAUDE.md": {
+    "bytes": 12459,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "5fdd2bd53b50c02658420f768886581e7f89b54ab25488a646db948a8d49a3ff"
+  },
+  "audit/final-host-ceiling-package/README.md": {
+    "bytes": 5861,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "94c4ae95996db274cd4e24872fc0fb4c7a7afefeea215cff4167913ccc14e063"
+  },
+  "audit/final-host-ceiling-package/check-source-preview.py": {
+    "bytes": 3807,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "ffbd6668113586e5ba1eddd15cb6d8bb07c3a5242abbba6a278e006ad9019c55"
+  },
+  "audit/final-host-ceiling-package/references/joy-dd61-inventory.json.gz": {
+    "bytes": 19343,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "20df7330d2cb77bb6dd28dea980f3e32a5baa38c3ee49a422cf963ceef82eea3"
+  },
+  "audit/final-host-ceiling-package/references/joy11b7-limits.rs": {
+    "bytes": 2940,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "b7adbee9300d3136705270abf72081e95fc26ca810b0fff0a947e77201116447"
+  },
+  "audit/final-host-ceiling-package/references/source734-check-baselines.py": {
+    "bytes": 14131,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "29b98dac0b6f07f579b3f44fdbe7e41c262b0372088d2909acf4e0d076cd229b"
+  },
+  "audit/final-host-ceiling-package/references/source734-containers-replay.json": {
+    "bytes": 3081,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "9c2ebca79cd14c9216cc12e8ee9559f9371116b39ea3f65c2e855b7ea282f5f0"
+  },
+  "audit/final-host-ceiling-package/references/source734-corpus-replay.json": {
+    "bytes": 39893,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "ede5500b265297bb55e5132a7a05f6628c923f3bee752f07b49d53020430db3b"
+  },
+  "audit/final-host-ceiling-package/references/source734-local-replay.json": {
+    "bytes": 1564,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "9f1c1e114ad7cbf47f4ac8d3126990211ea709f320b1402cdf1f9909c85573d6"
+  },
+  "audit/final-host-ceiling-package/references/source734-sources.json.gz": {
+    "bytes": 1023120,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "9b5d1a476947362a137f5a569a9c60487864d2b827e644afb8d85c28c7c6ede5"
+  },
+  "patches/apply.nu": {
+    "bytes": 20110,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "d8d5ea129a78c36d45b98b448ebf45774557ccf1693750d77c231d437328c445"
+  },
+  "scripts/final-source-impact.py": {
+    "bytes": 5797,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "a80578694041fe432df21819b166140165fe98d27ff3d0a6dcfb8a9621faa86d"
+  },
+  "scripts/inherit-full-baselines.py": {
+    "bytes": 10354,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "6d37ed18d894bbfb8b3a745d06f360441177cc07f0da83eff9573b78c5d12761"
+  },
+  "scripts/native-candidate.py": {
+    "bytes": 26095,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "2087fc9ebe0f02d28de0234a59e447d66dc5af4b2323ed8ec3a0f564bfae345d"
+  },
+  "scripts/native-rehearsal-local.py": {
+    "bytes": 7152,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "e6b8dc12af1dbf81fcbf76ed2f94be2165621006797be950100db854230a220b"
+  },
+  "scripts/native-rehearsal-macos-floor.py": {
+    "bytes": 8181,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "57b6354c41c7e1c5d379f4f5dd0629607f788f9a94158d29cac36567cbc93853"
+  },
+  "scripts/package-source.nu": {
+    "bytes": 5447,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "cd26bc5a718d99a56572bfb4853338dabf4d8bb81d1006cf0babc97f0540093d"
+  },
+  "scripts/prepare-native-rehearsal.py": {
+    "bytes": 8483,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "45c5036b799726a4514921f142cfa3601f7ed37581fd12b628cf089f68ec6191"
+  },
+  "scripts/test_final_native_gate.py": {
+    "bytes": 3546,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "3874d570374fd2a95f6e8bcb412029cfd723b3f1ad20b24b8a31bb52cdc014da"
+  },
+  "scripts/test_transport_native_rehearsal.py": {
+    "bytes": 1610,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "6ed0d122708396c92f9e8253a0eb62447a46cba83fe53e4a4c85877714cef350"
+  },
+  "scripts/transport-native-rehearsal.py": {
+    "bytes": 12182,
+    "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+    "sha256": "1b1caf8db57829f45e0fd3cf447409f2d22b757868f5d5e380956af0cd168161"
+  }
+}

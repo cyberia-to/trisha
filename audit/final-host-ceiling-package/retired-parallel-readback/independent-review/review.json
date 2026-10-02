@@ -1,0 +1,94 @@
+{
+  "schema": "final-distribution-parallel-readback-independent-review/v1",
+  "status": "blocked-unused-continuation-source",
+  "observed_unix_ns": 1790941489393249000,
+  "scope": "Read-only inspection of frozen source, plan and retained producer/transport provenance. Offline no-signal synthetic probes and read-only exact assignment/body checks. No network or process control performed; original serial attempt untouched.",
+  "source_sha256": "53511836001f7519a970cc74f3a5f1acd43dff390532a803ffcc6e8ed979516e",
+  "supervisor_sha256": "636c8d59dcc09ddaa90bc3d2b0147da95d00fae28ace7ae70582e4b31abe4e30",
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "blocking-before-resume",
+      "source": "guard-final-parallel-readback.py:34-46",
+      "issue": "Cap-triggered stop sends TERM to currently enumerated descendants, waits two seconds, sends TERM to root, then reports stopped and raises. It never checks all descendants exited, escalates to KILL or verifies quiescence. A TERM-ignoring child can continue to write after byte/disk/time cap.",
+      "probe": "term_ignoring_descendant in probe.stdout: mocked child101 remains live while terminal guard receipt says stopped; signals contain only CONT and TERM."
+    },
+    {
+      "id": "F2",
+      "severity": "blocking-before-resume",
+      "source": "guard-final-parallel-readback.py:19-48",
+      "issue": "After SIGCONT the supervisor has no failure finalizer. Snapshot, stat, JSON, receipt-write or other exceptions abandon the owned resumed processes and leave running receipt without original error or cleanup result.",
+      "probe": "snapshot_error_after_resume in probe.stdout: injected snapshot RuntimeError propagates, receipt remains running and the only signals are CONT."
+    }
+  ],
+  "positive_checks": [
+    "Frozen inspector and selector hashes checked by coordinator. Transport original container binds successful exact run37000157290/head98b45784 and original ZIP member identities; producer containers are independently retained byte sources.",
+    "All20 actual assignment rows equal the retained transport asset ID/target/kind/byte/hash map; all asset IDs and target-kind pairs are distinct. Payload626572077B plus16MiBmetadata equals643349293B planned owned cap. Planned floor8GiB/wall2700s retained.",
+    "Destination directories are disjoint from original serial outputs, new top directory creation is exclusive and fresh download files use exclusive opens. Original completed snapshot contains exactly3 bodies; each original body was independently rehashed during this review.",
+    "Three worker threads plus one unchanged serial downloader bound concurrent download worker count to four under the stated process topology. Complete length/hash plus fresh metadata are required for each counted body; coordinator exact20 distinct source assignments prevent counting duplicated completions.",
+    "No source/native job, selector activation, draft mutation, tag creation or publication is performed by the readback coordinator. Existing draft/tag absence checked before/after; asset bodies are read only."
+  ],
+  "limitation": "Per-file/aggregate byte enforcement is sampled at one-second intervals rather than a hard file writer limit; this source review does not certify exact no-overshoot bounds. No successful completion or full20body acceptance is inferred from partial receipts.",
+  "root_decision": "Parent accepted finding and directed this proposal remain unresumed; distribution owner will retire only authenticated paused PIDs, preserve source/state/partial files and record actual quiescence. Original serial readback continues. This review neither issues signals nor approves a replacement.",
+  "evidence": [
+    {
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/probe.py",
+      "bytes": 2728,
+      "sha256": "16c9b801ac08914641899632866b575aa8645e4f50dad6b414624a96f1f8521a"
+    },
+    {
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/probe.stdout",
+      "bytes": 2321,
+      "sha256": "c235b08c05b84231aaba1e3d2ab9ffb0c2243ba3e5e41f451dcc834849133e8d"
+    },
+    {
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/probe.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/check_inputs.py",
+      "bytes": 3028,
+      "sha256": "29e9811ce45c999a33b81cb19fb42274ce8b8be4b59de0d988556d502b7a23c6"
+    },
+    {
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/input-checks.json",
+      "bytes": 4330,
+      "sha256": "59c0c6813881807ca814bd7d8e9839661ea437174e48f7f0f4e70df0d5bbca85"
+    },
+    {
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/input-checks.stdout",
+      "bytes": 80,
+      "sha256": "cf9ae46614b1ea83ca5ba5bbf27ff242da4fa88d832113b446ab601b07aa5a32"
+    },
+    {
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/input-checks.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "independent-parallel-readback-review/probe.py"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "independent-parallel-readback-review/check_inputs.py"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution",
+      "exit_code": 0
+    }
+  ]
+}

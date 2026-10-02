@@ -1,0 +1,13 @@
+{
+  "original_directory": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/native-activation",
+  "files": [
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/native-activation/review.json",
+      "retained": "review.json",
+      "encoding": "identity",
+      "bytes": 1388,
+      "sha256": "38c43aeceea774978fc918a41610a50dbe3c103bd23b73355baa779f286b59f5",
+      "retained_sha256": "38c43aeceea774978fc918a41610a50dbe3c103bd23b73355baa779f286b59f5"
+    }
+  ]
+}

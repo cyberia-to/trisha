@@ -1,0 +1,100 @@
+{
+  "id": 110827248383,
+  "run_id": 37003795418,
+  "workflow_name": "Final deadline package Verify native rehearsal on macOS 14 ARM",
+  "head_branch": "test/0.4-final-host-ceiling-20261002",
+  "run_url": "https://api.github.com/repos/cyberia-to/trisha/actions/runs/37003795418",
+  "run_attempt": 1,
+  "node_id": "CR_kwDORSKVcM8AAAAZzdGa_w",
+  "head_sha": "dd858356251101f285c785cb04fba1644a612fce",
+  "url": "https://api.github.com/repos/cyberia-to/trisha/actions/jobs/110827248383",
+  "html_url": "https://github.com/cyberia-to/trisha/actions/runs/37003795418/job/110827248383",
+  "status": "completed",
+  "conclusion": "success",
+  "created_at": "2026-10-02T11:56:28Z",
+  "started_at": "2026-10-02T12:10:39Z",
+  "completed_at": "2026-10-02T12:12:43Z",
+  "name": "consumer",
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1,
+      "started_at": "2026-10-02T12:10:39Z",
+      "completed_at": "2026-10-02T12:10:40Z"
+    },
+    {
+      "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2,
+      "started_at": "2026-10-02T12:10:40Z",
+      "completed_at": "2026-10-02T12:10:52Z"
+    },
+    {
+      "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3,
+      "started_at": "2026-10-02T12:10:52Z",
+      "completed_at": "2026-10-02T12:10:53Z"
+    },
+    {
+      "name": "Read activation status",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4,
+      "started_at": "2026-10-02T12:10:53Z",
+      "completed_at": "2026-10-02T12:10:53Z"
+    },
+    {
+      "name": "Verify installed kit and six producer corpora within 5 GiB",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 5,
+      "started_at": "2026-10-02T12:10:53Z",
+      "completed_at": "2026-10-02T12:12:35Z"
+    },
+    {
+      "name": "Preserve compatibility receipt and original consumer evidence",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6,
+      "started_at": "2026-10-02T12:12:35Z",
+      "completed_at": "2026-10-02T12:12:38Z"
+    },
+    {
+      "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 11,
+      "started_at": "2026-10-02T12:12:38Z",
+      "completed_at": "2026-10-02T12:12:38Z"
+    },
+    {
+      "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 12,
+      "started_at": "2026-10-02T12:12:38Z",
+      "completed_at": "2026-10-02T12:12:38Z"
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 13,
+      "started_at": "2026-10-02T12:12:38Z",
+      "completed_at": "2026-10-02T12:12:39Z"
+    }
+  ],
+  "check_run_url": "https://api.github.com/repos/cyberia-to/trisha/check-runs/110827248383",
+  "labels": [
+    "macos-14"
+  ],
+  "runner_id": 1000010316,
+  "runner_name": "GitHub Actions 1000010316",
+  "runner_group_id": 0,
+  "runner_group_name": "GitHub Actions"
+}

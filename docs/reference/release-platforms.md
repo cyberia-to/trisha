@@ -120,6 +120,20 @@ not need a separate Visual C++ redistributable. Verify the actual PE imports.
    worker. Record that worker's platform and exact binary identity; this does
    not claim198 generated proofs on every desktop. Timeouts or memory
    exhaustion are incomplete gates, never passes.
+
+   A later package may carry `inherited_full198_coverage` only when its actual
+   Trisha executable is byte-identical to that tested worker executable and
+   the relevant production/dependency source inventory, manifests and locks,
+   vendored bytes, manual programs, fixtures and exact proof-check driver are
+   unchanged. The inheritance receipt must independently validate the original
+   successful receipt, raw198 proof events, source/input checks and resource
+   observations, then bind both the original identities and final package.
+   Preserve the original source, worker platform, binary hashes and command;
+   inheritance is not a fresh198 run. A changed separately built Joy executable
+   still requires its own native CPU, installed/package and portable proof
+   corpus gates. If the Trisha executable or protected inputs differ, run a new
+   actual198 gate on the final candidate under the same resource guard. Missing
+   or invalid original evidence is a failed inheritance check, never coverage.
 4. Collect a compact proof corpus from every target. Every target verifies the
    corpus from every other target, with expected program/input/output/state
    pinned, and rejects corresponding tampering. Proof bytes need not match.

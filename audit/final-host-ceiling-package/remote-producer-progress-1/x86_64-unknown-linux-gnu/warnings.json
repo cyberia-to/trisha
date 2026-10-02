@@ -1,0 +1,46 @@
+{
+  "status": "passed",
+  "recognition": "ANSI CSI removed for recognition; original bytes remain in authenticated ZIP",
+  "logs": [
+    {
+      "path": "candidate-fixture-build.log",
+      "bytes": 3147,
+      "sha256": "a1a9402d99722f326586739a00fe6bbec42fc3eff72db57fda4bf30b064ea188"
+    },
+    {
+      "path": "candidate-joy-build.log",
+      "bytes": 6049,
+      "sha256": "f272c1b48036e0f21edef1b5858a363aa0de064301d0f81df892fa2580aee914"
+    },
+    {
+      "path": "candidate-trident-build.log",
+      "bytes": 3909,
+      "sha256": "4e5f80fe5358d6adad71ce049c70fd253dbd89db2654ac3a5fe633f1743427b4"
+    },
+    {
+      "path": "candidate-trisha-build.log",
+      "bytes": 13613,
+      "sha256": "8f6308e40a8a516e40f424a8a1e72ada71bd2e28d0cd5f7b9b2d24b08997c746"
+    },
+    {
+      "path": "joy-tests.log",
+      "bytes": 24909,
+      "sha256": "6856f0e8be37a7f09a0ca96a6cfeb6435bd8aaba3cbcba8666a339627b076cef"
+    },
+    {
+      "path": "nox-tests.log",
+      "bytes": 21441,
+      "sha256": "8beb7029f85e5315929b3dfae15715ee3c01903d810f911f786440fb157b8e53"
+    },
+    {
+      "path": "trident-tests.log",
+      "bytes": 58817,
+      "sha256": "920db2af31d3ab78cd42f6dea98bd900adfeb411c03330f054f48ff82739547b"
+    },
+    {
+      "path": "trisha-tests.log",
+      "bytes": 70839,
+      "sha256": "6e73f01255bf1a8b288a7955ef30e448194d498c0b2d99621e4a01e7fc17dba7"
+    }
+  ]
+}

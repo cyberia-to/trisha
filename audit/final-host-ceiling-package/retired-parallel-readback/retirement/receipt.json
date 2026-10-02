@@ -1,0 +1,320 @@
+{
+  "status": "retired-unaccepted",
+  "scope": "Explicit root-authorized retirement of only unaccepted paused parallel readback; original serial readback and all native/proof jobs untouched",
+  "started": "2026-10-02T11:44:04.546878+00:00",
+  "script_sha256": "541a7cd355b5e14da6d5d6e9f7c5f252372de745bb607f38422609955985c45f",
+  "commands": [
+    {
+      "command": [
+        "ps",
+        "-p",
+        "75562,75925,75929,75948",
+        "-o",
+        "pid=,ppid=,lstart=,state=,command="
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "ps",
+        "-p",
+        "75562,75925,75929,75948",
+        "-o",
+        "pid=,ppid=,lstart=,state=,command="
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "ps",
+        "-p",
+        "75562,75925,75929,75948",
+        "-o",
+        "pid=,ppid=,lstart=,state=,command="
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "ps",
+        "-p",
+        "75562,75925,75929,75948",
+        "-o",
+        "pid=,ppid=,lstart=,state=,command="
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "ps",
+        "-p",
+        "75562,75925,75929,75948",
+        "-o",
+        "pid=,ppid=,lstart=,state=,command="
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "ps",
+        "-p",
+        "75562,75925,75929,75948",
+        "-o",
+        "pid=,ppid=,lstart=,state=,command="
+      ],
+      "exit_code": 1
+    }
+  ],
+  "signals": [
+    {
+      "pid": 75925,
+      "birth": "Fri Oct 2 11:29:17 2026",
+      "signal": "SIGKILL",
+      "signal_number": 9,
+      "at": "2026-10-02T11:44:04.605450+00:00"
+    },
+    {
+      "pid": 75929,
+      "birth": "Fri Oct 2 11:29:18 2026",
+      "signal": "SIGKILL",
+      "signal_number": 9,
+      "at": "2026-10-02T11:44:04.615021+00:00"
+    },
+    {
+      "pid": 75948,
+      "birth": "Fri Oct 2 11:29:18 2026",
+      "signal": "SIGKILL",
+      "signal_number": 9,
+      "at": "2026-10-02T11:44:04.624034+00:00"
+    },
+    {
+      "pid": 75562,
+      "birth": "Fri Oct 2 11:29:12 2026",
+      "signal": "SIGKILL",
+      "signal_number": 9,
+      "at": "2026-10-02T11:44:04.633245+00:00"
+    }
+  ],
+  "original_auxiliary_files": [
+    {
+      "path": "aarch64-pc-windows-msvc-binary/metadata.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-binary/metadata.stdout",
+      "bytes": 1769,
+      "sha256": "d1c1f5bac400657676f78e4ef1696776bebf995e886e88187151f731f7629d45"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-binary/receipt.json",
+      "bytes": 1278,
+      "sha256": "618b4c82464ae63bdc67b78a65655968b844eff44f00459aacf528aa0a6ab0a0"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-binary/rehearsal-20261002-final-dd61-remote-cyber-tools-aarch64-pc-windows-msvc.zip",
+      "bytes": 15849138,
+      "sha256": "7d758a5b53800625cda58d409a0cfb0c57ba4c6d1a970263aac2c7a35d2bc650"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-corpus/metadata.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-corpus/metadata.stdout",
+      "bytes": 1780,
+      "sha256": "85db2f917664bae829ac549d95db7a9180959e5c2ce62aeab185904f8b9be303"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-corpus/receipt.json",
+      "bytes": 1294,
+      "sha256": "ff6d9f6d245033857341efeaadfbd48b10c8def0735de1ebfeaae7b8d2d8b800"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-corpus/rehearsal-20261002-final-dd61-remote-proof-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "bytes": 25140541,
+      "sha256": "3276ceb704313e5c73b3df4d0d22c91ba602c6dd3c6affe42669070e6525ed93"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-evidence/download.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-evidence/metadata.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-evidence/metadata.stdout",
+      "bytes": 1745,
+      "sha256": "95026f4ec7ff3d89554386ffff1b9acdbaff479425eb000c8c58ce06713431ca"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-evidence/receipt.json",
+      "bytes": 415,
+      "sha256": "5e11ca8e8a44f146fa1d96d43ecb728880b9e84de76cb4aec8778f0b39bb35bc"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-evidence/rehearsal-20261002-final-dd61-remote-aarch64-pc-windows-msvc.zip",
+      "bytes": 7683639,
+      "sha256": "591cf8e18f69a1d3929dd3d82062b0455dbdcae05b194ec90bf72133d52a56eb"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-structured-corpus/metadata.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-structured-corpus/metadata.stdout",
+      "bytes": 1788,
+      "sha256": "c4f6493c06d1324a9bca16039bd1c476116e9a4f29d75083ecfe5d50bf0a203d"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-structured-corpus/receipt.json",
+      "bytes": 1334,
+      "sha256": "6a8460063f66c9378a410fe948f0f452eb350e474cca60938c6bab3e738a1ba3"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-structured-corpus/rehearsal-20261002-final-dd61-remote-structured-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "bytes": 687842,
+      "sha256": "83b770de9f60b5ecfb328e9f0745e8bec56671d11b2c5fed9ddda1b80dd7a498"
+    },
+    {
+      "path": "aarch64-unknown-linux-gnu-binary/download.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-unknown-linux-gnu-binary/metadata.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-unknown-linux-gnu-binary/metadata.stdout",
+      "bytes": 1782,
+      "sha256": "428e5a88a3edf20a482662c6dedbce9dbae308d61a20589901a61687e669dda6"
+    },
+    {
+      "path": "aarch64-unknown-linux-gnu-binary/receipt.json",
+      "bytes": 432,
+      "sha256": "44185d8fdf39cd2ff31591bbf1926a03ba6cb32438ab49fec00f096201c8c393"
+    },
+    {
+      "path": "aarch64-unknown-linux-gnu-binary/rehearsal-20261002-final-dd61-remote-cyber-tools-aarch64-unknown-linux-gnu.tar.gz",
+      "bytes": 4669440,
+      "sha256": "a22c27749baec5582ac1fee0a7d2e6930277957956b591681033ffe255583128"
+    },
+    {
+      "path": "aarch64-unknown-linux-gnu-corpus/download.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-unknown-linux-gnu-corpus/metadata.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-unknown-linux-gnu-corpus/metadata.stdout",
+      "bytes": 1784,
+      "sha256": "b15fa94100875dc6720c6b27f48a4e5a02013da0ba4b54cab24011808deaf42a"
+    },
+    {
+      "path": "aarch64-unknown-linux-gnu-corpus/receipt.json",
+      "bytes": 433,
+      "sha256": "422ceb5654b514e3b29f3dc25f5790cb7e48aedd1e831e7b588e9ad345c500a9"
+    },
+    {
+      "path": "aarch64-unknown-linux-gnu-corpus/rehearsal-20261002-final-dd61-remote-proof-corpus-aarch64-unknown-linux-gnu.tar.gz",
+      "bytes": 6176768,
+      "sha256": "cc68af50db843910f9099754170ce67c91a737d700e60f0e6106d4af23608b99"
+    },
+    {
+      "path": "artifact.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifact.stdout",
+      "bytes": 723,
+      "sha256": "b321746623c7c47111c8758155cec92ae114611ead1583c88c5118314401bd3e"
+    },
+    {
+      "path": "before-tag.stderr",
+      "bytes": 25,
+      "sha256": "d2c8985c89b29a842ac4946d13bdbc297709f44f20bb968faf9682664b211db6"
+    },
+    {
+      "path": "before-tag.stdout",
+      "bytes": 114,
+      "sha256": "e2e3c64edab172132f77ce89a0e8c190db1cd30936a096344f45893bd5b75f8a"
+    },
+    {
+      "path": "before.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "before.stdout",
+      "bytes": 221373,
+      "sha256": "6e0c5fb226358a9e05781b031af1c0403cae71ddbc626dedead481d932c873e3"
+    },
+    {
+      "path": "original-serial-snapshot.json",
+      "bytes": 5159,
+      "sha256": "ee86471e89c366756528a35a64284ec1fcbdaed6eacffb34b0ac01e912c330fe"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 4472,
+      "sha256": "9be4e69f70f3f8fd64d720b2a2a4f6529daf79805b80139bf85db83e68deb891"
+    },
+    {
+      "path": "run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run.stdout",
+      "bytes": 12500,
+      "sha256": "594e3f34d494fffa08653e733c56c70b1ebf98029c3e40e1fadcac926d5698c9"
+    }
+  ],
+  "reason": "Independent review found proposed supervisor cannot ensure child quiescence on cap/exception; never resumed, never accepted, no retry",
+  "verified_ownership": {
+    "75562": {
+      "pid": 75562,
+      "ppid": 32509,
+      "birth": "Fri Oct 2 11:29:12 2026",
+      "state": "Ts",
+      "command": "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python -B -W error measurements/readback-final-remote-parallel.py"
+    },
+    "75925": {
+      "pid": 75925,
+      "ppid": 75562,
+      "birth": "Fri Oct 2 11:29:17 2026",
+      "state": "T",
+      "command": "gh api -H Accept: application/octet-stream https://api.github.com/repos/cyberia-to/trisha/releases/assets/605444976"
+    },
+    "75929": {
+      "pid": 75929,
+      "ppid": 75562,
+      "birth": "Fri Oct 2 11:29:18 2026",
+      "state": "T",
+      "command": "gh api -H Accept: application/octet-stream https://api.github.com/repos/cyberia-to/trisha/releases/assets/605445038"
+    },
+    "75948": {
+      "pid": 75948,
+      "ppid": 75562,
+      "birth": "Fri Oct 2 11:29:18 2026",
+      "state": "T",
+      "command": "gh api -H Accept: application/octet-stream https://api.github.com/repos/cyberia-to/trisha/releases/assets/605444778"
+    }
+  },
+  "actual_quiescence": "All four exact owned PID/birth pairs absent; no process-group signal used",
+  "ended": "2026-10-02T11:44:04.668438+00:00",
+  "retained_files": 37,
+  "retained_payload_and_metadata_bytes": 60467568
+}

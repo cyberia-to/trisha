@@ -1,0 +1,366 @@
+{
+  "status": "passed",
+  "scope": "Original five native consumer ZIPs, extraMac14 ZIP and localconsumer original archive plus exact independent replay",
+  "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+  "selector_sha256": "084bfe4821114455881b1fd2718d8a10373e48562d97093ef3a580b0fb9626ba",
+  "consumer_run": 37003795408,
+  "macos14_run": 37003795418,
+  "native_pairs": 36,
+  "case_checks": 2664,
+  "installed_deadline_commands": 138,
+  "additional_mac14_case_checks": 444,
+  "additional_mac14_deadline_commands": 23,
+  "files": [
+    {
+      "path": "consumers/aarch64-pc-windows-msvc/api.json",
+      "bytes": 811,
+      "sha256": "329f6d550df21cbd9b08c8bd586546224352b685e5181446001231a27414e5de"
+    },
+    {
+      "path": "consumers/aarch64-pc-windows-msvc/job-log.json",
+      "bytes": 326,
+      "sha256": "17ee6a020c2ce64dc58e769d711a63f0f49e93144795396b370f39ec731d7348"
+    },
+    {
+      "path": "consumers/aarch64-pc-windows-msvc/job-log.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumers/aarch64-pc-windows-msvc/job.json",
+      "bytes": 3045,
+      "sha256": "b5d6c296b0afd998a62bedf36dd58417b7f8cbf78a2d1c6a62b46bc09c212c08"
+    },
+    {
+      "path": "consumers/aarch64-pc-windows-msvc/job.log.gz",
+      "bytes": 5676,
+      "sha256": "d9c9b4cdcadc604aba8043c65e64771acb1f4f7fc549289f2101f2b06625df80"
+    },
+    {
+      "path": "consumers/aarch64-pc-windows-msvc/original-artifact.zip",
+      "bytes": 4237900,
+      "sha256": "b0e2c6b14b843e8336293e7de1d8e341475128b4c8c15fff6a794a7566f76aad"
+    },
+    {
+      "path": "consumers/aarch64-pc-windows-msvc/retention.json",
+      "bytes": 83012,
+      "sha256": "511b647acfeb2c21aa29582a91134429e81ef740038d0960888180b5d081e7d7"
+    },
+    {
+      "path": "consumers/aarch64-unknown-linux-gnu/api.json",
+      "bytes": 813,
+      "sha256": "8e9d9b5f103ab46f5fb3ad0eedb27aa81b2752fbdc949234712f3bef49270ca1"
+    },
+    {
+      "path": "consumers/aarch64-unknown-linux-gnu/job-log.json",
+      "bytes": 326,
+      "sha256": "813499b7331748763af8773608d2181ac08739cdc1a5fe6796853116da12e441"
+    },
+    {
+      "path": "consumers/aarch64-unknown-linux-gnu/job-log.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumers/aarch64-unknown-linux-gnu/job.json",
+      "bytes": 3051,
+      "sha256": "bd4d32d8b5be1b7588a3d713db5c0e7f466f2068afb5712227542c8c23d3a0f2"
+    },
+    {
+      "path": "consumers/aarch64-unknown-linux-gnu/job.log.gz",
+      "bytes": 4909,
+      "sha256": "1143eb5adb50aa1f3f35919cfaffaa870d9e7349edd8637c69763dd2f7df2bd2"
+    },
+    {
+      "path": "consumers/aarch64-unknown-linux-gnu/original-artifact.zip",
+      "bytes": 4235749,
+      "sha256": "28b5ee0055d4963485c922508c345a46605982ca6d55381b530822fe3652290a"
+    },
+    {
+      "path": "consumers/aarch64-unknown-linux-gnu/retention.json",
+      "bytes": 83014,
+      "sha256": "3261c8248055f0dcf8034d4564659d0eab85b2f69d678d04f59544ecd00b6d71"
+    },
+    {
+      "path": "consumers/x86_64-apple-darwin/api.json",
+      "bytes": 807,
+      "sha256": "1c5a13c2689ae78f87742312fb1ab1fdcabd7882e857e0ad6feb463b5b718da2"
+    },
+    {
+      "path": "consumers/x86_64-apple-darwin/job-log.json",
+      "bytes": 326,
+      "sha256": "f9c1d8cdefe7aadd10a3560feb407ca97fa5331dec8dfd5bd2082f8e80cea211"
+    },
+    {
+      "path": "consumers/x86_64-apple-darwin/job-log.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumers/x86_64-apple-darwin/job.json",
+      "bytes": 3041,
+      "sha256": "5fd8016396014d3784407118fc9ce28d4f6e1780d4f49dc3519115d0fb4878f8"
+    },
+    {
+      "path": "consumers/x86_64-apple-darwin/job.log.gz",
+      "bytes": 5437,
+      "sha256": "a82894d6a99caa9ee967fb50145f3e23acc3c0b9b2efb431bb5ffe50bf5a9a23"
+    },
+    {
+      "path": "consumers/x86_64-apple-darwin/original-artifact.zip",
+      "bytes": 4237477,
+      "sha256": "7136e0c2704d71b727700bc387c033d97ec64fdfdd0be7f7fceace115f92a613"
+    },
+    {
+      "path": "consumers/x86_64-apple-darwin/retention.json",
+      "bytes": 83008,
+      "sha256": "096bc56b55e9ddeaa018097e8a0edf1d002674b3fcc8dd8e598dcbc372b0f25b"
+    },
+    {
+      "path": "consumers/x86_64-pc-windows-msvc/api.json",
+      "bytes": 810,
+      "sha256": "6f5a16684a21cea53a70f43710c6365e873a041119bd845d75a1634bca885c06"
+    },
+    {
+      "path": "consumers/x86_64-pc-windows-msvc/job-log.json",
+      "bytes": 326,
+      "sha256": "d4a8f454ff1b7fd634204ead80a5c281208185c7767537b1d1c87a34f61f15e1"
+    },
+    {
+      "path": "consumers/x86_64-pc-windows-msvc/job-log.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumers/x86_64-pc-windows-msvc/job.json",
+      "bytes": 3040,
+      "sha256": "6126e6308547e0d88a9316cb39a16ca44aaaab91376570473d4ad499fc1b86fa"
+    },
+    {
+      "path": "consumers/x86_64-pc-windows-msvc/job.log.gz",
+      "bytes": 4964,
+      "sha256": "3af0f0730bf47cf4f75dcfed6ff9d012b569927468dcbc3d19f5e6cb71cf7b5f"
+    },
+    {
+      "path": "consumers/x86_64-pc-windows-msvc/original-artifact.zip",
+      "bytes": 4237961,
+      "sha256": "893128e799d7029922a1ab06c56634ee4607a324dee08d38b51f8ec756cdc6c4"
+    },
+    {
+      "path": "consumers/x86_64-pc-windows-msvc/retention.json",
+      "bytes": 83011,
+      "sha256": "3ae7cd35ec9774e7b2279c8039c6ef16d96b0e0b8b0d3233029f9a0231c653a4"
+    },
+    {
+      "path": "consumers/x86_64-unknown-linux-gnu/api.json",
+      "bytes": 812,
+      "sha256": "8cf660e297bd7db5c38d46b108a67040e8b73e62df50ca8cf574aa0c968d82b2"
+    },
+    {
+      "path": "consumers/x86_64-unknown-linux-gnu/job-log.json",
+      "bytes": 326,
+      "sha256": "826718e3b903df487f42f1aa4f6f6d44542a020da18726551893c56ea29ac753"
+    },
+    {
+      "path": "consumers/x86_64-unknown-linux-gnu/job-log.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "consumers/x86_64-unknown-linux-gnu/job.json",
+      "bytes": 3042,
+      "sha256": "237ca0363219192b7a1f547d68b333e2b0a45782abd8b13cee44ba8b4e948f92"
+    },
+    {
+      "path": "consumers/x86_64-unknown-linux-gnu/job.log.gz",
+      "bytes": 4876,
+      "sha256": "e2e6b195354f93b0d55aee4f3b2be8e130243e64b278e3d289a8412ad08d4070"
+    },
+    {
+      "path": "consumers/x86_64-unknown-linux-gnu/original-artifact.zip",
+      "bytes": 4235792,
+      "sha256": "6e10c32b657397a2072e5095a9d6c03cf1dd0b55db1cddf8427636db9764c6e8"
+    },
+    {
+      "path": "consumers/x86_64-unknown-linux-gnu/retention.json",
+      "bytes": 83013,
+      "sha256": "1f6d2e1df9c523885aabc52d2c51e12f735f3730e254e50863833a24ea8fdd18"
+    },
+    {
+      "path": "corpus-matrix/artifacts.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "corpus-matrix/artifacts.stdout",
+      "bytes": 3674,
+      "sha256": "a656d8ae512fd4aff3de089139b2af3d6375f64a7c404cd073a91342f902bb71"
+    },
+    {
+      "path": "corpus-matrix/check.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "corpus-matrix/check.stdout",
+      "bytes": 82,
+      "sha256": "3c06945439f7a7a9dae79f51f2275a6a8775928df0634e3f94e740e1236f2b28"
+    },
+    {
+      "path": "corpus-matrix/command.json",
+      "bytes": 766,
+      "sha256": "9e5c601d8f5058f76813d2ea3d27b3f47952a0c33f6267251fedca3ed2c621e1"
+    },
+    {
+      "path": "corpus-matrix/containers.json",
+      "bytes": 1396,
+      "sha256": "13bbef436d6b03527822351a96c27e0e70ec7c8d0452284fb875ba335e446d37"
+    },
+    {
+      "path": "corpus-matrix/jobs.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "corpus-matrix/jobs.stdout",
+      "bytes": 14203,
+      "sha256": "9bd3012d28a746922a22a43f40fd206b462ac50a0777bd214d6728b8c44d0c24"
+    },
+    {
+      "path": "corpus-matrix/receipt.json",
+      "bytes": 42043,
+      "sha256": "93f5f631ae93fb8ff3468a7473a47f248f4b6db1accb70d6d453f9e265a66ad5"
+    },
+    {
+      "path": "corpus-matrix/run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "corpus-matrix/run.stdout",
+      "bytes": 12461,
+      "sha256": "240e21a012f40482e977d099c74144a49caab400a4974cd02f998f117e94f542"
+    },
+    {
+      "path": "corpus-matrix/selection.json",
+      "bytes": 2305,
+      "sha256": "155bf8e8ff2054848725f41be4f87e0447e93934b53575b654c293efc10e7569"
+    },
+    {
+      "path": "macos14-inspection/artifact.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "macos14-inspection/artifact.stdout",
+      "bytes": 729,
+      "sha256": "bfdd53bafe1dbe963504503805317b9300e8ea51912e444b26972ead401371d2"
+    },
+    {
+      "path": "macos14-inspection/receipt.json",
+      "bytes": 7398,
+      "sha256": "dd09d095cfc214fcf9a187fa437790e90e439c51d4f7eeca51d7d6637c60b490"
+    },
+    {
+      "path": "macos14-inspection/run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "macos14-inspection/run.stdout",
+      "bytes": 12499,
+      "sha256": "705b7259eca43e121676034506caaec7321ef67e0a5606d0ffe1ca615ad3b71a"
+    },
+    {
+      "path": "macos14-arm-consumer/api.json",
+      "bytes": 812,
+      "sha256": "7bc86f67ee766330b6a5e3a7611681f67a56a2d3deb182a24cf6df746abdbe93"
+    },
+    {
+      "path": "macos14-arm-consumer/job-log.json",
+      "bytes": 326,
+      "sha256": "117559c54d1ac1c26603d515f6b0dedd3eddbd8a60a7bf96db18c80577787ab4"
+    },
+    {
+      "path": "macos14-arm-consumer/job-log.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "macos14-arm-consumer/job.json",
+      "bytes": 3278,
+      "sha256": "2158faea1520b3190262ffc92a38716d8fc831cabbb434d7a11d0815464517b7"
+    },
+    {
+      "path": "macos14-arm-consumer/job.log.gz",
+      "bytes": 4474,
+      "sha256": "eeace29297c56c3e110db917d725f058a363887385652ddfd2343180474fd375"
+    },
+    {
+      "path": "macos14-arm-consumer/jobs.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "macos14-arm-consumer/jobs.stdout",
+      "bytes": 2678,
+      "sha256": "e72a0afc3f535c36ee38fb1db438b62bd4c5c934a5e3ff95777eca6e3cad5b9e"
+    },
+    {
+      "path": "macos14-arm-consumer/original-artifact.zip",
+      "bytes": 4259743,
+      "sha256": "387c95fd6e5c1616e7c80b70f3c6c4e6c1b647ce97cc94c1dcca2741e9133acc"
+    },
+    {
+      "path": "macos14-arm-consumer/receipt.json",
+      "bytes": 7313,
+      "sha256": "70a7ef7c0dcaa3194ed85949e86023ebe979c02b8e9a7e0d21baf6ec0b8b3f1f"
+    },
+    {
+      "path": "macos14-arm-consumer/retention.json",
+      "bytes": 93331,
+      "sha256": "939cb00fd5501acfaf529c7e0afaf18b8c87e66c508f8ddd4c3715422614413b"
+    },
+    {
+      "path": "local-corpus-consumer/driver.json",
+      "bytes": 5542,
+      "sha256": "03c6135685d70f61dcebdf0fda70e58c7b859c5778cb72f0a648ba79fbe04b47"
+    },
+    {
+      "path": "local-corpus-consumer/original-evidence.tar.gz",
+      "bytes": 5195912,
+      "sha256": "0999c4d738eb10f5ca7ccc588ccabeeb8e6c22cddc94b8184a2027fa5d771b96"
+    },
+    {
+      "path": "local-corpus-consumer/receipt.json",
+      "bytes": 95408,
+      "sha256": "2d46fd28a2158afd9837183079f845d111a652a43df416315e4ebd98d7ade730"
+    },
+    {
+      "path": "consumer-checkers/check-final-corpus-matrix.py",
+      "bytes": 8698,
+      "sha256": "8afc5dae26130a1ff553017bd77f8a606278761941968ca158c45f8790a6927d"
+    },
+    {
+      "path": "consumer-checkers/inspect-final-consumers.py",
+      "bytes": 6372,
+      "sha256": "772454d44437909277c5a9b2e1f2220ff19d25f64308f9a4e7a7bdba7a2ed3e3"
+    },
+    {
+      "path": "consumer-checkers/inspect-final-macos-floor.py",
+      "bytes": 6768,
+      "sha256": "c53b663e26d936cfeb93e94ab2a6704e8e66d8fafb1173585f262edb749f24e3"
+    },
+    {
+      "path": "consumer-checkers/inspect-final-native-producer.py",
+      "bytes": 19072,
+      "sha256": "64572b572e3a7319f837d788307436e36b54802cc0ba6f146c541bb297d43a8a"
+    },
+    {
+      "path": "consumer-checkers/retain-final-consumers.py",
+      "bytes": 6577,
+      "sha256": "ed1fcdfd49a0afeaa87ff01b43282d85dbba89a346c0d232d25ba391259af2f2"
+    }
+  ],
+  "retainer_sha256": "ed1fcdfd49a0afeaa87ff01b43282d85dbba89a346c0d232d25ba391259af2f2"
+}

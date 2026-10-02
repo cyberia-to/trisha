@@ -1,0 +1,427 @@
+{
+  "status": "passed",
+  "scope": "Dependency/source scope for separate dd61 Joy package planning; no new package or inherited full198 verdict established",
+  "observed_at": "2026-10-02T06:43:13.233707+00:00",
+  "prior_source_sha256": "734df69dc7d43467fc9ae574c7cf7b25eb9b4ec9bc08e9ca3f96b9500131f42e",
+  "prior_provenance_sha256": "3c6f2ced084812e73f97c069169f83807fc5d389e54b581dd52f10982cd5b227",
+  "joy_before": "11b7bad201cbfc03955290b5479fa6684f8e2b82",
+  "joy_after": "dd61df9128f6da1f97d4698f45f154f05312fe51",
+  "changed_paths": [
+    ".claude/plans/host-proof-deadline.md",
+    "audit/host-proof-deadline/.gitattributes",
+    "audit/host-proof-deadline/README.md",
+    "audit/host-proof-deadline/boundary/receipt.json",
+    "audit/host-proof-deadline/boundary/resources.jsonl",
+    "audit/host-proof-deadline/boundary/stderr",
+    "audit/host-proof-deadline/boundary/stdout",
+    "audit/host-proof-deadline/check/receipt.json",
+    "audit/host-proof-deadline/check/resources.jsonl",
+    "audit/host-proof-deadline/check/stderr",
+    "audit/host-proof-deadline/check/stdout",
+    "audit/host-proof-deadline/contract-review/commands.json",
+    "audit/host-proof-deadline/contract-review/files.json",
+    "audit/host-proof-deadline/contract-review/initial-invocation.json",
+    "audit/host-proof-deadline/contract-review/passages.json",
+    "audit/host-proof-deadline/contract-review/review.json",
+    "audit/host-proof-deadline/contract-review/source-map.json",
+    "audit/host-proof-deadline/focused/receipt.json",
+    "audit/host-proof-deadline/focused/resources.jsonl",
+    "audit/host-proof-deadline/focused/stderr",
+    "audit/host-proof-deadline/focused/stdout",
+    "audit/host-proof-deadline/independent-review/commands.json",
+    "audit/host-proof-deadline/independent-review/files.json",
+    "audit/host-proof-deadline/independent-review/review.json",
+    "audit/host-proof-deadline/independent-review/reviewed-source/cli/tests/structured_certificates.rs",
+    "audit/host-proof-deadline/independent-review/reviewed-source/cli/tests/structured_certificates/deadline.rs",
+    "audit/host-proof-deadline/independent-review/reviewed-source/cli/tests/structured_run.rs",
+    "audit/host-proof-deadline/independent-review/reviewed-source/rs/structured/limits.rs",
+    "audit/host-proof-deadline/independent-review/reviewed-source/rs/structured/tests/compaction.rs",
+    "audit/host-proof-deadline/independent-review/reviewed-source/rs/structured/tests/compiler/compaction.rs",
+    "audit/host-proof-deadline/independent-review/reviewed-source/specs/structured-run.md",
+    "audit/host-proof-deadline/independent-review/source-map.json",
+    "audit/host-proof-deadline/independent-review/tracked.diff",
+    "audit/host-proof-deadline/install-path/receipt.json",
+    "audit/host-proof-deadline/install-path/resources.jsonl",
+    "audit/host-proof-deadline/install-path/stderr",
+    "audit/host-proof-deadline/install-path/stdout",
+    "audit/host-proof-deadline/install/receipt.json",
+    "audit/host-proof-deadline/install/resources.jsonl",
+    "audit/host-proof-deadline/install/stderr",
+    "audit/host-proof-deadline/install/stdout",
+    "audit/host-proof-deadline/run.py",
+    "audit/host-proof-deadline/source.patch",
+    "audit/host-proof-deadline/test/receipt.json",
+    "audit/host-proof-deadline/test/resources.jsonl",
+    "audit/host-proof-deadline/test/stderr",
+    "audit/host-proof-deadline/test/stdout",
+    "cli/tests/structured_certificates.rs",
+    "cli/tests/structured_certificates/deadline.rs",
+    "cli/tests/structured_run.rs",
+    "rs/structured/limits.rs",
+    "rs/structured/tests/compaction.rs",
+    "rs/structured/tests/compiler/compaction.rs",
+    "specs/structured-run.md"
+  ],
+  "changed_production_paths": [
+    "rs/structured/limits.rs"
+  ],
+  "exact_production_change": "COMPACT_TIME_MS 7200000 -> 14400000; all other bytes in that production file identical",
+  "dependency_closures": [
+    {
+      "project": "trisha",
+      "root_package": "trisha",
+      "resolved_packages": 854,
+      "local_packages": [
+        {
+          "name": "cyber-hemera",
+          "version": "0.3.1",
+          "manifest_path": "hemera/rs/Cargo.toml"
+        },
+        {
+          "name": "acpu",
+          "version": "0.2.0",
+          "manifest_path": "honeycrisp/acpu/Cargo.toml"
+        },
+        {
+          "name": "aruminium",
+          "version": "0.2.0",
+          "manifest_path": "honeycrisp/aruminium/Cargo.toml"
+        },
+        {
+          "name": "unimem",
+          "version": "0.2.0",
+          "manifest_path": "honeycrisp/unimem/Cargo.toml"
+        },
+        {
+          "name": "cyber-lens-assayer",
+          "version": "0.2.0",
+          "manifest_path": "lens/assayer/Cargo.toml"
+        },
+        {
+          "name": "cyber-lens-binius",
+          "version": "0.1.1",
+          "manifest_path": "lens/binius/Cargo.toml"
+        },
+        {
+          "name": "cyber-lens-brakedown",
+          "version": "0.2.0",
+          "manifest_path": "lens/brakedown/Cargo.toml"
+        },
+        {
+          "name": "cyber-lens-core",
+          "version": "0.1.2",
+          "manifest_path": "lens/core/Cargo.toml"
+        },
+        {
+          "name": "cyber-lens-ikat",
+          "version": "0.2.0",
+          "manifest_path": "lens/ikat/Cargo.toml"
+        },
+        {
+          "name": "cyber-lens-porphyry",
+          "version": "0.2.0",
+          "manifest_path": "lens/porphyry/Cargo.toml"
+        },
+        {
+          "name": "cyber-lens",
+          "version": "0.2.0",
+          "manifest_path": "lens/src/Cargo.toml"
+        },
+        {
+          "name": "cyber-nox",
+          "version": "0.3.0",
+          "manifest_path": "nox/rs/Cargo.toml"
+        },
+        {
+          "name": "strata-compute",
+          "version": "0.1.1",
+          "manifest_path": "strata/compute/Cargo.toml"
+        },
+        {
+          "name": "strata-core",
+          "version": "0.1.1",
+          "manifest_path": "strata/core/Cargo.toml"
+        },
+        {
+          "name": "strata-ext",
+          "version": "0.1.1",
+          "manifest_path": "strata/ext/Cargo.toml"
+        },
+        {
+          "name": "strata-genies",
+          "version": "0.1.1",
+          "manifest_path": "strata/genies/rs/Cargo.toml"
+        },
+        {
+          "name": "strata-jali",
+          "version": "0.1.1",
+          "manifest_path": "strata/jali/rs/Cargo.toml"
+        },
+        {
+          "name": "strata-kuro",
+          "version": "0.1.1",
+          "manifest_path": "strata/kuro/rs/Cargo.toml"
+        },
+        {
+          "name": "strata-nebu",
+          "version": "0.1.1",
+          "manifest_path": "strata/nebu/rs/Cargo.toml"
+        },
+        {
+          "name": "strata-proof",
+          "version": "0.1.1",
+          "manifest_path": "strata/proof/Cargo.toml"
+        },
+        {
+          "name": "strata-trop",
+          "version": "0.1.1",
+          "manifest_path": "strata/trop/rs/Cargo.toml"
+        },
+        {
+          "name": "trident-lang",
+          "version": "0.3.0",
+          "manifest_path": "trident/Cargo.toml"
+        },
+        {
+          "name": "bfieldcodec_derive",
+          "version": "0.7.0",
+          "manifest_path": "trisha/.vendor/bfieldcodec_derive-0.7.0/Cargo.toml"
+        },
+        {
+          "name": "tasm-lib",
+          "version": "7.0.0",
+          "manifest_path": "trisha/.vendor/tasm-lib/Cargo.toml"
+        },
+        {
+          "name": "tasm-object-derive",
+          "version": "7.0.0",
+          "manifest_path": "trisha/.vendor/tasm-object-derive/Cargo.toml"
+        },
+        {
+          "name": "triton-air",
+          "version": "7.0.0",
+          "manifest_path": "trisha/.vendor/triton-air/Cargo.toml"
+        },
+        {
+          "name": "triton-constraint-builder",
+          "version": "7.0.0",
+          "manifest_path": "trisha/.vendor/triton-constraint-builder/Cargo.toml"
+        },
+        {
+          "name": "triton-constraint-circuit",
+          "version": "7.0.0",
+          "manifest_path": "trisha/.vendor/triton-constraint-circuit/Cargo.toml"
+        },
+        {
+          "name": "triton-isa",
+          "version": "7.0.0",
+          "manifest_path": "trisha/.vendor/triton-isa/Cargo.toml"
+        },
+        {
+          "name": "triton-vm",
+          "version": "7.0.0",
+          "manifest_path": "trisha/.vendor/triton-vm/Cargo.toml"
+        },
+        {
+          "name": "twenty-first",
+          "version": "1.1.0",
+          "manifest_path": "trisha/.vendor/twenty-first/Cargo.toml"
+        },
+        {
+          "name": "trisha",
+          "version": "0.3.0",
+          "manifest_path": "trisha/cli/Cargo.toml"
+        },
+        {
+          "name": "trisha-honeycrisp",
+          "version": "0.3.0",
+          "manifest_path": "trisha/honeycrisp/Cargo.toml"
+        },
+        {
+          "name": "trisha-neptune",
+          "version": "0.3.0",
+          "manifest_path": "trisha/neptune/Cargo.toml"
+        },
+        {
+          "name": "trisha-rs",
+          "version": "0.3.0",
+          "manifest_path": "trisha/rs/Cargo.toml"
+        },
+        {
+          "name": "trisha-wgpu",
+          "version": "0.3.0",
+          "manifest_path": "trisha/wgpu/Cargo.toml"
+        },
+        {
+          "name": "zheng",
+          "version": "0.4.0",
+          "manifest_path": "zheng/rs/Cargo.toml"
+        }
+      ],
+      "joy_in_closure": false,
+      "all_features": true,
+      "locked": true,
+      "offline": true
+    },
+    {
+      "project": "trident",
+      "root_package": "trident-lang",
+      "resolved_packages": 722,
+      "local_packages": [
+        {
+          "name": "cyber-hemera",
+          "version": "0.3.1",
+          "manifest_path": "hemera/rs/Cargo.toml"
+        },
+        {
+          "name": "cyber-nox",
+          "version": "0.3.0",
+          "manifest_path": "nox/rs/Cargo.toml"
+        },
+        {
+          "name": "strata-compute",
+          "version": "0.1.1",
+          "manifest_path": "strata/compute/Cargo.toml"
+        },
+        {
+          "name": "strata-core",
+          "version": "0.1.1",
+          "manifest_path": "strata/core/Cargo.toml"
+        },
+        {
+          "name": "strata-ext",
+          "version": "0.1.1",
+          "manifest_path": "strata/ext/Cargo.toml"
+        },
+        {
+          "name": "strata-nebu",
+          "version": "0.1.1",
+          "manifest_path": "strata/nebu/rs/Cargo.toml"
+        },
+        {
+          "name": "strata-proof",
+          "version": "0.1.1",
+          "manifest_path": "strata/proof/Cargo.toml"
+        },
+        {
+          "name": "trident-lang",
+          "version": "0.3.0",
+          "manifest_path": "trident/Cargo.toml"
+        }
+      ],
+      "joy_in_closure": false,
+      "all_features": true,
+      "locked": true,
+      "offline": true
+    }
+  ],
+  "commands": [
+    {
+      "name": "joy-diff",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/joy",
+        "diff",
+        "11b7bad201cbfc03955290b5479fa6684f8e2b82",
+        "dd61df9128f6da1f97d4698f45f154f05312fe51"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "ac774f63ca403509a96cfc257a6a485352c629574d7993d3f83f57a9726d3a8d",
+      "stdout_bytes": 1037149,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "joy-files",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/joy",
+        "diff",
+        "--name-only",
+        "11b7bad201cbfc03955290b5479fa6684f8e2b82",
+        "dd61df9128f6da1f97d4698f45f154f05312fe51"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "645d45ef24d7a52fb559707b26a611d6ee165642c88fa694043c4e29824475c4",
+      "stdout_bytes": 2797,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "limits-before",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/joy",
+        "show",
+        "11b7bad201cbfc03955290b5479fa6684f8e2b82:rs/structured/limits.rs"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "b7adbee9300d3136705270abf72081e95fc26ca810b0fff0a947e77201116447",
+      "stdout_bytes": 2940,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "limits-after",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/joy",
+        "show",
+        "dd61df9128f6da1f97d4698f45f154f05312fe51:rs/structured/limits.rs"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "353807322daf28801ecc445fd30e5340796ddfb5e64bf32a0bf7586121ac8983",
+      "stdout_bytes": 2941,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "cargo-version",
+      "command": [
+        "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/cargo",
+        "-Vv"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "930ba319a4044e5620604b209d876301cf1bfb05212aed1d0f68381d3fc6c81e",
+      "stdout_bytes": 335,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "trisha-metadata",
+      "command": [
+        "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/cargo",
+        "metadata",
+        "--manifest-path",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/temporary/cyber-candidate/unpacked/cyber-source/trisha/Cargo.toml",
+        "--format-version",
+        "1",
+        "--all-features",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "d38d4199b8483c27cb9e3bfb8ade05534881b4870b38a4d95effb6979b761342",
+      "stdout_bytes": 4122908,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "trident-metadata",
+      "command": [
+        "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/cargo",
+        "metadata",
+        "--manifest-path",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/temporary/cyber-candidate/unpacked/cyber-source/trident/Cargo.toml",
+        "--format-version",
+        "1",
+        "--all-features",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "f05ac32b4c7f128d7ef2c7b68248600de489168ecd3c107247afdc74a923eea4",
+      "stdout_bytes": 3432147,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "script_sha256": "6851d2178929c2509e91c950ef8eae751e8c68ad3fb96ca7a3220a58cff01a24"
+}

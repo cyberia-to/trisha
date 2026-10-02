@@ -1,0 +1,137 @@
+{
+  "status": "passed",
+  "repository": "trisha",
+  "pr": 22,
+  "base_ref": "release/0.4",
+  "base": "c8836be0103c8d2ead07c409bb117af04cae3449",
+  "head": "3652c4e554a9123a2a21a6e2ba3e9f7b2e6e7d23",
+  "merge": "6624b97eb0c2179816f908cb90af02c4edc7d6e8",
+  "expected_tree": "93fcea789b787057b9555a4bc362288d693f72b5",
+  "actual_tree": "93fcea789b787057b9555a4bc362288d693f72b5",
+  "commands": [
+    {
+      "argv": [
+        "gh",
+        "pr",
+        "view",
+        "22",
+        "--repo",
+        "cyberia-to/trisha",
+        "--json",
+        "state,isDraft,headRefOid,baseRefOid,baseRefName,mergeable,statusCheckRollup"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/heads/release/0.4"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "fetch",
+        "origin",
+        "release/0.4"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "merge-base",
+        "--is-ancestor",
+        "c8836be0103c8d2ead07c409bb117af04cae3449",
+        "c8836be0103c8d2ead07c409bb117af04cae3449"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "FETCH_HEAD"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "merge-tree",
+        "--write-tree",
+        "c8836be0103c8d2ead07c409bb117af04cae3449",
+        "3652c4e554a9123a2a21a6e2ba3e9f7b2e6e7d23"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "gh",
+        "api",
+        "--method",
+        "PUT",
+        "repos/cyberia-to/trisha/pulls/22/merge",
+        "-f",
+        "merge_method=merge",
+        "-f",
+        "sha=3652c4e554a9123a2a21a6e2ba3e9f7b2e6e7d23"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "fetch",
+        "origin",
+        "release/0.4"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "6624b97eb0c2179816f908cb90af02c4edc7d6e8^{tree}"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "rev-list",
+        "--parents",
+        "-n",
+        "1",
+        "6624b97eb0c2179816f908cb90af02c4edc7d6e8"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "gh",
+        "pr",
+        "view",
+        "22",
+        "--repo",
+        "cyberia-to/trisha",
+        "--json",
+        "state,headRefOid,baseRefName,mergeCommit"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "exit_code": 0
+    }
+  ]
+}

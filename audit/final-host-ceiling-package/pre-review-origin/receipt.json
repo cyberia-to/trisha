@@ -1,0 +1,149 @@
+{
+  "scope": "Read-only origin observations while final review pending; no source export",
+  "observed_at": "2026-10-02T07:38:11.483911+00:00",
+  "rows": [
+    {
+      "repository": "bbg",
+      "command": [
+        "git",
+        "ls-remote",
+        "--heads",
+        "https://github.com/cyberia-to/bbg.git"
+      ],
+      "selected": "1d39975ad199b48c350fa4cc011cbf6f289480ee",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "actual_head": "1d39975ad199b48c350fa4cc011cbf6f289480ee",
+      "matches": true
+    },
+    {
+      "repository": "hemera",
+      "command": [
+        "git",
+        "ls-remote",
+        "--heads",
+        "https://github.com/cyberia-to/hemera.git"
+      ],
+      "selected": "a931a0a8e7ed369852ce0f8bc6451a59745ee692",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "actual_head": "a931a0a8e7ed369852ce0f8bc6451a59745ee692",
+      "matches": true
+    },
+    {
+      "repository": "honeycrisp",
+      "command": [
+        "git",
+        "ls-remote",
+        "--heads",
+        "https://github.com/cyberia-to/honeycrisp.git"
+      ],
+      "selected": "ff735e6c262926bc9bab7534786a575020cbe442",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "actual_head": "ff735e6c262926bc9bab7534786a575020cbe442",
+      "matches": true
+    },
+    {
+      "repository": "joy",
+      "command": [
+        "git",
+        "ls-remote",
+        "--heads",
+        "https://github.com/cyberia-to/joy.git"
+      ],
+      "selected": "dd61df9128f6da1f97d4698f45f154f05312fe51",
+      "origin_ref": "refs/heads/release/0.4",
+      "actual_head": "dd61df9128f6da1f97d4698f45f154f05312fe51",
+      "matches": true
+    },
+    {
+      "repository": "lens",
+      "command": [
+        "git",
+        "ls-remote",
+        "--heads",
+        "https://github.com/cyberia-to/lens.git"
+      ],
+      "selected": "17cafe91431977b738e5b72361187cd01ad93638",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "actual_head": "17cafe91431977b738e5b72361187cd01ad93638",
+      "matches": true
+    },
+    {
+      "repository": "neuron",
+      "command": [
+        "git",
+        "ls-remote",
+        "--heads",
+        "https://github.com/cyberia-to/neuron.git"
+      ],
+      "selected": "fd24e768d623604b67e20b4b93fa8e82c83ac373",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "actual_head": "fd24e768d623604b67e20b4b93fa8e82c83ac373",
+      "matches": true
+    },
+    {
+      "repository": "nox",
+      "command": [
+        "git",
+        "ls-remote",
+        "--heads",
+        "https://github.com/cyberia-to/nox.git"
+      ],
+      "selected": "2f09ca3c3f18ae470365310cca8db5208eda75c6",
+      "origin_ref": "refs/heads/release/0.4",
+      "actual_head": "2f09ca3c3f18ae470365310cca8db5208eda75c6",
+      "matches": true
+    },
+    {
+      "repository": "strata",
+      "command": [
+        "git",
+        "ls-remote",
+        "--heads",
+        "https://github.com/cyberia-to/strata.git"
+      ],
+      "selected": "d2eb1763b8caf04e6c7647ac6fe99761519c2ef9",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "actual_head": "d2eb1763b8caf04e6c7647ac6fe99761519c2ef9",
+      "matches": true
+    },
+    {
+      "repository": "trident",
+      "command": [
+        "git",
+        "ls-remote",
+        "--heads",
+        "https://github.com/cyberia-to/trident.git"
+      ],
+      "selected": "da0d1a59cd8208fab96f219ccedef29122d5221a",
+      "origin_ref": "refs/heads/release/0.4",
+      "actual_head": "da0d1a59cd8208fab96f219ccedef29122d5221a",
+      "matches": true
+    },
+    {
+      "repository": "trisha",
+      "command": [
+        "git",
+        "ls-remote",
+        "--heads",
+        "https://github.com/cyberia-to/trisha.git"
+      ],
+      "selected": "c8836be0103c8d2ead07c409bb117af04cae3449",
+      "origin_ref": "refs/heads/release/0.4",
+      "actual_head": "c8836be0103c8d2ead07c409bb117af04cae3449",
+      "matches": true
+    },
+    {
+      "repository": "zheng",
+      "command": [
+        "git",
+        "ls-remote",
+        "--heads",
+        "https://github.com/cyberia-to/zheng.git"
+      ],
+      "selected": "0d7ba6d422d9b825f9685e903e55252f88ebecd9",
+      "origin_ref": "refs/heads/release/0.4",
+      "actual_head": "0d7ba6d422d9b825f9685e903e55252f88ebecd9",
+      "matches": true
+    }
+  ]
+}

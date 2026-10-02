@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "scope": "Supplemental orchestration and package-metadata checks before final activation; no new native gate observation",
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_final_native_gate.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_transport_native_rehearsal.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/native-proof-ci/actionlint-1.7.12/actionlint"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "01f8a80"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "actual_prior_package": {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/release-results/cyber-tools-aarch64-apple-darwin.tar.gz",
+    "sha256": "b542e6e3bf8a15c4650cfeb8bda436ba45a1ecf32844aa9655275bf42086ab9b",
+    "packaged_candidate_sha256": "13aed55f36e8598a4869386e9349731c075903465a9098db413506695afbea62",
+    "installed_candidate_sha256": "13aed55f36e8598a4869386e9349731c075903465a9098db413506695afbea62",
+    "original_build_candidate_sha256": "5a98849d67115fd9e1d2ccb59f0e3a3e68dc47c5700f5c09adec6eacc8cd43f4",
+    "original_probe_candidate_sha256": "13aed55f36e8598a4869386e9349731c075903465a9098db413506695afbea62"
+  },
+  "runner_tests": 7,
+  "transport_tests": 4
+}

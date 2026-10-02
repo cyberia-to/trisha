@@ -1,0 +1,414 @@
+{
+  "scope": "Actual dd61 Joy helper trial using unchanged compiler vectors; not a coordinated final package",
+  "command": [
+    "python3",
+    "-B",
+    "-W",
+    "error",
+    "scripts/check-installed-host-ceiling.py",
+    "--source",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/temporary/cyber-candidate/unpacked/cyber-source",
+    "--candidate",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-candidate",
+    "--output",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1"
+  ],
+  "files": [
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/compiled-program-run.stderr",
+      "retained": "original/commands/compiled-program-run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/compiled-program-run.stdout",
+      "retained": "original/commands/compiled-program-run.stdout",
+      "bytes": 645,
+      "sha256": "87c7adcf419d5de9b448e74d7cfc6d66f8dd3d4af99816b07a26b2ab18390486"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/ordinary-prove-limit.stderr",
+      "retained": "original/commands/ordinary-prove-limit.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/ordinary-prove-limit.stdout",
+      "retained": "original/commands/ordinary-prove-limit.stdout",
+      "bytes": 1775,
+      "sha256": "b0d26f56b6ef6ace3e58351285d9d26f91a30315a0069a11bed704e4c99058c0"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/ordinary-verify-limit.stderr",
+      "retained": "original/commands/ordinary-verify-limit.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/ordinary-verify-limit.stdout",
+      "retained": "original/commands/ordinary-verify-limit.stdout",
+      "bytes": 1702,
+      "sha256": "05d85aef953bfe74ba830147ebd3583a5364012e11540ea85ad53da9e25d1b4a"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/prove-14400000.stderr",
+      "retained": "original/commands/prove-14400000.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/prove-14400000.stdout",
+      "retained": "original/commands/prove-14400000.stdout",
+      "bytes": 1775,
+      "sha256": "9de54d4927c10851d6016822b90a0a1c2f6ece60ca521cc9ccda14bfc006d0ce"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/prove-30000.stderr",
+      "retained": "original/commands/prove-30000.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/prove-30000.stdout",
+      "retained": "original/commands/prove-30000.stdout",
+      "bytes": 1772,
+      "sha256": "a60974a12dbbdbcb37d3a8b2851d0dc1a2627071ec99c7857b439dbbe77a7f8e"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/prove-7200000.stderr",
+      "retained": "original/commands/prove-7200000.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/prove-7200000.stdout",
+      "retained": "original/commands/prove-7200000.stdout",
+      "bytes": 1774,
+      "sha256": "7976261c44d68101f72c0d23d5c54d9f3fe6aa15858ac7be22e67661b4ca27d5"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/prove-artifact-invalid-0.stderr",
+      "retained": "original/commands/prove-artifact-invalid-0.stderr",
+      "bytes": 62,
+      "sha256": "3e81b93bd0d1dc9d093ea03758fc9dced02548f7910f27486ee655650f86dda8"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/prove-artifact-invalid-0.stdout",
+      "retained": "original/commands/prove-artifact-invalid-0.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/prove-artifact-invalid-14400001.stderr",
+      "retained": "original/commands/prove-artifact-invalid-14400001.stderr",
+      "bytes": 62,
+      "sha256": "3e81b93bd0d1dc9d093ea03758fc9dced02548f7910f27486ee655650f86dda8"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/prove-artifact-invalid-14400001.stdout",
+      "retained": "original/commands/prove-artifact-invalid-14400001.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/prove-artifact-invalid-18446744073709551615.stderr",
+      "retained": "original/commands/prove-artifact-invalid-18446744073709551615.stderr",
+      "bytes": 62,
+      "sha256": "3e81b93bd0d1dc9d093ea03758fc9dced02548f7910f27486ee655650f86dda8"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/prove-artifact-invalid-18446744073709551615.stdout",
+      "retained": "original/commands/prove-artifact-invalid-18446744073709551615.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/prove-artifact-ordinary-over-limit.stderr",
+      "retained": "original/commands/prove-artifact-ordinary-over-limit.stderr",
+      "bytes": 60,
+      "sha256": "85d67da7ff5871dc139a3b1245c8418df61c741348a0000c24d441da2e2222a7"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/prove-artifact-ordinary-over-limit.stdout",
+      "retained": "original/commands/prove-artifact-ordinary-over-limit.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-14400000-14400000.stderr",
+      "retained": "original/commands/verify-14400000-14400000.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-14400000-14400000.stdout",
+      "retained": "original/commands/verify-14400000-14400000.stdout",
+      "bytes": 1695,
+      "sha256": "4a88e1d27ce491501872f2b8b7de54f0b6f28ef8ae195feeb32e91328765ff1e"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-14400000-30000.stderr",
+      "retained": "original/commands/verify-14400000-30000.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-14400000-30000.stdout",
+      "retained": "original/commands/verify-14400000-30000.stdout",
+      "bytes": 1695,
+      "sha256": "cd9bd4961e900e4fbcb4cd4c5e904185887246ae37473d7cdad6491896e4496b"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-14400000-7200000.stderr",
+      "retained": "original/commands/verify-14400000-7200000.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-14400000-7200000.stdout",
+      "retained": "original/commands/verify-14400000-7200000.stdout",
+      "bytes": 1695,
+      "sha256": "548d8213ce05689b0fe4738be3d19e5af4f7dfa9fbd2b3d25c25d8a0de0e965c"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-30000-14400000.stderr",
+      "retained": "original/commands/verify-30000-14400000.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-30000-14400000.stdout",
+      "retained": "original/commands/verify-30000-14400000.stdout",
+      "bytes": 1695,
+      "sha256": "58d0616c5cca3a5451931916ca043cd5423914cfbe3287019443e5e6dc240bbd"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-30000-30000.stderr",
+      "retained": "original/commands/verify-30000-30000.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-30000-30000.stdout",
+      "retained": "original/commands/verify-30000-30000.stdout",
+      "bytes": 1695,
+      "sha256": "8a94bce9a94dd2f7735d349ed7ee3f4ef64a626cab2bda42cddaa84cae902be4"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-30000-7200000.stderr",
+      "retained": "original/commands/verify-30000-7200000.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-30000-7200000.stdout",
+      "retained": "original/commands/verify-30000-7200000.stdout",
+      "bytes": 1695,
+      "sha256": "087cdccc52b05dd81316b9367f80cd721d4a651c3e75ba6589f3b776ca7a3459"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-7200000-14400000.stderr",
+      "retained": "original/commands/verify-7200000-14400000.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-7200000-14400000.stdout",
+      "retained": "original/commands/verify-7200000-14400000.stdout",
+      "bytes": 1695,
+      "sha256": "58d0616c5cca3a5451931916ca043cd5423914cfbe3287019443e5e6dc240bbd"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-7200000-30000.stderr",
+      "retained": "original/commands/verify-7200000-30000.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-7200000-30000.stdout",
+      "retained": "original/commands/verify-7200000-30000.stdout",
+      "bytes": 1695,
+      "sha256": "0173a2aa1e18436ead3089f7654a37c3448d53b5ae6345459c28b4d21d842ab1"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-7200000-7200000.stderr",
+      "retained": "original/commands/verify-7200000-7200000.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-7200000-7200000.stdout",
+      "retained": "original/commands/verify-7200000-7200000.stdout",
+      "bytes": 1695,
+      "sha256": "4ab1114dfd68ce0c25b73961c3df7c6d9a0a66437a0e8973ccab16cba45024b4"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-artifact-invalid-0.stderr",
+      "retained": "original/commands/verify-artifact-invalid-0.stderr",
+      "bytes": 62,
+      "sha256": "3e81b93bd0d1dc9d093ea03758fc9dced02548f7910f27486ee655650f86dda8"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-artifact-invalid-0.stdout",
+      "retained": "original/commands/verify-artifact-invalid-0.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-artifact-invalid-14400001.stderr",
+      "retained": "original/commands/verify-artifact-invalid-14400001.stderr",
+      "bytes": 62,
+      "sha256": "3e81b93bd0d1dc9d093ea03758fc9dced02548f7910f27486ee655650f86dda8"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-artifact-invalid-14400001.stdout",
+      "retained": "original/commands/verify-artifact-invalid-14400001.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-artifact-invalid-18446744073709551615.stderr",
+      "retained": "original/commands/verify-artifact-invalid-18446744073709551615.stderr",
+      "bytes": 62,
+      "sha256": "3e81b93bd0d1dc9d093ea03758fc9dced02548f7910f27486ee655650f86dda8"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-artifact-invalid-18446744073709551615.stdout",
+      "retained": "original/commands/verify-artifact-invalid-18446744073709551615.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-artifact-ordinary-over-limit.stderr",
+      "retained": "original/commands/verify-artifact-ordinary-over-limit.stderr",
+      "bytes": 60,
+      "sha256": "85d67da7ff5871dc139a3b1245c8418df61c741348a0000c24d441da2e2222a7"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/commands/verify-artifact-ordinary-over-limit.stdout",
+      "retained": "original/commands/verify-artifact-ordinary-over-limit.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/compiled",
+      "retained": "original/compiled",
+      "bytes": 790,
+      "sha256": "0fe0b19a530c7ec37b17ae10ac6e8b17edba134a2941293bde23c9478cd180d7"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/compiler",
+      "retained": "original/compiler",
+      "bytes": 2521,
+      "sha256": "e0ecc645870abcb0502ea030dbafbf1f0128cdc1b05220f16c336bdf50623166"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/destination",
+      "retained": "original/destination",
+      "bytes": 20,
+      "sha256": "32dd0d20764bb03911b2a294ab3d5fded95e9164861e9e5491c2c7c215534ac3"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/fourteen",
+      "retained": "original/fourteen",
+      "bytes": 85,
+      "sha256": "cf7fad2787207c4e1152d7d3cc6afb4f4c701877d3530218170b8e326d9aefae"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/generated",
+      "retained": "original/generated",
+      "bytes": 790,
+      "sha256": "0fe0b19a530c7ec37b17ae10ac6e8b17edba134a2941293bde23c9478cd180d7"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/job",
+      "retained": "original/job",
+      "bytes": 6635,
+      "sha256": "25c847c681a352fc32e3d6949a9066f60a399688aa7d0e0948644a1362507dcd"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/ordinary-proof",
+      "retained": "original/ordinary-proof",
+      "bytes": 1782,
+      "sha256": "683e6a9c7ed9f68ef0652dd07ee4b253098252e45966e152957980de307b33f0"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/ordinary-result",
+      "retained": "original/ordinary-result",
+      "bytes": 790,
+      "sha256": "0fe0b19a530c7ec37b17ae10ac6e8b17edba134a2941293bde23c9478cd180d7"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/proof-14400000",
+      "retained": "original/proof-14400000",
+      "bytes": 1782,
+      "sha256": "683e6a9c7ed9f68ef0652dd07ee4b253098252e45966e152957980de307b33f0"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/proof-30000",
+      "retained": "original/proof-30000",
+      "bytes": 1782,
+      "sha256": "683e6a9c7ed9f68ef0652dd07ee4b253098252e45966e152957980de307b33f0"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/proof-7200000",
+      "retained": "original/proof-7200000",
+      "bytes": 1782,
+      "sha256": "683e6a9c7ed9f68ef0652dd07ee4b253098252e45966e152957980de307b33f0"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/receipt.json",
+      "retained": "original/receipt.json",
+      "bytes": 25467,
+      "sha256": "16b864837efe636ecf7cb9b7d88da0026581e60c333c26be27b5ab4838a640f0"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/result",
+      "retained": "original/result",
+      "bytes": 85,
+      "sha256": "cf7fad2787207c4e1152d7d3cc6afb4f4c701877d3530218170b8e326d9aefae"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1/zero",
+      "retained": "original/zero",
+      "bytes": 85,
+      "sha256": "7b658a799adf0f027ec2b44fdb463847b2ef4bf49f7f7af1166a3291781f66cd"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-source.json",
+      "retained": "host-ceiling-helper-source.json",
+      "bytes": 812,
+      "sha256": "a58fc96975c6e3fc1d766c081d50cd6992ae1cf79067de8de7ff6b68dee55668"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-candidate/candidate.json",
+      "retained": "candidate.json",
+      "bytes": 1067,
+      "sha256": "f208f7f73d22e36f4ea46bbc6c7460a0b18ab7d3ef0be0f584d673c64ca9a2bb"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1.stdout",
+      "retained": "host-ceiling-helper-v1.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-helper-v1.stderr",
+      "retained": "host-ceiling-helper-v1.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/host-deadline/postcommit/receipt.json",
+      "retained": "root-install-receipt.json",
+      "bytes": 1620,
+      "sha256": "d18d74a3e080eaa452ee95b038ac3b8c35ccbf9d93c54265a9aa66a49c616022"
+    },
+    {
+      "original": "scripts/check-installed-host-ceiling.py",
+      "retained": "check-installed-host-ceiling.py",
+      "bytes": 6762,
+      "sha256": "20c434ab117fe2e54e7e1a80e39f232fac4ef32f92803326bf9213e78fceebf7"
+    }
+  ]
+}

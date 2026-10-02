@@ -1,0 +1,116 @@
+{
+  "scope": "Independent final runner and source-preview review, before export or activation",
+  "revision": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+  "commands": [
+    {
+      "name": "source-preview",
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "audit/final-host-ceiling-package/check-source-preview.py",
+        "--family",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution",
+        "--output",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/source-preview.json"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 66,
+        "sha256": "bbea650bb836e48299b45fca3e9f07f722cc38237d385bdc412a65a619f8cdcc"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "orchestration",
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_final_native_gate.py"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 3516,
+        "sha256": "99772d877e088d1212784be023feb16edc02315d0adc3c41bc7ab7666243fc8e"
+      },
+      "stderr": {
+        "bytes": 104,
+        "sha256": "1e43b905e11ca028139fe5078016515111aaf7cebf8d6a3e224b7d03b9cb6ac9"
+      }
+    },
+    {
+      "name": "transport",
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_transport_native_rehearsal.py"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 101,
+        "sha256": "33060fd73862c5e1af97335504d5b45211fce6d229657f556d8deceeadc52ce4"
+      }
+    },
+    {
+      "name": "actionlint",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/native-proof-ci/actionlint-1.7.12/actionlint"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "01f8a80",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "started": "2026-10-02T07:44:54.963347+00:00",
+  "status": "passed",
+  "ended": "2026-10-02T07:44:56.460100+00:00"
+}

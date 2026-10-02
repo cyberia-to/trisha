@@ -1,0 +1,25 @@
+{
+  "scope": "Actual local consumer outer launch invocation, distinct from admission command template relative to checkout",
+  "recorded_at": "2026-10-02T11:58:33.233103+00:00",
+  "command": [
+    "python3",
+    "-B",
+    "-W",
+    "error",
+    "trisha-native-ci/scripts/native-rehearsal-local.py",
+    "--family",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution",
+    "--output-name",
+    "local-macos-final-corpus-consumer",
+    "--selector",
+    ".github/final-package-candidate.json",
+    "--cache",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/consumer-proposal/local-consumer-asset-cache.json"
+  ],
+  "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution",
+  "runner_revision": "dd858356251101f285c785cb04fba1644a612fce",
+  "script_sha256": "e6b8dc12af1dbf81fcbf76ed2f94be2165621006797be950100db854230a220b",
+  "admission_receipt_sha256": "3bb2440ff58bbdf4be7de94f2a1156a0bec836af4baff9332607991865fad7ed",
+  "stdout": "measurements/local-final-consumer.stdout",
+  "stderr": "measurements/local-final-consumer.stderr"
+}

@@ -1,0 +1,158 @@
+{
+  "status": "failed",
+  "scope": "Bounded actual installed Joy host-deadline contract; no whole-compiler proof claim",
+  "joy": {
+    "bytes": 5651936,
+    "sha256": "cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6"
+  },
+  "source_provenance_sha256": "3c6f2ced084812e73f97c069169f83807fc5d389e54b581dd52f10982cd5b227",
+  "fixture": {
+    "bytes": 153091,
+    "sha256": "4b118cd9c9f20764e46b16676d4cb63599dc40c7e8f3a40a47c4fe5962f752ad"
+  },
+  "candidate_sha256": "13aed55f36e8598a4869386e9349731c075903465a9098db413506695afbea62",
+  "script_sha256": "20c434ab117fe2e54e7e1a80e39f232fac4ef32f92803326bf9213e78fceebf7",
+  "helper_sha256": "5caa737b7c7b8b1fef0dd024a56e78f394273b8140b12a1832f29c8dad891a94",
+  "commands": [
+    {
+      "name": "prove-30000",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/temporary/cyber-candidate/installed/cyber-tools/bin/joy",
+        "prove-artifact",
+        "compiler",
+        "--input",
+        "job",
+        "-o",
+        "proof-30000",
+        "--time-ms",
+        "30000",
+        "--resident-nodes",
+        "196608",
+        "--collection-work",
+        "100000000"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-old-binary-rejection",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": {
+        "path": "prove-30000.stdout",
+        "bytes": 1772,
+        "sha256": "5f7bf2581a8aa9bc515bf2427227d90ed1ea1ecb298b982881fdf9ef5507593e"
+      },
+      "stderr": {
+        "path": "prove-30000.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "verify-30000-30000",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/temporary/cyber-candidate/installed/cyber-tools/bin/joy",
+        "verify-artifact",
+        "compiler",
+        "--input",
+        "job",
+        "--proof",
+        "proof-30000",
+        "-o",
+        "compiled",
+        "--emit",
+        "program",
+        "--force",
+        "--time-ms",
+        "30000",
+        "--resident-nodes",
+        "196608",
+        "--collection-work",
+        "100000000"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-old-binary-rejection",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": {
+        "path": "verify-30000-30000.stdout",
+        "bytes": 1695,
+        "sha256": "ef8275734c2d13cca3015d059b98825dd1ad9a2756e6757eba4f7a7fac3730c2"
+      },
+      "stderr": {
+        "path": "verify-30000-30000.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "verify-30000-7200000",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/temporary/cyber-candidate/installed/cyber-tools/bin/joy",
+        "verify-artifact",
+        "compiler",
+        "--input",
+        "job",
+        "--proof",
+        "proof-30000",
+        "-o",
+        "compiled",
+        "--emit",
+        "program",
+        "--force",
+        "--time-ms",
+        "7200000",
+        "--resident-nodes",
+        "196608",
+        "--collection-work",
+        "100000000"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-old-binary-rejection",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": {
+        "path": "verify-30000-7200000.stdout",
+        "bytes": 1695,
+        "sha256": "2277ca54200c3c1c3dcafdae36c1fcff161687cf146553d16a21195f484fbd7a"
+      },
+      "stderr": {
+        "path": "verify-30000-7200000.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "verify-30000-14400000",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/temporary/cyber-candidate/installed/cyber-tools/bin/joy",
+        "verify-artifact",
+        "compiler",
+        "--input",
+        "job",
+        "--proof",
+        "proof-30000",
+        "-o",
+        "compiled",
+        "--emit",
+        "program",
+        "--force",
+        "--time-ms",
+        "14400000",
+        "--resident-nodes",
+        "196608",
+        "--collection-work",
+        "100000000"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-old-binary-rejection",
+      "expected_exit": 0,
+      "exit_code": 1,
+      "stdout": {
+        "path": "verify-30000-14400000.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "verify-30000-14400000.stderr",
+        "bytes": 61,
+        "sha256": "06aa7dd648b984b141457abfdccb02fcb9fe256e6abdab4fb3c70fcb4e66851e"
+      }
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci/scripts/check-installed-host-ceiling.py\", line 51, in main\n    result = execute('verify-' + producer_ms + '-' + verifier_ms,\n                     ['verify-artifact', 'compiler', '--input', 'job', '--proof', proof,\n                      '-o', 'compiled', '--emit', 'program', '--force', '--time-ms', verifier_ms, *compact])\n  File \"/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci/scripts/check-installed-host-ceiling.py\", line 37, in execute\n    result = helper.execute(joy, command, output, commands, name, report['commands'], expected)\n  File \"/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci/scripts/current-structured-corpus.py\", line 72, in execute\n    require(result.returncode == expected, name + ' returned an unexpected exit: ' + result.stderr.decode('utf-8', errors='replace')[-4000:])\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci/scripts/current-structured-corpus.py\", line 26, in require\n    raise ValueError(message)\nValueError: verify-30000-14400000 returned an unexpected exit: error: execution error: limit time_ms must be in 1..=7200000\n\n"
+}

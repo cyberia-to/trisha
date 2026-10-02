@@ -1,0 +1,68 @@
+{
+  "status": "passed-exact-consumer-selector-review",
+  "observed_ns": 1790942040974809000,
+  "candidate": {
+    "bytes": 4065,
+    "sha256": "084bfe4821114455881b1fd2718d8a10373e48562d97093ef3a580b0fb9626ba"
+  },
+  "macos_floor": {
+    "bytes": 523,
+    "sha256": "35bed4ce88573d2bb61c9e712fe867e57d71d5068e208276fe18e9e4424debce"
+  },
+  "proposal": {
+    "bytes": 2734,
+    "sha256": "6f21c19dbe4a6c45c37b515dc0aa9a08bc76407f9e3ca611c2a8d38efde88812"
+  },
+  "source_files": {
+    "scripts/native-candidate.py": {
+      "bytes": 26414,
+      "sha256": "b2ef3e9ac773e6326f084cdf9cf419766272646d9c6ad7050953a0b3417a7e05"
+    },
+    "scripts/native-rehearsal-macos-floor.py": {
+      "bytes": 9072,
+      "sha256": "1997002295a3596e28a21c5eac90da648739258b5d70471abfdc77cf428e12c5"
+    },
+    "scripts/current-structured-corpus.py": {
+      "bytes": 15161,
+      "sha256": "5caa737b7c7b8b1fef0dd024a56e78f394273b8140b12a1832f29c8dad891a94"
+    },
+    "scripts/check-installed-host-ceiling.py": {
+      "bytes": 6762,
+      "sha256": "20c434ab117fe2e54e7e1a80e39f232fac4ef32f92803326bf9213e78fceebf7"
+    },
+    ".github/workflows/final-package-native.yml": {
+      "bytes": 2886,
+      "sha256": "27477b80d145cbcad6c559d801df7f67ffe16fd3f6ac06bcd6c355fdd091e087"
+    },
+    ".github/workflows/final-package-macos-floor.yml": {
+      "bytes": 1702,
+      "sha256": "9f0b7c10c93e39ff3d70cd2103ad58f16ab426d885f614c5fb5cc09c79aa60da"
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    }
+  ],
+  "remote_bodies": 20,
+  "local_bodies": 3,
+  "full198": "Fresh actual finalTrisha proof gate retained and authenticated separately; historical baseline_reference is not coverage",
+  "authorization": "Activate only the two exact reviewed selectors; run five remote and one local original bounded consumers plus separate macOS14 ARM gate. No release publication or source/profile/cap changes.",
+  "source": {
+    "bytes": 5835,
+    "sha256": "568599506a24d5b9478662dbdf2f18acdaec0532cca8b3637ee6bf3985e81ab0"
+  }
+}

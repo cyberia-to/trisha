@@ -1,0 +1,20 @@
+{
+  "id": 11217474197,
+  "node_id": "MDg6QXJ0aWZhY3QxMTIxNzQ3NDE5Nw==",
+  "name": "final-package-source-preparation",
+  "size_in_bytes": 72804,
+  "url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11217474197",
+  "archive_download_url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11217474197/zip",
+  "expired": false,
+  "digest": "sha256:2819cb3b80e3aa8bf89bcfc532698e95ac9661b737c39d2ed6ea85187679d7b4",
+  "created_at": "2026-10-02T09:07:08Z",
+  "updated_at": "2026-10-02T09:07:08Z",
+  "expires_at": "2026-11-01T09:07:07Z",
+  "workflow_run": {
+    "id": 36987731030,
+    "repository_id": 1159894384,
+    "head_repository_id": 1159894384,
+    "head_branch": "test/0.4-final-host-ceiling-20261002",
+    "head_sha": "6ad79cad0ab499c9dd707a5cad34de901993a8bc"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "scope": "Distinct final Joy dd61 host-deadline feature-branch package rehearsal; prior source734 and frozen e4bac receipts unchanged",
+  "validation_profile": "final-host-ceiling-v1",
+  "status": "exported-awaiting-independent-reproduction",
+  "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+  "release_id": 389977897,
+  "release_tag": "candidate-20260916.1",
+  "asset_prefix": "rehearsal-20261002-final-dd61-remote",
+  "provenance_sha256": "9334dead92b990a12acf16a2565aeb762a07311dfc2c3d6cb896c0490dc5926e",
+  "inputs_sha256": "6a9e9af007de7f1d3dca6cb078080270cb4b96057db182f9c64775d063d6e767",
+  "kit_sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd",
+  "producers": []
+}

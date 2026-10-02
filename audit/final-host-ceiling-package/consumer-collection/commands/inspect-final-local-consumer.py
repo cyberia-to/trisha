@@ -1,0 +1,23 @@
+"""Replay all actual final local installed consumer receipts without running tools."""
+from pathlib import Path
+import hashlib,importlib.util,json
+M=Path(__file__).resolve().parent;R=M.parent;CI=R/'trisha-native-ci';L=R/'local-macos-final-corpus-consumer';O=M/'final-local-consumer-inspection';O.mkdir()
+s=importlib.util.spec_from_file_location('matrix',M/'check-final-corpus-matrix.py');matrix=importlib.util.module_from_spec(s);s.loader.exec_module(matrix)
+load=matrix.load;sha=matrix.sha;require=matrix.require;i=matrix.inspector
+selector=CI/'.github/final-package-candidate.json';require(sha(selector)=='084bfe4821114455881b1fd2718d8a10373e48562d97093ef3a580b0fb9626ba','frozen consumer selector required');selected=load(selector);driver=load(L/'driver.json')
+require(driver['status']=='passed' and driver['bootstrap_revision']=='dd858356251101f285c785cb04fba1644a612fce' and driver['exit_code']==0 and driver['resource_stopped'] is False,'actual final local consumer did not pass')
+require(driver['selector']==dict(selected,full_baselines=True,targets=['aarch64-apple-darwin'])==load(L/'.github/release-candidate.json'),'actual local consumer selector differs')
+for name in ['driver.stdout','driver.stderr','resources.jsonl']:require(sha(L/name)==driver[name]['sha256'] and (L/name).stat().st_size==driver[name]['bytes'],'actual local driver stream differs')
+samples=[json.loads(line) for line in (L/'resources.jsonl').read_text().splitlines()];require(samples and max(row['rss_bytes'] for row in samples)==driver['peak_process_group_rss_bytes']<=driver['resource_guard_bytes']==28*1024**3,'actual local resource samples differ')
+producer={'aarch64-apple-darwin':R/'local-macos-final-rust189/release-results'}
+for row in load(CI/'.github/final-package-assets.json')['producers']:
+ p=M/'native-runs'/str(row['run_id'])/str(row['artifact_id']);i.container(p,row['run_id'],row['head_sha']);producer[row['target']]=p/'restored'
+require(set(producer)==matrix.TARGETS,'all six actual producers required');candidate=load(producer['aarch64-apple-darwin']/'candidate.json');archive=load(producer['aarch64-apple-darwin']/'archive.json');packaged=i.package_candidate(producer['aarch64-apple-darwin']/archive['archive'],candidate,'aarch64-apple-darwin')
+require((L/'temporary/cyber-candidate/installed/cyber-tools/candidate.json').read_bytes()==packaged,'actual installed candidate bytes differ')
+for row in candidate['binaries']:require(sha(L/'temporary/cyber-candidate/installed/cyber-tools/bin'/row['name'])==row['sha256'],'actual installed executable differs')
+r=L/'release-results';require(not (r/'baselines').exists(),'consumer unexpectedly generated full198');impact=load(r/'source-impact.json');require(impact['status']=='passed' and impact['source_provenance_sha256']==matrix.PROVENANCE and impact['selector_sha256']==i.INPUTS and impact['script_sha256']==i.IMPACT,'local actual source closure differs')
+kit=load(r/'verified-selfhost-smoke/receipt.json');reference=load(producer['aarch64-apple-darwin']/'unpacked-selfhost-smoke/receipt.json');require(kit['status']=='passed' and kit['joy']['sha256']==reference['joy']['sha256'] and kit['kit_manifest']==reference['kit_manifest'],'actual installed kit differs');results=[]
+for field,kind,stem,manifest,checker in [('corpora','legacy','verification','proof-corpus/corpus.json',matrix.pair),('structured_corpora','structured','structured-verification','structured-corpus/corpus.json',matrix.structured_pair)]:
+ for index,row in enumerate(selected[field]):results.append(dict(kind=kind,producer=row['target'],**checker(r/f'{stem}-{index}.json',producer[row['target']]/manifest,candidate)))
+deadline=i.deadline_probe(r,candidate,packaged,i.HELPER);report=dict(status='passed',scope='Actual final local ARM consumer only; remote five consumers and Mac14 separate',source_sha256=matrix.SOURCE,source_provenance_sha256=matrix.PROVENANCE,runner_revision=driver['bootstrap_revision'],selector_sha256=sha(selector),case_checks=sum(x['cases'] for x in results),installed_deadline_commands=deadline['accepted']+deadline['rejected'],installed_deadline=deadline,elapsed_seconds=driver['elapsed_seconds'],peak_process_group_rss_bytes=driver['peak_process_group_rss_bytes'],driver_sha256=sha(L/'driver.json'),source_impact_sha256=sha(r/'source-impact.json'),inspector_sha256=sha(Path(__file__)),pairs=results)
+require(report['case_checks']==444 and report['installed_deadline_commands']==23,'complete local consumer coverage differs');(O/'receipt.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({k:report[k] for k in ['status','case_checks','installed_deadline_commands','elapsed_seconds','peak_process_group_rss_bytes']}))

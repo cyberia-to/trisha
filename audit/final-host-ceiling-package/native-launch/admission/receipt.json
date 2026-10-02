@@ -1,0 +1,110 @@
+{
+  "status": "passed",
+  "scope": "Actual host admission for one final native worker; other proof processes remain untouched",
+  "observed_at": "2026-10-02T09:32:52.340831+00:00",
+  "commands": [
+    {
+      "name": "host",
+      "command": [
+        "sw_vers"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "host.stdout",
+        "bytes": 66,
+        "sha256": "2ad5e57776ecb4b37b741f751521e2c77d58bf2d6d64e54c61507eabd39dea31"
+      },
+      "stderr": {
+        "path": "host.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "memory",
+      "command": [
+        "sysctl",
+        "-n",
+        "hw.memsize"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "memory.stdout",
+        "bytes": 12,
+        "sha256": "1a4675111e2b0f970616c374fc0a90aad997171ca22da371c998275950af4481"
+      },
+      "stderr": {
+        "path": "memory.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "cpus",
+      "command": [
+        "sysctl",
+        "-n",
+        "hw.ncpu"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "cpus.stdout",
+        "bytes": 3,
+        "sha256": "e6c21e8d260fe71882debdb339d2402a2ca7648529bc2303f48649bce0380017"
+      },
+      "stderr": {
+        "path": "cpus.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "memory-pressure",
+      "command": [
+        "memory_pressure",
+        "-Q"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "memory-pressure.stdout",
+        "bytes": 110,
+        "sha256": "5e21e0f6ee6af87490a78343061b62fa1f680a5e9d702f3acd23f7febc85cb6c"
+      },
+      "stderr": {
+        "path": "memory-pressure.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "processes",
+      "command": [
+        "ps",
+        "-axo",
+        "pid=,ppid=,pgid=,%cpu=,rss=,comm="
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "processes.stdout",
+        "bytes": 52710,
+        "sha256": "0c3bd8406ad293e5c35da9cb66f601bf057e4bc8080f6bee000a2c6140154a4e"
+      },
+      "stderr": {
+        "path": "processes.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "caps": {
+    "cargo_build_jobs": 2,
+    "rayon_threads": 4,
+    "worker_rss_bytes": 30064771072,
+    "full198_rss_bytes": 30064771072,
+    "full198_host_free_percent": 8
+  },
+  "free_disk_bytes": 53392580608,
+  "memory_free_percent": 54,
+  "memory_bytes": 51539607552,
+  "cpus": 16
+}

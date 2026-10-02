@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/native-proof-ci/actionlint-1.7.12/actionlint",
+    ".github/workflows/final-package-assets.yml",
+    ".github/workflows/final-package-macos-floor.yml",
+    ".github/workflows/final-package-native.yml",
+    ".github/workflows/final-package-source.yml"
+  ],
+  "exit_code": 0,
+  "executable_sha256": "8db11704dc296f096216db4db65d86cd7f0ebfdf4c38453a1da276b137b88388"
+}

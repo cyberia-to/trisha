@@ -1,0 +1,201 @@
+{
+  "status": "passed-retirement-read-only-replay",
+  "observed_unix_ns": 1790941579185346000,
+  "original_receipt": {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/parallel-readback-retirement/receipt.json",
+    "bytes": 10519,
+    "sha256": "8cb730b4cf47c66fdb28e39e12ec0c4e31192f3da0d414c680e6f42437b8be74"
+  },
+  "retirement_source": {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/retire-final-parallel-readback.py",
+    "bytes": 3795,
+    "sha256": "541a7cd355b5e14da6d5d6e9f7c5f252372de745bb607f38422609955985c45f"
+  },
+  "original_files_rehashed": 37,
+  "original_bytes_rehashed": 60467568,
+  "signals_exact_pids": [
+    75925,
+    75929,
+    75948,
+    75562
+  ],
+  "copies": [
+    {
+      "original": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/parallel-readback-retirement/before-signal-75562.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "copy": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/retirement-originals/before-signal-75562.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/parallel-readback-retirement/before-signal-75562.stdout",
+        "bytes": 230,
+        "sha256": "bed3b5099c4e9cf9d138bd99c8c4f5eca3e0f5ee07373a9505fae50724218b31"
+      },
+      "copy": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/retirement-originals/before-signal-75562.stdout",
+        "bytes": 230,
+        "sha256": "bed3b5099c4e9cf9d138bd99c8c4f5eca3e0f5ee07373a9505fae50724218b31"
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/parallel-readback-retirement/before-signal-75925.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "copy": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/retirement-originals/before-signal-75925.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/parallel-readback-retirement/before-signal-75925.stdout",
+        "bytes": 716,
+        "sha256": "8c47e765093c94b75a53fc59b0624ca5b5d725ef62f0b03dd6181b26120df648"
+      },
+      "copy": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/retirement-originals/before-signal-75925.stdout",
+        "bytes": 716,
+        "sha256": "8c47e765093c94b75a53fc59b0624ca5b5d725ef62f0b03dd6181b26120df648"
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/parallel-readback-retirement/before-signal-75929.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "copy": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/retirement-originals/before-signal-75929.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/parallel-readback-retirement/before-signal-75929.stdout",
+        "bytes": 554,
+        "sha256": "50ab921066bc42ba82c083b9a22edb280a4ab640336f40b9d6df079758a409f1"
+      },
+      "copy": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/retirement-originals/before-signal-75929.stdout",
+        "bytes": 554,
+        "sha256": "50ab921066bc42ba82c083b9a22edb280a4ab640336f40b9d6df079758a409f1"
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/parallel-readback-retirement/before-signal-75948.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "copy": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/retirement-originals/before-signal-75948.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/parallel-readback-retirement/before-signal-75948.stdout",
+        "bytes": 392,
+        "sha256": "a9e0303da86f373d56ab296c60f04665f94b39c69aa1191b3ab546f56516b29c"
+      },
+      "copy": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/retirement-originals/before-signal-75948.stdout",
+        "bytes": 392,
+        "sha256": "a9e0303da86f373d56ab296c60f04665f94b39c69aa1191b3ab546f56516b29c"
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/parallel-readback-retirement/before.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "copy": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/retirement-originals/before.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/parallel-readback-retirement/before.stdout",
+        "bytes": 716,
+        "sha256": "8c47e765093c94b75a53fc59b0624ca5b5d725ef62f0b03dd6181b26120df648"
+      },
+      "copy": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/retirement-originals/before.stdout",
+        "bytes": 716,
+        "sha256": "8c47e765093c94b75a53fc59b0624ca5b5d725ef62f0b03dd6181b26120df648"
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/parallel-readback-retirement/quiescence-0.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "copy": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/retirement-originals/quiescence-0.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/parallel-readback-retirement/quiescence-0.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "copy": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/retirement-originals/quiescence-0.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/parallel-readback-retirement/receipt.json",
+        "bytes": 10519,
+        "sha256": "8cb730b4cf47c66fdb28e39e12ec0c4e31192f3da0d414c680e6f42437b8be74"
+      },
+      "copy": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/retirement-originals/receipt.json",
+        "bytes": 10519,
+        "sha256": "8cb730b4cf47c66fdb28e39e12ec0c4e31192f3da0d414c680e6f42437b8be74"
+      }
+    }
+  ],
+  "current_command": {
+    "argv": [
+      "/bin/ps",
+      "-p",
+      "75562,75925,75929,75948",
+      "-o",
+      "pid=,ppid=,lstart=,state=,command="
+    ],
+    "exit_code": 1,
+    "stdout": {
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/retirement-current-ps.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-parallel-readback-review/retirement-current-ps.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "scope": "Receipt/source/raw per-PID snapshots and original auxiliary files replayed; exact four retired identities absent in fresh read-only ps observation. No signals/network/retry performed. Original serial source and its live outputs not edited or copied as terminal."
+}

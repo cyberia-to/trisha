@@ -1,0 +1,148 @@
+{
+  "files": [
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-integration/distribution-root-acceptance.json",
+      "stored": "distribution-root-acceptance.json",
+      "encoding": "identity",
+      "original_bytes": 1275,
+      "original_sha256": "e2d4c34d659e30556aaae2ecd3e1f118b4e357481c7e840235bc4c2193d9d382",
+      "stored_sha256": "e2d4c34d659e30556aaae2ecd3e1f118b4e357481c7e840235bc4c2193d9d382"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-integration/distribution-consumer-root-replay/artifacts.stderr",
+      "stored": "distribution-consumer-root-replay/artifacts.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-integration/distribution-consumer-root-replay/artifacts.stdout",
+      "stored": "distribution-consumer-root-replay/artifacts.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 3674,
+      "original_sha256": "a656d8ae512fd4aff3de089139b2af3d6375f64a7c404cd073a91342f902bb71",
+      "stored_sha256": "02e5ba9a8f0284ab7af6d55e87e7c59207a3d75d797f45b35d1f5b64643781f3"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-integration/distribution-consumer-root-replay/check.stderr",
+      "stored": "distribution-consumer-root-replay/check.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-integration/distribution-consumer-root-replay/check.stdout",
+      "stored": "distribution-consumer-root-replay/check.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 82,
+      "original_sha256": "3c06945439f7a7a9dae79f51f2275a6a8775928df0634e3f94e740e1236f2b28",
+      "stored_sha256": "f736ed907110f4a3fd8791f9449c76783a5fbb3d6d1e332f9ee67e131f3badd8"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-integration/distribution-consumer-root-replay/command.json",
+      "stored": "distribution-consumer-root-replay/command.json",
+      "encoding": "identity",
+      "original_bytes": 766,
+      "original_sha256": "4d9adf0c5264487a5c9c876432a6a7a1a8d69b48da1c0ce9996ccfb162fc3d3e",
+      "stored_sha256": "4d9adf0c5264487a5c9c876432a6a7a1a8d69b48da1c0ce9996ccfb162fc3d3e"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-integration/distribution-consumer-root-replay/containers.json",
+      "stored": "distribution-consumer-root-replay/containers.json",
+      "encoding": "identity",
+      "original_bytes": 1396,
+      "original_sha256": "13bbef436d6b03527822351a96c27e0e70ec7c8d0452284fb875ba335e446d37",
+      "stored_sha256": "13bbef436d6b03527822351a96c27e0e70ec7c8d0452284fb875ba335e446d37"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-integration/distribution-consumer-root-replay/jobs.stderr",
+      "stored": "distribution-consumer-root-replay/jobs.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-integration/distribution-consumer-root-replay/jobs.stdout",
+      "stored": "distribution-consumer-root-replay/jobs.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 14203,
+      "original_sha256": "9bd3012d28a746922a22a43f40fd206b462ac50a0777bd214d6728b8c44d0c24",
+      "stored_sha256": "e6d955c88b22536555533b8c4d2a31b76f2b894fc7ef3631f4575413a9bb5dd2"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-integration/distribution-consumer-root-replay/receipt.json",
+      "stored": "distribution-consumer-root-replay/receipt.json",
+      "encoding": "identity",
+      "original_bytes": 42043,
+      "original_sha256": "93f5f631ae93fb8ff3468a7473a47f248f4b6db1accb70d6d453f9e265a66ad5",
+      "stored_sha256": "93f5f631ae93fb8ff3468a7473a47f248f4b6db1accb70d6d453f9e265a66ad5"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-integration/distribution-consumer-root-replay/run.stderr",
+      "stored": "distribution-consumer-root-replay/run.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-integration/distribution-consumer-root-replay/run.stdout",
+      "stored": "distribution-consumer-root-replay/run.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 12461,
+      "original_sha256": "240e21a012f40482e977d099c74144a49caab400a4974cd02f998f117e94f542",
+      "stored_sha256": "eaa01baa067bad44f167c5399b86aacc256169505cd945f87cb89497cc16cfe7"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-integration/distribution-consumer-root-replay/selection.json",
+      "stored": "distribution-consumer-root-replay/selection.json",
+      "encoding": "identity",
+      "original_bytes": 2305,
+      "original_sha256": "155bf8e8ff2054848725f41be4f87e0447e93934b53575b654c293efc10e7569",
+      "stored_sha256": "155bf8e8ff2054848725f41be4f87e0447e93934b53575b654c293efc10e7569"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-integration/distribution-macos-floor-root-replay/artifact.stderr",
+      "stored": "distribution-macos-floor-root-replay/artifact.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-integration/distribution-macos-floor-root-replay/artifact.stdout",
+      "stored": "distribution-macos-floor-root-replay/artifact.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 729,
+      "original_sha256": "bfdd53bafe1dbe963504503805317b9300e8ea51912e444b26972ead401371d2",
+      "stored_sha256": "ad79af0d7761157d8de7ab3f49e72f1d6dd9e467c7604257564e6387c6da253e"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-integration/distribution-macos-floor-root-replay/receipt.json",
+      "stored": "distribution-macos-floor-root-replay/receipt.json",
+      "encoding": "identity",
+      "original_bytes": 7398,
+      "original_sha256": "dd09d095cfc214fcf9a187fa437790e90e439c51d4f7eeca51d7d6637c60b490",
+      "stored_sha256": "dd09d095cfc214fcf9a187fa437790e90e439c51d4f7eeca51d7d6637c60b490"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-integration/distribution-macos-floor-root-replay/run.stderr",
+      "stored": "distribution-macos-floor-root-replay/run.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-integration/distribution-macos-floor-root-replay/run.stdout",
+      "stored": "distribution-macos-floor-root-replay/run.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 12499,
+      "original_sha256": "705b7259eca43e121676034506caaec7321ef67e0a5606d0ffe1ca615ad3b71a",
+      "stored_sha256": "123e1d6c9cee52f5cfc0487d85f1742d69fd68dd5c0234497c586b0442c3c477"
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "scope": "Final 73b50ebd feature-branch rehearsal; single native producer receipt inspection, whole matrix and full 198-proof gate separate",
+  "status": "producer_receipts_checked",
+  "observed_at": "2026-10-02T11:02:25.172856+00:00",
+  "run_id": 36990413939,
+  "runner_revision": "5de26a93eb4d489d90f150882adec2c47d14bea4",
+  "target": "x86_64-apple-darwin",
+  "artifact_id": 11221748513,
+  "artifact_sha256": "20a69921428f26e8d40742e402058d239179b57a09f2b206e8380aa3ea37775b",
+  "retained_files": 458,
+  "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+  "kit_sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd",
+  "source_provenance_sha256": "9334dead92b990a12acf16a2565aeb762a07311dfc2c3d6cb896c0490dc5926e",
+  "platform": "macOS-15.7.9-x86_64-i386-64bit-Mach-O",
+  "actual_rustc": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: x86_64-apple-darwin\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+  "cargo_version_observation": "actual native Rust, Cargo and rustdoc 1.89 recorded",
+  "installed_deadline": {
+    "receipt_sha256": "a7248495b6c93d60a322a350f094fc6d53784d9b036023653c1e00bf8700e5ad",
+    "accepted": 15,
+    "rejected": 8,
+    "producer_deadlines": 3,
+    "verifier_combinations": 9,
+    "proof_sha256": "683e6a9c7ed9f68ef0652dd07ee4b253098252e45966e152957980de307b33f0"
+  },
+  "actual_tools": {
+    "rustc": {
+      "path": "/Users/runner/.rustup/toolchains/1.89.0-x86_64-apple-darwin/bin/rustc",
+      "sha256": "55c3585efedbed61b9f28f021f5e996be2f0513e52f5431d4195a1158aa07289",
+      "version": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: x86_64-apple-darwin\nrelease: 1.89.0\nLLVM version: 20.1.7\n"
+    },
+    "cargo": {
+      "path": "/Users/runner/.rustup/toolchains/1.89.0-x86_64-apple-darwin/bin/cargo",
+      "sha256": "3f9e31c384025ee0cd3d5147b7074ee48da1db140cf0f71dd61b78f2c1ae63e0",
+      "version": "cargo 1.89.0 (c24e10642 2025-06-23)\nrelease: 1.89.0\ncommit-hash: c24e1064277fe51ab72011e2612e556ac56addf7\ncommit-date: 2025-06-23\nhost: x86_64-apple-darwin\nlibgit2: 1.9.0 (sys:0.20.2 vendored)\nlibcurl: 8.7.1 (sys:0.4.80+curl-8.12.1 system ssl:(SecureTransport) LibreSSL/3.3.6)\nssl: OpenSSL 3.5.0 8 Apr 2025\nos: Mac OS 15.7.9 [64-bit]\n"
+    },
+    "rustdoc": {
+      "path": "/Users/runner/.rustup/toolchains/1.89.0-x86_64-apple-darwin/bin/rustdoc",
+      "sha256": "d2c006432649ce8a46c28e8cb3e0872ae78b7ce22b9dfde3c069ab21e6fa48a6",
+      "version": "rustdoc 1.89.0 (29483883e 2025-08-04)\nbinary: rustdoc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: x86_64-apple-darwin\nrelease: 1.89.0\nLLVM version: 20.1.7\n"
+    }
+  },
+  "script_checkout": {
+    "impact_line_endings": "LF",
+    "structured_helper_line_endings": "LF",
+    "impact_sha256": "a80578694041fe432df21819b166140165fe98d27ff3d0a6dcfb8a9621faa86d",
+    "structured_helper_sha256": "5caa737b7c7b8b1fef0dd024a56e78f394273b8140b12a1832f29c8dad891a94",
+    "runner_revision": "5de26a93eb4d489d90f150882adec2c47d14bea4"
+  },
+  "source_impact_sha256": "31666ad0c1dcc7f7b0720e90f0323cd0cc5919b120672e462269b0a6fc4615a8",
+  "structured_cases": 27,
+  "structured_accepted": 6,
+  "structured_rejected": 21,
+  "structured_archive": {
+    "name": "structured-corpus-x86_64-apple-darwin.tar.gz",
+    "sha256": "caac9d2f7ec2816e5c7d54296df3207a2856d884b5616d3af6971a5f880abd72",
+    "bytes": 687871
+  },
+  "cpu": {
+    "trident": {
+      "log_sha256": "12cb36471128550dda700e7dfdfb48d59e7e3deec5b191dfe2379c08c1cf0dc9",
+      "test_binaries": 2,
+      "passed": 762
+    },
+    "trisha": {
+      "log_sha256": "0dca2de9e6cac0aa7b2cb3fe9d88e9eaedec7cdea2c6d2d9c9eaa23d3003ac71",
+      "test_binaries": 64,
+      "passed": 429
+    },
+    "joy": {
+      "log_sha256": "1a1c809dd985e5222c8cce7e04aecfd83df7ffc4a55f9196eb0bcb2a1bb92985",
+      "test_binaries": 29,
+      "passed": 216
+    },
+    "nox": {
+      "log_sha256": "f8a088e85fda56024077e23712e9a227e6faf20c6c499ef494d55e0f117606f6",
+      "test_binaries": 1,
+      "passed": 245
+    }
+  },
+  "gates": {
+    "installed-selfhost-smoke/receipt.json": "f14107542892f31b975d31c5836e4b975e79ea81c59a670fca3c81bf7366d98e",
+    "unpacked-selfhost-smoke/receipt.json": "978504be692af9d33d4c396d096aa3ed925ea2b06efc992cad50d806175153b7",
+    "joy-native-smoke/receipt.json": "a0c6f779a7c8dd5f549693c009ddbbfb94b5c6b001bb7b82e410730397141a3a",
+    "native-process-files.json": "a23ff2b1a6b21fbb927b7c4dad77bc3c404f57a0f1d477ce6048a21ab6042d34",
+    "proof-corpus/smoke.json": "d44cb0e77898fc5172e265789825a20d1aed73541588642afcbfd1a1f9245fe8",
+    "local-corpus-verification.json": "24859e42262ee0bc9f23b84acf173ad5890e60b517814065754e34eb0a38ec14",
+    "neptune-client.log": "ee879956ca2836a6cf4a52f44d7cccaf41cf650434dc4265548001c0d9fa0ccd",
+    "neptune-binding.log": "b4cd9736a5faa783436c4d76459b77a6fc004ab33b165f14ff6ece6d40e4fb22"
+  },
+  "baseline_execution": {
+    "all_checks_passed": true,
+    "source_provenance_sha256": "9334dead92b990a12acf16a2565aeb762a07311dfc2c3d6cb896c0490dc5926e",
+    "candidate_sha256": "fb50c0a12329fd145900eff0d1ba001797d906829a519dedbc1934a3d85c122c",
+    "log_sha256": "05c1a83332546b4a56145c4ba086c32565c5aee1ace9a6f647f49f56518405c6",
+    "target": "x86_64-apple-darwin",
+    "baselines": 43,
+    "positive_fixtures": 99,
+    "negative_fixtures": 34,
+    "generated_proofs": 0
+  },
+  "corpus_cases": 47,
+  "corpus_positive": 18,
+  "corpus_rejections": 29,
+  "binary_archive": {
+    "name": "cyber-tools-x86_64-apple-darwin.tar.gz",
+    "sha256": "145d6186413346c20e31d646a7d1f489af4adda46952d8bab8928d7af883a872",
+    "bytes": 17629010
+  },
+  "corpus_archive": {
+    "name": "proof-corpus-x86_64-apple-darwin.tar.gz",
+    "sha256": "7d66ac095b4367d72a9c16e5c0ea63508f0c1d344f2652db137beb6902caaf2a",
+    "bytes": 25157867
+  },
+  "inspector_sha256": "64572b572e3a7319f837d788307436e36b54802cc0ba6f146c541bb297d43a8a"
+}

@@ -1,0 +1,38 @@
+{
+  "status": "completed_producers_checked",
+  "scope": "Completed subset of final native producer run only; all-five, full198, linkage and consumer verdicts remain separate",
+  "run_id": 36990413939,
+  "runner_revision": "5de26a93eb4d489d90f150882adec2c47d14bea4",
+  "observed_at": "2026-10-02T10:30:35.430144+00:00",
+  "producers": [
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "artifact_id": 11221252119,
+      "artifact_sha256": "6eb4b535dd66abacecfe026c3527b172cba1e8fddb6b66499e900c9fd1ee5989",
+      "cpu": {
+        "trident": {
+          "log_sha256": "920db2af31d3ab78cd42f6dea98bd900adfeb411c03330f054f48ff82739547b",
+          "test_binaries": 2,
+          "passed": 762
+        },
+        "trisha": {
+          "log_sha256": "6e73f01255bf1a8b288a7955ef30e448194d498c0b2d99621e4a01e7fc17dba7",
+          "test_binaries": 64,
+          "passed": 429
+        },
+        "joy": {
+          "log_sha256": "6856f0e8be37a7f09a0ca96a6cfeb6435bd8aaba3cbcba8666a339627b076cef",
+          "test_binaries": 29,
+          "passed": 217
+        },
+        "nox": {
+          "log_sha256": "8beb7029f85e5315929b3dfae15715ee3c01903d810f911f786440fb157b8e53",
+          "test_binaries": 1,
+          "passed": 245
+        }
+      },
+      "job_id": 110791684121
+    }
+  ],
+  "script_sha256": "dafa06b396a6d4364cc3a4137394a361d966ea1a50252995f76dc3e771435755"
+}

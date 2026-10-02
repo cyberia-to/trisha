@@ -1,0 +1,117 @@
+{
+  "original_directory": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review",
+  "files": [
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/actionlint.stderr",
+      "retained": "actionlint.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/actionlint.stdout",
+      "retained": "actionlint.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/checks.json",
+      "retained": "checks.json",
+      "encoding": "identity",
+      "bytes": 3097,
+      "sha256": "f5185b2ef33abebce219d970e3e9c7731d0a1fa484171d1f6a99d5eef3456555",
+      "retained_sha256": "f5185b2ef33abebce219d970e3e9c7731d0a1fa484171d1f6a99d5eef3456555"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/diff-check.stderr",
+      "retained": "diff-check.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/diff-check.stdout",
+      "retained": "diff-check.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/orchestration.stderr",
+      "retained": "orchestration.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 104,
+      "sha256": "1e43b905e11ca028139fe5078016515111aaf7cebf8d6a3e224b7d03b9cb6ac9",
+      "retained_sha256": "dc48e8746d3d8c0b118daa6bcc24965dabf621db0cc282750c9d9f0be1092dfa"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/orchestration.stdout",
+      "retained": "orchestration.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 3516,
+      "sha256": "99772d877e088d1212784be023feb16edc02315d0adc3c41bc7ab7666243fc8e",
+      "retained_sha256": "0d58f1164e552ba1c8cacfd667cd07415bf284ef5d5a1cebf1a0b34e01ea2fd0"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/review.json",
+      "retained": "review.json",
+      "encoding": "identity",
+      "bytes": 4078,
+      "sha256": "7c3b2926b2061e4188286f7c24e89fb134c613f5f9af98123e06d6559bc67e76",
+      "retained_sha256": "7c3b2926b2061e4188286f7c24e89fb134c613f5f9af98123e06d6559bc67e76"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/source-preview.json",
+      "retained": "source-preview.json",
+      "encoding": "identity",
+      "bytes": 67142,
+      "sha256": "ca51575cf8afab9d8eda9f8757e44eb5966a0c92a20e4c8dbd1ca4e3f18514e0",
+      "retained_sha256": "ca51575cf8afab9d8eda9f8757e44eb5966a0c92a20e4c8dbd1ca4e3f18514e0"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/source-preview.stderr",
+      "retained": "source-preview.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/source-preview.stdout",
+      "retained": "source-preview.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 66,
+      "sha256": "bbea650bb836e48299b45fca3e9f07f722cc38237d385bdc412a65a619f8cdcc",
+      "retained_sha256": "7909fc799d2dd586bae32d33390ae66049904eba62d195d498fd5f871bd193c4"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/transport.stderr",
+      "retained": "transport.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 101,
+      "sha256": "33060fd73862c5e1af97335504d5b45211fce6d229657f556d8deceeadc52ce4",
+      "retained_sha256": "0c00d44f4d798c91398dfe5da06dd8cea85335126914fa349d3ea9ae20f5cd6c"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/transport.stdout",
+      "retained": "transport.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/consumer-coverage-finding.json",
+      "retained": "consumer-coverage-finding.json",
+      "encoding": "identity",
+      "bytes": 1084,
+      "sha256": "6fdd1f798001579028a1749ecb38d58fb040fe41b07710a79901095a92c8b49d",
+      "retained_sha256": "6fdd1f798001579028a1749ecb38d58fb040fe41b07710a79901095a92c8b49d"
+    }
+  ]
+}

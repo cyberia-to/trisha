@@ -1,0 +1,209 @@
+{
+  "scope": "Exact final completed Mac native/198 evidence to existing unpublished draft; no tag/publication",
+  "status": "passed",
+  "commands": [
+    {
+      "name": "before-origin",
+      "command": [
+        "python3",
+        "-B",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/check-origin-before-evidence.py"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "before-origin.stdout",
+        "bytes": 491,
+        "sha256": "f8129be7f75ccf7ca5f405c681bbfe6e1b9ba7fa1f698d8f3960d07f21dd438b"
+      },
+      "stderr": {
+        "path": "before-origin.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "draft-before",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "draft-before.stdout",
+        "bytes": 177268,
+        "sha256": "039934e4bb14b0de0536fe1c5b524e2258ffd81a54ab323839e9707c805df681"
+      },
+      "stderr": {
+        "path": "draft-before.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "draft-before-tag",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1,
+      "stdout": {
+        "path": "draft-before-tag.stdout",
+        "bytes": 114,
+        "sha256": "e2e3c64edab172132f77ce89a0e8c190db1cd30936a096344f45893bd5b75f8a"
+      },
+      "stderr": {
+        "path": "draft-before-tag.stderr",
+        "bytes": 25,
+        "sha256": "d2c8985c89b29a842ac4946d13bdbc297709f44f20bb968faf9682664b211db6"
+      }
+    },
+    {
+      "name": "draft-after",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "draft-after.stdout",
+        "bytes": 178846,
+        "sha256": "132eacebe68760abd9b8a68ba863ffbaaead5383dc97051a5ff9f3546543a06c"
+      },
+      "stderr": {
+        "path": "draft-after.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "draft-after-tag",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1,
+      "stdout": {
+        "path": "draft-after-tag.stdout",
+        "bytes": 114,
+        "sha256": "e2e3c64edab172132f77ce89a0e8c190db1cd30936a096344f45893bd5b75f8a"
+      },
+      "stderr": {
+        "path": "draft-after-tag.stderr",
+        "bytes": 25,
+        "sha256": "d2c8985c89b29a842ac4946d13bdbc297709f44f20bb968faf9682664b211db6"
+      }
+    },
+    {
+      "name": "after-origin",
+      "command": [
+        "python3",
+        "-B",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/check-origin-after-evidence.py"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "after-origin.stdout",
+        "bytes": 491,
+        "sha256": "f8129be7f75ccf7ca5f405c681bbfe6e1b9ba7fa1f698d8f3960d07f21dd438b"
+      },
+      "stderr": {
+        "path": "after-origin.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "retention_sha256": "6014fdd5e7dbf87a52d64babc52d3930d394204aa5e45f15c05a846804a5ca63",
+  "archive": {
+    "path": "rehearsal-20261002-final-dd61-local-rust189-evidence.tar.gz",
+    "bytes": 83416871,
+    "sha256": "9cc80e1c5d420179c1a33c7cb28ce9e1db25ff43712487da79f71ad3c6d71612"
+  },
+  "upload_command": [
+    "gh",
+    "release",
+    "upload",
+    "candidate-20260916.1",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/local-rust189-complete/rehearsal-20261002-final-dd61-local-rust189-evidence.tar.gz",
+    "--repo",
+    "cyberia-to/trisha"
+  ],
+  "started": "2026-10-02T10:59:23.106983+00:00",
+  "upload_exit_code": 0,
+  "asset": {
+    "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605413707",
+    "id": 605413707,
+    "node_id": "RA_kwDORSKVcM4kFeFL",
+    "name": "rehearsal-20261002-final-dd61-local-rust189-evidence.tar.gz",
+    "label": "",
+    "uploader": {
+      "login": "mastercyb",
+      "id": 410789,
+      "node_id": "MDQ6VXNlcjQxMDc4OQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/410789?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mastercyb",
+      "html_url": "https://github.com/mastercyb",
+      "followers_url": "https://api.github.com/users/mastercyb/followers",
+      "following_url": "https://api.github.com/users/mastercyb/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mastercyb/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mastercyb/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mastercyb/subscriptions",
+      "organizations_url": "https://api.github.com/users/mastercyb/orgs",
+      "repos_url": "https://api.github.com/users/mastercyb/repos",
+      "events_url": "https://api.github.com/users/mastercyb/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mastercyb/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "content_type": "application/x-gtar",
+    "state": "uploaded",
+    "size": 83416871,
+    "digest": "sha256:9cc80e1c5d420179c1a33c7cb28ce9e1db25ff43712487da79f71ad3c6d71612",
+    "download_count": 0,
+    "created_at": "2026-10-02T10:59:24Z",
+    "updated_at": "2026-10-02T10:59:41Z",
+    "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/rehearsal-20261002-final-dd61-local-rust189-evidence.tar.gz"
+  },
+  "unchanged_default_refs": {
+    "bbg": {
+      "refs/heads/master": "a3c9a0c22bfb78ef891265f9e2cd25838ef77c2d"
+    },
+    "hemera": {
+      "refs/heads/main": "23f3bbcff910ea6d504ceb505680a539260869da"
+    },
+    "honeycrisp": {
+      "refs/heads/main": "9593c7218e14e2b5b816d9008b45ab60b9580cf3"
+    },
+    "joy": {
+      "refs/heads/main": "10844a890e2939d529a1003474298a09be30b75c"
+    },
+    "lens": {
+      "refs/heads/master": "392abe752793c3e0b98f2d1d57245ba1e3173673"
+    },
+    "neuron": {
+      "refs/heads/main": "c87541120caae4fb5d5bb401653d1cbcbeffeb7d"
+    },
+    "nox": {
+      "refs/heads/master": "2612673cae64239cb3511b13027d9ffaba77f48e"
+    },
+    "strata": {
+      "refs/heads/main": "56aedb2d12b3126c601eb333419136d403614dbb"
+    },
+    "trident": {
+      "refs/heads/master": "360b737e073ca2f969ab0c78460b4228bcac7b78"
+    },
+    "trisha": {
+      "refs/heads/master": "3cb3984eca9e6a1e71cb9fd8e2cc7ea18913fd2d"
+    },
+    "zheng": {
+      "refs/heads/master": "44bd5bfec5cb6764123ea513a33a26c0877a488c"
+    }
+  },
+  "ended": "2026-10-02T10:59:44.779300+00:00"
+}

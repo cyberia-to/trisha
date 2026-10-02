@@ -1,0 +1,10 @@
+{
+  "status": "followup-required-before-native-activation",
+  "prior_review_sha256": "7c3b2926b2061e4188286f7c24e89fb134c613f5f9af98123e06d6559bc67e76",
+  "prior_review_preserved": true,
+  "scope": "Correct the review assertion about producer/consumer deadline coverage; local source export still valid",
+  "finding": "At HEAD99fd998 the final installed-host-ceiling helper executes for each native producer after unpacking. The verify phase returns earlier, so consumers and the actual Mac14 floor job do not execute that helper. The original review sentence claiming all producer and consumer paths did so is incorrect.",
+  "required_change": "Run the unchanged bounded installed-host-ceiling helper against the actual installed final consumer before its early return; retain failure/log/receipt and add a control that exercises the final consumer path.",
+  "source_export": "No source pin or source production byte changes; active exporter must remain unchanged. Runner followup is reviewed separately after export completes.",
+  "created_at": "2026-10-02T07:49:51.583079+00:00"
+}

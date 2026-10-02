@@ -1,0 +1,123 @@
+{
+  "status": "passed",
+  "scope": "Complete byte readback of three final local draft archives; full198 and consumers remain separate",
+  "started": "2026-10-02T09:59:02.495554+00:00",
+  "script_sha256": "7d7b0fb7c99abb311856c2b8c2b42b89b5950b0ab38dd1f59cfc2c2c970cc52f",
+  "transport_sha256": "1ec9cc186f3b271230ae10f79213eb92160bccc411e8fcfcc1cf93af6c4b9942",
+  "coordination_sha256": "5619f84b76a85095aa5bb8f4712711c797c98a847d225f7c79e1575e229f5ee6",
+  "commands": [
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605308332"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605308332"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605308674"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605308674"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605308921"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605308921"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    }
+  ],
+  "assets": [
+    {
+      "kind": "binary",
+      "asset_id": 605308332,
+      "name": "rehearsal-20261002-final-dd61-local-rust189-cyber-tools-aarch64-apple-darwin.tar.gz",
+      "bytes": 16929929,
+      "sha256": "0ba4af63ea103c4d41382816541e8ade6883d7af078ba9e3ba3e9cb27e05d348",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/local-package-readback/rehearsal-20261002-final-dd61-local-rust189-cyber-tools-aarch64-apple-darwin.tar.gz"
+    },
+    {
+      "kind": "corpus",
+      "asset_id": 605308674,
+      "name": "rehearsal-20261002-final-dd61-local-rust189-proof-corpus-aarch64-apple-darwin.tar.gz",
+      "bytes": 25171332,
+      "sha256": "29632607c886c71398c1f637c5361f53164fdb52167ffbea27b1cc2d452a1002",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/local-package-readback/rehearsal-20261002-final-dd61-local-rust189-proof-corpus-aarch64-apple-darwin.tar.gz"
+    },
+    {
+      "kind": "structured-corpus",
+      "asset_id": 605308921,
+      "name": "rehearsal-20261002-final-dd61-local-rust189-structured-corpus-aarch64-apple-darwin.tar.gz",
+      "bytes": 687915,
+      "sha256": "7a64776e901dc39c94682188bc7700692e1f60f3f48dd3606bcee24a72f4cdf0",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/local-package-readback/rehearsal-20261002-final-dd61-local-rust189-structured-corpus-aarch64-apple-darwin.tar.gz"
+    }
+  ],
+  "ended": "2026-10-02T10:01:56.078702+00:00"
+}

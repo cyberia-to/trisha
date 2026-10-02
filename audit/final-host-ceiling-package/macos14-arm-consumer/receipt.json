@@ -1,0 +1,229 @@
+{
+  "schema": "native/macos-floor-consumer/v1",
+  "scope": "Actual macOS14 ARM installed final Joy/Trisha with all six legacy/structured corpora, accepted kit and bounded installed deadline probes; no full198 generation or Trident/LSP floor qualification",
+  "actual_host": {
+    "system": "Darwin",
+    "version": "14.8.9",
+    "machine": "arm64"
+  },
+  "status": "passed",
+  "selector_sha256": "084bfe4821114455881b1fd2718d8a10373e48562d97093ef3a580b0fb9626ba",
+  "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+  "target": "aarch64-apple-darwin",
+  "started": "2026-10-02T12:10:53.624632+00:00",
+  "bootstrap_sha256": "b2ef3e9ac773e6326f084cdf9cf419766272646d9c6ad7050953a0b3417a7e05",
+  "driver_sha256": "1997002295a3596e28a21c5eac90da648739258b5d70471abfdc77cf428e12c5",
+  "revision": "dd858356251101f285c785cb04fba1644a612fce",
+  "rss_limit_bytes": 5368709120,
+  "time_limit_seconds": 1800,
+  "peak_process_group_rss_bytes": 138149888,
+  "commands": [
+    {
+      "name": "os",
+      "command": [
+        "sw_vers"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "os.stdout",
+        "sha256": "11945972ddcd2286640b8236d7472ad22204504ef669fa42043fc3084405b165",
+        "bytes": 66
+      },
+      "stderr": {
+        "path": "os.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "kernel",
+      "command": [
+        "uname",
+        "-a"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "kernel.stdout",
+        "sha256": "59e4f4c86a72437dc29b75967a5f960957b940e723cfea56b5f68d2fa0ceff5a",
+        "bytes": 200
+      },
+      "stderr": {
+        "path": "kernel.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "architecture",
+      "command": [
+        "arch"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "architecture.stdout",
+        "sha256": "f69162950f235e3cdbbad33f1f912d1a504be90d8a37d002c735d6f3e3882265",
+        "bytes": 5
+      },
+      "stderr": {
+        "path": "architecture.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "memory",
+      "command": [
+        "sysctl",
+        "-n",
+        "hw.memsize"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "memory.stdout",
+        "sha256": "ae0cc22f5ea218082f5dec9c827424ea217b458c0891472d43332507e3435b13",
+        "bytes": 11
+      },
+      "stderr": {
+        "path": "memory.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "python",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "-VV"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "python.stdout",
+        "sha256": "d0cc6f1b65be6074a13d9276a37d561fe17b216b1dbad8c8c652f2c2ff38a9b3",
+        "bytes": 97
+      },
+      "stderr": {
+        "path": "python.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "host-rustc",
+      "command": [
+        "rustc",
+        "-vV"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "host-rustc.stdout",
+        "sha256": "bd38eb565e393486255b35ff1f74e9dc7ca87425f1febb798b9dd042159a833a",
+        "bytes": 192
+      },
+      "stderr": {
+        "path": "host-rustc.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "host-cargo",
+      "command": [
+        "cargo",
+        "-Vv"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "host-cargo.stdout",
+        "sha256": "dd6e847585431479a6c326d79eaf2f3a883bbed218dec3a7bc7ec20ed82c068d",
+        "bytes": 335
+      },
+      "stderr": {
+        "path": "host-cargo.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  ],
+  "consumer_command": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "-B",
+    "scripts/native-candidate.py"
+  ],
+  "consumer_pid": 1691,
+  "exit_code": 0,
+  "resource_stop": null,
+  "elapsed_seconds": 101.601761583,
+  "producer_rustc": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: aarch64-apple-darwin\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+  "candidate_sha256": "2c00df354f3e1992fcd84f343b2c8f1bb54cb7c53e730411e3d4e0c38b32f096",
+  "verifications": [
+    {
+      "target": "aarch64-apple-darwin",
+      "receipt": "verification-0.json",
+      "sha256": "d9c17e7b5e6a1697ab55ca954c855580f9a5d4146bada8583101f3c135b96c07"
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "receipt": "verification-1.json",
+      "sha256": "12057f769cf6f37be459324a1bd424b510969862977d3f26eafc0b56978540d2"
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "receipt": "verification-2.json",
+      "sha256": "fb222bcb9fd74155fc09abb51a35a2854e81e10c134903c18913d01a9ff4671c"
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "receipt": "verification-3.json",
+      "sha256": "667a5bf943dc1c7241f40ff1cf398a8183a7e2346773e529fcaef6c7a016cf2e"
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "receipt": "verification-4.json",
+      "sha256": "a8f30e3752b1709c3e6c7c6dbd1c4a69225e77ad878bff685062bd5253d6dd8e"
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "receipt": "verification-5.json",
+      "sha256": "ad2e6dd68240fe8490271eacd1e342aa791880c73f18fdcced22995b75c4a451"
+    }
+  ],
+  "structured_verifications": [
+    {
+      "target": "aarch64-apple-darwin",
+      "receipt": "structured-verification-0.json",
+      "sha256": "1bf84422eb8faf2234c0fb50c8ee4b7d9b9dace05fcb905cdc59540c2c719e29"
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "receipt": "structured-verification-1.json",
+      "sha256": "88a47f5201377c5dc43799293a4ff83dea12e1961524c3cb3cadb3f75c420128"
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "receipt": "structured-verification-2.json",
+      "sha256": "3ce40814f8ea18b918f2bd05dc17ab1248e4bb00d5a1bed73d38c052fa13e1a5"
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "receipt": "structured-verification-3.json",
+      "sha256": "ddd2965252fd3b59dc246ec982987eb2756e8ec39ebe67b1a8cca5a494d1f287"
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "receipt": "structured-verification-4.json",
+      "sha256": "5c3c5aea86c32f51c7d8eecb97b0f0e5bbe34c495437efc2f1ea6d73b0dcde54"
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "receipt": "structured-verification-5.json",
+      "sha256": "11e607f555825d1e0e0af06f9e5b8fef1ae49fba3d44e9bb4e2b274cde099910"
+    }
+  ],
+  "installed_host_ceiling": {
+    "receipt": "release-results/installed-host-ceiling/receipt.json",
+    "sha256": "ea7ef60f28f5736cce237bfba4fd2a9174f029f2dccd90efc22177d46a443bef",
+    "accepted": 15,
+    "rejected": 8
+  },
+  "ended": "2026-10-02T12:12:35.673894+00:00"
+}
