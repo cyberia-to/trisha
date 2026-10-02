@@ -300,3 +300,49 @@ it does not claim Trident/LSP or full proof generation on macOS 14.
 pairs after actual execution. Its single existing local pair helper exercise
 passed and rejected case-exit and binary-identity mutations; no 36-pair result
 is claimed at this activation commit.
+
+### Frozen distribution acceptance complete
+
+The five native consumer jobs in run 36969090113 at
+`b2289e18207021fc8c53c546fe5cdcdc19bbd9c5` all passed. The local Mac ARM
+consumer passed with the same exact six binary/corpus selections, taking
+135.66343954199692 seconds and peaking at 131678208 bytes sampled process-group
+RSS. `local-corpus-consumer/` retains its complete original command/result
+archive. `consumers/` retains each remote authenticated Actions ZIP, original
+API/hash inventory and byte-preserved compressed job log.
+
+`python3 -B -W error measurements/inspect-frozen-matrix.py` authenticated every
+consumer container, required the successful exact original run, then invoked
+`check-corpus-matrix.py` against all six original producer packages and all six
+actual consumer result directories. `corpus-matrix/receipt.json` records all
+36 required native pairs passed, with 1692 exact case checks (47 per pair).
+The check binds each consumer's installed Joy/Trisha identities, every selected
+producer corpus and its expected outcomes, and the installed accepted kit.
+The selected source is still `e4bac7ff...`; none of these receipts describes
+the separate current-production package.
+
+The additional free macOS 14 consumer ran on actual macOS 14.8.9 ARM64 in
+run 36969075321 at the same selector revision. It passed the six corpora
+(282 case checks) and installed kit in 94.94185200000001 seconds, with a
+137854976-byte sampled process-group peak, under 5 GiB / 1800-second limits.
+`macos14-arm-consumer/` preserves the authenticated original artifact;
+`frozen-mac-consumers-inspection.json` independently checks that receipt and
+the local Mac receipt. This qualifies the exercised installed Joy/Trisha
+consumer commands on that observed OS. Trident/LSP and full proof generation
+were not exercised there.
+
+All six frozen native producers, their applicable CPU and package gates, all
+133 baseline execution fixtures on each producer, one actual full198 proof
+gate on the frozen Mac binary, and all 36 portable corpus pairs have passed.
+The five remote binary/corpus/original producer containers and the complete
+Mac198 evidence have durable existing-draft assets. No publication, tag or
+default-branch release candidacy is implied. The current source archive
+`734df69d...` is being validated separately in PR23 with its own binaries and
+new full198 gate.
+
+Actual producer hosts remain macOS 26.4.1 ARM, macOS 15.7.9 Intel, Ubuntu
+22.04/glibc 2.35 ARM and x64, Windows 11 ARM and Windows Server 2022 x64.
+`docs/reference/release-platforms.md` calls the older desktop floors initial
+candidates/proposed policies; Windows 11 x64 and macOS 14 Intel remain
+unqualified projections. The extra macOS14 ARM consumer does not expand its
+measured command scope into complete desktop-floor qualification.

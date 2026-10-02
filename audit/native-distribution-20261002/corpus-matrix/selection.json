@@ -1,0 +1,19 @@
+{
+  "selector": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/trisha-native-ci/.github/release-candidate.json",
+  "producer_results": {
+    "aarch64-apple-darwin": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-rust189/release-results",
+    "aarch64-unknown-linux-gnu": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/native-runs/36949324686/11207645268/restored",
+    "aarch64-pc-windows-msvc": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/native-runs/36949324686/11207109355/restored",
+    "x86_64-pc-windows-msvc": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/native-runs/36949324686/11208420793/restored",
+    "x86_64-unknown-linux-gnu": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/native-runs/36949324686/11208532313/restored",
+    "x86_64-apple-darwin": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/native-runs/36949324686/11210078256/restored"
+  },
+  "consumer_results": {
+    "aarch64-apple-darwin": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-corpus-consumer/release-results",
+    "aarch64-unknown-linux-gnu": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/native-runs/36969090113/11210842931/restored",
+    "aarch64-pc-windows-msvc": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/native-runs/36969090113/11211176216/restored",
+    "x86_64-unknown-linux-gnu": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/native-runs/36969090113/11210134597/restored",
+    "x86_64-pc-windows-msvc": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/native-runs/36969090113/11211150705/restored",
+    "x86_64-apple-darwin": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/native-runs/36969090113/11210544976/restored"
+  }
+}

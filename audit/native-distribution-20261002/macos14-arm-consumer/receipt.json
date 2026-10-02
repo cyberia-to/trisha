@@ -1,0 +1,191 @@
+{
+  "schema": "native/macos-floor-consumer/v1",
+  "scope": "Actual macOS 14 ARM installed Joy/Trisha legacy corpus and selfhost-kit consumer only; frozen branch rehearsal, no whole proof generation or Trident/LSP floor qualification",
+  "actual_host": {
+    "system": "Darwin",
+    "version": "14.8.9",
+    "machine": "arm64"
+  },
+  "status": "passed",
+  "selector_sha256": "aea37d7f89a9069572e1c7e320ec2c2ea74f7c8b9d41078c7807e3539e988bf4",
+  "source_sha256": "e4bac7ff7260a5f395febc196b3e4792653e0ff81d7887d688e16ea0959aa361",
+  "target": "aarch64-apple-darwin",
+  "started": "2026-10-02T05:28:33.791415+00:00",
+  "bootstrap_sha256": "fc460620874e27058ed682088571b6009241b008bb59239d26ff8c587060b27f",
+  "driver_sha256": "2dd5278a826f74d1a2f3272823f1ee08ae56918b57f43402006ccbe9d3be5710",
+  "revision": "b2289e18207021fc8c53c546fe5cdcdc19bbd9c5",
+  "rss_limit_bytes": 5368709120,
+  "time_limit_seconds": 1800,
+  "peak_process_group_rss_bytes": 137854976,
+  "commands": [
+    {
+      "name": "os",
+      "command": [
+        "sw_vers"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "os.stdout",
+        "sha256": "11945972ddcd2286640b8236d7472ad22204504ef669fa42043fc3084405b165",
+        "bytes": 66
+      },
+      "stderr": {
+        "path": "os.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "kernel",
+      "command": [
+        "uname",
+        "-a"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "kernel.stdout",
+        "sha256": "82df503c283eb412551519c386b6b7918bec3049700f54187fdd0bfbeeb29a23",
+        "bytes": 200
+      },
+      "stderr": {
+        "path": "kernel.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "architecture",
+      "command": [
+        "arch"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "architecture.stdout",
+        "sha256": "f69162950f235e3cdbbad33f1f912d1a504be90d8a37d002c735d6f3e3882265",
+        "bytes": 5
+      },
+      "stderr": {
+        "path": "architecture.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "memory",
+      "command": [
+        "sysctl",
+        "-n",
+        "hw.memsize"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "memory.stdout",
+        "sha256": "ae0cc22f5ea218082f5dec9c827424ea217b458c0891472d43332507e3435b13",
+        "bytes": 11
+      },
+      "stderr": {
+        "path": "memory.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "python",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+        "-VV"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "python.stdout",
+        "sha256": "d0cc6f1b65be6074a13d9276a37d561fe17b216b1dbad8c8c652f2c2ff38a9b3",
+        "bytes": 97
+      },
+      "stderr": {
+        "path": "python.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "host-rustc",
+      "command": [
+        "rustc",
+        "-vV"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "host-rustc.stdout",
+        "sha256": "bd38eb565e393486255b35ff1f74e9dc7ca87425f1febb798b9dd042159a833a",
+        "bytes": 192
+      },
+      "stderr": {
+        "path": "host-rustc.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "host-cargo",
+      "command": [
+        "cargo",
+        "-Vv"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "host-cargo.stdout",
+        "sha256": "dd6e847585431479a6c326d79eaf2f3a883bbed218dec3a7bc7ec20ed82c068d",
+        "bytes": 335
+      },
+      "stderr": {
+        "path": "host-cargo.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  ],
+  "consumer_command": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3",
+    "-B",
+    "scripts/native-candidate.py"
+  ],
+  "consumer_pid": 2126,
+  "exit_code": 0,
+  "resource_stop": null,
+  "elapsed_seconds": 94.94185200000001,
+  "producer_rustc": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: aarch64-apple-darwin\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+  "candidate_sha256": "ea0185ec1d2b619a3dd799329f9a0650c7d94119dd1999219c2d02dbb3a0d32a",
+  "verifications": [
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "receipt": "verification-0.json",
+      "sha256": "92ff236108a65a4a1adc79f7425412d7eef372e5bd8f5305670f9dc3d983144b"
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "receipt": "verification-1.json",
+      "sha256": "afc4ed93fe0a6d2841fceaf6c6516250ea4be4bf3a16fa7987858110b63d8ff8"
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "receipt": "verification-2.json",
+      "sha256": "3075dfdbe207129b3d0a6efe9502c5cde54cc046d5e92c0586517d7f2ca7f935"
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "receipt": "verification-3.json",
+      "sha256": "a82b999ef5904b0ad4be0a07e2a614ab37960b0dbf368dce12740bc5c3cb9c32"
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "receipt": "verification-4.json",
+      "sha256": "42c9541f379398457f00f6bfadd59c97658e3adae062b26d75a1bb290496df71"
+    },
+    {
+      "target": "aarch64-apple-darwin",
+      "receipt": "verification-5.json",
+      "sha256": "ac8d25d2807f207f69a549b5dc8312e85942d080e9062811f0bad8971dab881e"
+    }
+  ],
+  "ended": "2026-10-02T05:30:09.223885+00:00"
+}
