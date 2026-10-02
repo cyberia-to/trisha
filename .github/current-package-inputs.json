@@ -72,8 +72,32 @@
       "origin_head": "0d7ba6d422d9b825f9685e903e55252f88ebecd9"
     }
   ],
-  "status": "review-before-export",
-  "production_closure": "derive from strict Joy/Trisha locked metadata before export",
+  "status": "reviewed-awaiting-frozen-matrix-before-export",
+  "production_closure": {
+    "repositories": [
+      "bbg",
+      "hemera",
+      "honeycrisp",
+      "joy",
+      "lens",
+      "neuron",
+      "nox",
+      "strata",
+      "trident",
+      "trisha",
+      "zheng"
+    ],
+    "command_roots": [
+      "trisha",
+      "joy"
+    ],
+    "flags": [
+      "--all-features",
+      "--locked"
+    ],
+    "receipt": "audit/current-native-package/source-preparation/closure.json",
+    "receipt_sha256": "47ec94b355a626fa487c6759c08dcd338f29b918a70e17377010f2f6fcf18a57"
+  },
   "validation_profile": "current-package-v1",
   "inherited_compiler_cpu": {
     "source_sha256": "e4bac7ff7260a5f395febc196b3e4792653e0ff81d7887d688e16ea0959aa361",

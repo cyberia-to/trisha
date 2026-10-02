@@ -1,0 +1,1043 @@
+{
+  "scope": "Exact production Cargo closure derivation before source export",
+  "status": "passed",
+  "commands": [
+    {
+      "name": "rustc-path",
+      "command": [
+        "rustup",
+        "which",
+        "--toolchain",
+        "1.89.0-aarch64-apple-darwin",
+        "rustc"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "rustc-path.stdout",
+        "bytes": 71,
+        "sha256": "b32f2939662c8b77677dbe201fc872fdf5620369505e48c8d810031e80dff673"
+      },
+      "stderr": {
+        "path": "rustc-path.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "cargo-path",
+      "command": [
+        "rustup",
+        "which",
+        "--toolchain",
+        "1.89.0-aarch64-apple-darwin",
+        "cargo"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "cargo-path.stdout",
+        "bytes": 71,
+        "sha256": "737c255e90e8f50c661f751a563c7533e45920cf2ac91d52375ff0c412da20f2"
+      },
+      "stderr": {
+        "path": "cargo-path.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "rustdoc-path",
+      "command": [
+        "rustup",
+        "which",
+        "--toolchain",
+        "1.89.0-aarch64-apple-darwin",
+        "rustdoc"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "rustdoc-path.stdout",
+        "bytes": 73,
+        "sha256": "bef106d05cd42c16019a764980265e6c86dca4c06e845eb61f6b0fb739cad3e0"
+      },
+      "stderr": {
+        "path": "rustdoc-path.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "rustc-version",
+      "command": [
+        "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/rustc",
+        "-vV"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "rustc-version.stdout",
+        "bytes": 192,
+        "sha256": "a3138eb77dfe19d4cdb1d83ceb7c34944715564062936cf209d247cbf5208fae"
+      },
+      "stderr": {
+        "path": "rustc-version.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "cargo-version",
+      "command": [
+        "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/cargo",
+        "-Vv"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "cargo-version.stdout",
+        "bytes": 335,
+        "sha256": "930ba319a4044e5620604b209d876301cf1bfb05212aed1d0f68381d3fc6c81e"
+      },
+      "stderr": {
+        "path": "cargo-version.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "rustdoc-version",
+      "command": [
+        "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/rustdoc",
+        "-vV"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "rustdoc-version.stdout",
+        "bytes": 196,
+        "sha256": "ede1778259883fc1cb1fa13e5dad16841dec1d24a2eb3bf76f273feb63db2b29"
+      },
+      "stderr": {
+        "path": "rustdoc-version.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "nu-version",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-rust189/temporary/cyber-candidate/nu/nu-0.112.2-aarch64-apple-darwin/nu",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "nu-version.stdout",
+        "bytes": 8,
+        "sha256": "db4eb2269d7babb8815ee8338624d58ba73f31021120f6a8e0fec5c75dba6dd3"
+      },
+      "stderr": {
+        "path": "nu-version.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "vendor",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-rust189/temporary/cyber-candidate/nu/nu-0.112.2-aarch64-apple-darwin/nu",
+        "--no-config-file",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trisha/patches/apply.nu"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "vendor.stdout",
+        "bytes": 1932,
+        "sha256": "68e91319e825c48db2263213b5f1e62771050bcde464175e26e4f84658b8f30b"
+      },
+      "stderr": {
+        "path": "vendor.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trisha-metadata",
+      "command": [
+        "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/cargo",
+        "metadata",
+        "--manifest-path",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trisha/Cargo.toml",
+        "--format-version",
+        "1",
+        "--all-features",
+        "--locked"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trisha-metadata.stdout",
+        "bytes": 4070271,
+        "sha256": "9f1dde6f059220f924aa4abf58b3f6a8cb1002dc67b6de13b7894da4aed4595e"
+      },
+      "stderr": {
+        "path": "trisha-metadata.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "joy-metadata",
+      "command": [
+        "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/cargo",
+        "metadata",
+        "--manifest-path",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/joy/Cargo.toml",
+        "--format-version",
+        "1",
+        "--all-features",
+        "--locked"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "joy-metadata.stdout",
+        "bytes": 701201,
+        "sha256": "bb89c805945369ee1e9d0ad347dbc33887ccef57f546f34c09f083ffeda172cd"
+      },
+      "stderr": {
+        "path": "joy-metadata.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "bbg-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/bbg",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "bbg-head.stdout",
+        "bytes": 41,
+        "sha256": "e4ba634854cc4f938b979a3cf82dee5924eadb538d984a0f72b11ffa7292cabf"
+      },
+      "stderr": {
+        "path": "bbg-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "bbg-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/bbg",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "bbg-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "bbg-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "hemera-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/hemera",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "hemera-head.stdout",
+        "bytes": 41,
+        "sha256": "8e85626ff10d2b6e38058aac9b36f1ac6b541427155d38fb8f08464dafc5f34a"
+      },
+      "stderr": {
+        "path": "hemera-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "hemera-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/hemera",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "hemera-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "hemera-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "honeycrisp-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/honeycrisp",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "honeycrisp-head.stdout",
+        "bytes": 41,
+        "sha256": "1c1bff7684b182ec6ec9031b1486fe4db51b926b638adb2575ac2f4d5335eda2"
+      },
+      "stderr": {
+        "path": "honeycrisp-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "honeycrisp-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/honeycrisp",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "honeycrisp-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "honeycrisp-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "joy-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/joy",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "joy-head.stdout",
+        "bytes": 41,
+        "sha256": "c41a55f901838278a772bc887d269077434ad11e89fafa4ebfc18add97e0f7fb"
+      },
+      "stderr": {
+        "path": "joy-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "joy-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/joy",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "joy-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "joy-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "lens-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/lens",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "lens-head.stdout",
+        "bytes": 41,
+        "sha256": "1d2c51cbd5fc9ee0f98914f773df2ace96e0bb731f93b43318fb67fb40a16e22"
+      },
+      "stderr": {
+        "path": "lens-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "lens-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/lens",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "lens-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "lens-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "neuron-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/neuron",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "neuron-head.stdout",
+        "bytes": 41,
+        "sha256": "53a708b111ddd78ffc52e95cbf9bce1190527aa26aa558b38afd96a96c8d2897"
+      },
+      "stderr": {
+        "path": "neuron-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "neuron-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/neuron",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "neuron-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "neuron-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "nox-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/nox",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "nox-head.stdout",
+        "bytes": 41,
+        "sha256": "16535f919947d0e377143fcdd806e6d42bf4e1ebf0dbf001e6af371346acda7b"
+      },
+      "stderr": {
+        "path": "nox-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "nox-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/nox",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "nox-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "nox-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "strata-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/strata",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "strata-head.stdout",
+        "bytes": 41,
+        "sha256": "fe1790fdc9f5017db241682b7c6fb099a510491edb7a4c2c9369ea42df9e3679"
+      },
+      "stderr": {
+        "path": "strata-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "strata-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/strata",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "strata-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "strata-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trident-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trident",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trident-head.stdout",
+        "bytes": 41,
+        "sha256": "24f1e03c59991535ab04c820dc137ee17f97370f924abcda2ab76fba38619334"
+      },
+      "stderr": {
+        "path": "trident-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trident-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trident",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trident-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "trident-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trisha-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trisha",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trisha-head.stdout",
+        "bytes": 41,
+        "sha256": "dbcb109e586d3dcd819c7aa0c49356125c2518dcd49bbffcdb431d7b61b1be59"
+      },
+      "stderr": {
+        "path": "trisha-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trisha-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trisha",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trisha-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "trisha-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "zheng-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/zheng",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "zheng-head.stdout",
+        "bytes": 41,
+        "sha256": "c9eabafd994d2f7f5d696fe244fd83c28c9e10cefefc9cd94b781f828b4673b5"
+      },
+      "stderr": {
+        "path": "zheng-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "zheng-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/zheng",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "zheng-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "zheng-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "production_repositories": [
+    "bbg",
+    "hemera",
+    "honeycrisp",
+    "joy",
+    "lens",
+    "neuron",
+    "nox",
+    "strata",
+    "trident",
+    "trisha",
+    "zheng"
+  ],
+  "closures": {
+    "trisha": {
+      "repositories": [
+        "hemera",
+        "honeycrisp",
+        "lens",
+        "nox",
+        "strata",
+        "trident",
+        "trisha",
+        "zheng"
+      ],
+      "packages": [
+        {
+          "name": "acpu",
+          "manifest": "honeycrisp/acpu/Cargo.toml",
+          "repository": "honeycrisp"
+        },
+        {
+          "name": "aruminium",
+          "manifest": "honeycrisp/aruminium/Cargo.toml",
+          "repository": "honeycrisp"
+        },
+        {
+          "name": "bfieldcodec_derive",
+          "manifest": "trisha/.vendor/bfieldcodec_derive-0.7.0/Cargo.toml",
+          "repository": "trisha"
+        },
+        {
+          "name": "cyber-hemera",
+          "manifest": "hemera/rs/Cargo.toml",
+          "repository": "hemera"
+        },
+        {
+          "name": "cyber-lens",
+          "manifest": "lens/src/Cargo.toml",
+          "repository": "lens"
+        },
+        {
+          "name": "cyber-lens-assayer",
+          "manifest": "lens/assayer/Cargo.toml",
+          "repository": "lens"
+        },
+        {
+          "name": "cyber-lens-binius",
+          "manifest": "lens/binius/Cargo.toml",
+          "repository": "lens"
+        },
+        {
+          "name": "cyber-lens-brakedown",
+          "manifest": "lens/brakedown/Cargo.toml",
+          "repository": "lens"
+        },
+        {
+          "name": "cyber-lens-core",
+          "manifest": "lens/core/Cargo.toml",
+          "repository": "lens"
+        },
+        {
+          "name": "cyber-lens-ikat",
+          "manifest": "lens/ikat/Cargo.toml",
+          "repository": "lens"
+        },
+        {
+          "name": "cyber-lens-porphyry",
+          "manifest": "lens/porphyry/Cargo.toml",
+          "repository": "lens"
+        },
+        {
+          "name": "cyber-nox",
+          "manifest": "nox/rs/Cargo.toml",
+          "repository": "nox"
+        },
+        {
+          "name": "strata-compute",
+          "manifest": "strata/compute/Cargo.toml",
+          "repository": "strata"
+        },
+        {
+          "name": "strata-core",
+          "manifest": "strata/core/Cargo.toml",
+          "repository": "strata"
+        },
+        {
+          "name": "strata-ext",
+          "manifest": "strata/ext/Cargo.toml",
+          "repository": "strata"
+        },
+        {
+          "name": "strata-genies",
+          "manifest": "strata/genies/rs/Cargo.toml",
+          "repository": "strata"
+        },
+        {
+          "name": "strata-jali",
+          "manifest": "strata/jali/rs/Cargo.toml",
+          "repository": "strata"
+        },
+        {
+          "name": "strata-kuro",
+          "manifest": "strata/kuro/rs/Cargo.toml",
+          "repository": "strata"
+        },
+        {
+          "name": "strata-nebu",
+          "manifest": "strata/nebu/rs/Cargo.toml",
+          "repository": "strata"
+        },
+        {
+          "name": "strata-proof",
+          "manifest": "strata/proof/Cargo.toml",
+          "repository": "strata"
+        },
+        {
+          "name": "strata-trop",
+          "manifest": "strata/trop/rs/Cargo.toml",
+          "repository": "strata"
+        },
+        {
+          "name": "tasm-lib",
+          "manifest": "trisha/.vendor/tasm-lib/Cargo.toml",
+          "repository": "trisha"
+        },
+        {
+          "name": "tasm-object-derive",
+          "manifest": "trisha/.vendor/tasm-object-derive/Cargo.toml",
+          "repository": "trisha"
+        },
+        {
+          "name": "trident-lang",
+          "manifest": "trident/Cargo.toml",
+          "repository": "trident"
+        },
+        {
+          "name": "trisha",
+          "manifest": "trisha/cli/Cargo.toml",
+          "repository": "trisha"
+        },
+        {
+          "name": "trisha-honeycrisp",
+          "manifest": "trisha/honeycrisp/Cargo.toml",
+          "repository": "trisha"
+        },
+        {
+          "name": "trisha-neptune",
+          "manifest": "trisha/neptune/Cargo.toml",
+          "repository": "trisha"
+        },
+        {
+          "name": "trisha-rs",
+          "manifest": "trisha/rs/Cargo.toml",
+          "repository": "trisha"
+        },
+        {
+          "name": "trisha-wgpu",
+          "manifest": "trisha/wgpu/Cargo.toml",
+          "repository": "trisha"
+        },
+        {
+          "name": "triton-air",
+          "manifest": "trisha/.vendor/triton-air/Cargo.toml",
+          "repository": "trisha"
+        },
+        {
+          "name": "triton-constraint-builder",
+          "manifest": "trisha/.vendor/triton-constraint-builder/Cargo.toml",
+          "repository": "trisha"
+        },
+        {
+          "name": "triton-constraint-circuit",
+          "manifest": "trisha/.vendor/triton-constraint-circuit/Cargo.toml",
+          "repository": "trisha"
+        },
+        {
+          "name": "triton-isa",
+          "manifest": "trisha/.vendor/triton-isa/Cargo.toml",
+          "repository": "trisha"
+        },
+        {
+          "name": "triton-vm",
+          "manifest": "trisha/.vendor/triton-vm/Cargo.toml",
+          "repository": "trisha"
+        },
+        {
+          "name": "twenty-first",
+          "manifest": "trisha/.vendor/twenty-first/Cargo.toml",
+          "repository": "trisha"
+        },
+        {
+          "name": "unimem",
+          "manifest": "honeycrisp/unimem/Cargo.toml",
+          "repository": "honeycrisp"
+        },
+        {
+          "name": "zheng",
+          "manifest": "zheng/rs/Cargo.toml",
+          "repository": "zheng"
+        }
+      ]
+    },
+    "joy": {
+      "repositories": [
+        "bbg",
+        "hemera",
+        "joy",
+        "lens",
+        "neuron",
+        "nox",
+        "strata",
+        "trident",
+        "zheng"
+      ],
+      "packages": [
+        {
+          "name": "bbg",
+          "manifest": "bbg/rs/Cargo.toml",
+          "repository": "bbg"
+        },
+        {
+          "name": "cyber-hemera",
+          "manifest": "hemera/rs/Cargo.toml",
+          "repository": "hemera"
+        },
+        {
+          "name": "cyber-joy",
+          "manifest": "joy/cli/Cargo.toml",
+          "repository": "joy"
+        },
+        {
+          "name": "cyber-lens",
+          "manifest": "lens/src/Cargo.toml",
+          "repository": "lens"
+        },
+        {
+          "name": "cyber-lens-assayer",
+          "manifest": "lens/assayer/Cargo.toml",
+          "repository": "lens"
+        },
+        {
+          "name": "cyber-lens-binius",
+          "manifest": "lens/binius/Cargo.toml",
+          "repository": "lens"
+        },
+        {
+          "name": "cyber-lens-brakedown",
+          "manifest": "lens/brakedown/Cargo.toml",
+          "repository": "lens"
+        },
+        {
+          "name": "cyber-lens-core",
+          "manifest": "lens/core/Cargo.toml",
+          "repository": "lens"
+        },
+        {
+          "name": "cyber-lens-ikat",
+          "manifest": "lens/ikat/Cargo.toml",
+          "repository": "lens"
+        },
+        {
+          "name": "cyber-lens-porphyry",
+          "manifest": "lens/porphyry/Cargo.toml",
+          "repository": "lens"
+        },
+        {
+          "name": "cyber-nox",
+          "manifest": "nox/rs/Cargo.toml",
+          "repository": "nox"
+        },
+        {
+          "name": "joy-rs",
+          "manifest": "joy/rs/Cargo.toml",
+          "repository": "joy"
+        },
+        {
+          "name": "neuron-id",
+          "manifest": "neuron/id/Cargo.toml",
+          "repository": "neuron"
+        },
+        {
+          "name": "strata-compute",
+          "manifest": "strata/compute/Cargo.toml",
+          "repository": "strata"
+        },
+        {
+          "name": "strata-core",
+          "manifest": "strata/core/Cargo.toml",
+          "repository": "strata"
+        },
+        {
+          "name": "strata-ext",
+          "manifest": "strata/ext/Cargo.toml",
+          "repository": "strata"
+        },
+        {
+          "name": "strata-genies",
+          "manifest": "strata/genies/rs/Cargo.toml",
+          "repository": "strata"
+        },
+        {
+          "name": "strata-jali",
+          "manifest": "strata/jali/rs/Cargo.toml",
+          "repository": "strata"
+        },
+        {
+          "name": "strata-kuro",
+          "manifest": "strata/kuro/rs/Cargo.toml",
+          "repository": "strata"
+        },
+        {
+          "name": "strata-nebu",
+          "manifest": "strata/nebu/rs/Cargo.toml",
+          "repository": "strata"
+        },
+        {
+          "name": "strata-proof",
+          "manifest": "strata/proof/Cargo.toml",
+          "repository": "strata"
+        },
+        {
+          "name": "strata-trop",
+          "manifest": "strata/trop/rs/Cargo.toml",
+          "repository": "strata"
+        },
+        {
+          "name": "trident-lang",
+          "manifest": "trident/Cargo.toml",
+          "repository": "trident"
+        },
+        {
+          "name": "zheng",
+          "manifest": "zheng/rs/Cargo.toml",
+          "repository": "zheng"
+        }
+      ]
+    }
+  },
+  "source_pins": {
+    "bbg": "1d39975ad199b48c350fa4cc011cbf6f289480ee",
+    "hemera": "a931a0a8e7ed369852ce0f8bc6451a59745ee692",
+    "honeycrisp": "ff735e6c262926bc9bab7534786a575020cbe442",
+    "joy": "11b7bad201cbfc03955290b5479fa6684f8e2b82",
+    "lens": "17cafe91431977b738e5b72361187cd01ad93638",
+    "neuron": "fd24e768d623604b67e20b4b93fa8e82c83ac373",
+    "nox": "2f09ca3c3f18ae470365310cca8db5208eda75c6",
+    "strata": "d2eb1763b8caf04e6c7647ac6fe99761519c2ef9",
+    "trident": "da0d1a59cd8208fab96f219ccedef29122d5221a",
+    "trisha": "191c6e03fa855be3b70b5aa5e4ee78be1ebffe91",
+    "zheng": "0d7ba6d422d9b825f9685e903e55252f88ebecd9"
+  }
+}

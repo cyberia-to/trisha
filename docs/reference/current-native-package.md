@@ -1,7 +1,8 @@
 # Current native package validation
 
-Status: planned; dispatch remains dormant until the runner and exact selector
-are reviewed and the new source archive is independently reproduced.
+Status: runner reviewed at `bbba2b7`; exact eleven-repository production
+closure derived. Source export and dispatch remain dormant until the original
+frozen native matrix passes and the new archive is independently reproduced.
 
 This is a new committed, pushed branch rehearsal for the current production
 code. It keeps the frozen `e4bac7ff` distribution experiment and its receipts
