@@ -1,0 +1,46 @@
+{
+  "status": "passed",
+  "scope": "Actual source734 original-worker replay and integrity mutations; final dd61 package coverage remains unmeasured",
+  "reference_archive_sha256": "54db68904fc8c92f1446c46cb7b90345a05e026a92b46e6ccb259822a3328204",
+  "checker_sha256": "6d37ed18d894bbfb8b3a745d06f360441177cc07f0da83eff9573b78c5d12761",
+  "driver_sha256": "89136744bd126dcca29a4c24c06d53115fc0a8d8378f122c3e92b334167b7d21",
+  "positive": "original-worker-positive.json",
+  "mutations": [
+    {
+      "name": "changed-actual-Trisha-bytes",
+      "status": "needs_fresh_full198",
+      "reasons": [
+        "actual Trisha executable is not byte-identical to original198 worker"
+      ]
+    },
+    {
+      "name": "manual-fixture",
+      "rejected_for_inheritance": [
+        "trisha/baselines/triton/fixtures/assert/vector.bench.toml"
+      ]
+    },
+    {
+      "name": "proof-driver",
+      "rejected_for_inheritance": [
+        "trisha/scripts/check-baselines.py"
+      ]
+    },
+    {
+      "name": "dependency-source",
+      "rejected_for_inheritance": [
+        "nox/rs/lib.rs"
+      ]
+    },
+    {
+      "name": "changed-original-checker",
+      "rejected": true,
+      "error": "original proof checker differs"
+    },
+    {
+      "name": "changed-original-receipt",
+      "rejected": true,
+      "error": "original full198 archive identity differs",
+      "mutated_archive_sha256": "c3f5f9daa1a67ab46651e50b70a2200f27f7455ed84e812095d2286249855621"
+    }
+  ]
+}
