@@ -38,3 +38,11 @@
 /audit/native-distribution-20261002/producers/x86_64-pc-windows-msvc/job.log -text -whitespace
 /audit/native-distribution-20261002/producers/x86_64-pc-windows-msvc/local-corpus-verification.json -text -whitespace
 /audit/native-distribution-20261002/producers/x86_64-pc-windows-msvc/source-verification.json -text -whitespace
+
+# Exact source/selector bytes for the separate GET-only certificate byte replay.
+/.github/whole-readback-activation.json -text
+/.github/whole-readback.json -text
+/.github/whole-readback-sources.json -text
+/.github/workflows/whole-retention-readback.yml -text
+/.claude/plans/whole-retention-byte-replay.md -text
+/docs/reference/whole-retention-byte-replay.md -text
