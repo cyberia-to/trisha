@@ -85,3 +85,4 @@
 /.github/workflows/whole-retention-readback.yml -text
 /.claude/plans/whole-retention-byte-replay.md -text
 /docs/reference/whole-retention-byte-replay.md -text
+/.gitattributes -text
