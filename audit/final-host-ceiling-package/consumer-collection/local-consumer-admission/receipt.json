@@ -1,0 +1,67 @@
+{
+  "status": "passed",
+  "observed_at": "2026-10-02T11:57:10.051262+00:00",
+  "runner_revision": "dd858356251101f285c785cb04fba1644a612fce",
+  "scope": "Fresh local verify-only admission; original28GiB guard and Cargo2/Rayon4 unchanged; no new full198",
+  "commands": [
+    {
+      "command": [
+        "df",
+        "-k",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "0055fcd58b0a09a1d29222775944b96d35d28cead678ee585083096d894c5d74",
+      "stdout_bytes": 188,
+      "private": false
+    },
+    {
+      "command": [
+        "memory_pressure"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "9953d6598a10bcb8ab957aefc92d2aab96a6878ac58c72cc3679cda4635f6039",
+      "stdout_bytes": 529,
+      "private": false
+    },
+    {
+      "command": [
+        "ps",
+        "-axo",
+        "pid,ppid,pgid,rss,pcpu,etime,command"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "d4817c7d0f9a00902d78578fe85519976ea133d253d537cd2b90302e41d9e814",
+      "stdout_bytes": 164720,
+      "private": true
+    },
+    {
+      "command": [
+        "uname",
+        "-a"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "a3b4f1a1cb2a54ee5016420218632e592b71f4daf684a2613c8fa59a181c93e6",
+      "stdout_bytes": 132,
+      "private": false
+    }
+  ],
+  "disk_free_bytes": 28431847424,
+  "cache_sha256": "34cb19b0f653439ae8681a0912cef3f60b386571de8d764fc05fda33f79afe3c",
+  "selector_sha256": "084bfe4821114455881b1fd2718d8a10373e48562d97093ef3a580b0fb9626ba",
+  "command": [
+    "python3",
+    "-B",
+    "-W",
+    "error",
+    "scripts/native-rehearsal-local.py",
+    "--family",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution",
+    "--output-name",
+    "local-macos-final-corpus-consumer",
+    "--selector",
+    ".github/final-package-candidate.json",
+    "--cache",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/consumer-proposal/local-consumer-asset-cache.json"
+  ]
+}

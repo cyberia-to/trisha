@@ -1,0 +1,155 @@
+{
+  "schema": "local/native-distribution-macos/v1",
+  "scope": "Actual native Mac ARM feature-branch rehearsal; no default-branch release/tag/publication",
+  "started": "2026-10-02T11:57:10.499902+00:00",
+  "status": "passed",
+  "bootstrap_revision": "dd858356251101f285c785cb04fba1644a612fce",
+  "bootstrap": {
+    "bytes": 26414,
+    "sha256": "b2ef3e9ac773e6326f084cdf9cf419766272646d9c6ad7050953a0b3417a7e05"
+  },
+  "selector": {
+    "scope": "Exact final Joy dd61 six-native installed package consumption with all legacy/structured corpora and installed deadline probes; feature-branch rehearsal, no publication",
+    "validation_profile": "final-host-ceiling-v1",
+    "status": "active",
+    "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+    "phase": "verify",
+    "asset_id": 605224542,
+    "inputs_sha256": "6a9e9af007de7f1d3dca6cb078080270cb4b96057db182f9c64775d063d6e767",
+    "selfhost_kit": {
+      "asset_id": 604463150,
+      "sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd"
+    },
+    "neptune_intent": {
+      "asset_id": 568147730,
+      "sha256": "404ba33e683103e9cceaa7c21fcd6443401f8ba4216b8e77230ed34b24e249d0"
+    },
+    "targets": [
+      "aarch64-apple-darwin"
+    ],
+    "full_baselines": true,
+    "baseline_reference": {
+      "asset_id": 605010237,
+      "sha256": "54db68904fc8c92f1446c46cb7b90345a05e026a92b46e6ccb259822a3328204"
+    },
+    "binaries": {
+      "aarch64-apple-darwin": {
+        "asset_id": 605308332,
+        "sha256": "0ba4af63ea103c4d41382816541e8ade6883d7af078ba9e3ba3e9cb27e05d348"
+      },
+      "aarch64-pc-windows-msvc": {
+        "asset_id": 605444596,
+        "sha256": "7d758a5b53800625cda58d409a0cfb0c57ba4c6d1a970263aac2c7a35d2bc650"
+      },
+      "aarch64-unknown-linux-gnu": {
+        "asset_id": 605444976,
+        "sha256": "30c6485fcadf9370c9e39be993c3a4a745729cc9cb1d4b2bc3071a0d9100b4b3"
+      },
+      "x86_64-apple-darwin": {
+        "asset_id": 605445352,
+        "sha256": "145d6186413346c20e31d646a7d1f489af4adda46952d8bab8928d7af883a872"
+      },
+      "x86_64-pc-windows-msvc": {
+        "asset_id": 605445697,
+        "sha256": "456b1ead76c3f9fac559f50c9d6c54e378eccb1d0e96d3ee9a36c6d7117ab9c4"
+      },
+      "x86_64-unknown-linux-gnu": {
+        "asset_id": 605446043,
+        "sha256": "5d4193576a26792afdfa9ca4a0bb4d050412a25e2d99311a35d0b5ba9efb6609"
+      }
+    },
+    "corpora": [
+      {
+        "target": "aarch64-apple-darwin",
+        "asset_id": 605308674,
+        "sha256": "29632607c886c71398c1f637c5361f53164fdb52167ffbea27b1cc2d452a1002"
+      },
+      {
+        "target": "aarch64-pc-windows-msvc",
+        "asset_id": 605444672,
+        "sha256": "3276ceb704313e5c73b3df4d0d22c91ba602c6dd3c6affe42669070e6525ed93"
+      },
+      {
+        "target": "aarch64-unknown-linux-gnu",
+        "asset_id": 605445038,
+        "sha256": "aa5ba2751fb06c21dce43a6ea4057c17b351bbb17efe74e50eed91d1ee0af05c"
+      },
+      {
+        "target": "x86_64-apple-darwin",
+        "asset_id": 605445416,
+        "sha256": "7d66ac095b4367d72a9c16e5c0ea63508f0c1d344f2652db137beb6902caaf2a"
+      },
+      {
+        "target": "x86_64-pc-windows-msvc",
+        "asset_id": 605445753,
+        "sha256": "663583308151eb8dd4754d12869d1ebff0fa1afb4245aeb3edac6cd5e18d7151"
+      },
+      {
+        "target": "x86_64-unknown-linux-gnu",
+        "asset_id": 605446081,
+        "sha256": "6fd7803d1320f489ef7d8b8d12963e97600928c23fd5f19108060e4d1b1c1579"
+      }
+    ],
+    "structured_corpora": [
+      {
+        "target": "aarch64-apple-darwin",
+        "asset_id": 605308921,
+        "sha256": "7a64776e901dc39c94682188bc7700692e1f60f3f48dd3606bcee24a72f4cdf0"
+      },
+      {
+        "target": "aarch64-pc-windows-msvc",
+        "asset_id": 605444722,
+        "sha256": "83b770de9f60b5ecfb328e9f0745e8bec56671d11b2c5fed9ddda1b80dd7a498"
+      },
+      {
+        "target": "aarch64-unknown-linux-gnu",
+        "asset_id": 605445106,
+        "sha256": "3ecfd85ee5d14c80d6d832972f29f6ac5b7711726e6ec54a7b44b293eccc3b41"
+      },
+      {
+        "target": "x86_64-apple-darwin",
+        "asset_id": 605445468,
+        "sha256": "caac9d2f7ec2816e5c7d54296df3207a2856d884b5616d3af6971a5f880abd72"
+      },
+      {
+        "target": "x86_64-pc-windows-msvc",
+        "asset_id": 605445819,
+        "sha256": "dce5aef9ae5f3c112754f762c35d3512abf67da6eba1fa55b2a0b7ea2b130ccd"
+      },
+      {
+        "target": "x86_64-unknown-linux-gnu",
+        "asset_id": 605446158,
+        "sha256": "2c022ffeed3f9d669485b74f324b276ada0a7a5df8da77659f4b2b5da2b79686"
+      }
+    ]
+  },
+  "command": [
+    "python3",
+    "-B",
+    "local-transport.py"
+  ],
+  "transport_adapter": {
+    "bytes": 1961,
+    "sha256": "5d1df0d6ddd9e88b1b1b997d4dc8883f1918c96436cc3f45b09e1d2579732643"
+  },
+  "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/local-macos-final-corpus-consumer",
+  "peak_process_group_rss_bytes": 120750080,
+  "resource_guard_bytes": 30064771072,
+  "pid": 28424,
+  "exit_code": 0,
+  "resource_stopped": false,
+  "ended": "2026-10-02T11:58:00.702820+00:00",
+  "elapsed_seconds": 50.2023840000038,
+  "driver.stdout": {
+    "bytes": 13062,
+    "sha256": "58ffce71ab0821bca3688b6857fb78c1b3447c9aaac9549ba1df7e5a2b42d7ee"
+  },
+  "driver.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "resources.jsonl": {
+    "bytes": 918,
+    "sha256": "11568dd7f733dec0f6819d3c716971218b9d7b457479e7f7abefe6785a82df6e"
+  }
+}

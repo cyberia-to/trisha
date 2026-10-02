@@ -1,13 +1,12 @@
 # Final Joy host deadline package evidence
 
 Status: all six final native producers, all 24 packaged binary linkage checks,
-and the fresh Mac ARM 198-proof gate passed for exact source 73b50ebd. The
-complete original full198 archive and the local package/corpus assets passed
-authenticated draft-asset readback. All twenty remote draft package/corpus/evidence bodies also passed complete
-authenticated readback. The complete six-by-six consumer matrix and bounded
-macOS 14 ARM consumption are now selected for execution; their actual results
-remain pending. This is a feature-branch rehearsal,
-not a published release.
+the fresh Mac ARM 198-proof gate, the complete six-by-six consumer matrix and
+the bounded macOS 14 ARM consumer passed for exact source 73b50ebd. All twenty
+remote and three local package/corpus bodies passed authenticated readback.
+Original consumer containers and complete local proof evidence are retained.
+Final integration review is pending. This is a feature-branch rehearsal, not a
+published release.
 
 `dependency-scope/` retains the exact Joy11b7→dd61 diff and original Cargo1.89
 locked/offline/all-features dependency observations. The one changed production
@@ -395,3 +394,75 @@ frozen runner; it supplies no coverage for the different final executable.
 Consumer verification returns before inheritance or full198 generation.
 The next observations must record the actual six-native consumer matrix and
 separate Mac14 ARM Joy/Trisha+kit/deadline probes before acceptance.
+
+## Complete final portable consumption passed
+
+All six actual consumers passed at frozen activation commit
+`dd858356251101f285c785cb04fba1644a612fce`. Remote run 37003795408 completed
+successfully on Linux x64/ARM, Windows x64/ARM and Intel Mac. The retained
+`inspect-final-consumers.py` command authenticated all five original Actions
+containers against fresh server digests, checked every original/restored byte,
+and replayed the exact selector, source-impact and actual installed receipts.
+Together with the original local ARM worker, `corpus-matrix/` records all 36
+producer/consumer pairs, 72 legacy/structured corpus sets and 2664 case checks.
+All six consumers also passed the 23-command installed deadline probe (138
+commands total), bound to each package's actual Joy executable and original
+packaged metadata. No full198 generation occurs in consumer verification.
+
+`consumers/` retains the five original remote ZIPs, API identities, complete
+member inventories and original job logs. `local-corpus-consumer/` retains the
+complete original local evidence archive and driver receipt. That actual local
+consumer passed 444 corpus cases plus 23 deadline commands in
+50.2023840000038 seconds, with sampled process-group RSS peak 120750080 bytes.
+`consumer-checkers/` contains the exact read-only replay implementations.
+`consumer-retention.json` binds all retained containers and replays by byte
+identity. The separate fresh198 receipt still measures the actual final
+Trisha `fe069879`; consumer results do not replace or inherit that proof run.
+
+The Intel Mac job started at 12:23:11 UTC and passed at 12:26:22 UTC on
+2026-10-02. The original collector separately stopped on a GitHub API connection
+error and left a saved queued snapshot. A fresh direct job API observation
+corrected that stale status, and a separate read-only completed-run collection
+retained the missing original Intel artifact 11226096465, SHA-256
+`7136e0c2704d71b727700bc387c033d97ec64fdfdd0be7f7fceace115f92a613`.
+`consumer-collection/` preserves the first connection error, original and
+continuation commands, fresh API observation and actual successful matrix
+replay. No native job or proof generation was rerun for collection.
+
+## Actual macOS 14 ARM final consumer passed
+
+Run 37003795418 used the same exact consumer selector and recorded actual
+macOS 14.8.9 ARM. All six legacy and structured corpora (444 case checks), the
+installed kit and all 23 deadline commands passed. Its unchanged guard recorded
+101.601761583 seconds and peak process-group RSS 138149888 bytes, within the
+1800-second / 5 GiB bounds with no resource stop.
+
+`macos14-arm-consumer/` preserves original Actions artifact 11225557673,
+SHA-256 `387c95fd6e5c1616e7c80b70f3c6c4e6c1b647ce97cc94c1dcca2741e9133acc`,
+with all 465 members and original host/resource/command observations.
+`macos14-inspection/` records independent replay of that complete container,
+its actual installed candidate bytes, all corpus results and the new deadline
+probe. This qualifies the exercised Joy/Trisha+kit paths on that measured
+Mac14 ARM host. It makes no Intel Mac14, Windows11 x64 or Mac14 Trident/LSP
+execution claim.
+
+This final source73b50 package closure contains Joy dd61 and Trisha c8836be.
+It follows [PR23](https://github.com/cyberia-to/trisha/pull/23), whose source734
+package contained Joy11b7, and [PR20](https://github.com/cyberia-to/trisha/pull/20),
+whose frozen source was e4bac. Their original measurements remain unchanged;
+none is relabeled as measurement of the different final binaries. The final
+source, exact native producer/consumer runner commits and all eleven selected
+origin revisions remain explicit in this audit and its selectors.
+
+## Independent final consumer replay accepted
+
+`root-final-acceptance/` preserves the original independent fresh API and
+complete container replays at consumer head dd858356, including the exact
+source/checker identities and command streams. The resulting matrix and Mac14
+receipts match the original independent checks byte-for-byte. Root acceptance
+receipt SHA-256 is
+`e2d4c34d659e30556aaae2ecd3e1f118b4e357481c7e840235bc4c2193d9d382`.
+This confirms 36 native pairs, 2664 corpus cases and 138 deadline commands,
+plus the separate 444-case / 23-command Mac14 observation, without rerunning
+native workloads. Release-branch integration remains separate from source and
+artifact validation; no default branch, tag or publication is changed here.

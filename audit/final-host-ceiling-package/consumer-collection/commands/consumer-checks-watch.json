@@ -1,0 +1,54 @@
+{
+  "status": "passed",
+  "scope": "Read-only exact original consumer receipt replay after successful retained run; no native retries or selector edits",
+  "started": "2026-10-02T12:03:32.096204+00:00",
+  "frozen_helpers": {
+    "inspect-final-consumers.py": "772454d44437909277c5a9b2e1f2220ff19d25f64308f9a4e7a7bdba7a2ed3e3",
+    "inspect-final-macos-floor.py": "c53b663e26d936cfeb93e94ab2a6704e8e66d8fafb1173585f262edb749f24e3",
+    "check-final-corpus-matrix.py": "8afc5dae26130a1ff553017bd77f8a606278761941968ca158c45f8790a6927d",
+    "inspect-final-native-producer.py": "64572b572e3a7319f837d788307436e36b54802cc0ba6f146c541bb297d43a8a"
+  },
+  "checks": [
+    {
+      "kind": "macos14",
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inspect-final-macos-floor.py",
+        "--run-id",
+        "37003795418",
+        "--head",
+        "dd858356251101f285c785cb04fba1644a612fce",
+        "--selector-sha",
+        "084bfe4821114455881b1fd2718d8a10373e48562d97093ef3a580b0fb9626ba",
+        "--output",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-macos-floor-inspection",
+        "--artifact-id",
+        "11225557673"
+      ],
+      "exit_code": 0
+    },
+    {
+      "kind": "matrix",
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inspect-final-consumers.py",
+        "--run-id",
+        "37003795408",
+        "--head",
+        "dd858356251101f285c785cb04fba1644a612fce",
+        "--selector-sha",
+        "084bfe4821114455881b1fd2718d8a10373e48562d97093ef3a580b0fb9626ba",
+        "--output",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-corpus-matrix"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "ended": "2026-10-02T15:44:53.364321+00:00"
+}

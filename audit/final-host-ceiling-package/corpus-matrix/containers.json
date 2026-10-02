@@ -1,0 +1,37 @@
+[
+  {
+    "target": "x86_64-apple-darwin",
+    "artifact_id": 11226096465,
+    "zip_sha256": "7136e0c2704d71b727700bc387c033d97ec64fdfdd0be7f7fceace115f92a613",
+    "members": 446,
+    "retention_sha256": "096bc56b55e9ddeaa018097e8a0edf1d002674b3fcc8dd8e598dcbc372b0f25b"
+  },
+  {
+    "target": "x86_64-pc-windows-msvc",
+    "artifact_id": 11225386264,
+    "zip_sha256": "893128e799d7029922a1ab06c56634ee4607a324dee08d38b51f8ec756cdc6c4",
+    "members": 446,
+    "retention_sha256": "3ae7cd35ec9774e7b2279c8039c6ef16d96b0e0b8b0d3233029f9a0231c653a4"
+  },
+  {
+    "target": "aarch64-unknown-linux-gnu",
+    "artifact_id": 11224608079,
+    "zip_sha256": "28b5ee0055d4963485c922508c345a46605982ca6d55381b530822fe3652290a",
+    "members": 446,
+    "retention_sha256": "3261c8248055f0dcf8034d4564659d0eab85b2f69d678d04f59544ecd00b6d71"
+  },
+  {
+    "target": "x86_64-unknown-linux-gnu",
+    "artifact_id": 11224399191,
+    "zip_sha256": "6e10c32b657397a2072e5095a9d6c03cf1dd0b55db1cddf8427636db9764c6e8",
+    "members": 446,
+    "retention_sha256": "1f6d2e1df9c523885aabc52d2c51e12f735f3730e254e50863833a24ea8fdd18"
+  },
+  {
+    "target": "aarch64-pc-windows-msvc",
+    "artifact_id": 11224369700,
+    "zip_sha256": "b0e2c6b14b843e8336293e7de1d8e341475128b4c8c15fff6a794a7566f76aad",
+    "members": 446,
+    "retention_sha256": "511b647acfeb2c21aa29582a91134429e81ef740038d0960888180b5d081e7d7"
+  }
+]

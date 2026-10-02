@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "observed_ns": 1790956167066096000,
+  "scope": "Root independent fresh API and complete original-container receipt replay; no native workload rerun",
+  "head": "dd858356251101f285c785cb04fba1644a612fce",
+  "matrix": {
+    "bytes": 42043,
+    "sha256": "93f5f631ae93fb8ff3468a7473a47f248f4b6db1accb70d6d453f9e265a66ad5"
+  },
+  "macos14": {
+    "bytes": 7398,
+    "sha256": "dd09d095cfc214fcf9a187fa437790e90e439c51d4f7eeca51d7d6637c60b490"
+  },
+  "native_pairs": 36,
+  "case_checks": 2664,
+  "installed_deadline_commands": 138,
+  "macos14_cases": 444,
+  "macos14_deadline_commands": 23,
+  "sources": {
+    "inspect-final-consumers.py": {
+      "bytes": 6372,
+      "sha256": "772454d44437909277c5a9b2e1f2220ff19d25f64308f9a4e7a7bdba7a2ed3e3"
+    },
+    "inspect-final-macos-floor.py": {
+      "bytes": 6768,
+      "sha256": "c53b663e26d936cfeb93e94ab2a6704e8e66d8fafb1173585f262edb749f24e3"
+    },
+    "check-final-corpus-matrix.py": {
+      "bytes": 8698,
+      "sha256": "8afc5dae26130a1ff553017bd77f8a606278761941968ca158c45f8790a6927d"
+    },
+    "inspect-final-native-producer.py": {
+      "bytes": 19072,
+      "sha256": "64572b572e3a7319f837d788307436e36b54802cc0ba6f146c541bb297d43a8a"
+    }
+  },
+  "same_receipts_as_original_review": true
+}
