@@ -1,0 +1,31 @@
+{
+  "schema": "trisha/delivery-publication-observation/v1",
+  "status": "observed",
+  "started_utc": "2026-10-02T19:42:22.124234+00:00",
+  "elapsed_seconds": 0.7649607920320705,
+  "command": [
+    "gh",
+    "api",
+    "graphql",
+    "--input",
+    "audit/delivery-status-20261002/request.json"
+  ],
+  "source_revision": "95899e8f4fe32b5d7269d92b5e63ef429fbfafac",
+  "exit_code": 0,
+  "request": {
+    "path": "request.json",
+    "bytes": 532,
+    "sha256": "7dd6c8e76477888e41d6219b6388a9c9121f329ecf0c5cb8afc1090357f49ac1"
+  },
+  "response": {
+    "path": "response.json",
+    "bytes": 1110,
+    "sha256": "5a6e32d668e98c4abd3355dda410d1a98d20de46076fb30bb8692199a79e48a4"
+  },
+  "stderr": {
+    "path": "stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "scope": "One bounded read-only GitHub GraphQL request; at most ten release nodes and exact integration/default/tag references; no pagination or mutation."
+}

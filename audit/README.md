@@ -1,5 +1,36 @@
 # Trisha validation records
 
+The `release/0.4` package rehearsal is accepted for exact source `73b50ebd`:
+six native producers, a fresh Mac ARM 198-proof gate, all 36 native consumer
+pairs and the bounded macOS 14 ARM consumer. The
+[final package audit](final-host-ceiling-package/README.md) retains commands,
+revisions, source and binary identities, resource observations and failures.
+[PR24](https://github.com/cyberia-to/trisha/pull/24) merged this evidence as
+`95899e8f4fe32b5d7269d92b5e63ef429fbfafac`. Its
+[source selection](../.github/final-package-source.json) binds the frozen
+eleven-repository archive; its [reproduction and readback](final-host-ceiling-package/README.md#independent-reproduction-and-complete-source-readback-passed)
+bind draft source asset `605224542`.
+
+The package retains its tested product versions and exact binary identities.
+[Complete certificate byte-equivalence retention](whole-retention-byte-closure/README.md)
+is accepted for both original self-build certificates. SH8 adversarial and
+final-checker acceptance remain separate gates in Trident's
+[self-hosting ledger](../../trident/audit/self-hosting-progress.md).
+Version/bump approval, default-branch release integration, tags, registry
+publication and public promotion remain owner release steps. Draft evidence
+transport does not promote this branch rehearsal.
+
+The earlier [Trisha 0.3.0 release](https://github.com/cyberia-to/trisha/releases/tag/v0.3.0)
+was published on September 16. The
+[bounded GitHub observation](delivery-status-20261002/README.md) records that
+release and tag separately from the unpublished draft used for current evidence.
+
+## Historical pre-release index
+
+The following index records preparation before the September 16 publication.
+Its status wording describes that period; each linked report retains its own
+recorded revisions and original findings.
+
 The full release is still being prepared. The coordinated work ledger is
 `trident/audit/full-release-preparation.md` in the complete source tree.
 These reports distinguish local runtime/node evidence from publication and

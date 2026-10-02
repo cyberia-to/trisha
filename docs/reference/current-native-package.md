@@ -1,11 +1,16 @@
-# Current native package validation
+# Native package validation — source 734df69d
 
-Status: runner reviewed at `bbba2b7`; exact eleven-repository production
-closure derived. Source export and dispatch remain dormant until the original
-frozen native matrix passes and the new archive is independently reproduced.
+Status: this source `734df69d` rehearsal completed its six native producer and
+consumer gates and actual Mac 198-proof gate; see the
+[retained results](../../audit/current-native-package/README.md).
+The later Joy host-deadline package, source `73b50ebd`, completed its own gates
+and entered `release/0.4` through [PR24](https://github.com/cyberia-to/trisha/pull/24).
+Its [final audit](../../audit/final-host-ceiling-package/README.md) is the current
+package evidence. The preparation and execution requirements below retain the
+earlier rehearsal's scope.
 
-This is a new committed, pushed branch rehearsal for the current production
-code. It keeps the frozen `e4bac7ff` distribution experiment and its receipts
+This contract records the committed, pushed branch rehearsal for source
+`734df69d`. It keeps the frozen `e4bac7ff` distribution experiment and its receipts
 unchanged. A new source inventory, archive digest, native selector, package
 identity and corpus identify this run. Existing unpublished draft assets are
 transport only; this process creates no tag or published release.
