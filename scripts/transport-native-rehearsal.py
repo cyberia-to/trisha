@@ -15,6 +15,15 @@ def sha(path):
         return hashlib.file_digest(stream, 'sha256').hexdigest()
 
 
+def require_pinned_toolchain(candidate, target):
+    observed = candidate.get('toolchain', '')
+    if (not observed.startswith('rustc 1.89.0 ')
+            or 'release: 1.89.0\n' not in observed
+            or 'host: ' + target + '\n' not in observed):
+        raise ValueError('candidate must record actual native Rust 1.89.0')
+    return observed
+
+
 def main():
     checkout = Path.cwd()
     spec = json.loads((checkout / '.github/native-rehearsal-assets.json').read_text())
@@ -95,6 +104,10 @@ def main():
                     or candidate['provenance_sha256'] != spec['provenance_sha256']
                     or corpus['source_provenance_sha256'] != spec['provenance_sha256']):
                 raise ValueError('producer source/kit provenance mismatch')
+            observed_toolchain = require_pinned_toolchain(candidate, target)
+            report.setdefault('producer_toolchains', []).append(dict(
+                target=target, rustc=observed_toolchain,
+                cargo_version_observation='not separately recorded by the frozen producer'))
             binary = restored / produced['archive']
             if binary.parent != restored or sha(binary) != produced['sha256']:
                 raise ValueError('native binary archive identity mismatch')

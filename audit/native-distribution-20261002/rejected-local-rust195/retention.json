@@ -1,0 +1,316 @@
+{
+  "scope": "Rejected Rust 1.95 local attempt; stopped before completion; not native acceptance",
+  "created": "2026-10-02T02:08:34.801389+00:00",
+  "archive": {
+    "path": "raw-evidence.tar.gz",
+    "bytes": 16100290,
+    "sha256": "883909f0658158a98d174717ec23f5492632ef0fc998f6966377b0e2d3c61009"
+  },
+  "files": [
+    {
+      "path": "candidate/bin/joy",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/temporary/cyber-candidate/candidate/bin/joy",
+      "bytes": 4962112,
+      "sha256": "da437748e01f167daaf01e2d9c0fb72c8a666326ffa50a714ab6ac9b5344b8f0"
+    },
+    {
+      "path": "candidate/bin/trident",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/temporary/cyber-candidate/candidate/bin/trident",
+      "bytes": 8693424,
+      "sha256": "e264dfe136b3a3e64eb7a3ac63537cf2a8c6cbde208016cd73cee7300cbf33c6"
+    },
+    {
+      "path": "candidate/bin/trident-lsp",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/temporary/cyber-candidate/candidate/bin/trident-lsp",
+      "bytes": 6443328,
+      "sha256": "a28c43df75abaa4e2ba99486c023ad9c845815f4d0a4b3188305124b6fe55c1e"
+    },
+    {
+      "path": "candidate/bin/trisha",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/temporary/cyber-candidate/candidate/bin/trisha",
+      "bytes": 13485152,
+      "sha256": "b955020e6186021255f0a575bf484a60bae68efb47430821b93a03aea8b9a1f5"
+    },
+    {
+      "path": "candidate/candidate.json",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/temporary/cyber-candidate/candidate/candidate.json",
+      "bytes": 1266,
+      "sha256": "33d6aad426eab99320b29bbcdc342ddb7c1a570c91764a96185e743e3c8f51c8"
+    },
+    {
+      "path": "candidate/fixture-build.log",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/temporary/cyber-candidate/candidate/fixture-build.log",
+      "bytes": 4994,
+      "sha256": "f175a4d0b3a4a9d3ae5e3645ab0ddaea70c900481588edf09388f4aceee5d83a"
+    },
+    {
+      "path": "candidate/joy-boundary.json",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/temporary/cyber-candidate/candidate/joy-boundary.json",
+      "bytes": 157,
+      "sha256": "3cbcca0afbaa0029acb4405cfc2ad7a7f3bc92f6e418456dba19a667f4bc5638"
+    },
+    {
+      "path": "candidate/joy-build.log",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/temporary/cyber-candidate/candidate/joy-build.log",
+      "bytes": 7872,
+      "sha256": "e14b89d4fc3b26860f2c376942f337f935657f6ffde5bc9a401bbb94f362094a"
+    },
+    {
+      "path": "candidate/source-verification.json",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/temporary/cyber-candidate/candidate/source-verification.json",
+      "bytes": 517,
+      "sha256": "1399bf2f87709b9a706a6e0ee64564f77718909f282ab8a29a8ea32f4adfef0a"
+    },
+    {
+      "path": "candidate/trident-build.log",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/temporary/cyber-candidate/candidate/trident-build.log",
+      "bytes": 4525,
+      "sha256": "47ab18fdef233fa5cea649db0dd102d6452b604bee61e948d287ae0a3e4645e8"
+    },
+    {
+      "path": "candidate/trisha-build.log",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/temporary/cyber-candidate/candidate/trisha-build.log",
+      "bytes": 16627,
+      "sha256": "cdb87c8a7005cc7ecc553eb5f3c6421429a95771810ce3a494b848249d8bb28c"
+    },
+    {
+      "path": "driver/local-native.py",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/local-native.py",
+      "bytes": 3592,
+      "sha256": "340246068dc1d3a633295ebaf748d52a04947df66d4843385a81eeb545de60e6"
+    },
+    {
+      "path": "driver/local-selector.json",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/local-selector.json",
+      "bytes": 516,
+      "sha256": "25a0b371aad2122a9a242776fcc5a8588c2f766b0a31a4d9bd7b06de527e5776"
+    },
+    {
+      "path": "driver/local-toolchain-rejection.json",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/local-toolchain-rejection.json",
+      "bytes": 2034,
+      "sha256": "464560d6db151e2a3c35d89737cb06b9e57e618b1801528a3817bec7f4b31920"
+    },
+    {
+      "path": "driver/local-transport.py",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/local-transport.py",
+      "bytes": 1454,
+      "sha256": "e38b7f013978966e7f1ffe9e5ef8893201cca7130e6d1b14c38b7474b0c01c2b"
+    },
+    {
+      "path": "local/.github/release-candidate.json",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/.github/release-candidate.json",
+      "bytes": 589,
+      "sha256": "da894518fa7fcb644ff2751d5349e2be41791f03571026fd2e32797881d25d1a"
+    },
+    {
+      "path": "local/driver.json",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/driver.json",
+      "bytes": 1974,
+      "sha256": "263b9ae234ab1caa58a497a82b6face2f691c2393284c26daf9a12108a6f04b5"
+    },
+    {
+      "path": "local/driver.stderr",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/driver.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "local/driver.stdout",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/driver.stdout",
+      "bytes": 3038,
+      "sha256": "0d4b8059464f5d129b38809733cd0060c1167c3d1c0750f587ad79e1007881c3"
+    },
+    {
+      "path": "local/local-transport.json",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/local-transport.json",
+      "bytes": 1046,
+      "sha256": "1f726819786a3b7061a9f420483871a187919b606888fee1aaaf90c2776c3ef7"
+    },
+    {
+      "path": "local/local-transport.py",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/local-transport.py",
+      "bytes": 1454,
+      "sha256": "e38b7f013978966e7f1ffe9e5ef8893201cca7130e6d1b14c38b7474b0c01c2b"
+    },
+    {
+      "path": "local/resources.jsonl",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/resources.jsonl",
+      "bytes": 70629,
+      "sha256": "4dbc208efde645d37815e292a99a9477b981e575b32bba400dd4b25c4cc87588"
+    },
+    {
+      "path": "local/scripts/native-candidate.py",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/scripts/native-candidate.py",
+      "bytes": 18078,
+      "sha256": "2c5c8dbc21dbb96474c3219f884a6cd4a14cb623e3fc7aa06a0bdb5b2ccc9572"
+    },
+    {
+      "path": "results/build.log",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/build.log",
+      "bytes": 767,
+      "sha256": "4645f2746a92c2c4717c2dfb540c5eb8f075b70c8cb186ab0cbf75ab942a8fbf"
+    },
+    {
+      "path": "results/installed-selfhost-smoke.log",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/0.stderr",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/0.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/0.stdout",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/0.stdout",
+      "bytes": 1013,
+      "sha256": "026af4ee55979baa18fbd20a5185983a6249e1414d1e390623aab906c4e08be6"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/1.stderr",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/1.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/1.stdout",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/1.stdout",
+      "bytes": 1612,
+      "sha256": "a2f157a4789e5da25d0a24e7054e337f23c06ebf1cf8bdd413d0e65ea1150e67"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/2.stderr",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/2.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/2.stdout",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/2.stdout",
+      "bytes": 649,
+      "sha256": "a88e3fcb4c0395f485a8019f559e1f76e5c112df423629365040d65fe55b8d41"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/3.stderr",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/3.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/3.stdout",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/3.stdout",
+      "bytes": 1017,
+      "sha256": "e47ea5869bbd9387de409be5ed887f5f46923018d62856211b5c3778bd9275f6"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/4.stderr",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/4.stderr",
+      "bytes": 73,
+      "sha256": "84652c1ed1c66d5ebbfda8d9ce5f7601e042bfea64394c4de666805def5e3618"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/4.stdout",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/4.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/answer.dag",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/answer.dag",
+      "bytes": 85,
+      "sha256": "348d22b1dca51095cf13e13a4674727db537c8cd07f21af53009022b5e7bb94a"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/bad-job.dag",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/bad-job.dag",
+      "bytes": 8209,
+      "sha256": "e0938cffce6800c46a60be49d928cee5a025c2f3c0e51d756ab05f731c32be78"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/compiler.dag",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/compiler.dag",
+      "bytes": 9691488,
+      "sha256": "76a07c08265bd2ef525164472b6b53ac3f0e6cbbedce3250c4202f40ffba34c8"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/job.dag",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/job.dag",
+      "bytes": 8209,
+      "sha256": "b72bd0849cc8999a71b16ba6fa23386009f96ba7f53c06f41d01d79cac41ea37"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/package.json",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/package.json",
+      "bytes": 687,
+      "sha256": "7e623737987cc4d68068537ad3c3957cc04a9e6354993d120ea83df7191c7e21"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/receipt.json",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/receipt.json",
+      "bytes": 6503,
+      "sha256": "1abbe73a3e89c0599849df521e0c50109dc2d7de61df6c5cac56bf9815576ae0"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/rejected.dag",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/rejected.dag",
+      "bytes": 25,
+      "sha256": "ad5fe2d1d3a9c16aca67d90d1ac709615163be42802d06b27cb54f4c3cc39b3b"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/sample.dag",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/sample.dag",
+      "bytes": 790,
+      "sha256": "d6a6504b1f0cb8e93f758cd325c2bab254e20e7e1b50d18993ce6ea77c648b82"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/sample.tri",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/sample.tri",
+      "bytes": 46,
+      "sha256": "71300b06b27cab1575ecd19b3c977aa7377e56890ce2dd9a2c0349fc25950e25"
+    },
+    {
+      "path": "results/installed-selfhost-smoke/zero.dag",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/installed-selfhost-smoke/zero.dag",
+      "bytes": 85,
+      "sha256": "7b658a799adf0f027ec2b44fdb463847b2ef4bf49f7f7af1166a3291781f66cd"
+    },
+    {
+      "path": "results/selfhost-kit.log",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/selfhost-kit.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "results/source.log",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/source.log",
+      "bytes": 517,
+      "sha256": "1399bf2f87709b9a706a6e0ee64564f77718909f282ab8a29a8ea32f4adfef0a"
+    },
+    {
+      "path": "results/toolchain.log",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/toolchain.log",
+      "bytes": 199,
+      "sha256": "262c4997085746aa73638fef4efb43dbbd8026d1aedca2ebb4af9fc5886e37a2"
+    },
+    {
+      "path": "results/trident-tests.log",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/trident-tests.log",
+      "bytes": 604724,
+      "sha256": "6951e1b1872c4cfd3ea6af70fd227e06dae1be60dd6bcb0d85bd4a5260d2a406"
+    },
+    {
+      "path": "results/z3.log",
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/release-results/z3.log",
+      "bytes": 27,
+      "sha256": "5652550e11820d94023908ab507f4eac28d51dbcf1b2f6d1bf79a073354e5732"
+    }
+  ],
+  "excluded": [
+    "Cargo build target directories remain at original paths",
+    "source/vendor and external pinned tools remain separately identified by exact source/archive receipts"
+  ],
+  "verification": "Every original byte compared directly with retained member; all originals rehashed after retention"
+}

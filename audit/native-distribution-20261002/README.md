@@ -1,6 +1,9 @@
 # Native 0.4 distribution rehearsal — 2026-10-02
 
 Status: source and accepted-kit guards passed; native distribution jobs pending.
+The first local attempt was rejected for using Homebrew Rust 1.95 instead of
+the pinned 1.89. Its original evidence remains in `rejected-local-rust195/`.
+The fresh local lane checks both actual Rust and Cargo versions and paths.
 This is a committed, pushed `release/0.4` branch rehearsal. The default branches,
 existing tags and published releases are outside its scope. Product package
 versions remain those in the frozen source manifests.
@@ -53,7 +56,9 @@ minimums; the selected runners are macOS 15 Intel and Windows Server
 2022 x64. This rehearsal does not relabel either proposed floor as validated.
 `macos-link-inspection/receipt.json` retains actual `sw_vers`, `uname`, pinned
 Rust, compiler/linker, `file` and `otool` commands on the local macOS 26.4.1 ARM
-host. The four binaries advertise Mach-O `minos 11.0` and SDK 26.4; their
+host. These are the first, subsequently rejected Rust 1.95 binaries; the
+separate Rust 1.89 inspection was not the compiler used by that build.
+The four binaries advertise Mach-O `minos 11.0` and SDK 26.4; their
 observed runtime libraries are system libraries. Original raw command streams
 and the candidate inventory are retained. `binding.json` records the unchanged
 four installed hashes after inspection. These link values do not replace
@@ -69,3 +74,27 @@ It executes no archive code. Existing archive, source-verifier, binary
 package and kit guard suites pass under `-W error`; their actual commands and
 outputs are retained in `transport-helper-checks/`. Native producer/corpus
 acceptance remains separate from these helper checks.
+
+## Rejected local toolchain and correction
+
+The original native bootstrap installed Rust 1.89 and set `RUSTUP_TOOLCHAIN`,
+but Homebrew `rustc` and `cargo` took precedence in the host `PATH`. The original
+candidate records actual Rust 1.95. Its CPU gate was stopped before completion;
+no full proof gate or native acceptance is claimed. The rejection receipt,
+driver, selector, commands, raw output streams, partial CPU log, kit smoke and
+all four exact binaries remain in the byte-verified rejected archive. Cargo
+target directories and the complete source archive remain at their original
+paths. The existing link-inspection record was preserved unchanged.
+
+```sh
+python3 -B -W error audit/native-distribution-20261002/rejected-local-rust195/verify.py --originals
+```
+
+The fresh measured driver and actual preflight are in `local-rust189/`. The
+reusable `scripts/native-rehearsal-local.py --family FAMILY --output-name NAME`
+requires a fresh output, selects actual `rustup which --toolchain 1.89.0` binary
+paths, prepends their directory, sets `RUSTC`, checks both versions and native
+architecture, and rejects any candidate whose recorded compiler differs.
+Remote asset acceptance now rejects the same mismatch from actual candidate
+metadata. The frozen remote bootstrap does not separately record Cargo's
+version; transport receipts preserve that observation limit explicitly.
