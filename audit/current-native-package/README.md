@@ -1,9 +1,15 @@
-# Current package runner preparation
+# Current native package validation
 
-This records helper and source-comparison checks before a new production
-source export. No current package has been built or accepted by this report.
-The dormant selectors/workflows require a separately selected source digest
-and exact current input-file digest before dispatch.
+Status: exact source export and independent reproduction passed. The fresh
+Mac ARM package has passed its four CPU suites, installed/package checks,
+133 baseline executions, 47 legacy corpus cases and 27 structured cases.
+Its new full198 gate and the five remote producers remain in progress.
+Portable consumption of all six new legacy and structured corpora is pending.
+This distinct branch rehearsal uses source `734df69d...`; the frozen
+`e4bac7ff...` receipts retain their original scope.
+
+The following preparation observations were recorded before source export;
+the later sections retain actual export, reproduction and package evidence.
 
 `source-preview.json` comes from:
 
@@ -139,3 +145,30 @@ The current package selector now activates five native remote producer jobs
 and a separately measured local Mac ARM lane. Both use these exact bytes;
 the local lane requires a new full198 proof gate after its fresh builds.
 All producer/consumer and full198 results remain pending at this commit.
+
+### Actual current Mac package gates passed
+
+The local lane started with selector/runner
+`ecdc4e2ea131c50a860036e34ee7636b91fb8dde` and observed Rust, Cargo and rustdoc
+1.89.0 from the same native toolchain. Four fresh binaries were built from
+archive `734df69d...`. All CPU commands passed: Trident workspace libraries
+762 tests, Trisha CPU/default suites 429, Joy workspace 215, Nox standard
+library 245. Each command and original output is preserved in
+`local-package-gates/original-package-receipts.tar.gz`. These Trident library
+counts are separate from the frozen full 1231-test integration measurement.
+
+All 133 baseline executions and the installed/package gates passed, including
+47 legacy corpus cases and 27 structured public-proof cases (6 accept, 21
+reject). The current Mac Joy binary SHA-256 is
+`cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6`.
+`local-package-gates/guard.json` binds the actual package identities.
+The added current receipt inspector passed against these actual package
+receipts and rejected five mutations: Cargo version, input selector digest,
+consumer Joy digest, count-preserving case-map swap and proof bytes. Its
+check script and receipt are retained alongside the exact inspector. The
+whole remote-container inspector awaits the actual remote producer outputs.
+
+The new actual198 gate is running under the original 28 GiB process-group
+guard and host free-memory check. Unique current Mac binary, legacy corpus
+and structured corpus draft transport is running separately. Neither an
+in-progress proof gate nor uploaded package bytes establish final acceptance.
