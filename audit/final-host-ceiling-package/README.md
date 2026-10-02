@@ -340,3 +340,22 @@ It is unique draft asset 605413707,
 readback downloaded every byte, rechecked the SHA-256 and all 493 members,
 and passed. The existing draft remained unpublished, its tag remained absent,
 and the eleven source commits remained reachable with default refs unchanged.
+
+## Unaccepted auxiliary readback attempt retained
+
+During the slow original serial package download, a separate read-only parallel
+attempt was started into disjoint destinations and paused before continuation
+review. Independent review found that its proposed resource supervisor did not
+ensure child quiescence after TERM and lacked cleanup for resumed exceptions.
+The supervisor was never run and the auxiliary attempt was never accepted or
+retried. The original serial source, state, active transfer and destinations
+were left unchanged.
+
+`retired-parallel-readback/` preserves the exact proposal, source finding,
+isolated review probes, partial observations and retirement evidence. The four
+owned paused PID/birth/command identities were verified before individual
+SIGKILL signals, then observed absent; no process-group signal was used. All
+37 auxiliary original files (60467568 bytes) retained identical before/after
+hashes. Independent retirement replay passed, with receipt SHA-256
+`b043b76a1181649254c8cb47b202b7471c1c06bb7ce6af2ceb5842565fd564e7`.
+This unused transfer attempt supplies no native-package or consumer acceptance.

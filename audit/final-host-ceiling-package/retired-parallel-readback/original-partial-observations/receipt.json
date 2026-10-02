@@ -1,0 +1,88 @@
+{
+  "status": "running",
+  "scope": "All twenty final remote bodies authenticated; bounded three parallel downloads alongside unchanged serial attempt; previously completed serial bodies rehashed against fresh API metadata",
+  "run_id": 37000157290,
+  "runner_revision": "98b45784e61b78f39a02004bd39fa74c11e7b3a9",
+  "selector_sha256": "81b1f1febf9c59d4beebf0c827d67541c106b7675c5c4ae8a75433e10de6b4e3",
+  "started": "2026-10-02T11:29:14.141222+00:00",
+  "script_sha256": "53511836001f7519a970cc74f3a5f1acd43dff390532a803ffcc6e8ed979516e",
+  "transport_artifact_id": 11223880977,
+  "transport_zip_sha256": "e4ed6d031250477371255e596170617fd04e720d15f8a93f4d1b286d04bb3bea",
+  "transport_receipt_sha256": "2a5060a810794cafcb3b036109666c757e3db90025129ea7b1431ca675e212c0",
+  "original_serial_snapshot_sha256": "ee86471e89c366756528a35a64284ec1fcbdaed6eacffb34b0ac01e912c330fe",
+  "commands": [
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/actions/runs/37000157290"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/actions/artifacts/11223880977"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    }
+  ],
+  "assets": [
+    {
+      "kind": "corpus",
+      "target": "aarch64-pc-windows-msvc",
+      "asset_id": 605444672,
+      "name": "rehearsal-20261002-final-dd61-remote-proof-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "sha256": "3276ceb704313e5c73b3df4d0d22c91ba602c6dd3c6affe42669070e6525ed93",
+      "bytes": 25140541,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221602815,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221602815/restored/proof-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-parallel-readback/aarch64-pc-windows-msvc-corpus/rehearsal-20261002-final-dd61-remote-proof-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "body_receipt_sha256": "ff6d9f6d245033857341efeaadfbd48b10c8def0735de1ebfeaae7b8d2d8b800"
+    },
+    {
+      "kind": "structured-corpus",
+      "target": "aarch64-pc-windows-msvc",
+      "asset_id": 605444722,
+      "name": "rehearsal-20261002-final-dd61-remote-structured-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "sha256": "83b770de9f60b5ecfb328e9f0745e8bec56671d11b2c5fed9ddda1b80dd7a498",
+      "bytes": 687842,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221602815,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221602815/restored/structured-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-parallel-readback/aarch64-pc-windows-msvc-structured-corpus/rehearsal-20261002-final-dd61-remote-structured-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "body_receipt_sha256": "6a8460063f66c9378a410fe948f0f452eb350e474cca60938c6bab3e738a1ba3"
+    },
+    {
+      "kind": "binary",
+      "target": "aarch64-pc-windows-msvc",
+      "asset_id": 605444596,
+      "name": "rehearsal-20261002-final-dd61-remote-cyber-tools-aarch64-pc-windows-msvc.zip",
+      "sha256": "7d758a5b53800625cda58d409a0cfb0c57ba4c6d1a970263aac2c7a35d2bc650",
+      "bytes": 15849138,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221602815,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221602815/restored/cyber-tools-aarch64-pc-windows-msvc.zip",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-parallel-readback/aarch64-pc-windows-msvc-binary/rehearsal-20261002-final-dd61-remote-cyber-tools-aarch64-pc-windows-msvc.zip",
+      "body_receipt_sha256": "618b4c82464ae63bdc67b78a65655968b844eff44f00459aacf528aa0a6ab0a0"
+    }
+  ]
+}

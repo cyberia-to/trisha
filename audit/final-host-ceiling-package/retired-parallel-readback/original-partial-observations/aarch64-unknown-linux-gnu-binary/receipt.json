@@ -1,0 +1,14 @@
+{
+  "status": "running",
+  "asset": {
+    "kind": "binary",
+    "target": "aarch64-unknown-linux-gnu",
+    "asset_id": 605444976,
+    "name": "rehearsal-20261002-final-dd61-remote-cyber-tools-aarch64-unknown-linux-gnu.tar.gz",
+    "sha256": "30c6485fcadf9370c9e39be993c3a4a745729cc9cb1d4b2bc3071a0d9100b4b3",
+    "bytes": 17593956,
+    "producer_run_id": 36990413939,
+    "producer_artifact_id": 11221645284
+  },
+  "commands": []
+}

@@ -1,0 +1,288 @@
+{
+  "status": "paused-proposal-awaiting-review",
+  "observed_at": "2026-10-02T11:31:34.259483+00:00",
+  "parallel_script_sha256": "53511836001f7519a970cc74f3a5f1acd43dff390532a803ffcc6e8ed979516e",
+  "supervisor_sha256": "636c8d59dcc09ddaa90bc3d2b0147da95d00fae28ace7ae70582e4b31abe4e30",
+  "original_serial_scope": "Source, receipt, current download and destinations unchanged; remains active. Parallel worker reads only completed-body files listed in its immutable original-serial-snapshot.json.",
+  "parallel_scope": "Separate20body verification with three workers (at mostfour total download processes including independent original serial); original completed bodies copied after fresh authenticated metadata+fullhash check; all remaining bodies freshly downloaded into disjoint dirs.",
+  "parallel_assignments": [
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "kind": "binary",
+      "asset_id": 605444596,
+      "bytes": 15849138,
+      "sha256": "7d758a5b53800625cda58d409a0cfb0c57ba4c6d1a970263aac2c7a35d2bc650",
+      "relative_destination": "aarch64-pc-windows-msvc-binary/rehearsal-20261002-final-dd61-remote-cyber-tools-aarch64-pc-windows-msvc.zip",
+      "current_bytes": 15849138,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-cyber-tools-aarch64-pc-windows-msvc.zip",
+      "serial_current_bytes": 15849138,
+      "serial_complete": true
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "kind": "corpus",
+      "asset_id": 605444672,
+      "bytes": 25140541,
+      "sha256": "3276ceb704313e5c73b3df4d0d22c91ba602c6dd3c6affe42669070e6525ed93",
+      "relative_destination": "aarch64-pc-windows-msvc-corpus/rehearsal-20261002-final-dd61-remote-proof-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "current_bytes": 25140541,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-proof-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "serial_current_bytes": 25140541,
+      "serial_complete": true
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "kind": "structured-corpus",
+      "asset_id": 605444722,
+      "bytes": 687842,
+      "sha256": "83b770de9f60b5ecfb328e9f0745e8bec56671d11b2c5fed9ddda1b80dd7a498",
+      "relative_destination": "aarch64-pc-windows-msvc-structured-corpus/rehearsal-20261002-final-dd61-remote-structured-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "current_bytes": 687842,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-structured-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "serial_current_bytes": 687842,
+      "serial_complete": true
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "kind": "evidence",
+      "asset_id": 605444778,
+      "bytes": 81027031,
+      "sha256": "4959b0f9a3c19a750ed7bc595f80fff562d025d3e583b9dc826a2724a2066ce6",
+      "relative_destination": "aarch64-pc-windows-msvc-evidence/rehearsal-20261002-final-dd61-remote-aarch64-pc-windows-msvc.zip",
+      "current_bytes": 7683639,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-aarch64-pc-windows-msvc.zip",
+      "serial_current_bytes": 81027031,
+      "serial_complete": true
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "kind": "binary",
+      "asset_id": 605444976,
+      "bytes": 17593956,
+      "sha256": "30c6485fcadf9370c9e39be993c3a4a745729cc9cb1d4b2bc3071a0d9100b4b3",
+      "relative_destination": "aarch64-unknown-linux-gnu-binary/rehearsal-20261002-final-dd61-remote-cyber-tools-aarch64-unknown-linux-gnu.tar.gz",
+      "current_bytes": 4669440,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-cyber-tools-aarch64-unknown-linux-gnu.tar.gz",
+      "serial_current_bytes": 17593956,
+      "serial_complete": true
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "kind": "corpus",
+      "asset_id": 605445038,
+      "bytes": 25141119,
+      "sha256": "aa5ba2751fb06c21dce43a6ea4057c17b351bbb17efe74e50eed91d1ee0af05c",
+      "relative_destination": "aarch64-unknown-linux-gnu-corpus/rehearsal-20261002-final-dd61-remote-proof-corpus-aarch64-unknown-linux-gnu.tar.gz",
+      "current_bytes": 6176768,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-proof-corpus-aarch64-unknown-linux-gnu.tar.gz",
+      "serial_current_bytes": 20576832,
+      "serial_complete": false
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "kind": "structured-corpus",
+      "asset_id": 605445106,
+      "bytes": 687874,
+      "sha256": "3ecfd85ee5d14c80d6d832972f29f6ac5b7711726e6ec54a7b44b293eccc3b41",
+      "relative_destination": "aarch64-unknown-linux-gnu-structured-corpus/rehearsal-20261002-final-dd61-remote-structured-corpus-aarch64-unknown-linux-gnu.tar.gz",
+      "current_bytes": 0,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-structured-corpus-aarch64-unknown-linux-gnu.tar.gz",
+      "serial_current_bytes": 0,
+      "serial_complete": false
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "kind": "evidence",
+      "asset_id": 605445171,
+      "bytes": 82832232,
+      "sha256": "bf4e7ef2d144120f3b3bb51c6a142ac7643699d82f63ab241a1d097d9e7988ea",
+      "relative_destination": "aarch64-unknown-linux-gnu-evidence/rehearsal-20261002-final-dd61-remote-aarch64-unknown-linux-gnu.zip",
+      "current_bytes": 0,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-aarch64-unknown-linux-gnu.zip",
+      "serial_current_bytes": 0,
+      "serial_complete": false
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "kind": "binary",
+      "asset_id": 605445352,
+      "bytes": 17629010,
+      "sha256": "145d6186413346c20e31d646a7d1f489af4adda46952d8bab8928d7af883a872",
+      "relative_destination": "x86_64-apple-darwin-binary/rehearsal-20261002-final-dd61-remote-cyber-tools-x86_64-apple-darwin.tar.gz",
+      "current_bytes": 0,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-cyber-tools-x86_64-apple-darwin.tar.gz",
+      "serial_current_bytes": 0,
+      "serial_complete": false
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "kind": "corpus",
+      "asset_id": 605445416,
+      "bytes": 25157867,
+      "sha256": "7d66ac095b4367d72a9c16e5c0ea63508f0c1d344f2652db137beb6902caaf2a",
+      "relative_destination": "x86_64-apple-darwin-corpus/rehearsal-20261002-final-dd61-remote-proof-corpus-x86_64-apple-darwin.tar.gz",
+      "current_bytes": 0,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-proof-corpus-x86_64-apple-darwin.tar.gz",
+      "serial_current_bytes": 0,
+      "serial_complete": false
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "kind": "structured-corpus",
+      "asset_id": 605445468,
+      "bytes": 687871,
+      "sha256": "caac9d2f7ec2816e5c7d54296df3207a2856d884b5616d3af6971a5f880abd72",
+      "relative_destination": "x86_64-apple-darwin-structured-corpus/rehearsal-20261002-final-dd61-remote-structured-corpus-x86_64-apple-darwin.tar.gz",
+      "current_bytes": 0,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-structured-corpus-x86_64-apple-darwin.tar.gz",
+      "serial_current_bytes": 0,
+      "serial_complete": false
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "kind": "evidence",
+      "asset_id": 605445525,
+      "bytes": 82798389,
+      "sha256": "20a69921428f26e8d40742e402058d239179b57a09f2b206e8380aa3ea37775b",
+      "relative_destination": "x86_64-apple-darwin-evidence/rehearsal-20261002-final-dd61-remote-x86_64-apple-darwin.zip",
+      "current_bytes": 0,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-x86_64-apple-darwin.zip",
+      "serial_current_bytes": 0,
+      "serial_complete": false
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "kind": "binary",
+      "asset_id": 605445697,
+      "bytes": 16673902,
+      "sha256": "456b1ead76c3f9fac559f50c9d6c54e378eccb1d0e96d3ee9a36c6d7117ab9c4",
+      "relative_destination": "x86_64-pc-windows-msvc-binary/rehearsal-20261002-final-dd61-remote-cyber-tools-x86_64-pc-windows-msvc.zip",
+      "current_bytes": 0,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-cyber-tools-x86_64-pc-windows-msvc.zip",
+      "serial_current_bytes": 0,
+      "serial_complete": false
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "kind": "corpus",
+      "asset_id": 605445753,
+      "bytes": 25191317,
+      "sha256": "663583308151eb8dd4754d12869d1ebff0fa1afb4245aeb3edac6cd5e18d7151",
+      "relative_destination": "x86_64-pc-windows-msvc-corpus/rehearsal-20261002-final-dd61-remote-proof-corpus-x86_64-pc-windows-msvc.tar.gz",
+      "current_bytes": 0,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-proof-corpus-x86_64-pc-windows-msvc.tar.gz",
+      "serial_current_bytes": 0,
+      "serial_complete": false
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "kind": "structured-corpus",
+      "asset_id": 605445819,
+      "bytes": 687869,
+      "sha256": "dce5aef9ae5f3c112754f762c35d3512abf67da6eba1fa55b2a0b7ea2b130ccd",
+      "relative_destination": "x86_64-pc-windows-msvc-structured-corpus/rehearsal-20261002-final-dd61-remote-structured-corpus-x86_64-pc-windows-msvc.tar.gz",
+      "current_bytes": 0,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-structured-corpus-x86_64-pc-windows-msvc.tar.gz",
+      "serial_current_bytes": 0,
+      "serial_complete": false
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "kind": "evidence",
+      "asset_id": 605445869,
+      "bytes": 82036935,
+      "sha256": "66e7671cee0bbddbc429c2f470c66a61477ad522447e23e6d9e92454ca4bb689",
+      "relative_destination": "x86_64-pc-windows-msvc-evidence/rehearsal-20261002-final-dd61-remote-x86_64-pc-windows-msvc.zip",
+      "current_bytes": 0,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-x86_64-pc-windows-msvc.zip",
+      "serial_current_bytes": 0,
+      "serial_complete": false
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "kind": "binary",
+      "asset_id": 605446043,
+      "bytes": 18199057,
+      "sha256": "5d4193576a26792afdfa9ca4a0bb4d050412a25e2d99311a35d0b5ba9efb6609",
+      "relative_destination": "x86_64-unknown-linux-gnu-binary/rehearsal-20261002-final-dd61-remote-cyber-tools-x86_64-unknown-linux-gnu.tar.gz",
+      "current_bytes": 0,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-cyber-tools-x86_64-unknown-linux-gnu.tar.gz",
+      "serial_current_bytes": 0,
+      "serial_complete": false
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "kind": "corpus",
+      "asset_id": 605446081,
+      "bytes": 24927405,
+      "sha256": "6fd7803d1320f489ef7d8b8d12963e97600928c23fd5f19108060e4d1b1c1579",
+      "relative_destination": "x86_64-unknown-linux-gnu-corpus/rehearsal-20261002-final-dd61-remote-proof-corpus-x86_64-unknown-linux-gnu.tar.gz",
+      "current_bytes": 0,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-proof-corpus-x86_64-unknown-linux-gnu.tar.gz",
+      "serial_current_bytes": 0,
+      "serial_complete": false
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "kind": "structured-corpus",
+      "asset_id": 605446158,
+      "bytes": 687875,
+      "sha256": "2c022ffeed3f9d669485b74f324b276ada0a7a5df8da77659f4b2b5da2b79686",
+      "relative_destination": "x86_64-unknown-linux-gnu-structured-corpus/rehearsal-20261002-final-dd61-remote-structured-corpus-x86_64-unknown-linux-gnu.tar.gz",
+      "current_bytes": 0,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-structured-corpus-x86_64-unknown-linux-gnu.tar.gz",
+      "serial_current_bytes": 0,
+      "serial_complete": false
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "kind": "evidence",
+      "asset_id": 605446212,
+      "bytes": 82934847,
+      "sha256": "6eb4b535dd66abacecfe026c3527b172cba1e8fddb6b66499e900c9fd1ee5989",
+      "relative_destination": "x86_64-unknown-linux-gnu-evidence/rehearsal-20261002-final-dd61-remote-x86_64-unknown-linux-gnu.zip",
+      "current_bytes": 0,
+      "serial_destination": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-x86_64-unknown-linux-gnu.zip",
+      "serial_current_bytes": 0,
+      "serial_complete": false
+    }
+  ],
+  "payload_byte_cap": 626572077,
+  "total_owned_byte_cap": 643349293,
+  "disk_free_floor_bytes": 8589934592,
+  "wall_seconds_cap": 2700,
+  "original_completed_assets": [
+    605444596,
+    605444672,
+    605444722,
+    605444778,
+    605444976
+  ],
+  "parallel_completed_assets": [
+    605444672,
+    605444722,
+    605444596
+  ],
+  "resume_command": [
+    "python3",
+    "-B",
+    "-W",
+    "error",
+    "measurements/guard-final-parallel-readback.py"
+  ],
+  "paused_processes": {
+    "status": "paused-for-parent-review",
+    "at": "2026-10-02T11:29:53.434806+00:00",
+    "root_pids": [
+      75562
+    ],
+    "owned_pids": [
+      75562,
+      75925,
+      75929,
+      75948
+    ],
+    "scope": "Only newly launched disjoint parallel readback paused. Original serial readback/process/source/destination untouched.",
+    "script_sha256": "53511836001f7519a970cc74f3a5f1acd43dff390532a803ffcc6e8ed979516e"
+  }
+}

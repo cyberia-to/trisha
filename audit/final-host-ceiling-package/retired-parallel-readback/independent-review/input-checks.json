@@ -1,0 +1,80 @@
+{
+  "status": "passed-read-only-input-checks",
+  "observed_unix_ns": 1790941439040148000,
+  "sources": [
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/readback-final-remote-parallel.py",
+      "stored": "originals/0-readback-final-remote-parallel.py",
+      "bytes": 7022,
+      "sha256": "53511836001f7519a970cc74f3a5f1acd43dff390532a803ffcc6e8ed979516e"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/guard-final-parallel-readback.py",
+      "stored": "originals/1-guard-final-parallel-readback.py",
+      "bytes": 3043,
+      "sha256": "636c8d59dcc09ddaa90bc3d2b0147da95d00fae28ace7ae70582e4b31abe4e30"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/parallel-continuation-plan.json",
+      "stored": "originals/2-parallel-continuation-plan.json",
+      "bytes": 15506,
+      "sha256": "8e770fe2d51d1e00dcd4f1f86ec637832163e67747088fda726e10655e75f5f3"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/parallel-continuation-pause.json",
+      "stored": "originals/3-parallel-continuation-pause.json",
+      "bytes": 404,
+      "sha256": "810f488239d3f68a594677b4734f15f2623dc9b1b1b6892d09c8feb4fe59829e"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inspect-final-native-producer.py",
+      "stored": "originals/4-inspect-final-native-producer.py",
+      "bytes": 19072,
+      "sha256": "64572b572e3a7319f837d788307436e36b54802cc0ba6f146c541bb297d43a8a"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-parallel-readback/original-serial-snapshot.json",
+      "stored": "originals/5-original-serial-snapshot.json",
+      "bytes": 5159,
+      "sha256": "ee86471e89c366756528a35a64284ec1fcbdaed6eacffb34b0ac01e912c330fe"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci/.github/final-package-assets.json",
+      "stored": "originals/6-final-package-assets.json",
+      "bytes": 2046,
+      "sha256": "81b1f1febf9c59d4beebf0c827d67541c106b7675c5c4ae8a75433e10de6b4e3"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/37000157290/11223880977/restored/receipt.json",
+      "stored": "originals/7-receipt.json",
+      "bytes": 32915,
+      "sha256": "2a5060a810794cafcb3b036109666c757e3db90025129ea7b1431ca675e212c0"
+    }
+  ],
+  "assignments": 20,
+  "distinct_asset_ids": 20,
+  "distinct_target_kind_pairs": 20,
+  "immutable_snapshot_completed_bodies_rehashed": [
+    {
+      "asset_id": 605444596,
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-cyber-tools-aarch64-pc-windows-msvc.zip",
+      "bytes": 15849138,
+      "sha256": "7d758a5b53800625cda58d409a0cfb0c57ba4c6d1a970263aac2c7a35d2bc650"
+    },
+    {
+      "asset_id": 605444672,
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-proof-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "bytes": 25140541,
+      "sha256": "3276ceb704313e5c73b3df4d0d22c91ba602c6dd3c6affe42669070e6525ed93"
+    },
+    {
+      "asset_id": 605444722,
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-structured-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "bytes": 687842,
+      "sha256": "83b770de9f60b5ecfb328e9f0745e8bec56671d11b2c5fed9ddda1b80dd7a498"
+    }
+  ],
+  "payload_bytes": 626572077,
+  "owned_cap_bytes": 643349293,
+  "scope": "Static assignment/provenance consistency and three complete snapshot bodies only; no network calls, source import, real process signals or continuation. Does not repair or accept supervisor bounds."
+}

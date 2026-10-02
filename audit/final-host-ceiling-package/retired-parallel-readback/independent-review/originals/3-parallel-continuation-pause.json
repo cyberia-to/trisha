@@ -1,0 +1,15 @@
+{
+  "status": "paused-for-parent-review",
+  "at": "2026-10-02T11:29:53.434806+00:00",
+  "root_pids": [
+    75562
+  ],
+  "owned_pids": [
+    75562,
+    75925,
+    75929,
+    75948
+  ],
+  "scope": "Only newly launched disjoint parallel readback paused. Original serial readback/process/source/destination untouched.",
+  "script_sha256": "53511836001f7519a970cc74f3a5f1acd43dff390532a803ffcc6e8ed979516e"
+}
