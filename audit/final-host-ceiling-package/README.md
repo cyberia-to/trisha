@@ -3,9 +3,10 @@
 Status: all six final native producers, all 24 packaged binary linkage checks,
 and the fresh Mac ARM 198-proof gate passed for exact source 73b50ebd. The
 complete original full198 archive and the local package/corpus assets passed
-authenticated draft-asset readback. Remote package transport, the complete
-six-by-six consumer matrix and bounded macOS 14 ARM consumption remain pending;
-all consumer selectors remain inactive. This is a feature-branch rehearsal,
+authenticated draft-asset readback. All twenty remote draft package/corpus/evidence bodies also passed complete
+authenticated readback. The complete six-by-six consumer matrix and bounded
+macOS 14 ARM consumption are now selected for execution; their actual results
+remain pending. This is a feature-branch rehearsal,
 not a published release.
 
 `dependency-scope/` retains the exact Joy11b7→dd61 diff and original Cargo1.89
@@ -359,3 +360,38 @@ SIGKILL signals, then observed absent; no process-group signal was used. All
 hashes. Independent retirement replay passed, with receipt SHA-256
 `b043b76a1181649254c8cb47b202b7471c1c06bb7ce6af2ceb5842565fd564e7`.
 This unused transfer attempt supplies no native-package or consumer acceptance.
+
+## Complete remote asset readback and consumer activation reviewed
+
+Transport run 37000157290 at
+`98b45784e61b78f39a02004bd39fa74c11e7b3a9` uploaded twenty unique payloads:
+binaries, legacy corpus, structured corpus and original Actions evidence ZIP
+for each of the five remote producers. Original transport container
+11223880977 has SHA-256
+`e4ed6d031250477371255e596170617fd04e720d15f8a93f4d1b286d04bb3bea`.
+The unchanged original serial `readback-final-remote-packages.py` completed all
+626572077 body bytes and matched each original producer hash and authenticated
+server identity. Its successful receipt has SHA-256
+`c2071e1328ff504b73827ef8eb018b7269d472cd229df79a66cd3f6e1475b430`.
+
+`remote-asset-transport/` retains the original container, API/command streams,
+source reachability/default-ref checks, full readback receipt and exact
+consumer proposal. The full host process command inventory is kept locally;
+only its byte identity appears in the public retention manifest.
+`root-consumer-activation-review/` records independent rehashing of all twenty
+remote and three local package bodies, the exact six binary and twelve corpus
+maps, unchanged runtime/workflow sources and fresh draft/tag observations.
+Its original receipt SHA-256 is
+`4d35f9232e4afd181527fc739fd11ad8e309b6a89ec7bf3e702f27e10eae5b49`.
+
+The exact consumer selector SHA-256 is
+`084bfe4821114455881b1fd2718d8a10373e48562d97093ef3a580b0fb9626ba`,
+and the separately bounded Mac14 selector is
+`35bed4ce88573d2bb61c9e712fe867e57d71d5068e208276fe18e9e4424debce`.
+The proposal explicitly binds the fresh tested Trisha `fe069879` and its
+full198 archive asset 605413707. The unchanged `baseline_reference` asset
+605010237 remains only the old conditional-inheritance input required by the
+frozen runner; it supplies no coverage for the different final executable.
+Consumer verification returns before inheritance or full198 generation.
+The next observations must record the actual six-native consumer matrix and
+separate Mac14 ARM Joy/Trisha+kit/deadline probes before acceptance.

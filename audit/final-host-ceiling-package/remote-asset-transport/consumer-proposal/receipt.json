@@ -1,0 +1,61 @@
+{
+  "status": "passed-proposal-only",
+  "scope": "All actual producer/readback prerequisites checked; two proposed selectors remain outside checkout until independent review",
+  "observed_at": "2026-10-02T11:49:48.589875+00:00",
+  "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+  "remote_transport_run": 37000157290,
+  "remote_assets": 20,
+  "local_assets": 3,
+  "full198_actual_proofs": 198,
+  "fresh_full198": {
+    "coverage": "fresh_full198_performed_for_actual_final_Trisha",
+    "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+    "trisha_sha256": "fe069879a44b582a47069c5cd849b1eb3da4c75a037e72aa9d107742ecc8173f",
+    "archive_asset_id": 605413707,
+    "archive_sha256": "9cc80e1c5d420179c1a33c7cb28ce9e1db25ff43712487da79f71ad3c6d71612",
+    "proof_receipt_sha256": "18b0c246da3200e972ebc4066915c5b3ef1eab9300395e35cefaf4ca0ea04a2a",
+    "historical_baseline_reference_scope": "605010237 is unchanged conditional inheritance input only; final Trisha differs and its198 coverage is fresh actual final run"
+  },
+  "full198_readback_sha256": "feaf7641ca9e9a58f183702c37f32bb0fd3dade8055118401aff983db5f01e35",
+  "remote_readback_sha256": "c2071e1328ff504b73827ef8eb018b7269d472cd229df79a66cd3f6e1475b430",
+  "local_readback_sha256": "162904a467b4efb5a9cab7421148f90caa2a6ddee7e02ebb84dfbe2626ff94c8",
+  "source_after_sha256": "d82c48dbf1b8d3081ddeea7289f42b65de9992b721e6be95f471307a7b6507ac",
+  "candidate_selector_sha256": "084bfe4821114455881b1fd2718d8a10373e48562d97093ef3a580b0fb9626ba",
+  "macos_floor_selector_sha256": "35bed4ce88573d2bb61c9e712fe867e57d71d5068e208276fe18e9e4424debce",
+  "cache_sha256": "34cb19b0f653439ae8681a0912cef3f60b386571de8d764fc05fda33f79afe3c",
+  "script_sha256": "06bd7d6e67c13ab485c5753c96514d41fa338afe80a89f72f7a8f090066c6b92",
+  "disk_free_bytes": 35393609728,
+  "admission_commands": [
+    {
+      "command": [
+        "df",
+        "-k",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "memory_pressure"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "ps",
+        "-axo",
+        "pid,ppid,pgid,rss,pcpu,etime,command"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "uname",
+        "-a"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "consumer_scope": "Five native remote consumers plus one actual local ARM consumer; all36 pairs/72 corpus sets/2664 cases and six23-command probes; separate macOS14 ARM consumer444cases plus23commands under original5GiB/1800s",
+  "runner_sha256": "b2ef3e9ac773e6326f084cdf9cf419766272646d9c6ad7050953a0b3417a7e05"
+}

@@ -1,0 +1,52 @@
+{
+  "files": [
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-consumer-review/draft.stderr",
+      "stored": "draft.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-consumer-review/draft.stdout",
+      "stored": "draft.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 221373,
+      "original_sha256": "45a600dc70ab7ed2b23cf31905a6c4bd202448aa10d0e09f957fd1f87d591478",
+      "stored_sha256": "9a70e9562cc912717b90c73110a35fb49f05870fddf34144f60f098aa5ae2cff"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-consumer-review/receipt.json",
+      "stored": "receipt.json",
+      "encoding": "identity",
+      "original_bytes": 2272,
+      "original_sha256": "4d35f9232e4afd181527fc739fd11ad8e309b6a89ec7bf3e702f27e10eae5b49",
+      "stored_sha256": "4d35f9232e4afd181527fc739fd11ad8e309b6a89ec7bf3e702f27e10eae5b49"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-consumer-review/run.py",
+      "stored": "run.py",
+      "encoding": "identity",
+      "original_bytes": 5835,
+      "original_sha256": "568599506a24d5b9478662dbdf2f18acdaec0532cca8b3637ee6bf3985e81ab0",
+      "stored_sha256": "568599506a24d5b9478662dbdf2f18acdaec0532cca8b3637ee6bf3985e81ab0"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-consumer-review/tag.stderr",
+      "stored": "tag.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 25,
+      "original_sha256": "d2c8985c89b29a842ac4946d13bdbc297709f44f20bb968faf9682664b211db6",
+      "stored_sha256": "78c04f26d387077acccd2d2e3fff8dd829fd9365e76a586cc79f6d1c0ec2b042"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-consumer-review/tag.stdout",
+      "stored": "tag.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 114,
+      "original_sha256": "e2e3c64edab172132f77ce89a0e8c190db1cd30936a096344f45893bd5b75f8a",
+      "stored_sha256": "310e0d1b19a6f39920a861e2c6a11fd714c9d3f0cb901c5a8044a8d487891a9c"
+    }
+  ]
+}

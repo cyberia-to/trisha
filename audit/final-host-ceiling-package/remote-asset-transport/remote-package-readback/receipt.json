@@ -1,0 +1,665 @@
+{
+  "status": "passed",
+  "scope": "Complete authenticated readback of twenty final remote draft payloads; consumer activation separate",
+  "run_id": 37000157290,
+  "runner_revision": "98b45784e61b78f39a02004bd39fa74c11e7b3a9",
+  "started": "2026-10-02T11:19:54.693720+00:00",
+  "script_sha256": "a956617bc2be7052e7e4418472b12c8eae8f6de6ab51cbd4aff80d553e0dc0a4",
+  "transport_artifact_id": 11223880977,
+  "transport_zip_sha256": "e4ed6d031250477371255e596170617fd04e720d15f8a93f4d1b286d04bb3bea",
+  "transport_receipt_sha256": "2a5060a810794cafcb3b036109666c757e3db90025129ea7b1431ca675e212c0",
+  "selector_sha256": "81b1f1febf9c59d4beebf0c827d67541c106b7675c5c4ae8a75433e10de6b4e3",
+  "commands": [
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/actions/runs/37000157290"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/actions/artifacts/11223880977"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605444596"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605444596"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605444672"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605444672"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605444722"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605444722"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605444778"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605444778"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605444976"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605444976"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605445038"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605445038"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605445106"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605445106"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605445171"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605445171"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605445352"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605445352"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605445416"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605445416"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605445468"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605445468"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605445525"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605445525"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605445697"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605445697"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605445753"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605445753"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605445819"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605445819"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605445869"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605445869"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605446043"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605446043"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605446081"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605446081"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605446158"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605446158"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605446212"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605446212"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    }
+  ],
+  "assets": [
+    {
+      "kind": "binary",
+      "target": "aarch64-pc-windows-msvc",
+      "asset_id": 605444596,
+      "name": "rehearsal-20261002-final-dd61-remote-cyber-tools-aarch64-pc-windows-msvc.zip",
+      "sha256": "7d758a5b53800625cda58d409a0cfb0c57ba4c6d1a970263aac2c7a35d2bc650",
+      "bytes": 15849138,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221602815,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221602815/restored/cyber-tools-aarch64-pc-windows-msvc.zip",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-cyber-tools-aarch64-pc-windows-msvc.zip"
+    },
+    {
+      "kind": "corpus",
+      "target": "aarch64-pc-windows-msvc",
+      "asset_id": 605444672,
+      "name": "rehearsal-20261002-final-dd61-remote-proof-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "sha256": "3276ceb704313e5c73b3df4d0d22c91ba602c6dd3c6affe42669070e6525ed93",
+      "bytes": 25140541,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221602815,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221602815/restored/proof-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-proof-corpus-aarch64-pc-windows-msvc.tar.gz"
+    },
+    {
+      "kind": "structured-corpus",
+      "target": "aarch64-pc-windows-msvc",
+      "asset_id": 605444722,
+      "name": "rehearsal-20261002-final-dd61-remote-structured-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "sha256": "83b770de9f60b5ecfb328e9f0745e8bec56671d11b2c5fed9ddda1b80dd7a498",
+      "bytes": 687842,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221602815,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221602815/restored/structured-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-structured-corpus-aarch64-pc-windows-msvc.tar.gz"
+    },
+    {
+      "kind": "evidence",
+      "target": "aarch64-pc-windows-msvc",
+      "asset_id": 605444778,
+      "name": "rehearsal-20261002-final-dd61-remote-aarch64-pc-windows-msvc.zip",
+      "sha256": "4959b0f9a3c19a750ed7bc595f80fff562d025d3e583b9dc826a2724a2066ce6",
+      "bytes": 81027031,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221602815,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221602815/artifact.zip",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-aarch64-pc-windows-msvc.zip"
+    },
+    {
+      "kind": "binary",
+      "target": "aarch64-unknown-linux-gnu",
+      "asset_id": 605444976,
+      "name": "rehearsal-20261002-final-dd61-remote-cyber-tools-aarch64-unknown-linux-gnu.tar.gz",
+      "sha256": "30c6485fcadf9370c9e39be993c3a4a745729cc9cb1d4b2bc3071a0d9100b4b3",
+      "bytes": 17593956,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221645284,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221645284/restored/cyber-tools-aarch64-unknown-linux-gnu.tar.gz",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-cyber-tools-aarch64-unknown-linux-gnu.tar.gz"
+    },
+    {
+      "kind": "corpus",
+      "target": "aarch64-unknown-linux-gnu",
+      "asset_id": 605445038,
+      "name": "rehearsal-20261002-final-dd61-remote-proof-corpus-aarch64-unknown-linux-gnu.tar.gz",
+      "sha256": "aa5ba2751fb06c21dce43a6ea4057c17b351bbb17efe74e50eed91d1ee0af05c",
+      "bytes": 25141119,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221645284,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221645284/restored/proof-corpus-aarch64-unknown-linux-gnu.tar.gz",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-proof-corpus-aarch64-unknown-linux-gnu.tar.gz"
+    },
+    {
+      "kind": "structured-corpus",
+      "target": "aarch64-unknown-linux-gnu",
+      "asset_id": 605445106,
+      "name": "rehearsal-20261002-final-dd61-remote-structured-corpus-aarch64-unknown-linux-gnu.tar.gz",
+      "sha256": "3ecfd85ee5d14c80d6d832972f29f6ac5b7711726e6ec54a7b44b293eccc3b41",
+      "bytes": 687874,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221645284,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221645284/restored/structured-corpus-aarch64-unknown-linux-gnu.tar.gz",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-structured-corpus-aarch64-unknown-linux-gnu.tar.gz"
+    },
+    {
+      "kind": "evidence",
+      "target": "aarch64-unknown-linux-gnu",
+      "asset_id": 605445171,
+      "name": "rehearsal-20261002-final-dd61-remote-aarch64-unknown-linux-gnu.zip",
+      "sha256": "bf4e7ef2d144120f3b3bb51c6a142ac7643699d82f63ab241a1d097d9e7988ea",
+      "bytes": 82832232,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221645284,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221645284/artifact.zip",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-aarch64-unknown-linux-gnu.zip"
+    },
+    {
+      "kind": "binary",
+      "target": "x86_64-apple-darwin",
+      "asset_id": 605445352,
+      "name": "rehearsal-20261002-final-dd61-remote-cyber-tools-x86_64-apple-darwin.tar.gz",
+      "sha256": "145d6186413346c20e31d646a7d1f489af4adda46952d8bab8928d7af883a872",
+      "bytes": 17629010,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221748513,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221748513/restored/cyber-tools-x86_64-apple-darwin.tar.gz",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-cyber-tools-x86_64-apple-darwin.tar.gz"
+    },
+    {
+      "kind": "corpus",
+      "target": "x86_64-apple-darwin",
+      "asset_id": 605445416,
+      "name": "rehearsal-20261002-final-dd61-remote-proof-corpus-x86_64-apple-darwin.tar.gz",
+      "sha256": "7d66ac095b4367d72a9c16e5c0ea63508f0c1d344f2652db137beb6902caaf2a",
+      "bytes": 25157867,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221748513,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221748513/restored/proof-corpus-x86_64-apple-darwin.tar.gz",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-proof-corpus-x86_64-apple-darwin.tar.gz"
+    },
+    {
+      "kind": "structured-corpus",
+      "target": "x86_64-apple-darwin",
+      "asset_id": 605445468,
+      "name": "rehearsal-20261002-final-dd61-remote-structured-corpus-x86_64-apple-darwin.tar.gz",
+      "sha256": "caac9d2f7ec2816e5c7d54296df3207a2856d884b5616d3af6971a5f880abd72",
+      "bytes": 687871,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221748513,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221748513/restored/structured-corpus-x86_64-apple-darwin.tar.gz",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-structured-corpus-x86_64-apple-darwin.tar.gz"
+    },
+    {
+      "kind": "evidence",
+      "target": "x86_64-apple-darwin",
+      "asset_id": 605445525,
+      "name": "rehearsal-20261002-final-dd61-remote-x86_64-apple-darwin.zip",
+      "sha256": "20a69921428f26e8d40742e402058d239179b57a09f2b206e8380aa3ea37775b",
+      "bytes": 82798389,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221748513,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221748513/artifact.zip",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-x86_64-apple-darwin.zip"
+    },
+    {
+      "kind": "binary",
+      "target": "x86_64-pc-windows-msvc",
+      "asset_id": 605445697,
+      "name": "rehearsal-20261002-final-dd61-remote-cyber-tools-x86_64-pc-windows-msvc.zip",
+      "sha256": "456b1ead76c3f9fac559f50c9d6c54e378eccb1d0e96d3ee9a36c6d7117ab9c4",
+      "bytes": 16673902,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221631394,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221631394/restored/cyber-tools-x86_64-pc-windows-msvc.zip",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-cyber-tools-x86_64-pc-windows-msvc.zip"
+    },
+    {
+      "kind": "corpus",
+      "target": "x86_64-pc-windows-msvc",
+      "asset_id": 605445753,
+      "name": "rehearsal-20261002-final-dd61-remote-proof-corpus-x86_64-pc-windows-msvc.tar.gz",
+      "sha256": "663583308151eb8dd4754d12869d1ebff0fa1afb4245aeb3edac6cd5e18d7151",
+      "bytes": 25191317,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221631394,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221631394/restored/proof-corpus-x86_64-pc-windows-msvc.tar.gz",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-proof-corpus-x86_64-pc-windows-msvc.tar.gz"
+    },
+    {
+      "kind": "structured-corpus",
+      "target": "x86_64-pc-windows-msvc",
+      "asset_id": 605445819,
+      "name": "rehearsal-20261002-final-dd61-remote-structured-corpus-x86_64-pc-windows-msvc.tar.gz",
+      "sha256": "dce5aef9ae5f3c112754f762c35d3512abf67da6eba1fa55b2a0b7ea2b130ccd",
+      "bytes": 687869,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221631394,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221631394/restored/structured-corpus-x86_64-pc-windows-msvc.tar.gz",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-structured-corpus-x86_64-pc-windows-msvc.tar.gz"
+    },
+    {
+      "kind": "evidence",
+      "target": "x86_64-pc-windows-msvc",
+      "asset_id": 605445869,
+      "name": "rehearsal-20261002-final-dd61-remote-x86_64-pc-windows-msvc.zip",
+      "sha256": "66e7671cee0bbddbc429c2f470c66a61477ad522447e23e6d9e92454ca4bb689",
+      "bytes": 82036935,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221631394,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221631394/artifact.zip",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-x86_64-pc-windows-msvc.zip"
+    },
+    {
+      "kind": "binary",
+      "target": "x86_64-unknown-linux-gnu",
+      "asset_id": 605446043,
+      "name": "rehearsal-20261002-final-dd61-remote-cyber-tools-x86_64-unknown-linux-gnu.tar.gz",
+      "sha256": "5d4193576a26792afdfa9ca4a0bb4d050412a25e2d99311a35d0b5ba9efb6609",
+      "bytes": 18199057,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221252119,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221252119/restored/cyber-tools-x86_64-unknown-linux-gnu.tar.gz",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-cyber-tools-x86_64-unknown-linux-gnu.tar.gz"
+    },
+    {
+      "kind": "corpus",
+      "target": "x86_64-unknown-linux-gnu",
+      "asset_id": 605446081,
+      "name": "rehearsal-20261002-final-dd61-remote-proof-corpus-x86_64-unknown-linux-gnu.tar.gz",
+      "sha256": "6fd7803d1320f489ef7d8b8d12963e97600928c23fd5f19108060e4d1b1c1579",
+      "bytes": 24927405,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221252119,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221252119/restored/proof-corpus-x86_64-unknown-linux-gnu.tar.gz",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-proof-corpus-x86_64-unknown-linux-gnu.tar.gz"
+    },
+    {
+      "kind": "structured-corpus",
+      "target": "x86_64-unknown-linux-gnu",
+      "asset_id": 605446158,
+      "name": "rehearsal-20261002-final-dd61-remote-structured-corpus-x86_64-unknown-linux-gnu.tar.gz",
+      "sha256": "2c022ffeed3f9d669485b74f324b276ada0a7a5df8da77659f4b2b5da2b79686",
+      "bytes": 687875,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221252119,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221252119/restored/structured-corpus-x86_64-unknown-linux-gnu.tar.gz",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-structured-corpus-x86_64-unknown-linux-gnu.tar.gz"
+    },
+    {
+      "kind": "evidence",
+      "target": "x86_64-unknown-linux-gnu",
+      "asset_id": 605446212,
+      "name": "rehearsal-20261002-final-dd61-remote-x86_64-unknown-linux-gnu.zip",
+      "sha256": "6eb4b535dd66abacecfe026c3527b172cba1e8fddb6b66499e900c9fd1ee5989",
+      "bytes": 82934847,
+      "producer_run_id": 36990413939,
+      "producer_artifact_id": 11221252119,
+      "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221252119/artifact.zip",
+      "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-x86_64-unknown-linux-gnu.zip"
+    }
+  ],
+  "ended": "2026-10-02T11:49:47.126345+00:00"
+}
