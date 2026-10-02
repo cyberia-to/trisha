@@ -1,0 +1,29 @@
+test_command_and_resource_mutations (test_archive.Archives.test_command_and_resource_mutations) ... ok
+test_complete_metadata_pack_and_independent_replay (test_archive.Archives.test_complete_metadata_pack_and_independent_replay) ... ok
+test_new_run_coordinates_and_job_artifact_replay (test_archive.Archives.test_new_run_coordinates_and_job_artifact_replay) ... ok
+test_outer_archive_exact_members_and_size (test_archive.Archives.test_outer_archive_exact_members_and_size) ... ok
+test_durable_manifest_embeds_exact_observations (test_local.Publication.test_durable_manifest_embeds_exact_observations) ... ok
+test_upload_requires_complete_remote_and_both_local_scans (test_local.Publication.test_upload_requires_complete_remote_and_both_local_scans) ... ok
+test_actual_body_stderr_growth_preserves_capacity_failure (test_metadata.MetadataTests.test_actual_body_stderr_growth_preserves_capacity_failure) ... ok
+test_actual_over128_metadata_refused_before_packing (test_metadata.MetadataTests.test_actual_over128_metadata_refused_before_packing) ... ok
+test_capacity_is_reserved_before_any_body (test_metadata.MetadataTests.test_capacity_is_reserved_before_any_body) ... ok
+test_exact_declared_profile_matches_selector (test_metadata.MetadataTests.test_exact_declared_profile_matches_selector) ... ok
+test_membership_growth_is_rechecked_before_actual_body (test_metadata.MetadataTests.test_membership_growth_is_rechecked_before_actual_body) ... ok
+test_narrow_receipt_cap_refuses_without_replacing_original (test_metadata.MetadataTests.test_narrow_receipt_cap_refuses_without_replacing_original) ... ok
+test_narrow_resource_cap_refuses_without_dropping_existing_rows (test_metadata.MetadataTests.test_narrow_resource_cap_refuses_without_dropping_existing_rows) ... ok
+test_resources_refuse_impossible_rows_for_both_phases (test_metadata.MetadataTests.test_resources_refuse_impossible_rows_for_both_phases) ... ok
+test_all22_actual_small_bodies_and_both_wholes (test_readback.ReadbackTests.test_all22_actual_small_bodies_and_both_wholes) ... ok
+test_deadline_failure_uses_reserved_evidence (test_readback.ReadbackTests.test_deadline_failure_uses_reserved_evidence) ... ok
+test_local_before_after_requires_actual_success_and_identity (test_readback.ReadbackTests.test_local_before_after_requires_actual_success_and_identity) ... ok
+test_missing_part_rejected_before_read (test_readback.ReadbackTests.test_missing_part_rejected_before_read) ... ok
+test_only_get_shapes (test_readback.ReadbackTests.test_only_get_shapes) ... ok
+test_order_mismatch_keeps_failed_owned_bytes (test_readback.ReadbackTests.test_order_mismatch_keeps_failed_owned_bytes) ... ok
+test_real_stderr_bound_and_failure_record (test_readback.ReadbackTests.test_real_stderr_bound_and_failure_record) ... ok
+test_real_stdout_size_bound_and_failure_record (test_readback.ReadbackTests.test_real_stdout_size_bound_and_failure_record) ... ok
+test_remote_upload_unavailable (test_readback.ReadbackTests.test_remote_upload_unavailable) ... ok
+test_wrong_whole_does_not_complete (test_readback.ReadbackTests.test_wrong_whole_does_not_complete) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 28.760s
+
+OK

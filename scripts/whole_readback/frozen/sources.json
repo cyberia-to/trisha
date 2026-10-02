@@ -1,0 +1,70 @@
+{
+  "README.md": {
+    "bytes": 5247,
+    "sha256": "80b30f15c093a61e6339382b885403a5d08cdad08cd1e76e3001f6fc2142e06c"
+  },
+  "PLAN.md": {
+    "bytes": 5566,
+    "sha256": "36653054b56e378a15fdf421b3ed01435a4f0f5a3816a4c2d53c4c0a4aaf5a77"
+  },
+  "expected.json": {
+    "bytes": 19882,
+    "sha256": "795ffd98018083d6b50871ea47e559046bc6bb3d0a041a84bc5a0d879ef78bb7"
+  },
+  "local-preparation.json": {
+    "bytes": 123277,
+    "sha256": "489de67b014c96f7007c538f8a686af6faddcb5692dfad7de615eeaee29ff299"
+  },
+  "common.py": {
+    "bytes": 4090,
+    "sha256": "25c3523e608a27f7b3d0b5ff8adb493e3bb41be36be21352108ad30be11092fc"
+  },
+  "admission.py": {
+    "bytes": 7451,
+    "sha256": "a76a0bb912beba2501d8d072272245e5e927b6f46ccb1b1a77ebd2c44b338bc4"
+  },
+  "contracts.py": {
+    "bytes": 7288,
+    "sha256": "b98621138cf94d5203debb3b77ee3201f0685e5ec5cca8119954ab82d6fe14ff"
+  },
+  "archives.py": {
+    "bytes": 6194,
+    "sha256": "b3970267e0231867f105fefd2b3cb36aa2a5a65004ee925424b160c74fe43b8c"
+  },
+  "evidence.py": {
+    "bytes": 15366,
+    "sha256": "fa4fac0ca99771d2dbc1d554a61ce4dce05b39c53f678a24ecdb9a70ff61ead8"
+  },
+  "remote.py": {
+    "bytes": 8267,
+    "sha256": "739fe689472508adcbb0e0d54c632725955e61149cc25cd09187ed6337e4e8ec"
+  },
+  "transport.py": {
+    "bytes": 15875,
+    "sha256": "92036d91a870f097ad603c8daff3bd8a0c1df5a0a72d277746a4524326c17baf"
+  },
+  "adopt.py": {
+    "bytes": 8727,
+    "sha256": "d26114692e0303f5efc04a3c83ea276107f25b83dee13948bc4d57fed6ee2722"
+  },
+  "test_adoption.py": {
+    "bytes": 24019,
+    "sha256": "c7484bb46568c1d03219809d6f019dfc6dbf1e1f93f6935031bfa4d8989216d0"
+  },
+  "fixtures.py": {
+    "bytes": 15598,
+    "sha256": "009b6ca3fbf4c3c2d87d72178be39c734713d2316dfd6c622cb4f4011a09d701"
+  },
+  "compression-rejection/decision.json": {
+    "bytes": 917,
+    "sha256": "3580936852e9783e66a23220cda0e6015668e561c91883600a324542d7d5c95e"
+  },
+  "compression-rejection/samples.json": {
+    "bytes": 4156,
+    "sha256": "2b41ce1dfcb54ac3249af403eb18829c02b4c171f0a24d6823f192b99df52376"
+  },
+  "compression-rejection/sample.py": {
+    "bytes": 2129,
+    "sha256": "8027aac5c349c994b072224a28a087a0ebcbd2f9729789aa54968e72bc639d50"
+  }
+}

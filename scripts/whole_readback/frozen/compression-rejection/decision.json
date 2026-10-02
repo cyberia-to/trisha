@@ -1,0 +1,17 @@
+{
+  "status": "sampled-option-rejected",
+  "decision": "Do not create a second compression transport attempt: these exact six8MiB samples save only4.73% in aggregate. No full-file compression estimate is accepted; existing immutable raw transfer continues.",
+  "sample_bytes": 50331648,
+  "compressed_sample_bytes": 47951500,
+  "saved_bytes": 2380148,
+  "samples_sha256": "2b41ce1dfcb54ac3249af403eb18829c02b4c171f0a24d6823f192b99df52376",
+  "command": [
+    "python3",
+    "-B",
+    "-W",
+    "error",
+    "sample.py"
+  ],
+  "source_revision": "Original whole-proof producer source and certificate identities are bound through preparation489de67b014c96f7007c538f8a686af6faddcb5692dfad7de615eeaee29ff299",
+  "next": "Separately produced Linux certificates may supply existing retained bytes only if actual fullSHA256 and length match local originals and independent durable readback succeeds; no equality assumed."
+}

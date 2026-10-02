@@ -1,0 +1,78 @@
+{
+  "schema": "trisha/actual-byte-closure-summary/v1",
+  "status": "byte-equivalent-transport-adopted-remote-replay",
+  "source_head": "97795590613e625b6be43c5e73afff4ab87009cd",
+  "worker": {
+    "id": 37047053221,
+    "attempt": 1,
+    "head": "97795590613e625b6be43c5e73afff4ab87009cd",
+    "repository": "cyberia-to/trisha",
+    "branch": "test/0.4-whole-retention-readback",
+    "workflow": ".github/workflows/whole-retention-readback.yml",
+    "event": "push"
+  },
+  "original_remote_proof_run": {
+    "repository": "cyberia-to/trisha",
+    "run_id": "36976540959",
+    "attempt": "1",
+    "head": "142198726fdec26dae87e2f694da2c2252fefb0f"
+  },
+  "local_joy": "6e0ec4d8440e2521df08f442d64f54e667044716",
+  "remote_joy": "dd61df9128f6da1f97d4698f45f154f05312fe51",
+  "whole_identities": [
+    {
+      "generation": 1,
+      "proof": {
+        "bytes": 11977015727,
+        "sha256": "80212be832ce0a5caafa69d9dd346ff20d51ce20fc86892f0c7039492619bbb0"
+      },
+      "parts": 12
+    },
+    {
+      "generation": 2,
+      "proof": {
+        "bytes": 10569174820,
+        "sha256": "4db898cbc5133e0b96c758507d32b62aa82c4f39271cedd949b96d641a67de86"
+      },
+      "parts": 10
+    }
+  ],
+  "original_artifact": 11245008879,
+  "original_zip": {
+    "bytes": 96198407,
+    "sha256": "a30b4ebc05220eb0180773bd039570c22b6a44bce2f60471cbef38808ee50edc"
+  },
+  "remote_get_commands": 356,
+  "local_closure_commands": 50,
+  "elapsed_seconds": 1097.223283822,
+  "sampled_peak_rss_bytes": 104816640,
+  "retained_assets": [
+    {
+      "bytes": 27321578,
+      "sha256": "302a493dd270352b62f52eb306471c3c55ee59ec414ec694b215636b2402a449",
+      "asset": {
+        "id": 606256958,
+        "name": "sh8-local-6e-remote-dd61-byte-equivalence-37047053221-20261002.original-local-metadata.tar.gz",
+        "size": 27321578,
+        "state": "uploaded",
+        "digest": "sha256:302a493dd270352b62f52eb306471c3c55ee59ec414ec694b215636b2402a449",
+        "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/606256958",
+        "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8-local-6e-remote-dd61-byte-equivalence-37047053221-20261002.original-local-metadata.tar.gz"
+      }
+    },
+    {
+      "bytes": 1802711,
+      "sha256": "f06ad9892327f4db456a15797e5f49f9d029453e5c5585d036c1f8f4eb9a7adb",
+      "asset": {
+        "id": 606263560,
+        "name": "sh8-local-6e-remote-dd61-byte-equivalence-37047053221-20261002.equivalence.json",
+        "size": 1802711,
+        "state": "uploaded",
+        "digest": "sha256:f06ad9892327f4db456a15797e5f49f9d029453e5c5585d036c1f8f4eb9a7adb",
+        "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/606263560",
+        "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8-local-6e-remote-dd61-byte-equivalence-37047053221-20261002.equivalence.json"
+      }
+    }
+  ],
+  "scope": "Complete transport byte equality and separate local before/after observations; SH8 adversarial/finalchecker acceptance remains separate."
+}

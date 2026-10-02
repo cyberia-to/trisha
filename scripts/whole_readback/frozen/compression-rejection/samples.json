@@ -1,0 +1,97 @@
+{
+  "status": "passed-samples-only",
+  "scope": "Six8MiB ranges from original complete public certificates; no full-file compressed-size or retention claim",
+  "argv": [
+    "sample.py"
+  ],
+  "python": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "zlib": "1.2.12",
+  "preparation_sha256": "489de67b014c96f7007c538f8a686af6faddcb5692dfad7de615eeaee29ff299",
+  "script_sha256": "8027aac5c349c994b072224a28a087a0ebcbd2f9729789aa54968e72bc639d50",
+  "samples": [
+    {
+      "generation": 1,
+      "proof": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof/attempts/c1-selfbuild-1/proof.joysc",
+        "bytes": 11977015727,
+        "sha256": "80212be832ce0a5caafa69d9dd346ff20d51ce20fc86892f0c7039492619bbb0"
+      },
+      "offset": 0,
+      "bytes": 8388608,
+      "input_sha256": "2e8650ea9cde57eb9204c66a25c02169f11e419f6a6b6f404a7287448df14c44",
+      "gzip_bytes": 7919369,
+      "gzip_sha256": "187f4f31adc61b94ea79aab49a8f483198786d007e1437c8d125613ecb284ebc",
+      "compression_elapsed_ns": 137075291
+    },
+    {
+      "generation": 1,
+      "proof": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof/attempts/c1-selfbuild-1/proof.joysc",
+        "bytes": 11977015727,
+        "sha256": "80212be832ce0a5caafa69d9dd346ff20d51ce20fc86892f0c7039492619bbb0"
+      },
+      "offset": 5988507863,
+      "bytes": 8388608,
+      "input_sha256": "d4b6c774328c8c5cd00b090932b552e2a8b107212f06584437f855e77c366552",
+      "gzip_bytes": 7885175,
+      "gzip_sha256": "aa2bd595e0ab04830f17505b0e3ddb41909a8aa804edf0def6b4aaf6aba9a53b",
+      "compression_elapsed_ns": 132273208
+    },
+    {
+      "generation": 1,
+      "proof": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof/attempts/c1-selfbuild-1/proof.joysc",
+        "bytes": 11977015727,
+        "sha256": "80212be832ce0a5caafa69d9dd346ff20d51ce20fc86892f0c7039492619bbb0"
+      },
+      "offset": 11968627119,
+      "bytes": 8388608,
+      "input_sha256": "3da602c64870eccebe132c911c352e1cc9bf61f1570c56cfb4946b4af7ea0d93",
+      "gzip_bytes": 8149672,
+      "gzip_sha256": "fe3c353510e7068cd9d2ccff67ca44397045070f3fdb7780e2978784c44a31dc",
+      "compression_elapsed_ns": 130520250
+    },
+    {
+      "generation": 2,
+      "proof": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof/attempts/c2-selfbuild-1/proof.joysc",
+        "bytes": 10569174820,
+        "sha256": "4db898cbc5133e0b96c758507d32b62aa82c4f39271cedd949b96d641a67de86"
+      },
+      "offset": 0,
+      "bytes": 8388608,
+      "input_sha256": "90ed12195baecfddf523361fbb86505fdb649f09331d01421452f9d4adae550d",
+      "gzip_bytes": 7909859,
+      "gzip_sha256": "4d7ec6b65110b3cff6366a4fa263aad5ca03e159477f9022063d0776cf8941e7",
+      "compression_elapsed_ns": 135958583
+    },
+    {
+      "generation": 2,
+      "proof": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof/attempts/c2-selfbuild-1/proof.joysc",
+        "bytes": 10569174820,
+        "sha256": "4db898cbc5133e0b96c758507d32b62aa82c4f39271cedd949b96d641a67de86"
+      },
+      "offset": 5284587410,
+      "bytes": 8388608,
+      "input_sha256": "923ae8513ea9b2d8e526edd1596df698be36387570324b214e6705ff99305edc",
+      "gzip_bytes": 7940646,
+      "gzip_sha256": "e48d4558ee17ce96347aa8451dec57b5e9c2c6afe173447ba8aa023f4334ddfd",
+      "compression_elapsed_ns": 134773917
+    },
+    {
+      "generation": 2,
+      "proof": {
+        "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof/attempts/c2-selfbuild-1/proof.joysc",
+        "bytes": 10569174820,
+        "sha256": "4db898cbc5133e0b96c758507d32b62aa82c4f39271cedd949b96d641a67de86"
+      },
+      "offset": 10560786212,
+      "bytes": 8388608,
+      "input_sha256": "87e12436e7fdb9b1e6df7f441a3163768e97ed39fa73e5f55345c3837c2601ff",
+      "gzip_bytes": 8146779,
+      "gzip_sha256": "cdef048f76a419d0cb32137e72398ebedd3ffffa445a41c152e1aa93a8808d9a",
+      "compression_elapsed_ns": 130494459
+    }
+  ]
+}
