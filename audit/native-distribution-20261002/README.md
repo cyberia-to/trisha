@@ -252,3 +252,16 @@ files. The earlier incremental checks had not covered already committed files.
 `raw-whitespace-check/` retains the exact failed check, corrected full-branch
 check and original Git/worktree SHA-256 comparison. `.gitattributes` now gives
 only those 32 exact paths `-text -whitespace`; no evidence bytes were edited.
+
+### Durable completed Mac evidence
+
+The complete original Mac native/198 archive is now draft asset 604817694,
+`rehearsal-20261002-e4bac7ff-local-rust189-evidence.tar.gz`, with server-confirmed
+SHA-256 `0b613f41a1c65aeb937f636070b0c497a6cb60c938f445dd53e3983ab9c15fab`
+and 80874375 bytes. `local-evidence-transport/receipt.json` records successful
+transport and postchecks from 04:42:00 to 05:08:10 UTC on 2026-10-02. Original
+command output, API responses and all eleven source reachability checks before
+and after the upload are preserved beside it. The existing release remained a
+draft, its tag remained absent (404), and all recorded default refs remained
+unchanged. The earlier package-only upload receipt remains unchanged and still
+states that the 198 verdict was pending at its own observation time.
