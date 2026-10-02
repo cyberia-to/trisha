@@ -79,3 +79,17 @@ commands, raw output and final helper are in
 `structured-helper-v3-evidence.tar.gz` (SHA-256
 `137b00643cd71bfa660e6a3b3bf668edc789259d1eaa9b83e2d167417db6b3ae`).
 Earlier helper evidence stays unchanged.
+
+## Native Windows checkout byte identity
+
+The retained PR21 selector hashes differ between Windows (`e0fdfaad...`) and
+Mac (`a5a6df5b...`) because native checkout line endings differ. The new package
+uses raw selector/reference hashes, so it must preserve those exact Git bytes.
+`checkout-bytes/receipt.json` records a read-only `git -c core.autocrlf=true
+cat-file --filters HEAD:PATH` exercise: all six existing byte-bound files
+changed before explicit attributes and matched their original hashes after.
+Exact-path `-text` entries now cover the input selector, release selector,
+Mac CPU raw reference files, public-profile receipt and future frozen-run API
+reference. The sole whitespace exception still applies only to the original
+Mac CPU log. Production source archive contents and selected revisions are
+unchanged by this bootstrap metadata correction.

@@ -1,0 +1,188 @@
+{
+  "scope": "Read-only Git checkout filter exercise with actual committed byte-bound inputs; no production source changed",
+  "status": "passed",
+  "changed_before": 6,
+  "preserved_after": 6,
+  "files": [
+    {
+      "path": ".github/current-package-inputs.json",
+      "expected_sha256": "944e1f0205a210abe970fce745fdf2000a50b51669f1c383698ee05b8e793a62",
+      "before": {
+        "command": [
+          "git",
+          "-c",
+          "core.autocrlf=true",
+          "cat-file",
+          "--filters",
+          "HEAD:.github/current-package-inputs.json"
+        ],
+        "exit_code": 0,
+        "bytes": 3990,
+        "sha256": "bd5f11ed838bbf1048e27eb1c2588b37c762c76435ef1a1fb6419dd19c62b3ff"
+      },
+      "after": {
+        "command": [
+          "git",
+          "-c",
+          "core.autocrlf=true",
+          "cat-file",
+          "--filters",
+          "HEAD:.github/current-package-inputs.json"
+        ],
+        "exit_code": 0,
+        "bytes": 3877,
+        "sha256": "944e1f0205a210abe970fce745fdf2000a50b51669f1c383698ee05b8e793a62"
+      }
+    },
+    {
+      "path": ".github/release-candidate.json",
+      "expected_sha256": "2580e254f12324cf4633244c770e48fd3e581cd0d2265132a4ac0288c50fefcf",
+      "before": {
+        "command": [
+          "git",
+          "-c",
+          "core.autocrlf=true",
+          "cat-file",
+          "--filters",
+          "HEAD:.github/release-candidate.json"
+        ],
+        "exit_code": 0,
+        "bytes": 745,
+        "sha256": "eef5c97ac7bf4e65ffb10c4b1460fe8b5507266f03800e660ce15968e8e9b327"
+      },
+      "after": {
+        "command": [
+          "git",
+          "-c",
+          "core.autocrlf=true",
+          "cat-file",
+          "--filters",
+          "HEAD:.github/release-candidate.json"
+        ],
+        "exit_code": 0,
+        "bytes": 723,
+        "sha256": "2580e254f12324cf4633244c770e48fd3e581cd0d2265132a4ac0288c50fefcf"
+      }
+    },
+    {
+      "path": "audit/current-native-package/references/frozen-local-candidate.json",
+      "expected_sha256": "5e088bcf9530cb29cd1f4456618a2e6a5ba89b5b0e58c22f40d2251382db3b10",
+      "before": {
+        "command": [
+          "git",
+          "-c",
+          "core.autocrlf=true",
+          "cat-file",
+          "--filters",
+          "HEAD:audit/current-native-package/references/frozen-local-candidate.json"
+        ],
+        "exit_code": 0,
+        "bytes": 1295,
+        "sha256": "4042a79bc103f5e69d0e3ce37e983bedc43d141151c409fd6fc458c3b8b672fc"
+      },
+      "after": {
+        "command": [
+          "git",
+          "-c",
+          "core.autocrlf=true",
+          "cat-file",
+          "--filters",
+          "HEAD:audit/current-native-package/references/frozen-local-candidate.json"
+        ],
+        "exit_code": 0,
+        "bytes": 1263,
+        "sha256": "5e088bcf9530cb29cd1f4456618a2e6a5ba89b5b0e58c22f40d2251382db3b10"
+      }
+    },
+    {
+      "path": "audit/current-native-package/references/frozen-local-cpu.json",
+      "expected_sha256": "9c82947cea6553d1e5e0042b82c6962bc73780f13184d7f9f3ecceba42922e83",
+      "before": {
+        "command": [
+          "git",
+          "-c",
+          "core.autocrlf=true",
+          "cat-file",
+          "--filters",
+          "HEAD:audit/current-native-package/references/frozen-local-cpu.json"
+        ],
+        "exit_code": 0,
+        "bytes": 869,
+        "sha256": "4443075cf0fcbf398e2048ea66a30f34e9534affb0ba76ceca6caeabddbb1669"
+      },
+      "after": {
+        "command": [
+          "git",
+          "-c",
+          "core.autocrlf=true",
+          "cat-file",
+          "--filters",
+          "HEAD:audit/current-native-package/references/frozen-local-cpu.json"
+        ],
+        "exit_code": 0,
+        "bytes": 856,
+        "sha256": "9c82947cea6553d1e5e0042b82c6962bc73780f13184d7f9f3ecceba42922e83"
+      }
+    },
+    {
+      "path": "audit/current-native-package/references/frozen-local-trident-tests.log",
+      "expected_sha256": "456c04581897b5e5029ff01d164a8b6b8f3f241d93c98d2a6d945c2d99a1cf57",
+      "before": {
+        "command": [
+          "git",
+          "-c",
+          "core.autocrlf=true",
+          "cat-file",
+          "--filters",
+          "HEAD:audit/current-native-package/references/frozen-local-trident-tests.log"
+        ],
+        "exit_code": 0,
+        "bytes": 647982,
+        "sha256": "69ba8563eb645380289a4c6e6f67b18b0f04b6a62f94cf69905a0dba25ec4763"
+      },
+      "after": {
+        "command": [
+          "git",
+          "-c",
+          "core.autocrlf=true",
+          "cat-file",
+          "--filters",
+          "HEAD:audit/current-native-package/references/frozen-local-trident-tests.log"
+        ],
+        "exit_code": 0,
+        "bytes": 643579,
+        "sha256": "456c04581897b5e5029ff01d164a8b6b8f3f241d93c98d2a6d945c2d99a1cf57"
+      }
+    },
+    {
+      "path": "audit/current-native-package/references/public-profile-receipt.json",
+      "expected_sha256": "a15e74b5790a6d26edd1c62eb44542b8bbe76c494cf9ad1aada97ea33371364a",
+      "before": {
+        "command": [
+          "git",
+          "-c",
+          "core.autocrlf=true",
+          "cat-file",
+          "--filters",
+          "HEAD:audit/current-native-package/references/public-profile-receipt.json"
+        ],
+        "exit_code": 0,
+        "bytes": 235510,
+        "sha256": "958d2a8bfdf7ed2643bcbb75f458bddb60a7622a7cda9f0b202457d369e1c1e4"
+      },
+      "after": {
+        "command": [
+          "git",
+          "-c",
+          "core.autocrlf=true",
+          "cat-file",
+          "--filters",
+          "HEAD:audit/current-native-package/references/public-profile-receipt.json"
+        ],
+        "exit_code": 0,
+        "bytes": 228499,
+        "sha256": "a15e74b5790a6d26edd1c62eb44542b8bbe76c494cf9ad1aada97ea33371364a"
+      }
+    }
+  ]
+}
