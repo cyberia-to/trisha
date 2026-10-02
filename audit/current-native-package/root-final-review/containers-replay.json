@@ -1,0 +1,95 @@
+{
+  "status": "passed",
+  "scope": "Exact authenticated ZIP and restored-member identity replay; semantic acceptance is checked separately",
+  "archives": [
+    {
+      "run": 36969168806,
+      "head": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+      "artifact": 11211868568,
+      "bytes": 81531238,
+      "sha256": "373e1440bf5f560e8a7d735f4f20a87719f1fd2705bc551250120e5d0cfd7447",
+      "members": 398
+    },
+    {
+      "run": 36969168806,
+      "head": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+      "artifact": 11211903748,
+      "bytes": 83899007,
+      "sha256": "f1f61099628d8f57b9c27325cf6c3f5c4ee664093a91bd6b65b83051bdc4ba2f",
+      "members": 397
+    },
+    {
+      "run": 36969168806,
+      "head": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+      "artifact": 11212207445,
+      "bytes": 83564320,
+      "sha256": "efb546e1fb41e9ab1045e795cee36076f97f09c291cc824f720ee7c04d11ca57",
+      "members": 397
+    },
+    {
+      "run": 36969168806,
+      "head": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+      "artifact": 11212455449,
+      "bytes": 82675686,
+      "sha256": "74e223433c16fe233e247e48f4c715f1eae18de25dd18c4aa750e33960e60199",
+      "members": 398
+    },
+    {
+      "run": 36969168806,
+      "head": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+      "artifact": 11212481311,
+      "bytes": 83627717,
+      "sha256": "4cf927a9cc93f532aba16a41e63b8e7dd239bbbfd903883d1016cceed7f153ce",
+      "members": 397
+    },
+    {
+      "run": 36974227589,
+      "head": "a5cdd95cb652d76a023fad1e40aefe54f6387445",
+      "artifact": 11212886258,
+      "bytes": 4888534,
+      "sha256": "40c5517fef3e688b3b8f1bd0870a0fca2b847c6d0babb9b42757076d60808bf7",
+      "members": 385
+    },
+    {
+      "run": 36974227589,
+      "head": "a5cdd95cb652d76a023fad1e40aefe54f6387445",
+      "artifact": 11212836179,
+      "bytes": 4886203,
+      "sha256": "caaa94930e43cfa1368680b2fc18f215c9a0aa96017fa95434c37323f9626ba0",
+      "members": 385
+    },
+    {
+      "run": 36974227589,
+      "head": "a5cdd95cb652d76a023fad1e40aefe54f6387445",
+      "artifact": 11212642441,
+      "bytes": 4888627,
+      "sha256": "c06f9ae81a856c6dc500086cb3a9f5e0d8847322dd4af59cae9bbaf517488e56",
+      "members": 385
+    },
+    {
+      "run": 36974227589,
+      "head": "a5cdd95cb652d76a023fad1e40aefe54f6387445",
+      "artifact": 11212633025,
+      "bytes": 4887899,
+      "sha256": "9621943dc62e7dcbd0317056920a37a2dd39462f5fdc959c98ad181ac3bf27bf",
+      "members": 385
+    },
+    {
+      "run": 36974227589,
+      "head": "a5cdd95cb652d76a023fad1e40aefe54f6387445",
+      "artifact": 11212349713,
+      "bytes": 4886195,
+      "sha256": "268d9a4de7ce21681aeec48efe4b649ad5681b6753009fbd3255b7bcd2d7aa01",
+      "members": 385
+    },
+    {
+      "run": 36974208978,
+      "head": "a5cdd95cb652d76a023fad1e40aefe54f6387445",
+      "artifact": 11212737111,
+      "bytes": 4908000,
+      "sha256": "9c2b4bd2d2c1d5715cdaf338a7c8161c640bb323e56487ecc9323c9d74333ce3",
+      "members": 404
+    }
+  ],
+  "script_sha256": "65605e2ab3da8b6b4b96aef3624426e0757616c49dc8ad6e69dc5f406d9b06ee"
+}

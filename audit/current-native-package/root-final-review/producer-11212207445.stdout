@@ -1,0 +1,30 @@
+{
+  "status": "producer_receipts_checked",
+  "target": "aarch64-unknown-linux-gnu",
+  "artifact_id": 11212207445,
+  "cpu": {
+    "trident": {
+      "log_sha256": "169ccd943a134de5ed149e175f56dc8deab7dc3c0a0180ffe2ef8aa304a9a0e4",
+      "test_binaries": 2,
+      "passed": 762
+    },
+    "trisha": {
+      "log_sha256": "5c637aac5da6261a09f34f7c42e0c7490772e3b7e5728d633a00591f99f47860",
+      "test_binaries": 64,
+      "passed": 429
+    },
+    "joy": {
+      "log_sha256": "6ff50e799bfe608eeca63d5d51b56538cb7f74f00b0c0fb822424b3ab1ea2ebc",
+      "test_binaries": 29,
+      "passed": 216
+    },
+    "nox": {
+      "log_sha256": "84d3062d81b45672a3c5105006eb0d014e982649685c5e7c8a5598916c197c1a",
+      "test_binaries": 1,
+      "passed": 245
+    }
+  },
+  "corpus_cases": 47,
+  "corpus_positive": 18,
+  "corpus_rejections": 29
+}

@@ -1,14 +1,12 @@
 # Current native package validation
 
-Status: exact source export and independent reproduction passed. The fresh
-Mac ARM package has passed its four CPU suites, installed/package checks,
-133 baseline executions, 47 legacy corpus cases and 27 structured cases.
-All five remote producers have passed. The new full198 gate remains in
-progress.
-All six native consumers passed every legacy and structured corpus; the full
-36-pair matrix and additional Mac14 ARM consumer are accepted.
-This distinct branch rehearsal uses source `734df69d...`; the frozen
-`e4bac7ff...` receipts retain their original scope.
+Status: all six native producer package gates, the actual Mac full198 gate,
+all36 native corpus pairs (2664 legacy/structured case checks), and the
+additional bounded Mac14 ARM consumer passed for exact source `734df69d...`
+and Joy `11b7bad...`. Complete original local proof evidence is retained as
+draft asset 605010237; independent readback and review passed. This distinct
+branch rehearsal does not include later Joy `dd61df9...` host-deadline code.
+The older `e4bac7ff...` receipts retain their original scope.
 
 The following preparation observations were recorded before source export;
 the later sections retain actual export, reproduction and package evidence.
@@ -310,3 +308,58 @@ for exact source `734df69d...` have passed. The actual full198 proof run on
 its local Mac binary remains in progress at this observation. The later Joy
 `dd61df9...` host-deadline change is outside these immutable package receipts
 and requires a distinct follow-up source/package lane.
+
+### Actual source734 full198 gate passed
+
+The original local Mac driver at producer revision
+`ecdc4e2ea131c50a860036e34ee7636b91fb8dde` exited successfully after all
+package and proof gates. Its actual full198 receipt records 198 fresh verified
+proofs, 99 positive fixtures, 34 expected rejections, unchanged inputs, exit0
+and no resource stop. The proof process group took 4050.502510332968 seconds
+and peaked at 15023194112 bytes under its unchanged 28 GiB guard and host
+free-memory condition. The whole build/CPU/package driver took
+4885.090305750025 seconds and recorded a separate outer process-group peak
+of 10900701184 bytes; these two resource measurements have distinct scopes.
+
+The exact tested Trisha executable SHA-256 is
+`2b096706c9b6905e960d19c93903c1b0e8ea203d21893838dbfa650ca1e0c25a`.
+`local-full198/` preserves original receipt/candidate/driver/source metadata,
+byte-preserved compressed started/bench/resource streams, the original
+retainer and final zero-warning check. The retainer rechecked all198 emitted
+proof events with the exact archived proof checker, all fixture coverage,
+source/binary identities and resource samples.
+
+The complete original local evidence archive contains 85557916 bytes with
+SHA-256 `54db68904fc8c92f1446c46cb7b90345a05e026a92b46e6ccb259822a3328204`.
+Its per-file inventory is `local-full198/retention.json`; the original archive
+is retained at the measurement path recorded there. Upload of those exact
+bytes to a unique asset in the existing draft passed; the completed transport
+and independent readback are recorded below.
+
+All required execution gates for this source734/Joy11b7 package have passed.
+A subsequent package containing Joy dd61df9 needs its own source closure,
+actual native packages and corpus matrix. Any inherited198 coverage must name
+this original run and require the final actual Trisha executable and protected
+inputs to be identical; this receipt is never relabeled as a later fresh run.
+
+### Durable full198 evidence and final independent review passed
+
+`local-full198-transport/` retains the original upload, before/after origin
+observations, API responses, independent download commands and exact
+retention manifest. Draft asset 605010237 contains 85557916 bytes with server
+SHA-256 `54db68904fc8c92f1446c46cb7b90345a05e026a92b46e6ccb259822a3328204`.
+The independent download matched that complete digest and all 429 original
+member sizes and digests. Upload ended at 07:13:02 UTC; independent readback
+ended at 07:13:25 UTC on 2026-10-02. All eleven fixed source commits remained
+reachable, default refs remained unchanged, and the existing unpublished
+draft's tag remained absent.
+
+`root-final-review/` retains the separate read-only review's 21 original files
+with an explicit byte identity manifest. Its retained commands replayed the
+complete local archive and 198 actual proof events, the eleven authenticated
+producer/consumer/Mac14 containers (4316 original and restored members), all
+36 native pairs / 72 corpus pairs / 2664 cases, and the five native producer
+inspections. These checks passed against the original source734 measurements.
+
+This completes the source734 / Joy11b7 branch rehearsal. The later Joy dd61df9
+package has a separate source closure and validation lane.

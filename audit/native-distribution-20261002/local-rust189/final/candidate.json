@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "platform": {
+    "name": "macos",
+    "arch": "aarch64",
+    "family": "unix",
+    "kernel_version": "25.4.0"
+  },
+  "toolchain": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: aarch64-apple-darwin\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+  "rustflags": "",
+  "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-rust189/temporary/cyber-candidate/unpacked/cyber-source",
+  "source_verified": true,
+  "source_verification_sha256": "1399bf2f87709b9a706a6e0ee64564f77718909f282ab8a29a8ea32f4adfef0a",
+  "provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+  "binaries": [
+    {
+      "name": "trident",
+      "sha256": "8172fca0390c200ccc99a8536f646d2643dad24e6413df7481cd498989c788dc"
+    },
+    {
+      "name": "trident-lsp",
+      "sha256": "10f7d6228d9e1314580dec043cb57496c392fc9d3bd006b09be504a40840d6cd"
+    },
+    {
+      "name": "trisha",
+      "sha256": "12cd1a2576e1272f770d1d93c444bfa2bf8372370e0af0f92af14d1274f31b73"
+    },
+    {
+      "name": "joy",
+      "sha256": "987682608a17fee60f062af30648ef675a9ed734156c58a389f342bd11c35a1b"
+    }
+  ]
+}

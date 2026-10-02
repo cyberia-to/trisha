@@ -1,0 +1,46 @@
+{
+  "status": "passed",
+  "scope": "Original completed local CPU/build logs; ANSI CSI removed only for diagnostic recognition",
+  "logs": [
+    {
+      "path": "candidate-fixture-build.log",
+      "sha256": "622b1c5bcb25bd1e7a7b891b1d5dd1cd440fcb382ff1001ef05c3ee2df39c988",
+      "bytes": 5571
+    },
+    {
+      "path": "candidate-joy-build.log",
+      "sha256": "e3fded1156f7deb8945f8f1c4d747941488b66fdeb3310ed691b217a3b9f14fe",
+      "bytes": 8448
+    },
+    {
+      "path": "candidate-trident-build.log",
+      "sha256": "b1ed4d799d0d67387e037c95ef4ac856d9d2af00b9b17a4a4c3b526b51781634",
+      "bytes": 4717
+    },
+    {
+      "path": "candidate-trisha-build.log",
+      "sha256": "b26a38fcb7f19e1bb7923771c952484c33e9a3ee6861877c5b2c5e03c51d822e",
+      "bytes": 17467
+    },
+    {
+      "path": "joy-tests.log",
+      "sha256": "95d02384717c046a960c22c32f25f52e3c1b47705cbde5518065a1f190d5c0d7",
+      "bytes": 24948
+    },
+    {
+      "path": "nox-tests.log",
+      "sha256": "2ca13e8d025a7a342f7f150c177c11e0d5a6dd51cabf2a370e39bc17b06752c0",
+      "bytes": 21839
+    },
+    {
+      "path": "trident-tests.log",
+      "sha256": "6e4b713b17a0029a9b7611b073ce4e9ec221adcc3d967173a6286ea779c2b1bd",
+      "bytes": 58978
+    },
+    {
+      "path": "trisha-tests.log",
+      "sha256": "d18b662564b83bb1cddc42ed855d904f2b0300d2f7d47640153ae3139e89e79e",
+      "bytes": 72528
+    }
+  ]
+}
