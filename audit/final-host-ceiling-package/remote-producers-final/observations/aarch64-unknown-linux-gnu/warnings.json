@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "recognition": "ANSI CSI removed for recognition; original bytes unchanged",
+  "logs": [
+    {
+      "path": "candidate-fixture-build.log",
+      "sha256": "8f6e042afe93af8d63cb7a6490380e059271c390ecfb9c81c8a82a3c9a5345df"
+    },
+    {
+      "path": "candidate-joy-build.log",
+      "sha256": "4e93f7b2863a7138a7b29e91e85cd273e5468382c6e9b5b75330c47c931c2f92"
+    },
+    {
+      "path": "candidate-trident-build.log",
+      "sha256": "e8426596a4efe5a55a8da1d582985f69620d48560efb4465c0c3397ee2c8e762"
+    },
+    {
+      "path": "candidate-trisha-build.log",
+      "sha256": "191693ddb5c5c7dcdcbb6fd8d6da628f217f88c5df56d5efc292c4845b92c21b"
+    },
+    {
+      "path": "joy-tests.log",
+      "sha256": "76e0edb4e6ea3a16737ab064251fd0acd9332aafc6cfa49095283333027162a4"
+    },
+    {
+      "path": "nox-tests.log",
+      "sha256": "0d7a90f3d038918d0f0b4ddf8ea2f3f54353d1e2a5c3d3cbe27e9577aff0668f"
+    },
+    {
+      "path": "trident-tests.log",
+      "sha256": "053ea88e8fc0b640da34009234e951f8bdb4cbcf8e66c9bff0fb1d4462b9dbba"
+    },
+    {
+      "path": "trisha-tests.log",
+      "sha256": "5e7617201d6bf8042b1380a3211fdd08b239b8edd6873bc85717f8456e03afd7"
+    }
+  ]
+}

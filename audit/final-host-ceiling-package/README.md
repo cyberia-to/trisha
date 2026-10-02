@@ -1,11 +1,12 @@
 # Final Joy host deadline package evidence
 
-Status: exact final source export, independent remote reproduction and complete
-authenticated source-asset readback passed. The five remote native producer
-gates are underway; Linux x64 has completed and its original receipts passed
-inspection. Local Mac ARM package gates and complete draft asset readback
-passed; its fresh full198 gate is running. Native acceptance remains pending,
-and all consumer selectors remain inactive.
+Status: all six final native producers, all 24 packaged binary linkage checks,
+and the fresh Mac ARM 198-proof gate passed for exact source 73b50ebd. The
+complete original full198 archive and the local package/corpus assets passed
+authenticated draft-asset readback. Remote package transport, the complete
+six-by-six consumer matrix and bounded macOS 14 ARM consumption remain pending;
+all consumer selectors remain inactive. This is a feature-branch rehearsal,
+not a published release.
 
 `dependency-scope/` retains the exact Joy11b7→dd61 diff and original Cargo1.89
 locked/offline/all-features dependency observations. The one changed production
@@ -39,8 +40,8 @@ driver, Nox source, the original checker and the original retained receipt.
 The source mutations exercise the comparison routine with copies of the actual
 authenticated inventory; executable and original-evidence mutations exercise
 the complete check. Exact command, raw streams and checker/test identities are
-retained. The first final-candidate inheritance observation remains pending
-until the new package is built and compared.
+retained. The later actual final-candidate comparison returned `needs_fresh_full198`
+because its Trisha binary differs; the fresh successful gate is recorded below.
 
 `installed-probe-trial/` records the actual installed Joy binary from merged
 source `dd61df9128f6da1f97d4698f45f154f05312fe51` (the measured implementation
@@ -57,7 +58,8 @@ program returned the expected result. Zero, 14400001 and u64-max limits were
 rejected by both commands without replacing an existing output. Ordinary
 non-compacting prove/verify accepted 300000 and rejected 300001 ms. Exact
 binary, fixture and original command streams are preserved with a manifest.
-The native final runner will repeat this check on each actual final package.
+The native final runner repeated this check on each of the six actual final
+producer packages; consumer observations remain separate.
 
 `root-inheritance-review/` retains the independent source review, actual
 positive replay and six mutation checks for conditional inherited full198
@@ -211,11 +213,10 @@ The local Mac ARM producer started at 09:33:06 UTC on 2026-10-02 using
 three actual native Rust/Cargo/rustdoc 1.89 preflights, cache identities and
 fresh resource admission. Admission measured 53392580608 bytes free disk and
 54 percent free memory on the 48 GiB, 16-CPU host. The existing Cargo2/Rayon4
-and 28 GiB guards remain fixed. An actual Trisha byte comparison will decide
-whether the original full198 coverage is inherited or a fresh gate is needed.
+and 28 GiB guards remain fixed. The subsequent actual Trisha byte comparison required a fresh full198 gate.
 
-These launch observations are pending producer evidence. The five remote
-hosts, local Mac ARM, complete portable consumer matrix and bounded Mac14
+These are the original launch observations. The later producer and fresh198
+results appear below. The complete portable consumer matrix and bounded Mac14
 consumer each require their own actual successful receipts before acceptance.
 
 ## Local package transport and complete readback passed
@@ -232,8 +233,8 @@ tests (the actual positive plus seven mutations).
 The actual Trisha SHA-256
 `fe069879a44b582a47069c5cd849b1eb3da4c75a037e72aa9d107742ecc8173f`
 differs from the original source734 worker. The exact inheritance check
-therefore returned `needs_fresh_full198`, and the new guarded proof run is
-required. The package transport receipts make no full198 acceptance claim.
+therefore returned `needs_fresh_full198`. The later successful guarded proof
+run appears below; package transport receipts themselves make no full198 claim.
 
 After independent concrete review, the retained command
 `python3 -B -W error measurements/transport-final-local-packages.py` uploaded
@@ -271,5 +272,71 @@ The actual host reported Linux with glibc 2.35 and native Rust/Cargo/rustdoc
 tests. The existing 133 execution, kit, Neptune, LSP, 47 legacy corpus and
 27 structured corpus gates passed, as did all 23 installed deadline commands.
 Original job logs and separate ANSI-aware zero-warning observations are
-retained. This is one producer observation; remaining native producers,
-packaged linkage, full198 and the complete consumer matrix remain separate.
+retained. This was the first producer observation. The other producer, packaged linkage
+and fresh full198 observations are recorded below; portable consumption remains
+separate.
+
+## All six final producers and packaged linkage passed
+
+`remote-producers-final/` records the completed successful run 36990413939 and
+five independent `inspect-final-native-producer.py` replays of the original
+Actions ZIPs and every restored member. Each producer used exact runner
+`5de26a93eb4d489d90f150882adec2c47d14bea4`, source 73b50ebd, provenance 9334dead
+and native Rust/Cargo/rustdoc 1.89. Each passed the existing package gates,
+133 execution fixtures, 47 legacy and 27 structured corpus cases, and all
+23 installed deadline commands. Exact per-command streams and hashes remain
+inside the original authenticated archives. CPU counts below are the actual
+passing Trident / Trisha / Joy / Nox tests, with zero failures and warnings.
+
+| Native producer | Actual host | CPU passing counts | Original Actions artifact |
+| --- | --- | --- | --- |
+| Linux x64 | Linux 6.8.0-1064-azure, glibc 2.35 | 762 / 429 / 217 / 245 | 11221252119 |
+| Linux ARM | Linux 6.8.0-1064-azure, glibc 2.35 | 762 / 429 / 217 / 245 | 11221645284 |
+| Windows x64 | Windows Server 2022, 10.0.20348 | 759 / 418 / 210 / 245 | 11221631394 |
+| Windows ARM | Windows 11, 10.0.26200 | 759 / 418 / 210 / 245 | 11221602815 |
+| Intel Mac | macOS 15.7.9 | 762 / 429 / 216 / 245 | 11221748513 |
+| ARM Mac | macOS 26.4.1 | 762 / 429 / 216 / 245 | Local originals retained below |
+
+`remote-producers-final/linkage/` retains the actual commands and streams from
+`inspect-final-linkage.py` for all 24 packaged executables. The eight Linux
+executables require at most GLIBC 2.34, within the packaging limit 2.35. The
+eight Windows executables have static CRT build flags and no separate
+MSVC/UCRT DLL imports. The eight Mac executable deployment versions and imports
+are recorded. These binary observations do not establish execution on an older
+OS. Windows 11 x64 and macOS 14 Intel were not measured by these hosts.
+
+`matrix-helper-checks/` records six real producer self-consumption replays
+(444 corpus case checks), six actual 23-command producer deadline receipt
+checks and five integrity mutations. These validate the portable receipt
+checker; they do not constitute the pending cross-platform consumer matrix.
+The exact proposed remote transport selector and fresh eleven-commit origin
+observations are retained in `remote-producers-final/`. It was still inactive
+at this observation.
+
+## Fresh final Mac ARM full198 passed and was durably retained
+
+The actual final Trisha executable is
+`fe069879a44b582a47069c5cd849b1eb3da4c75a037e72aa9d107742ecc8173f`.
+Because it differs from the source734 executable, the runner performed a fresh
+198-proof gate. `local-full198/` preserves its original checked event stream,
+resource samples, receipts, source/fixture identities and compact retention
+command. All 198 proof events passed, covering 99 positive programs and 34
+rejection fixtures, with inputs unchanged and no resource stop.
+
+The inner full198 receipt measured 4077.078955874953 seconds and a sampled
+peak process RSS of 17818517504 bytes. The enclosing complete native worker
+measured 4902.759517750004 seconds and its separate sampled process RSS peak
+of 9418686464 bytes. These are distinct process measurements. Both guards
+completed without stopping the work; this is fresh coverage of the actual
+final binary, not inherited source734 coverage.
+
+`local-full198-transport/` retains the exact retention, upload and independent
+readback commands, their original streams and before/after source/default/tag
+observations by byte manifest. The complete archive contains 493 original
+files and 83416871 bytes, with SHA-256
+`9cc80e1c5d420179c1a33c7cb28ce9e1db25ff43712487da79f71ad3c6d71612`.
+It is unique draft asset 605413707,
+`rehearsal-20261002-final-dd61-local-rust189-evidence.tar.gz`. Independent
+readback downloaded every byte, rechecked the SHA-256 and all 493 members,
+and passed. The existing draft remained unpublished, its tag remained absent,
+and the eleven source commits remained reachable with default refs unchanged.

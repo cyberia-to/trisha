@@ -1,0 +1,83 @@
+{
+  "status": "passed",
+  "scope": "Independent readback of complete original final73b50 full198 archive",
+  "commands": [
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605413707"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "-H",
+        "Accept: application/octet-stream",
+        "repos/cyberia-to/trisha/releases/assets/605413707"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    }
+  ],
+  "started": "2026-10-02T11:00:26.712688+00:00",
+  "asset": {
+    "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605413707",
+    "id": 605413707,
+    "node_id": "RA_kwDORSKVcM4kFeFL",
+    "name": "rehearsal-20261002-final-dd61-local-rust189-evidence.tar.gz",
+    "label": "",
+    "uploader": {
+      "login": "mastercyb",
+      "id": 410789,
+      "node_id": "MDQ6VXNlcjQxMDc4OQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/410789?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mastercyb",
+      "html_url": "https://github.com/mastercyb",
+      "followers_url": "https://api.github.com/users/mastercyb/followers",
+      "following_url": "https://api.github.com/users/mastercyb/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mastercyb/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mastercyb/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mastercyb/subscriptions",
+      "organizations_url": "https://api.github.com/users/mastercyb/orgs",
+      "repos_url": "https://api.github.com/users/mastercyb/repos",
+      "events_url": "https://api.github.com/users/mastercyb/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mastercyb/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "content_type": "application/x-gtar",
+    "state": "uploaded",
+    "size": 83416871,
+    "digest": "sha256:9cc80e1c5d420179c1a33c7cb28ce9e1db25ff43712487da79f71ad3c6d71612",
+    "download_count": 0,
+    "created_at": "2026-10-02T10:59:24Z",
+    "updated_at": "2026-10-02T10:59:41Z",
+    "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/rehearsal-20261002-final-dd61-local-rust189-evidence.tar.gz"
+  },
+  "ended": "2026-10-02T11:00:45.560649+00:00",
+  "archive_sha256": "9cc80e1c5d420179c1a33c7cb28ce9e1db25ff43712487da79f71ad3c6d71612",
+  "archive_bytes": 83416871,
+  "members": 493,
+  "retention_sha256": "6014fdd5e7dbf87a52d64babc52d3930d394204aa5e45f15c05a846804a5ca63",
+  "script_sha256": "25e9ee810163ce4d6bec1ff839b0e7e54bf7cc7001bb02be7f60a8a9501266a9"
+}
