@@ -34,6 +34,45 @@ def write_chunk(source, path, limit=CHUNK):
     return dict(bytes=size, sha256=digest.hexdigest())
 
 
+def listed_assets(run, label):
+    pages = load(run(label, ['gh', 'api', '--paginate', '--slurp',
+                            f'repos/{REPO}/releases/{RELEASE}/assets?per_page=100']))
+    require(isinstance(pages, list) and all(isinstance(p, list) for p in pages), 'paginated asset arrays')
+    assets = [asset for page in pages for asset in page]
+    require(len(assets) <= 1000, 'bounded release asset count')
+    ids = [asset['id'] for asset in assets]
+    require(all(type(value) is int and value > 0 for value in ids) and len(set(ids)) == len(ids), 'unique numeric asset IDs')
+    return assets
+
+
+def check_asset(asset, name, expected):
+    require(type(asset['id']) is int and asset['id'] > 0 and asset.get('state') == 'uploaded', 'uploaded asset with numeric ID')
+    require(asset['url'] == f"https://api.github.com/repos/{REPO}/releases/assets/{asset['id']}", 'exact fixed-repository API asset URL')
+    require(asset['name'] == name and asset['size'] == expected['bytes'] and
+            asset.get('digest') == 'sha256:' + expected['sha256'], 'server part identity')
+
+
+class Reconstruction:
+    def __init__(self):
+        self.digest = hashlib.sha256()
+        self.bytes = 0
+
+    def append(self, path, expected_part):
+        part, size = hashlib.sha256(), 0
+        with path.open('rb') as stream:
+            while chunk := stream.read(1024**2):
+                part.update(chunk)
+                self.digest.update(chunk)
+                size += len(chunk)
+                self.bytes += len(chunk)
+        require(dict(bytes=size, sha256=part.hexdigest()) == expected_part, 'independently downloaded part bytes')
+
+    def finish(self, expected):
+        actual = dict(bytes=self.bytes, sha256=self.digest.hexdigest())
+        require(actual == expected, 'complete ordered download reconstruction')
+        return actual
+
+
 def main():
     cancellation_handlers()
     parser = argparse.ArgumentParser(description=__doc__)
@@ -91,29 +130,33 @@ def main():
                 'fixed existing unpublished draft required')
         absent = load(run(label + '-tag', ['gh', 'api', f'repos/{REPO}/git/ref/tags/{TAG}'], 1))
         require(str(absent.get('status')) == '404', 'draft tag remains absent')
-        return value
+        return listed_assets(run, label + '-assets')
 
-    def upload(label, path, name, expected_part):
+    def upload(label, path, name, expected_part, reconstruction=None):
         before = draft(label + '-before')
-        require(name not in {a['name'] for a in before['assets']}, 'unique asset name, no overwrite')
+        require(name not in {a['name'] for a in before}, 'unique asset name, no overwrite')
         endpoint = f'https://uploads.github.com/repos/{REPO}/releases/{RELEASE}/assets?name=' + quote(name, safe='')
         asset = load(run(label + '-upload', ['gh', 'api', '--method', 'POST', endpoint,
                      '-H', 'Content-Type: application/octet-stream', '--input', str(path)]))
-        require(asset['name'] == name and asset['size'] == expected_part['bytes'] and
-                asset.get('digest') == 'sha256:' + expected_part['sha256'], 'server part identity')
+        check_asset(asset, name, expected_part)
         after = draft(label + '-after')
-        matches = [a for a in after['assets'] if a['name'] == name]
-        require(len(matches) == 1 and matches[0]['id'] == asset['id'] and matches[0].get('digest') == asset['digest'], 'asset belongs to fixed draft')
+        matches = [a for a in after if a['name'] == name]
+        require(len(matches) == 1 and matches[0]['id'] == asset['id'], 'asset belongs to fixed draft')
+        check_asset(matches[0], name, expected_part)
         # Release the owned upload copy before creating the independent download.
         path.unlink()
         downloaded = directory / (name + '.download')
         run(label + '-download', ['gh', 'api', f"repos/{REPO}/releases/assets/{asset['id']}", '-H', 'Accept: application/octet-stream'], output=downloaded)
-        require(identity(downloaded) == expected_part, 'independently downloaded bytes')
+        if reconstruction is None:
+            require(identity(downloaded) == expected_part, 'independently downloaded bytes')
+        else:
+            reconstruction.append(downloaded, expected_part)
         downloaded.unlink()
-        return {k: asset[k] for k in ('id', 'name', 'size', 'digest', 'url', 'browser_download_url')}
+        return {k: asset[k] for k in ('id', 'name', 'size', 'state', 'digest', 'url', 'browser_download_url')}
 
     persist()
     try:
+        reconstruction = Reconstruction()
         with source.open('rb') as stream:
             remaining = expected['bytes']
             sequence = 0
@@ -122,7 +165,7 @@ def main():
                 part = write_chunk(stream, path)
                 require(0 < part['bytes'] <= min(CHUNK, remaining), 'bounded nonempty part')
                 name = prefix + f'.part{sequence:04d}'
-                asset = upload(f'part-{sequence:04d}', path, name, part)
+                asset = upload(f'part-{sequence:04d}', path, name, part, reconstruction)
                 receipt['parts'].append(dict(sequence=sequence, offset=expected['bytes'] - remaining,
                                              **part, asset=asset, downloaded_verified=True))
                 remaining -= part['bytes']
@@ -130,6 +173,8 @@ def main():
                 persist()
             require(not stream.read(1), 'no appended certificate bytes')
         require(identity(source) == expected, 'original certificate unchanged after chunking')
+        receipt['downloaded_reconstruction'] = reconstruction.finish(expected)
+        persist()
         evidence = {str(p.relative_to(results)): identity(p) for p in sorted(results.rglob('*')) if p.is_file()}
         require(sum(v['bytes'] for v in evidence.values()) <= 256 * 1024**2, 'bounded raw receipt evidence')
         evidence_manifest = results / 'durable-metadata-files.json'
@@ -146,6 +191,7 @@ def main():
                                   asset=upload('metadata', metadata_path, prefix + '.metadata.tar.gz', metadata_identity))
         # This manifest is independently downloadable and names every immutable part.
         manifest = dict(schema='trident/whole-proof-parts/v1', proof=expected, parts=receipt['parts'],
+                        downloaded_reconstruction=receipt['downloaded_reconstruction'],
                         generation=checked['generation'], verification=checked['verification'],
                         source_selector=checked['source_selector'], input_asset=checked['input_asset'],
                         binary=checked['binary'], tools=checked['tools'], metadata=receipt['metadata'],

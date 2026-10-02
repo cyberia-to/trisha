@@ -71,7 +71,8 @@ class Orchestration(unittest.TestCase):
         original = bytes(range(251)) * 10000
         with tempfile.TemporaryDirectory() as directory:
             stream = io.BytesIO(original)
-            parts, hashes = [], []
+            parts, hashes, paths = [], [], []
+            reconstruction = retention.Reconstruction()
             for n in range(3):
                 path = Path(directory) / str(n)
                 value = retention.write_chunk(stream, path, 1024**2)
@@ -79,10 +80,54 @@ class Orchestration(unittest.TestCase):
                 self.assertLessEqual(value['bytes'], 1024**2)
                 parts.append(path.read_bytes())
                 hashes.append(value)
+                paths.append(path)
+                reconstruction.append(path, value)
             self.assertEqual(b''.join(parts), original)
             self.assertEqual(hashlib.sha256(b''.join(parts)).hexdigest(), hashlib.sha256(original).hexdigest())
             self.assertEqual([p['bytes'] for p in hashes], [1024**2, 1024**2, len(original) - 2 * 1024**2])
             self.assertEqual(stream.read(1), b'')
+            expected = dict(bytes=len(original), sha256=hashlib.sha256(original).hexdigest())
+            self.assertEqual(reconstruction.finish(expected), expected)
+            for order in ([0, 2, 1], [0, 1], [0, 1, 2, 2]):
+                reordered = retention.Reconstruction()
+                for n in order:
+                    reordered.append(paths[n], hashes[n])
+                with self.subTest(order=order), self.assertRaises(ValueError):
+                    reordered.finish(expected)
+
+    def test_asset_listing_consumes_all_pages_and_rejects_duplicate_ids(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'pages.json'
+            pages = [[dict(id=n, name=str(n)) for n in range(1, 101)], [dict(id=101, name='last')]]
+            path.write_text(json.dumps(pages))
+            commands = []
+
+            def run(label, command):
+                commands.append((label, command))
+                return path
+
+            actual = retention.listed_assets(run, 'assets')
+            self.assertEqual((len(actual), actual[-1]['name']), (101, 'last'))
+            self.assertEqual(commands, [('assets', ['gh', 'api', '--paginate', '--slurp',
+                             'repos/cyberia-to/trisha/releases/389977897/assets?per_page=100'])])
+            for invalid in ([[dict(id=1)], [dict(id=1)]], {'assets': []}, [[dict(id=True)]],
+                            [[dict(id=n) for n in range(1, 1002)]]):
+                path.write_text(json.dumps(invalid))
+                with self.assertRaises(ValueError):
+                    retention.listed_assets(run, 'invalid')
+
+    def test_asset_identity_requires_uploaded_state_and_exact_repository_api_origin(self):
+        expected = dict(bytes=3, sha256=hashlib.sha256(b'abc').hexdigest())
+        asset = dict(id=123, name='part', size=3, state='uploaded', digest='sha256:' + expected['sha256'],
+                     url='https://api.github.com/repos/cyberia-to/trisha/releases/assets/123')
+        retention.check_asset(asset, 'part', expected)
+        for changed in ({'id': True}, {'state': 'starter'}, {'name': 'other'}, {'size': 4},
+                        {'digest': 'sha256:' + '0' * 64},
+                        {'url': 'https://api.github.com.example/repos/cyberia-to/trisha/releases/assets/123'},
+                        {'url': 'https://api.github.com/repos/other/trisha/releases/assets/123'},
+                        {'url': asset['url'] + '?other'}, {'url': asset['url'] + '4'}):
+            with self.subTest(changed=changed), self.assertRaises(ValueError):
+                retention.check_asset(dict(asset, **changed), 'part', expected)
 
     def test_cleanup_cannot_run_on_local_or_unidentified_host(self):
         commands = []

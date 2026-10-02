@@ -38,6 +38,14 @@ identities. The initial push is limited to the exact feature branch and changes
 to its activation selector or workflow; audit-only commits do not trigger it.
 No push, hosted job or publication occurred during these local checks.
 
+`retention-hardening/checks.json` records the next checks against base commit
+`714d114`, with exact source hashes. All ten tests passed, including the complete
+compact archive admission, explicit event authorization, paginated asset listing,
+uploaded-state/API-origin validation and ordered rolling download reconstruction.
+Actionlint, AST parsing and `git diff --check` also passed. The retained local
+`gh api --help` output confirms the `--paginate --slurp` result framing. Tests use
+temporary local files; no remote assets were uploaded, downloaded or modified.
+
 Runtime capacity and durable retention remain unmeasured until the reviewed
 hosted jobs complete. The original 48 GiB free-start guard may reject a
 runner after allowlisted SDK cleanup; this preparation audit does not predict

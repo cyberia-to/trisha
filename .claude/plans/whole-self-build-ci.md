@@ -39,6 +39,9 @@ untouched. Branch: `test/0.4-whole-self-build-ci`, based on origin/release/0.4
    389977897 by release ID, checking draft/tag state and server digest, then
    independently streaming each asset back and checking hashes. Never create a
    release, publish/promote, create/push a tag or replace an existing asset.
+   Check fixed-release membership using all paginated assets, require uploaded
+   state and exact API URL, and hash the ordered downloaded parts together before
+   emitting the final manifest.
 7. Preserve success/failure metadata through small Actions artifacts. Full proofs
    use release chunks to avoid Actions artifact storage quotas. The workflow must
    distinguish proof verification from successful durable retention and record

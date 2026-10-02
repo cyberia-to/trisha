@@ -70,7 +70,13 @@ activation selector's authorization. Both replay and retention validate the
 same event and selection. It may add
 uniquely named assets to the fixed existing unpublished draft, using its release
 ID. It requires the expected draft/tag state, absent tag ref, exact returned asset
-identity and an independently downloaded hash check. Pre/post draft checks are
+identity and an independently downloaded hash check. Before and after publication,
+asset names and fixed-release membership are checked against a paginated listing.
+Each uploaded and listed asset must have state `uploaded` and the exact fixed
+repository's `api.github.com` release-asset URL for its numeric ID. Downloaded
+parts also feed one ordered rolling SHA256 and byte count; the complete readback
+identity must equal the verified original before the final manifest is emitted.
+Pre/post draft checks are
 observations rather than a lock against unrelated owner changes. No publication,
 promotion, tag creation, overwrite or deletion is part of the workflow.
 Small Actions artifacts retain raw success or failure metadata; complete proof
