@@ -5,13 +5,14 @@ parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--family',type=Path,required=True)
 parser.add_argument('--output-name',default='local-macos-rust189')
 parser.add_argument('--cache',type=Path,help='Exact local asset-id to archive-path mapping; hashes still come from selector')
+parser.add_argument('--selector',default='.github/release-candidate.json',help='Committed candidate selector relative to checkout')
 args=parser.parse_args()
 if Path(args.output_name).name!=args.output_name or args.output_name in ('','.','..'):raise ValueError('output name must be a fresh direct child')
 ROOT=args.family.resolve()
 CHECKOUT=Path(__file__).resolve().parent.parent
 WORK=ROOT/args.output_name
 WORK.mkdir();(WORK/'.github').mkdir();(WORK/'scripts').mkdir();(WORK/'temporary').mkdir()
-selector=json.loads((CHECKOUT/'.github/release-candidate.json').read_text())
+selector=json.loads((CHECKOUT/args.selector).read_text())
 selector['full_baselines']=True
 selector['targets']=['aarch64-apple-darwin']
 (WORK/'.github/release-candidate.json').write_text(json.dumps(selector,indent=2)+'\n')
@@ -24,7 +25,12 @@ if selector.get('validation_profile')=='current-package-v1':
  for name in ('current-source-impact.py','current-structured-corpus.py'):
   shutil.copyfile(CHECKOUT/'scripts'/name,WORK/'scripts'/name)
  shutil.copytree(CHECKOUT/'audit/current-native-package/references',WORK/'audit/current-native-package/references')
-env=dict(os.environ,RELEASE_TARGET='aarch64-apple-darwin',RUNNER_TEMP=str(WORK/'temporary'),PYTHONDONTWRITEBYTECODE='1',PYTHONUTF8='1')
+if selector.get('validation_profile')=='final-host-ceiling-v1':
+ shutil.copyfile(CHECKOUT/'.github/final-package-inputs.json',WORK/'.github/final-package-inputs.json')
+ for name in ('final-source-impact.py','inherit-full-baselines.py','current-structured-corpus.py','check-installed-host-ceiling.py'):
+  shutil.copyfile(CHECKOUT/'scripts'/name,WORK/'scripts'/name)
+ shutil.copytree(CHECKOUT/'audit/final-host-ceiling-package/references',WORK/'audit/final-host-ceiling-package/references')
+env=dict(os.environ,RELEASE_TARGET='aarch64-apple-darwin',RELEASE_SELECTOR='.github/release-candidate.json',RUNNER_TEMP=str(WORK/'temporary'),PYTHONDONTWRITEBYTECODE='1',PYTHONUTF8='1')
 for key in ('RUSTC','RUSTDOC','RUSTDOCFLAGS','CARGO_ENCODED_RUSTDOCFLAGS','RUSTC_WRAPPER','RUSTC_WORKSPACE_WRAPPER','RUSTFLAGS','CARGO_ENCODED_RUSTFLAGS','CARGO_BUILD_TARGET','CARGO_BUILD_RUSTC','CARGO_BUILD_RUSTDOC','CARGO_BUILD_RUSTC_WRAPPER','CARGO_BUILD_RUSTC_WORKSPACE_WRAPPER','CARGO_TARGET_DIR','TRIDENT_STDLIB','TRIDENT_OSLIB','TRIDENT_EXTLIB','TRIDENT_TARGET_PACKAGES','PYTHONOPTIMIZE'):env.pop(key,None)
 env['GITHUB_SHA']=subprocess.check_output(['git','-C',str(CHECKOUT),'rev-parse','HEAD'],text=True).strip()
 toolchain='1.89.0-aarch64-apple-darwin'

@@ -38,3 +38,16 @@
 /audit/native-distribution-20261002/producers/x86_64-pc-windows-msvc/job.log -text -whitespace
 /audit/native-distribution-20261002/producers/x86_64-pc-windows-msvc/local-corpus-verification.json -text -whitespace
 /audit/native-distribution-20261002/producers/x86_64-pc-windows-msvc/source-verification.json -text -whitespace
+/.github/final-package-inputs.json -text
+/.github/final-package-source.json -text
+/.github/final-package-candidate.json -text
+/.github/final-package-assets.json -text
+/.github/final-package-macos-floor.json -text
+/audit/final-host-ceiling-package/references/joy11b7-limits.rs -text
+/audit/final-host-ceiling-package/references/source734-local-replay.json -text
+/audit/final-host-ceiling-package/references/source734-containers-replay.json -text
+/audit/final-host-ceiling-package/references/source734-corpus-replay.json -text
+/audit/final-host-ceiling-package/references/source734-check-baselines.py -text
+/scripts/final-source-impact.py -text
+/scripts/inherit-full-baselines.py -text
+/scripts/check-installed-host-ceiling.py -text

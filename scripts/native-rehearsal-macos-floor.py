@@ -33,7 +33,9 @@ def main():
         raise ValueError('actual native macOS 14 ARM host required: ' + repr(actual_host))
     root = Path.cwd()
     config = json.loads((root / os.environ.get('REHEARSAL_FLOOR_SELECTOR', '.github/native-rehearsal-macos-floor.json')).read_text())
-    selector = root / '.github/release-candidate.json'
+    if config.get('validation_profile') == 'final-host-ceiling-v1' and config.get('status') != 'active':
+        raise ValueError('final Mac14 selector is not activated')
+    selector = root / config.get('candidate_selector', '.github/release-candidate.json')
     selected = json.loads(selector.read_text())
     if sha(selector) != config['selector_sha256'] or selected['source_sha256'] != config['source_sha256']:
         raise ValueError('consumer selector identity changed')
@@ -76,7 +78,7 @@ def main():
             save()
             if result.returncode:
                 raise RuntimeError('host inspection failed: ' + name)
-        env = dict(os.environ, RELEASE_TARGET=TARGET, PYTHONDONTWRITEBYTECODE='1', PYTHONUTF8='1')
+        env = dict(os.environ, RELEASE_TARGET=TARGET, RELEASE_SELECTOR=str(selector), PYTHONDONTWRITEBYTECODE='1', PYTHONUTF8='1')
         env.pop('PYTHONOPTIMIZE', None)
         command = [sys.executable, '-B', 'scripts/native-candidate.py']
         report['consumer_command'] = command
@@ -122,7 +124,7 @@ def main():
             if verification.get('all_checks_passed') is not True or len(verification['cases']) != 47:
                 raise ValueError('incomplete corpus verification')
             report['verifications'].append(dict(target=corpus['target'], receipt=path.name, sha256=sha(path)))
-        if selected.get('validation_profile') == 'current-package-v1':
+        if selected.get('validation_profile') in ('current-package-v1', 'final-host-ceiling-v1'):
             report['structured_verifications'] = []
             for index, corpus in enumerate(selected['structured_corpora']):
                 path = root / 'release-results' / f'structured-verification-{index}.json'

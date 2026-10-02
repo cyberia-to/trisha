@@ -17,6 +17,8 @@ def sha(path):
 def main():
     checkout = Path.cwd()
     spec = json.loads((checkout / os.environ.get('REHEARSAL_SOURCE_SELECTOR', '.github/native-rehearsal-source.json')).read_text())
+    if spec.get('validation_profile') == 'final-host-ceiling-v1' and spec.get('status') != 'active':
+        raise ValueError('final source selector is not activated')
     results = checkout / 'rehearsal-source-results'
     results.mkdir()
     work = Path(os.environ['RUNNER_TEMP']) / 'native-rehearsal-source'
@@ -121,6 +123,11 @@ def main():
             run('impact', ['python3', '-B', checkout / 'scripts/current-source-impact.py',
                           '--source', work / 'source-export', '--inputs', checkout / '.github/current-package-inputs.json',
                           '--references', checkout / 'audit/current-native-package/references',
+                          '--receipt', results / 'source-impact.json'])
+        if spec.get('validation_profile') == 'final-host-ceiling-v1':
+            run('impact', ['python3', '-B', checkout / 'scripts/final-source-impact.py',
+                          '--source', work / 'source-export', '--inputs', checkout / '.github/final-package-inputs.json',
+                          '--references', checkout / 'audit/final-host-ceiling-package/references',
                           '--receipt', results / 'source-impact.json'])
         named = work / spec['asset_name']
         source.rename(named)

@@ -27,6 +27,8 @@ def require_pinned_toolchain(candidate, target):
 def main():
     checkout = Path.cwd()
     spec = json.loads((checkout / os.environ.get('REHEARSAL_ASSETS_SELECTOR', '.github/native-rehearsal-assets.json')).read_text())
+    if spec.get('validation_profile') == 'final-host-ceiling-v1' and spec.get('status') != 'active':
+        raise ValueError('final asset selector is not activated')
     results = checkout / 'rehearsal-assets-results'
     results.mkdir()
     work = Path(os.environ['RUNNER_TEMP']) / 'native-rehearsal-assets'
@@ -107,9 +109,9 @@ def main():
             observed_toolchain = require_pinned_toolchain(candidate, target)
             observed = dict(target=target, rustc=observed_toolchain,
                             cargo_version_observation='not separately recorded by the frozen producer')
-            current = spec.get('validation_profile') == 'current-package-v1'
+            current = spec.get('validation_profile') in ('current-package-v1', 'final-host-ceiling-v1')
             if current:
-                if produced['source'].get('validation_profile') != 'current-package-v1':
+                if produced['source'].get('validation_profile') != spec['validation_profile']:
                     raise ValueError('current package producer validation profile differs')
                 paths = json.loads((restored / 'toolchain-paths.json').read_text())
                 for name in ('rustc', 'cargo', 'rustdoc'):
@@ -122,6 +124,14 @@ def main():
                         or impact['selector_sha256'] != spec['inputs_sha256']):
                     raise ValueError('current package source impact guard differs')
                 observed.update(cargo_version_observation=paths['cargo']['version'], rustdoc=paths['rustdoc']['version'])
+            if spec.get('validation_profile') == 'final-host-ceiling-v1':
+                deadline = json.loads((restored / 'installed-host-ceiling/receipt.json').read_text())
+                joy = next(row['sha256'] for row in candidate['binaries'] if row['name'] == 'joy')
+                if (deadline['status'] != 'passed' or deadline['accepted'] != 15 or deadline['rejected'] != 8
+                        or len(deadline['commands']) != 23 or deadline['joy']['sha256'] != joy
+                        or deadline['source_provenance_sha256'] != spec['provenance_sha256']
+                        or deadline['candidate_sha256'] != sha(restored / 'candidate.json')):
+                    raise ValueError('final installed deadline probe differs from actual native package')
             report.setdefault('producer_toolchains', []).append(observed)
             binary = restored / produced['archive']
             if binary.parent != restored or sha(binary) != produced['sha256']:

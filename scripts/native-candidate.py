@@ -121,6 +121,33 @@ def download(asset, destination, env, maximum=None):
         raise ValueError(f'asset hash mismatch: {destination.name}')
 
 
+def full_baselines(candidate, scripts, checkout, work, results, env, final):
+    if final:
+        command = [sys.executable, '-B', checkout/'scripts/inherit-full-baselines.py',
+                   '--candidate', candidate, '--reference-archive', work/'source734-full198.tar.gz',
+                   '--references', checkout/'audit/final-host-ceiling-package/references',
+                   '--output', results/'baseline-inheritance.json']
+        print('Running:', ' '.join(map(str, command)), flush=True)
+        with (results/'baseline-inheritance.log').open('w', encoding='utf-8') as stream:
+            observed = subprocess.run(list(map(str, command)), stdout=stream, stderr=subprocess.STDOUT, env=env, cwd=work)
+        if observed.returncode not in (0, 3):
+            raise ValueError('original full198 evidence check failed; inheritance fails closed')
+        inheritance = json.loads((results/'baseline-inheritance.json').read_text())
+        expected = 'inherited_full198_coverage' if observed.returncode == 0 else 'needs_fresh_full198'
+        if (inheritance['status'] != expected or inheritance['fresh_run_performed'] is not False
+                or inheritance['final_candidate_sha256'] != sha(candidate/'candidate.json')):
+            raise ValueError('full198 inheritance decision differs from actual candidate')
+        if observed.returncode == 0:
+            if inheritance['inherited_verified_proofs'] != 198 or inheritance['reasons']:
+                raise ValueError('inherited full198 coverage is incomplete')
+            return
+        if inheritance['inherited_verified_proofs'] is not None or not inheritance['reasons']:
+            raise ValueError('fresh full198 fallback decision is incomplete')
+    run([sys.executable, '-B', scripts/'check-baselines.py', candidate,
+         work/'baselines', '--rss-limit-gib', '28'], results/'baseline-monitor.log', env, work)
+    shutil.copytree(work/'baselines', results/'baselines')
+
+
 def main():
     # Native Windows redirected consoles otherwise use cp1252, including when
     # printing a failing Rust diagnostic or the Unicode smoke directory.
@@ -130,16 +157,21 @@ def main():
     selector = checkout / os.environ.get('RELEASE_SELECTOR', '.github/release-candidate.json')
     spec = json.loads(selector.read_text())
     profile = spec.get('validation_profile', 'original')
-    if profile not in ('original', 'current-package-v1'):
+    if profile not in ('original', 'current-package-v1', 'final-host-ceiling-v1'):
         raise ValueError('unknown native validation profile')
-    current = profile == 'current-package-v1'
+    final = profile == 'final-host-ceiling-v1'
+    if final and spec.get('status') != 'active':
+        raise ValueError('final package selector is not activated')
+    current = profile in ('current-package-v1', 'final-host-ceiling-v1')
     if current:
-        inputs = checkout / '.github/current-package-inputs.json'
+        inputs = checkout / ('.github/final-package-inputs.json' if final else '.github/current-package-inputs.json')
         if sha(inputs) != spec['inputs_sha256']:
             raise ValueError('current package input selector differs')
         selected_inputs = json.loads(inputs.read_text())
         if selected_inputs['source_sha256'] != spec['source_sha256']:
             raise ValueError('current package source selection differs')
+        if selected_inputs['validation_profile'] != profile:
+            raise ValueError('input validation profile differs')
         if spec.get('phase') == 'verify':
             expected = set(NU)
             for field in ('corpora', 'structured_corpora'):
@@ -167,6 +199,11 @@ def main():
         download(spec['selfhost_kit'], kit_archive, env, maximum=128 << 20)
         if spec.get('neptune_intent'):
             download(spec['neptune_intent'], work/'deployment-intent.json', env)
+        if final and spec.get('full_baselines', False):
+            reference = spec['baseline_reference']
+            if reference != dict(asset_id=605010237, sha256='54db68904fc8c92f1446c46cb7b90345a05e026a92b46e6ccb259822a3328204'):
+                raise ValueError('exact original source734 full198 reference required')
+            download(reference, work/'source734-full198.tar.gz', env, maximum=96 << 20)
         extension = '.zip' if os.name == 'nt' else '.tar.gz'
         if spec.get('phase') == 'verify':
             download(spec['binaries'][target], work/('binary'+extension), env)
@@ -184,8 +221,10 @@ def main():
         scripts = source/'trisha/scripts'
         run([sys.executable, '-B', scripts/'verify-source.py', source], results/'source.log', env, work)
         if current:
-            run([sys.executable, '-B', checkout/'scripts/current-source-impact.py', '--source', source,
-                 '--inputs', inputs, '--references', checkout/'audit/current-native-package/references',
+            impact = 'final-source-impact.py' if final else 'current-source-impact.py'
+            references = 'final-host-ceiling-package' if final else 'current-native-package'
+            run([sys.executable, '-B', checkout/'scripts'/impact, '--source', source,
+                 '--inputs', inputs, '--references', checkout/'audit'/references/'references',
                  '--receipt', results/'source-impact.json'], results/'source-impact.log', env, work)
         kit = work/'selfhost-kit'
         run([sys.executable, '-B', scripts/'selfhost-kit.py', 'unpack', '--archive', kit_archive,
@@ -341,6 +380,10 @@ def main():
         kit_smoke(installed, installed/'share/trident-selfhost', results/'unpacked-selfhost-smoke')
         run([sys.executable, '-B', scripts/'smoke-lsp.py', installed/'bin'/('trident-lsp'+suffix)],
             results/'unpacked-lsp.log', env, work)
+        if final:
+            run([sys.executable, '-B', checkout/'scripts/check-installed-host-ceiling.py', '--source', source,
+                 '--candidate', installed, '--output', results/'installed-host-ceiling'],
+                results/'installed-host-ceiling.log', env, work)
         if current:
             structured = results/'structured-corpus'
             helper = checkout/'scripts/current-structured-corpus.py'
@@ -362,9 +405,7 @@ def main():
             archive=output.name, sha256=sha(output), platform=platform.platform(),
             runner_revision=os.environ.get('GITHUB_SHA')), indent=2))
         if spec.get('full_baselines', False):
-            run([sys.executable, '-B', scripts/'check-baselines.py', candidate,
-                 work/'baselines', '--rss-limit-gib', '28'], results/'baseline-monitor.log', env, work)
-            shutil.copytree(work/'baselines', results/'baselines')
+            full_baselines(candidate, scripts, checkout, work, results, env, final)
     except BaseException:
         (results/'failure.txt').write_text(traceback.format_exc())
         raise
