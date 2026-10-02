@@ -220,26 +220,35 @@ The fresh Rust 1.89 producer at runner revision
 `20273ae93a63973cc04d7206abff517853cfff58` completed at 04:35:13 UTC on
 2026-10-02. `local-rust189/final/` preserves the final driver, candidate, complete
 198-proof receipt, byte-preserved compressed original start/log/telemetry and
-full original-file retention inventory. The driver exited0 with every named
-producer gate passed. CPU summaries contain1231 Trident,429 Trisha and172 Joy
+full original-file retention inventory. The driver exited 0 with every named
+producer gate passed. CPU summaries contain 1231 Trident, 429 Trisha and 172 Joy
 passes on this actual Mac; other native hosts retain their own measured totals.
 
 The exact archived command was `python3 -B trisha/scripts/check-baselines.py
 CANDIDATE BASELINE_WORK --rss-limit-gib 28`, invoking the installed candidate's
-`trisha bench ARCHIVED_BASELINES --full`. It generated and verified198 fresh
-proofs for99 positive fixtures and rejected34 negative fixtures, with all
+`trisha bench ARCHIVED_BASELINES --full`. It generated and verified 198 fresh
+proofs for 99 positive fixtures and rejected 34 negative fixtures, with all
 source/vendor/candidate/binary identities unchanged. Its actual elapsed time
-was4106.085598958016 seconds and peak inner proof process-group RSS was
-17252352000 bytes (about16.07GiB). The complete native driver took
+was 4106.085598958016 seconds and peak inner proof process-group RSS was
+17252352000 bytes (about 16.07 GiB). The complete native driver took
 8966.535507666995 seconds; its separately measured outer build/smoke group
-peaked at9463103488 bytes. These peaks describe different process groups and
+peaked at 9463103488 bytes. These peaks describe different process groups and
 are not summed or substituted for one another.
 
 `python3 -B measurements/retain-local.py` in the owned distribution family
-independently checked the original archived baseline parser,198 events,
+independently checked the original archived baseline parser, 198 events,
 fixture inventory, raw log identities, telemetry bounds, CPU summaries and
 package/corpus hashes. Its exact script is preserved beside `retention.json`.
-The resulting complete original evidence archive has80874375 bytes and SHA-256
+The resulting complete original evidence archive has 80874375 bytes and SHA-256
 `0b613f41a1c65aeb937f636070b0c497a6cb60c938f445dd53e3983ab9c15fab`.
 Draft upload is in progress at this commit. Cross-platform corpus consumption
 and the remaining Intel Mac producer are separate pending gates.
+
+### Original evidence whitespace
+
+A subsequent complete-branch `git diff --check d597381..HEAD` exposed ANSI
+trailing whitespace and native Windows CRLF in 32 preserved original log/JSON
+files. The earlier incremental checks had not covered already committed files.
+`raw-whitespace-check/` retains the exact failed check, corrected full-branch
+check and original Git/worktree SHA-256 comparison. `.gitattributes` now gives
+only those 32 exact paths `-text -whitespace`; no evidence bytes were edited.
