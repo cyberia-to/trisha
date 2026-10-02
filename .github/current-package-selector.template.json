@@ -1,0 +1,24 @@
+{
+  "scope": "Current production-code native package feature-branch rehearsal; exact source and selector identities required; no default-branch release/tag/publication",
+  "phase": "build",
+  "full_baselines": false,
+  "asset_id": null,
+  "source_sha256": null,
+  "selfhost_kit": {
+    "asset_id": 604463150,
+    "sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd"
+  },
+  "neptune_intent": {
+    "asset_id": 568147730,
+    "sha256": "404ba33e683103e9cceaa7c21fcd6443401f8ba4216b8e77230ed34b24e249d0"
+  },
+  "targets": [
+    "x86_64-unknown-linux-gnu",
+    "aarch64-unknown-linux-gnu",
+    "x86_64-pc-windows-msvc",
+    "aarch64-pc-windows-msvc",
+    "x86_64-apple-darwin"
+  ],
+  "validation_profile": "current-package-v1",
+  "inputs_sha256": null
+}
