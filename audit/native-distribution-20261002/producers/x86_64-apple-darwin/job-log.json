@@ -1,0 +1,10 @@
+{
+  "command": [
+    "gh",
+    "api",
+    "repos/cyberia-to/trisha/actions/jobs/110658543061/logs"
+  ],
+  "exit_code": 0,
+  "bytes": 26848,
+  "sha256": "668eac1d7a77cd7da925eb1625e87f00ebb9d2f0d157bf966b85d488737a7778"
+}

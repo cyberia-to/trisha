@@ -265,3 +265,19 @@ and after the upload are preserved beside it. The existing release remained a
 draft, its tag remained absent (404), and all recorded default refs remained
 unchanged. The earlier package-only upload receipt remains unchanged and still
 states that the 198 verdict was pending at its own observation time.
+
+### All five remote producers passed
+
+Run 36949324686 completed successfully at its original selector/runner commit
+`c94da47247457f9e819c2682e74d34f5f1756f62`. The final Intel Mac producer ran
+on macOS 15.7.9 with actual native Rust 1.89.0 and passed 1231 Trident, 429
+Trisha and 172 Joy tests, 133 baseline execution fixtures and all 47 local
+corpus cases. Its original authenticated Actions ZIP is artifact 11210078256,
+SHA-256 `f6fb3d7e21ff723c1af5a3909e823518c48eae7a2a83a4466f2347efd306dc8c`.
+The inspector command and rules are the same as the first four producers;
+`producers/x86_64-apple-darwin/` retains the receipt and original job metadata.
+
+The exact five authenticated producer archives are now selected for durable
+transport through the existing unpublished draft. This activation starts
+transport; portable consumption of all six corpora remains pending. The Intel
+Mac measurement does not qualify the proposed macOS 14 Intel floor.
