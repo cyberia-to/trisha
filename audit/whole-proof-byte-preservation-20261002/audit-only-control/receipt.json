@@ -1,0 +1,464 @@
+{
+  "schema": "trident/git-crlf-evidence-replay/v1",
+  "status": "failed-bootstrap-byte-conversion",
+  "tree": "2fe23e33cc315e8463b998ac66de2b7c51ed3733",
+  "driver": {
+    "bytes": 4455,
+    "sha256": "f45ff91de6360d8bf9d193b77001d15af1aa5c37445023e4eccc6f0c370256f1"
+  },
+  "core_autocrlf": true,
+  "real_conversion_control": {
+    "path": "CLAUDE.md",
+    "source": {
+      "bytes": 12459,
+      "sha256": "5fdd2bd53b50c02658420f768886581e7f89b54ab25488a646db948a8d49a3ff"
+    },
+    "checkout": {
+      "bytes": 12763,
+      "sha256": "b567d68cb901f41f18c138ca8b85e9e6c0ed41b6859aba1140756dec42c5b929"
+    }
+  },
+  "historical_members_unchanged": {
+    "whole-self-build-linux-20261002": 36,
+    "whole-self-build-linux-clock-v2-20261002": 51,
+    "whole-self-build-clock-v2-preparation": 66
+  },
+  "inventories": {
+    "whole-self-build-linux-20261002": {
+      "files": 39,
+      "manifest": {
+        "bytes": 5292,
+        "sha256": "c90664f9db377d9b6b86d0d4d6a5445858f8f289b6f2979ee398cbd9771f34fe"
+      }
+    },
+    "whole-self-build-linux-clock-v2-20261002": {
+      "files": 54,
+      "manifest": {
+        "bytes": 7412,
+        "sha256": "ae582f8f0e8da9a0d10ece76af4d4c8aeef0aedebb62a6e5751e3bac33ddec64"
+      }
+    },
+    "whole-self-build-clock-v2-preparation": {
+      "files": 69,
+      "manifest": {
+        "bytes": 10280,
+        "sha256": "d5688927cb60cebdc336c5eb037bb80ff7ac9cbf26132e88a2d1a999558406b4"
+      }
+    }
+  },
+  "sources": {
+    ".claude/plans/whole-self-build-clock-v2.md": {
+      "expected": {
+        "bytes": 3466,
+        "sha256": "5a4cb41c4f4655ea1204c639f96072510fde0279b98fcd4a59674817dc09ee57"
+      },
+      "checkout": {
+        "bytes": 3477,
+        "sha256": "0408a679b833874843233af43e96402b457c67e1aea543ca7edbdc44d0a2534c"
+      }
+    },
+    ".github/whole-self-build-activation.json": {
+      "expected": {
+        "bytes": 181,
+        "sha256": "3ab5c42e29b33f0f2cbf6e507af0326a09787df75992988ac8d0de0f27d064e2"
+      },
+      "checkout": {
+        "bytes": 188,
+        "sha256": "0fcfa25bee0eff0052acbae753cff95ce70fd466055b4b90182d6028a33dfc0c"
+      }
+    },
+    ".github/whole-self-build-input.json": {
+      "expected": {
+        "bytes": 423,
+        "sha256": "41a1dc48cb46984229b764d7147168173fededf1eaecf5d8abda40bcbfb1a308"
+      },
+      "checkout": {
+        "bytes": 435,
+        "sha256": "411778aed143b2119eb828e85c099deeae30552bab4d45738bcce5f48279bcf3"
+      }
+    },
+    ".github/whole-self-build-sources.json": {
+      "expected": {
+        "bytes": 775,
+        "sha256": "a5a6df5b5b858ea09b91921961656dc559937092b91c0570a1fd172db6a2fed6"
+      },
+      "checkout": {
+        "bytes": 793,
+        "sha256": "e0fdfaadfdba2ef9e56b14001ff447add88af2658b48c5bb525c6cf9958ae926"
+      }
+    },
+    ".github/whole-v2-activation.json": {
+      "expected": {
+        "bytes": 198,
+        "sha256": "e20badcd40e49a068d3416e79abd80295c2188f3fc1ded79ddac5ae33207cdcd"
+      },
+      "checkout": {
+        "bytes": 205,
+        "sha256": "35efe2b08e43cedd13eccd113ff6ca8a7c2edf6a166e697c54f195ec5ea2260f"
+      }
+    },
+    ".github/whole-v2-profile.json": {
+      "expected": {
+        "bytes": 202,
+        "sha256": "f811e85cf68dcdbb3295df70ec3fdde7cf4d306b59985b0118f8fab27d3dba5b"
+      },
+      "checkout": {
+        "bytes": 210,
+        "sha256": "1cc77f7235b62b36044eab66f0958207c1e79fc789388e88b8c694330384604c"
+      }
+    },
+    ".github/whole-v2-sources.json": {
+      "expected": {
+        "bytes": 775,
+        "sha256": "cb52acfc1bd9c947ea8d3af553584abe28c3b9b0c78714543d8699b36018cdd2"
+      },
+      "checkout": {
+        "bytes": 793,
+        "sha256": "9b1b72f0d832acf52a8b504ee046366dcaf7c3b3fcba7b529a1a713cd820cd6b"
+      }
+    },
+    ".github/workflows/whole-self-build-v2-generation.yml": {
+      "expected": {
+        "bytes": 4594,
+        "sha256": "96bd2edc770059159146ffdff41d837eb145cb4a2fb62eb425774db4d8477939"
+      },
+      "checkout": {
+        "bytes": 4706,
+        "sha256": "f3f51a3d692dbdc78bd5da97d2cf456957f765a323d1d41b3b4734e805dd1455"
+      }
+    },
+    ".github/workflows/whole-self-build-v2.yml": {
+      "expected": {
+        "bytes": 905,
+        "sha256": "f6ec48f6f31a13d27d37172611848238f0c66c908f56fc7f02a4d41370257bc0"
+      },
+      "checkout": {
+        "bytes": 934,
+        "sha256": "3cc0c124a9b28bf6232574d27c4adf7a337ab5dba0f2a96e68593387dd027dfb"
+      }
+    },
+    ".github/workflows/whole-self-build.yml": {
+      "expected": {
+        "bytes": 2404,
+        "sha256": "8f11fa414f2adee08bc9918ecbc2d0f0c565e29aecf1ba4fa2f025ed75506b98"
+      },
+      "checkout": {
+        "bytes": 2470,
+        "sha256": "9ba32c059a7478d5a1d3ed647862b8bcdff39cd5ef992a205e0c1dd4a069ff15"
+      }
+    },
+    "docs/reference/whole-self-build-clock-v2.md": {
+      "expected": {
+        "bytes": 7117,
+        "sha256": "4d545b702e0fdfb13b609b47b07426ed8682dc2197615b4d0db1353928295e0a"
+      },
+      "checkout": {
+        "bytes": 7150,
+        "sha256": "02761ca48167947e9d5a16b55c078aadb22ddbbb2783f663e0c0aeac31c5e43f"
+      }
+    },
+    "scripts/native_proof_inputs.py": {
+      "expected": {
+        "bytes": 7395,
+        "sha256": "081cb35ba78abda71b1c86f6755dbb635672ca090dddbd0a1ff176959d58653b"
+      },
+      "checkout": {
+        "bytes": 7544,
+        "sha256": "5561edd148b0edca9ea23caf3cfa2413df32c5d0fe282bb7f503acbc232277f5"
+      }
+    },
+    "scripts/test_whole_self_build.py": {
+      "expected": {
+        "bytes": 10471,
+        "sha256": "5daf9fc0fceef39fd51837a7da2dc8a13b71932b0ed24b1d54ac45b0cd6fa454"
+      },
+      "checkout": {
+        "bytes": 10641,
+        "sha256": "7cf77100c47779d3887a0107ab38b918fc53acb90afbfce1aef15f674f1de62a"
+      }
+    },
+    "scripts/test_whole_v2.py": {
+      "expected": {
+        "bytes": 19911,
+        "sha256": "b40ebb09b5f0c387978f6f412d72255430a65bfad2602592a3de232fdd150ac8"
+      },
+      "checkout": {
+        "bytes": 20182,
+        "sha256": "48bd91b5846d060cb0729d9dafd50fa4fbb76e5bf081d00f30868b31ababaf7a"
+      }
+    },
+    "scripts/whole-self-build.py": {
+      "expected": {
+        "bytes": 10634,
+        "sha256": "6b18fce8f0d2be2f581d4f8b0a9fa54ed807e57865b47a14ff46dac89ee45c74"
+      },
+      "checkout": {
+        "bytes": 10795,
+        "sha256": "6103c1dd286931a7f611e9e60f48c3d67dd136ee137711dd7e9a1ea07a7d12ce"
+      }
+    },
+    "scripts/whole-self-retain.py": {
+      "expected": {
+        "bytes": 11497,
+        "sha256": "a5c91378403b182de2cf528d07b937ae8a134b15c9d7feaed23f889e9ec8387f"
+      },
+      "checkout": {
+        "bytes": 11714,
+        "sha256": "b96ec1864e9c0a6bd823e27ef158117faaa3992fb1572e0121f5c30281289478"
+      }
+    },
+    "scripts/whole-v2.py": {
+      "expected": {
+        "bytes": 11807,
+        "sha256": "a490372ad552d482e3538218509c9f303c865e10e25a4feab57886a2595118e7"
+      },
+      "checkout": {
+        "bytes": 11997,
+        "sha256": "465ecf9f98e6a1bef0365e61e31de34a8b6cef8b5cffce36efd0962e2acfc4c4"
+      }
+    },
+    "scripts/whole_self_host.py": {
+      "expected": {
+        "bytes": 6813,
+        "sha256": "a640e80649f46a2ff4c369423738f73eb563d99a1dd2daebc66d7b2175f29466"
+      },
+      "checkout": {
+        "bytes": 6960,
+        "sha256": "1440dbf086833ee6483f1e478795f585525c3eb50e34ac4f4632ea9c7af7c942"
+      }
+    },
+    "scripts/whole_self_inputs.py": {
+      "expected": {
+        "bytes": 8053,
+        "sha256": "066c1f68031432a83174c52503710eafc0d4f04654b714882336b8d5fa445779"
+      },
+      "checkout": {
+        "bytes": 8206,
+        "sha256": "20944f8c49f2101fbcaedb67881fc4a57235f081d0b2d8caddaab22c82d05c76"
+      }
+    },
+    "scripts/whole_v2_common.py": {
+      "expected": {
+        "bytes": 15407,
+        "sha256": "9195e32c206f5f309b2f0ac5617e1f829eaee458cc6b91002f3b089e176ba788"
+      },
+      "checkout": {
+        "bytes": 15640,
+        "sha256": "3ac864c6552c98638e8a0618f0e1d4ccf11ed9a85b0821eb782d91ca860a5865"
+      }
+    },
+    "scripts/whole_v2_transport.py": {
+      "expected": {
+        "bytes": 11342,
+        "sha256": "1b996667df0e1c581a5fd4d38f0f510616d9543bdc314f2996790e5bfc0555c9"
+      },
+      "checkout": {
+        "bytes": 11543,
+        "sha256": "7435601dfb52c140deb49c52d3b8a1d4a573ce58134e90e9e35e26ebfa9fefd6"
+      }
+    }
+  },
+  "changed_bootstrap": [
+    ".claude/plans/whole-self-build-clock-v2.md",
+    ".github/whole-self-build-activation.json",
+    ".github/whole-self-build-input.json",
+    ".github/whole-self-build-sources.json",
+    ".github/whole-v2-activation.json",
+    ".github/whole-v2-profile.json",
+    ".github/whole-v2-sources.json",
+    ".github/workflows/whole-self-build-v2-generation.yml",
+    ".github/workflows/whole-self-build-v2.yml",
+    ".github/workflows/whole-self-build.yml",
+    "docs/reference/whole-self-build-clock-v2.md",
+    "scripts/native_proof_inputs.py",
+    "scripts/test_whole_self_build.py",
+    "scripts/test_whole_v2.py",
+    "scripts/whole-self-build.py",
+    "scripts/whole-self-retain.py",
+    "scripts/whole-v2.py",
+    "scripts/whole_self_host.py",
+    "scripts/whole_self_inputs.py",
+    "scripts/whole_v2_common.py",
+    "scripts/whole_v2_transport.py"
+  ],
+  "offline_replays": {
+    "whole-self-build-linux-20261002": 1,
+    "whole-self-build-linux-clock-v2-20261002": 1,
+    "whole-self-build-clock-v2-preparation": 1
+  },
+  "commands": [
+    {
+      "name": "clone",
+      "command": [
+        "git",
+        "clone",
+        "--shared",
+        "--no-checkout",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout"
+      ],
+      "cwd": null,
+      "exit_code": 0,
+      "started_ns": 1790943022201694000,
+      "elapsed_seconds": 0.03910245798761025,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 151,
+        "sha256": "9f851a58d686bd11df6bc8e5e31520455515c18e1ce27345591195ca64ecc328"
+      }
+    },
+    {
+      "name": "autocrlf",
+      "command": [
+        "git",
+        "config",
+        "--local",
+        "core.autocrlf",
+        "true"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout",
+      "exit_code": 0,
+      "started_ns": 1790943022241032000,
+      "elapsed_seconds": 0.019703874946571887,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "eol",
+      "command": [
+        "git",
+        "config",
+        "--local",
+        "core.eol",
+        "crlf"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout",
+      "exit_code": 0,
+      "started_ns": 1790943022260974000,
+      "elapsed_seconds": 0.024490291019901633,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "read-tree",
+      "command": [
+        "git",
+        "read-tree",
+        "2fe23e33cc315e8463b998ac66de2b7c51ed3733"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout",
+      "exit_code": 0,
+      "started_ns": 1790943022285662000,
+      "elapsed_seconds": 0.03846625000005588,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "checkout-index",
+      "command": [
+        "git",
+        "checkout-index",
+        "--all"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout",
+      "exit_code": 0,
+      "started_ns": 1790943022324298000,
+      "elapsed_seconds": 0.609837708005216,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "replay-0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout/audit/whole-self-build-linux-20261002/check.py"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout",
+      "exit_code": 1,
+      "started_ns": 1790943022996265000,
+      "elapsed_seconds": 0.12779408297501504,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 1253,
+        "sha256": "d06d466b49d992ebe6e726cf09dc4c07c61a112ab4b36181a961720d7388c896"
+      }
+    },
+    {
+      "name": "replay-1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout/audit/whole-self-build-linux-clock-v2-20261002/check.py"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout",
+      "exit_code": 1,
+      "started_ns": 1790943023124262000,
+      "elapsed_seconds": 0.1298902080161497,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 1427,
+        "sha256": "8e153f819b5975d152f9f22212215ca6ec70b94fcea24f1a6b11de48972efa98"
+      }
+    },
+    {
+      "name": "replay-2",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout/audit/whole-self-build-clock-v2-preparation/check.py"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout",
+      "exit_code": 1,
+      "started_ns": 1790943023254346000,
+      "elapsed_seconds": 0.038442458026111126,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 659,
+        "sha256": "57d33d81da28f5c8ebeb24f0074ee188a188a2257585f28fc74cb95524d5e6b8"
+      }
+    }
+  ]
+}

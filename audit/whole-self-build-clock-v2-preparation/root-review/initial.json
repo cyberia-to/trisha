@@ -1,0 +1,60 @@
+{
+  "status": "changes-requested",
+  "observed_ns": 1790923347223053000,
+  "scope": "Independent root source review before any v2 activation",
+  "sources": {
+    "scripts/whole_v2_common.py": {
+      "bytes": 15370,
+      "sha256": "0180e94681492b459ba068575a60b839b6e6289427903badcdccd68868a90d3f"
+    },
+    "scripts/whole_v2_transport.py": {
+      "bytes": 11342,
+      "sha256": "1b996667df0e1c581a5fd4d38f0f510616d9543bdc314f2996790e5bfc0555c9"
+    },
+    "scripts/whole-v2.py": {
+      "bytes": 11807,
+      "sha256": "a490372ad552d482e3538218509c9f303c865e10e25a4feab57886a2595118e7"
+    },
+    "scripts/test_whole_v2.py": {
+      "bytes": 15217,
+      "sha256": "7f5d6905b7f8a937390680500589d8b3bd06fea08a38d8a755e973af5ab2ed28"
+    },
+    ".github/workflows/whole-self-build-v2.yml": {
+      "bytes": 905,
+      "sha256": "f6ec48f6f31a13d27d37172611848238f0c66c908f56fc7f02a4d41370257bc0"
+    },
+    ".github/workflows/whole-self-build-v2-generation.yml": {
+      "bytes": 4594,
+      "sha256": "96bd2edc770059159146ffdff41d837eb145cb4a2fb62eb425774db4d8477939"
+    },
+    ".github/whole-v2-profile.json": {
+      "bytes": 203,
+      "sha256": "2e51444a1840f18dba84760f3c675163307c8f504b7c3ec72a192b8816e7ef85"
+    },
+    ".github/whole-v2-sources.json": {
+      "bytes": 775,
+      "sha256": "cb52acfc1bd9c947ea8d3af553584abe28c3b9b0c78714543d8699b36018cdd2"
+    },
+    ".github/whole-v2-activation.json": {
+      "bytes": 200,
+      "sha256": "6a23d192f86ec504dd2630c6408f800b45fa4e791de25a6e517f3c0848a6f72a"
+    },
+    "docs/reference/whole-self-build-clock-v2.md": {
+      "bytes": 6808,
+      "sha256": "b4b3abcd1f2bec10e0c0cec2d515c0590ee13d5a36602e123326c7add2d489ad"
+    }
+  },
+  "findings": [
+    "Verifier free-start preflight changed from original8GiB to48GiB after downloading proof; restore original per-phase preflight, retain separate download reservation.",
+    "Declare expanded30GiB accounting scope (work+results includes build/source caches) explicitly.",
+    "Record complete actual runtime environment, including LANG and optional runner tracking, rather than onlyPATH.",
+    "Add actual transport RLIMIT_FSIZE overflow and draft/membership/tag refusal tests before enabling new transport."
+  ],
+  "conclusions": [
+    "Committed Joy pin is exact reviewed mergeddd61df9; other native pins unchanged.",
+    "Producer14700/verifier7500 outer clocks have250/130minute workflow step headroom.",
+    "Complete output equality and all accepted logical/compiler coordinates checked.",
+    "Same-run/attempt/head/generation pending handoff, per-part server/readback identities and whole reconstruction precede independent verification.",
+    "Pending and verified manifests remain distinct; fixed draft uploads create unique immutable names."
+  ]
+}

@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout/audit/whole-self-build-linux-clock-v2-20261002/check.py", line 198, in <module>
+    print(json.dumps(main(), indent=2))
+                     ~~~~^^
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout/audit/whole-self-build-linux-clock-v2-20261002/check.py", line 181, in main
+    same(REPO/name, value)
+    ~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout/audit/whole-self-build-linux-clock-v2-20261002/check.py", line 39, in same
+    require(identity(path) == {k: expected[k] for k in ('bytes', 'sha256')}, 'identity: ' + str(path))
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout/audit/whole-self-build-linux-clock-v2-20261002/check.py", line 18, in require
+    raise ValueError(message)
+ValueError: identity: /Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout/.github/whole-self-build-input.json

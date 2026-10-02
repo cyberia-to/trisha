@@ -1,0 +1,42 @@
+.E.......EE
+======================================================================
+ERROR: test_download_authenticates_whole_stream_before_verifier_state (test_whole_v2.PendingTests.test_download_authenticates_whole_stream_before_verifier_state)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha/scripts/test_whole_v2.py", line 148, in test_download_authenticates_whole_stream_before_verifier_state
+    driver.download(state,handoff)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha/scripts/whole-v2.py", line 102, in download
+    directory = state.work / 'download'; directory.mkdir()
+                                         ~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 1011, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/tmptsapj2l1/work/download'
+
+======================================================================
+ERROR: test_bounded_child_has_empty_path_and_retained_identity_receipt (test_whole_v2.RuntimeTests.test_bounded_child_has_empty_path_and_retained_identity_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha/scripts/test_whole_v2.py", line 170, in test_bounded_child_has_empty_path_and_retained_identity_receipt
+    value=common.bounded(state,[sys.executable,'-c','import os,json; print(json.dumps({"PATH":os.environ["PATH"],"token":os.environ.get("GH_TOKEN")}))'],[state.paths()[1]])
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha/scripts/whole_v2_common.py", line 189, in bounded
+    require(shutil.disk_usage(state.work).free >= frozen.PROFILE['minimum_free_start_bytes'], '48 GiB free-start floor')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha/scripts/native_proof_inputs.py", line 21, in require
+    raise ValueError(message)
+ValueError: 48 GiB free-start floor
+
+======================================================================
+ERROR: test_outer_clock_failure_preserves_failed_receipt (test_whole_v2.RuntimeTests.test_outer_clock_failure_preserves_failed_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha/scripts/test_whole_v2.py", line 179, in test_outer_clock_failure_preserves_failed_receipt
+    row=state.report['proof_commands'][0];self.assertEqual(row['status'],'failed');self.assertEqual(row['resource_stop'],'wall')
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.025s
+
+FAILED (errors=3)

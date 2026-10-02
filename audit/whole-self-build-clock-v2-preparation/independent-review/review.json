@@ -1,0 +1,49 @@
+{
+  "schema": "trident/whole-proof-linux-v2-independent-review/v1",
+  "status": "passed-source-review",
+  "observed_ns": 1790924021560819000,
+  "source_base": "ec05b133efe3fa71c28d4e50e5defd0f6be8150d",
+  "scope": "Read-only review of all three new production scripts, both workflows, all three selectors, specification/plan and complete focused tests. Four unchanged bootstrap/input helpers compared byte-for-byte to ec05b133. No source edits, workflow activation, dispatch, proof production or remote transfer. Root separately owns actual26tests/actionlint.",
+  "source_manifest": "source-map.json",
+  "reviewed_preparation": {
+    "bytes": 5793,
+    "sha256": "0820a1517816a17a407e9f052b2be29ae42bd0671f396fbd72662587138f246e"
+  },
+  "findings": [],
+  "checks": [
+    {
+      "area": "Clock and scheduling",
+      "detail": "Only Joy pin changes in the complete12-repository selector. Explicit compaction producer240min/internal and245min/outer inside250min step; fresh verifier120/125 inside130. Producer declared steps total350min and verifier280min, each within360min job. Setup/checkout/runner overhead remains a real limit; source review does not guarantee completion or transfer speed."
+    },
+    {
+      "area": "Frozen relation and source provenance",
+      "detail": "Old archive reader admits all111 original files and historical profile unchanged. V2 replaces only time_ms in frozen.flags. Both native phases use exact12origin revisions, full clean inventories, actual Rust1.89 native-host checks, same resolved rustc/cargo/rustdoc directory, isolated Cargo state and soft3 boundary. Repacked JOB1 must equal the exact frozen bytes. Production/fresh reports compare accepted particles/cost/logical depth/steps/full compiler response."
+    },
+    {
+      "area": "Runtime credentials and identities",
+      "detail": "Production and fresh verification use explicit executable paths, empty PATH, LANG and optional process-tracking identifier only. Binary and compiler/JOB/proof identities are retained before/after; complete source and frozen input inventories plus bootstrap/source selector are rechecked at phase completion. Actual executable/tool identities remain host provenance, not an additional semantic proof claim."
+    },
+    {
+      "area": "Pending transport admission",
+      "detail": "Producer completion becomes produced-pending-fresh-verification. Staging requires that state, checks full source certificate hash before/after, validates bounded canonical chunks, independently reads each back and verifies ordered whole digest. Fixed draft/tag absence and paginated asset membership, exact server origin/state/hash and unique names surround publication. Partial staging cannot emit a complete handoff pointer."
+    },
+    {
+      "area": "Fresh consumer binding",
+      "detail": "Same-run Actions handoff is restricted by repository/run ID/attempt/exact workflow head/generation. Pointer binds manifest bytes/server asset; independently downloaded manifest must byte-equal handoff. validate_pending binds profile/source/input selectors and compiler/JOB hashes; all parts must be contiguous, canonical-sized, unique and within proof cap. Complete reconstructed bytes are checked before verifier eligibility."
+    },
+    {
+      "area": "Storage and failure handling",
+      "detail": "Producer preflight48GiB, verifier8GiB; download first requires48GiB and separately reserves full proof plus one chunk over8GiB floor. Sampled work+results storage is capped30GiB, stricter than prior attempt-only scope. Each download has expected-byte RLIMIT_FSIZE and monitored output, time and free-space guards. Only owned upload/readback copies are removed after their integrity checks; original proof and failed partials remain. Per-step deadlines are separate from proof clocks."
+    },
+    {
+      "area": "Completion semantics",
+      "detail": "Only actual fresh-verified state reaches completion; fresh report has no producer observations, matches accepted semantics plus producer invocation/event/record/transport counters, and extracted ART1 must equal exact9,691,488B C2/C3 identity. Completion binds immutable pending identity, proof, verifier source/tool/binary observations, report, artifact and raw evidence. Fresh-verified-retained is positive evidence only; it does not by itself close mutation/corpus SH8 acceptance."
+    },
+    {
+      "area": "Activation",
+      "detail": "Both activation booleans and profile.enabled remain false in this reviewed snapshot. Enabling is a later explicit selector delta; original v1 workflow/selectors/helper files remain unchanged."
+    }
+  ],
+  "test_review": "Read all16focused new tests and retained root preparation result16new+10original/actionlint. This reviewer performed syntax/hash/profile/time-budget checks only and did not independently rerun root tests.",
+  "limits": "No actual Linux v2 success, whole-proof timing guarantee, remote producer/native binary attestation, succinctness, hidden-witness claim, or completed SH8 acceptance is inferred."
+}

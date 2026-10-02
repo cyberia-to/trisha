@@ -1,0 +1,14 @@
+{
+  "schema": "trident/hash-bound-evidence-checkout/v1",
+  "reason": "Preserve exact observed and reviewed bytes when Git core.autocrlf is true. All preexisting files except the enclosing membership manifest remain byte-identical.",
+  "source_head": "265d4eb335073c394780c1b86f54d25641d613ef",
+  "prior_manifest": {
+    "bytes": 4887,
+    "sha256": "7bde721de1c0cf75337c4b6cfffc32066d5d2838a2ebcf88fa0a3eaa99e6dcc1"
+  },
+  "original_members": 36,
+  "attribute": {
+    "bytes": 8,
+    "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+  }
+}

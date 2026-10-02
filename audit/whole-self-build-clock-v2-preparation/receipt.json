@@ -1,0 +1,124 @@
+{
+  "status": "passed-offline-preparation-awaiting-source-review",
+  "source_base": "ec05b133efe3fa71c28d4e50e5defd0f6be8150d",
+  "python": {
+    "executable": "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "version": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]"
+  },
+  "sources": {
+    "scripts/whole-v2.py": {
+      "bytes": 11807,
+      "sha256": "a490372ad552d482e3538218509c9f303c865e10e25a4feab57886a2595118e7"
+    },
+    "scripts/test_whole_v2.py": {
+      "bytes": 15217,
+      "sha256": "7f5d6905b7f8a937390680500589d8b3bd06fea08a38d8a755e973af5ab2ed28"
+    },
+    "scripts/whole_v2_common.py": {
+      "bytes": 15370,
+      "sha256": "0180e94681492b459ba068575a60b839b6e6289427903badcdccd68868a90d3f"
+    },
+    "scripts/whole_v2_transport.py": {
+      "bytes": 11342,
+      "sha256": "1b996667df0e1c581a5fd4d38f0f510616d9543bdc314f2996790e5bfc0555c9"
+    },
+    ".github/whole-v2-activation.json": {
+      "bytes": 200,
+      "sha256": "6a23d192f86ec504dd2630c6408f800b45fa4e791de25a6e517f3c0848a6f72a"
+    },
+    ".github/whole-v2-profile.json": {
+      "bytes": 203,
+      "sha256": "2e51444a1840f18dba84760f3c675163307c8f504b7c3ec72a192b8816e7ef85"
+    },
+    ".github/whole-v2-sources.json": {
+      "bytes": 775,
+      "sha256": "cb52acfc1bd9c947ea8d3af553584abe28c3b9b0c78714543d8699b36018cdd2"
+    },
+    ".github/workflows/whole-self-build-v2.yml": {
+      "bytes": 905,
+      "sha256": "f6ec48f6f31a13d27d37172611848238f0c66c908f56fc7f02a4d41370257bc0"
+    },
+    ".github/workflows/whole-self-build-v2-generation.yml": {
+      "bytes": 4594,
+      "sha256": "96bd2edc770059159146ffdff41d837eb145cb4a2fb62eb425774db4d8477939"
+    },
+    "docs/reference/whole-self-build-clock-v2.md": {
+      "bytes": 6808,
+      "sha256": "b4b3abcd1f2bec10e0c0cec2d515c0590ee13d5a36602e123326c7add2d489ad"
+    },
+    ".claude/plans/whole-self-build-clock-v2.md": {
+      "bytes": 3263,
+      "sha256": "6c5e69c5e20e8dc536620b7d0503362170835f35974f5c89e725874feb420139"
+    }
+  },
+  "checks": {
+    "new_tests": 12,
+    "original_tests": 10,
+    "actionlint": "passed for original and both v2 workflows",
+    "original_failure_replay": "passed"
+  },
+  "initial_failures": "First local new-test attempt: three fixture errors (fake download-directory collision and unmocked local free-space requirement); second: two fixture errors (symlink Python identity). Tests corrected; production rules unchanged by these fixture fixes.",
+  "activation": "disabled; no v2 push or run",
+  "logs": {
+    "v2-tests-second.stderr": {
+      "bytes": 2413,
+      "sha256": "bab52b3c069b067cd37b4ab75b5efb29a042325794ed736a49c24f99259f475f"
+    },
+    "v2-tests-third.stderr": {
+      "bytes": 110,
+      "sha256": "a753a61bbd66b614c67a60ed94a734f70863220a816d6a064364b1e97a253671"
+    },
+    "v2-original-tests.stderr": {
+      "bytes": 109,
+      "sha256": "2bea48e9242a1f0aaa271a70e9b53621579bd3605b712e20c12706ccdaa591a6"
+    },
+    "v2-tests-final.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "v2-tests-initial.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "v2-tests-initial.stderr": {
+      "bytes": 3332,
+      "sha256": "06d1fce4562b7657faf25143454776a434507ec5c3251536a64eb942dd0d3b23"
+    },
+    "v2-original-tests.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "v2-tests-final.stderr": {
+      "bytes": 111,
+      "sha256": "3370476b0549511fc334d2378a54649ccb1b4deab734ed22c3cc46825de0ac43"
+    },
+    "v2-original-replay.json": {
+      "bytes": 1883,
+      "sha256": "4eadbe761758aa2d00a65a2e115cf69092928e087378f5c57d4327b0f0de0d92"
+    },
+    "v2-tests-third.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "v2-tests-second.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "v2-actionlint-final.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "v2-actionlint-initial.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "v2-actionlint-final.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "v2-actionlint-initial.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}
