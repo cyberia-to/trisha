@@ -1,0 +1,11 @@
+d48f934121e0243ecc7cfd0f3429f41387ea3a98
+100644 e6daf59f273e5e66157233bb83fddf3b731f23ca 2	.gitattributes
+100644 1bdcb67b147c17bbbe87bf5a136abc7bcbe93ae8 3	.gitattributes
+100644 63b37c54b7e22d243897d0b5276facb024747ecb 1	.github/release-candidate.json
+100644 51dce9a4b2ba8fd15269553cbadf5ddab2288ee0 2	.github/release-candidate.json
+100644 20f59c0bb8a9084b0cff13e97b8c508a2573fcd9 3	.github/release-candidate.json
+
+Auto-merging .gitattributes
+CONFLICT (add/add): Merge conflict in .gitattributes
+Auto-merging .github/release-candidate.json
+CONFLICT (content): Merge conflict in .github/release-candidate.json

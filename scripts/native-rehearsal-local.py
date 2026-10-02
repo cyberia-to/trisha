@@ -4,6 +4,7 @@ import argparse,datetime,hashlib,json,os,shutil,signal,subprocess,time
 parser=argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--family',type=Path,required=True)
 parser.add_argument('--output-name',default='local-macos-rust189')
+parser.add_argument('--cache',type=Path,help='Exact local asset-id to archive-path mapping; hashes still come from selector')
 args=parser.parse_args()
 if Path(args.output_name).name!=args.output_name or args.output_name in ('','.','..'):raise ValueError('output name must be a fresh direct child')
 ROOT=args.family.resolve()
@@ -16,19 +17,28 @@ selector['targets']=['aarch64-apple-darwin']
 (WORK/'.github/release-candidate.json').write_text(json.dumps(selector,indent=2)+'\n')
 shutil.copyfile(CHECKOUT/'scripts/native-candidate.py',WORK/'scripts/native-candidate.py')
 shutil.copyfile(CHECKOUT/'scripts/native-rehearsal-local-transport.py',WORK/'local-transport.py')
+if args.cache:
+ shutil.copyfile(args.cache.resolve(),WORK/'asset-cache.json')
+if selector.get('validation_profile')=='current-package-v1':
+ shutil.copyfile(CHECKOUT/'.github/current-package-inputs.json',WORK/'.github/current-package-inputs.json')
+ for name in ('current-source-impact.py','current-structured-corpus.py'):
+  shutil.copyfile(CHECKOUT/'scripts'/name,WORK/'scripts'/name)
+ shutil.copytree(CHECKOUT/'audit/current-native-package/references',WORK/'audit/current-native-package/references')
 env=dict(os.environ,RELEASE_TARGET='aarch64-apple-darwin',RUNNER_TEMP=str(WORK/'temporary'),PYTHONDONTWRITEBYTECODE='1',PYTHONUTF8='1')
-for key in ('RUSTC','RUSTC_WRAPPER','RUSTC_WORKSPACE_WRAPPER','RUSTFLAGS','CARGO_ENCODED_RUSTFLAGS','CARGO_BUILD_TARGET','CARGO_TARGET_DIR','TRIDENT_STDLIB','TRIDENT_OSLIB','TRIDENT_EXTLIB','TRIDENT_TARGET_PACKAGES','PYTHONOPTIMIZE'):env.pop(key,None)
+for key in ('RUSTC','RUSTDOC','RUSTDOCFLAGS','CARGO_ENCODED_RUSTDOCFLAGS','RUSTC_WRAPPER','RUSTC_WORKSPACE_WRAPPER','RUSTFLAGS','CARGO_ENCODED_RUSTFLAGS','CARGO_BUILD_TARGET','CARGO_BUILD_RUSTC','CARGO_BUILD_RUSTDOC','CARGO_BUILD_RUSTC_WRAPPER','CARGO_BUILD_RUSTC_WORKSPACE_WRAPPER','CARGO_TARGET_DIR','TRIDENT_STDLIB','TRIDENT_OSLIB','TRIDENT_EXTLIB','TRIDENT_TARGET_PACKAGES','PYTHONOPTIMIZE'):env.pop(key,None)
 env['GITHUB_SHA']=subprocess.check_output(['git','-C',str(CHECKOUT),'rev-parse','HEAD'],text=True).strip()
-rustc=Path(subprocess.check_output(['rustup','which','--toolchain','1.89.0','rustc'],text=True).strip())
-cargo=Path(subprocess.check_output(['rustup','which','--toolchain','1.89.0','cargo'],text=True).strip())
-if rustc.parent!=cargo.parent:raise ValueError('pinned Rust tools must share the selected toolchain')
+toolchain='1.89.0-aarch64-apple-darwin'
+rustc=Path(subprocess.check_output(['rustup','which','--toolchain',toolchain,'rustc'],text=True).strip())
+cargo=Path(subprocess.check_output(['rustup','which','--toolchain',toolchain,'cargo'],text=True).strip())
+rustdoc=Path(subprocess.check_output(['rustup','which','--toolchain',toolchain,'rustdoc'],text=True).strip())
+if len({rustc.parent,cargo.parent,rustdoc.parent})!=1:raise ValueError('pinned Rust tools must share the selected toolchain')
 env['PATH']=str(rustc.parent)+os.pathsep+env['PATH']
-env['RUSTC']=str(rustc);env['RUSTUP_TOOLCHAIN']='1.89.0'
+env['RUSTC']=str(rustc);env['RUSTDOC']=str(rustdoc);env['RUSTUP_TOOLCHAIN']=toolchain
 preflight=[]
-for name,path in [('rustc',rustc),('cargo',cargo)]:
+for name,path in [('rustc',rustc),('cargo',cargo),('rustdoc',rustdoc)]:
  resolved=Path(shutil.which(name,path=env['PATH'])).resolve()
  if resolved!=path.resolve():raise ValueError('PATH selected a different '+name)
- command=[str(path),'-vV' if name=='rustc' else '-Vv']
+ command=[str(path),'-Vv' if name=='cargo' else '-vV']
  result=subprocess.run(command,env=env,capture_output=True,text=True)
  if result.returncode or not result.stdout.startswith(name+' 1.89.0 '):raise ValueError('actual '+name+' is not pinned 1.89.0')
  if name=='rustc' and 'host: aarch64-apple-darwin\n' not in result.stdout:raise ValueError('Rust toolchain is not native Mac ARM')

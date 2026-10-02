@@ -1,0 +1,13 @@
+{
+  "scope": "Actual frozen Rust1.89 Mac ARM compiler CPU suite only; full198 verdict separate",
+  "status": "passed",
+  "source_provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+  "actual_rustc": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: aarch64-apple-darwin\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+  "target": "aarch64-apple-darwin",
+  "trident_passed": 1231,
+  "test_binaries": 49,
+  "log_sha256": "456c04581897b5e5029ff01d164a8b6b8f3f241d93c98d2a6d945c2d99a1cf57",
+  "candidate_sha256": "5e088bcf9530cb29cd1f4456618a2e6a5ba89b5b0e58c22f40d2251382db3b10",
+  "bootstrap_sha256": "2c5c8dbc21dbb96474c3219f884a6cd4a14cb623e3fc7aa06a0bdb5b2ccc9572",
+  "bootstrap_revision": "20273ae93a63973cc04d7206abff517853cfff58"
+}

@@ -1,0 +1,106 @@
+{
+  "scope": "Current 734df69d feature-branch rehearsal; single native producer receipt inspection, whole matrix and full 198-proof gate separate",
+  "status": "producer_receipts_checked",
+  "observed_at": "2026-10-02T06:22:21.035573+00:00",
+  "run_id": 36969168806,
+  "runner_revision": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+  "target": "x86_64-unknown-linux-gnu",
+  "artifact_id": 11211903748,
+  "artifact_sha256": "f1f61099628d8f57b9c27325cf6c3f5c4ee664093a91bd6b65b83051bdc4ba2f",
+  "retained_files": 397,
+  "source_sha256": "734df69dc7d43467fc9ae574c7cf7b25eb9b4ec9bc08e9ca3f96b9500131f42e",
+  "kit_sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd",
+  "source_provenance_sha256": "3c6f2ced084812e73f97c069169f83807fc5d389e54b581dd52f10982cd5b227",
+  "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+  "actual_rustc": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: x86_64-unknown-linux-gnu\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+  "cargo_version_observation": "actual native Rust, Cargo and rustdoc 1.89 recorded",
+  "actual_tools": {
+    "rustc": {
+      "path": "/home/runner/.rustup/toolchains/1.89.0-x86_64-unknown-linux-gnu/bin/rustc",
+      "sha256": "c6ac0142c05a60b0f6c15e1a118bd5ac3bd04924cd6dc0c328f501c5f86e4142",
+      "version": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: x86_64-unknown-linux-gnu\nrelease: 1.89.0\nLLVM version: 20.1.7\n"
+    },
+    "cargo": {
+      "path": "/home/runner/.rustup/toolchains/1.89.0-x86_64-unknown-linux-gnu/bin/cargo",
+      "sha256": "5b32bd53b8a08d8e206daed51f3fce40cdc0729038ff96bd0ca845596a2c1019",
+      "version": "cargo 1.89.0 (c24e10642 2025-06-23)\nrelease: 1.89.0\ncommit-hash: c24e1064277fe51ab72011e2612e556ac56addf7\ncommit-date: 2025-06-23\nhost: x86_64-unknown-linux-gnu\nlibgit2: 1.9.0 (sys:0.20.2 vendored)\nlibcurl: 8.12.1-DEV (sys:0.4.80+curl-8.12.1 vendored ssl:OpenSSL/3.5.0)\nssl: OpenSSL 3.5.0 8 Apr 2025\nos: Ubuntu 22.4.0 (jammy) [64-bit]\n"
+    },
+    "rustdoc": {
+      "path": "/home/runner/.rustup/toolchains/1.89.0-x86_64-unknown-linux-gnu/bin/rustdoc",
+      "sha256": "2c0a8638826af3aa2a6328c63008952dbbbd8c6c7560ce72ec2ae50f75e7a79a",
+      "version": "rustdoc 1.89.0 (29483883e 2025-08-04)\nbinary: rustdoc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: x86_64-unknown-linux-gnu\nrelease: 1.89.0\nLLVM version: 20.1.7\n"
+    }
+  },
+  "script_checkout": {
+    "line_endings": "LF",
+    "impact_sha256": "cffe213b0f0d0930c7d5c13d57cf97eecc3165d84662f7f8e30df0a07b005942",
+    "structured_helper_sha256": "5caa737b7c7b8b1fef0dd024a56e78f394273b8140b12a1832f29c8dad891a94",
+    "runner_revision": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde"
+  },
+  "source_impact_sha256": "94b14967bbf658df8a777aeaa76259450429b82e09b6dd5ad0289b8c6530255c",
+  "structured_cases": 27,
+  "structured_accepted": 6,
+  "structured_rejected": 21,
+  "structured_archive": {
+    "name": "structured-corpus-x86_64-unknown-linux-gnu.tar.gz",
+    "sha256": "bf60e554cadb05f888ecdbe4ab4e8eecc6cea7707e3ff5004a22eb5a9bb93f75",
+    "bytes": 687887
+  },
+  "cpu": {
+    "trident": {
+      "log_sha256": "dc3f2b7eb894b9d551cb1a417ea8c41f45eac2b726ef178082978562260d1ffc",
+      "test_binaries": 2,
+      "passed": 762
+    },
+    "trisha": {
+      "log_sha256": "1e3bf5219178cd01c06f5ead007573b809962c9fee2003ac738ddaffdfb78461",
+      "test_binaries": 64,
+      "passed": 429
+    },
+    "joy": {
+      "log_sha256": "523da9772b441f5be443d29caf9c955018f4752c2865ab58b1c48ef52e05c218",
+      "test_binaries": 29,
+      "passed": 216
+    },
+    "nox": {
+      "log_sha256": "e95063e5a578f732631a5447cc254f8490d04dd26cb45773b2e539b153e0db10",
+      "test_binaries": 1,
+      "passed": 245
+    }
+  },
+  "gates": {
+    "installed-selfhost-smoke/receipt.json": "b6c1de989695a79b25bc060cd7ef137b7fb8237428f30b00d2f644d9fae9ac09",
+    "unpacked-selfhost-smoke/receipt.json": "6634a734a954f338f4c8c565cd2f9abcd95969671b5ec6be786dff797a17c15e",
+    "joy-native-smoke/receipt.json": "873be9ae49bbcf1cbaef2052b931bf11796b905e84aca8e4854ca75e5500e61f",
+    "native-process-files.json": "66eaebeed82340800a4927ec67fec3b13883d32293ca928c04cc454dc89614c5",
+    "proof-corpus/smoke.json": "892ac9db0172d28606f4dae4559c128c70bd33740dd5777c132ec130267b5882",
+    "local-corpus-verification.json": "de20b6de7002891eba5270a417129b34131a6d08417749c5e2081a404ac87b77",
+    "neptune-client.log": "9dcf1822057e73d1292a47ad6655e3ddbac3cdf98cc370a882e4746a1c6c96b4",
+    "neptune-binding.log": "ca243508289a6733299b9ca7ae83117db77afee0b913b46405729ce3b7d8e9d4"
+  },
+  "baseline_execution": {
+    "all_checks_passed": true,
+    "source_provenance_sha256": "3c6f2ced084812e73f97c069169f83807fc5d389e54b581dd52f10982cd5b227",
+    "candidate_sha256": "ebb60fe6f3a77dbc227de0c5da553887999f0a0d47c977ebe1d6c177b65116f5",
+    "log_sha256": "d8f6a5c3bdb5cd044b084c2d1f46750ccfa090fcbd89ca69b5c32afd6aa2a914",
+    "target": "x86_64-unknown-linux-gnu",
+    "baselines": 43,
+    "positive_fixtures": 99,
+    "negative_fixtures": 34,
+    "generated_proofs": 0
+  },
+  "corpus_cases": 47,
+  "corpus_positive": 18,
+  "corpus_rejections": 29,
+  "binary_archive": {
+    "name": "cyber-tools-x86_64-unknown-linux-gnu.tar.gz",
+    "sha256": "0edc2616721e1facfa01562a4888015f5a1bf089906ef1950d2a3c1e00839efb",
+    "bytes": 18198974
+  },
+  "corpus_archive": {
+    "name": "proof-corpus-x86_64-unknown-linux-gnu.tar.gz",
+    "sha256": "6edc562a53183faf8e8fbb91db02468f2ffc7d51a61dd9a3055be5a6356a5d2e",
+    "bytes": 25033870
+  },
+  "inspector_sha256": "aaf2118b30c07501413e57a8f03aee37d4ce2afcb607f8c6e1b16f7d4ab3da1b"
+}

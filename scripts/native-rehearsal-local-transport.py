@@ -10,6 +10,8 @@ spec=importlib.util.spec_from_file_location('native_candidate',ROOT/'scripts/nat
 module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
 original=module.download
 cache={604481115:FAMILY/'measurements/source-export.tar.gz',604463150:FAMILY/'trisha/audit/selfhost-kit/accepted/selfhost-kit.tar.gz'}
+if (ROOT/'asset-cache.json').exists():
+ cache={int(key):Path(value).resolve(strict=True) for key,value in json.loads((ROOT/'asset-cache.json').read_text()).items()}
 rows=[]
 def download(asset,destination,env,maximum=None):
  source=cache.get(int(asset['asset_id']))

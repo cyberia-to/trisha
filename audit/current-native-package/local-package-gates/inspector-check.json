@@ -1,0 +1,61 @@
+{
+  "scope": "Actual local current package added receipt checks; whole remote producer inspector and full198 remain separate",
+  "status": "passed",
+  "positive": {
+    "actual_tools": {
+      "rustc": {
+        "path": "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/rustc",
+        "sha256": "af4a9eb303553510e9d74220636dc4b21f8574ddeab73741bf6b892adc49c21c",
+        "version": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: aarch64-apple-darwin\nrelease: 1.89.0\nLLVM version: 20.1.7\n"
+      },
+      "cargo": {
+        "path": "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/cargo",
+        "sha256": "798a97c06e6fc3a63f1b7e3141f87e515e6bc8da1527bc32e19ba27d86bb89c5",
+        "version": "cargo 1.89.0 (c24e10642 2025-06-23)\nrelease: 1.89.0\ncommit-hash: c24e1064277fe51ab72011e2612e556ac56addf7\ncommit-date: 2025-06-23\nhost: aarch64-apple-darwin\nlibgit2: 1.9.0 (sys:0.20.2 vendored)\nlibcurl: 8.7.1 (sys:0.4.80+curl-8.12.1 system ssl:(SecureTransport) LibreSSL/3.3.6)\nssl: OpenSSL 3.5.0 8 Apr 2025\nos: Mac OS 26.4.1 [64-bit]\n"
+      },
+      "rustdoc": {
+        "path": "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/rustdoc",
+        "sha256": "1e65fe1796464bbe73ee53231852d8a779f144e8825c2711819435e0aad2213e",
+        "version": "rustdoc 1.89.0 (29483883e 2025-08-04)\nbinary: rustdoc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: aarch64-apple-darwin\nrelease: 1.89.0\nLLVM version: 20.1.7\n"
+      }
+    },
+    "source_impact_sha256": "94b14967bbf658df8a777aeaa76259450429b82e09b6dd5ad0289b8c6530255c",
+    "structured_cases": 27,
+    "structured_accepted": 6,
+    "structured_rejected": 21,
+    "structured_archive": {
+      "name": "structured-corpus-aarch64-apple-darwin.tar.gz",
+      "sha256": "488b34e98b975e3cb508241913fcca871a40953452d07caba085c8b26a630978",
+      "bytes": 687924
+    }
+  },
+  "mutations": [
+    {
+      "name": "wrong-cargo-version",
+      "rejected": true,
+      "error": "actual cargo observation differs"
+    },
+    {
+      "name": "wrong-impact-inputs",
+      "rejected": true,
+      "error": "current source-impact identity differs"
+    },
+    {
+      "name": "wrong-consumer-joy",
+      "rejected": true,
+      "error": "structured Joy identity differs"
+    },
+    {
+      "name": "swapped-case-map",
+      "rejected": true,
+      "error": "exact structured case map differs"
+    },
+    {
+      "name": "changed-proof-bytes",
+      "rejected": true,
+      "error": "structured file bytes differ"
+    }
+  ],
+  "inspector_sha256": "ce524a409858ff41ea9b7a446a8a87de8966948c709ab3b3d46ea32525414818",
+  "driver_sha256": "779509e1bc2db97d182c1c47ee1c205cc5fbe6e227b82dbdce44f8e0ad050c98"
+}

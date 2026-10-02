@@ -1,0 +1,30 @@
+{
+  "status": "producer_receipts_checked",
+  "target": "aarch64-pc-windows-msvc",
+  "artifact_id": 11211868568,
+  "cpu": {
+    "trident": {
+      "log_sha256": "a05e13371eff032be3f89fbc3c96c55002d41c07ce8681af7224f9ea8fd0be8a",
+      "test_binaries": 2,
+      "passed": 759
+    },
+    "trisha": {
+      "log_sha256": "7639a75784d350d493c1b59fa0178e6685d7c235da26fb38bee8b917af8298e1",
+      "test_binaries": 64,
+      "passed": 418
+    },
+    "joy": {
+      "log_sha256": "63feaab4134ab9b60924b2e1768e1faf50c74b22701adea1b0731bf7a4f79521",
+      "test_binaries": 29,
+      "passed": 209
+    },
+    "nox": {
+      "log_sha256": "2ec0ac7cc6ec649a32bd9e399ed208dedb38a0859296cf78976f5b6ea8eb4c12",
+      "test_binaries": 1,
+      "passed": 245
+    }
+  },
+  "corpus_cases": 47,
+  "corpus_positive": 18,
+  "corpus_rejections": 29
+}

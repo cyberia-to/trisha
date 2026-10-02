@@ -1,0 +1,30 @@
+{
+  "status": "producer_receipts_checked",
+  "target": "x86_64-apple-darwin",
+  "artifact_id": 11212481311,
+  "cpu": {
+    "trident": {
+      "log_sha256": "392cfa908a94c5e768a2f37f62bc891a2a87fbf9560d5704b4b68ef39535615d",
+      "test_binaries": 2,
+      "passed": 762
+    },
+    "trisha": {
+      "log_sha256": "55998f23a6f6468305312c5596e9400f70cd0e9e49552c06863880d818ac1c96",
+      "test_binaries": 64,
+      "passed": 429
+    },
+    "joy": {
+      "log_sha256": "fc1278dd9f60d9a1735c22ac40c009fb3b9d6fc53ca04ef98ba8373000411298",
+      "test_binaries": 29,
+      "passed": 215
+    },
+    "nox": {
+      "log_sha256": "35b5c12be53437684efce8f6b1f638e2400adb61ea95ad52ef0f2e67bbbbef3d",
+      "test_binaries": 1,
+      "passed": 245
+    }
+  },
+  "corpus_cases": 47,
+  "corpus_positive": 18,
+  "corpus_rejections": 29
+}

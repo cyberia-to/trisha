@@ -1,0 +1,15 @@
+{
+  "scope": "Actual four retained producer inspections must not authorize incomplete native matrix",
+  "checks": [
+    {
+      "name": "missing-intel-mac",
+      "rejected": true,
+      "error": "all five inspected original native producers are required"
+    },
+    {
+      "name": "duplicate-producer",
+      "rejected": true,
+      "error": "all five inspected original native producers are required"
+    }
+  ]
+}

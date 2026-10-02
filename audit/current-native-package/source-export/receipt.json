@@ -1,0 +1,1207 @@
+{
+  "scope": "Strict committed current-production branch source export, not a default-branch release candidate",
+  "status": "passed",
+  "commands": [
+    {
+      "name": "frozen-run",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/actions/runs/36949324686"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "frozen-run.stdout",
+        "bytes": 12440,
+        "sha256": "813a402a48928a6bfe35474552e22092f7424cc984009082b16adeeab2b15a15"
+      },
+      "stderr": {
+        "path": "frozen-run.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "frozen-artifacts",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/actions/runs/36949324686/artifacts?per_page=100"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "frozen-artifacts.stdout",
+        "bytes": 3684,
+        "sha256": "b25edf3ef47f549338507e29ab2e2c1edb357a18a5c9c9db3528ea8030eea315"
+      },
+      "stderr": {
+        "path": "frozen-artifacts.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "bbg-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/bbg",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "bbg-head.stdout",
+        "bytes": 41,
+        "sha256": "e4ba634854cc4f938b979a3cf82dee5924eadb538d984a0f72b11ffa7292cabf"
+      },
+      "stderr": {
+        "path": "bbg-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "bbg-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/bbg",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "bbg-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "bbg-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "bbg-origin",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/bbg",
+        "ls-remote",
+        "--heads",
+        "origin"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "bbg-origin.stdout",
+        "bytes": 2988,
+        "sha256": "39afc5ef65711c3f5a44921b57ada5d6f1f62ac0f9409b1f5a0ee309cc0c6593"
+      },
+      "stderr": {
+        "path": "bbg-origin.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "bbg-reachability",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/bbg/compare/1d39975ad199b48c350fa4cc011cbf6f289480ee...1d39975ad199b48c350fa4cc011cbf6f289480ee"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "bbg-reachability.stdout",
+        "bytes": 7298,
+        "sha256": "5789fc646af19e0a5c0a69059b1ed34a0775d83fcd0eec9a82c8595c85750288"
+      },
+      "stderr": {
+        "path": "bbg-reachability.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "hemera-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/hemera",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "hemera-head.stdout",
+        "bytes": 41,
+        "sha256": "8e85626ff10d2b6e38058aac9b36f1ac6b541427155d38fb8f08464dafc5f34a"
+      },
+      "stderr": {
+        "path": "hemera-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "hemera-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/hemera",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "hemera-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "hemera-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "hemera-origin",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/hemera",
+        "ls-remote",
+        "--heads",
+        "origin"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "hemera-origin.stdout",
+        "bytes": 1215,
+        "sha256": "33bbcfd2b9772d463c610905cf2d5d9c4a661db1ea329eff199ea16d9aad9519"
+      },
+      "stderr": {
+        "path": "hemera-origin.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "hemera-reachability",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/hemera/compare/a931a0a8e7ed369852ce0f8bc6451a59745ee692...a931a0a8e7ed369852ce0f8bc6451a59745ee692"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "hemera-reachability.stdout",
+        "bytes": 7361,
+        "sha256": "4e8171f6a042d3efdff9786e8ad596bf6b1d3be4639fd1ba49374592299cc2e2"
+      },
+      "stderr": {
+        "path": "hemera-reachability.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "honeycrisp-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/honeycrisp",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "honeycrisp-head.stdout",
+        "bytes": 41,
+        "sha256": "1c1bff7684b182ec6ec9031b1486fe4db51b926b638adb2575ac2f4d5335eda2"
+      },
+      "stderr": {
+        "path": "honeycrisp-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "honeycrisp-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/honeycrisp",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "honeycrisp-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "honeycrisp-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "honeycrisp-origin",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/honeycrisp",
+        "ls-remote",
+        "--heads",
+        "origin"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "honeycrisp-origin.stdout",
+        "bytes": 1093,
+        "sha256": "42c878e165b3bca5dc30e4bb024a96c5000fc9ce8a901e1932b91d38efdadef6"
+      },
+      "stderr": {
+        "path": "honeycrisp-origin.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "honeycrisp-reachability",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/honeycrisp/compare/ff735e6c262926bc9bab7534786a575020cbe442...ff735e6c262926bc9bab7534786a575020cbe442"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "honeycrisp-reachability.stdout",
+        "bytes": 7445,
+        "sha256": "64548b899878beb9aa8987b8768e56604db54b0f763317e340026effc3049640"
+      },
+      "stderr": {
+        "path": "honeycrisp-reachability.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "joy-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/joy",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "joy-head.stdout",
+        "bytes": 41,
+        "sha256": "c41a55f901838278a772bc887d269077434ad11e89fafa4ebfc18add97e0f7fb"
+      },
+      "stderr": {
+        "path": "joy-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "joy-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/joy",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "joy-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "joy-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "joy-origin",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/joy",
+        "ls-remote",
+        "--heads",
+        "origin"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "joy-origin.stdout",
+        "bytes": 2164,
+        "sha256": "0ed35b0bfc014abe8a7b91f2fbb3441080636b3a238cfbdf265be4fd9bd5d17b"
+      },
+      "stderr": {
+        "path": "joy-origin.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "joy-reachability",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/joy/compare/11b7bad201cbfc03955290b5479fa6684f8e2b82...11b7bad201cbfc03955290b5479fa6684f8e2b82"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "joy-reachability.stdout",
+        "bytes": 10350,
+        "sha256": "c8aa0b6c24f05a140dec8367590010d82053f139dfc2828055956ae1d6dcc763"
+      },
+      "stderr": {
+        "path": "joy-reachability.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "lens-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/lens",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "lens-head.stdout",
+        "bytes": 41,
+        "sha256": "1d2c51cbd5fc9ee0f98914f773df2ace96e0bb731f93b43318fb67fb40a16e22"
+      },
+      "stderr": {
+        "path": "lens-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "lens-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/lens",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "lens-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "lens-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "lens-origin",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/lens",
+        "ls-remote",
+        "--heads",
+        "origin"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "lens-origin.stdout",
+        "bytes": 1406,
+        "sha256": "f4fdecfdbc88eebfea1ea7de094e019117767f4f19ed85dc845edcffa7d7a4f2"
+      },
+      "stderr": {
+        "path": "lens-origin.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "lens-reachability",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/lens/compare/17cafe91431977b738e5b72361187cd01ad93638...17cafe91431977b738e5b72361187cd01ad93638"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "lens-reachability.stdout",
+        "bytes": 7319,
+        "sha256": "983e09dfbda21478e69a2c2ca32c71d23ea9bc24e69cd50fd1b69267b9608475"
+      },
+      "stderr": {
+        "path": "lens-reachability.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "neuron-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/neuron",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "neuron-head.stdout",
+        "bytes": 41,
+        "sha256": "53a708b111ddd78ffc52e95cbf9bce1190527aa26aa558b38afd96a96c8d2897"
+      },
+      "stderr": {
+        "path": "neuron-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "neuron-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/neuron",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "neuron-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "neuron-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "neuron-origin",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/neuron",
+        "ls-remote",
+        "--heads",
+        "origin"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "neuron-origin.stdout",
+        "bytes": 1126,
+        "sha256": "327ce28904269d2cb64b09eea76aa9357b8231211f9253002738e94400f804cf"
+      },
+      "stderr": {
+        "path": "neuron-origin.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "neuron-reachability",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/neuron/compare/fd24e768d623604b67e20b4b93fa8e82c83ac373...fd24e768d623604b67e20b4b93fa8e82c83ac373"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "neuron-reachability.stdout",
+        "bytes": 7361,
+        "sha256": "70528512056601dbcb3b4e5050973a2aa687ef2c50a3f7fc946cb4db574837c7"
+      },
+      "stderr": {
+        "path": "neuron-reachability.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "nox-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/nox",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "nox-head.stdout",
+        "bytes": 41,
+        "sha256": "16535f919947d0e377143fcdd806e6d42bf4e1ebf0dbf001e6af371346acda7b"
+      },
+      "stderr": {
+        "path": "nox-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "nox-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/nox",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "nox-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "nox-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "nox-origin",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/nox",
+        "ls-remote",
+        "--heads",
+        "origin"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "nox-origin.stdout",
+        "bytes": 2045,
+        "sha256": "26f03589f4847553d0ecd0b7e21c012d6a9f6c9a67d7fe6c0f613d704d403026"
+      },
+      "stderr": {
+        "path": "nox-origin.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "nox-reachability",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/nox/compare/2f09ca3c3f18ae470365310cca8db5208eda75c6...2f09ca3c3f18ae470365310cca8db5208eda75c6"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "nox-reachability.stdout",
+        "bytes": 10338,
+        "sha256": "6e4022b1d4efd1bf6b53fcb4dc224fe57febd5b0fafd6e1091b244d0b8039a47"
+      },
+      "stderr": {
+        "path": "nox-reachability.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "strata-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/strata",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "strata-head.stdout",
+        "bytes": 41,
+        "sha256": "fe1790fdc9f5017db241682b7c6fb099a510491edb7a4c2c9369ea42df9e3679"
+      },
+      "stderr": {
+        "path": "strata-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "strata-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/strata",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "strata-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "strata-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "strata-origin",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/strata",
+        "ls-remote",
+        "--heads",
+        "origin"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "strata-origin.stdout",
+        "bytes": 1109,
+        "sha256": "a95775a74cd38e554112bced3d9002f6e7e0eec565189ba0f5e46495ea81954c"
+      },
+      "stderr": {
+        "path": "strata-origin.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "strata-reachability",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/strata/compare/d2eb1763b8caf04e6c7647ac6fe99761519c2ef9...d2eb1763b8caf04e6c7647ac6fe99761519c2ef9"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "strata-reachability.stdout",
+        "bytes": 7361,
+        "sha256": "5ba6776438f9fbc22cd69213ae3d3e67686bbcf5f3d0ea1040a3344dde2c0ef7"
+      },
+      "stderr": {
+        "path": "strata-reachability.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trident-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trident",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trident-head.stdout",
+        "bytes": 41,
+        "sha256": "24f1e03c59991535ab04c820dc137ee17f97370f924abcda2ab76fba38619334"
+      },
+      "stderr": {
+        "path": "trident-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trident-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trident",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trident-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "trident-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trident-origin",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trident",
+        "ls-remote",
+        "--heads",
+        "origin"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trident-origin.stdout",
+        "bytes": 7878,
+        "sha256": "6f2f4e93cc3c3b7cad0148019d42a6f8d159e048c27a4960aa12450b54fe04b4"
+      },
+      "stderr": {
+        "path": "trident-origin.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trident-reachability",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trident/compare/da0d1a59cd8208fab96f219ccedef29122d5221a...da0d1a59cd8208fab96f219ccedef29122d5221a"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trident-reachability.stdout",
+        "bytes": 10470,
+        "sha256": "7f8443d07492fdb3a6715413e5ed74b87502b50c43275ef218a7a5f81c6d264c"
+      },
+      "stderr": {
+        "path": "trident-reachability.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trisha-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trisha",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trisha-head.stdout",
+        "bytes": 41,
+        "sha256": "dbcb109e586d3dcd819c7aa0c49356125c2518dcd49bbffcdb431d7b61b1be59"
+      },
+      "stderr": {
+        "path": "trisha-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trisha-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trisha",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trisha-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "trisha-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trisha-origin",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trisha",
+        "ls-remote",
+        "--heads",
+        "origin"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trisha-origin.stdout",
+        "bytes": 1614,
+        "sha256": "f8d74314f7613bac3d13f00864360ddfaa994e43f04093333cee281c6ebd72f9"
+      },
+      "stderr": {
+        "path": "trisha-origin.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trisha-reachability",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/compare/191c6e03fa855be3b70b5aa5e4ee78be1ebffe91...191c6e03fa855be3b70b5aa5e4ee78be1ebffe91"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trisha-reachability.stdout",
+        "bytes": 10447,
+        "sha256": "738a452635b43c2903fbc961360d33d0aade02b3eef9c68c538184a55ad050fc"
+      },
+      "stderr": {
+        "path": "trisha-reachability.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "zheng-head",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/zheng",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "zheng-head.stdout",
+        "bytes": 41,
+        "sha256": "c9eabafd994d2f7f5d696fe244fd83c28c9e10cefefc9cd94b781f828b4673b5"
+      },
+      "stderr": {
+        "path": "zheng-head.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "zheng-status",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/zheng",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "zheng-status.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "zheng-status.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "zheng-origin",
+      "command": [
+        "git",
+        "-C",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/zheng",
+        "ls-remote",
+        "--heads",
+        "origin"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "zheng-origin.stdout",
+        "bytes": 3124,
+        "sha256": "1359be98bfb6e775ef44b719e7f5d3630f9c06f8112d29702d153865f469c4e8"
+      },
+      "stderr": {
+        "path": "zheng-origin.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "zheng-reachability",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/zheng/compare/0d7ba6d422d9b825f9685e903e55252f88ebecd9...0d7ba6d422d9b825f9685e903e55252f88ebecd9"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "zheng-reachability.stdout",
+        "bytes": 10444,
+        "sha256": "ac354929a8b0617fb8de6bf5ff779395066782832fb21364717d2ad38319de26"
+      },
+      "stderr": {
+        "path": "zheng-reachability.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "rustc-path",
+      "command": [
+        "rustup",
+        "which",
+        "--toolchain",
+        "1.89.0-aarch64-apple-darwin",
+        "rustc"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "rustc-path.stdout",
+        "bytes": 71,
+        "sha256": "b32f2939662c8b77677dbe201fc872fdf5620369505e48c8d810031e80dff673"
+      },
+      "stderr": {
+        "path": "rustc-path.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "cargo-path",
+      "command": [
+        "rustup",
+        "which",
+        "--toolchain",
+        "1.89.0-aarch64-apple-darwin",
+        "cargo"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "cargo-path.stdout",
+        "bytes": 71,
+        "sha256": "737c255e90e8f50c661f751a563c7533e45920cf2ac91d52375ff0c412da20f2"
+      },
+      "stderr": {
+        "path": "cargo-path.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "rustdoc-path",
+      "command": [
+        "rustup",
+        "which",
+        "--toolchain",
+        "1.89.0-aarch64-apple-darwin",
+        "rustdoc"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "rustdoc-path.stdout",
+        "bytes": 73,
+        "sha256": "bef106d05cd42c16019a764980265e6c86dca4c06e845eb61f6b0fb739cad3e0"
+      },
+      "stderr": {
+        "path": "rustdoc-path.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "rustc-version",
+      "command": [
+        "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/rustc",
+        "-vV"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "rustc-version.stdout",
+        "bytes": 192,
+        "sha256": "a3138eb77dfe19d4cdb1d83ceb7c34944715564062936cf209d247cbf5208fae"
+      },
+      "stderr": {
+        "path": "rustc-version.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "cargo-version",
+      "command": [
+        "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/cargo",
+        "-Vv"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "cargo-version.stdout",
+        "bytes": 335,
+        "sha256": "930ba319a4044e5620604b209d876301cf1bfb05212aed1d0f68381d3fc6c81e"
+      },
+      "stderr": {
+        "path": "cargo-version.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "rustdoc-version",
+      "command": [
+        "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/rustdoc",
+        "-vV"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "rustdoc-version.stdout",
+        "bytes": 196,
+        "sha256": "ede1778259883fc1cb1fa13e5dad16841dec1d24a2eb3bf76f273feb63db2b29"
+      },
+      "stderr": {
+        "path": "rustdoc-version.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "nu-version",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-rust189/temporary/cyber-candidate/nu/nu-0.112.2-aarch64-apple-darwin/nu",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "nu-version.stdout",
+        "bytes": 8,
+        "sha256": "db4eb2269d7babb8815ee8338624d58ba73f31021120f6a8e0fec5c75dba6dd3"
+      },
+      "stderr": {
+        "path": "nu-version.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "export",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-rust189/temporary/cyber-candidate/nu/nu-0.112.2-aarch64-apple-darwin/nu",
+        "--no-config-file",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trisha/scripts/package-source.nu",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/source-export"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "export.stdout",
+        "bytes": 743,
+        "sha256": "28d7f1c468ebd6dcd0d7a9701d07d1b872063a011f4ecc8d9e0f76c123c51337"
+      },
+      "stderr": {
+        "path": "export.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "source-guard",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/source-export/trisha/scripts/verify-source.py",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/source-export"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "source-guard.stdout",
+        "bytes": 517,
+        "sha256": "ab03bfe130fa39b81220c9231a2d2589fa615f5314cafa81cea25726ab652dc3"
+      },
+      "stderr": {
+        "path": "source-guard.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "kit-guard",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/source-export/trisha/scripts/selfhost-kit.py",
+        "unpack",
+        "--archive",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/trisha/audit/selfhost-kit/accepted/selfhost-kit.tar.gz",
+        "--sha256",
+        "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd",
+        "--trident",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/source-export/trident",
+        "--output",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/source-export-kit"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "kit-guard.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "kit-guard.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "source-impact",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trisha-native-ci/scripts/current-source-impact.py",
+        "--source",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/source-export",
+        "--inputs",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trisha-native-ci/.github/current-package-inputs.json",
+        "--references",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trisha-native-ci/audit/current-native-package/references",
+        "--receipt",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/source-export-command/source-impact.json"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "source-impact.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "source-impact.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "archive": {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/source-export.tar.gz",
+    "sha256": "734df69dc7d43467fc9ae574c7cf7b25eb9b4ec9bc08e9ca3f96b9500131f42e",
+    "bytes": 441342969
+  },
+  "inputs_sha256": "e8e03c81f97d6aa5f7b3ab23faca44e058a2bd13dcf1228ffde1c81edb75619f",
+  "source_provenance_sha256": "3c6f2ced084812e73f97c069169f83807fc5d389e54b581dd52f10982cd5b227",
+  "vendor_sha256": "cf324959661a85fc94cf4345beaf5dbf274c1dbd5fc66960155e0750ace35d1b",
+  "ended": "2026-10-02T05:24:14.756428+00:00"
+}

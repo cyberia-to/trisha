@@ -1,3 +1,11 @@
+/.github/current-package-inputs.json -text
+/.github/release-candidate.json -text
+/audit/current-native-package/references/frozen-local-candidate.json -text
+/audit/current-native-package/references/frozen-local-cpu.json -text
+/audit/current-native-package/references/frozen-local-trident-tests.log -text -whitespace
+/audit/current-native-package/references/public-profile-receipt.json -text
+/audit/current-native-package/references/frozen-run.json -text
+/audit/current-native-package/references/frozen-producers.json -text
 /audit/native-distribution-20261002/producers/aarch64-pc-windows-msvc/job.log -text -whitespace
 /audit/native-distribution-20261002/producers/aarch64-pc-windows-msvc/selected-originals/archive.json -text -whitespace
 /audit/native-distribution-20261002/producers/aarch64-pc-windows-msvc/selected-originals/baseline-execution.json -text -whitespace

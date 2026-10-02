@@ -1,0 +1,112 @@
+{
+  "scope": "Actual current Mac package gates only; full198 and remote matrices still pending at retention",
+  "source_sha256": "734df69dc7d43467fc9ae574c7cf7b25eb9b4ec9bc08e9ca3f96b9500131f42e",
+  "runner_revision": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+  "archive": {
+    "name": "original-package-receipts.tar.gz",
+    "bytes": 801376,
+    "sha256": "0845a6b6cae8bd0e78a3ffcef59ed7bfcec12d502945f8fcf0170cd75731a62a"
+  },
+  "files": [
+    {
+      "path": "candidate.json",
+      "bytes": 1279,
+      "sha256": "5a98849d67115fd9e1d2ccb59f0e3a3e68dc47c5700f5c09adec6eacc8cd43f4"
+    },
+    {
+      "path": "archive.json",
+      "bytes": 1120,
+      "sha256": "5fa03b2d9d2c783eb6ac2293a47ca4dd8d452fde0cf3ecc323a611a5903db4bf"
+    },
+    {
+      "path": "baseline-execution.json",
+      "bytes": 437,
+      "sha256": "3faef944a3bb6ea1995730fb6e1831008673338e65e02092af0bd3cab11d16ba"
+    },
+    {
+      "path": "baseline-execution.log",
+      "bytes": 60518,
+      "sha256": "6b9e99b6397939bdb6d5844418cc2a36646016a1fce3aa07f8d08f4004916a08"
+    },
+    {
+      "path": "toolchain-paths.json",
+      "bytes": 1365,
+      "sha256": "9dc184a035479145fd5e4fee56a7f08fb392db92b0e1f0464a8c86e73619d99d"
+    },
+    {
+      "path": "rustc.log",
+      "bytes": 192,
+      "sha256": "a3138eb77dfe19d4cdb1d83ceb7c34944715564062936cf209d247cbf5208fae"
+    },
+    {
+      "path": "cargo.log",
+      "bytes": 335,
+      "sha256": "930ba319a4044e5620604b209d876301cf1bfb05212aed1d0f68381d3fc6c81e"
+    },
+    {
+      "path": "rustdoc.log",
+      "bytes": 196,
+      "sha256": "ede1778259883fc1cb1fa13e5dad16841dec1d24a2eb3bf76f273feb63db2b29"
+    },
+    {
+      "path": "source-impact.json",
+      "bytes": 3189991,
+      "sha256": "94b14967bbf658df8a777aeaa76259450429b82e09b6dd5ad0289b8c6530255c"
+    },
+    {
+      "path": "trident-tests.log",
+      "bytes": 58978,
+      "sha256": "6e4b713b17a0029a9b7611b073ce4e9ec221adcc3d967173a6286ea779c2b1bd"
+    },
+    {
+      "path": "trisha-tests.log",
+      "bytes": 72528,
+      "sha256": "d18b662564b83bb1cddc42ed855d904f2b0300d2f7d47640153ae3139e89e79e"
+    },
+    {
+      "path": "joy-tests.log",
+      "bytes": 24948,
+      "sha256": "95d02384717c046a960c22c32f25f52e3c1b47705cbde5518065a1f190d5c0d7"
+    },
+    {
+      "path": "nox-tests.log",
+      "bytes": 21839,
+      "sha256": "2ca13e8d025a7a342f7f150c177c11e0d5a6dd51cabf2a370e39bc17b06752c0"
+    },
+    {
+      "path": "local-structured-verification.json",
+      "bytes": 46986,
+      "sha256": "d5418a3917034630a00e2999a12f68360248d44bed981f50498de99847ffe95f"
+    },
+    {
+      "path": "structured-corpus/corpus.json",
+      "bytes": 16704,
+      "sha256": "d4182c73b13fc01ea6ca111b070349a37f2e4697a18d669dacd9722a3e051813"
+    },
+    {
+      "path": "structured-corpus/generation.json",
+      "bytes": 6704,
+      "sha256": "c84fcddf2ed8b8c59d6392b99b4b4c32b6609897434913bfb77454bc2c3f23dc"
+    },
+    {
+      "path": "installed-selfhost-smoke/receipt.json",
+      "bytes": 6767,
+      "sha256": "92d8bd32479907a65a049f9d66109a0d4991294d8bb5e1265c686141c86f92e2"
+    },
+    {
+      "path": "unpacked-selfhost-smoke/receipt.json",
+      "bytes": 6834,
+      "sha256": "ab042170b254c20792b14769cc001b0b701378031bff3c1150148d72d0d4820d"
+    },
+    {
+      "path": "local-corpus-verification.json",
+      "bytes": 11720,
+      "sha256": "3c8371549c0897d923538eb3c3788a498bb3633a35bcd8ea1cd6fa0a8f38eaa3"
+    },
+    {
+      "path": "proof-corpus/corpus.json",
+      "bytes": 24418,
+      "sha256": "9bada0db89b251d52d00eeea1c91b93edc52ac5eb74a2c28c3bd6dcf638b4397"
+    }
+  ]
+}

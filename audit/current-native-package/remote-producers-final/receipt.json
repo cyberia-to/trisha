@@ -1,0 +1,46 @@
+{
+  "scope": "All five current producer receipts accepted before transport activation; full198 and all-pair corpus consumption remain separate",
+  "status": "passed",
+  "source_sha256": "734df69dc7d43467fc9ae574c7cf7b25eb9b4ec9bc08e9ca3f96b9500131f42e",
+  "runner_revision": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+  "run_id": 36969168806,
+  "observed_at": "2026-10-02T06:28:32.937566+00:00",
+  "producers": [
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "run_id": 36969168806,
+      "head_sha": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+      "artifact_id": 11211868568,
+      "zip_sha256": "373e1440bf5f560e8a7d735f4f20a87719f1fd2705bc551250120e5d0cfd7447"
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "run_id": 36969168806,
+      "head_sha": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+      "artifact_id": 11211903748,
+      "zip_sha256": "f1f61099628d8f57b9c27325cf6c3f5c4ee664093a91bd6b65b83051bdc4ba2f"
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "run_id": 36969168806,
+      "head_sha": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+      "artifact_id": 11212207445,
+      "zip_sha256": "efb546e1fb41e9ab1045e795cee36076f97f09c291cc824f720ee7c04d11ca57"
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "run_id": 36969168806,
+      "head_sha": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+      "artifact_id": 11212455449,
+      "zip_sha256": "74e223433c16fe233e247e48f4c715f1eae18de25dd18c4aa750e33960e60199"
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "run_id": 36969168806,
+      "head_sha": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+      "artifact_id": 11212481311,
+      "zip_sha256": "4cf927a9cc93f532aba16a41e63b8e7dd239bbbfd903883d1016cceed7f153ce"
+    }
+  ],
+  "script_sha256": "7472918fe8149b1b52e48640a7ccc9281578969023015a1375152e4cf1365304"
+}

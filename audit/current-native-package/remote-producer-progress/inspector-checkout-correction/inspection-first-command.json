@@ -1,0 +1,13 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-W",
+    "error",
+    "measurements/inspect-current-native-producer.py",
+    "measurements/native-runs/36969168806/11211868568",
+    "measurements/native-runs/36969168806/11211868568/inspection-first.json"
+  ],
+  "exit_code": 1,
+  "inspector_sha256": "ce524a409858ff41ea9b7a446a8a87de8966948c709ab3b3d46ea32525414818"
+}

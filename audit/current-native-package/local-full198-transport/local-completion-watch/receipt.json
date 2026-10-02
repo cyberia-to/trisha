@@ -1,0 +1,33 @@
+{
+  "scope": "Complete current Mac198 acceptance only after actual native driver exits successfully",
+  "status": "passed",
+  "started": "2026-10-02T06:00:18.422600+00:00",
+  "scripts": {
+    "retain-current-local.py": "897e55e336a487e7f2961317a2b59233d5e0aaf4e1c57baeed26f3d7bc9fe96a",
+    "upload-current-local-evidence.py": "aa6813bb77626c5e5b9b601fac948136780e68a75b4e15e1457abc2028ea0f9d"
+  },
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/retain-current-local.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/upload-current-local-evidence.py"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "driver_sha256": "5c9ea7669975c7a5124ee41354375aec3888413afea0668710dab70163080610",
+  "ended": "2026-10-02T07:13:02.233263+00:00"
+}

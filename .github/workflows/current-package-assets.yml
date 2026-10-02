@@ -1,0 +1,32 @@
+name: Current package Transport native rehearsal assets
+on:
+  push:
+    branches: ['test/0.4-current-distribution-20261002']
+    paths: ['.github/current-package-assets.json']
+permissions:
+  contents: write
+  actions: read
+jobs:
+  transport:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.13.15'
+      - name: Preserve successful producer bytes in the existing draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REHEARSAL_ASSETS_SELECTOR: .github/current-package-assets.json
+        run: python3 -B scripts/transport-native-rehearsal.py
+      - name: Preserve exact transport evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: current-package-asset-transport
+          path: rehearsal-assets-results/
+          if-no-files-found: error
+          retention-days: 30
