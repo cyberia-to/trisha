@@ -21,7 +21,7 @@ import recorded
 import remote
 import result
 import worker
-from metadata import PROFILE
+from metadata import PROFILE, record_body
 
 
 class Observed(Transport):
@@ -35,7 +35,7 @@ class Observed(Transport):
 
     def run(self,name,args,expected_exit=0,output=None,maximum=8*MIB,data=False):
         from bounded import read_only
-        read_only(args);started=time.time_ns();endpoint=args[3] if '--paginate' in args else args[1]
+        read_only(args);record_body(self,name,output,data);started=time.time_ns();endpoint=args[3] if '--paginate' in args else args[1]
         exit_code=0
         if endpoint==f'repos/{REPO}/releases/{RELEASE}':value=dict(id=RELEASE,draft=True,tag_name=TAG,published_at=None)
         elif endpoint==f'repos/{REPO}/git/ref/tags/{TAG}':value=dict(status='404');exit_code=1

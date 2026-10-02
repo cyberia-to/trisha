@@ -1,5 +1,5 @@
 """Explicit final128MiB archive profile and reserved observation capacity."""
-from pathlib import Path
+import re
 import time
 
 from common import CHUNK, require
@@ -19,15 +19,26 @@ def selected(directory):
 
 def reserve(directory,sources,generation,sequence):
     size=lambda p:p.stat().st_size if p.exists() else 0
-    ordinary=size(directory/'receipt.json');resources=size(directory/'resources.jsonl')
-    require(ordinary<=PROFILE['receipt_bytes'] and resources<=PROFILE['resources_bytes'],'bounded receipt/resource observations')
+    ordinary=size(directory/'receipt.json');resources=size(directory/'resources.jsonl');inventory=size(directory/'evidence-files.json')
+    require(ordinary<=PROFILE['receipt_bytes'] and resources<=PROFILE['resources_bytes'] and inventory<=PROFILE['inventory_bytes'],'bounded receipt/resource observations')
     missing=sum(value['bytes'] for name,value in sources.items() if not (directory/'worker-sources'/name).exists())
     parts=dict(receipt=PROFILE['receipt_bytes']-ordinary,resources=PROFILE['resources_bytes']-resources,
-               source_copies=missing,inventory=PROFILE['inventory_bytes'],packing=PROFILE['packing_receipt_bytes'])
+               source_copies=missing,inventory=PROFILE['inventory_bytes']-inventory,packing=PROFILE['packing_receipt_bytes'])
     present=sum(p.stat().st_size for p in selected(directory));required=present+sum(parts.values())
     require(required<=PROFILE['artifact_decoded_bytes'],'128MiB final metadata plus reserved observation capacity')
     return dict(time_ns=time.time_ns(),generation=generation,sequence=sequence,present_bytes=present,
                 ordinary_receipt_bytes=ordinary,resource_bytes=resources,reserved=parts,required_bytes=required)
+
+def record_body(transport,name,output,data):
+    if output!=transport.directory/'chunk':return
+    matched=re.fullmatch(r'c([12])-part-([0-9]{4})-download',name)
+    require(data and matched is not None,'exact known proof body boundary')
+    generation,sequence=map(int,matched.groups())
+    row=reserve(transport.directory,transport.sources,generation,sequence)
+    row['boundary']='after-membership-before-body'
+    transport.capacity_coordinate=(generation,sequence)
+    transport.receipt.setdefault('metadata_reservations',[]).append(row)
+    transport.persist()
 
 def check_profile(value):
     require(value==PROFILE and all(type(v) is int for v in value.values()),'exact integer remote observation profile')
@@ -37,6 +48,7 @@ def observations(rows,sources,commands,started):
     # Actual canonical part counts come from authenticated entries; the fixed pair is12+10.
     require([(r['generation'],r['sequence']) for r in rows]==expected,'all22 body metadata reservations')
     for row in rows:
+        require(row['boundary']=='after-membership-before-body','authoritative actual body boundary')
         for key in ('time_ns','generation','sequence','present_bytes','ordinary_receipt_bytes','resource_bytes','required_bytes'):
             require(type(row[key]) is int and row[key]>=0,'integer nonnegative metadata observation')
         reserved=row['reserved'];require(set(reserved)=={'receipt','resources','source_copies','inventory','packing'},'exact reservation categories')

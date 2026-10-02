@@ -10,7 +10,7 @@ gate.frozen()
 from common import CHUNK, REPO, identity, load, require
 from contracts import MIB
 from transport import Transport
-from metadata import PROFILE
+from metadata import PROFILE, record_body, reserve as final_capacity
 
 SCHEMA='trident/remote-certificate-byte-replay/v1'
 SCOPE='Independent remote complete-byte readback; original local attempt remains separate; proof acceptance unchanged.'
@@ -45,7 +45,7 @@ def process_rows(proc=Path('/proc')):
 
 class Readback(Transport):
     def __init__(self,directory,gh,sources,check_sources):
-        self.sample_tick=-1;self.peak=0;self.sampling_closed=False
+        self.sample_tick=-1;self.peak=0;self.sampling_closed=False;self.capacity_coordinate=None
         super().__init__(directory,gh,sources,check_sources)
         self.receipt.update(schema=SCHEMA,scope=SCOPE,profile=PROFILE,observer_pid=os.getpid())
         self.persist()
@@ -77,9 +77,11 @@ class Readback(Transport):
     def budget(self,reserve=0,chunk=False):
         require(time.monotonic()-self.tick<=5400,'90-minute remote byte-readback deadline')
         super().budget(reserve,chunk);self.sample()
+        if self.capacity_coordinate is not None:final_capacity(self.directory,self.sources,*self.capacity_coordinate)
 
     def run(self,name,args,**kwargs):
         read_only(args)
+        record_body(self,name,kwargs.get('output'),kwargs.get('data',False))
         return super().run(name,args,**kwargs)
 
     def upload(self,*args,**kwargs):

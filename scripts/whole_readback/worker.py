@@ -21,8 +21,7 @@ def replay(transport,entries):
         row=dict(generation=entry['generation'],proof=entry['proof'],parts=[],status='reading-existing-assets')
         transport.receipt['entries'].append(row);transport.persist();whole=Reconstruction()
         for part in entry['parts']:
-            checked=reserve(transport.directory,gate.sources(),entry['generation'],part['sequence'])
-            transport.receipt.setdefault('metadata_reservations',[]).append(checked);transport.persist()
+            reserve(transport.directory,gate.sources(),entry['generation'],part['sequence'])  # Early capacity check; authoritative record is after membership in Readback.run.
             path=transport.download(f"c{entry['generation']}-part-{part['sequence']:04d}",part['asset'],ident(part),chunk=True)
             whole.append(path,part);transport.budget()
             row['parts'].append(dict(part,independently_downloaded=True));transport.persist()

@@ -100,10 +100,13 @@ the retained outer Actions archive. All original raw archives remain retained.
 
 The final small Actions archive is capped at256MiB compressed and128MiB decoded;
 individual metadata members retain their existing bounds. Before every one of the22
-body reads, reserve the remaining space up to4MiB for the ordinary receipt and
+body reads, recheck after its membership API observations and immediately before
+starting the body command. Reserve the remaining space up to4MiB for the ordinary receipt and
 4MiB for resource observations, the exact missing reviewed-source copy bytes,
 and1MiB each for the final inventory and packing receipt within the128MiB
-metadata ceiling. Record every admission arithmetic check. Recheck the final
+metadata ceiling. Keep this remaining-capacity invariant active through the
+body and subsequent metadata budgets. Record every authoritative admission
+arithmetic check at that actual body boundary. Recheck the final
 selected metadata plus exact inventory size before packing; refuse excess
 without publishing a success archive. The separate512MiB actual sidecar/disk
 ceiling remains unchanged. Require the exact declared profile in each replayed

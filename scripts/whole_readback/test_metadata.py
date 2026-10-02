@@ -3,18 +3,46 @@ import copy
 import json
 import os
 from pathlib import Path
+import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import gate
 gate.frozen()
-from common import save_new
+from common import save_new, identity
 from contracts import MIB
 from metadata import PROFILE, reserve, resources
 import packing
+from bounded import Readback
 
 
 class MetadataTests(unittest.TestCase):
+    def transport(self,root,body):
+        executable=root/'fake-gh';executable.write_text('#!'+sys.executable+'\n'+body);executable.chmod(0o700)
+        data=root/'data';data.mkdir();t=Readback(data,dict(path=str(executable),**identity(executable)),gate.sources(),gate.sources)
+        with (data/'existing-metadata').open('xb') as stream:stream.truncate(110*MIB)
+        return t
+
+    def test_membership_growth_is_rechecked_before_actual_body(self):
+        with tempfile.TemporaryDirectory() as temp,patch.object(Readback,'sample',lambda self:None):
+            root=Path(temp);marker=root/'body-executed';t=self.transport(root,'from pathlib import Path\nPath('+repr(str(marker))+').write_text("ran")\n')
+            reserve(t.directory,t.sources,1,0)  # The early pre-membership observation passes.
+            def membership(*args):
+                with (t.directory/'membership-growth').open('xb') as stream:stream.truncate(8*MIB)
+            with patch.object(t,'member',side_effect=membership),self.assertRaisesRegex(ValueError,'reserved observation capacity'):
+                t.download('c1-part-0000',{'id':1},{'bytes':1,'sha256':'0'*64},chunk=True)
+            self.assertFalse(marker.exists());self.assertFalse((t.directory/'chunk').exists());self.assertEqual(t.receipt['commands'],[])
+
+    def test_actual_body_stderr_growth_preserves_capacity_failure(self):
+        with tempfile.TemporaryDirectory() as temp,patch.object(Readback,'sample',lambda self:None):
+            t=self.transport(Path(temp),'import os\nos.write(2,b"x"*(7*1024*1024))\nos.write(1,b"x")\n')
+            with self.assertRaisesRegex(ValueError,'reserved observation capacity'):
+                t.run('c1-part-0000-download',['api','repos/cyberia-to/trisha/releases/assets/1','-H','Accept: application/octet-stream'],output=t.directory/'chunk',maximum=1,data=True)
+            self.assertEqual(t.receipt['status'],'failed');self.assertTrue((t.directory/'terminal-failure.json').exists())
+            self.assertLessEqual((t.directory/'c1-part-0000-download.stderr').stat().st_size,8*MIB)
+            self.assertEqual(t.receipt['metadata_reservations'][0]['boundary'],'after-membership-before-body')
+
     def test_actual_over128_metadata_refused_before_packing(self):
         with tempfile.TemporaryDirectory() as temp:
             root=Path(temp);data=root/'data';data.mkdir();save_new(data/'receipt.json',{'status':'synthetic'})
