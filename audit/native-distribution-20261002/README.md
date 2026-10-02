@@ -281,3 +281,22 @@ The exact five authenticated producer archives are now selected for durable
 transport through the existing unpublished draft. This activation starts
 transport; portable consumption of all six corpora remains pending. The Intel
 Mac measurement does not qualify the proposed macOS 14 Intel floor.
+
+### Durable remote artifacts and consumption activation
+
+Transport run 36968858912 at `8c3507f283466b372b3483eeb5abf50a0b94d183`
+passed, preserving all fifteen selected remote binary, corpus and original
+authenticated ZIP assets on the existing draft. The draft remained unpublished
+and the tag remained absent throughout. `remote-asset-transport/` retains the
+original transport Actions ZIP, API identity and exact asset/hash receipt.
+
+The verification selector now binds all six actual binary packages and all six
+actual producer corpora. Its five native remote consumer jobs and a separate
+free native macOS 14 ARM consumer are activated next. The latter exercises
+installed Joy/Trisha and kit consumption only, with a 5 GiB / 1800 second cap;
+it does not claim Trident/LSP or full proof generation on macOS 14.
+
+`check-corpus-matrix.py` will check the exact 36 producer/consumer receipt
+pairs after actual execution. Its single existing local pair helper exercise
+passed and rejected case-exit and binary-identity mutations; no 36-pair result
+is claimed at this activation commit.

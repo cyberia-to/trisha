@@ -1,0 +1,5 @@
+{
+  "scope": "Actual macOS 14 ARM installed Joy/Trisha legacy corpus and selfhost-kit consumer only; frozen branch rehearsal, no whole proof generation or Trident/LSP floor qualification",
+  "selector_sha256": "aea37d7f89a9069572e1c7e320ec2c2ea74f7c8b9d41078c7807e3539e988bf4",
+  "source_sha256": "e4bac7ff7260a5f395febc196b3e4792653e0ff81d7887d688e16ea0959aa361"
+}

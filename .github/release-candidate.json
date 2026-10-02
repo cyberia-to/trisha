@@ -1,6 +1,6 @@
 {
   "scope": "Committed pushed release/0.4 branch feature rehearsal; no default-branch release candidate/tag/publication",
-  "phase": "build",
+  "phase": "verify",
   "full_baselines": false,
   "asset_id": 604481115,
   "source_sha256": "e4bac7ff7260a5f395febc196b3e4792653e0ff81d7887d688e16ea0959aa361",
@@ -18,5 +18,63 @@
     "x86_64-pc-windows-msvc",
     "aarch64-pc-windows-msvc",
     "x86_64-apple-darwin"
+  ],
+  "binaries": {
+    "aarch64-unknown-linux-gnu": {
+      "asset_id": 604875977,
+      "sha256": "28ee61e3552e0564487c22ec9d96c482b5e68d3e9147570e1bb56310b31dc93e"
+    },
+    "aarch64-pc-windows-msvc": {
+      "asset_id": 604876271,
+      "sha256": "83b2ce616e91eb9d05e83075efd68cb66fcf72816123bfcb12564c484ee4ff67"
+    },
+    "x86_64-pc-windows-msvc": {
+      "asset_id": 604876575,
+      "sha256": "1f399cc1c8f13b7946826f1bdc80ca0e1bdeb59bb5ce6d2847edf572c751bd5d"
+    },
+    "x86_64-unknown-linux-gnu": {
+      "asset_id": 604876898,
+      "sha256": "eb771900d9a1e188e2e74fb0c20e66cca2799a9632548c7f84fa5ed8c52fbe4d"
+    },
+    "x86_64-apple-darwin": {
+      "asset_id": 604877291,
+      "sha256": "558a4ba67a49182e250e1a8a7dfde5cddb68d72061f59dfcbb9b1163d41db290"
+    },
+    "aarch64-apple-darwin": {
+      "asset_id": 604717111,
+      "sha256": "3def4024793c8416a369996020ae8bbf7031c87ff3ce5a0408cc1081d3d7743b"
+    }
+  },
+  "corpora": [
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "asset_id": 604876029,
+      "sha256": "29dfef086ac20acd00df9322ba8304b76d2dea2f9557f8ca66656ecc6036de84"
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "asset_id": 604876317,
+      "sha256": "fcb344faccadd32d04dedc535c6289397e4a03c54525b1c089ba0b4dfb781b35"
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "asset_id": 604876612,
+      "sha256": "ae861a9244cebf15d830fe75fc540289b856e6f1f4d03911d276dba00131fbf6"
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "asset_id": 604876971,
+      "sha256": "3bf267ec0fc0bf5c4b43ff55e452960efcbeac66f52b19103b478bb23d476b62"
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "asset_id": 604877333,
+      "sha256": "6d48c7f2b1d67d1952380387149ac7ea816b0751f133a04c5af5ab2a1743b617"
+    },
+    {
+      "target": "aarch64-apple-darwin",
+      "asset_id": 604728905,
+      "sha256": "b632aaecca4f1e3fe7920e2e3cc223780101dde798f9a6d2a029e0f51cb4ab54"
+    }
   ]
 }
