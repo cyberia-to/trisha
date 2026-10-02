@@ -1,0 +1,101 @@
+{
+  "scope": "Original review-time host resource snapshot; fresh launch-time observation still required",
+  "files": [
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-review/cpus.stderr",
+      "retained": "cpus.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-review/cpus.stdout",
+      "retained": "cpus.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 3,
+      "sha256": "e6c21e8d260fe71882debdb339d2402a2ca7648529bc2303f48649bce0380017",
+      "retained_sha256": "39d91a535023c5c026fd8ea7a04054dafc8e411c7c1fa207bd31d8ecfb3b632d"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-review/host.stderr",
+      "retained": "host.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-review/host.stdout",
+      "retained": "host.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 66,
+      "sha256": "2ad5e57776ecb4b37b741f751521e2c77d58bf2d6d64e54c61507eabd39dea31",
+      "retained_sha256": "7226bd7f214bb6e74b1910c65f1e019066b864a48b875d29150fd677392deef3"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-review/memory-pressure.stderr",
+      "retained": "memory-pressure.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-review/memory-pressure.stdout",
+      "retained": "memory-pressure.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 110,
+      "sha256": "5e21e0f6ee6af87490a78343061b62fa1f680a5e9d702f3acd23f7febc85cb6c",
+      "retained_sha256": "16aa5bc035259f4fe23db7c7df797536625b6a79800b0c4a2686e675b492e6d7"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-review/memory.stderr",
+      "retained": "memory.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-review/memory.stdout",
+      "retained": "memory.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 12,
+      "sha256": "1a4675111e2b0f970616c374fc0a90aad997171ca22da371c998275950af4481",
+      "retained_sha256": "3a7f5ed46509caf77a8fa470bc621b890a9135ccad33b4d2f76d2d45e802d977"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-review/processes.stderr",
+      "retained": "processes.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-review/processes.stdout",
+      "retained": "processes.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 63393,
+      "sha256": "1eb5b09a8a14882f37403d5be7b26e1a6a42a50bb3a9dbd09ce08abe61997393",
+      "retained_sha256": "999f631ece3f67404b55f47913b2ae4362eef8fb0824ab51b4e8e0128f9209e0"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-admission-review/receipt.json",
+      "retained": "receipt.json",
+      "encoding": "identity",
+      "bytes": 2835,
+      "sha256": "820b4b290d6ad4650b80c85ab8bf2375be8f959dbff7451cfde1231120c9c2d2",
+      "retained_sha256": "820b4b290d6ad4650b80c85ab8bf2375be8f959dbff7451cfde1231120c9c2d2"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/check-native-admission.py",
+      "retained": "check-native-admission.py",
+      "encoding": "identity",
+      "bytes": 2071,
+      "sha256": "5fbfb4ead5cf0beae8d745764c46a07d8e917effb48839353ec9a52f346195db",
+      "retained_sha256": "5fbfb4ead5cf0beae8d745764c46a07d8e917effb48839353ec9a52f346195db"
+    }
+  ]
+}

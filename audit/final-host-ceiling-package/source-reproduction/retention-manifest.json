@@ -1,0 +1,316 @@
+{
+  "scope": "Complete original authenticated preparer container plus independent source asset readback metadata; 536837002-byte archive retained at exact draft asset and original local paths",
+  "files": [
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36987731030/11217474197/artifact.zip",
+      "retained": "original-container/artifact.zip",
+      "encoding": "identity",
+      "bytes": 72804,
+      "sha256": "2819cb3b80e3aa8bf89bcfc532698e95ac9661b737c39d2ed6ea85187679d7b4",
+      "retained_sha256": "2819cb3b80e3aa8bf89bcfc532698e95ac9661b737c39d2ed6ea85187679d7b4"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36987731030/11217474197/api.json",
+      "retained": "original-container/api.json",
+      "encoding": "identity",
+      "bytes": 808,
+      "sha256": "4a4c74d60bcf0a5371ec7501926865547ceb72b19d45328b1fbaf3124380916c",
+      "retained_sha256": "4a4c74d60bcf0a5371ec7501926865547ceb72b19d45328b1fbaf3124380916c"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36987731030/11217474197/retention.json",
+      "retained": "original-container/retention.json",
+      "encoding": "identity",
+      "bytes": 22119,
+      "sha256": "eb06fc35e4772a45e8f938db212431a4054301d111c007e1497997fe43fc9554",
+      "retained_sha256": "eb06fc35e4772a45e8f938db212431a4054301d111c007e1497997fe43fc9554"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36987731030/11217474197/restored/receipt.json",
+      "retained": "original-preparer/receipt.json",
+      "encoding": "identity",
+      "bytes": 51609,
+      "sha256": "4fdeee43b552716c0afbacdf9743247e0b75a3559b8f181467df9b8ebb3a67db",
+      "retained_sha256": "4fdeee43b552716c0afbacdf9743247e0b75a3559b8f181467df9b8ebb3a67db"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36987731030/11217474197/restored/source-impact.json",
+      "retained": "original-preparer/source-impact.json",
+      "encoding": "identity",
+      "bytes": 57010,
+      "sha256": "31666ad0c1dcc7f7b0720e90f0323cd0cc5919b120672e462269b0a6fc4615a8",
+      "retained_sha256": "31666ad0c1dcc7f7b0720e90f0323cd0cc5919b120672e462269b0a6fc4615a8"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-reproduction-readback/artifacts.stderr",
+      "retained": "readback/artifacts.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-reproduction-readback/artifacts.stdout",
+      "retained": "readback/artifacts.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 757,
+      "sha256": "1902be68ec82608db985ce58cc3ba132e5941a2c932d2e15810e41102b426567",
+      "retained_sha256": "f47543b10cc5dc1b06258ce09a6796f591701baedad6967f40c98ea299479f0e"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-reproduction-readback/asset.stderr",
+      "retained": "readback/asset.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-reproduction-readback/asset.stdout",
+      "retained": "readback/asset.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 1707,
+      "sha256": "d570510adc60d259ee640f37c885b9db6a0dfb817401978f1ed3cd0da9ea852f",
+      "retained_sha256": "1007e2c018d5cde1526f4c0cdf717f7fc5e901e8107666ccb1e36ff88c0dc9e7"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-reproduction-readback/completed-run.json",
+      "retained": "readback/completed-run.json",
+      "encoding": "identity",
+      "bytes": 13381,
+      "sha256": "b03b936eb7966c43e2b48e4cd2e0cebb7ea178f2fd4d63ceb64f83dc7d801fb0",
+      "retained_sha256": "b03b936eb7966c43e2b48e4cd2e0cebb7ea178f2fd4d63ceb64f83dc7d801fb0"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-reproduction-readback/download.stderr",
+      "retained": "readback/download.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-reproduction-readback/draft-after.stderr",
+      "retained": "readback/draft-after.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-reproduction-readback/draft-after.stdout",
+      "retained": "readback/draft-after.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 126616,
+      "sha256": "e25c48ef3cb3d425eacb5c85a689bdb0e18478bf9a1fbf66bc9fdc8b327e2af8",
+      "retained_sha256": "8c62a6c8e8ba559f0a88b1ad0e5e37b6779f5155a8aebd2a1fa483ebc75e5854"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-reproduction-readback/receipt.json",
+      "retained": "readback/receipt.json",
+      "encoding": "identity",
+      "bytes": 3850,
+      "sha256": "bcdb030e22e8903da7f7048c01ba09c63c3eddf6542b14a59499248d7500845c",
+      "retained_sha256": "bcdb030e22e8903da7f7048c01ba09c63c3eddf6542b14a59499248d7500845c"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-reproduction-readback/sources.json",
+      "retained": "readback/sources.json.gz",
+      "encoding": "gzip",
+      "bytes": 4239613,
+      "sha256": "9334dead92b990a12acf16a2565aeb762a07311dfc2c3d6cb896c0490dc5926e",
+      "retained_sha256": "67c22968b99d3d8b19fcd4866adada9fc27767c54ba060e6d22b83f1f009b38c"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-reproduction-readback/tag-after.stderr",
+      "retained": "readback/tag-after.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 25,
+      "sha256": "d2c8985c89b29a842ac4946d13bdbc297709f44f20bb968faf9682664b211db6",
+      "retained_sha256": "78c04f26d387077acccd2d2e3fff8dd829fd9365e76a586cc79f6d1c0ec2b042"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-reproduction-readback/tag-after.stdout",
+      "retained": "readback/tag-after.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 114,
+      "sha256": "e2e3c64edab172132f77ce89a0e8c190db1cd30936a096344f45893bd5b75f8a",
+      "retained_sha256": "310e0d1b19a6f39920a861e2c6a11fd714c9d3f0cb901c5a8044a8d487891a9c"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-reproduction-readback/vendor-sources.json",
+      "retained": "readback/vendor-sources.json.gz",
+      "encoding": "gzip",
+      "bytes": 108532,
+      "sha256": "cf324959661a85fc94cf4345beaf5dbf274c1dbd5fc66960155e0750ace35d1b",
+      "retained_sha256": "33a3d6274e126bcaf608151ed5fe57015c2e2151d263e54434f417eb328ffdb1"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-workflow-startup/macos14-jobs.stderr",
+      "retained": "inactive-workflow-startup/macos14-jobs.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-workflow-startup/macos14-jobs.stdout",
+      "retained": "inactive-workflow-startup/macos14-jobs.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 2678,
+      "sha256": "33750684d2ae4f77d656cecd0a8a4eb560e3ffab773fa1317574503fc5322f8b",
+      "retained_sha256": "c620b82563095f6b014734c7c03c6169fc35a8a886c527ade069764acb70c355"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-workflow-startup/macos14-run.stderr",
+      "retained": "inactive-workflow-startup/macos14-run.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-workflow-startup/macos14-run.stdout",
+      "retained": "inactive-workflow-startup/macos14-run.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 12065,
+      "sha256": "aa5c548d8deb75f3a8d69d95985f72afb59bd4ba72855b89ebbfa57a04f9c0c5",
+      "retained_sha256": "4f544463f9bee92618926e5b26c91cf5424b73b6f4e41a8b2f7ea8b8b1c11e23"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-workflow-startup/native-jobs.stderr",
+      "retained": "inactive-workflow-startup/native-jobs.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-workflow-startup/native-jobs.stdout",
+      "retained": "inactive-workflow-startup/native-jobs.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 2697,
+      "sha256": "0246f41919b5c04b8d4837b7c5cfc2edad9850df193b060ee8e78d5c1520ac3f",
+      "retained_sha256": "1469661f9103c999fc4b40075b05ea02bc7b7b18f2fa7b6be3e61c0372887e50"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-workflow-startup/native-run.stderr",
+      "retained": "inactive-workflow-startup/native-run.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-workflow-startup/native-run.stdout",
+      "retained": "inactive-workflow-startup/native-run.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 12027,
+      "sha256": "e3173d3c0f328c8e98ae4512e6a8e95a5969d90e7aa3feb563a79e9b04103166",
+      "retained_sha256": "c086511fa76a461287355a5cc2c6edcd35451ec69ed3d1d1fcbd7b0159fb11ec"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-workflow-startup/receipt.json",
+      "retained": "inactive-workflow-startup/receipt.json",
+      "encoding": "identity",
+      "bytes": 2208,
+      "sha256": "709661a4d2b21d68347d33748116426a37f800bc20d728583ea70f5801bcdf9b",
+      "retained_sha256": "709661a4d2b21d68347d33748116426a37f800bc20d728583ea70f5801bcdf9b"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-workflow-startup/transport-jobs.stderr",
+      "retained": "inactive-workflow-startup/transport-jobs.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-workflow-startup/transport-jobs.stdout",
+      "retained": "inactive-workflow-startup/transport-jobs.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 2647,
+      "sha256": "5426f0da055659e18232cd1ed17dd2547042c6397e5d87b46e08c5286a19453f",
+      "retained_sha256": "2576f78c698048001a643dbe2b98ef080f8951ee94ef4293145479a5127084b3"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-workflow-startup/transport-run.stderr",
+      "retained": "inactive-workflow-startup/transport-run.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-workflow-startup/transport-run.stdout",
+      "retained": "inactive-workflow-startup/transport-run.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 12054,
+      "sha256": "a6203261c7d88769c181a8dd8134e8defb1e3ae82c0ec27199d41dfa0841ad86",
+      "retained_sha256": "02111839e2df639349263f4127c125cce8068694a04b3192e9a272dccbdc8fba"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/collect-native.py",
+      "retained": "collect-native.py",
+      "encoding": "identity",
+      "bytes": 3229,
+      "sha256": "dcec4c4db1dfb835beb555e1591113aee0df45bc4a1e4cf1d973b3796a272591",
+      "retained_sha256": "dcec4c4db1dfb835beb555e1591113aee0df45bc4a1e4cf1d973b3796a272591"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/check-source-reproduction.py",
+      "retained": "check-source-reproduction.py",
+      "encoding": "identity",
+      "bytes": 4791,
+      "sha256": "7aab5cef75ad001f46de03d555789ed2d847cb13ad98dd578bb2dc66a8df55c1",
+      "retained_sha256": "7aab5cef75ad001f46de03d555789ed2d847cb13ad98dd578bb2dc66a8df55c1"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-reproduction-collector.stdout",
+      "retained": "source-reproduction-collector.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 581,
+      "sha256": "b0664f86433918b9124fd597f70c78700661762844a0b59c63bc5dc02734e300",
+      "retained_sha256": "8f03d91364e543c876dbe4c282fcc3a06ed3537e2ff91a1e0b0cd9b2af9945d3"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-reproduction-collector.stderr",
+      "retained": "source-reproduction-collector.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-reproduction-readback.stdout",
+      "retained": "source-reproduction-readback.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 162,
+      "sha256": "e31b2fb18741efa3904546ed04690b791d09ab966b110b6238553a803507d15d",
+      "retained_sha256": "fbed7a71260a2211f1ba41960223f60ec58ba6114cfbd1fa5eae784f1afa30ea"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-reproduction-readback.stderr",
+      "retained": "source-reproduction-readback.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/retain-source-reproduction.py",
+      "retained": "retain-source-reproduction.py",
+      "encoding": "identity",
+      "bytes": 2518,
+      "sha256": "eb8e03ee9228f25ab7c8f4e6bd5507b5323688563044995a9cf425c3254a6201",
+      "retained_sha256": "eb8e03ee9228f25ab7c8f4e6bd5507b5323688563044995a9cf425c3254a6201"
+    }
+  ],
+  "source_archive": {
+    "asset_id": 605224542,
+    "bytes": 536837002,
+    "sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+    "local_original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-export.tar.gz",
+    "local_readback": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-reproduction-readback/source-export.tar.gz"
+  }
+}

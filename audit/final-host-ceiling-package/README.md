@@ -1,10 +1,8 @@
 # Final Joy host deadline package evidence
 
-Status: contract, source dependency scope and conditional full198 inheritance
-checker are reviewed. Exact source export passed after the root and peer
-runner reviews. Independent remote reproduction and all native final gates
-remain pending. The consumer/transport followup passed both supplemental
-reviews; source reproduction is the next activation.
+Status: exact final source export, independent remote reproduction and complete
+authenticated source-asset readback passed. Native activation is prepared for
+review; no final native producer or consumer gate has started.
 
 `dependency-scope/` retains the exact Joy11b7→dd61 diff and original Cargo1.89
 locked/offline/all-features dependency observations. The one changed production
@@ -160,3 +158,31 @@ and `309ed6428b65ae99a9b7da9e54740c6692403b2b3c69b6d4fe6c88e5550c0002`.
 The authorized next change activates only the source reproduction selector.
 All native producer/consumer, package transport and Mac14 selectors remain
 inactive until the independent archive and uploaded asset are checked.
+
+## Independent reproduction and complete source readback passed
+
+Run 36987731030 at `6ad79cad0ab499c9dd707a5cad34de901993a8bc` independently
+reproduced the exact 536837002-byte source archive and uploaded unique asset
+605224542 to the existing unpublished draft. Original Actions container
+11217474197 has SHA-256
+`2819cb3b80e3aa8bf89bcfc532698e95ac9661b737c39d2ed6ea85187679d7b4`.
+`source-reproduction/` retains the authenticated original ZIP, preparer
+receipt, full source-impact receipt, command streams and exact byte manifest.
+
+The retained `check-source-reproduction.py` downloaded all bytes from asset
+605224542 and matched archive SHA-256 73b50ebd, provenance 9334dead and vendor
+cf324959 exactly to the local export. It completed at 09:18:23 UTC on
+2026-10-02. The draft remained unpublished and its tag remained absent.
+Original local export and independent readback paths are recorded in the
+manifest; neither archive is relabeled as a native package measurement.
+
+The other three initial workflows only read inactive selectors. Their native,
+transport and Mac14 gate steps were actually skipped, as recorded in the
+original API observations. They contribute no platform acceptance.
+
+`native-admission-review/` records the review-time host observation: 16 CPUs,
+51539607552 bytes RAM, 54 percent reported free memory and 59682533376 bytes
+free disk. The original process snapshot includes the two independent
+whole-proof mutators and concurrent compiler work. Native launch requires a
+fresh admission observation; Cargo2/Rayon4 and the existing 28 GiB guards
+remain fixed.

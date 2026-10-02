@@ -2,8 +2,9 @@
 
 Status: source guard, native runner, inactive selectors and consumer/transport
 followup passed root and independent reviews. The exact final source export
-passed with archive 73b50ebd and provenance 9334dead. Source-only independent
-reproduction is authorized; all final native gates remain inactive.
+passed with archive 73b50ebd and provenance 9334dead. Independent source
+reproduction and complete authenticated archive readback passed; all final
+native gates remain inactive pending the prepared selector/admission review.
 The source734 package remains an immutable prior Joy11b7 measurement.
 
 ## Measured change and fixed scope
