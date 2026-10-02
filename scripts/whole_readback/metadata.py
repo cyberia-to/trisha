@@ -8,7 +8,7 @@ from contracts import MIB
 PROFILE=dict(total_seconds=5400,api_seconds=120,body_seconds=1800,chunk_bytes=CHUNK,
              sidecar_bytes=512*MIB,failure_reserve_bytes=MIB,rss_bytes=2*CHUNK,
              free_floor_bytes=8*CHUNK,artifact_zip_bytes=256*MIB,artifact_decoded_bytes=128*MIB,
-             receipt_bytes=4*MIB,resources_bytes=4*MIB,inventory_bytes=MIB,packing_receipt_bytes=MIB)
+             receipt_bytes=2*MIB,resources_bytes=2*MIB,inventory_bytes=MIB,packing_receipt_bytes=MIB)
 EXPANDED={f'whole-v2-{phase}-c{g}-1' for phase in ('producer','verifier','pending') for g in (1,2)}
 
 def selected(directory):
@@ -57,8 +57,11 @@ def observations(rows,sources,commands,started):
         require(reserved['source_copies']==sum(v['bytes'] for v in sources.values()),'all source copies reserved before final copy phase')
         require(reserved['inventory']==PROFILE['inventory_bytes'] and reserved['packing']==PROFILE['packing_receipt_bytes'],'fixed final metadata overhead')
         require(row['present_bytes']+sum(reserved.values())==row['required_bytes']<=PROFILE['artifact_decoded_bytes'],'exact bounded reservation arithmetic')
-        body=next(c for c in commands if c['name']==f"c{row['generation']}-part-{row['sequence']:04d}-download")
-        require(started<=row['time_ns']<=body['started_ns'],'in-interval reserve precedes body download')
+        label=f"c{row['generation']}-part-{row['sequence']:04d}"
+        index=next(i for i,c in enumerate(commands) if c['name']==label+'-download')
+        require(index>0 and commands[index-1]['name']==label+'-membership-assets','body immediately follows final membership command')
+        membership,body=commands[index-1],commands[index]
+        require(started<=membership['ended_ns']<=row['time_ns']<=body['started_ns'],'reserve follows membership and precedes body download')
     require(all(a['time_ns']<=b['time_ns'] for a,b in zip(rows,rows[1:])),'ordered metadata admissions')
 
 def resources(samples,observer,started,ended,peak,latest=None,packing=False):

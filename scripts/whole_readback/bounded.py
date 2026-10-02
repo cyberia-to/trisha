@@ -51,7 +51,7 @@ class Readback(Transport):
         self.persist()
 
     def persist(self):
-        require(len((json.dumps(self.receipt,indent=2)+'\n').encode())<=PROFILE['receipt_bytes'],'4MiB ordinary worker receipt cap')
+        require(len((json.dumps(self.receipt,indent=2)+'\n').encode())<=PROFILE['receipt_bytes'],'2MiB ordinary worker receipt cap')
         super().persist()
 
     def sample(self):
@@ -68,7 +68,7 @@ class Readback(Transport):
         owned=[r for r in rows if r['pid'] in selected];rss=sum(r['rss_bytes'] for r in owned);self.peak=max(self.peak,rss)
         value=dict(time_ns=time.time_ns(),rss_bytes=rss,processes=owned)
         raw=json.dumps(value)+'\n';path=self.directory/'resources.jsonl'
-        require((path.stat().st_size if path.exists() else 0)+len(raw.encode())<=PROFILE['resources_bytes'],'4MiB worker resource observation cap')
+        require((path.stat().st_size if path.exists() else 0)+len(raw.encode())<=PROFILE['resources_bytes'],'2MiB worker resource observation cap')
         super().budget(len(raw.encode()))
         with (self.directory/'resources.jsonl').open('a') as stream:stream.write(raw)
         self.receipt.update(sampled_peak_rss_bytes=self.peak,latest_sample=value);self.sample_tick=now

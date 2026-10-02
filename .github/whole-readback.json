@@ -2368,8 +2368,8 @@
     "free_floor_bytes": 8589934592,
     "artifact_zip_bytes": 268435456,
     "artifact_decoded_bytes": 134217728,
-    "receipt_bytes": 4194304,
-    "resources_bytes": 4194304,
+    "receipt_bytes": 2097152,
+    "resources_bytes": 2097152,
     "inventory_bytes": 1048576,
     "packing_receipt_bytes": 1048576
   },

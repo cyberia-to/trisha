@@ -18,10 +18,28 @@ from bounded import Readback
 
 
 class MetadataTests(unittest.TestCase):
+    def test_narrow_receipt_cap_refuses_without_replacing_original(self):
+        with tempfile.TemporaryDirectory() as temp,patch.object(Readback,'sample',lambda self:None):
+            t=self.transport(Path(temp),'pass\n');before=identity(t.directory/'receipt.json')
+            t.receipt['synthetic-growth']='x'*(2*MIB)
+            with self.assertRaisesRegex(ValueError,'2MiB ordinary worker receipt cap'):t.persist()
+            self.assertEqual(identity(t.directory/'receipt.json'),before)
+            self.assertFalse((t.directory/'receipt.next').exists())
+
+    def test_narrow_resource_cap_refuses_without_dropping_existing_rows(self):
+        with tempfile.TemporaryDirectory() as temp:
+            with patch.object(Readback,'sample',lambda self:None):t=self.transport(Path(temp),'pass\n')
+            path=t.directory/'resources.jsonl'
+            with path.open('xb') as stream:stream.truncate(2*MIB)
+            before=identity(path);t.sample_tick=-1
+            rows=[dict(pid=os.getpid(),ppid=0,pgid=os.getpid(),rss_bytes=1)]
+            with patch('bounded.process_rows',return_value=rows),self.assertRaisesRegex(ValueError,'2MiB worker resource observation cap'):t.sample()
+            self.assertEqual(identity(path),before)
+
     def transport(self,root,body):
         executable=root/'fake-gh';executable.write_text('#!'+sys.executable+'\n'+body);executable.chmod(0o700)
         data=root/'data';data.mkdir();t=Readback(data,dict(path=str(executable),**identity(executable)),gate.sources(),gate.sources)
-        with (data/'existing-metadata').open('xb') as stream:stream.truncate(110*MIB)
+        with (data/'existing-metadata').open('xb') as stream:stream.truncate(114*MIB)
         return t
 
     def test_membership_growth_is_rechecked_before_actual_body(self):
@@ -58,9 +76,9 @@ class MetadataTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             root=Path(temp);save_new(root/'receipt.json',{'status':'synthetic'})
             sources={'source.py':dict(bytes=123,sha256='0'*64)};row=reserve(root,sources,1,0)
-            self.assertEqual(row['required_bytes'],10*MIB+123)
+            self.assertEqual(row['required_bytes'],6*MIB+123)
             self.assertEqual(row['reserved']['source_copies'],123)
-            with (root/'existing-sidecars').open('xb') as stream:stream.truncate(119*MIB)
+            with (root/'existing-sidecars').open('xb') as stream:stream.truncate(123*MIB)
             with self.assertRaisesRegex(ValueError,'reserved observation capacity'):reserve(root,sources,1,0)
             self.assertFalse((root/'chunk').exists())
 

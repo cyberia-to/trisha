@@ -100,6 +100,7 @@ class Archives(unittest.TestCase):
     def test_command_and_resource_mutations(self):
         changes=[lambda r:r.update(status='running'),lambda r:r.pop('profile'),lambda r:r.update(profile={}),lambda r:r['profile'].update(total_seconds=5400.0),
                  lambda r:r['metadata_reservations'][0].update(required_bytes=0),lambda r:r.update(source_manifest={}),
+                 lambda r:r['metadata_reservations'][0].update(time_ns=r['started_ns']),
                  lambda r:r['entries'][0]['parts'].reverse(),lambda r:r['commands'][0].update(exit_code=9),
                  lambda r:r['commands'][-1]['command'].append('--method'),lambda r:r.update(sampled_peak_rss_bytes=2),
                  lambda r:r.update(latest_sample={}),lambda r:r.update(ended_ns=0)]

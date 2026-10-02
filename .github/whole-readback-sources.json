@@ -13,15 +13,15 @@
   },
   ".github/whole-readback.json": {
     "bytes": 118263,
-    "sha256": "63cc86b0b5b827b5f56064e875d5685749e3b080fd4e995344f72d9388222109"
+    "sha256": "e8c9ba26b0aff7c5583996f3a103978096af9888851f656f29889a57a8e033ed"
   },
   ".github/workflows/whole-retention-readback.yml": {
     "bytes": 1624,
     "sha256": "fe9905ba33a9dde7592643cdc9f477f087b991552845c2a5bef3992fd6c6bcb6"
   },
   "docs/reference/whole-retention-byte-replay.md": {
-    "bytes": 11152,
-    "sha256": "2bdf1090eaa48b5a0703deb47e0d2d281bbc17e72ac782ed343ed0e675600844"
+    "bytes": 11467,
+    "sha256": "347aa2217fc6d09d3709adba84c3576903f61f8787c4c7361f99c0812f3e945c"
   },
   "scripts/whole_readback/.gitattributes": {
     "bytes": 8,
@@ -29,7 +29,7 @@
   },
   "scripts/whole_readback/bounded.py": {
     "bytes": 5771,
-    "sha256": "54cb2a1fd9db46e683d30aa34185bc1df50ce04c9afe90ee870c920a6b252555"
+    "sha256": "65d5e17ee8b4ee43dc3226d2871dca88d7887591b9b0a485e74530c721f56098"
   },
   "scripts/whole_readback/frozen/PLAN.md": {
     "bytes": 5566,
@@ -116,8 +116,8 @@
     "sha256": "a132d0eddb3a020146f1301dcdcee2e4903a0a166017597142b32d56582c2db0"
   },
   "scripts/whole_readback/metadata.py": {
-    "bytes": 6451,
-    "sha256": "156461205c6fb50f21f621ab755c7fb29a52b05d4f17294b3016d21f867e8e48"
+    "bytes": 6716,
+    "sha256": "5a03d3e07d48a389b9f3cc7918aeed45fb26dcde7deecd6e3eca6f76b5546c78"
   },
   "scripts/whole_readback/packing.py": {
     "bytes": 4040,
@@ -132,16 +132,16 @@
     "sha256": "8e7bcadf6e069b798cb60794685b5efb0bbaddd6b230c3274d03d95e607eed20"
   },
   "scripts/whole_readback/test_archive.py": {
-    "bytes": 10329,
-    "sha256": "c91c227f2862c5797be2e28b37b3c4cb680602e486da20d83a861c98c1b41a60"
+    "bytes": 10418,
+    "sha256": "2c1339ae39dfbd59aab89ce48ce49ab7343a7545791938074751089f70108553"
   },
   "scripts/whole_readback/test_local.py": {
     "bytes": 4206,
     "sha256": "657b7d38a56b22534ef7941fcbc850f01bcdb33ec53550e4d52265b27630c48a"
   },
   "scripts/whole_readback/test_metadata.py": {
-    "bytes": 5145,
-    "sha256": "a615db7872ba2ef20c5f3ac6b5d6a10a6adafb3dea2c77d721b2dce8e60aa446"
+    "bytes": 6388,
+    "sha256": "3162f51cb5eb31dcc08319b4c31a4f24abeb34f3d607bd6a013de237e4bcef60"
   },
   "scripts/whole_readback/test_readback.py": {
     "bytes": 5913,
