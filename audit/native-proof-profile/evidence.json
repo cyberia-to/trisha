@@ -1,0 +1,39 @@
+{
+  "format": "native-proof-preparation-evidence-v1",
+  "archives": {
+    "local-native-gate.tar.gz": {
+      "sha256": "685f73bee9e0ff134b3ce29c37ad605b7e71e8ca6614d79b83da75881e62501c",
+      "bytes": 2166499,
+      "files": 244,
+      "receipt_status": "failed",
+      "assessment": "failed: rustup bootstrap before compilation",
+      "all_surviving_raw_bytes_verified": true,
+      "command_log_hash_mismatches": [],
+      "receipt_sha256": "60cf47508dc180b67327538c702084502909c7a3aeb4e369dae12fa36e09efce"
+    },
+    "local-native-gate-v2.tar.gz": {
+      "sha256": "13e0fb05f06663f4bf10a8d82e6053286e15e93f287e64b2a34dd2fba0524f77",
+      "bytes": 6496814,
+      "files": 340,
+      "receipt_status": "passed",
+      "assessment": "rejected: command logs overwritten",
+      "all_surviving_raw_bytes_verified": true,
+      "command_log_hash_mismatches": [
+        "joy-fetch.stderr",
+        "nox-fetch.stderr",
+        "zheng-fetch.stderr"
+      ],
+      "receipt_sha256": "be7e4a63d44217319afca8f58fa0e0434f2b25415a810d2f79f5e3a0a8f17cb3"
+    },
+    "local-native-gate-v3.tar.gz": {
+      "sha256": "5be027a16837528f18ce52b826f852ea60f02014a34c6575cfa33c08fb00c61f",
+      "bytes": 6494402,
+      "files": 346,
+      "receipt_status": "passed",
+      "assessment": "accepted: complete gates and evidence integrity passed",
+      "all_surviving_raw_bytes_verified": true,
+      "command_log_hash_mismatches": [],
+      "receipt_sha256": "13ca5ead980a1f99732fe7022c4436fe451ff48de0d351715f79ce26ca738f9b"
+    }
+  }
+}
