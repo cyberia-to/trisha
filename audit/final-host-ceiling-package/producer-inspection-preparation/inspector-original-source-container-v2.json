@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "scope": "Original final source producer ZIP and all144 restored members, plus actual prior source734 packaged four-binary inventory; observer validation only, no final native acceptance",
+  "artifact_id": 11217474197,
+  "files": 144,
+  "zip_sha256": "2819cb3b80e3aa8bf89bcfc532698e95ac9661b737c39d2ed6ea85187679d7b4",
+  "inspector_sha256": "64572b572e3a7319f837d788307436e36b54802cc0ba6f146c541bb297d43a8a",
+  "prior_package": {
+    "path": "../current-distribution/local-macos-current-rust189/release-results/cyber-tools-aarch64-apple-darwin.tar.gz",
+    "sha256": "b542e6e3bf8a15c4650cfeb8bda436ba45a1ecf32844aa9655275bf42086ab9b",
+    "packaged_candidate_sha256": "13aed55f36e8598a4869386e9349731c075903465a9098db413506695afbea62"
+  }
+}

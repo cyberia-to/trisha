@@ -1,0 +1,20 @@
+{
+  "original_directory": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-inheritance-review",
+  "files": [
+    {
+      "path": "original-worker-positive.json",
+      "bytes": 287872,
+      "sha256": "b32d37f5396730a5cb6f4692ae810fffa077ae8b95b343d27f8dad384a6f88c4"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 1464,
+      "sha256": "8babcff891122792ce310b6a7af1a4167385c3369a3c415ef941dcc3ce3212cb"
+    },
+    {
+      "path": "review.json",
+      "bytes": 3346,
+      "sha256": "39ac96ee5f669f776163b0fea0a8145f1e7e00c4e5c6b0ba50043710a03bb652"
+    }
+  ]
+}

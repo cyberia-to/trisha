@@ -1,0 +1,115 @@
+{
+  "scope": "Final 73b50ebd feature-branch rehearsal; single native producer receipt inspection, whole matrix and full 198-proof gate separate",
+  "status": "producer_receipts_checked",
+  "observed_at": "2026-10-02T10:27:19.841439+00:00",
+  "run_id": 36990413939,
+  "runner_revision": "5de26a93eb4d489d90f150882adec2c47d14bea4",
+  "target": "x86_64-unknown-linux-gnu",
+  "artifact_id": 11221252119,
+  "artifact_sha256": "6eb4b535dd66abacecfe026c3527b172cba1e8fddb6b66499e900c9fd1ee5989",
+  "retained_files": 458,
+  "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+  "kit_sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd",
+  "source_provenance_sha256": "9334dead92b990a12acf16a2565aeb762a07311dfc2c3d6cb896c0490dc5926e",
+  "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+  "actual_rustc": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: x86_64-unknown-linux-gnu\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+  "cargo_version_observation": "actual native Rust, Cargo and rustdoc 1.89 recorded",
+  "installed_deadline": {
+    "receipt_sha256": "e6eeb84da61b2e803ac96b22f00bba5a53639a5c5f73f971de5b489728296175",
+    "accepted": 15,
+    "rejected": 8,
+    "producer_deadlines": 3,
+    "verifier_combinations": 9,
+    "proof_sha256": "683e6a9c7ed9f68ef0652dd07ee4b253098252e45966e152957980de307b33f0"
+  },
+  "actual_tools": {
+    "rustc": {
+      "path": "/home/runner/.rustup/toolchains/1.89.0-x86_64-unknown-linux-gnu/bin/rustc",
+      "sha256": "c6ac0142c05a60b0f6c15e1a118bd5ac3bd04924cd6dc0c328f501c5f86e4142",
+      "version": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: x86_64-unknown-linux-gnu\nrelease: 1.89.0\nLLVM version: 20.1.7\n"
+    },
+    "cargo": {
+      "path": "/home/runner/.rustup/toolchains/1.89.0-x86_64-unknown-linux-gnu/bin/cargo",
+      "sha256": "5b32bd53b8a08d8e206daed51f3fce40cdc0729038ff96bd0ca845596a2c1019",
+      "version": "cargo 1.89.0 (c24e10642 2025-06-23)\nrelease: 1.89.0\ncommit-hash: c24e1064277fe51ab72011e2612e556ac56addf7\ncommit-date: 2025-06-23\nhost: x86_64-unknown-linux-gnu\nlibgit2: 1.9.0 (sys:0.20.2 vendored)\nlibcurl: 8.12.1-DEV (sys:0.4.80+curl-8.12.1 vendored ssl:OpenSSL/3.5.0)\nssl: OpenSSL 3.5.0 8 Apr 2025\nos: Ubuntu 22.4.0 (jammy) [64-bit]\n"
+    },
+    "rustdoc": {
+      "path": "/home/runner/.rustup/toolchains/1.89.0-x86_64-unknown-linux-gnu/bin/rustdoc",
+      "sha256": "2c0a8638826af3aa2a6328c63008952dbbbd8c6c7560ce72ec2ae50f75e7a79a",
+      "version": "rustdoc 1.89.0 (29483883e 2025-08-04)\nbinary: rustdoc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: x86_64-unknown-linux-gnu\nrelease: 1.89.0\nLLVM version: 20.1.7\n"
+    }
+  },
+  "script_checkout": {
+    "impact_line_endings": "LF",
+    "structured_helper_line_endings": "LF",
+    "impact_sha256": "a80578694041fe432df21819b166140165fe98d27ff3d0a6dcfb8a9621faa86d",
+    "structured_helper_sha256": "5caa737b7c7b8b1fef0dd024a56e78f394273b8140b12a1832f29c8dad891a94",
+    "runner_revision": "5de26a93eb4d489d90f150882adec2c47d14bea4"
+  },
+  "source_impact_sha256": "31666ad0c1dcc7f7b0720e90f0323cd0cc5919b120672e462269b0a6fc4615a8",
+  "structured_cases": 27,
+  "structured_accepted": 6,
+  "structured_rejected": 21,
+  "structured_archive": {
+    "name": "structured-corpus-x86_64-unknown-linux-gnu.tar.gz",
+    "sha256": "2c022ffeed3f9d669485b74f324b276ada0a7a5df8da77659f4b2b5da2b79686",
+    "bytes": 687875
+  },
+  "cpu": {
+    "trident": {
+      "log_sha256": "920db2af31d3ab78cd42f6dea98bd900adfeb411c03330f054f48ff82739547b",
+      "test_binaries": 2,
+      "passed": 762
+    },
+    "trisha": {
+      "log_sha256": "6e73f01255bf1a8b288a7955ef30e448194d498c0b2d99621e4a01e7fc17dba7",
+      "test_binaries": 64,
+      "passed": 429
+    },
+    "joy": {
+      "log_sha256": "6856f0e8be37a7f09a0ca96a6cfeb6435bd8aaba3cbcba8666a339627b076cef",
+      "test_binaries": 29,
+      "passed": 217
+    },
+    "nox": {
+      "log_sha256": "8beb7029f85e5315929b3dfae15715ee3c01903d810f911f786440fb157b8e53",
+      "test_binaries": 1,
+      "passed": 245
+    }
+  },
+  "gates": {
+    "installed-selfhost-smoke/receipt.json": "6bfeab08e1abd40c996e2f88204f418d7686460342713599bb6d809ab17f6163",
+    "unpacked-selfhost-smoke/receipt.json": "3dd33abe550530488749cd58d408c4332f18ec4a94b0e9411887705fd6601cea",
+    "joy-native-smoke/receipt.json": "6d6d6ac89ade4a59ae4dac0c44cbcfc86f6f6313ae9d9a97a06af54af4c6b4c9",
+    "native-process-files.json": "1a234b163881d6207aa795697bc010247e05cfb6cfc262a8cfdb276dff767ca5",
+    "proof-corpus/smoke.json": "d5f533f422767304329a00bb0531e0042db657fb8fed442d19688e97b77e40dc",
+    "local-corpus-verification.json": "9135ebc02daa90ebc4e664699c71438ee19d23c194955208f5efdbe71a3ecdf9",
+    "neptune-client.log": "237f18c749213c19252c495659f9b52a22aeba770a288124a2b2f3e0c7401927",
+    "neptune-binding.log": "7a77204bc8eb13ca14b43cd3ca25752511586b3c6ee51e01fd7e5bc8d9c268b2"
+  },
+  "baseline_execution": {
+    "all_checks_passed": true,
+    "source_provenance_sha256": "9334dead92b990a12acf16a2565aeb762a07311dfc2c3d6cb896c0490dc5926e",
+    "candidate_sha256": "00e0dffe43bc1802310338fce9911bd61127de48c2a181f5cc2bcc1327e7c6f3",
+    "log_sha256": "d8f6a5c3bdb5cd044b084c2d1f46750ccfa090fcbd89ca69b5c32afd6aa2a914",
+    "target": "x86_64-unknown-linux-gnu",
+    "baselines": 43,
+    "positive_fixtures": 99,
+    "negative_fixtures": 34,
+    "generated_proofs": 0
+  },
+  "corpus_cases": 47,
+  "corpus_positive": 18,
+  "corpus_rejections": 29,
+  "binary_archive": {
+    "name": "cyber-tools-x86_64-unknown-linux-gnu.tar.gz",
+    "sha256": "5d4193576a26792afdfa9ca4a0bb4d050412a25e2d99311a35d0b5ba9efb6609",
+    "bytes": 18199057
+  },
+  "corpus_archive": {
+    "name": "proof-corpus-x86_64-unknown-linux-gnu.tar.gz",
+    "sha256": "6fd7803d1320f489ef7d8b8d12963e97600928c23fd5f19108060e4d1b1c1579",
+    "bytes": 24927405
+  },
+  "inspector_sha256": "64572b572e3a7319f837d788307436e36b54802cc0ba6f146c541bb297d43a8a"
+}

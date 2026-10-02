@@ -1,0 +1,55 @@
+{
+  "status": "passed-source-and-fixture-review",
+  "reviewed_head": "cea3c3b0e0ee228126887ab8203f61500d4378f2",
+  "scope": "Inheritance mechanism only; actual final package equality has not been observed",
+  "findings": [],
+  "checks": [
+    "Pinned original source734 archive/metadata/198 distinct observed proof events/limits and original checker required",
+    "Actual final Trisha executable and all protected non-Joy production inventories/manifests/locks/vendor/manual fixtures must match; missing evidence fails closed",
+    "Trident embedded lib/catalog and Trisha embedded lib/targets/networks/states plus build scripts are protected; reporting exclusions are outside their embedding roots",
+    "Changed actual binary returnsneedsfresh, retaining historical scope; newJoy requires fresh independent gates",
+    "Independently reran actual original positive and six mutations, no warnings"
+  ],
+  "command": [
+    "python3",
+    "-B",
+    "-W",
+    "error",
+    "audit/final-host-ceiling-package/check-inheritance.py",
+    "--current-family",
+    "../../current-distribution",
+    "--output",
+    "../root-inheritance-review"
+  ],
+  "files": {
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci/scripts/inherit-full-baselines.py": {
+      "bytes": 10354,
+      "sha256": "6d37ed18d894bbfb8b3a745d06f360441177cc07f0da83eff9573b78c5d12761"
+    },
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci/docs/reference/release-platforms.md": {
+      "bytes": 11676,
+      "sha256": "b203d2f45c0a6cb7271a17c8c12639a2e4608bd9288060242274d91b7f074a30"
+    },
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci/audit/final-host-ceiling-package/check-inheritance.py": {
+      "bytes": 4835,
+      "sha256": "89136744bd126dcca29a4c24c06d53115fc0a8d8378f122c3e92b334167b7d21"
+    },
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/temporary/cyber-candidate/unpacked/cyber-source/trident/build.rs": {
+      "bytes": 1763,
+      "sha256": "3d9b3849c980838e6f57336c5d6b6fcdeeb1dcbe244035ef44a3d09a15be5dd7"
+    },
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/temporary/cyber-candidate/unpacked/cyber-source/trident/src/config/resolve/mod.rs": {
+      "bytes": 5626,
+      "sha256": "df0370fd0ec1a777a868588c6dedd30f105b1e3588960daba9409f24cbbf2c34"
+    },
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/temporary/cyber-candidate/unpacked/cyber-source/trisha/rs/build.rs": {
+      "bytes": 1348,
+      "sha256": "5f31207725362574ed3ae1cb0daaac9d689e463d4bc95d747c52c201f8474041"
+    },
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/temporary/cyber-candidate/unpacked/cyber-source/trisha/cli/build.rs": {
+      "bytes": 2383,
+      "sha256": "5843049cc394eabf4d1c4e855a51354b45924cc5eb946ab2479bb4b84952f501"
+    }
+  },
+  "limits": "CARGO_MANIFEST_DIR can embed build-location data; source similarity alone never establishes final binary equality. Any mismatch takes the fresh full198 path."
+}

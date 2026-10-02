@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "head": "9f38a66e970fdabbf814e937ac39c42b82985ab5",
+  "scope": "Narrow consumer deadline/actual packaged candidate identity fixes, plus source-only activation review; no actual new native package claim",
+  "prior_root_review": "7c3b2926b2061e4188286f7c24e89fb134c613f5f9af98123e06d6559bc67e76",
+  "prior_consumer_finding": "6fdd1f798001579028a1749ecb38d58fb040fe41b07710a79901095a92c8b49d",
+  "checks_sha256": "3401ba65bc1ddff82d6529432c1da2bfe0199fd830017c993b295704ac5b0f4b",
+  "actual_historical_package_check": {
+    "archive": {
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/release-results/cyber-tools-aarch64-apple-darwin.tar.gz",
+      "sha256": "b542e6e3bf8a15c4650cfeb8bda436ba45a1ecf32844aa9655275bf42086ab9b"
+    },
+    "installed_candidate_sha256": "13aed55f36e8598a4869386e9349731c075903465a9098db413506695afbea62",
+    "packaged_candidate_sha256": "13aed55f36e8598a4869386e9349731c075903465a9098db413506695afbea62",
+    "original_build_candidate_sha256": "5a98849d67115fd9e1d2ccb59f0e3a3e68dc47c5700f5c09adec6eacc8cd43f4"
+  },
+  "final_source": {
+    "sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+    "bytes": 536837002,
+    "provenance_sha256": "9334dead92b990a12acf16a2565aeb762a07311dfc2c3d6cb896c0490dc5926e",
+    "inputs_sha256": "6a9e9af007de7f1d3dca6cb078080270cb4b96057db182f9c64775d063d6e767"
+  },
+  "files": {
+    "scripts/native-candidate.py": "b2ef3e9ac773e6326f084cdf9cf419766272646d9c6ad7050953a0b3417a7e05",
+    "scripts/native-rehearsal-macos-floor.py": "1997002295a3596e28a21c5eac90da648739258b5d70471abfdc77cf428e12c5",
+    "scripts/transport-native-rehearsal.py": "685cf20dcc3c593be06092c62d050d42c316f0bea355ba6a364d2056035b54f9",
+    "scripts/test_final_native_gate.py": "cf494c9486dd3853925909bee149936e31fc08761c9daa9ad7763d25f356d70c",
+    "scripts/test_transport_native_rehearsal.py": "2edb8f80ac9778dcbcda5ef787842e55056f471db15fc7186bdb7a9bd9e42f14"
+  },
+  "resolved": [
+    "Final verify branch invokes actual installed deadline helper before returning; all six cross consumers and Mac14 use this branch.",
+    "Mac14 wrapper binds actual23 probe commands to installed Joy/candidate/source under existing resource bounds.",
+    "Transport authenticates binary archive before reading actual packaged candidate.json bytes; original build metadata and serialization changes are rejected.",
+    "All five source selectors remain inactive; proposed activation changes only final source selector status and keeps native/assets/Mac14 inactive."
+  ],
+  "remaining": "Peer supplemental review before source-only activation. Actual remote byte reproduction and all native gates remain pending.",
+  "finished": "2026-10-02T08:01:45.069544+00:00"
+}

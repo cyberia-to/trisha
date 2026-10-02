@@ -1,0 +1,98 @@
+{
+  "status": "passed",
+  "scope": "Pre-export source comparison, orchestration tests and actual old-binary rejection only",
+  "commands": [
+    {
+      "name": "actionlint",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/native-proof-ci/actionlint-1.7.12/actionlint"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "01f8a80"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "runner",
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_final_native_gate.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "transport",
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_transport_native_rehearsal.py"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "expected_old_binary_rejection": {
+    "exit_code": 1,
+    "first_rejected_command": {
+      "name": "verify-30000-14400000",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/temporary/cyber-candidate/installed/cyber-tools/bin/joy",
+        "verify-artifact",
+        "compiler",
+        "--input",
+        "job",
+        "--proof",
+        "proof-30000",
+        "-o",
+        "compiled",
+        "--emit",
+        "program",
+        "--force",
+        "--time-ms",
+        "14400000",
+        "--resident-nodes",
+        "196608",
+        "--collection-work",
+        "100000000"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/host-ceiling-old-binary-rejection",
+      "expected_exit": 0,
+      "exit_code": 1,
+      "stdout": {
+        "path": "verify-30000-14400000.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "verify-30000-14400000.stderr",
+        "bytes": 61,
+        "sha256": "06aa7dd648b984b141457abfdccb02fcb9fe256e6abdab4fb3c70fcb4e66851e"
+      }
+    },
+    "diagnostic": "limit time_ms must be in 1..=7200000"
+  },
+  "source_preview": "passed"
+}

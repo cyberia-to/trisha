@@ -1,0 +1,44 @@
+[
+  {
+    "name": "orchestration",
+    "argv": [
+      "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+      "-B",
+      "-W",
+      "error",
+      "scripts/test_final_native_gate.py"
+    ],
+    "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+    "exit_code": 0,
+    "started_ns": 1790928116808207000,
+    "ended_ns": 1790928116889958000
+  },
+  {
+    "name": "transport",
+    "argv": [
+      "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+      "-B",
+      "-W",
+      "error",
+      "scripts/test_transport_native_rehearsal.py"
+    ],
+    "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+    "exit_code": 0,
+    "started_ns": 1790928116889961000,
+    "ended_ns": 1790928116937843000
+  },
+  {
+    "name": "diff",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+      "9f38a66e970fdabbf814e937ac39c42b82985ab5"
+    ],
+    "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+    "exit_code": 0,
+    "started_ns": 1790928116937846000,
+    "ended_ns": 1790928116961760000
+  }
+]

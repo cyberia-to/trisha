@@ -1,0 +1,220 @@
+{
+  "files": [
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/aarch64-pc-windows-msvc.json",
+      "stored": "aarch64-pc-windows-msvc.json",
+      "encoding": "identity",
+      "original_bytes": 6157,
+      "original_sha256": "02b4c8c54565e1f57f85469277b7ceeebe306bbf637ce857f3dc153d013985e1",
+      "stored_sha256": "02b4c8c54565e1f57f85469277b7ceeebe306bbf637ce857f3dc153d013985e1"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/aarch64-pc-windows-msvc.stderr",
+      "stored": "aarch64-pc-windows-msvc.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/aarch64-pc-windows-msvc.stdout",
+      "stored": "aarch64-pc-windows-msvc.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 827,
+      "original_sha256": "1574b8df3d6472a6e0efb1d741120ba94e160f35daab9056377864ef33f039f2",
+      "stored_sha256": "6314e8a4d90db32a259d86cac04d4049ecddcf5d005f298972ea0a4d01d8799d"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/aarch64-unknown-linux-gnu.json",
+      "stored": "aarch64-unknown-linux-gnu.json",
+      "encoding": "identity",
+      "original_bytes": 6160,
+      "original_sha256": "fb919b045a79c82671329e6083e06d8598c22c0e729e2d05380f2ec62a394735",
+      "stored_sha256": "fb919b045a79c82671329e6083e06d8598c22c0e729e2d05380f2ec62a394735"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/aarch64-unknown-linux-gnu.stderr",
+      "stored": "aarch64-unknown-linux-gnu.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/aarch64-unknown-linux-gnu.stdout",
+      "stored": "aarch64-unknown-linux-gnu.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 829,
+      "original_sha256": "a8dbb85ad68d6fcd4f73fef163b9b0c12d530b286a3e5145fa411d607f2e7c31",
+      "stored_sha256": "bb10176c1313d5ebba5878d44705d62f24878d1b757c752eb9704de5ffdb0ccb"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/draft.stderr",
+      "stored": "draft.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/draft.stdout",
+      "stored": "draft.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 182389,
+      "original_sha256": "46fc60eef044d36524d5990c7af92365a9398a47d7b045fe2a500bb2f09a6e33",
+      "stored_sha256": "4efe236692d2ce1f5a592608e766402aa2109b099fa803ddb7a667e071d12a2a"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/receipt.json",
+      "stored": "receipt.json",
+      "encoding": "identity",
+      "original_bytes": 8576,
+      "original_sha256": "0f780d49cb1a591034c16b0f2e9889f540af52079ff022a29d81bcba7a6aab8f",
+      "stored_sha256": "0f780d49cb1a591034c16b0f2e9889f540af52079ff022a29d81bcba7a6aab8f"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/run.py",
+      "stored": "run.py",
+      "encoding": "identity",
+      "original_bytes": 3638,
+      "original_sha256": "5f2f5ea36e4503cb8b08656ded35108a2fb7caff2ad6c5478ae69df98b0ae734",
+      "stored_sha256": "5f2f5ea36e4503cb8b08656ded35108a2fb7caff2ad6c5478ae69df98b0ae734"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/run.stderr",
+      "stored": "run.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/run.stdout",
+      "stored": "run.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 12451,
+      "original_sha256": "0535dd43d042b6e9dad05957770eb918d8a890b460ecab80e0700a58fcb3cbfc",
+      "stored_sha256": "a8fa7b8ba098bb185fb157abd017f6d6c8cdc06579e7f11e930915770a153694"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/source-final-package-assets.yml.stderr",
+      "stored": "source-final-package-assets.yml.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/source-final-package-assets.yml.stdout",
+      "stored": "source-final-package-assets.yml.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 1628,
+      "original_sha256": "6d3c9a744e4650e654fb9d0b7da502319b857d4c254d9bc8a45f6896bb7c306e",
+      "stored_sha256": "7750edc865f2daba772b14167e67f8dd5bd005ff86bc4ffb91e4aa016067ca9b"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/source-transport-native-rehearsal.py.stderr",
+      "stored": "source-transport-native-rehearsal.py.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/source-transport-native-rehearsal.py.stdout",
+      "stored": "source-transport-native-rehearsal.py.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 12788,
+      "original_sha256": "685cf20dcc3c593be06092c62d050d42c316f0bea355ba6a364d2056035b54f9",
+      "stored_sha256": "5d2ab4f0407918359ea7cada0fda2f82e4449c4621f9f8652559f30afbb001cd"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/tag.stderr",
+      "stored": "tag.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 25,
+      "original_sha256": "d2c8985c89b29a842ac4946d13bdbc297709f44f20bb968faf9682664b211db6",
+      "stored_sha256": "78c04f26d387077acccd2d2e3fff8dd829fd9365e76a586cc79f6d1c0ec2b042"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/tag.stdout",
+      "stored": "tag.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 114,
+      "original_sha256": "e2e3c64edab172132f77ce89a0e8c190db1cd30936a096344f45893bd5b75f8a",
+      "stored_sha256": "310e0d1b19a6f39920a861e2c6a11fd714c9d3f0cb901c5a8044a8d487891a9c"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/x86_64-apple-darwin.json",
+      "stored": "x86_64-apple-darwin.json",
+      "encoding": "identity",
+      "original_bytes": 6087,
+      "original_sha256": "db3ec5f2e74a96dad58842b612e599995fa297ee057885a1584bbfcf23f61123",
+      "stored_sha256": "db3ec5f2e74a96dad58842b612e599995fa297ee057885a1584bbfcf23f61123"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/x86_64-apple-darwin.stderr",
+      "stored": "x86_64-apple-darwin.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/x86_64-apple-darwin.stdout",
+      "stored": "x86_64-apple-darwin.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 823,
+      "original_sha256": "9cd7d7fb8f3e9bb0eb71380c1b9a34f27684f22839c064d978d4b78b3e8a404c",
+      "stored_sha256": "3484c499c4500fac199317fed4335f9c6d8c5de6388e8a4caa43b331aba87c0a"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/x86_64-pc-windows-msvc.json",
+      "stored": "x86_64-pc-windows-msvc.json",
+      "encoding": "identity",
+      "original_bytes": 6162,
+      "original_sha256": "2eb738dfd8401446452f3d76b72fc6dabbef84a8467365e1bf764e73a480db77",
+      "stored_sha256": "2eb738dfd8401446452f3d76b72fc6dabbef84a8467365e1bf764e73a480db77"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/x86_64-pc-windows-msvc.stderr",
+      "stored": "x86_64-pc-windows-msvc.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/x86_64-pc-windows-msvc.stdout",
+      "stored": "x86_64-pc-windows-msvc.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 826,
+      "original_sha256": "e2ba23fd515cc199a3ee43c0210b5e526faff3d7d902c306f4eab99047a15fac",
+      "stored_sha256": "78cfa54b055c4a9cc05885b2d769a257467ab063452d9ae9c6107329c7297005"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/x86_64-unknown-linux-gnu.json",
+      "stored": "x86_64-unknown-linux-gnu.json",
+      "encoding": "identity",
+      "original_bytes": 6147,
+      "original_sha256": "dbf58986ca442cf5059a1635edefe4cac268d2dbe6736e4f85d37a21fdb4911b",
+      "stored_sha256": "dbf58986ca442cf5059a1635edefe4cac268d2dbe6736e4f85d37a21fdb4911b"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/x86_64-unknown-linux-gnu.stderr",
+      "stored": "x86_64-unknown-linux-gnu.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/x86_64-unknown-linux-gnu.stdout",
+      "stored": "x86_64-unknown-linux-gnu.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 828,
+      "original_sha256": "877c8ac08b44a623a7a6f0c879a1ebd12966fc273f301817bcd4ebffeae79436",
+      "stored_sha256": "c34e7bd91722cb1851e21461affa7c43761c81203d9c02fd9e93541cecbb05fe"
+    }
+  ]
+}

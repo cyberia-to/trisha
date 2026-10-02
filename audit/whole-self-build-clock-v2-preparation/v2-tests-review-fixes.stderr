@@ -1,0 +1,19 @@
+..........F.....
+======================================================================
+FAIL: test_bounded_child_has_empty_path_and_retained_identity_receipt (test_whole_v2.RuntimeTests.test_bounded_child_has_empty_path_and_retained_identity_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha/scripts/test_whole_v2.py", line 198, in test_bounded_child_has_empty_path_and_retained_identity_receipt
+    self.assertEqual(value,expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: {'PAT[49 chars]'fixture-tracking', '__CF_USER_TEXT_ENCODING': '0x1F5:0x0:0x0'} != {'PAT[49 chars]'fixture-tracking'}
++ {'LANG': 'C.UTF-8', 'PATH': '', 'RUNNER_TRACKING_ID': 'fixture-tracking'}
+- {'LANG': 'C.UTF-8',
+-  'PATH': '',
+-  'RUNNER_TRACKING_ID': 'fixture-tracking',
+-  '__CF_USER_TEXT_ENCODING': '0x1F5:0x0:0x0'}
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.162s
+
+FAILED (failures=1)

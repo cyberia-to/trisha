@@ -1,0 +1,40 @@
+{
+  "expected": "1.89.0",
+  "tools": [
+    {
+      "command": [
+        "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/rustc",
+        "-vV"
+      ],
+      "resolved": "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/rustc",
+      "sha256": "af4a9eb303553510e9d74220636dc4b21f8574ddeab73741bf6b892adc49c21c",
+      "exit_code": 0,
+      "stdout": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: aarch64-apple-darwin\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/cargo",
+        "-Vv"
+      ],
+      "resolved": "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/cargo",
+      "sha256": "798a97c06e6fc3a63f1b7e3141f87e515e6bc8da1527bc32e19ba27d86bb89c5",
+      "exit_code": 0,
+      "stdout": "cargo 1.89.0 (c24e10642 2025-06-23)\nrelease: 1.89.0\ncommit-hash: c24e1064277fe51ab72011e2612e556ac56addf7\ncommit-date: 2025-06-23\nhost: aarch64-apple-darwin\nlibgit2: 1.9.0 (sys:0.20.2 vendored)\nlibcurl: 8.7.1 (sys:0.4.80+curl-8.12.1 system ssl:(SecureTransport) LibreSSL/3.3.6)\nssl: OpenSSL 3.5.0 8 Apr 2025\nos: Mac OS 26.4.1 [64-bit]\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/rustdoc",
+        "-vV"
+      ],
+      "resolved": "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/rustdoc",
+      "sha256": "1e65fe1796464bbe73ee53231852d8a779f144e8825c2711819435e0aad2213e",
+      "exit_code": 0,
+      "stdout": "rustdoc 1.89.0 (29483883e 2025-08-04)\nbinary: rustdoc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: aarch64-apple-darwin\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+      "stderr": ""
+    }
+  ],
+  "PATH": "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin:/Users/master/.grok/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/opt/pkg/env/active/bin:/opt/pmk/env/global/bin:/opt/homebrew/bin:/Users/master/Library/Application Support/Zed/external_agents/registry/npx/codex-acp/node_modules/@openai/codex-darwin-arm64/vendor/aarch64-apple-darwin/codex-path:/Users/master/.codex/tmp/arg0/codex-arg00dVQaB:/Users/master/.cargo/bin:/Users/master/.foundry/bin",
+  "RUSTC": "/Users/master/.rustup/toolchains/1.89.0-aarch64-apple-darwin/bin/rustc"
+}

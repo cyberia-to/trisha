@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "scope": "Original final source producer ZIP and all restored members authenticated using final native container inspector; no native producer gate claimed",
+  "artifact_id": 11217474197,
+  "files": 144,
+  "zip_sha256": "2819cb3b80e3aa8bf89bcfc532698e95ac9661b737c39d2ed6ea85187679d7b4",
+  "inspector_sha256": "d542de3b696b0dd4a62b20fff2d629848f650863442d38f0aee61618d152d4f7"
+}

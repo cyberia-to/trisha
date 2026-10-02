@@ -1,0 +1,38 @@
+{
+  "observed_at": "2026-10-02T11:17:36.725272+00:00",
+  "run": 36976540959,
+  "head": "142198726fdec26dae87e2f694da2c2252fefb0f",
+  "attempt": 1,
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 110741492435,
+      "name": "c2 / producer",
+      "status": "completed",
+      "conclusion": "success",
+      "active": []
+    },
+    {
+      "id": 110741492673,
+      "name": "c1 / producer",
+      "status": "completed",
+      "conclusion": "success",
+      "active": []
+    },
+    {
+      "id": 110792837749,
+      "name": "c1 / verifier",
+      "status": "completed",
+      "conclusion": "success",
+      "active": []
+    },
+    {
+      "id": 110798290794,
+      "name": "c2 / verifier",
+      "status": "completed",
+      "conclusion": "success",
+      "active": []
+    }
+  ]
+}

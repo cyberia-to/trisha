@@ -1,0 +1,76 @@
+{
+  "status": "passed-local-preparation-awaiting-root-activation",
+  "source_base": "ec05b133efe3fa71c28d4e50e5defd0f6be8150d",
+  "python": {
+    "path": "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+    "bytes": 52448,
+    "sha256": "2477b47fa3ae65b9574eb18a15edb364e96948eaa1875ad3f1c80d780efc9c12"
+  },
+  "python_version": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "actionlint": {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/native-proof-ci/actionlint-1.7.12/actionlint",
+    "bytes": 5829842,
+    "sha256": "8db11704dc296f096216db4db65d86cd7f0ebfdf4c38453a1da276b137b88388"
+  },
+  "actionlint_version": "1.7.12\ninstalled by downloading from release page\nbuilt with go1.26.1 compiler for darwin/arm64\n",
+  "frozen_input": {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-input-export/sh8-frozen-full-inputs-20261002.tar.gz",
+    "bytes": 16637580,
+    "sha256": "7929925282e338a2f761510167575bfe4494c2713ac6fb9182fe59ef6223b9b8"
+  },
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_whole_v2.py"
+      ],
+      "stdout": "v2-tests-review-fixes-final.stdout",
+      "stderr": "v2-tests-review-fixes-final.stderr",
+      "exit_code": 0,
+      "tests": 16
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_whole_self_build.py"
+      ],
+      "environment": {
+        "WHOLE_SELF_INPUT_ARCHIVE": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-input-export/sh8-frozen-full-inputs-20261002.tar.gz"
+      },
+      "stdout": "v2-original-tests.stdout",
+      "stderr": "v2-original-tests.stderr",
+      "exit_code": 0,
+      "tests": 10
+    },
+    {
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/native-proof-ci/actionlint-1.7.12/actionlint",
+        ".github/workflows/whole-self-build.yml",
+        ".github/workflows/whole-self-build-v2.yml",
+        ".github/workflows/whole-self-build-v2-generation.yml"
+      ],
+      "stdout": "v2-actionlint-review-fixes.stdout",
+      "stderr": "v2-actionlint-review-fixes.stderr",
+      "exit_code": 0
+    }
+  ],
+  "scope": "Offline CI orchestration and physical guards only; no actual full compiler/proof retry; all original failed7200s artifacts remain unchanged",
+  "old_attempt": "audit/whole-self-build-linux-20261002",
+  "source_pin": "dd61df9128f6da1f97d4698f45f154f05312fe51",
+  "runtime_profile_enabled": false,
+  "push_activation_enabled": false
+}

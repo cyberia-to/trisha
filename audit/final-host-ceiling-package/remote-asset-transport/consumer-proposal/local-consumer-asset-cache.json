@@ -1,0 +1,23 @@
+{
+  "605224542": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-export.tar.gz",
+  "604463150": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/trisha/audit/selfhost-kit/accepted/selfhost-kit.tar.gz",
+  "605010237": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/local-rust189-complete/rehearsal-20261002-734df69d-local-rust189-evidence.tar.gz",
+  "605444596": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-cyber-tools-aarch64-pc-windows-msvc.zip",
+  "605444672": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-proof-corpus-aarch64-pc-windows-msvc.tar.gz",
+  "605444722": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-structured-corpus-aarch64-pc-windows-msvc.tar.gz",
+  "605444976": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-cyber-tools-aarch64-unknown-linux-gnu.tar.gz",
+  "605445038": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-proof-corpus-aarch64-unknown-linux-gnu.tar.gz",
+  "605445106": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-structured-corpus-aarch64-unknown-linux-gnu.tar.gz",
+  "605445352": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-cyber-tools-x86_64-apple-darwin.tar.gz",
+  "605445416": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-proof-corpus-x86_64-apple-darwin.tar.gz",
+  "605445468": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-structured-corpus-x86_64-apple-darwin.tar.gz",
+  "605445697": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-cyber-tools-x86_64-pc-windows-msvc.zip",
+  "605445753": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-proof-corpus-x86_64-pc-windows-msvc.tar.gz",
+  "605445819": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-structured-corpus-x86_64-pc-windows-msvc.tar.gz",
+  "605446043": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-cyber-tools-x86_64-unknown-linux-gnu.tar.gz",
+  "605446081": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-proof-corpus-x86_64-unknown-linux-gnu.tar.gz",
+  "605446158": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-structured-corpus-x86_64-unknown-linux-gnu.tar.gz",
+  "605308332": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/local-package-readback/rehearsal-20261002-final-dd61-local-rust189-cyber-tools-aarch64-apple-darwin.tar.gz",
+  "605308674": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/local-package-readback/rehearsal-20261002-final-dd61-local-rust189-proof-corpus-aarch64-apple-darwin.tar.gz",
+  "605308921": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/local-package-readback/rehearsal-20261002-final-dd61-local-rust189-structured-corpus-aarch64-apple-darwin.tar.gz"
+}

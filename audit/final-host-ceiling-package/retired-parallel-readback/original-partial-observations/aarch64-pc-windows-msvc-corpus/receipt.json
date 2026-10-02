@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "asset": {
+    "kind": "corpus",
+    "target": "aarch64-pc-windows-msvc",
+    "asset_id": 605444672,
+    "name": "rehearsal-20261002-final-dd61-remote-proof-corpus-aarch64-pc-windows-msvc.tar.gz",
+    "sha256": "3276ceb704313e5c73b3df4d0d22c91ba602c6dd3c6affe42669070e6525ed93",
+    "bytes": 25140541,
+    "producer_run_id": 36990413939,
+    "producer_artifact_id": 11221602815
+  },
+  "commands": [
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/assets/605444672"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "reused_complete_serial_body": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-readback/rehearsal-20261002-final-dd61-remote-proof-corpus-aarch64-pc-windows-msvc.tar.gz",
+  "original_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221602815/restored/proof-corpus-aarch64-pc-windows-msvc.tar.gz",
+  "download_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/remote-package-parallel-readback/aarch64-pc-windows-msvc-corpus/rehearsal-20261002-final-dd61-remote-proof-corpus-aarch64-pc-windows-msvc.tar.gz"
+}

@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "command": [
+    "python3",
+    "-B",
+    "-W",
+    "error",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts",
+    "-p",
+    "test_transport_native_rehearsal.py"
+  ],
+  "tests": 5,
+  "corruptions": [
+    "digest of original candidate with local source path",
+    "digest of logically equal reformatted packaged candidate"
+  ],
+  "scope": "Require exact packaged metadata bytes; explicit test fixtures, no final native acceptance"
+}

@@ -1,0 +1,20 @@
+{
+  "id": 11226096465,
+  "node_id": "MDg6QXJ0aWZhY3QxMTIyNjA5NjQ2NQ==",
+  "name": "candidate-x86_64-apple-darwin",
+  "size_in_bytes": 4237477,
+  "url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11226096465",
+  "archive_download_url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11226096465/zip",
+  "expired": false,
+  "digest": "sha256:7136e0c2704d71b727700bc387c033d97ec64fdfdd0be7f7fceace115f92a613",
+  "created_at": "2026-10-02T12:26:17Z",
+  "updated_at": "2026-10-02T12:26:17Z",
+  "expires_at": "2026-11-01T12:26:14Z",
+  "workflow_run": {
+    "id": 37003795408,
+    "repository_id": 1159894384,
+    "head_repository_id": 1159894384,
+    "head_branch": "test/0.4-final-host-ceiling-20261002",
+    "head_sha": "dd858356251101f285c785cb04fba1644a612fce"
+  }
+}

@@ -1,0 +1,112 @@
+name: One complete native compiler generation with fresh verification
+on:
+  workflow_call:
+    inputs:
+      generation:
+        type: number
+        required: true
+permissions:
+  contents: read
+jobs:
+  producer:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.13.15'
+          architecture: x64
+      - name: Prepare exact pinned native producer and frozen input
+        timeout-minutes: 45
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GENERATION: ${{ inputs.generation }}
+        run: >-
+          python -B scripts/whole-v2.py prepare --phase producer --generation "$GENERATION"
+          --results "$RUNNER_TEMP/whole-v2-producer-results"
+      - name: Produce complete certificate with four-hour physical clock
+        timeout-minutes: 250
+        run: >-
+          python -B scripts/whole-v2.py produce --results "$RUNNER_TEMP/whole-v2-producer-results"
+      - name: Stage complete certificate explicitly pending fresh verification
+        timeout-minutes: 45
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python -B scripts/whole-v2.py stage --results "$RUNNER_TEMP/whole-v2-producer-results"
+      - name: Hand off exact pending manifest to fresh native verifier
+        timeout-minutes: 5
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: whole-v2-pending-c${{ inputs.generation }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/whole-v2-producer-results/handoff/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Preserve producer success or failure evidence
+        timeout-minutes: 5
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: whole-v2-producer-c${{ inputs.generation }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/whole-v2-producer-results/
+          if-no-files-found: error
+          retention-days: 30
+  verifier:
+    needs: producer
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.13.15'
+          architecture: x64
+      - name: Obtain same-run pending pointer
+        timeout-minutes: 5
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: whole-v2-pending-c${{ inputs.generation }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/whole-v2-handoff
+      - name: Prepare independent pinned native verifier and frozen input
+        timeout-minutes: 45
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GENERATION: ${{ inputs.generation }}
+        run: >-
+          python -B scripts/whole-v2.py prepare --phase verifier --generation "$GENERATION"
+          --results "$RUNNER_TEMP/whole-v2-verifier-results"
+      - name: Authenticate complete pending certificate from fixed draft
+        timeout-minutes: 60
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python -B scripts/whole-v2.py download --results "$RUNNER_TEMP/whole-v2-verifier-results"
+          --handoff "$RUNNER_TEMP/whole-v2-handoff"
+      - name: Fresh verify exact compiler and JOB then compare complete C2 or C3
+        timeout-minutes: 130
+        run: >-
+          python -B scripts/whole-v2.py verify --results "$RUNNER_TEMP/whole-v2-verifier-results"
+      - name: Retain independently verified completion with exact pending binding
+        timeout-minutes: 30
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python -B scripts/whole-v2.py complete --results "$RUNNER_TEMP/whole-v2-verifier-results"
+      - name: Preserve verifier success or failure evidence
+        timeout-minutes: 10
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: whole-v2-verifier-c${{ inputs.generation }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/whole-v2-verifier-results/
+          if-no-files-found: error
+          retention-days: 30

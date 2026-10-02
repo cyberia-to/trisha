@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "scope": "Root actual source/readback/original ZIP authentication and exact concrete native activation review; no native result claimed",
+  "reviewed_at": "2026-10-02T09:25:13.703268+00:00",
+  "source_head": "6c56c2e062aed36699ee142176bf8ab9fd7f69d8",
+  "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+  "source_bytes": 536837002,
+  "run_id": 36987731030,
+  "source_asset": 605224542,
+  "original_zip_sha256": "2819cb3b80e3aa8bf89bcfc532698e95ac9661b737c39d2ed6ea85187679d7b4",
+  "readback_receipt_sha256": "bcdb030e22e8903da7f7048c01ba09c63c3eddf6542b14a59499248d7500845c",
+  "selector_sha256": "0ff11aab6d5ee47f1778965074069cbcb473455e54143419368895343117f3e5",
+  "proposal_sha256": "19b36a3955f75f4db20d65881d2da4d5842a9c665616de51b505034927e1fac8",
+  "authorized_action": "Commit and push exact proposed selector; run five native remote producers and one local Mac ARM producer with reviewed bounds, fresh admission and authenticated asset cache; retain actual failures; consumers later after producer artifacts exist",
+  "source_pins": "Trisha c8836be / Joy dd61 remain fixed",
+  "prior_reviews": [
+    "7c3b2926b2061e4188286f7c24e89fb134c613f5f9af98123e06d6559bc67e76",
+    "07d773115c5b42322f55f9dec95c58e716a78cfff8f1222678f9ff7e1097e654",
+    "309ed6428b65ae99a9b7da9e54740c6692403b2b3c69b6d4fe6c88e5550c0002"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "status": "passed-transport-review",
+  "reviewed_at": "2026-10-02T09:56:53.609129+00:00",
+  "scope": "Read-only concrete local archive and original installed gate replay; full198 verdict and release acceptance remain separate",
+  "proposal": {
+    "bytes": 1587,
+    "sha256": "506fc163af341f435298edd565079fe44c6f1df329ba1c94cfba0c68d1bb00bc"
+  },
+  "scripts": {
+    "upload-final-local-packages.py": {
+      "bytes": 7055,
+      "sha256": "e64a7d028b463cde03f25f52689b8a08da6cf32fe67f91ca7ec0f7f6da820b92"
+    },
+    "transport-final-local-packages.py": {
+      "bytes": 1959,
+      "sha256": "ad2f2894dbc43076183085fcc15a96ece8993755bcded62758c2ad11c19e08b5"
+    },
+    "check-final-origin-before-packages.py": {
+      "bytes": 2244,
+      "sha256": "519f2e1b73440f49702b3417a9df4803f4a384133c51bcb7f00b5bf1e9c78c3c"
+    },
+    "check-final-origin-after-packages.py": {
+      "bytes": 2242,
+      "sha256": "259c3c0d316930b211e0fc41dc39042c2bef0b67040c3567a77f26904e09ba3d"
+    },
+    "inspect-final-native-producer.py": {
+      "bytes": 19072,
+      "sha256": "64572b572e3a7319f837d788307436e36b54802cc0ba6f146c541bb297d43a8a"
+    }
+  },
+  "actual_command": "python3 imports exact uploader and invokes guard(); hashes all three payloads",
+  "authorized_action": "Upload only the three named immutable archives to existing unpublished draft389977897, unique names, no overwrite/tag/promotion; retain before/after source reachability and authenticated complete readback before consumer activation",
+  "payloads": [
+    {
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/local-macos-final-rust189/release-results/cyber-tools-aarch64-apple-darwin.tar.gz",
+      "bytes": 16929929,
+      "sha256": "0ba4af63ea103c4d41382816541e8ade6883d7af078ba9e3ba3e9cb27e05d348",
+      "proposed_asset_name": "rehearsal-20261002-final-dd61-local-rust189-cyber-tools-aarch64-apple-darwin.tar.gz"
+    },
+    {
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/local-macos-final-rust189/release-results/proof-corpus-aarch64-apple-darwin.tar.gz",
+      "bytes": 25171332,
+      "sha256": "29632607c886c71398c1f637c5361f53164fdb52167ffbea27b1cc2d452a1002",
+      "proposed_asset_name": "rehearsal-20261002-final-dd61-local-rust189-proof-corpus-aarch64-apple-darwin.tar.gz"
+    },
+    {
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/local-macos-final-rust189/release-results/structured-corpus-aarch64-apple-darwin.tar.gz",
+      "bytes": 687915,
+      "sha256": "7a64776e901dc39c94682188bc7700692e1f60f3f48dd3606bcee24a72f4cdf0",
+      "proposed_asset_name": "rehearsal-20261002-final-dd61-local-rust189-structured-corpus-aarch64-apple-darwin.tar.gz"
+    }
+  ]
+}

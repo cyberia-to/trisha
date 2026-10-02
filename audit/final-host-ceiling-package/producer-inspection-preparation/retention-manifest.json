@@ -1,0 +1,222 @@
+{
+  "scope": "Read-only inspector checks and concrete local package transport proposal. Full198 remains running; no remote producer or consumer acceptance.",
+  "observed_at": "2026-10-02T09:52:32.179657+00:00",
+  "files": [
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inspect-final-native-producer.py",
+      "stored": "inspect-final-native-producer.py",
+      "encoding": "identity",
+      "original_bytes": 19072,
+      "original_sha256": "64572b572e3a7319f837d788307436e36b54802cc0ba6f146c541bb297d43a8a",
+      "stored_sha256": "64572b572e3a7319f837d788307436e36b54802cc0ba6f146c541bb297d43a8a"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inspect-final-native-producer-container-v1.py",
+      "stored": "inspect-final-native-producer-container-v1.py",
+      "encoding": "identity",
+      "original_bytes": 18336,
+      "original_sha256": "d542de3b696b0dd4a62b20fff2d629848f650863442d38f0aee61618d152d4f7",
+      "stored_sha256": "d542de3b696b0dd4a62b20fff2d629848f650863442d38f0aee61618d152d4f7"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/test_final_native_inspection.py",
+      "stored": "test_final_native_inspection.py",
+      "encoding": "identity",
+      "original_bytes": 3294,
+      "original_sha256": "fb2224f20e8060b0157c178be80caf101124d78ec9512c1a47a45bde1c19df91",
+      "stored_sha256": "fb2224f20e8060b0157c178be80caf101124d78ec9512c1a47a45bde1c19df91"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/test_final_deadline_receipt.py",
+      "stored": "test_final_deadline_receipt.py",
+      "encoding": "identity",
+      "original_bytes": 3162,
+      "original_sha256": "adbb40f16e4ffc17a4f533a742d150db5e982361cc7b22fb79ae53217c9a0877",
+      "stored_sha256": "adbb40f16e4ffc17a4f533a742d150db5e982361cc7b22fb79ae53217c9a0877"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inspector-tests.stdout",
+      "stored": "inspector-tests.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inspector-tests.stderr",
+      "stored": "inspector-tests.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 106,
+      "original_sha256": "fc23540c8545d4075fe2f0420accd022e74e5566176c3bd4c597964ff02c2e14",
+      "stored_sha256": "6279c2f68a382354b44779de455e050d76e00cfe5fd9093a70fb9a3cc03312c5"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/deadline-inspector-tests.stdout",
+      "stored": "deadline-inspector-tests.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/deadline-inspector-tests.stderr",
+      "stored": "deadline-inspector-tests.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 106,
+      "original_sha256": "89fcc59483527e2943b0da8963217ab5a076d7658720afb372e24381ffce721a",
+      "stored_sha256": "3721b9de9d5d33e36c05f5b5908b6b103deba493a373d7b56f11e98a6db5165a"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inspector-original-source-container.json",
+      "stored": "inspector-original-source-container.json",
+      "encoding": "identity",
+      "original_bytes": 405,
+      "original_sha256": "61def6fced054901fd43374bc712058b13b1d742a7e6e43ba13e2449ed2121bc",
+      "stored_sha256": "61def6fced054901fd43374bc712058b13b1d742a7e6e43ba13e2449ed2121bc"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inspector-original-source-container-v2.json",
+      "stored": "inspector-original-source-container-v2.json",
+      "encoding": "identity",
+      "original_bytes": 767,
+      "original_sha256": "ebc472e921a69b53b1dae506679e0402aee2a7eccd2641450f3562c4eb51bada",
+      "stored_sha256": "ebc472e921a69b53b1dae506679e0402aee2a7eccd2641450f3562c4eb51bada"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/local-installed-inspection.json",
+      "stored": "local-installed-inspection.json",
+      "encoding": "identity",
+      "original_bytes": 3007,
+      "original_sha256": "87f46f01395b2fa7c38b23e2cfc91106be73622df695e2517760875c06a97b02",
+      "stored_sha256": "87f46f01395b2fa7c38b23e2cfc91106be73622df695e2517760875c06a97b02"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/local-package-transport-proposal.json",
+      "stored": "local-package-transport-proposal.json",
+      "encoding": "identity",
+      "original_bytes": 1587,
+      "original_sha256": "506fc163af341f435298edd565079fe44c6f1df329ba1c94cfba0c68d1bb00bc",
+      "stored_sha256": "506fc163af341f435298edd565079fe44c6f1df329ba1c94cfba0c68d1bb00bc"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/check-final-origin-before-packages.py",
+      "stored": "check-final-origin-before-packages.py",
+      "encoding": "identity",
+      "original_bytes": 2244,
+      "original_sha256": "519f2e1b73440f49702b3417a9df4803f4a384133c51bcb7f00b5bf1e9c78c3c",
+      "stored_sha256": "519f2e1b73440f49702b3417a9df4803f4a384133c51bcb7f00b5bf1e9c78c3c"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/check-final-origin-after-packages.py",
+      "stored": "check-final-origin-after-packages.py",
+      "encoding": "identity",
+      "original_bytes": 2242,
+      "original_sha256": "259c3c0d316930b211e0fc41dc39042c2bef0b67040c3567a77f26904e09ba3d",
+      "stored_sha256": "259c3c0d316930b211e0fc41dc39042c2bef0b67040c3567a77f26904e09ba3d"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/transport-final-local-packages.py",
+      "stored": "transport-final-local-packages.py",
+      "encoding": "identity",
+      "original_bytes": 1959,
+      "original_sha256": "ad2f2894dbc43076183085fcc15a96ece8993755bcded62758c2ad11c19e08b5",
+      "stored_sha256": "ad2f2894dbc43076183085fcc15a96ece8993755bcded62758c2ad11c19e08b5"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/upload-final-local-packages.py",
+      "stored": "upload-final-local-packages.py",
+      "encoding": "identity",
+      "original_bytes": 7055,
+      "original_sha256": "e64a7d028b463cde03f25f52689b8a08da6cf32fe67f91ca7ec0f7f6da820b92",
+      "stored_sha256": "e64a7d028b463cde03f25f52689b8a08da6cf32fe67f91ca7ec0f7f6da820b92"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/full198-admission-observation/cpus.stderr",
+      "stored": "full198-admission/cpus.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/full198-admission-observation/cpus.stdout",
+      "stored": "full198-admission/cpus.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 3,
+      "original_sha256": "e6c21e8d260fe71882debdb339d2402a2ca7648529bc2303f48649bce0380017",
+      "stored_sha256": "39d91a535023c5c026fd8ea7a04054dafc8e411c7c1fa207bd31d8ecfb3b632d"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/full198-admission-observation/host.stderr",
+      "stored": "full198-admission/host.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/full198-admission-observation/host.stdout",
+      "stored": "full198-admission/host.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 66,
+      "original_sha256": "2ad5e57776ecb4b37b741f751521e2c77d58bf2d6d64e54c61507eabd39dea31",
+      "stored_sha256": "7226bd7f214bb6e74b1910c65f1e019066b864a48b875d29150fd677392deef3"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/full198-admission-observation/memory-pressure.stderr",
+      "stored": "full198-admission/memory-pressure.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/full198-admission-observation/memory-pressure.stdout",
+      "stored": "full198-admission/memory-pressure.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 110,
+      "original_sha256": "71cb34a53811eb4f316d2e58b7b0564bea8273c0f219f3c3b939a861a0841123",
+      "stored_sha256": "91c3675f06d4bbf1cfdfa8aed0ec6d92fa5e27715c363017189024da011d8ed4"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/full198-admission-observation/memory.stderr",
+      "stored": "full198-admission/memory.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/full198-admission-observation/memory.stdout",
+      "stored": "full198-admission/memory.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 12,
+      "original_sha256": "1a4675111e2b0f970616c374fc0a90aad997171ca22da371c998275950af4481",
+      "stored_sha256": "3a7f5ed46509caf77a8fa470bc621b890a9135ccad33b4d2f76d2d45e802d977"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/full198-admission-observation/processes.stderr",
+      "stored": "full198-admission/processes.stderr.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 0,
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/full198-admission-observation/processes.stdout",
+      "stored": "full198-admission/processes.stdout.gz",
+      "encoding": "gzip-original",
+      "original_bytes": 52801,
+      "original_sha256": "dcd2f8e3a35c091a5b7939823c8e855efdc8337e64718ebe6468aec971380a4c",
+      "stored_sha256": "66703eabff9025c01c9c4d100ef10ed4c2c8e583ce18aace110335cffa455aee"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/full198-admission-observation/receipt.json",
+      "stored": "full198-admission/receipt.json",
+      "encoding": "identity",
+      "original_bytes": 2835,
+      "original_sha256": "a373aac94bb1373a61f5b1f5a3184c646189b5742324aa5ce70337aa066be6c7",
+      "stored_sha256": "a373aac94bb1373a61f5b1f5a3184c646189b5742324aa5ce70337aa066be6c7"
+    }
+  ]
+}

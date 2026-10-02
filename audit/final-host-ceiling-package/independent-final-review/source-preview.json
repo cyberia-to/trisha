@@ -1,0 +1,1509 @@
+{
+  "scope": "Read-only final committed source comparison before export; no native gate observation",
+  "commands": [
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/bbg",
+      "ls-tree",
+      "-rz",
+      "1d39975ad199b48c350fa4cc011cbf6f289480ee"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/bbg",
+      "cat-file",
+      "--batch"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/hemera",
+      "ls-tree",
+      "-rz",
+      "a931a0a8e7ed369852ce0f8bc6451a59745ee692"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/hemera",
+      "cat-file",
+      "--batch"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/honeycrisp",
+      "ls-tree",
+      "-rz",
+      "ff735e6c262926bc9bab7534786a575020cbe442"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/honeycrisp",
+      "cat-file",
+      "--batch"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/joy",
+      "ls-tree",
+      "-rz",
+      "dd61df9128f6da1f97d4698f45f154f05312fe51"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/joy",
+      "cat-file",
+      "--batch"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/lens",
+      "ls-tree",
+      "-rz",
+      "17cafe91431977b738e5b72361187cd01ad93638"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/lens",
+      "cat-file",
+      "--batch"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/neuron",
+      "ls-tree",
+      "-rz",
+      "fd24e768d623604b67e20b4b93fa8e82c83ac373"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/neuron",
+      "cat-file",
+      "--batch"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/nox",
+      "ls-tree",
+      "-rz",
+      "2f09ca3c3f18ae470365310cca8db5208eda75c6"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/nox",
+      "cat-file",
+      "--batch"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/strata",
+      "ls-tree",
+      "-rz",
+      "d2eb1763b8caf04e6c7647ac6fe99761519c2ef9"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/strata",
+      "cat-file",
+      "--batch"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trident",
+      "ls-tree",
+      "-rz",
+      "da0d1a59cd8208fab96f219ccedef29122d5221a"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trident",
+      "cat-file",
+      "--batch"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+      "ls-tree",
+      "-rz",
+      "c8836be0103c8d2ead07c409bb117af04cae3449"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+      "cat-file",
+      "--batch"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/zheng",
+      "ls-tree",
+      "-rz",
+      "0d7ba6d422d9b825f9685e903e55252f88ebecd9"
+    ],
+    [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/zheng",
+      "cat-file",
+      "--batch"
+    ]
+  ],
+  "mutations": [
+    {
+      "repository": "trisha",
+      "path": "rs/build.rs",
+      "rejected": "non-Joy protected source changed: trisha/rs/build.rs"
+    },
+    {
+      "repository": "trident",
+      "path": "build.rs",
+      "rejected": "non-Joy protected source changed: trident/build.rs"
+    },
+    {
+      "repository": "joy",
+      "path": "rs/structured/limits.rs",
+      "rejected": "final Joy files differ from exact reviewed commit"
+    },
+    {
+      "repository": "nox",
+      "path": "Cargo.toml",
+      "rejected": "non-Joy protected source changed: nox/Cargo.toml"
+    },
+    {
+      "repository": "zheng",
+      "path": "Cargo.toml",
+      "rejected": "non-Joy protected source changed: zheng/Cargo.toml"
+    },
+    {
+      "repository": "trisha",
+      "path": "scripts/check-baselines.py",
+      "rejected": "non-Joy protected source changed: trisha/scripts/check-baselines.py"
+    }
+  ],
+  "comparison": {
+    "protected_non_joy": [
+      {
+        "repository": "bbg",
+        "files": 176,
+        "sha256": "20cac5d93500a6f0247b0957af78267faa29850295454ec98ede866aa8e8ff76"
+      },
+      {
+        "repository": "hemera",
+        "files": 135,
+        "sha256": "465f86516afc5c2ad539965232b70cb45cc6e6c4e2b4d5def8dee0cde1fec9f1"
+      },
+      {
+        "repository": "honeycrisp",
+        "files": 307,
+        "sha256": "25a615488373db2db4f315486133f61c1841650cc7cc6ac976a7703ac4446a82"
+      },
+      {
+        "repository": "lens",
+        "files": 53,
+        "sha256": "92860c2c8d479cc7681ae77cd7203ba4b260d442a7da411ce94a4991a85a61a6"
+      },
+      {
+        "repository": "neuron",
+        "files": 102,
+        "sha256": "897266456771022d9d457b1662b2ddc19ac09db9fc14375a27c8fbc87d4fd1a6"
+      },
+      {
+        "repository": "nox",
+        "files": 357,
+        "sha256": "914d713fbd66560c095bd4ba0e7c355176da93307262479be8a04ecc48066dd1"
+      },
+      {
+        "repository": "strata",
+        "files": 244,
+        "sha256": "645e1292d22d1dcaa7826636ff60283c152aca58ffe804384a97de5945dd5a61"
+      },
+      {
+        "repository": "trident",
+        "files": 774,
+        "sha256": "49ddea901db1c748569321f841e9d5ab92c7895eb734f6b843a3d292d878ddeb"
+      },
+      {
+        "repository": "trisha",
+        "files": 566,
+        "sha256": "1a013c2ff0bab4ba5fd1963fceab0e57bee0dfe8aea8f657cce16a29b33473b0"
+      },
+      {
+        "repository": "zheng",
+        "files": 267,
+        "sha256": "e1ea3689b64c9df0fcdbeb6b204d402836d049190e188d3eafb69e50b9bbd0af"
+      }
+    ],
+    "joy_commit": "dd61df9128f6da1f97d4698f45f154f05312fe51",
+    "joy_inventory_sha256": "0e2fc7b13570846474001bdedf80161728a8973ec2968075548d4884d3cb47f5",
+    "joy_changed_files": [
+      ".claude/plans/host-proof-deadline.md",
+      "audit/host-proof-deadline/.gitattributes",
+      "audit/host-proof-deadline/README.md",
+      "audit/host-proof-deadline/boundary/receipt.json",
+      "audit/host-proof-deadline/boundary/resources.jsonl",
+      "audit/host-proof-deadline/boundary/stderr",
+      "audit/host-proof-deadline/boundary/stdout",
+      "audit/host-proof-deadline/check/receipt.json",
+      "audit/host-proof-deadline/check/resources.jsonl",
+      "audit/host-proof-deadline/check/stderr",
+      "audit/host-proof-deadline/check/stdout",
+      "audit/host-proof-deadline/contract-review/commands.json",
+      "audit/host-proof-deadline/contract-review/files.json",
+      "audit/host-proof-deadline/contract-review/initial-invocation.json",
+      "audit/host-proof-deadline/contract-review/passages.json",
+      "audit/host-proof-deadline/contract-review/review.json",
+      "audit/host-proof-deadline/contract-review/source-map.json",
+      "audit/host-proof-deadline/focused/receipt.json",
+      "audit/host-proof-deadline/focused/resources.jsonl",
+      "audit/host-proof-deadline/focused/stderr",
+      "audit/host-proof-deadline/focused/stdout",
+      "audit/host-proof-deadline/independent-review/commands.json",
+      "audit/host-proof-deadline/independent-review/files.json",
+      "audit/host-proof-deadline/independent-review/review.json",
+      "audit/host-proof-deadline/independent-review/reviewed-source/cli/tests/structured_certificates.rs",
+      "audit/host-proof-deadline/independent-review/reviewed-source/cli/tests/structured_certificates/deadline.rs",
+      "audit/host-proof-deadline/independent-review/reviewed-source/cli/tests/structured_run.rs",
+      "audit/host-proof-deadline/independent-review/reviewed-source/rs/structured/limits.rs",
+      "audit/host-proof-deadline/independent-review/reviewed-source/rs/structured/tests/compaction.rs",
+      "audit/host-proof-deadline/independent-review/reviewed-source/rs/structured/tests/compiler/compaction.rs",
+      "audit/host-proof-deadline/independent-review/reviewed-source/specs/structured-run.md",
+      "audit/host-proof-deadline/independent-review/source-map.json",
+      "audit/host-proof-deadline/independent-review/tracked.diff",
+      "audit/host-proof-deadline/install-path/receipt.json",
+      "audit/host-proof-deadline/install-path/resources.jsonl",
+      "audit/host-proof-deadline/install-path/stderr",
+      "audit/host-proof-deadline/install-path/stdout",
+      "audit/host-proof-deadline/install/receipt.json",
+      "audit/host-proof-deadline/install/resources.jsonl",
+      "audit/host-proof-deadline/install/stderr",
+      "audit/host-proof-deadline/install/stdout",
+      "audit/host-proof-deadline/run.py",
+      "audit/host-proof-deadline/source.patch",
+      "audit/host-proof-deadline/test/receipt.json",
+      "audit/host-proof-deadline/test/resources.jsonl",
+      "audit/host-proof-deadline/test/stderr",
+      "audit/host-proof-deadline/test/stdout",
+      "cli/tests/structured_certificates.rs",
+      "cli/tests/structured_certificates/deadline.rs",
+      "cli/tests/structured_run.rs",
+      "rs/structured/limits.rs",
+      "rs/structured/tests/compaction.rs",
+      "rs/structured/tests/compiler/compaction.rs",
+      "specs/structured-run.md"
+    ],
+    "joy_production_changes": [
+      "rs/structured/limits.rs"
+    ],
+    "original_source734_acceptance": {
+      "source734-local-replay.json": {
+        "sha256": "9f1c1e114ad7cbf47f4ac8d3126990211ea709f320b1402cdf1f9909c85573d6",
+        "original": {
+          "status": "passed",
+          "scope": "Read-only replay of original source734 local full198 receipt and complete original archive; no new proofs or later Joy coverage",
+          "source_revision": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+          "command": [
+            "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/temporary/cyber-candidate/candidate/bin/trisha",
+            "bench",
+            "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/temporary/cyber-candidate/unpacked/cyber-source/trisha/baselines/triton",
+            "--full"
+          ],
+          "binaries": {
+            "trident": "fd7a560f19aba2dc5767966126210d7d25b9f06ed7adaf9deab843574aa2ed68",
+            "trident-lsp": "e6f241608ba8c35f83c97c81b2444087cfbaf7ccd19d8b5c05bf65e89765dded",
+            "trisha": "2b096706c9b6905e960d19c93903c1b0e8ea203d21893838dbfa650ca1e0c25a",
+            "joy": "cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6"
+          },
+          "full198_receipt_sha256": "aa280c50530c0fd137cdd57fa8cd0ad1fa12fbbc64e60da174b8983f1f07c46a",
+          "archive": {
+            "path": "rehearsal-20261002-734df69d-local-rust189-evidence.tar.gz",
+            "bytes": 85557916,
+            "sha256": "54db68904fc8c92f1446c46cb7b90345a05e026a92b46e6ccb259822a3328204"
+          },
+          "members": 429,
+          "verified_events": 198,
+          "resource_samples": 806,
+          "peak_rss_bytes": 15023194112,
+          "checker_sha256": "29b98dac0b6f07f579b3f44fdbe7e41c262b0372088d2909acf4e0d076cd229b",
+          "replay_sha256": "c18836db55ef1669b428bb55b32d55944c6404e4e0e0186510604c9618f4d041"
+        }
+      },
+      "source734-containers-replay.json": {
+        "sha256": "9c2ebca79cd14c9216cc12e8ee9559f9371116b39ea3f65c2e855b7ea282f5f0",
+        "original": {
+          "status": "passed",
+          "scope": "Exact authenticated ZIP and restored-member identity replay; semantic acceptance is checked separately",
+          "archives": [
+            {
+              "run": 36969168806,
+              "head": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+              "artifact": 11211868568,
+              "bytes": 81531238,
+              "sha256": "373e1440bf5f560e8a7d735f4f20a87719f1fd2705bc551250120e5d0cfd7447",
+              "members": 398
+            },
+            {
+              "run": 36969168806,
+              "head": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+              "artifact": 11211903748,
+              "bytes": 83899007,
+              "sha256": "f1f61099628d8f57b9c27325cf6c3f5c4ee664093a91bd6b65b83051bdc4ba2f",
+              "members": 397
+            },
+            {
+              "run": 36969168806,
+              "head": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+              "artifact": 11212207445,
+              "bytes": 83564320,
+              "sha256": "efb546e1fb41e9ab1045e795cee36076f97f09c291cc824f720ee7c04d11ca57",
+              "members": 397
+            },
+            {
+              "run": 36969168806,
+              "head": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+              "artifact": 11212455449,
+              "bytes": 82675686,
+              "sha256": "74e223433c16fe233e247e48f4c715f1eae18de25dd18c4aa750e33960e60199",
+              "members": 398
+            },
+            {
+              "run": 36969168806,
+              "head": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+              "artifact": 11212481311,
+              "bytes": 83627717,
+              "sha256": "4cf927a9cc93f532aba16a41e63b8e7dd239bbbfd903883d1016cceed7f153ce",
+              "members": 397
+            },
+            {
+              "run": 36974227589,
+              "head": "a5cdd95cb652d76a023fad1e40aefe54f6387445",
+              "artifact": 11212886258,
+              "bytes": 4888534,
+              "sha256": "40c5517fef3e688b3b8f1bd0870a0fca2b847c6d0babb9b42757076d60808bf7",
+              "members": 385
+            },
+            {
+              "run": 36974227589,
+              "head": "a5cdd95cb652d76a023fad1e40aefe54f6387445",
+              "artifact": 11212836179,
+              "bytes": 4886203,
+              "sha256": "caaa94930e43cfa1368680b2fc18f215c9a0aa96017fa95434c37323f9626ba0",
+              "members": 385
+            },
+            {
+              "run": 36974227589,
+              "head": "a5cdd95cb652d76a023fad1e40aefe54f6387445",
+              "artifact": 11212642441,
+              "bytes": 4888627,
+              "sha256": "c06f9ae81a856c6dc500086cb3a9f5e0d8847322dd4af59cae9bbaf517488e56",
+              "members": 385
+            },
+            {
+              "run": 36974227589,
+              "head": "a5cdd95cb652d76a023fad1e40aefe54f6387445",
+              "artifact": 11212633025,
+              "bytes": 4887899,
+              "sha256": "9621943dc62e7dcbd0317056920a37a2dd39462f5fdc959c98ad181ac3bf27bf",
+              "members": 385
+            },
+            {
+              "run": 36974227589,
+              "head": "a5cdd95cb652d76a023fad1e40aefe54f6387445",
+              "artifact": 11212349713,
+              "bytes": 4886195,
+              "sha256": "268d9a4de7ce21681aeec48efe4b649ad5681b6753009fbd3255b7bcd2d7aa01",
+              "members": 385
+            },
+            {
+              "run": 36974208978,
+              "head": "a5cdd95cb652d76a023fad1e40aefe54f6387445",
+              "artifact": 11212737111,
+              "bytes": 4908000,
+              "sha256": "9c2b4bd2d2c1d5715cdaf338a7c8161c640bb323e56487ecc9323c9d74333ce3",
+              "members": 404
+            }
+          ],
+          "script_sha256": "65605e2ab3da8b6b4b96aef3624426e0757616c49dc8ad6e69dc5f406d9b06ee"
+        }
+      },
+      "source734-corpus-replay.json": {
+        "sha256": "ede5500b265297bb55e5132a7a05f6628c923f3bee752f07b49d53020430db3b",
+        "original": {
+          "scope": "Retained current native legacy and structured corpus receipt matrices only; original container authentication and complete producer gates remain separately bound",
+          "status": "passed",
+          "source_sha256": "734df69dc7d43467fc9ae574c7cf7b25eb9b4ec9bc08e9ca3f96b9500131f42e",
+          "source_provenance_sha256": "3c6f2ced084812e73f97c069169f83807fc5d389e54b581dd52f10982cd5b227",
+          "selector_sha256": "58263dbc6b7c09f96cd1598fa8982d7c5e305aee771f83da7dcc81d494172da0",
+          "selection_sha256": "46872389877021244acf5af53f67c733c9b7fd8664ff0dfecd16261e350055bb",
+          "checker_sha256": "6f1614159860e6845b59d121153c9a159bebb950a8fc6b688ab16c891aa75bd6",
+          "native_pairs": 36,
+          "corpus_pairs": 72,
+          "case_checks": 2664,
+          "pairs": [
+            {
+              "kind": "legacy",
+              "producer": "aarch64-apple-darwin",
+              "consumer": "aarch64-apple-darwin",
+              "receipt_sha256": "3c8371549c0897d923538eb3c3788a498bb3633a35bcd8ea1cd6fa0a8f38eaa3",
+              "corpus_manifest_sha256": "9bada0db89b251d52d00eeea1c91b93edc52ac5eb74a2c28c3bd6dcf638b4397",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "2b096706c9b6905e960d19c93903c1b0e8ea203d21893838dbfa650ca1e0c25a",
+                "joy": "cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "aarch64-pc-windows-msvc",
+              "consumer": "aarch64-apple-darwin",
+              "receipt_sha256": "b1fd8208d8964b0389fe1d47235a5d44dcb658300b61e25b9f6580f302a87b83",
+              "corpus_manifest_sha256": "9f07a43c808690941ec4829898b6956a185053fe8fa53d699e103760ac19bb53",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "2b096706c9b6905e960d19c93903c1b0e8ea203d21893838dbfa650ca1e0c25a",
+                "joy": "cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "aarch64-unknown-linux-gnu",
+              "consumer": "aarch64-apple-darwin",
+              "receipt_sha256": "b34cafa7c6abbe70fa7e321cd0ea4a2ea48acd1211b97ac9e0322932f341731b",
+              "corpus_manifest_sha256": "b7ce70b7b530934b6cc38b06587f23fd17628f733d6f980e977aa5467d7ea241",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "2b096706c9b6905e960d19c93903c1b0e8ea203d21893838dbfa650ca1e0c25a",
+                "joy": "cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "x86_64-apple-darwin",
+              "consumer": "aarch64-apple-darwin",
+              "receipt_sha256": "739da03217ffce1f0f7ffb6d2ee786aeef87aa13d5825b9850bf0295ceec58fe",
+              "corpus_manifest_sha256": "dd9c447ba3f17d795801bcf158f6ce15f596310ba3afe67ee8d44e0ced49d959",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "2b096706c9b6905e960d19c93903c1b0e8ea203d21893838dbfa650ca1e0c25a",
+                "joy": "cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "x86_64-pc-windows-msvc",
+              "consumer": "aarch64-apple-darwin",
+              "receipt_sha256": "68a9f2f2ece217891e8bb42ec3b8eee515aea77dcf04d07a9778f28470ff6221",
+              "corpus_manifest_sha256": "fcc18f952ca9a190ffc649da1b83253e1cbd9e3896f427c9086a91de32adec26",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "2b096706c9b6905e960d19c93903c1b0e8ea203d21893838dbfa650ca1e0c25a",
+                "joy": "cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "x86_64-unknown-linux-gnu",
+              "consumer": "aarch64-apple-darwin",
+              "receipt_sha256": "aad9414c737fa7296cc950940da4dc270abb91f2795c0819db2eda66d35a42f7",
+              "corpus_manifest_sha256": "95ea6d2d9bef819cbc1732058e96d01f657943283c63e3ad890b8db708158165",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "2b096706c9b6905e960d19c93903c1b0e8ea203d21893838dbfa650ca1e0c25a",
+                "joy": "cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "aarch64-apple-darwin",
+              "consumer": "aarch64-apple-darwin",
+              "receipt_sha256": "ecdcf2122d9549d5425a88636879f7c9cf5cf1f0dffb5774374946ba21dff91d",
+              "corpus_manifest_sha256": "d4182c73b13fc01ea6ca111b070349a37f2e4697a18d669dacd9722a3e051813",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "aarch64-pc-windows-msvc",
+              "consumer": "aarch64-apple-darwin",
+              "receipt_sha256": "510e597628aa6cce912a95a6abf9c7787b79d84492baae0035d2ec45dceeaa25",
+              "corpus_manifest_sha256": "92bb01036720e7ce4755f572f0f1aff3aa4f9d30b2a79ecf1795fc5c371bde78",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "aarch64-unknown-linux-gnu",
+              "consumer": "aarch64-apple-darwin",
+              "receipt_sha256": "964fa1b6c32be33c72ac464fca9f949a0424347e874c8e0d81baa951a1d27105",
+              "corpus_manifest_sha256": "5181c9fc3c5a292918d887188cd423782c9b615dc82141ce79e5e14c24cb927c",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "x86_64-apple-darwin",
+              "consumer": "aarch64-apple-darwin",
+              "receipt_sha256": "35c6984e8a720686d4851748e4f2b6bb7afbe9b4e97d87bcbae8f4a58b5b5f1d",
+              "corpus_manifest_sha256": "965fbae955414fff442cb3d924bf12572d9c6b40793b1d607c2c467ae9ecc526",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "x86_64-pc-windows-msvc",
+              "consumer": "aarch64-apple-darwin",
+              "receipt_sha256": "3b87123d6ce2df658ba7c085455d92c12ad6b565afe86d56fdcc2bdd3553e81e",
+              "corpus_manifest_sha256": "d06f79e4f50211e63e57211738026e475ddf2b0fd285995ffad06a640287e706",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "x86_64-unknown-linux-gnu",
+              "consumer": "aarch64-apple-darwin",
+              "receipt_sha256": "d745ebf4d0bb7394609f299ca19fd52a0abae3c9d74e35780ccc8da5abb1edaf",
+              "corpus_manifest_sha256": "0716f58421f9e23ffcadc5ed9514671589abdcf4afc2e68e78597dcdccf3a21b",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "aarch64-apple-darwin",
+              "consumer": "aarch64-pc-windows-msvc",
+              "receipt_sha256": "7d3e0a58188fe9eec6d8456b1a82506e1c61484bcf628a6c2ec520238565d25f",
+              "corpus_manifest_sha256": "9bada0db89b251d52d00eeea1c91b93edc52ac5eb74a2c28c3bd6dcf638b4397",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "9e787238b8f022a5d78ff4a96de28994e794cdab605d01c6af73c10106a73d22",
+                "joy": "4b99b80a0867aca4b2858f88b9d71f8ec5b5de37d3ededbaa2b33e84d4c2e976"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "aarch64-pc-windows-msvc",
+              "consumer": "aarch64-pc-windows-msvc",
+              "receipt_sha256": "fd68d87ac322fd1f9443e4e9e282896cd040d3cd40c509e5d04a3e503fb86723",
+              "corpus_manifest_sha256": "9f07a43c808690941ec4829898b6956a185053fe8fa53d699e103760ac19bb53",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "9e787238b8f022a5d78ff4a96de28994e794cdab605d01c6af73c10106a73d22",
+                "joy": "4b99b80a0867aca4b2858f88b9d71f8ec5b5de37d3ededbaa2b33e84d4c2e976"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "aarch64-unknown-linux-gnu",
+              "consumer": "aarch64-pc-windows-msvc",
+              "receipt_sha256": "5e1f1c8b9fb433abea29c7f97ecd33df723c56827ed0f88fe4f95c43b3f6fbd8",
+              "corpus_manifest_sha256": "b7ce70b7b530934b6cc38b06587f23fd17628f733d6f980e977aa5467d7ea241",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "9e787238b8f022a5d78ff4a96de28994e794cdab605d01c6af73c10106a73d22",
+                "joy": "4b99b80a0867aca4b2858f88b9d71f8ec5b5de37d3ededbaa2b33e84d4c2e976"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "x86_64-apple-darwin",
+              "consumer": "aarch64-pc-windows-msvc",
+              "receipt_sha256": "638987fe6ea812cf41debc7aae5feacd26d9d0689ff66ea5ac44c2c6ab33b95a",
+              "corpus_manifest_sha256": "dd9c447ba3f17d795801bcf158f6ce15f596310ba3afe67ee8d44e0ced49d959",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "9e787238b8f022a5d78ff4a96de28994e794cdab605d01c6af73c10106a73d22",
+                "joy": "4b99b80a0867aca4b2858f88b9d71f8ec5b5de37d3ededbaa2b33e84d4c2e976"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "x86_64-pc-windows-msvc",
+              "consumer": "aarch64-pc-windows-msvc",
+              "receipt_sha256": "49aac1a16c6ce40710be73db31137c567f6b84481a5a6e9579cda45e71d585db",
+              "corpus_manifest_sha256": "fcc18f952ca9a190ffc649da1b83253e1cbd9e3896f427c9086a91de32adec26",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "9e787238b8f022a5d78ff4a96de28994e794cdab605d01c6af73c10106a73d22",
+                "joy": "4b99b80a0867aca4b2858f88b9d71f8ec5b5de37d3ededbaa2b33e84d4c2e976"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "x86_64-unknown-linux-gnu",
+              "consumer": "aarch64-pc-windows-msvc",
+              "receipt_sha256": "7286d2b80c584023b508e68d009ff931996bed67ff554eb49de9f9f643a69194",
+              "corpus_manifest_sha256": "95ea6d2d9bef819cbc1732058e96d01f657943283c63e3ad890b8db708158165",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "9e787238b8f022a5d78ff4a96de28994e794cdab605d01c6af73c10106a73d22",
+                "joy": "4b99b80a0867aca4b2858f88b9d71f8ec5b5de37d3ededbaa2b33e84d4c2e976"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "aarch64-apple-darwin",
+              "consumer": "aarch64-pc-windows-msvc",
+              "receipt_sha256": "b72c81f0413016badce6a80e12abc4cb2139323fac01aecbd9c9aa2e38d78970",
+              "corpus_manifest_sha256": "d4182c73b13fc01ea6ca111b070349a37f2e4697a18d669dacd9722a3e051813",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "4b99b80a0867aca4b2858f88b9d71f8ec5b5de37d3ededbaa2b33e84d4c2e976"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "aarch64-pc-windows-msvc",
+              "consumer": "aarch64-pc-windows-msvc",
+              "receipt_sha256": "e783b4fa31f65bf1f1d0570c96b7f0cf218a8f7629d7fba2398380c9e9c9373a",
+              "corpus_manifest_sha256": "92bb01036720e7ce4755f572f0f1aff3aa4f9d30b2a79ecf1795fc5c371bde78",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "4b99b80a0867aca4b2858f88b9d71f8ec5b5de37d3ededbaa2b33e84d4c2e976"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "aarch64-unknown-linux-gnu",
+              "consumer": "aarch64-pc-windows-msvc",
+              "receipt_sha256": "417de1944b98938ceb7a907b81c910c4412cefb82c53b0210b31759be890786b",
+              "corpus_manifest_sha256": "5181c9fc3c5a292918d887188cd423782c9b615dc82141ce79e5e14c24cb927c",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "4b99b80a0867aca4b2858f88b9d71f8ec5b5de37d3ededbaa2b33e84d4c2e976"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "x86_64-apple-darwin",
+              "consumer": "aarch64-pc-windows-msvc",
+              "receipt_sha256": "74ae1c85186768be82587887558fd8a5190c4b4a09afcb8da8fec48a4a56d2e0",
+              "corpus_manifest_sha256": "965fbae955414fff442cb3d924bf12572d9c6b40793b1d607c2c467ae9ecc526",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "4b99b80a0867aca4b2858f88b9d71f8ec5b5de37d3ededbaa2b33e84d4c2e976"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "x86_64-pc-windows-msvc",
+              "consumer": "aarch64-pc-windows-msvc",
+              "receipt_sha256": "6ff58554d0a4af797312afba739690785cbfa55ae8fabbb0a98a38d68ed28456",
+              "corpus_manifest_sha256": "d06f79e4f50211e63e57211738026e475ddf2b0fd285995ffad06a640287e706",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "4b99b80a0867aca4b2858f88b9d71f8ec5b5de37d3ededbaa2b33e84d4c2e976"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "x86_64-unknown-linux-gnu",
+              "consumer": "aarch64-pc-windows-msvc",
+              "receipt_sha256": "b4cef3b2b4a248890050825e44bfa7cead9a88c0b75b316cf09dd190bd682da6",
+              "corpus_manifest_sha256": "0716f58421f9e23ffcadc5ed9514671589abdcf4afc2e68e78597dcdccf3a21b",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "4b99b80a0867aca4b2858f88b9d71f8ec5b5de37d3ededbaa2b33e84d4c2e976"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "aarch64-apple-darwin",
+              "consumer": "aarch64-unknown-linux-gnu",
+              "receipt_sha256": "3defc3b5de7881b6aedaf9dd204e072240490411546032195a8c89f3a80d9cc2",
+              "corpus_manifest_sha256": "9bada0db89b251d52d00eeea1c91b93edc52ac5eb74a2c28c3bd6dcf638b4397",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "cb9785cc22434cbae8e6695b4519c2593689c1f20c39c067e85f4624bcea9449",
+                "joy": "7d9ccebc4f159fc421cb1148bc14443d6c622a25ee18d39bf4353b4c697f5b6c"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "aarch64-pc-windows-msvc",
+              "consumer": "aarch64-unknown-linux-gnu",
+              "receipt_sha256": "87ae6b9999b8bd48e5e333727ed95f35d9ab5df2c9e2e298eb7e025557684f37",
+              "corpus_manifest_sha256": "9f07a43c808690941ec4829898b6956a185053fe8fa53d699e103760ac19bb53",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "cb9785cc22434cbae8e6695b4519c2593689c1f20c39c067e85f4624bcea9449",
+                "joy": "7d9ccebc4f159fc421cb1148bc14443d6c622a25ee18d39bf4353b4c697f5b6c"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "aarch64-unknown-linux-gnu",
+              "consumer": "aarch64-unknown-linux-gnu",
+              "receipt_sha256": "e07d01c0cc5e101d94a994bb340000e5cb616ad311e6b75d503259712bcd985b",
+              "corpus_manifest_sha256": "b7ce70b7b530934b6cc38b06587f23fd17628f733d6f980e977aa5467d7ea241",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "cb9785cc22434cbae8e6695b4519c2593689c1f20c39c067e85f4624bcea9449",
+                "joy": "7d9ccebc4f159fc421cb1148bc14443d6c622a25ee18d39bf4353b4c697f5b6c"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "x86_64-apple-darwin",
+              "consumer": "aarch64-unknown-linux-gnu",
+              "receipt_sha256": "62d13602d362ac85e1315ac8b3d7b56e53b3a023f8899d8bee6efa000970eaf6",
+              "corpus_manifest_sha256": "dd9c447ba3f17d795801bcf158f6ce15f596310ba3afe67ee8d44e0ced49d959",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "cb9785cc22434cbae8e6695b4519c2593689c1f20c39c067e85f4624bcea9449",
+                "joy": "7d9ccebc4f159fc421cb1148bc14443d6c622a25ee18d39bf4353b4c697f5b6c"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "x86_64-pc-windows-msvc",
+              "consumer": "aarch64-unknown-linux-gnu",
+              "receipt_sha256": "49b8eb600ace0c647834c8a48f2a12ba37da9a8f677c97e1e08b8f513266e6f9",
+              "corpus_manifest_sha256": "fcc18f952ca9a190ffc649da1b83253e1cbd9e3896f427c9086a91de32adec26",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "cb9785cc22434cbae8e6695b4519c2593689c1f20c39c067e85f4624bcea9449",
+                "joy": "7d9ccebc4f159fc421cb1148bc14443d6c622a25ee18d39bf4353b4c697f5b6c"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "x86_64-unknown-linux-gnu",
+              "consumer": "aarch64-unknown-linux-gnu",
+              "receipt_sha256": "6af3094da32931ada4da852ff4d55af62d855b109ba8a5d5a614202d6614624a",
+              "corpus_manifest_sha256": "95ea6d2d9bef819cbc1732058e96d01f657943283c63e3ad890b8db708158165",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "cb9785cc22434cbae8e6695b4519c2593689c1f20c39c067e85f4624bcea9449",
+                "joy": "7d9ccebc4f159fc421cb1148bc14443d6c622a25ee18d39bf4353b4c697f5b6c"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "aarch64-apple-darwin",
+              "consumer": "aarch64-unknown-linux-gnu",
+              "receipt_sha256": "565813ca59d9d40495b9be33a0d4aa3ffe3f686e29fb796c6d5de9afdedfc38d",
+              "corpus_manifest_sha256": "d4182c73b13fc01ea6ca111b070349a37f2e4697a18d669dacd9722a3e051813",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "7d9ccebc4f159fc421cb1148bc14443d6c622a25ee18d39bf4353b4c697f5b6c"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "aarch64-pc-windows-msvc",
+              "consumer": "aarch64-unknown-linux-gnu",
+              "receipt_sha256": "ec668e9bb903a9777c7d2261eda0795479ac9b49bc82ed7e1d64b3074733fb43",
+              "corpus_manifest_sha256": "92bb01036720e7ce4755f572f0f1aff3aa4f9d30b2a79ecf1795fc5c371bde78",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "7d9ccebc4f159fc421cb1148bc14443d6c622a25ee18d39bf4353b4c697f5b6c"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "aarch64-unknown-linux-gnu",
+              "consumer": "aarch64-unknown-linux-gnu",
+              "receipt_sha256": "5c54193471b418081fea0e5fbfae6b931131649b96a3a276536e7ff7ba979007",
+              "corpus_manifest_sha256": "5181c9fc3c5a292918d887188cd423782c9b615dc82141ce79e5e14c24cb927c",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "7d9ccebc4f159fc421cb1148bc14443d6c622a25ee18d39bf4353b4c697f5b6c"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "x86_64-apple-darwin",
+              "consumer": "aarch64-unknown-linux-gnu",
+              "receipt_sha256": "8248add2eeb6b00f4d7c8244f711d4211796a34b52ebd2dab393862c5b0ab306",
+              "corpus_manifest_sha256": "965fbae955414fff442cb3d924bf12572d9c6b40793b1d607c2c467ae9ecc526",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "7d9ccebc4f159fc421cb1148bc14443d6c622a25ee18d39bf4353b4c697f5b6c"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "x86_64-pc-windows-msvc",
+              "consumer": "aarch64-unknown-linux-gnu",
+              "receipt_sha256": "38076f7573085351a7339a668b0e89ea92bb4daf519dcc6f657333eca34adbef",
+              "corpus_manifest_sha256": "d06f79e4f50211e63e57211738026e475ddf2b0fd285995ffad06a640287e706",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "7d9ccebc4f159fc421cb1148bc14443d6c622a25ee18d39bf4353b4c697f5b6c"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "x86_64-unknown-linux-gnu",
+              "consumer": "aarch64-unknown-linux-gnu",
+              "receipt_sha256": "b99105cd7f2e4aefd9f476c6e472f4db590d1ce2ec3ba94f1f57bba68467a30c",
+              "corpus_manifest_sha256": "0716f58421f9e23ffcadc5ed9514671589abdcf4afc2e68e78597dcdccf3a21b",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "7d9ccebc4f159fc421cb1148bc14443d6c622a25ee18d39bf4353b4c697f5b6c"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "aarch64-apple-darwin",
+              "consumer": "x86_64-pc-windows-msvc",
+              "receipt_sha256": "cdb24d7d66edec19557db3297a4e27b55059bf5587cb9b277299e7ea72d7f851",
+              "corpus_manifest_sha256": "9bada0db89b251d52d00eeea1c91b93edc52ac5eb74a2c28c3bd6dcf638b4397",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "dda3958e1a7393c64d0c07140baf5897fc680ef5fb532e1e089a54e7de805866",
+                "joy": "331cbb72979f92095fb1c5d95e607445a40d59c81872ecb25ea288a4328b94cc"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "aarch64-pc-windows-msvc",
+              "consumer": "x86_64-pc-windows-msvc",
+              "receipt_sha256": "dc1b4b203285ca5fe0fd1239b58d5bd69b1aaa376dcb176a609de956fbdffbff",
+              "corpus_manifest_sha256": "9f07a43c808690941ec4829898b6956a185053fe8fa53d699e103760ac19bb53",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "dda3958e1a7393c64d0c07140baf5897fc680ef5fb532e1e089a54e7de805866",
+                "joy": "331cbb72979f92095fb1c5d95e607445a40d59c81872ecb25ea288a4328b94cc"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "aarch64-unknown-linux-gnu",
+              "consumer": "x86_64-pc-windows-msvc",
+              "receipt_sha256": "a3d6b1e4a065a587adc3239eff1b4b430df8cfa4c64ffc73debf215ab85179e9",
+              "corpus_manifest_sha256": "b7ce70b7b530934b6cc38b06587f23fd17628f733d6f980e977aa5467d7ea241",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "dda3958e1a7393c64d0c07140baf5897fc680ef5fb532e1e089a54e7de805866",
+                "joy": "331cbb72979f92095fb1c5d95e607445a40d59c81872ecb25ea288a4328b94cc"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "x86_64-apple-darwin",
+              "consumer": "x86_64-pc-windows-msvc",
+              "receipt_sha256": "eed5fe76cd5c1de3a480a043f7282fdfea931ec61056ae793267ccfefa114560",
+              "corpus_manifest_sha256": "dd9c447ba3f17d795801bcf158f6ce15f596310ba3afe67ee8d44e0ced49d959",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "dda3958e1a7393c64d0c07140baf5897fc680ef5fb532e1e089a54e7de805866",
+                "joy": "331cbb72979f92095fb1c5d95e607445a40d59c81872ecb25ea288a4328b94cc"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "x86_64-pc-windows-msvc",
+              "consumer": "x86_64-pc-windows-msvc",
+              "receipt_sha256": "c85b7b643b141206b2daf49a96fa247cbd5bced35bb6f6b38df36d9ce23ff2ce",
+              "corpus_manifest_sha256": "fcc18f952ca9a190ffc649da1b83253e1cbd9e3896f427c9086a91de32adec26",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "dda3958e1a7393c64d0c07140baf5897fc680ef5fb532e1e089a54e7de805866",
+                "joy": "331cbb72979f92095fb1c5d95e607445a40d59c81872ecb25ea288a4328b94cc"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "x86_64-unknown-linux-gnu",
+              "consumer": "x86_64-pc-windows-msvc",
+              "receipt_sha256": "ccd5e832bc1d6207e6f53318b210fb09bff3c800d1a585b47c4738b2bffb7038",
+              "corpus_manifest_sha256": "95ea6d2d9bef819cbc1732058e96d01f657943283c63e3ad890b8db708158165",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "dda3958e1a7393c64d0c07140baf5897fc680ef5fb532e1e089a54e7de805866",
+                "joy": "331cbb72979f92095fb1c5d95e607445a40d59c81872ecb25ea288a4328b94cc"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "aarch64-apple-darwin",
+              "consumer": "x86_64-pc-windows-msvc",
+              "receipt_sha256": "0e7158fcf9de497bbe19c8ca71dc3d58381ac8a4285cd5cd673832c6d26cdb87",
+              "corpus_manifest_sha256": "d4182c73b13fc01ea6ca111b070349a37f2e4697a18d669dacd9722a3e051813",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "331cbb72979f92095fb1c5d95e607445a40d59c81872ecb25ea288a4328b94cc"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "aarch64-pc-windows-msvc",
+              "consumer": "x86_64-pc-windows-msvc",
+              "receipt_sha256": "e1c83206cc1fa45a432139f508d010d314580f0ee571fd96851c3ea1dde801de",
+              "corpus_manifest_sha256": "92bb01036720e7ce4755f572f0f1aff3aa4f9d30b2a79ecf1795fc5c371bde78",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "331cbb72979f92095fb1c5d95e607445a40d59c81872ecb25ea288a4328b94cc"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "aarch64-unknown-linux-gnu",
+              "consumer": "x86_64-pc-windows-msvc",
+              "receipt_sha256": "14960de57562732afcd4415ba526f07980b290228d2daae70b7394c39263fe5c",
+              "corpus_manifest_sha256": "5181c9fc3c5a292918d887188cd423782c9b615dc82141ce79e5e14c24cb927c",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "331cbb72979f92095fb1c5d95e607445a40d59c81872ecb25ea288a4328b94cc"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "x86_64-apple-darwin",
+              "consumer": "x86_64-pc-windows-msvc",
+              "receipt_sha256": "8510a812c229d9203bbb6cc546cd90df01f9b8fedee3b56daa8dc851576653e9",
+              "corpus_manifest_sha256": "965fbae955414fff442cb3d924bf12572d9c6b40793b1d607c2c467ae9ecc526",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "331cbb72979f92095fb1c5d95e607445a40d59c81872ecb25ea288a4328b94cc"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "x86_64-pc-windows-msvc",
+              "consumer": "x86_64-pc-windows-msvc",
+              "receipt_sha256": "8a89e90997c9615d2415ff31ca6f8f47bad7e597c9433d86f5e92a5d56841090",
+              "corpus_manifest_sha256": "d06f79e4f50211e63e57211738026e475ddf2b0fd285995ffad06a640287e706",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "331cbb72979f92095fb1c5d95e607445a40d59c81872ecb25ea288a4328b94cc"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "x86_64-unknown-linux-gnu",
+              "consumer": "x86_64-pc-windows-msvc",
+              "receipt_sha256": "9fdefffc589c97f2f070e1b6f6fd6c19626ba02058fbaf08c822dad54a040bcc",
+              "corpus_manifest_sha256": "0716f58421f9e23ffcadc5ed9514671589abdcf4afc2e68e78597dcdccf3a21b",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "331cbb72979f92095fb1c5d95e607445a40d59c81872ecb25ea288a4328b94cc"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "aarch64-apple-darwin",
+              "consumer": "x86_64-apple-darwin",
+              "receipt_sha256": "54577e8d2be30323b6ce9275cc42a035bfec6c48baeb68c2220001004f4d920d",
+              "corpus_manifest_sha256": "9bada0db89b251d52d00eeea1c91b93edc52ac5eb74a2c28c3bd6dcf638b4397",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "418a74078fe54703e952a5998059a1cce9d764b46d7d59207f807de1bb3fedc6",
+                "joy": "6f145cfcaa190206957af05b03e0d174682497b6a63ecbccb9be60bd5c644c90"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "aarch64-pc-windows-msvc",
+              "consumer": "x86_64-apple-darwin",
+              "receipt_sha256": "e76d002bfbb8573b05a0380f11d4fd26bf5417a4b9f0524edc5356d99fa762a7",
+              "corpus_manifest_sha256": "9f07a43c808690941ec4829898b6956a185053fe8fa53d699e103760ac19bb53",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "418a74078fe54703e952a5998059a1cce9d764b46d7d59207f807de1bb3fedc6",
+                "joy": "6f145cfcaa190206957af05b03e0d174682497b6a63ecbccb9be60bd5c644c90"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "aarch64-unknown-linux-gnu",
+              "consumer": "x86_64-apple-darwin",
+              "receipt_sha256": "29a8c4ad943d0b34afb4a201496ead9716202660b987c0e0f8abe0ad41381a8a",
+              "corpus_manifest_sha256": "b7ce70b7b530934b6cc38b06587f23fd17628f733d6f980e977aa5467d7ea241",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "418a74078fe54703e952a5998059a1cce9d764b46d7d59207f807de1bb3fedc6",
+                "joy": "6f145cfcaa190206957af05b03e0d174682497b6a63ecbccb9be60bd5c644c90"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "x86_64-apple-darwin",
+              "consumer": "x86_64-apple-darwin",
+              "receipt_sha256": "7d8dc7a16dae341ab5c4162c09376f28bd66bcddcf66991266f7fddbf01c3687",
+              "corpus_manifest_sha256": "dd9c447ba3f17d795801bcf158f6ce15f596310ba3afe67ee8d44e0ced49d959",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "418a74078fe54703e952a5998059a1cce9d764b46d7d59207f807de1bb3fedc6",
+                "joy": "6f145cfcaa190206957af05b03e0d174682497b6a63ecbccb9be60bd5c644c90"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "x86_64-pc-windows-msvc",
+              "consumer": "x86_64-apple-darwin",
+              "receipt_sha256": "e43f1d5b7a71605493f7dac0e91c76901aa8805b3902221e5e90a6fb911ccc4c",
+              "corpus_manifest_sha256": "fcc18f952ca9a190ffc649da1b83253e1cbd9e3896f427c9086a91de32adec26",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "418a74078fe54703e952a5998059a1cce9d764b46d7d59207f807de1bb3fedc6",
+                "joy": "6f145cfcaa190206957af05b03e0d174682497b6a63ecbccb9be60bd5c644c90"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "x86_64-unknown-linux-gnu",
+              "consumer": "x86_64-apple-darwin",
+              "receipt_sha256": "90f3d74e4cfa2f57a4f5cb479046152335be0ecb955aceeb71037c87d650821d",
+              "corpus_manifest_sha256": "95ea6d2d9bef819cbc1732058e96d01f657943283c63e3ad890b8db708158165",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "418a74078fe54703e952a5998059a1cce9d764b46d7d59207f807de1bb3fedc6",
+                "joy": "6f145cfcaa190206957af05b03e0d174682497b6a63ecbccb9be60bd5c644c90"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "aarch64-apple-darwin",
+              "consumer": "x86_64-apple-darwin",
+              "receipt_sha256": "e1eb3b3cec268d8211ad358d04f9e1ebe0cc64dc394fda754dcee30bb6f70457",
+              "corpus_manifest_sha256": "d4182c73b13fc01ea6ca111b070349a37f2e4697a18d669dacd9722a3e051813",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "6f145cfcaa190206957af05b03e0d174682497b6a63ecbccb9be60bd5c644c90"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "aarch64-pc-windows-msvc",
+              "consumer": "x86_64-apple-darwin",
+              "receipt_sha256": "89a4ca873a332839e5ae704d0791452cae233c0e75623dbc8c19b05832aa6acf",
+              "corpus_manifest_sha256": "92bb01036720e7ce4755f572f0f1aff3aa4f9d30b2a79ecf1795fc5c371bde78",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "6f145cfcaa190206957af05b03e0d174682497b6a63ecbccb9be60bd5c644c90"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "aarch64-unknown-linux-gnu",
+              "consumer": "x86_64-apple-darwin",
+              "receipt_sha256": "921fdcd8391da27a98d2b0e1a193a0941ef32ef5aac670576db6d44b2c6c77fd",
+              "corpus_manifest_sha256": "5181c9fc3c5a292918d887188cd423782c9b615dc82141ce79e5e14c24cb927c",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "6f145cfcaa190206957af05b03e0d174682497b6a63ecbccb9be60bd5c644c90"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "x86_64-apple-darwin",
+              "consumer": "x86_64-apple-darwin",
+              "receipt_sha256": "d653d76f5c6fe3082140743e867964d9d5df4317c6b08fd3688494e0ce4ecdf9",
+              "corpus_manifest_sha256": "965fbae955414fff442cb3d924bf12572d9c6b40793b1d607c2c467ae9ecc526",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "6f145cfcaa190206957af05b03e0d174682497b6a63ecbccb9be60bd5c644c90"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "x86_64-pc-windows-msvc",
+              "consumer": "x86_64-apple-darwin",
+              "receipt_sha256": "ff467341b303f9341a40d094f2382c3cb09dcff32a185e659a7a731271700597",
+              "corpus_manifest_sha256": "d06f79e4f50211e63e57211738026e475ddf2b0fd285995ffad06a640287e706",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "6f145cfcaa190206957af05b03e0d174682497b6a63ecbccb9be60bd5c644c90"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "x86_64-unknown-linux-gnu",
+              "consumer": "x86_64-apple-darwin",
+              "receipt_sha256": "0be6b6a72bb6066cc0957d2ee43f5ba9322911a5c803091fef8e6425400e5953",
+              "corpus_manifest_sha256": "0716f58421f9e23ffcadc5ed9514671589abdcf4afc2e68e78597dcdccf3a21b",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "6f145cfcaa190206957af05b03e0d174682497b6a63ecbccb9be60bd5c644c90"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "aarch64-apple-darwin",
+              "consumer": "x86_64-unknown-linux-gnu",
+              "receipt_sha256": "4181f070b7a77c1f4ed0fb46684ac6e5e7bdb1ea7607777883437dd7c5fe752e",
+              "corpus_manifest_sha256": "9bada0db89b251d52d00eeea1c91b93edc52ac5eb74a2c28c3bd6dcf638b4397",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "75985f4af4168def99f0cbc7c66fe90cc8c7098c431efa3835caae5d54d82684",
+                "joy": "dfe67f29a77973e972970db680e1a4c5ace572cd2279e60276971bb6b92be353"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "aarch64-pc-windows-msvc",
+              "consumer": "x86_64-unknown-linux-gnu",
+              "receipt_sha256": "2ab5b5717e708a735cb17b46d5f0ff1dcede8e15690a261d7c9a4e4d9b331117",
+              "corpus_manifest_sha256": "9f07a43c808690941ec4829898b6956a185053fe8fa53d699e103760ac19bb53",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "75985f4af4168def99f0cbc7c66fe90cc8c7098c431efa3835caae5d54d82684",
+                "joy": "dfe67f29a77973e972970db680e1a4c5ace572cd2279e60276971bb6b92be353"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "aarch64-unknown-linux-gnu",
+              "consumer": "x86_64-unknown-linux-gnu",
+              "receipt_sha256": "c7a4f3646632f11eb8a7c8016287751c1b843f4d73bca8c863cdf088878154ef",
+              "corpus_manifest_sha256": "b7ce70b7b530934b6cc38b06587f23fd17628f733d6f980e977aa5467d7ea241",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "75985f4af4168def99f0cbc7c66fe90cc8c7098c431efa3835caae5d54d82684",
+                "joy": "dfe67f29a77973e972970db680e1a4c5ace572cd2279e60276971bb6b92be353"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "x86_64-apple-darwin",
+              "consumer": "x86_64-unknown-linux-gnu",
+              "receipt_sha256": "b02f8f62da261d166a23c5851e4991426097178c7e1f9ede01963a5ffdb2f139",
+              "corpus_manifest_sha256": "dd9c447ba3f17d795801bcf158f6ce15f596310ba3afe67ee8d44e0ced49d959",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "75985f4af4168def99f0cbc7c66fe90cc8c7098c431efa3835caae5d54d82684",
+                "joy": "dfe67f29a77973e972970db680e1a4c5ace572cd2279e60276971bb6b92be353"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "x86_64-pc-windows-msvc",
+              "consumer": "x86_64-unknown-linux-gnu",
+              "receipt_sha256": "22e0ec7432c84161c41d4fca4ffbde13a5ef3a8e91bf82949cfb4f4769778e54",
+              "corpus_manifest_sha256": "fcc18f952ca9a190ffc649da1b83253e1cbd9e3896f427c9086a91de32adec26",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "75985f4af4168def99f0cbc7c66fe90cc8c7098c431efa3835caae5d54d82684",
+                "joy": "dfe67f29a77973e972970db680e1a4c5ace572cd2279e60276971bb6b92be353"
+              }
+            },
+            {
+              "kind": "legacy",
+              "producer": "x86_64-unknown-linux-gnu",
+              "consumer": "x86_64-unknown-linux-gnu",
+              "receipt_sha256": "de20b6de7002891eba5270a417129b34131a6d08417749c5e2081a404ac87b77",
+              "corpus_manifest_sha256": "95ea6d2d9bef819cbc1732058e96d01f657943283c63e3ad890b8db708158165",
+              "cases": 47,
+              "accepted": 18,
+              "rejected": 29,
+              "consumer_binaries": {
+                "trisha": "75985f4af4168def99f0cbc7c66fe90cc8c7098c431efa3835caae5d54d82684",
+                "joy": "dfe67f29a77973e972970db680e1a4c5ace572cd2279e60276971bb6b92be353"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "aarch64-apple-darwin",
+              "consumer": "x86_64-unknown-linux-gnu",
+              "receipt_sha256": "7020906d4ac4d0b6a3609e99d75d08bdfbd4fc27c21f0b98f9bc220e5f5456a7",
+              "corpus_manifest_sha256": "d4182c73b13fc01ea6ca111b070349a37f2e4697a18d669dacd9722a3e051813",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "dfe67f29a77973e972970db680e1a4c5ace572cd2279e60276971bb6b92be353"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "aarch64-pc-windows-msvc",
+              "consumer": "x86_64-unknown-linux-gnu",
+              "receipt_sha256": "39800cb7c24b2e1239742e6c9a69a30115f69c335e7d49e6f8df843339d170cc",
+              "corpus_manifest_sha256": "92bb01036720e7ce4755f572f0f1aff3aa4f9d30b2a79ecf1795fc5c371bde78",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "dfe67f29a77973e972970db680e1a4c5ace572cd2279e60276971bb6b92be353"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "aarch64-unknown-linux-gnu",
+              "consumer": "x86_64-unknown-linux-gnu",
+              "receipt_sha256": "d6cbecc8a60aff8f168a186eedca10f45e33d4854fd90d0489d07bee8460be80",
+              "corpus_manifest_sha256": "5181c9fc3c5a292918d887188cd423782c9b615dc82141ce79e5e14c24cb927c",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "dfe67f29a77973e972970db680e1a4c5ace572cd2279e60276971bb6b92be353"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "x86_64-apple-darwin",
+              "consumer": "x86_64-unknown-linux-gnu",
+              "receipt_sha256": "ebdad845a763e784752f82b5eaf2fa9f937ddaaaba8b99eca1d72ee117c71558",
+              "corpus_manifest_sha256": "965fbae955414fff442cb3d924bf12572d9c6b40793b1d607c2c467ae9ecc526",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "dfe67f29a77973e972970db680e1a4c5ace572cd2279e60276971bb6b92be353"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "x86_64-pc-windows-msvc",
+              "consumer": "x86_64-unknown-linux-gnu",
+              "receipt_sha256": "3829307318b501bb96d688bc350bd1f37709ddec59ea8bd0a3849126794011d7",
+              "corpus_manifest_sha256": "d06f79e4f50211e63e57211738026e475ddf2b0fd285995ffad06a640287e706",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "dfe67f29a77973e972970db680e1a4c5ace572cd2279e60276971bb6b92be353"
+              }
+            },
+            {
+              "kind": "structured",
+              "producer": "x86_64-unknown-linux-gnu",
+              "consumer": "x86_64-unknown-linux-gnu",
+              "receipt_sha256": "d429a09c669e3bfc03211a33356fe1e2b91efb43f8f0618cb10acd9f8bb94b73",
+              "corpus_manifest_sha256": "0716f58421f9e23ffcadc5ed9514671589abdcf4afc2e68e78597dcdccf3a21b",
+              "cases": 27,
+              "accepted": 6,
+              "rejected": 21,
+              "consumer_binaries": {
+                "joy": "dfe67f29a77973e972970db680e1a4c5ace572cd2279e60276971bb6b92be353"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "status": "passed",
+  "selector_sha256": "a780cd96d65aa742833a90af02315f35014c4d895793a17b79fbe6114ac76284",
+  "checker_sha256": "a80578694041fe432df21819b166140165fe98d27ff3d0a6dcfb8a9621faa86d",
+  "source_commits": [
+    {
+      "repository": "bbg",
+      "commit": "1d39975ad199b48c350fa4cc011cbf6f289480ee",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "origin_head": "1d39975ad199b48c350fa4cc011cbf6f289480ee"
+    },
+    {
+      "repository": "hemera",
+      "commit": "a931a0a8e7ed369852ce0f8bc6451a59745ee692",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "origin_head": "a931a0a8e7ed369852ce0f8bc6451a59745ee692"
+    },
+    {
+      "repository": "honeycrisp",
+      "commit": "ff735e6c262926bc9bab7534786a575020cbe442",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "origin_head": "ff735e6c262926bc9bab7534786a575020cbe442"
+    },
+    {
+      "repository": "joy",
+      "commit": "dd61df9128f6da1f97d4698f45f154f05312fe51",
+      "origin_ref": "refs/heads/release/0.4",
+      "origin_head": "dd61df9128f6da1f97d4698f45f154f05312fe51"
+    },
+    {
+      "repository": "lens",
+      "commit": "17cafe91431977b738e5b72361187cd01ad93638",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "origin_head": "17cafe91431977b738e5b72361187cd01ad93638"
+    },
+    {
+      "repository": "neuron",
+      "commit": "fd24e768d623604b67e20b4b93fa8e82c83ac373",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "origin_head": "fd24e768d623604b67e20b4b93fa8e82c83ac373"
+    },
+    {
+      "repository": "nox",
+      "commit": "2f09ca3c3f18ae470365310cca8db5208eda75c6",
+      "origin_ref": "refs/heads/release/0.4",
+      "origin_head": "2f09ca3c3f18ae470365310cca8db5208eda75c6"
+    },
+    {
+      "repository": "strata",
+      "commit": "d2eb1763b8caf04e6c7647ac6fe99761519c2ef9",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "origin_head": "d2eb1763b8caf04e6c7647ac6fe99761519c2ef9"
+    },
+    {
+      "repository": "trident",
+      "commit": "da0d1a59cd8208fab96f219ccedef29122d5221a",
+      "origin_ref": "refs/heads/release/0.4",
+      "origin_head": "da0d1a59cd8208fab96f219ccedef29122d5221a"
+    },
+    {
+      "repository": "trisha",
+      "commit": "c8836be0103c8d2ead07c409bb117af04cae3449",
+      "origin_ref": "refs/heads/release/0.4",
+      "origin_head": "c8836be0103c8d2ead07c409bb117af04cae3449"
+    },
+    {
+      "repository": "zheng",
+      "commit": "0d7ba6d422d9b825f9685e903e55252f88ebecd9",
+      "origin_ref": "refs/heads/release/0.4",
+      "origin_head": "0d7ba6d422d9b825f9685e903e55252f88ebecd9"
+    }
+  ]
+}

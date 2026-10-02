@@ -1,0 +1,21 @@
+{
+  "scope": "Preserve raw expected negative traceback; first staged diff check failed on its blank EOF after earlier tracked-only check passed",
+  "first_command": [
+    "git",
+    "diff",
+    "--check",
+    "01f8a80",
+    "HEAD"
+  ],
+  "first_exit_code": 2,
+  "corrected_command": [
+    "git",
+    "diff",
+    "--check",
+    "01f8a80"
+  ],
+  "corrected_exit_code": 0,
+  "raw_traceback_sha256": "7b9a004e58a9c74b33b5cb33517230a39d6e6bc8f4dade1e83f77939119b3823",
+  "raw_bytes_unchanged": true,
+  "correction": "Exact-path -text -whitespace attribute; no original byte edit"
+}

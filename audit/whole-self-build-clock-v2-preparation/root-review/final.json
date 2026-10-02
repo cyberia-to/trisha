@@ -1,0 +1,110 @@
+{
+  "status": "passed-source-and-offline-review",
+  "sources": {
+    "scripts/whole-v2.py": {
+      "bytes": 11807,
+      "sha256": "a490372ad552d482e3538218509c9f303c865e10e25a4feab57886a2595118e7"
+    },
+    "scripts/test_whole_v2.py": {
+      "bytes": 19911,
+      "sha256": "b40ebb09b5f0c387978f6f412d72255430a65bfad2602592a3de232fdd150ac8"
+    },
+    "scripts/whole_v2_common.py": {
+      "bytes": 15407,
+      "sha256": "9195e32c206f5f309b2f0ac5617e1f829eaee458cc6b91002f3b089e176ba788"
+    },
+    "scripts/whole_v2_transport.py": {
+      "bytes": 11342,
+      "sha256": "1b996667df0e1c581a5fd4d38f0f510616d9543bdc314f2996790e5bfc0555c9"
+    },
+    ".github/whole-v2-activation.json": {
+      "bytes": 200,
+      "sha256": "6a23d192f86ec504dd2630c6408f800b45fa4e791de25a6e517f3c0848a6f72a"
+    },
+    ".github/whole-v2-profile.json": {
+      "bytes": 203,
+      "sha256": "2e51444a1840f18dba84760f3c675163307c8f504b7c3ec72a192b8816e7ef85"
+    },
+    ".github/whole-v2-sources.json": {
+      "bytes": 775,
+      "sha256": "cb52acfc1bd9c947ea8d3af553584abe28c3b9b0c78714543d8699b36018cdd2"
+    },
+    ".github/workflows/whole-self-build-v2.yml": {
+      "bytes": 905,
+      "sha256": "f6ec48f6f31a13d27d37172611848238f0c66c908f56fc7f02a4d41370257bc0"
+    },
+    ".github/workflows/whole-self-build-v2-generation.yml": {
+      "bytes": 4594,
+      "sha256": "96bd2edc770059159146ffdff41d837eb145cb4a2fb62eb425774db4d8477939"
+    },
+    "docs/reference/whole-self-build-clock-v2.md": {
+      "bytes": 7117,
+      "sha256": "4d545b702e0fdfb13b609b47b07426ed8682dc2197615b4d0db1353928295e0a"
+    },
+    ".claude/plans/whole-self-build-clock-v2.md": {
+      "bytes": 3466,
+      "sha256": "5a4cb41c4f4655ea1204c639f96072510fde0279b98fcd4a59674817dc09ee57"
+    }
+  },
+  "checks": [
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "-m",
+        "unittest",
+        "-v",
+        "test_whole_v2",
+        "test_whole_self_build"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha/scripts",
+      "archive": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-input-export/sh8-frozen-full-inputs-20261002.tar.gz",
+      "started_ns": 1790923744348757000,
+      "ended_ns": 1790923744738651000,
+      "exit_code": 0,
+      "logs": {
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "bytes": 4182,
+          "sha256": "d2a42fadd67eabb676ab8046dd0d0025b3dfdb37e4f37e9f1269ca4ed7b85458"
+        }
+      }
+    },
+    {
+      "argv": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/native-proof-ci/actionlint-1.7.12/actionlint",
+        ".github/workflows/whole-self-build.yml",
+        ".github/workflows/whole-self-build-v2.yml",
+        ".github/workflows/whole-self-build-v2-generation.yml"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "archive": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-input-export/sh8-frozen-full-inputs-20261002.tar.gz",
+      "started_ns": 1790923744738918000,
+      "ended_ns": 1790923744760975000,
+      "exit_code": 0,
+      "logs": {
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ],
+  "findings": [],
+  "resolved": [
+    "Original producer48GiB/verifier8GiBpreflight retained; download has independent fullreservation.",
+    "Runtime exactsuppliedenvironment now recorded and tested.",
+    "Stricter30GiBwork+results accounting explicit.",
+    "ActualOSfilelimit overflow and fixed draft/tag/membership rejection tests passed."
+  ],
+  "scope": "Reviewed unactivated Linuxv2; no complete newLinuxproof or durabletransport claimed"
+}

@@ -1,0 +1,8 @@
+{
+  "scope": "Actual macOS14 ARM installed final Joy/Trisha with all six legacy/structured corpora, accepted kit and bounded installed deadline probes; no full198 generation or Trident/LSP floor qualification",
+  "validation_profile": "final-host-ceiling-v1",
+  "status": "active",
+  "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+  "candidate_selector": ".github/final-package-candidate.json",
+  "selector_sha256": "084bfe4821114455881b1fd2718d8a10373e48562d97093ef3a580b0fb9626ba"
+}

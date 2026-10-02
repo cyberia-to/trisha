@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci/scripts/check-installed-host-ceiling.py", line 99, in <module>
+    main()
+    ~~~~^^
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci/scripts/check-installed-host-ceiling.py", line 51, in main
+    result = execute('verify-' + producer_ms + '-' + verifier_ms,
+                     ['verify-artifact', 'compiler', '--input', 'job', '--proof', proof,
+                      '-o', 'compiled', '--emit', 'program', '--force', '--time-ms', verifier_ms, *compact])
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci/scripts/check-installed-host-ceiling.py", line 37, in execute
+    result = helper.execute(joy, command, output, commands, name, report['commands'], expected)
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci/scripts/current-structured-corpus.py", line 72, in execute
+    require(result.returncode == expected, name + ' returned an unexpected exit: ' + result.stderr.decode('utf-8', errors='replace')[-4000:])
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci/scripts/current-structured-corpus.py", line 26, in require
+    raise ValueError(message)
+ValueError: verify-30000-14400000 returned an unexpected exit: error: execution error: limit time_ms must be in 1..=7200000
+

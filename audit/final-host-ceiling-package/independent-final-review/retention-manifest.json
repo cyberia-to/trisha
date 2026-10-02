@@ -1,0 +1,381 @@
+{
+  "original_directory": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review",
+  "files": [
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/actionlint.json",
+      "retained": "actionlint.json",
+      "encoding": "identity",
+      "bytes": 451,
+      "sha256": "a4649fbaf4b31547cb8a07d6b961a544822ef9840b33640f21aab01aceb13c3a",
+      "retained_sha256": "a4649fbaf4b31547cb8a07d6b961a544822ef9840b33640f21aab01aceb13c3a"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/actionlint.stderr",
+      "retained": "actionlint.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/actionlint.stdout",
+      "retained": "actionlint.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/commands.json",
+      "retained": "commands.json",
+      "encoding": "identity",
+      "bytes": 2567,
+      "sha256": "0a9773b3ea78e64856568c853780cc828194c401ed66028fb36019b641162485",
+      "retained_sha256": "0a9773b3ea78e64856568c853780cc828194c401ed66028fb36019b641162485"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/crlf-inputs.json",
+      "retained": "crlf-inputs.json",
+      "encoding": "identity",
+      "bytes": 6138,
+      "sha256": "742b4477294351e165a6dba8a06f4165ae5b4595765446014aaac65a4cf6d57f",
+      "retained_sha256": "742b4477294351e165a6dba8a06f4165ae5b4595765446014aaac65a4cf6d57f"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/orchestration.stderr",
+      "retained": "orchestration.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 900,
+      "sha256": "75f6d0308db84a10bade6231063e0c9302b367272658c619fd1f13c8c3fbdebb",
+      "retained_sha256": "c2e17e875f77f2c60a9e2d4b043a023bb6da8ee33728e0f6899b9ba0aa8a4b94"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/orchestration.stdout",
+      "retained": "orchestration.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 3516,
+      "sha256": "c336510aba63f9355c5c97815274fa5cf1bc69a2481c6edcf5651d4f47792d90",
+      "retained_sha256": "eac09ac4610f1708f1744ee029aa43315f599af892413e43c35a8ea7f8a37579"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/review.json",
+      "retained": "review.json",
+      "encoding": "identity",
+      "bytes": 7560,
+      "sha256": "823af2c2d0209625c2618033d9c7eb8607dd4dbb2e73c5f1e1dfb6abc849d636",
+      "retained_sha256": "823af2c2d0209625c2618033d9c7eb8607dd4dbb2e73c5f1e1dfb6abc849d636"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/.claude/plans/final-host-ceiling-package.md",
+      "retained": "source/.claude/plans/final-host-ceiling-package.md",
+      "encoding": "identity",
+      "bytes": 6028,
+      "sha256": "2410f71c2ffb6ee195193be90a7e5344b9c36969b425125d23c65f6cf6907423",
+      "retained_sha256": "2410f71c2ffb6ee195193be90a7e5344b9c36969b425125d23c65f6cf6907423"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/.gitattributes",
+      "retained": "source/.gitattributes",
+      "encoding": "identity",
+      "bytes": 5280,
+      "sha256": "0c480d7e64ab3a296f4ac2c03353c595bb5d76fdd3160ad08c02ce2183027376",
+      "retained_sha256": "0c480d7e64ab3a296f4ac2c03353c595bb5d76fdd3160ad08c02ce2183027376"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/.github/final-package-assets.json",
+      "retained": "source/.github/final-package-assets.json",
+      "encoding": "identity",
+      "bytes": 534,
+      "sha256": "b392bd187d70d6882cc62cc9e8275f0f772a9ee86d6cbe7527966eac301faa0f",
+      "retained_sha256": "b392bd187d70d6882cc62cc9e8275f0f772a9ee86d6cbe7527966eac301faa0f"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/.github/final-package-candidate.json",
+      "retained": "source/.github/final-package-candidate.json",
+      "encoding": "identity",
+      "bytes": 924,
+      "sha256": "7f62731a82ce92a68ac3508344c5ea83f45273f4a7c54994e01d7ef53f8be390",
+      "retained_sha256": "7f62731a82ce92a68ac3508344c5ea83f45273f4a7c54994e01d7ef53f8be390"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/.github/final-package-inputs.json",
+      "retained": "source/.github/final-package-inputs.json",
+      "encoding": "identity",
+      "bytes": 2984,
+      "sha256": "a780cd96d65aa742833a90af02315f35014c4d895793a17b79fbe6114ac76284",
+      "retained_sha256": "a780cd96d65aa742833a90af02315f35014c4d895793a17b79fbe6114ac76284"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/.github/final-package-macos-floor.json",
+      "retained": "source/.github/final-package-macos-floor.json",
+      "encoding": "identity",
+      "bytes": 402,
+      "sha256": "696e070a875df1d3017664d412a1df015f7c39daf1bacf952e28250ac9806891",
+      "retained_sha256": "696e070a875df1d3017664d412a1df015f7c39daf1bacf952e28250ac9806891"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/.github/final-package-source.json",
+      "retained": "source/.github/final-package-source.json",
+      "encoding": "identity",
+      "bytes": 2875,
+      "sha256": "59bfed879afda8e20e81b0b52e98d773ee178c6ccfc266e53cf7eed91e1a4902",
+      "retained_sha256": "59bfed879afda8e20e81b0b52e98d773ee178c6ccfc266e53cf7eed91e1a4902"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/.github/workflows/final-package-assets.yml",
+      "retained": "source/.github/workflows/final-package-assets.yml",
+      "encoding": "identity",
+      "bytes": 1628,
+      "sha256": "6d3c9a744e4650e654fb9d0b7da502319b857d4c254d9bc8a45f6896bb7c306e",
+      "retained_sha256": "6d3c9a744e4650e654fb9d0b7da502319b857d4c254d9bc8a45f6896bb7c306e"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/.github/workflows/final-package-macos-floor.yml",
+      "retained": "source/.github/workflows/final-package-macos-floor.yml",
+      "encoding": "identity",
+      "bytes": 1702,
+      "sha256": "9f0b7c10c93e39ff3d70cd2103ad58f16ab426d885f614c5fb5cc09c79aa60da",
+      "retained_sha256": "9f0b7c10c93e39ff3d70cd2103ad58f16ab426d885f614c5fb5cc09c79aa60da"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/.github/workflows/final-package-native.yml",
+      "retained": "source/.github/workflows/final-package-native.yml",
+      "encoding": "identity",
+      "bytes": 2886,
+      "sha256": "27477b80d145cbcad6c559d801df7f67ffe16fd3f6ac06bcd6c355fdd091e087",
+      "retained_sha256": "27477b80d145cbcad6c559d801df7f67ffe16fd3f6ac06bcd6c355fdd091e087"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/.github/workflows/final-package-source.yml",
+      "retained": "source/.github/workflows/final-package-source.yml",
+      "encoding": "identity",
+      "bytes": 1620,
+      "sha256": "9352deee130868bc76c98ce4c749db10f8c2fca7ee5e15a326eab85e8e81c351",
+      "retained_sha256": "9352deee130868bc76c98ce4c749db10f8c2fca7ee5e15a326eab85e8e81c351"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/CLAUDE.md",
+      "retained": "source/CLAUDE.md",
+      "encoding": "identity",
+      "bytes": 12459,
+      "sha256": "5fdd2bd53b50c02658420f768886581e7f89b54ab25488a646db948a8d49a3ff",
+      "retained_sha256": "5fdd2bd53b50c02658420f768886581e7f89b54ab25488a646db948a8d49a3ff"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/audit/final-host-ceiling-package/README.md",
+      "retained": "source/audit/final-host-ceiling-package/README.md",
+      "encoding": "identity",
+      "bytes": 5861,
+      "sha256": "94c4ae95996db274cd4e24872fc0fb4c7a7afefeea215cff4167913ccc14e063",
+      "retained_sha256": "94c4ae95996db274cd4e24872fc0fb4c7a7afefeea215cff4167913ccc14e063"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/audit/final-host-ceiling-package/check-source-preview.py",
+      "retained": "source/audit/final-host-ceiling-package/check-source-preview.py",
+      "encoding": "identity",
+      "bytes": 3807,
+      "sha256": "ffbd6668113586e5ba1eddd15cb6d8bb07c3a5242abbba6a278e006ad9019c55",
+      "retained_sha256": "ffbd6668113586e5ba1eddd15cb6d8bb07c3a5242abbba6a278e006ad9019c55"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/audit/final-host-ceiling-package/references/joy-dd61-inventory.json.gz",
+      "retained": "source/audit/final-host-ceiling-package/references/joy-dd61-inventory.json.gz",
+      "encoding": "identity",
+      "bytes": 19343,
+      "sha256": "20df7330d2cb77bb6dd28dea980f3e32a5baa38c3ee49a422cf963ceef82eea3",
+      "retained_sha256": "20df7330d2cb77bb6dd28dea980f3e32a5baa38c3ee49a422cf963ceef82eea3"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/audit/final-host-ceiling-package/references/joy11b7-limits.rs",
+      "retained": "source/audit/final-host-ceiling-package/references/joy11b7-limits.rs",
+      "encoding": "identity",
+      "bytes": 2940,
+      "sha256": "b7adbee9300d3136705270abf72081e95fc26ca810b0fff0a947e77201116447",
+      "retained_sha256": "b7adbee9300d3136705270abf72081e95fc26ca810b0fff0a947e77201116447"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/audit/final-host-ceiling-package/references/source734-check-baselines.py",
+      "retained": "source/audit/final-host-ceiling-package/references/source734-check-baselines.py",
+      "encoding": "identity",
+      "bytes": 14131,
+      "sha256": "29b98dac0b6f07f579b3f44fdbe7e41c262b0372088d2909acf4e0d076cd229b",
+      "retained_sha256": "29b98dac0b6f07f579b3f44fdbe7e41c262b0372088d2909acf4e0d076cd229b"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/audit/final-host-ceiling-package/references/source734-containers-replay.json",
+      "retained": "source/audit/final-host-ceiling-package/references/source734-containers-replay.json",
+      "encoding": "identity",
+      "bytes": 3081,
+      "sha256": "9c2ebca79cd14c9216cc12e8ee9559f9371116b39ea3f65c2e855b7ea282f5f0",
+      "retained_sha256": "9c2ebca79cd14c9216cc12e8ee9559f9371116b39ea3f65c2e855b7ea282f5f0"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/audit/final-host-ceiling-package/references/source734-corpus-replay.json",
+      "retained": "source/audit/final-host-ceiling-package/references/source734-corpus-replay.json",
+      "encoding": "identity",
+      "bytes": 39893,
+      "sha256": "ede5500b265297bb55e5132a7a05f6628c923f3bee752f07b49d53020430db3b",
+      "retained_sha256": "ede5500b265297bb55e5132a7a05f6628c923f3bee752f07b49d53020430db3b"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/audit/final-host-ceiling-package/references/source734-local-replay.json",
+      "retained": "source/audit/final-host-ceiling-package/references/source734-local-replay.json",
+      "encoding": "identity",
+      "bytes": 1564,
+      "sha256": "9f1c1e114ad7cbf47f4ac8d3126990211ea709f320b1402cdf1f9909c85573d6",
+      "retained_sha256": "9f1c1e114ad7cbf47f4ac8d3126990211ea709f320b1402cdf1f9909c85573d6"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/audit/final-host-ceiling-package/references/source734-sources.json.gz",
+      "retained": "source/audit/final-host-ceiling-package/references/source734-sources.json.gz",
+      "encoding": "identity",
+      "bytes": 1023120,
+      "sha256": "9b5d1a476947362a137f5a569a9c60487864d2b827e644afb8d85c28c7c6ede5",
+      "retained_sha256": "9b5d1a476947362a137f5a569a9c60487864d2b827e644afb8d85c28c7c6ede5"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/patches/apply.nu",
+      "retained": "source/patches/apply.nu",
+      "encoding": "identity",
+      "bytes": 20110,
+      "sha256": "d8d5ea129a78c36d45b98b448ebf45774557ccf1693750d77c231d437328c445",
+      "retained_sha256": "d8d5ea129a78c36d45b98b448ebf45774557ccf1693750d77c231d437328c445"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/prepare-final-source.py",
+      "retained": "source/prepare-final-source.py",
+      "encoding": "identity",
+      "bytes": 7350,
+      "sha256": "44602e7cd65830adf2631f098323001f70042460e97dac85575ccdd9e66ff220",
+      "retained_sha256": "44602e7cd65830adf2631f098323001f70042460e97dac85575ccdd9e66ff220"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/scripts/final-source-impact.py",
+      "retained": "source/scripts/final-source-impact.py",
+      "encoding": "identity",
+      "bytes": 5797,
+      "sha256": "a80578694041fe432df21819b166140165fe98d27ff3d0a6dcfb8a9621faa86d",
+      "retained_sha256": "a80578694041fe432df21819b166140165fe98d27ff3d0a6dcfb8a9621faa86d"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/scripts/inherit-full-baselines.py",
+      "retained": "source/scripts/inherit-full-baselines.py",
+      "encoding": "identity",
+      "bytes": 10354,
+      "sha256": "6d37ed18d894bbfb8b3a745d06f360441177cc07f0da83eff9573b78c5d12761",
+      "retained_sha256": "6d37ed18d894bbfb8b3a745d06f360441177cc07f0da83eff9573b78c5d12761"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/scripts/native-candidate.py",
+      "retained": "source/scripts/native-candidate.py",
+      "encoding": "identity",
+      "bytes": 26095,
+      "sha256": "2087fc9ebe0f02d28de0234a59e447d66dc5af4b2323ed8ec3a0f564bfae345d",
+      "retained_sha256": "2087fc9ebe0f02d28de0234a59e447d66dc5af4b2323ed8ec3a0f564bfae345d"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/scripts/native-rehearsal-local.py",
+      "retained": "source/scripts/native-rehearsal-local.py",
+      "encoding": "identity",
+      "bytes": 7152,
+      "sha256": "e6b8dc12af1dbf81fcbf76ed2f94be2165621006797be950100db854230a220b",
+      "retained_sha256": "e6b8dc12af1dbf81fcbf76ed2f94be2165621006797be950100db854230a220b"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/scripts/native-rehearsal-macos-floor.py",
+      "retained": "source/scripts/native-rehearsal-macos-floor.py",
+      "encoding": "identity",
+      "bytes": 8181,
+      "sha256": "57b6354c41c7e1c5d379f4f5dd0629607f788f9a94158d29cac36567cbc93853",
+      "retained_sha256": "57b6354c41c7e1c5d379f4f5dd0629607f788f9a94158d29cac36567cbc93853"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/scripts/package-source.nu",
+      "retained": "source/scripts/package-source.nu",
+      "encoding": "identity",
+      "bytes": 5447,
+      "sha256": "cd26bc5a718d99a56572bfb4853338dabf4d8bb81d1006cf0babc97f0540093d",
+      "retained_sha256": "cd26bc5a718d99a56572bfb4853338dabf4d8bb81d1006cf0babc97f0540093d"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/scripts/prepare-native-rehearsal.py",
+      "retained": "source/scripts/prepare-native-rehearsal.py",
+      "encoding": "identity",
+      "bytes": 8483,
+      "sha256": "45c5036b799726a4514921f142cfa3601f7ed37581fd12b628cf089f68ec6191",
+      "retained_sha256": "45c5036b799726a4514921f142cfa3601f7ed37581fd12b628cf089f68ec6191"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/scripts/test_final_native_gate.py",
+      "retained": "source/scripts/test_final_native_gate.py",
+      "encoding": "identity",
+      "bytes": 3546,
+      "sha256": "3874d570374fd2a95f6e8bcb412029cfd723b3f1ad20b24b8a31bb52cdc014da",
+      "retained_sha256": "3874d570374fd2a95f6e8bcb412029cfd723b3f1ad20b24b8a31bb52cdc014da"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/scripts/test_transport_native_rehearsal.py",
+      "retained": "source/scripts/test_transport_native_rehearsal.py",
+      "encoding": "identity",
+      "bytes": 1610,
+      "sha256": "6ed0d122708396c92f9e8253a0eb62447a46cba83fe53e4a4c85877714cef350",
+      "retained_sha256": "6ed0d122708396c92f9e8253a0eb62447a46cba83fe53e4a4c85877714cef350"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source/scripts/transport-native-rehearsal.py",
+      "retained": "source/scripts/transport-native-rehearsal.py",
+      "encoding": "identity",
+      "bytes": 12182,
+      "sha256": "1b1caf8db57829f45e0fd3cf447409f2d22b757868f5d5e380956af0cd168161",
+      "retained_sha256": "1b1caf8db57829f45e0fd3cf447409f2d22b757868f5d5e380956af0cd168161"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source-preview.json",
+      "retained": "source-preview.json",
+      "encoding": "identity",
+      "bytes": 67142,
+      "sha256": "ca51575cf8afab9d8eda9f8757e44eb5966a0c92a20e4c8dbd1ca4e3f18514e0",
+      "retained_sha256": "ca51575cf8afab9d8eda9f8757e44eb5966a0c92a20e4c8dbd1ca4e3f18514e0"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source-preview.stderr",
+      "retained": "source-preview.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source-preview.stdout",
+      "retained": "source-preview.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 66,
+      "sha256": "bbea650bb836e48299b45fca3e9f07f722cc38237d385bdc412a65a619f8cdcc",
+      "retained_sha256": "7909fc799d2dd586bae32d33390ae66049904eba62d195d498fd5f871bd193c4"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/sources.json",
+      "retained": "sources.json",
+      "encoding": "identity",
+      "bytes": 7214,
+      "sha256": "94b94f5bb1916c5203043a0a626872c7d5bc7ad43cb34c17f40c007d879c881d",
+      "retained_sha256": "94b94f5bb1916c5203043a0a626872c7d5bc7ad43cb34c17f40c007d879c881d"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/transport.stderr",
+      "retained": "transport.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 536,
+      "sha256": "9042a503a18b8a8b528049526403a0aec064a47f10f54e9c3e9c6eab7e8ec427",
+      "retained_sha256": "e8580f460c73a07ac207d9bb26f722c4ec5f20566cd2c3ba91ffa531a8dd4b33"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/transport.stdout",
+      "retained": "transport.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    }
+  ]
+}

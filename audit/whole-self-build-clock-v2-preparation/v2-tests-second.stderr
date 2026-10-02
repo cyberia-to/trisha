@@ -1,0 +1,30 @@
+.........EE
+======================================================================
+ERROR: test_bounded_child_has_empty_path_and_retained_identity_receipt (test_whole_v2.RuntimeTests.test_bounded_child_has_empty_path_and_retained_identity_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha/scripts/test_whole_v2.py", line 171, in test_bounded_child_has_empty_path_and_retained_identity_receipt
+    value=common.bounded(state,[sys.executable,'-c','import os,json; print(json.dumps({"PATH":os.environ["PATH"],"token":os.environ.get("GH_TOKEN")}))'],[state.paths()[1]])
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha/scripts/whole_v2_common.py", line 191, in bounded
+    binary_before=identity(binary), inputs_before={str(p): identity(p) for p in inputs},
+                  ~~~~~~~~^^^^^^^^
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha/scripts/whole_self_inputs.py", line 22, in identity
+    require(path.is_file() and not path.is_symlink(), 'regular input required: ' + str(path))
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha/scripts/native_proof_inputs.py", line 21, in require
+    raise ValueError(message)
+ValueError: regular input required: /opt/homebrew/opt/python@3.14/bin/python3.14
+
+======================================================================
+ERROR: test_outer_clock_failure_preserves_failed_receipt (test_whole_v2.RuntimeTests.test_outer_clock_failure_preserves_failed_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha/scripts/test_whole_v2.py", line 181, in test_outer_clock_failure_preserves_failed_receipt
+    row=state.report['proof_commands'][0];self.assertEqual(row['status'],'failed');self.assertEqual(row['resource_stop'],'wall')
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.021s
+
+FAILED (errors=2)

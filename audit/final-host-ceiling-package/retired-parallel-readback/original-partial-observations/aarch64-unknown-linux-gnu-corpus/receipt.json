@@ -1,0 +1,14 @@
+{
+  "status": "running",
+  "asset": {
+    "kind": "corpus",
+    "target": "aarch64-unknown-linux-gnu",
+    "asset_id": 605445038,
+    "name": "rehearsal-20261002-final-dd61-remote-proof-corpus-aarch64-unknown-linux-gnu.tar.gz",
+    "sha256": "aa5ba2751fb06c21dce43a6ea4057c17b351bbb17efe74e50eed91d1ee0af05c",
+    "bytes": 25141119,
+    "producer_run_id": 36990413939,
+    "producer_artifact_id": 11221645284
+  },
+  "commands": []
+}

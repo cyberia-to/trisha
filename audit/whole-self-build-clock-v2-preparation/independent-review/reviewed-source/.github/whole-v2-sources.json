@@ -1,0 +1,18 @@
+{
+  "format": "native-public-proof-profile-v1",
+  "rust": "1.89.0",
+  "sources": {
+    "bbg": "1d39975ad199b48c350fa4cc011cbf6f289480ee",
+    "hemera": "a931a0a8e7ed369852ce0f8bc6451a59745ee692",
+    "honeycrisp": "ff735e6c262926bc9bab7534786a575020cbe442",
+    "joy": "dd61df9128f6da1f97d4698f45f154f05312fe51",
+    "lens": "17cafe91431977b738e5b72361187cd01ad93638",
+    "neuron": "fd24e768d623604b67e20b4b93fa8e82c83ac373",
+    "nox": "2f09ca3c3f18ae470365310cca8db5208eda75c6",
+    "strata": "d2eb1763b8caf04e6c7647ac6fe99761519c2ef9",
+    "tade": "c1d81c75725df0a666c36d81ef33c3a60eb007f3",
+    "trident": "da0d1a59cd8208fab96f219ccedef29122d5221a",
+    "trisha": "d59738198aff278e7166e5958fbbc5f9777986b7",
+    "zheng": "0d7ba6d422d9b825f9685e903e55252f88ebecd9"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "schema": "trisha/whole-self-build-ci-static-review/v1",
+  "scope": "Preparation and orchestration checks only; no remote job, upload or full self-build executed",
+  "python": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "python_executable": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+  "input_archive": {
+    "bytes": 16637580,
+    "sha256": "7929925282e338a2f761510167575bfe4494c2713ac6fb9182fe59ef6223b9b8"
+  },
+  "actionlint": {
+    "bytes": 5829842,
+    "sha256": "8db11704dc296f096216db4db65d86cd7f0ebfdf4c38453a1da276b137b88388"
+  },
+  "commands": [
+    {
+      "name": "unit-tests",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "scripts/test_whole_self_build.py"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 104,
+        "sha256": "6044d24f6e615d3a8f8ff0e4a20afa49367b8df5f09662c6f429983865d99774"
+      }
+    },
+    {
+      "name": "actionlint-version",
+      "argv": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/native-proof-ci/actionlint-1.7.12/actionlint",
+        "-version"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 96,
+        "sha256": "2f40fa9e505771c4dd7ff4b6ed601e587f52744935b72906e55b21a9a7c1ce1b"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "actionlint",
+      "argv": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/native-proof-ci/actionlint-1.7.12/actionlint",
+        ".github/workflows/whole-self-build.yml"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "initial_probe_note": "An earlier combined shell probe ran all six tests successfully; command lookup then exited1 because actionlint was absent from PATH. Final checks use the retained reviewed absolute actionlint path.",
+  "parsed_sources": {
+    "scripts/whole-self-retain.py": {
+      "bytes": 9060,
+      "sha256": "79745ce64f242bc02e780edfd9eaea855fcaab3a985540ba94e6683f674512fd"
+    },
+    "scripts/whole_self_inputs.py": {
+      "bytes": 6219,
+      "sha256": "25df270d0d66cb88f69a29639deb4beacefeffc69ded4985486922085cf9d616"
+    },
+    "scripts/whole-self-build.py": {
+      "bytes": 10818,
+      "sha256": "0aee319970bd0e2249333e96c1ab47cd3296f9c2ca44dbf1117c1ac69e9bd6f7"
+    },
+    "scripts/whole_self_host.py": {
+      "bytes": 6500,
+      "sha256": "62f493eab628c740980ae571e55bf45da2c1d51cae2727d603959ef7e48a8ce0"
+    },
+    "scripts/test_whole_self_build.py": {
+      "bytes": 5324,
+      "sha256": "0f7e0dc72e0aead4d5157bceb73278c2acf14b55393fed8b3103edc5763ea8de"
+    },
+    "scripts/native_proof_inputs.py": {
+      "bytes": 7395,
+      "sha256": "081cb35ba78abda71b1c86f6755dbb635672ca090dddbd0a1ff176959d58653b"
+    }
+  },
+  "selector": {
+    "bytes": 775,
+    "sha256": "a5a6df5b5b858ea09b91921961656dc559937092b91c0570a1fd172db6a2fed6"
+  },
+  "asset_selector": {
+    "bytes": 423,
+    "sha256": "41a1dc48cb46984229b764d7147168173fededf1eaecf5d8abda40bcbfb1a308"
+  },
+  "workflow": {
+    "bytes": 2013,
+    "sha256": "d41575cd365ebc1db698abe20c4ded9d6893e325e25d83f9202272fa1cb5aa7d"
+  },
+  "status": "passed"
+}

@@ -1,0 +1,7 @@
+{
+  "format": "whole-self-build-activation-v1",
+  "repository": "cyberia-to/trisha",
+  "branch": "test/0.4-whole-self-build-ci",
+  "push_authorized": true,
+  "retain_draft": true
+}

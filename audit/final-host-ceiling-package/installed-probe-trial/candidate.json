@@ -1,0 +1,22 @@
+{
+  "schema_version": "helper-trial-only",
+  "platform": {
+    "name": "macos",
+    "arch": "aarch64",
+    "family": "unix",
+    "kernel_version": "25.4.0"
+  },
+  "toolchain": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: aarch64-apple-darwin\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+  "rustflags": "",
+  "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/temporary/cyber-candidate/unpacked/cyber-source",
+  "source_verified": true,
+  "source_verification_sha256": "ab03bfe130fa39b81220c9231a2d2589fa615f5314cafa81cea25726ab652dc3",
+  "provenance_sha256": "3c6f2ced084812e73f97c069169f83807fc5d389e54b581dd52f10982cd5b227",
+  "binaries": [
+    {
+      "name": "joy",
+      "sha256": "d81d61c400148f7b674b4e1a471f6b828773416681d210ccdd34437431357bd9"
+    }
+  ],
+  "scope": "Actual measured dd61/a96e installed Joy helper trial against unchanged compiler vectors; not a coordinated final package"
+}

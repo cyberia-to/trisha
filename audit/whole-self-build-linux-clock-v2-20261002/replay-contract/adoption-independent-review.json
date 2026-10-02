@@ -1,0 +1,209 @@
+{
+  "schema": "independent/whole-retention-adoption-source-review/v1",
+  "status": "passed-source-review",
+  "sources": {
+    "README.md": {
+      "bytes": 5247,
+      "sha256": "80b30f15c093a61e6339382b885403a5d08cdad08cd1e76e3001f6fc2142e06c"
+    },
+    "PLAN.md": {
+      "bytes": 5566,
+      "sha256": "36653054b56e378a15fdf421b3ed01435a4f0f5a3816a4c2d53c4c0a4aaf5a77"
+    },
+    "expected.json": {
+      "bytes": 19882,
+      "sha256": "795ffd98018083d6b50871ea47e559046bc6bb3d0a041a84bc5a0d879ef78bb7"
+    },
+    "local-preparation.json": {
+      "bytes": 123277,
+      "sha256": "489de67b014c96f7007c538f8a686af6faddcb5692dfad7de615eeaee29ff299"
+    },
+    "common.py": {
+      "bytes": 4090,
+      "sha256": "25c3523e608a27f7b3d0b5ff8adb493e3bb41be36be21352108ad30be11092fc"
+    },
+    "admission.py": {
+      "bytes": 7451,
+      "sha256": "a76a0bb912beba2501d8d072272245e5e927b6f46ccb1b1a77ebd2c44b338bc4"
+    },
+    "contracts.py": {
+      "bytes": 7288,
+      "sha256": "b98621138cf94d5203debb3b77ee3201f0685e5ec5cca8119954ab82d6fe14ff"
+    },
+    "archives.py": {
+      "bytes": 6194,
+      "sha256": "b3970267e0231867f105fefd2b3cb36aa2a5a65004ee925424b160c74fe43b8c"
+    },
+    "evidence.py": {
+      "bytes": 15366,
+      "sha256": "fa4fac0ca99771d2dbc1d554a61ce4dce05b39c53f678a24ecdb9a70ff61ead8"
+    },
+    "remote.py": {
+      "bytes": 8267,
+      "sha256": "739fe689472508adcbb0e0d54c632725955e61149cc25cd09187ed6337e4e8ec"
+    },
+    "transport.py": {
+      "bytes": 15875,
+      "sha256": "92036d91a870f097ad603c8daff3bd8a0c1df5a0a72d277746a4524326c17baf"
+    },
+    "adopt.py": {
+      "bytes": 8727,
+      "sha256": "d26114692e0303f5efc04a3c83ea276107f25b83dee13948bc4d57fed6ee2722"
+    },
+    "test_adoption.py": {
+      "bytes": 24019,
+      "sha256": "c7484bb46568c1d03219809d6f019dfc6dbf1e1f93f6935031bfa4d8989216d0"
+    },
+    "fixtures.py": {
+      "bytes": 15598,
+      "sha256": "009b6ca3fbf4c3c2d87d72178be39c734713d2316dfd6c622cb4f4011a09d701"
+    },
+    "compression-rejection/decision.json": {
+      "bytes": 917,
+      "sha256": "3580936852e9783e66a23220cda0e6015668e561c91883600a324542d7d5c95e"
+    },
+    "compression-rejection/samples.json": {
+      "bytes": 4156,
+      "sha256": "2b41ce1dfcb54ac3249af403eb18829c02b4c171f0a24d6823f192b99df52376"
+    },
+    "compression-rejection/sample.py": {
+      "bytes": 2129,
+      "sha256": "8027aac5c349c994b072224a28a087a0ebcbd2f9729789aa54968e72bc639d50"
+    }
+  },
+  "source_manifest": {
+    "bytes": 2192,
+    "sha256": "a9be736fee399466967e56c7d077faf978b1f1c131b235a226cc74101b2d5305"
+  },
+  "preparation": {
+    "bytes": 4507,
+    "sha256": "640fd0dfea521e899d7b4e61b48f3c27d36ff1cc1722b4a27dff10df19255d2f"
+  },
+  "reviewed_at_ns": 1790932555702122000,
+  "scope": "Read-only exact frozen adoption source review, synthetic offline tests, and original committed metadata pin cross-checks. Contingent transport equivalence only; no adoption execution authorization.",
+  "findings": [],
+  "resolved_findings": [
+    {
+      "id": "post-reconstruction-local-bytes",
+      "resolution": "Main repeats full original local whole-file/all22part hashing after both remote reconstructions and before any publication. Independent synthetic main test changes this admission and confirms no publish and preserved original exception."
+    },
+    {
+      "id": "owned-descendant-after-leader-exit",
+      "resolution": "Exception cleanup signals recorded owned PG after exited leader, with bounded TERM/KILL cleanup and final no-running-member check; actual forked stderr-holder ignoring TERM is terminated. Ownership is recorded immediately after Popen before the fallible getpgid probe; real live/disappeared probe and rapid exited leader tests pass."
+    },
+    {
+      "id": "failure-evidence-exhausted-budget",
+      "resolution": "A startup1MiB reserve is counted inside the original512MiB sidecar limit. Expired-clock/storage failure overwrites only that reserved evidence and atomically renames it to terminal-failure.json. It preserves first failure and bounded partial identities, cannot record success, and blocks subsequent operations. Actual expired clock and sparse512MiB boundary tests pass."
+    }
+  ],
+  "reviewed_contracts": [
+    "Exact local preparation489de67b, frozen original admission/common bytes and all original producer/fresh-verifier receipt identities remain separate from remote provenance.",
+    "Remote admission binds complete successful original run36976540959 attempt1 head1421987, all four named jobs and six original Actions ZIPs with authenticated origin, server hashes, safe bounded member extraction and source/tool/binary/raw-log/compiled JOB checks. Fetched code is never imported.",
+    "Pending and completed statuses are distinct. All22canonical part sequence/offset/length/hash identities must agree with local preparation before any certificate body read. Independent one-part readback feeds ordered full SHA256 for both generations before publishing any equivalence metadata.",
+    "Publication is limited to the existing draft389977897, absent tag candidate-20260916.1, unchanged observed default ref, unique new names and independently downloaded readback. No remote overwrite/delete/tag/promotion or certificate-part upload path exists.",
+    "Proof/logical/physical context claims are unchanged. Local and remote runs preserve their distinct source/binary/host receipts even if complete certificate bytes later match.",
+    "Exact-source review SHA gate, explicit --execute, source stability checks and no retry prevent treating this offline review as an executed adoption."
+  ],
+  "validation": {
+    "suite": {
+      "tests": 22,
+      "passed": 22,
+      "failed": 0,
+      "elapsed_seconds_from_unittest": 15.304,
+      "command": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "-m",
+        "unittest",
+        "-v",
+        "test_adoption"
+      ]
+    },
+    "independent_main_order": {
+      "tests": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "initial_suite": {
+      "tests": 17,
+      "passed": 17
+    },
+    "three_fix_intermediate_suite": {
+      "tests": 20,
+      "passed": 20
+    },
+    "offline_bootstrap": {
+      "exact_git_blobs": 13,
+      "exact_selectors": 3,
+      "head": "142198726fdec26dae87e2f694da2c2252fefb0f"
+    },
+    "source_unchanged_before_after": true
+  },
+  "limits": [
+    "No original whole proof was scanned, no remote proof or artifact body downloaded, and no API/upload/publication/transport interruption occurred in this review.",
+    "The22suite fixtures are synthetic except actual bounded local child/descendant, hard output and exhaustion regressions. They establish checker behavior, not remote success, actual byte equivalence, durable adoption, SH8 acceptance or full-file capacity.",
+    "Draft/tag/default guards are observations around requests, not atomic server transactions. An actual successful terminal adoption receipt and full readback hashes remain required.",
+    "On exhausted-budget failure terminal-failure.json supersedes an older running receipt snapshot. Cleanup and local failure-evidence hashing may extend beyond deadline-trigger time by their bounded local handling.",
+    "Any new source change invalidates this exact source map. Root must separately authorize execution; this file may be copied to the gate location only by the task owner."
+  ],
+  "evidence": {
+    "final/tests.json": {
+      "bytes": 2870,
+      "sha256": "267eef32b57dad81a4bbced5b16267a962264d86ffc9b647db3619ac27c42e64"
+    },
+    "final/tests.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "final/tests.stderr": {
+      "bytes": 3060,
+      "sha256": "74286e4a9b92acc3a4af23bbf5eb1e6b9af208983ff5d9a289451aa2d887b755"
+    },
+    "final/test_main_order.py": {
+      "bytes": 2571,
+      "sha256": "ae10514b888ea8c4035a9a9eb8d70b2af205d85fbb47bb98989934540393f386"
+    },
+    "final/main-order.json": {
+      "bytes": 555,
+      "sha256": "00430904a1de4e50e90ee017d075d4689972f70b3827ed80c7ce0bca0282bfc4"
+    },
+    "final/main-order.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "final/main-order.stderr": {
+      "bytes": 248,
+      "sha256": "8d7fb25211f8ab49bdce98ef05697bc449311385ef785b39549d2a59a10fac59"
+    },
+    "initial/review.json": {
+      "bytes": 4746,
+      "sha256": "faeea9234b2007598d401686c7a82d405f6ff2bcc8c973ce668d4e420144796d"
+    },
+    "initial/reproduce_failure_receipt.py": {
+      "bytes": 1386,
+      "sha256": "65fb75e164c1434403f3ba16cb9aefcd6d967596926b5c28784d8a373beac62a"
+    },
+    "initial/reproduction.stdout": {
+      "bytes": 532,
+      "sha256": "0e656fe126cd8c3ad869cef66373d344416d6d9988f17eb57724ecf4130bfd1d"
+    },
+    "initial/reproduction.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "initial/bootstrap-crosscheck.json": {
+      "bytes": 2369,
+      "sha256": "8ac4a130ccb0c957504df75d17482bfede24aedf58115ba3670bcdd46f911715"
+    },
+    "followup/tests.json": {
+      "bytes": 2870,
+      "sha256": "df5cb0c31d7780eebce8e5f4eba8972c7308d3f2c169dc1ffd03ec4991b97dc5"
+    },
+    "followup/tests.stderr": {
+      "bytes": 2796,
+      "sha256": "d55a36926f88a1436f0f9e20f600a0ee0446389bd914ac41757cc328bc82507c"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+[
+  {
+    "name": "tests",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "-W",
+      "error",
+      "-m",
+      "unittest",
+      "-v",
+      "test_whole_v2",
+      "test_whole_self_build"
+    ],
+    "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha/scripts",
+    "environment": {
+      "WHOLE_SELF_INPUT_ARCHIVE": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-input-export/sh8-frozen-full-inputs-20261002.tar.gz"
+    },
+    "started_ns": 1790924385988242000,
+    "ended_ns": 1790924386431115000,
+    "exit_code": 0,
+    "logs": {
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 4182,
+        "sha256": "4e60746483b79526770832439aa9caf6ba41f03dc069c784a68ebdb769a17900"
+      }
+    }
+  },
+  {
+    "name": "actionlint",
+    "argv": [
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/native-proof-ci/actionlint-1.7.12/actionlint",
+      ".github/workflows/whole-self-build.yml",
+      ".github/workflows/whole-self-build-v2.yml",
+      ".github/workflows/whole-self-build-v2-generation.yml"
+    ],
+    "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+    "environment": {
+      "WHOLE_SELF_INPUT_ARCHIVE": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-input-export/sh8-frozen-full-inputs-20261002.tar.gz"
+    },
+    "started_ns": 1790924386431406000,
+    "ended_ns": 1790924386437074000,
+    "exit_code": 0,
+    "logs": {
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  }
+]

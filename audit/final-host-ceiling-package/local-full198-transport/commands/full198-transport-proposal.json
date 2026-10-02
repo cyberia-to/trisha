@@ -1,0 +1,28 @@
+{
+  "status": "archive_all_members_checked_before_upload",
+  "scope": "Actual final fresh198 complete original archive; existing-draft evidence transport only, no downstream native consumer activation",
+  "archive": {
+    "path": "rehearsal-20261002-final-dd61-local-rust189-evidence.tar.gz",
+    "bytes": 83416871,
+    "sha256": "9cc80e1c5d420179c1a33c7cb28ce9e1db25ff43712487da79f71ad3c6d71612"
+  },
+  "members": 493,
+  "scripts": {
+    "retain-final-local.py": {
+      "bytes": 6237,
+      "sha256": "cf0d20d2aa2400a6237da45f41149a8e8cd5011b54298dc6049c0d34a1f5e897"
+    },
+    "upload-final-local-evidence.py": {
+      "bytes": 4259,
+      "sha256": "5bcba8a4876dbd1acc29875bf645a5ad5ffbe64670422c40ebafd8c3358bb10e"
+    },
+    "readback-final-local-evidence.py": {
+      "bytes": 3607,
+      "sha256": "25e9ee810163ce4d6bec1ff839b0e7e54bf7cc7001bb02be7f60a8a9501266a9"
+    },
+    "check-final-origin-after-packages.py": {
+      "bytes": 2242,
+      "sha256": "259c3c0d316930b211e0fc41dc39042c2bef0b67040c3567a77f26904e09ba3d"
+    }
+  }
+}

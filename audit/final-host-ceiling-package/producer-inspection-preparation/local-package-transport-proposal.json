@@ -1,0 +1,26 @@
+{
+  "status": "guard_passed_not_uploaded",
+  "scope": "Concrete final local package transport proposal; full198 still running separately",
+  "runner_revision": "5de26a93eb4d489d90f150882adec2c47d14bea4",
+  "script_sha256": "e64a7d028b463cde03f25f52689b8a08da6cf32fe67f91ca7ec0f7f6da820b92",
+  "payloads": [
+    {
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/local-macos-final-rust189/release-results/cyber-tools-aarch64-apple-darwin.tar.gz",
+      "bytes": 16929929,
+      "sha256": "0ba4af63ea103c4d41382816541e8ade6883d7af078ba9e3ba3e9cb27e05d348",
+      "proposed_asset_name": "rehearsal-20261002-final-dd61-local-rust189-cyber-tools-aarch64-apple-darwin.tar.gz"
+    },
+    {
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/local-macos-final-rust189/release-results/proof-corpus-aarch64-apple-darwin.tar.gz",
+      "bytes": 25171332,
+      "sha256": "29632607c886c71398c1f637c5361f53164fdb52167ffbea27b1cc2d452a1002",
+      "proposed_asset_name": "rehearsal-20261002-final-dd61-local-rust189-proof-corpus-aarch64-apple-darwin.tar.gz"
+    },
+    {
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/local-macos-final-rust189/release-results/structured-corpus-aarch64-apple-darwin.tar.gz",
+      "bytes": 687915,
+      "sha256": "7a64776e901dc39c94682188bc7700692e1f60f3f48dd3606bcee24a72f4cdf0",
+      "proposed_asset_name": "rehearsal-20261002-final-dd61-local-rust189-structured-corpus-aarch64-apple-darwin.tar.gz"
+    }
+  ]
+}

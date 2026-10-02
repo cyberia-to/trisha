@@ -1,0 +1,20 @@
+{
+  "scope": "Byte-preserved peer diff contains structural space-only context lines; exact-path whitespace attribute",
+  "first_command": [
+    "git",
+    "diff",
+    "--check",
+    "01f8a80",
+    "HEAD"
+  ],
+  "first_exit_code": 2,
+  "corrected_command": [
+    "git",
+    "diff",
+    "--check",
+    "01f8a80"
+  ],
+  "corrected_exit_code": 0,
+  "raw_patch_sha256": "bdc962d80c7ed01909b08eb93c57d5f3f906fafa256ef558e8dbc4bedccc1bba",
+  "raw_patch_bytes_unchanged": true
+}

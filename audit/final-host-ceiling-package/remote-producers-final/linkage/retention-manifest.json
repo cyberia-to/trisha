@@ -1,0 +1,265 @@
+{
+  "scope": "Original final six-package linkage inspection command streams and executable identities; runtime floor observations remain separately scoped",
+  "files": [
+    {
+      "path": "aarch64-apple-darwin-joy.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-apple-darwin-joy.stdout.gz",
+      "bytes": 1641,
+      "sha256": "317db45067bd558324ba79a49941adf7f1e56351dc2035c5c923d5abceae6f55"
+    },
+    {
+      "path": "aarch64-apple-darwin-trident-lsp.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-apple-darwin-trident-lsp.stdout.gz",
+      "bytes": 1661,
+      "sha256": "771417a65bb5149f0b4b19f1db1469e14d3c5221834eb790eacbcc25af34989b"
+    },
+    {
+      "path": "aarch64-apple-darwin-trident.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-apple-darwin-trident.stdout.gz",
+      "bytes": 1660,
+      "sha256": "ca87fe6bc31f451e6e35488e66efe5d14b812c789a0706e3418859143eba74f9"
+    },
+    {
+      "path": "aarch64-apple-darwin-trisha.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-apple-darwin-trisha.stdout.gz",
+      "bytes": 1790,
+      "sha256": "cb9a3fa61f85645fe507350e88e748e8ebbcaa4120b2856e28a379742e53f5b9"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-joy.exe.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-joy.exe.stdout.gz",
+      "bytes": 1558,
+      "sha256": "f55baf541fe465b5b2a331cfe0ddc32c711cc4c8d8e3e719313257cb91af0d49"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-trident-lsp.exe.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-trident-lsp.exe.stdout.gz",
+      "bytes": 1566,
+      "sha256": "bc275b6e22efe5bc371190084b26b1b542dc3c2546022135c9e0b2df0dc614a7"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-trident.exe.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-trident.exe.stdout.gz",
+      "bytes": 1750,
+      "sha256": "19b73027a82f2a29af902459d4136ab7efba44ec77d4061b74944c6c825271bc"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-trisha.exe.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-pc-windows-msvc-trisha.exe.stdout.gz",
+      "bytes": 1843,
+      "sha256": "ef86e91d37466cecf48c548f5625589b03e170067f9e7bb66140a3a8aec68f07"
+    },
+    {
+      "path": "aarch64-unknown-linux-gnu-joy.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-unknown-linux-gnu-joy.stdout.gz",
+      "bytes": 1495,
+      "sha256": "b98a2e5362b742a18837a22a41edcd05a4e103d8b8312b1acc3da0672bd129c4"
+    },
+    {
+      "path": "aarch64-unknown-linux-gnu-trident-lsp.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-unknown-linux-gnu-trident-lsp.stdout.gz",
+      "bytes": 1512,
+      "sha256": "415883a697a56a003cc410e3e60d7ed3bdbf2f0c6f7f1edd89e7da862402c3d3"
+    },
+    {
+      "path": "aarch64-unknown-linux-gnu-trident.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-unknown-linux-gnu-trident.stdout.gz",
+      "bytes": 1642,
+      "sha256": "6e35760e10921961c087bd148933c075da0756b0124815ea718c292c4c1cca9a"
+    },
+    {
+      "path": "aarch64-unknown-linux-gnu-trisha.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "aarch64-unknown-linux-gnu-trisha.stdout.gz",
+      "bytes": 1715,
+      "sha256": "721e8d1db70683c1f50b87ae219f2b9c624817175b9cc9685061016778808502"
+    },
+    {
+      "path": "inspect-final-linkage.py",
+      "bytes": 3841,
+      "sha256": "c80e049fe6764a3fb3dba0f72ccd1049885812b710c1ece46e8d72e801ef4409"
+    },
+    {
+      "path": "llvm-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "llvm-version.stdout.gz",
+      "bytes": 68,
+      "sha256": "361257c13a9f312240ea64aea3ec864fb1077bea606c997b04e5eca2a0c4ed0a"
+    },
+    {
+      "path": "receipt.json",
+      "bytes": 26108,
+      "sha256": "30fecc7b264bd4d2b6726e8201fb2c34a3f65fc0e055bec531becee9eabefc18"
+    },
+    {
+      "path": "x86_64-apple-darwin-joy.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "x86_64-apple-darwin-joy.stdout.gz",
+      "bytes": 1562,
+      "sha256": "054ddedf234c1333580e4a65b3974288a8592d921c2f493c70198c0aec388059"
+    },
+    {
+      "path": "x86_64-apple-darwin-trident-lsp.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "x86_64-apple-darwin-trident-lsp.stdout.gz",
+      "bytes": 1572,
+      "sha256": "77bf7a92250afd090f0a958845cff25dd6293307c9382730e3e3cb6684c623ac"
+    },
+    {
+      "path": "x86_64-apple-darwin-trident.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "x86_64-apple-darwin-trident.stdout.gz",
+      "bytes": 1580,
+      "sha256": "e51acc113460e944978d7b45ba2dc7cdf7c261905d7dbd6587f68d080fbdc9d4"
+    },
+    {
+      "path": "x86_64-apple-darwin-trisha.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "x86_64-apple-darwin-trisha.stdout.gz",
+      "bytes": 1655,
+      "sha256": "f90ffcba7d86009e030075a04b9f92f311b8b31e1c8a90f6862a4769c596474e"
+    },
+    {
+      "path": "x86_64-pc-windows-msvc-joy.exe.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "x86_64-pc-windows-msvc-joy.exe.stdout.gz",
+      "bytes": 1611,
+      "sha256": "b7c73160de15e7ee54e4d5fa14665e6b7f1478de8c702b09a5bdf4fb4b04d91f"
+    },
+    {
+      "path": "x86_64-pc-windows-msvc-trident-lsp.exe.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "x86_64-pc-windows-msvc-trident-lsp.exe.stdout.gz",
+      "bytes": 1617,
+      "sha256": "d1f143c8582e4551c740a68c68f3e3dd858b5b7689268f005fd6657d467371c8"
+    },
+    {
+      "path": "x86_64-pc-windows-msvc-trident.exe.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "x86_64-pc-windows-msvc-trident.exe.stdout.gz",
+      "bytes": 1797,
+      "sha256": "4c3205b799b23612d6ca8ae0a051dac98bedbfe278c60fcca9da99251fab3b28"
+    },
+    {
+      "path": "x86_64-pc-windows-msvc-trisha.exe.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "x86_64-pc-windows-msvc-trisha.exe.stdout.gz",
+      "bytes": 1873,
+      "sha256": "a6f7f0201131eef2f792536cd41dfb04449df7ffac47220583eeeafbcd7c9911"
+    },
+    {
+      "path": "x86_64-unknown-linux-gnu-joy.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "x86_64-unknown-linux-gnu-joy.stdout.gz",
+      "bytes": 1663,
+      "sha256": "fd480a7c22e271a0047ce99a00507f4ebd44bd08bc7b563637da5b4fa9c8b48c"
+    },
+    {
+      "path": "x86_64-unknown-linux-gnu-trident-lsp.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "x86_64-unknown-linux-gnu-trident-lsp.stdout.gz",
+      "bytes": 1665,
+      "sha256": "66dfebdf127e766b28bf481123bfc99e80789e229d492789de14bc242b8a8805"
+    },
+    {
+      "path": "x86_64-unknown-linux-gnu-trident.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "x86_64-unknown-linux-gnu-trident.stdout.gz",
+      "bytes": 1832,
+      "sha256": "709aa251686c089babb8aead190edcbc516d4aecde16508725842dcf61c74358"
+    },
+    {
+      "path": "x86_64-unknown-linux-gnu-trisha.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "x86_64-unknown-linux-gnu-trisha.stdout.gz",
+      "bytes": 1881,
+      "sha256": "6c001540755b57f5e88cc1dc4cadf11ff343b73a3b5e6647925f613f7d84a16a"
+    }
+  ]
+}
