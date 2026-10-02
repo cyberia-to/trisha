@@ -16,7 +16,7 @@ def sha(path):
 
 def main():
     checkout = Path.cwd()
-    spec = json.loads((checkout / '.github/native-rehearsal-source.json').read_text())
+    spec = json.loads((checkout / os.environ.get('REHEARSAL_SOURCE_SELECTOR', '.github/native-rehearsal-source.json')).read_text())
     results = checkout / 'rehearsal-source-results'
     results.mkdir()
     work = Path(os.environ['RUNNER_TEMP']) / 'native-rehearsal-source'
@@ -25,7 +25,10 @@ def main():
     env = dict(auth, RUSTUP_TOOLCHAIN='1.89.0', CARGO_BUILD_JOBS='2',
                PYTHONDONTWRITEBYTECODE='1', PYTHONUTF8='1')
     for key in ('GH_TOKEN', 'GITHUB_TOKEN', 'RUSTFLAGS', 'CARGO_ENCODED_RUSTFLAGS',
-                'CARGO_BUILD_TARGET', 'CARGO_TARGET_DIR'):
+                'CARGO_BUILD_TARGET', 'CARGO_TARGET_DIR', 'RUSTC', 'RUSTDOC',
+                'RUSTC_WRAPPER', 'RUSTC_WORKSPACE_WRAPPER', 'RUSTDOCFLAGS',
+                'CARGO_BUILD_RUSTC', 'CARGO_BUILD_RUSTDOC', 'CARGO_BUILD_RUSTC_WRAPPER',
+                'CARGO_BUILD_RUSTC_WORKSPACE_WRAPPER', 'CARGO_ENCODED_RUSTDOCFLAGS'):
         env.pop(key, None)
     report = dict(scope=spec['scope'], status='running', selector=spec, commands=[])
 
@@ -92,7 +95,20 @@ def main():
             content.extractall(nu_root, filter='data')
         nu = next(nu_root.rglob('nu'))
         env['PATH'] = str(nu.parent) + os.pathsep + env['PATH']
-        run('rustup', ['rustup', 'toolchain', 'install', '1.89.0', '--profile', 'minimal'])
+        toolchain = '1.89.0-x86_64-unknown-linux-gnu'
+        run('rustup', ['rustup', 'toolchain', 'install', toolchain, '--profile', 'minimal'])
+        paths = {name: Path(run(name + '-path', ['rustup', 'which', '--toolchain', toolchain, name]).strip())
+                 for name in ('rustc', 'cargo', 'rustdoc')}
+        if len({path.parent for path in paths.values()}) != 1:
+            raise ValueError('source preparer toolchains differ')
+        env.update(RUSTUP_TOOLCHAIN=toolchain, RUSTC=str(paths['rustc']), RUSTDOC=str(paths['rustdoc']))
+        env['PATH'] = str(paths['cargo'].parent) + os.pathsep + env['PATH']
+        for name, flag in (('rustc', '-vV'), ('cargo', '-Vv'), ('rustdoc', '-vV')):
+            observed = run(name + '-version', [paths[name], flag])
+            if not observed.startswith(name + ' 1.89.0 '):
+                raise ValueError('actual source preparer toolchain differs: ' + name)
+            if name == 'rustc' and 'host: x86_64-unknown-linux-gnu\n' not in observed:
+                raise ValueError('source preparer compiler must be native Linux x64')
         run('vendor', [nu, '--no-config-file', family / 'trisha/patches/apply.nu'])
         run('source', [nu, '--no-config-file', family / 'trisha/scripts/package-source.nu', work / 'source-export'])
         source = work / 'source-export.tar.gz'
@@ -101,6 +117,11 @@ def main():
         if report['archive']['sha256'] != spec['source_sha256']:
             raise ValueError('remote archive differs from independently prepared pinned source')
         run('guard', ['python3', '-B', family / 'trisha/scripts/verify-source.py', work / 'source-export'])
+        if spec.get('validation_profile') == 'current-package-v1':
+            run('impact', ['python3', '-B', checkout / 'scripts/current-source-impact.py',
+                          '--source', work / 'source-export', '--inputs', checkout / '.github/current-package-inputs.json',
+                          '--references', checkout / 'audit/current-native-package/references',
+                          '--receipt', results / 'source-impact.json'])
         named = work / spec['asset_name']
         source.rename(named)
         run('upload', ['gh', 'release', 'upload', spec['release_tag'], named,

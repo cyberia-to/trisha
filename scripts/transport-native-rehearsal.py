@@ -26,7 +26,7 @@ def require_pinned_toolchain(candidate, target):
 
 def main():
     checkout = Path.cwd()
-    spec = json.loads((checkout / '.github/native-rehearsal-assets.json').read_text())
+    spec = json.loads((checkout / os.environ.get('REHEARSAL_ASSETS_SELECTOR', '.github/native-rehearsal-assets.json')).read_text())
     results = checkout / 'rehearsal-assets-results'
     results.mkdir()
     work = Path(os.environ['RUNNER_TEMP']) / 'native-rehearsal-assets'
@@ -105,9 +105,24 @@ def main():
                     or corpus['source_provenance_sha256'] != spec['provenance_sha256']):
                 raise ValueError('producer source/kit provenance mismatch')
             observed_toolchain = require_pinned_toolchain(candidate, target)
-            report.setdefault('producer_toolchains', []).append(dict(
-                target=target, rustc=observed_toolchain,
-                cargo_version_observation='not separately recorded by the frozen producer'))
+            observed = dict(target=target, rustc=observed_toolchain,
+                            cargo_version_observation='not separately recorded by the frozen producer')
+            current = spec.get('validation_profile') == 'current-package-v1'
+            if current:
+                if produced['source'].get('validation_profile') != 'current-package-v1':
+                    raise ValueError('current package producer validation profile differs')
+                paths = json.loads((restored / 'toolchain-paths.json').read_text())
+                for name in ('rustc', 'cargo', 'rustdoc'):
+                    if not paths[name]['version'].startswith(name + ' 1.89.0 '):
+                        raise ValueError('actual producer tool version differs: ' + name)
+                if paths['rustc']['version'] != observed_toolchain:
+                    raise ValueError('preflight and candidate compiler differ')
+                impact = json.loads((restored / 'source-impact.json').read_text())
+                if (impact['status'] != 'passed' or impact['source_provenance_sha256'] != spec['provenance_sha256']
+                        or impact['selector_sha256'] != spec['inputs_sha256']):
+                    raise ValueError('current package source impact guard differs')
+                observed.update(cargo_version_observation=paths['cargo']['version'], rustdoc=paths['rustdoc']['version'])
+            report.setdefault('producer_toolchains', []).append(observed)
             binary = restored / produced['archive']
             if binary.parent != restored or sha(binary) != produced['sha256']:
                 raise ValueError('native binary archive identity mismatch')
@@ -119,7 +134,28 @@ def main():
             # Preserve the authenticated Actions container beyond its retention
             # period as well as the exact deployable binary and proof archives.
             # This is the original ZIP, not a reconstructed evidence bundle.
-            for kind, source in [('binary', binary), ('corpus', proof), ('evidence', archive)]:
+            payloads = [('binary', binary), ('corpus', proof)]
+            if current:
+                structured = restored / ('structured-corpus-' + target + '.tar.gz')
+                manifest_path = restored / 'structured-corpus/corpus.json'
+                manifest = json.loads(manifest_path.read_text())
+                verified = json.loads((restored / 'local-structured-verification.json').read_text())
+                producer_joy = next(row['sha256'] for row in candidate['binaries'] if row['name'] == 'joy')
+                if (manifest['schema'] != 'joy/current-package-structured-corpus/v1'
+                        or manifest['source_provenance_sha256'] != spec['provenance_sha256']
+                        or manifest['producer_joy_sha256'] != producer_joy
+                        or manifest['producer_platform'] != candidate['platform']
+                        or len(manifest['cases']) != 27 or len(verified['cases']) != 27
+                        or verified['all_checks_passed'] is not True
+                        or verified['corpus_sha256'] != sha(manifest_path)
+                        or verified['consumer_joy']['sha256'] != producer_joy):
+                    raise ValueError('current structured corpus producer identity differs')
+                with tarfile.open(structured) as content:
+                    if content.extractfile('structured-corpus/corpus.json').read() != manifest_path.read_bytes():
+                        raise ValueError('structured corpus archive identity differs')
+                payloads.append(('structured-corpus', structured))
+            payloads.append(('evidence', archive))
+            for kind, source in payloads:
                 name = spec['asset_prefix'] + '-' + source.name
                 if name in existing:
                     raise ValueError('unique transport asset name is occupied')

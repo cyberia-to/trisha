@@ -32,7 +32,7 @@ def main():
             or actual_host['machine'] != 'arm64'):
         raise ValueError('actual native macOS 14 ARM host required: ' + repr(actual_host))
     root = Path.cwd()
-    config = json.loads((root / '.github/native-rehearsal-macos-floor.json').read_text())
+    config = json.loads((root / os.environ.get('REHEARSAL_FLOOR_SELECTOR', '.github/native-rehearsal-macos-floor.json')).read_text())
     selector = root / '.github/release-candidate.json'
     selected = json.loads(selector.read_text())
     if sha(selector) != config['selector_sha256'] or selected['source_sha256'] != config['source_sha256']:
@@ -122,6 +122,14 @@ def main():
             if verification.get('all_checks_passed') is not True or len(verification['cases']) != 47:
                 raise ValueError('incomplete corpus verification')
             report['verifications'].append(dict(target=corpus['target'], receipt=path.name, sha256=sha(path)))
+        if selected.get('validation_profile') == 'current-package-v1':
+            report['structured_verifications'] = []
+            for index, corpus in enumerate(selected['structured_corpora']):
+                path = root / 'release-results' / f'structured-verification-{index}.json'
+                verification = json.loads(path.read_text())
+                if verification.get('all_checks_passed') is not True or len(verification['cases']) != 27:
+                    raise ValueError('incomplete structured corpus verification')
+                report['structured_verifications'].append(dict(target=corpus['target'], receipt=path.name, sha256=sha(path)))
         report['status'] = 'passed'
     except BaseException:
         if child is not None and child.poll() is None:

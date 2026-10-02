@@ -1,0 +1,52 @@
+[
+  {
+    "command": [
+      "python3",
+      "-B",
+      "scripts/test_transport_native_rehearsal.py"
+    ],
+    "exit_code": 0
+  },
+  {
+    "command": [
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/native-proof-ci/actionlint-1.7.12/actionlint",
+      ".github/workflows/current-package-source.yml",
+      ".github/workflows/current-package-assets.yml",
+      ".github/workflows/current-package-macos-floor.yml",
+      ".github/workflows/release-candidate.yml"
+    ],
+    "exit_code": 0
+  },
+  {
+    "syntax_path": "scripts/current-source-impact.py",
+    "sha256": "6318eb4782a731a1ebe3a0d429b370542694f3240054f04bc0d5dd26a4c52163"
+  },
+  {
+    "syntax_path": "scripts/current-structured-corpus.py",
+    "sha256": "cd2f1ad2daec1f887b7bd0fed88a312b997ad2b2f9f3f12173d522f3919ae8f6"
+  },
+  {
+    "syntax_path": "scripts/native-candidate.py",
+    "sha256": "2ad6047e170feae6dcb39adf2d9d1a4ac2f981b2f31c44af93570e140554dbcd"
+  },
+  {
+    "syntax_path": "scripts/prepare-native-rehearsal.py",
+    "sha256": "8959f8a34a3eb8df01f2f97c3ba87fb804b47dd49e08cbd3d19abf9222f4c007"
+  },
+  {
+    "syntax_path": "scripts/transport-native-rehearsal.py",
+    "sha256": "2b02095b2d9f18884323d01faa47fdc41803d0cc8a8cbdc90cdedb85b3feef4b"
+  },
+  {
+    "syntax_path": "scripts/native-rehearsal-local.py",
+    "sha256": "bda070c6522ab665a34a6280174abd7b3d438cf81936c86914f5bf9ce13d94c5"
+  },
+  {
+    "syntax_path": "scripts/native-rehearsal-local-transport.py",
+    "sha256": "5d1df0d6ddd9e88b1b1b997d4dc8883f1918c96436cc3f45b09e1d2579732643"
+  },
+  {
+    "syntax_path": "scripts/native-rehearsal-macos-floor.py",
+    "sha256": "d482289fecf4ae31a60197678862b13d5d30999fb2bb7e9ad3de9f5510d4294a"
+  }
+]

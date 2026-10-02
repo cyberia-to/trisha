@@ -19,6 +19,11 @@ a production dependency. Every final production pin and origin reachability
 check precedes archive selection. The accepted SH6 kit may be reused only when
 its production source/contract guard accepts the new archived Trident inputs.
 
+The committed feature checkout supplies the reviewed bootstrap, source-impact
+checker and structured-corpus helper; the archive supplies all production
+implementation and existing build, packaging and smoke scripts. Receipts bind
+both the runner commit and source archive.
+
 Build all four binaries anew with the observed native Rust, Cargo and rustdoc
 1.89 toolchain. Never replace a binary inside an existing accepted package.
 The portable build keeps Ubuntu 22.04/glibc 2.35 runners and the existing Windows
@@ -30,6 +35,10 @@ Server 2022 x64 and macOS 15 Intel. The sixth producer uses the actual local
 Mac ARM host. The separate bounded free macOS 14 ARM consumer checks only the
 installed artifact behavior selected below. Intel macOS 14 and Windows 11 x64
 still require matching native hosts before those minimums can be claimed.
+These are unqualified compatibility projections, as specified in
+`docs/reference/release-platforms.md`, rather than additional required gates
+for acceptance on the actual six native target hosts. Linux glibc 2.35 and
+Windows static CRT remain the existing portable package policy.
 
 ## Required producer gates
 

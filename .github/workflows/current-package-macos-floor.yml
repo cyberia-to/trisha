@@ -1,0 +1,33 @@
+name: Current package Verify native rehearsal on macOS 14 ARM
+on:
+  push:
+    branches: ['test/0.4-current-distribution-20261002']
+    paths: ['.github/current-package-macos-floor.json']
+permissions:
+  contents: write
+jobs:
+  consumer:
+    runs-on: macos-14
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.13.15'
+      - name: Verify installed kit and six producer corpora within 5 GiB
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REHEARSAL_FLOOR_SELECTOR: .github/current-package-macos-floor.json
+        run: python3 -B scripts/native-rehearsal-macos-floor.py
+      - name: Preserve compatibility receipt and original consumer evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: current-package-macos14-arm-consumer
+          path: |
+            macos-floor-results/
+            release-results/
+          if-no-files-found: error
+          retention-days: 30
