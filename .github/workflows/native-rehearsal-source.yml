@@ -1,0 +1,33 @@
+name: Prepare native rehearsal source
+on:
+  push:
+    branches: ['test/0.4-native-distribution-20261002']
+    paths:
+      - '.github/native-rehearsal-source.json'
+      - '.github/workflows/native-rehearsal-source.yml'
+      - 'scripts/prepare-native-rehearsal.py'
+permissions:
+  contents: write
+jobs:
+  prepare:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.13.15'
+      - name: Reproduce the committed source archive and retain draft transport
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -B scripts/prepare-native-rehearsal.py
+      - name: Preserve exact preparation evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: native-rehearsal-source-preparation
+          path: rehearsal-source-results/
+          if-no-files-found: error
+          retention-days: 30
