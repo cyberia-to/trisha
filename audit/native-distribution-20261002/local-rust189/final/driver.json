@@ -1,0 +1,58 @@
+{
+  "schema": "local/native-distribution-macos/v1",
+  "scope": "Actual native Mac ARM feature-branch rehearsal; no default-branch release/tag/publication",
+  "started": "2026-10-02T02:05:47.165023+00:00",
+  "status": "passed",
+  "bootstrap_revision": "20273ae93a63973cc04d7206abff517853cfff58",
+  "bootstrap": {
+    "bytes": 18078,
+    "sha256": "2c5c8dbc21dbb96474c3219f884a6cd4a14cb623e3fc7aa06a0bdb5b2ccc9572"
+  },
+  "selector": {
+    "scope": "Committed pushed release/0.4 branch feature rehearsal; no default-branch release candidate/tag/publication",
+    "phase": "build",
+    "full_baselines": true,
+    "asset_id": 604481115,
+    "source_sha256": "e4bac7ff7260a5f395febc196b3e4792653e0ff81d7887d688e16ea0959aa361",
+    "selfhost_kit": {
+      "asset_id": 604463150,
+      "sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd"
+    },
+    "neptune_intent": {
+      "asset_id": 568147730,
+      "sha256": "404ba33e683103e9cceaa7c21fcd6443401f8ba4216b8e77230ed34b24e249d0"
+    },
+    "targets": [
+      "aarch64-apple-darwin"
+    ]
+  },
+  "command": [
+    "python3",
+    "-B",
+    "local-transport.py"
+  ],
+  "transport_adapter": {
+    "bytes": 1796,
+    "sha256": "1ad11342b234f08664344b9ff74a5cb04973536d7a709af37da6adc804cf8c64"
+  },
+  "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-rust189",
+  "peak_process_group_rss_bytes": 9463103488,
+  "resource_guard_bytes": 30064771072,
+  "pid": 70825,
+  "exit_code": 0,
+  "resource_stopped": false,
+  "ended": "2026-10-02T04:35:13.740762+00:00",
+  "elapsed_seconds": 8966.535507666995,
+  "driver.stdout": {
+    "bytes": 13099,
+    "sha256": "577d0eb7847e0eb5c93528e4ee88d439e36eb02bf06d867787df1891d4f383fc"
+  },
+  "driver.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "resources.jsonl": {
+    "bytes": 165686,
+    "sha256": "8356104400469fe015820cd0002c6b3d48402d949474943ca51bbb61f6cdfb48"
+  }
+}

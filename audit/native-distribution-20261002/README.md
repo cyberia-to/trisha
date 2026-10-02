@@ -213,3 +213,33 @@ and 173 Joy tests. Each passed all 133 baseline executions and the fresh
 against artifacts 11208420793 and 11208532313 respectively. The Windows 11
 x64 minimum is still untested. Intel Mac, portable cross-consumption and the
 local full 198-proof verdict remain separate pending gates at this point.
+
+### Completed frozen Mac ARM full proof gate
+
+The fresh Rust 1.89 producer at runner revision
+`20273ae93a63973cc04d7206abff517853cfff58` completed at 04:35:13 UTC on
+2026-10-02. `local-rust189/final/` preserves the final driver, candidate, complete
+198-proof receipt, byte-preserved compressed original start/log/telemetry and
+full original-file retention inventory. The driver exited0 with every named
+producer gate passed. CPU summaries contain1231 Trident,429 Trisha and172 Joy
+passes on this actual Mac; other native hosts retain their own measured totals.
+
+The exact archived command was `python3 -B trisha/scripts/check-baselines.py
+CANDIDATE BASELINE_WORK --rss-limit-gib 28`, invoking the installed candidate's
+`trisha bench ARCHIVED_BASELINES --full`. It generated and verified198 fresh
+proofs for99 positive fixtures and rejected34 negative fixtures, with all
+source/vendor/candidate/binary identities unchanged. Its actual elapsed time
+was4106.085598958016 seconds and peak inner proof process-group RSS was
+17252352000 bytes (about16.07GiB). The complete native driver took
+8966.535507666995 seconds; its separately measured outer build/smoke group
+peaked at9463103488 bytes. These peaks describe different process groups and
+are not summed or substituted for one another.
+
+`python3 -B measurements/retain-local.py` in the owned distribution family
+independently checked the original archived baseline parser,198 events,
+fixture inventory, raw log identities, telemetry bounds, CPU summaries and
+package/corpus hashes. Its exact script is preserved beside `retention.json`.
+The resulting complete original evidence archive has80874375 bytes and SHA-256
+`0b613f41a1c65aeb937f636070b0c497a6cb60c938f445dd53e3983ab9c15fab`.
+Draft upload is in progress at this commit. Cross-platform corpus consumption
+and the remaining Intel Mac producer are separate pending gates.
