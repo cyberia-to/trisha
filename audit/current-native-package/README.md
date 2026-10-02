@@ -172,3 +172,23 @@ The new actual198 gate is running under the original 28 GiB process-group
 guard and host free-memory check. Unique current Mac binary, legacy corpus
 and structured corpus draft transport is running separately. Neither an
 in-progress proof gate nor uploaded package bytes establish final acceptance.
+
+### Current Mac package transport completed
+
+`local-package-transport/` retains original command streams, before/after
+origin-ref and ancestry checks, API responses and the package-only receipt.
+All eleven exact source commits remained reachable; recorded default refs
+remained unchanged. The existing release remained a draft and its tag remained
+absent. Three distinct server-digest-checked assets were retained:
+
+- binary package 604908144, SHA-256
+  `b542e6e3bf8a15c4650cfeb8bda436ba45a1ecf32844aa9655275bf42086ab9b`;
+- legacy corpus 604914519, SHA-256
+  `1dca29b3906ca5fbb36a76c92ab712e93714260334b230785e4afc3f2ba4ff39`;
+- structured corpus 604922737, SHA-256
+  `488b34e98b975e3cb508241913fcca871a40953452d07caba085c8b26a630978`.
+
+The transport coordination ended at 05:53:49 UTC on 2026-10-02. Its original
+receipt retains the in-progress full198 status observed during upload; it is
+not a final proof acceptance receipt. The complete current proof verdict will
+be recorded separately after the native driver exits.
