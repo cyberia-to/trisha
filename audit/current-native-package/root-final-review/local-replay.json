@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "scope": "Read-only replay of original source734 local full198 receipt and complete original archive; no new proofs or later Joy coverage",
+  "source_revision": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+  "command": [
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/temporary/cyber-candidate/candidate/bin/trisha",
+    "bench",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/temporary/cyber-candidate/unpacked/cyber-source/trisha/baselines/triton",
+    "--full"
+  ],
+  "binaries": {
+    "trident": "fd7a560f19aba2dc5767966126210d7d25b9f06ed7adaf9deab843574aa2ed68",
+    "trident-lsp": "e6f241608ba8c35f83c97c81b2444087cfbaf7ccd19d8b5c05bf65e89765dded",
+    "trisha": "2b096706c9b6905e960d19c93903c1b0e8ea203d21893838dbfa650ca1e0c25a",
+    "joy": "cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6"
+  },
+  "full198_receipt_sha256": "aa280c50530c0fd137cdd57fa8cd0ad1fa12fbbc64e60da174b8983f1f07c46a",
+  "archive": {
+    "path": "rehearsal-20261002-734df69d-local-rust189-evidence.tar.gz",
+    "bytes": 85557916,
+    "sha256": "54db68904fc8c92f1446c46cb7b90345a05e026a92b46e6ccb259822a3328204"
+  },
+  "members": 429,
+  "verified_events": 198,
+  "resource_samples": 806,
+  "peak_rss_bytes": 15023194112,
+  "checker_sha256": "29b98dac0b6f07f579b3f44fdbe7e41c262b0372088d2909acf4e0d076cd229b",
+  "replay_sha256": "c18836db55ef1669b428bb55b32d55944c6404e4e0e0186510604c9618f4d041"
+}

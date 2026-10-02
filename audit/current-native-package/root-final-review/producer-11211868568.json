@@ -1,0 +1,106 @@
+{
+  "scope": "Current 734df69d feature-branch rehearsal; single native producer receipt inspection, whole matrix and full 198-proof gate separate",
+  "status": "producer_receipts_checked",
+  "observed_at": "2026-10-02T07:01:14.863049+00:00",
+  "run_id": 36969168806,
+  "runner_revision": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+  "target": "aarch64-pc-windows-msvc",
+  "artifact_id": 11211868568,
+  "artifact_sha256": "373e1440bf5f560e8a7d735f4f20a87719f1fd2705bc551250120e5d0cfd7447",
+  "retained_files": 398,
+  "source_sha256": "734df69dc7d43467fc9ae574c7cf7b25eb9b4ec9bc08e9ca3f96b9500131f42e",
+  "kit_sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd",
+  "source_provenance_sha256": "3c6f2ced084812e73f97c069169f83807fc5d389e54b581dd52f10982cd5b227",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "actual_rustc": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: aarch64-pc-windows-msvc\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+  "cargo_version_observation": "actual native Rust, Cargo and rustdoc 1.89 recorded",
+  "actual_tools": {
+    "rustc": {
+      "path": "C:\\Users\\runneradmin\\.rustup\\toolchains\\1.89.0-aarch64-pc-windows-msvc\\bin\\rustc.exe",
+      "sha256": "8d1d6f562f5af267c538b827dacbefa4d6af3d4958f943a146b0509c8d612e55",
+      "version": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: aarch64-pc-windows-msvc\nrelease: 1.89.0\nLLVM version: 20.1.7\n"
+    },
+    "cargo": {
+      "path": "C:\\Users\\runneradmin\\.rustup\\toolchains\\1.89.0-aarch64-pc-windows-msvc\\bin\\cargo.exe",
+      "sha256": "c8941bd147ea5d81d01803b43962fca815f911917bf5c28d97af0a9d52cd081e",
+      "version": "cargo 1.89.0 (c24e10642 2025-06-23)\nrelease: 1.89.0\ncommit-hash: c24e1064277fe51ab72011e2612e556ac56addf7\ncommit-date: 2025-06-23\nhost: aarch64-pc-windows-msvc\nlibgit2: 1.9.0 (sys:0.20.2 vendored)\nlibcurl: 8.12.1-DEV (sys:0.4.80+curl-8.12.1 vendored ssl:Schannel)\nos: Windows 10.0.26200 (Windows 11 Enterprise) [64-bit]\n"
+    },
+    "rustdoc": {
+      "path": "C:\\Users\\runneradmin\\.rustup\\toolchains\\1.89.0-aarch64-pc-windows-msvc\\bin\\rustdoc.exe",
+      "sha256": "fc3f60b6612988d9bb504393bb53c40bd4518d500ca607dfd7de77c49f1ffe95",
+      "version": "rustdoc 1.89.0 (29483883e 2025-08-04)\nbinary: rustdoc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: aarch64-pc-windows-msvc\nrelease: 1.89.0\nLLVM version: 20.1.7\n"
+    }
+  },
+  "script_checkout": {
+    "line_endings": "CRLF",
+    "impact_sha256": "bfbae6ef8ef5b46c96d1d05863848a7487579b28708a2630b81ce259e865ecb1",
+    "structured_helper_sha256": "e64ac2ee0e34d3de9e7acde94f839363f7c91f62b90e08f2a923e055421ddaf4",
+    "runner_revision": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde"
+  },
+  "source_impact_sha256": "46a3d441eee5bfa3ca8513f2ba2cb9d09a24e6f83ec614ea8fa91c5531a9376f",
+  "structured_cases": 27,
+  "structured_accepted": 6,
+  "structured_rejected": 21,
+  "structured_archive": {
+    "name": "structured-corpus-aarch64-pc-windows-msvc.tar.gz",
+    "sha256": "53c1a07550d714be6f27c9e930cff24d480c45e7f38d08f2488b59c0df204c0b",
+    "bytes": 687864
+  },
+  "cpu": {
+    "trident": {
+      "log_sha256": "a05e13371eff032be3f89fbc3c96c55002d41c07ce8681af7224f9ea8fd0be8a",
+      "test_binaries": 2,
+      "passed": 759
+    },
+    "trisha": {
+      "log_sha256": "7639a75784d350d493c1b59fa0178e6685d7c235da26fb38bee8b917af8298e1",
+      "test_binaries": 64,
+      "passed": 418
+    },
+    "joy": {
+      "log_sha256": "63feaab4134ab9b60924b2e1768e1faf50c74b22701adea1b0731bf7a4f79521",
+      "test_binaries": 29,
+      "passed": 209
+    },
+    "nox": {
+      "log_sha256": "2ec0ac7cc6ec649a32bd9e399ed208dedb38a0859296cf78976f5b6ea8eb4c12",
+      "test_binaries": 1,
+      "passed": 245
+    }
+  },
+  "gates": {
+    "installed-selfhost-smoke/receipt.json": "b5371bbc6b7fb4817028c87c2603d0d223c96584de0eee5b8bb527ab8a102658",
+    "unpacked-selfhost-smoke/receipt.json": "83c589a96e7b8b5b7237d4b68cfe7db4f9d19d5423f2b0b9c4d9c68a8c592604",
+    "joy-native-smoke/receipt.json": "1dd9dc45050f312df9dd6511790118c0c795933fec83df3c7e252de4e837b600",
+    "native-process-files.json": "93eda1b1657781590a0cfd79afa82d2e5a6a915a3e6d9ff28091d179d460626d",
+    "proof-corpus/smoke.json": "0240caa1a2528aac42653eb4db46685dfea4886a3a414d2fd6deded3c32bc085",
+    "local-corpus-verification.json": "fd68d87ac322fd1f9443e4e9e282896cd040d3cd40c509e5d04a3e503fb86723",
+    "neptune-client.log": "93230626e89bb0baa2e1eb5318be5b32aaa5213093e1e46ef7fedc1190ce9eb6",
+    "neptune-binding.log": "b04c22486d42dfd2a7d8d1ce9ba1dca83a38064cdb0bf74e4ac2d0c846dbe7eb"
+  },
+  "baseline_execution": {
+    "all_checks_passed": true,
+    "source_provenance_sha256": "3c6f2ced084812e73f97c069169f83807fc5d389e54b581dd52f10982cd5b227",
+    "candidate_sha256": "09f2a42a2e614f2ee0e058fe5c81fc4b6fd8a5713e4dfaa8c21aaf0b58291e1e",
+    "log_sha256": "77ab5cc550c696fab1e0a6d7436ed60f576de2272a9b7e28980b423a515864ed",
+    "target": "aarch64-pc-windows-msvc",
+    "baselines": 43,
+    "positive_fixtures": 99,
+    "negative_fixtures": 34,
+    "generated_proofs": 0
+  },
+  "corpus_cases": 47,
+  "corpus_positive": 18,
+  "corpus_rejections": 29,
+  "binary_archive": {
+    "name": "cyber-tools-aarch64-pc-windows-msvc.zip",
+    "sha256": "deea05b4e2a0f59253fe46d85fe035c807d58af979ca332e4902bbc3af5cf41c",
+    "bytes": 15849142
+  },
+  "corpus_archive": {
+    "name": "proof-corpus-aarch64-pc-windows-msvc.tar.gz",
+    "sha256": "93e4827070d5e41a31ed2c70e095cd3c486370b95d8ad55f605e628135a817a6",
+    "bytes": 25060746
+  },
+  "inspector_sha256": "aaf2118b30c07501413e57a8f03aee37d4ce2afcb607f8c6e1b16f7d4ab3da1b"
+}

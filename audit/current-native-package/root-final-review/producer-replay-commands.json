@@ -1,0 +1,72 @@
+[
+  {
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "-W",
+      "error",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trisha-native-ci/audit/current-native-package/remote-producer-progress/inspector-checkout-correction/inspect-current-native-producer.py",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/native-runs/36969168806/11211868568",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/root-final-review/producer-11211868568.json"
+    ],
+    "started_ns": 1790924474604395000,
+    "ended_ns": 1790924474919305000,
+    "exit_code": 0
+  },
+  {
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "-W",
+      "error",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trisha-native-ci/audit/current-native-package/remote-producer-progress/inspector-checkout-correction/inspect-current-native-producer.py",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/native-runs/36969168806/11211903748",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/root-final-review/producer-11211903748.json"
+    ],
+    "started_ns": 1790924474919535000,
+    "ended_ns": 1790924475345472000,
+    "exit_code": 0
+  },
+  {
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "-W",
+      "error",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trisha-native-ci/audit/current-native-package/remote-producer-progress/inspector-checkout-correction/inspect-current-native-producer.py",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/native-runs/36969168806/11212207445",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/root-final-review/producer-11212207445.json"
+    ],
+    "started_ns": 1790924475345706000,
+    "ended_ns": 1790924475723064000,
+    "exit_code": 0
+  },
+  {
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "-W",
+      "error",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trisha-native-ci/audit/current-native-package/remote-producer-progress/inspector-checkout-correction/inspect-current-native-producer.py",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/native-runs/36969168806/11212455449",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/root-final-review/producer-11212455449.json"
+    ],
+    "started_ns": 1790924475723290000,
+    "ended_ns": 1790924476030322000,
+    "exit_code": 0
+  },
+  {
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "-W",
+      "error",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trisha-native-ci/audit/current-native-package/remote-producer-progress/inspector-checkout-correction/inspect-current-native-producer.py",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/native-runs/36969168806/11212481311",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/root-final-review/producer-11212481311.json"
+    ],
+    "started_ns": 1790924476030618000,
+    "ended_ns": 1790924476395059000,
+    "exit_code": 0
+  }
+]
