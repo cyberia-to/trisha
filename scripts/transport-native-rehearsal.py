@@ -103,7 +103,10 @@ def main():
                 member = content.getmember('proof-corpus/corpus.json')
                 if not member.isfile() or content.extractfile(member).read() != (restored / 'proof-corpus/corpus.json').read_bytes():
                     raise ValueError('corpus archive differs from retained producer inventory')
-            for kind, source in [('binary', binary), ('corpus', proof)]:
+            # Preserve the authenticated Actions container beyond its retention
+            # period as well as the exact deployable binary and proof archives.
+            # This is the original ZIP, not a reconstructed evidence bundle.
+            for kind, source in [('binary', binary), ('corpus', proof), ('evidence', archive)]:
                 name = spec['asset_prefix'] + '-' + source.name
                 if name in existing:
                     raise ValueError('unique transport asset name is occupied')

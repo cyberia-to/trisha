@@ -56,7 +56,9 @@ The separate `native-rehearsal-assets.yml` transport is dormant until a pinned
 producer selection is committed. It requires successful exact producer runs,
 raw Actions ZIP/API digest agreement, source and kit provenance agreement, and
 the binary archive and sealed corpus identities before uploading unique draft
-assets. It executes no archive code. Existing archive, source-verifier, binary
+assets. It also preserves each original authenticated Actions ZIP as an evidence
+asset, so the raw producer container survives the Actions retention period.
+It executes no archive code. Existing archive, source-verifier, binary
 package and kit guard suites pass under `-W error`; their actual commands and
 outputs are retained in `transport-helper-checks/`. Native producer/corpus
 acceptance remains separate from these helper checks.
