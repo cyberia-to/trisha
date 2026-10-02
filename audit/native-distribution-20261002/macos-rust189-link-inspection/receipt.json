@@ -1,0 +1,325 @@
+{
+  "scope": "Actual pinned-Rust-1.89 Mac ARM candidate linkage inspection; no older OS/full native verdict",
+  "time": "2026-10-02T02:16:00.727123+00:00",
+  "source_provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+  "producer_toolchain": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: aarch64-apple-darwin\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+  "commands": [
+    {
+      "name": "os",
+      "argv": [
+        "sw_vers"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "os.stdout",
+        "bytes": 66,
+        "sha256": "2ad5e57776ecb4b37b741f751521e2c77d58bf2d6d64e54c61507eabd39dea31"
+      },
+      "stderr": {
+        "path": "os.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "kernel",
+      "argv": [
+        "uname",
+        "-a"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "kernel.stdout",
+        "bytes": 132,
+        "sha256": "a3b4f1a1cb2a54ee5016420218632e592b71f4daf684a2613c8fa59a181c93e6"
+      },
+      "stderr": {
+        "path": "kernel.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "toolchain",
+      "argv": [
+        "rustup",
+        "run",
+        "1.89.0",
+        "rustc",
+        "-vV"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "toolchain.stdout",
+        "bytes": 192,
+        "sha256": "a3138eb77dfe19d4cdb1d83ceb7c34944715564062936cf209d247cbf5208fae"
+      },
+      "stderr": {
+        "path": "toolchain.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "cc",
+      "argv": [
+        "cc",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "cc.stdout",
+        "bytes": 161,
+        "sha256": "b53e5903c47dc4e5d0ce1356569842638e0dd138382236f976a17bd96114bbac"
+      },
+      "stderr": {
+        "path": "cc.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "linker",
+      "argv": [
+        "xcrun",
+        "ld",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "linker.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "linker.stderr",
+        "bytes": 425,
+        "sha256": "ae45729d455ab75ecab4d4b5ecf8c3a65600e8281eb27dc50c309d62f0fec723"
+      }
+    },
+    {
+      "name": "trident-file",
+      "argv": [
+        "file",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-rust189/temporary/cyber-candidate/candidate/bin/trident"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trident-file.stdout",
+        "bytes": 179,
+        "sha256": "a88fe4e0128edc770c53fce8e815a7717d6562abf3f7a6d0943d9e14eac59037"
+      },
+      "stderr": {
+        "path": "trident-file.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trident-libraries",
+      "argv": [
+        "otool",
+        "-L",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-rust189/temporary/cyber-candidate/candidate/bin/trident"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trident-libraries.stdout",
+        "bytes": 312,
+        "sha256": "fa4e40b21d4c8384d59481ddbb7abd68b36844e1503a9f08d816b7f953d7125b"
+      },
+      "stderr": {
+        "path": "trident-libraries.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trident-load-commands",
+      "argv": [
+        "otool",
+        "-l",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-rust189/temporary/cyber-candidate/candidate/bin/trident"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trident-load-commands.stdout",
+        "bytes": 7137,
+        "sha256": "0ba7fafd20091976c8025566385a22cb926256206d44f75993c8ee8215b5e6c7"
+      },
+      "stderr": {
+        "path": "trident-load-commands.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trident-lsp-file",
+      "argv": [
+        "file",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-rust189/temporary/cyber-candidate/candidate/bin/trident-lsp"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trident-lsp-file.stdout",
+        "bytes": 183,
+        "sha256": "bf160aff577984d0c4d482cdf0703f4277bfbd1646c0a554dda57ea9c75def62"
+      },
+      "stderr": {
+        "path": "trident-lsp-file.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trident-lsp-libraries",
+      "argv": [
+        "otool",
+        "-L",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-rust189/temporary/cyber-candidate/candidate/bin/trident-lsp"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trident-lsp-libraries.stdout",
+        "bytes": 316,
+        "sha256": "854c9b041953ea51a127efa6959725044c85a19d85c50bd66b0f65a53ced39ad"
+      },
+      "stderr": {
+        "path": "trident-lsp-libraries.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trident-lsp-load-commands",
+      "argv": [
+        "otool",
+        "-l",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-rust189/temporary/cyber-candidate/candidate/bin/trident-lsp"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trident-lsp-load-commands.stdout",
+        "bytes": 7141,
+        "sha256": "c8f03ea3f889b0478c8f0448f20ef3af5e9c58e09cf9e675811a35e621475cbe"
+      },
+      "stderr": {
+        "path": "trident-lsp-load-commands.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trisha-file",
+      "argv": [
+        "file",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-rust189/temporary/cyber-candidate/candidate/bin/trisha"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trisha-file.stdout",
+        "bytes": 178,
+        "sha256": "12c5271ed3365cf2fd99e36d26f81e934bf2a7a52b390bcfce6060685843be1f"
+      },
+      "stderr": {
+        "path": "trisha-file.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trisha-libraries",
+      "argv": [
+        "otool",
+        "-L",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-rust189/temporary/cyber-candidate/candidate/bin/trisha"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trisha-libraries.stdout",
+        "bytes": 572,
+        "sha256": "587564ba90828d281915283080e03e629b61dc04f8be9697c2bc184706c30303"
+      },
+      "stderr": {
+        "path": "trisha-libraries.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "trisha-load-commands",
+      "argv": [
+        "otool",
+        "-l",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-rust189/temporary/cyber-candidate/candidate/bin/trisha"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "trisha-load-commands.stdout",
+        "bytes": 7682,
+        "sha256": "4aadb58ee7d0aefc7cd3fbbbfd4394c832d81e5748e5ac03908874be19471b8c"
+      },
+      "stderr": {
+        "path": "trisha-load-commands.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "joy-file",
+      "argv": [
+        "file",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-rust189/temporary/cyber-candidate/candidate/bin/joy"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "joy-file.stdout",
+        "bytes": 175,
+        "sha256": "d6b693efe023b134d79ea5b62e6558839f09d462007f0e749a8bc0fd96ee692b"
+      },
+      "stderr": {
+        "path": "joy-file.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "joy-libraries",
+      "argv": [
+        "otool",
+        "-L",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-rust189/temporary/cyber-candidate/candidate/bin/joy"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "joy-libraries.stdout",
+        "bytes": 308,
+        "sha256": "febf5bec69e52adb651575450ce341b976c6e008a83635cfaf90a464baefc0ea"
+      },
+      "stderr": {
+        "path": "joy-libraries.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "joy-load-commands",
+      "argv": [
+        "otool",
+        "-l",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos-rust189/temporary/cyber-candidate/candidate/bin/joy"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "path": "joy-load-commands.stdout",
+        "bytes": 7123,
+        "sha256": "cbeec6c8248f4930a09fbc324685e10872525c8e7071af00e88bf8ab4fd278c4"
+      },
+      "stderr": {
+        "path": "joy-load-commands.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ]
+}

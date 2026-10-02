@@ -63,6 +63,10 @@ observed runtime libraries are system libraries. Original raw command streams
 and the candidate inventory are retained. `binding.json` records the unchanged
 four installed hashes after inspection. These link values do not replace
 execution on macOS 14.
+The separately retained `macos-rust189-link-inspection/` contains the same
+actual host/link commands against the fresh Rust 1.89 build, with its distinct
+candidate and four binary hashes checked before and after inspection. The
+candidate's own recorded compiler version agrees with the fresh preflight.
 
 The separate `native-rehearsal-assets.yml` transport is dormant until a pinned
 producer selection is committed. It requires successful exact producer runs,
