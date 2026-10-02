@@ -1,0 +1,28 @@
+{
+  "status": "passed-audit-validation",
+  "commands": [
+    [
+      "python3",
+      "-B",
+      "audit/whole-self-build-linux-20261002/check.py"
+    ],
+    [
+      "python3",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "scripts",
+      "-p",
+      "test_whole_self_build.py"
+    ],
+    [
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/native-proof-ci/actionlint-1.7.12/actionlint",
+      ".github/workflows/whole-self-build.yml"
+    ]
+  ],
+  "tests": "10 passed with WHOLE_SELF_INPUT_ARCHIVE set to the hash-pinned compact archive; initial default run 9 passed, 1 skipped",
+  "source_revision": "5d14ae46f327a7f0ee1f9812b4ba62b73cf035bc",
+  "scope": "Evidence integrity, existing CI fixture tests and unchanged workflow lint only; no compiler/proof retry"
+}

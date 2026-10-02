@@ -1,0 +1,22 @@
+{
+  "observed_at": "20261002T055540",
+  "run": 36961998100,
+  "status": "completed",
+  "conclusion": "failure",
+  "jobs": [
+    {
+      "id": 110697493782,
+      "name": "full (2)",
+      "status": "completed",
+      "conclusion": "failure",
+      "active": []
+    },
+    {
+      "id": 110697493958,
+      "name": "full (1)",
+      "status": "completed",
+      "conclusion": "failure",
+      "active": []
+    }
+  ]
+}
