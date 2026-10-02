@@ -194,3 +194,22 @@ pins remain reachable: Joy, Nox, Trisha and Zheng have advanced on their release
 branches; the other seven selected refs remain at the original pins. Observed
 master/main refs were unchanged across this transport. This explicitly preserves
 the frozen closure rather than treating newer release-branch heads as its inputs.
+
+### Additional frozen native producers
+
+Authenticated run 36949324686 at selector
+`c94da47247457f9e819c2682e74d34f5f1756f62` completed the Windows x64 producer
+at 03:51 UTC and Linux x64 producer at 04:10 UTC on 2026-10-02. The retained
+`producers/<target>/inspection.json` records the exact API artifact, original
+ZIP digest, package and corpus identities, actual native Rust 1.89 observation,
+CPU summaries and all named gates. `job.log` preserves the actual hosted image
+and commands; `job-log.json` authenticates the downloaded log bytes.
+
+Windows x64 ran on Windows Server 2022 and passed 1213 Trident, 418 Trisha and
+167 Joy tests. Linux x64 ran on Ubuntu 22.04 and passed 1231 Trident, 429 Trisha
+and 173 Joy tests. Each passed all 133 baseline executions and the fresh
+47-case legacy corpus (18 accepted, 29 rejected). These numbers come from
+`python3 -B audit/native-distribution-20261002/inspect-native-producer.py`
+against artifacts 11208420793 and 11208532313 respectively. The Windows 11
+x64 minimum is still untested. Intel Mac, portable cross-consumption and the
+local full 198-proof verdict remain separate pending gates at this point.

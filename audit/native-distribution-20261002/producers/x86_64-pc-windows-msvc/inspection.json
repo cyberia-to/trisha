@@ -1,0 +1,69 @@
+{
+  "scope": "Frozen e4bac7ff feature-branch rehearsal; single native producer receipt inspection, whole matrix and full 198-proof gate separate",
+  "status": "producer_receipts_checked",
+  "observed_at": "2026-10-02T03:55:09.067310+00:00",
+  "run_id": 36949324686,
+  "runner_revision": "c94da47247457f9e819c2682e74d34f5f1756f62",
+  "target": "x86_64-pc-windows-msvc",
+  "artifact_id": 11208420793,
+  "artifact_sha256": "0a08d54f1125a376f1b6ff6ee42bb9945e6bf1420303be835990c9f4b1ff01dd",
+  "retained_files": 268,
+  "source_sha256": "e4bac7ff7260a5f395febc196b3e4792653e0ff81d7887d688e16ea0959aa361",
+  "kit_sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd",
+  "source_provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+  "platform": "Windows-2022Server-10.0.20348-SP0",
+  "actual_rustc": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: x86_64-pc-windows-msvc\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+  "cargo_version_observation": "not separately recorded by frozen producer",
+  "cpu": {
+    "trident": {
+      "log_sha256": "f661364dac52f9c5f59c49621dc17ac660fdda0f2cd3163e169a06218c8b6e02",
+      "test_binaries": 49,
+      "passed": 1213
+    },
+    "trisha": {
+      "log_sha256": "b1bef55e5c84ab77f6e54daf3b4224d57ec59209fc1bd2d78698d839130803f4",
+      "test_binaries": 64,
+      "passed": 418
+    },
+    "joy": {
+      "log_sha256": "00db6808a5b9284fd8d039f2202e2f09f7f27f366ddf7ac522c7f0fa2de242be",
+      "test_binaries": 27,
+      "passed": 167
+    }
+  },
+  "gates": {
+    "installed-selfhost-smoke/receipt.json": "a805c51cca241bbbbd0ca879d7d4bf9267c4aa0a571c360eabc1886c2002fff0",
+    "unpacked-selfhost-smoke/receipt.json": "4d2fae058db2576de947a4b6471c5686cb698cfea434c98bdba3543efea25450",
+    "joy-native-smoke/receipt.json": "2ffb9df245b5fefef2032c1123a213265239a44ae7850fe0a8c977f51206cd64",
+    "native-process-files.json": "c174ea9abf4ba15176d8fbd92b1d0df9d0cbca7c5c0dbcd91c7f3d51a480b114",
+    "proof-corpus/smoke.json": "aa9a78c0274cbf88c041f348ad5d7131493b9058b650dd4353cb75366acbf149",
+    "local-corpus-verification.json": "22a082eba44d75acb9533fc8a6f23521d8efe6649e0cdd8f06609388dc03fb38",
+    "neptune-client.log": "5f06262b1de0676397ff97b252f5a5bb2b00e7ab201c15fd3dbae918c3000247",
+    "neptune-binding.log": "b403f69914db227b38ab00117e1faa9f149fccf25b64cebd5acb31eebb569ca5"
+  },
+  "baseline_execution": {
+    "all_checks_passed": true,
+    "source_provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+    "candidate_sha256": "8ef647b5fd1595e04637b5207213a64717c6aa4a7ee2102451e181639cf66297",
+    "log_sha256": "d1eb7b27a131f4337214b83e20c072f1fbfa61bbfc7123a7869e8379d65267d4",
+    "target": "x86_64-pc-windows-msvc",
+    "baselines": 43,
+    "positive_fixtures": 99,
+    "negative_fixtures": 34,
+    "generated_proofs": 0
+  },
+  "corpus_cases": 47,
+  "corpus_positive": 18,
+  "corpus_rejections": 29,
+  "binary_archive": {
+    "name": "cyber-tools-x86_64-pc-windows-msvc.zip",
+    "sha256": "1f399cc1c8f13b7946826f1bdc80ca0e1bdeb59bb5ce6d2847edf572c751bd5d",
+    "bytes": 16531752
+  },
+  "corpus_archive": {
+    "name": "proof-corpus-x86_64-pc-windows-msvc.tar.gz",
+    "sha256": "ae861a9244cebf15d830fe75fc540289b856e6f1f4d03911d276dba00131fbf6",
+    "bytes": 25119189
+  },
+  "inspector_sha256": "3876953e5cd6acc422ccd86cdd2d37502c621c47abe005d5b8de8739699f7c5e"
+}

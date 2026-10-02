@@ -1,0 +1,11 @@
+{
+  "all_checks_passed": true,
+  "source_provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+  "candidate_sha256": "8ef647b5fd1595e04637b5207213a64717c6aa4a7ee2102451e181639cf66297",
+  "log_sha256": "d1eb7b27a131f4337214b83e20c072f1fbfa61bbfc7123a7869e8379d65267d4",
+  "target": "x86_64-pc-windows-msvc",
+  "baselines": 43,
+  "positive_fixtures": 99,
+  "negative_fixtures": 34,
+  "generated_proofs": 0
+}
