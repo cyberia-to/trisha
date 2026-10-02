@@ -1,0 +1,47 @@
+{
+  "time": "2026-10-02T01:03:42.205151+00:00",
+  "reason": "Superseded slow local egress with exact-hash remote source preparation; no source acceptance changes",
+  "pid": 44804,
+  "process": "gh release upload candidate-20260916.1 /Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/transport/rehearsal-20261002-source.tar.gz /Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/transport/rehearsal-20261002-selfhost-kit.tar.gz --repo cyberia-to/trisha",
+  "asset_before_stop": {
+    "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/604463151",
+    "id": 604463151,
+    "node_id": "RA_kwDORSKVcM4kB2Av",
+    "name": "rehearsal-20261002-source.tar.gz",
+    "label": "",
+    "uploader": {
+      "login": "mastercyb",
+      "id": 410789,
+      "node_id": "MDQ6VXNlcjQxMDc4OQ==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/410789?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mastercyb",
+      "html_url": "https://github.com/mastercyb",
+      "followers_url": "https://api.github.com/users/mastercyb/followers",
+      "following_url": "https://api.github.com/users/mastercyb/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mastercyb/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mastercyb/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mastercyb/subscriptions",
+      "organizations_url": "https://api.github.com/users/mastercyb/orgs",
+      "repos_url": "https://api.github.com/users/mastercyb/repos",
+      "events_url": "https://api.github.com/users/mastercyb/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mastercyb/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "content_type": "application/x-gtar",
+    "state": "starter",
+    "size": 421623556,
+    "digest": null,
+    "download_count": 0,
+    "created_at": "2026-10-02T00:50:42Z",
+    "updated_at": "2026-10-02T00:50:42Z",
+    "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/rehearsal-20261002-source.tar.gz"
+  },
+  "metadata_command": [
+    "gh",
+    "api",
+    "repos/cyberia-to/trisha/releases/389977897/assets"
+  ]
+}

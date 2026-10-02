@@ -1,0 +1,69 @@
+{
+  "scope": "Frozen e4bac7ff feature-branch rehearsal; single native producer receipt inspection, whole matrix and full 198-proof gate separate",
+  "status": "producer_receipts_checked",
+  "observed_at": "2026-10-02T05:23:04.411735+00:00",
+  "run_id": 36949324686,
+  "runner_revision": "c94da47247457f9e819c2682e74d34f5f1756f62",
+  "target": "x86_64-apple-darwin",
+  "artifact_id": 11210078256,
+  "artifact_sha256": "f6fb3d7e21ff723c1af5a3909e823518c48eae7a2a83a4466f2347efd306dc8c",
+  "retained_files": 267,
+  "source_sha256": "e4bac7ff7260a5f395febc196b3e4792653e0ff81d7887d688e16ea0959aa361",
+  "kit_sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd",
+  "source_provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+  "platform": "macOS-15.7.9-x86_64-i386-64bit-Mach-O",
+  "actual_rustc": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: x86_64-apple-darwin\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+  "cargo_version_observation": "not separately recorded by frozen producer",
+  "cpu": {
+    "trident": {
+      "log_sha256": "c03c80f2a8b68a858472808f056630207b513c9c061787b530e90216376fe9b5",
+      "test_binaries": 49,
+      "passed": 1231
+    },
+    "trisha": {
+      "log_sha256": "2ed7f232f26859ac2e0c85e6d34ff070e78db86bf5a5d922dd0f1edd89e05147",
+      "test_binaries": 64,
+      "passed": 429
+    },
+    "joy": {
+      "log_sha256": "4a3c792a03aabb987c4d303010eb0713313557205b0f27ede7c5a5fbe5cfeb50",
+      "test_binaries": 27,
+      "passed": 172
+    }
+  },
+  "gates": {
+    "installed-selfhost-smoke/receipt.json": "41241d8942e93259321042eb2a7a45e5c9ab971320302728f1920207827f78ec",
+    "unpacked-selfhost-smoke/receipt.json": "26dc79aeeece48669fb73dc84d005640ec561ac4dfcae9e4540d47197bbaab59",
+    "joy-native-smoke/receipt.json": "8343c5c0f931032f3350b1eb079e2bb24cd09f546b9dbc3141e19ba3766cc125",
+    "native-process-files.json": "71e2cb973fd1e33e5d46a574c55d4223ac2be15f5f31d68f582522df2a107108",
+    "proof-corpus/smoke.json": "51930859d07257635c016432ef98fbf03a02f06d20075a020e6ed7b953323c9b",
+    "local-corpus-verification.json": "e90b43178fd1a9e075b13bb549f2f150a01bbf93642fdf26aa130e59d84d0184",
+    "neptune-client.log": "c5425be72ee76ed7a27614f02e5b06ff8a3619dd0340faa265939c2243d45d86",
+    "neptune-binding.log": "c31678addc67b76a0deb19cb9f19fbafb85e5186e2f29855634b90f922af3608"
+  },
+  "baseline_execution": {
+    "all_checks_passed": true,
+    "source_provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+    "candidate_sha256": "a128aaabab96f0d40a9cc3b2824735e9357e4d834b65e398c55bee25d25807fb",
+    "log_sha256": "05c1a83332546b4a56145c4ba086c32565c5aee1ace9a6f647f49f56518405c6",
+    "target": "x86_64-apple-darwin",
+    "baselines": 43,
+    "positive_fixtures": 99,
+    "negative_fixtures": 34,
+    "generated_proofs": 0
+  },
+  "corpus_cases": 47,
+  "corpus_positive": 18,
+  "corpus_rejections": 29,
+  "binary_archive": {
+    "name": "cyber-tools-x86_64-apple-darwin.tar.gz",
+    "sha256": "558a4ba67a49182e250e1a8a7dfde5cddb68d72061f59dfcbb9b1163d41db290",
+    "bytes": 17478636
+  },
+  "corpus_archive": {
+    "name": "proof-corpus-x86_64-apple-darwin.tar.gz",
+    "sha256": "6d48c7f2b1d67d1952380387149ac7ea816b0751f133a04c5af5ab2a1743b617",
+    "bytes": 25076116
+  },
+  "inspector_sha256": "3876953e5cd6acc422ccd86cdd2d37502c621c47abe005d5b8de8739699f7c5e"
+}

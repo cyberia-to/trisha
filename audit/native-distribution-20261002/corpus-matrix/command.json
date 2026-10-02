@@ -1,0 +1,13 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-W",
+    "error",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/check-corpus-matrix.py",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/frozen-corpus-matrix/selection.json",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/frozen-corpus-matrix/receipt.json"
+  ],
+  "exit_code": 0,
+  "driver_sha256": "b3b29bda1a4e9cec34c89d6687fe6c697d7ef1268cddb69b6b2ddb0d474f10d6"
+}

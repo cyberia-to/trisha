@@ -1,0 +1,46 @@
+{
+  "scope": "Frozen e4bac7ff committed feature-branch rehearsal transport; no default-branch release candidate/tag/publication",
+  "release_id": 389977897,
+  "release_tag": "candidate-20260916.1",
+  "asset_prefix": "rehearsal-20261002-e4bac7ff-remote",
+  "source_sha256": "e4bac7ff7260a5f395febc196b3e4792653e0ff81d7887d688e16ea0959aa361",
+  "kit_sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd",
+  "provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+  "producers": [
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "run_id": 36949324686,
+      "head_sha": "c94da47247457f9e819c2682e74d34f5f1756f62",
+      "artifact_id": 11207645268,
+      "zip_sha256": "ccc1174519e4c55444b12ba9cd89674eca3479c9f5df1e64a1f3126efd222031"
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "run_id": 36949324686,
+      "head_sha": "c94da47247457f9e819c2682e74d34f5f1756f62",
+      "artifact_id": 11207109355,
+      "zip_sha256": "510fb6ebc05807dbdb8b9f4da7dffb577986114b5eeb479b2181181fceef6e58"
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "run_id": 36949324686,
+      "head_sha": "c94da47247457f9e819c2682e74d34f5f1756f62",
+      "artifact_id": 11208420793,
+      "zip_sha256": "0a08d54f1125a376f1b6ff6ee42bb9945e6bf1420303be835990c9f4b1ff01dd"
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "run_id": 36949324686,
+      "head_sha": "c94da47247457f9e819c2682e74d34f5f1756f62",
+      "artifact_id": 11208532313,
+      "zip_sha256": "37902a46c1127614b2738432f7bc92352644ce17eebd3a452d0cdf2f804227ee"
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "run_id": 36949324686,
+      "head_sha": "c94da47247457f9e819c2682e74d34f5f1756f62",
+      "artifact_id": 11210078256,
+      "zip_sha256": "f6fb3d7e21ff723c1af5a3909e823518c48eae7a2a83a4466f2347efd306dc8c"
+    }
+  ]
+}

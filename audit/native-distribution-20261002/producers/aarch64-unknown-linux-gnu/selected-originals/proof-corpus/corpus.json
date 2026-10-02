@@ -1,0 +1,992 @@
+{
+  "schema_version": 1,
+  "source_provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+  "producer_platform": {
+    "name": "linux",
+    "arch": "aarch64",
+    "family": "unix",
+    "kernel_version": "6.8.0-1064-azure"
+  },
+  "producer_binaries": [
+    {
+      "name": "trident",
+      "sha256": "ad6da158b17257a8954b1084a9f64a8393ecaa448b67352fccc6c167d45dcb53"
+    },
+    {
+      "name": "trident-lsp",
+      "sha256": "5e926b1205a61d3bad59a1dfda6efa6d628951716b61c06ae6505a29e3606941"
+    },
+    {
+      "name": "trisha",
+      "sha256": "2d658d7d32b02e69759a817a20c04864f0c6330cd195a801673a66692a5c15fc"
+    },
+    {
+      "name": "joy",
+      "sha256": "c2b2a98bb78306e0d21f98bf688e7db8b6155f0577eab47013c03c8dfe3cef66"
+    }
+  ],
+  "cases": [
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "inner.proof.toml"
+      ],
+      "exit_code": 0,
+      "file": "inner.proof.toml",
+      "claim": {
+        "program_hash": [
+          "9773288153988987320",
+          "1026192095811498904",
+          "18427084907556367640",
+          "4226798482491464755",
+          "14189426968915570601"
+        ],
+        "public_input": [
+          "5"
+        ],
+        "public_output": [
+          "38"
+        ]
+      }
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "outer.proof.toml"
+      ],
+      "exit_code": 0,
+      "file": "outer.proof.toml",
+      "claim": {
+        "program_hash": [
+          "6614518553714371115",
+          "8767274109245063471",
+          "10754267340020070887",
+          "3839983228444746570",
+          "8395642905561068401"
+        ],
+        "public_input": [
+          "13374011785464380591",
+          "5857491299209599004",
+          "11800408066145505999",
+          "6156672990245785862",
+          "1251648958347136381"
+        ],
+        "public_output": [
+          "1"
+        ]
+      }
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "proofs/main.proof.toml"
+      ],
+      "exit_code": 0,
+      "file": "proofs/main.proof.toml",
+      "claim": {
+        "program_hash": [
+          "9773288153988987320",
+          "1026192095811498904",
+          "18427084907556367640",
+          "4226798482491464755",
+          "14189426968915570601"
+        ],
+        "public_input": [
+          "5"
+        ],
+        "public_output": [
+          "38"
+        ]
+      }
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "proofs/witness.proof.toml"
+      ],
+      "exit_code": 0,
+      "file": "proofs/witness.proof.toml",
+      "claim": {
+        "program_hash": [
+          "14232414264669336132",
+          "12438928467873227231",
+          "18327862656388150159",
+          "5960545044211079728",
+          "4222221057391551061"
+        ],
+        "public_input": [
+          "5"
+        ],
+        "public_output": [
+          "12"
+        ]
+      }
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "imported.proof.toml"
+      ],
+      "exit_code": 0,
+      "file": "imported.proof.toml",
+      "claim": {
+        "program_hash": [
+          "14807092609682744609",
+          "5918637739680069890",
+          "16989122319664299459",
+          "9600622953465804487",
+          "15357520240797172443"
+        ],
+        "public_input": [
+          "3",
+          "5"
+        ],
+        "public_output": [
+          "803"
+        ]
+      }
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "typed-entry-debug.proof.toml"
+      ],
+      "exit_code": 0,
+      "file": "typed-entry-debug.proof.toml",
+      "claim": {
+        "program_hash": [
+          "3114728934758324936",
+          "651152100894279344",
+          "17933981200503090193",
+          "6664304244988736455",
+          "2065064815879878795"
+        ],
+        "public_input": [
+          "7",
+          "19",
+          "1",
+          "101",
+          "102",
+          "103",
+          "104",
+          "105",
+          "106",
+          "107",
+          "108",
+          "109",
+          "110",
+          "111",
+          "112",
+          "113",
+          "114",
+          "115",
+          "116",
+          "117",
+          "118",
+          "119",
+          "120",
+          "31"
+        ],
+        "public_output": [
+          "719",
+          "31"
+        ]
+      }
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "stack-ram-debug.proof.toml"
+      ],
+      "exit_code": 0,
+      "file": "stack-ram-debug.proof.toml",
+      "claim": {
+        "program_hash": [
+          "16096163181463783067",
+          "1651536005331236066",
+          "11833753146327163687",
+          "1334712556818928624",
+          "5812309172244668541"
+        ],
+        "public_input": [
+          "97"
+        ],
+        "public_output": [
+          "1001",
+          "1",
+          "7",
+          "8",
+          "97",
+          "999",
+          "1001"
+        ]
+      }
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "typed-entry-release.proof.toml"
+      ],
+      "exit_code": 0,
+      "file": "typed-entry-release.proof.toml",
+      "claim": {
+        "program_hash": [
+          "3114728934758324936",
+          "651152100894279344",
+          "17933981200503090193",
+          "6664304244988736455",
+          "2065064815879878795"
+        ],
+        "public_input": [
+          "7",
+          "19",
+          "1",
+          "101",
+          "102",
+          "103",
+          "104",
+          "105",
+          "106",
+          "107",
+          "108",
+          "109",
+          "110",
+          "111",
+          "112",
+          "113",
+          "114",
+          "115",
+          "116",
+          "117",
+          "118",
+          "119",
+          "120",
+          "31"
+        ],
+        "public_output": [
+          "719",
+          "31"
+        ]
+      }
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "stack-ram-release.proof.toml"
+      ],
+      "exit_code": 0,
+      "file": "stack-ram-release.proof.toml",
+      "claim": {
+        "program_hash": [
+          "16096163181463783067",
+          "1651536005331236066",
+          "11833753146327163687",
+          "1334712556818928624",
+          "5812309172244668541"
+        ],
+        "public_input": [
+          "97"
+        ],
+        "public_output": [
+          "1001",
+          "1",
+          "7",
+          "8",
+          "97",
+          "999",
+          "1001"
+        ]
+      }
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "main.proof.toml"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "forged-outer.proof.toml"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "imported-bad-output.proof.toml"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "typed-entry-debug-bad-input.proof.toml"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "typed-entry-debug-bad-output.proof.toml"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "stack-ram-debug-bad-output.proof.toml"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "typed-entry-release-bad-input.proof.toml"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "typed-entry-release-bad-output.proof.toml"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "stack-ram-release-bad-output.proof.toml"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "arithmetic.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "arithmetic.zheng",
+        "--input-values",
+        "5",
+        "--claim",
+        "38"
+      ],
+      "exit_code": 0
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "arithmetic.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "arithmetic.zheng",
+        "--input-values",
+        "5",
+        "--claim",
+        "39"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "arithmetic.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "arithmetic.zheng",
+        "--input-values",
+        "6",
+        "--claim",
+        "38"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "private.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "private.zheng",
+        "--input-values",
+        "5",
+        "--claim",
+        "1769"
+      ],
+      "exit_code": 0
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "private.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "private.zheng",
+        "--input-values",
+        "5",
+        "--claim",
+        "1770"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "private.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "private.zheng",
+        "--input-values",
+        "6",
+        "--claim",
+        "1769"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "state.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "state.zheng",
+        "--input-values",
+        "11",
+        "--claim",
+        "82",
+        "--state",
+        "state.json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "state.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "state.zheng",
+        "--input-values",
+        "11",
+        "--claim",
+        "83",
+        "--state",
+        "state.json"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "state.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "state.zheng",
+        "--input-values",
+        "12",
+        "--claim",
+        "82",
+        "--state",
+        "state.json"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "state.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "state.zheng",
+        "--input-values",
+        "11",
+        "--claim",
+        "82",
+        "--state",
+        "other-state.json"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "private-state.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "private-state.zheng",
+        "--input-values",
+        "5",
+        "--claim",
+        "82",
+        "--state",
+        "state-all.json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "private-state.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "private-state.zheng",
+        "--input-values",
+        "5",
+        "--claim",
+        "83",
+        "--state",
+        "state-all.json"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "private-state.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "private-state.zheng",
+        "--input-values",
+        "6",
+        "--claim",
+        "82",
+        "--state",
+        "state-all.json"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "private-state.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "private-state.zheng",
+        "--input-values",
+        "5",
+        "--claim",
+        "82",
+        "--state",
+        "other-state.json"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "typed-nox.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "typed-nox-debug.zheng",
+        "--input-values",
+        "7,19,0,101,103,107,307,311,313,317",
+        "--claim",
+        "719"
+      ],
+      "exit_code": 0
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "typed-nox.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "typed-nox-debug.zheng",
+        "--input-values",
+        "7,19,0,101,103,107,307,311,313,317",
+        "--claim",
+        "720"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "typed-nox.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "typed-nox-debug.zheng",
+        "--input-values",
+        "8,19,0,101,103,107,307,311,313,317",
+        "--claim",
+        "719"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "typed-nox.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "typed-nox-release.zheng",
+        "--input-values",
+        "7,19,0,101,103,107,307,311,313,317",
+        "--claim",
+        "719"
+      ],
+      "exit_code": 0
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "typed-nox.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "typed-nox-release.zheng",
+        "--input-values",
+        "7,19,0,101,103,107,307,311,313,317",
+        "--claim",
+        "720"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "typed-nox.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "typed-nox-release.zheng",
+        "--input-values",
+        "8,19,0,101,103,107,307,311,313,317",
+        "--claim",
+        "719"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "typed-private.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "typed-private.zheng",
+        "--input-values",
+        "19,0",
+        "--claim",
+        "42"
+      ],
+      "exit_code": 0
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "typed-private.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "typed-private.zheng",
+        "--input-values",
+        "19,0",
+        "--claim",
+        "43"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "typed-private.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "typed-private.zheng",
+        "--input-values",
+        "20,0",
+        "--claim",
+        "42"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "loop-private.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "loop-private.zheng",
+        "--input-values",
+        "5",
+        "--claim",
+        "42"
+      ],
+      "exit_code": 0
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "loop-private.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "loop-private.zheng",
+        "--input-values",
+        "5",
+        "--claim",
+        "43"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "loop-private.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "loop-private.zheng",
+        "--input-values",
+        "6",
+        "--claim",
+        "42"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "imported-nox.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "imported.zheng",
+        "--input-values",
+        "3,5",
+        "--claim",
+        "803"
+      ],
+      "exit_code": 0
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "imported-nox.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "imported.zheng",
+        "--input-values",
+        "3,5",
+        "--claim",
+        "804"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "imported-nox.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "imported.zheng",
+        "--input-values",
+        "4,5",
+        "--claim",
+        "803"
+      ],
+      "exit_code": 1
+    }
+  ],
+  "files": {
+    "arithmetic.bundle.json": "2b733c34fe591bd42cea35aaf939db69f5f03e9bf71f56d1e1a805ebb9970378",
+    "arithmetic.tri": "0f0b8ffacecf8e847e5e7c48d71c0f593a85810dc34f4914925515d585dd3a4e",
+    "arithmetic.zheng": "f4657674eaf7ded6c8adc2e899c2887193c1d839be8a5d279ddb0305e2b12a97",
+    "bare.tri": "20499ad21b33c52eb14c498de7c00cb57866d0b31102fe4823d22a1de69c00fc",
+    "broken.tri": "5800d16b90fc1eef41e0c2ab82ed9722bdc3f2cc4ff07d31f669392b53b13af5",
+    "expected-inner.json": "a73427055626761d23253b1ef5bb94cc0644bf182a486dc8959a1e073c6cf360",
+    "forged-outer.proof.toml": "b22be7b256ff479639029847623ae5f6a861951e67aacd309f8f2041cab6a585",
+    "forged-recursive-witness.json": "4e6fb4085241214a5312505ce4ea57d5ddbdd4a5662b6033a04ec8b90f75e80c",
+    "helper.tri": "09ac35603f944e41a398a45b51419d666134ed93c68c39e7140c005c8515c782",
+    "imported-bad-output.proof.toml": "0b864bcaf6b3dde25a31919896df54b6b8db65bba1e39eac92b57602262c880f",
+    "imported-nox.tri": "dfbade31bff4ef28259c974f43213567c04a33ee3a58377c0e4e69670cfba0e1",
+    "imported-triton.tri": "8b62eca7c53d58c6a210047952d6d76d023f0017d346f0d19cfd60b085cf0671",
+    "imported.proof.toml": "8195c083c2fe4b9b590ddf063a7f0fe72d6115aad6a9542d87841261c1c99406",
+    "imported.zheng": "cd07a5932bf039fe7bcfcb566696f70887dbf3e48f381a70ba2770a5f08c02ff",
+    "inner.proof.toml": "6ec48f1c5b1f724f45b5a7fb53dfe02bb807d2fafe0e66b38fa085fb3018b051",
+    "installed-tests.tri": "ac63fefbcae31413f81647841306984ac8611a58aa6a04fc82c825a870c90eda",
+    "invalid-return.tri": "a411f16651580599a9e3875561f8aa7cf2d94e2a55a1f4e1ab474a3a6840d036",
+    "joy-built.nox": "c36d16d45eb83864a6088d3c108d36c619d6a9e7968a2e936167e9d5d87662b7",
+    "loop-private.tri": "dc3c7e7fa151e1c1a1aa2a999d08b849880b6ac1c854c0dd0658de4f90e28367",
+    "loop-private.zheng": "d4870580ffa9597f51b27d2d51902b0d7ce04289f67c7924d9f93cf2f31adf4f",
+    "loop-shadow-triton.tri": "8483fe0748b896ef4858598f605b5a60c7ef38da995d52d16b0144f59bf11cb6",
+    "loop-shadow.tri": "9470b373d4f911bfd9fae6b72238d77ed0d6ad06672b46a575e8c658626be771",
+    "main.proof.toml": "dccaaad540ceb045b875e8add56a525d585495ad480b9c185c9d0fde6f0f16b1",
+    "main.tasm": "e856f78efa4419d1540f8f4e5d40aab51afca7e60194afdd78a276f8c027f559",
+    "main.tri": "c631d8bbfa2dcb43f81e9a2198650e10722a21231052c504939941d58d8c24fd",
+    "other-state.json": "16b1bab42e8f64781c9723cc1b5122ea43690b98eda5673e2dfddd97eb72ab5f",
+    "outer.proof.toml": "b9980e580a85d4be4bfb81d5abaa0be9a181d09f2e7357238dad032ee8826f8b",
+    "outer.tri": "20a62e636777544f0caa2239f77884ac435c245f352554f372a39e99141fcb18",
+    "packaged/neptune/portable.deploy/manifest.json": "50efd57f0606107a914462b1e734afac7219c146019701b41ce141271c2c37c6",
+    "packaged/neptune/portable.deploy/program.tasm": "e856f78efa4419d1540f8f4e5d40aab51afca7e60194afdd78a276f8c027f559",
+    "packaged/nox/portable.deploy/manifest.json": "93d7c7301dae73ab2c8263afe1ffd0617fbfcb06fe389ee6f8d30ce807b0134f",
+    "packaged/nox/portable.deploy/program.nox": "c36d16d45eb83864a6088d3c108d36c619d6a9e7968a2e936167e9d5d87662b7",
+    "packaged/triton/portable.deploy/manifest.json": "c4f0ad4ef69ece6753a6b1df5c8fb1a484f76955386f19ccb4eeb5fc1721890d",
+    "packaged/triton/portable.deploy/program.tasm": "6ed832967daee8b2f2d846231cfba0d423a70dc61289c42898af56024127af87",
+    "portable.nox": "c36d16d45eb83864a6088d3c108d36c619d6a9e7968a2e936167e9d5d87662b7",
+    "private-state.tri": "d896e810b5ce9fb5d04171f900ea29c780ddee806a84afc17ee77b7cdd44df33",
+    "private-state.zheng": "7e70d966319a3960f8f62a84ffa7cc69f0b941a0e247ff6b9edd948281fb5c7c",
+    "private.tri": "a7c93bffc06ab3e09507be2f08b6d5287a1f4ec705a65d65799d6775e29c5e78",
+    "private.zheng": "d32291b0635cda096c87158e495b298d0225c754a9911f27ecb60f75301126d2",
+    "proofs/main.proof.toml": "194a7adf62166ea0ed312961f6c4a32f539b88f2573f937c2555af89dbfdf7c0",
+    "proofs/witness.proof.toml": "c6581127fbde484b52ba951b60f102baabd4ab69ecbc8fb73ba8a18a9a685ff9",
+    "recursive-witness.json": "2f8f911db14b7d764bee0814a45b5fce688954badc35f0c0efe2f9f88052baca",
+    "rejected.tri": "aa9c88fada1e054c0fb52a3292436d7ed057e60883c77149af4652f654fb22bb",
+    "release_helper.tri": "b0869ecaef44b58b305ce852a9d1d548d279c518824d3fae8b71e712a550eb5e",
+    "smoke.json": "fba31fd6a678f0b59057acc1c201a4569787d61fa4d2c4c60ed67c5e78547fa0",
+    "stack-ram-debug-bad-output.proof.toml": "ad92cd3dde60e51680303e0c9a035a01aa6344ece2c73f2dc0cb49a3407a6a70",
+    "stack-ram-debug.proof.toml": "8552b1c72917b1e80e169792225d573a0a96abd7a9d5e0d78c7210810c74760c",
+    "stack-ram-release-bad-output.proof.toml": "06d8211ff1f34e8eb1a214bcd87bad142224587dd70b112978838cdad7d06a2a",
+    "stack-ram-release.proof.toml": "7e2c3da5201618c275a5826c4079656fe79462d9fd3df9e7d822f87872210f5d",
+    "stack-ram.tri": "0347a1574aa028eeb2e51ac1a21d3b65e3de57978823381c311b6c009acb859f",
+    "state-all.json": "2a0e6d0d29ab36f8259dc3512e9db0b05fb1ea7f62a780a274c36df9d864b02c",
+    "state.json": "8953a46858800afc0b9e9cd3a2a9869efec0f3fea1177c2b63c4180458b3b2e8",
+    "state.tri": "304e8d887efa691f0b628d76a1282a997d5045ca7ae11cf6caa52b65f6467f41",
+    "state.zheng": "0a1795de6b79e674f9166009abfe8158fc183e9bb3325296f1255f02495fd545",
+    "tests.tri": "3c405ec64eec86817c89dbddc29f88d1ef182d858654387223a605fb850c9dbb",
+    "trident.toml": "e1eef6f2291a33b8de18e87093520d3225a421caf01c26803903bfa2d2dde493",
+    "typed-entry-debug-bad-input.proof.toml": "a51000658f033b2272b608a193381658703539ed290e2edf62bf09b35544f6a5",
+    "typed-entry-debug-bad-output.proof.toml": "cb5941b045eb8df5aa9991b45f36ae538c82cec24937a43ec8faddd47f724db7",
+    "typed-entry-debug.proof.toml": "2755ebdf53d088e2ea89f699c75cfa3d01251d796231bc88d4fabbbc326c7e16",
+    "typed-entry-release-bad-input.proof.toml": "4bf78e219b847a2542b48f7b2ad0c4d7bb78b2e0165fb6ec298ae4182b6f192b",
+    "typed-entry-release-bad-output.proof.toml": "3f90b5ff3989e27313ab6d30854de744bbf871847ec28b27d78893e1392ba540",
+    "typed-entry-release.proof.toml": "6a4af5d6dd2415ef754fa26c9b9c85d1f39d189feb07ffbeecd9112d92407bcb",
+    "typed-entry.tri": "cb93613aad5677753f26de3f8e5ea356df0bd31c042c7dc5dad03696a608cbf2",
+    "typed-nox-debug.zheng": "6af4c349f2be4b09530c5b25adb2f02c074e42181343828f6d19e1831b9e24fd",
+    "typed-nox-release.zheng": "6af4c349f2be4b09530c5b25adb2f02c074e42181343828f6d19e1831b9e24fd",
+    "typed-nox.tri": "c16081d42843e9959e8480023568d8ed097290922cc607922d6459b069b9d174",
+    "typed-private.tri": "23b97a26f3c494b23981de0e7e510fac8f28e41026ff1bbb4da75f3a5ed0b5e5",
+    "typed-private.zheng": "ea4ade9ed51552e6da08c855cc532f74aabac2dc982d341c307a08ffa4b0e363",
+    "witness.tri": "b78a1580a2b7d3d9e5bc4a4a40e92f472c6151b2d2aec91de26b1bacdc24fee9"
+  }
+}

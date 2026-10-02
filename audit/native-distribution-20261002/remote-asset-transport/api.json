@@ -1,0 +1,20 @@
+{
+  "id": 11210713084,
+  "node_id": "MDg6QXJ0aWZhY3QxMTIxMDcxMzA4NA==",
+  "name": "native-rehearsal-asset-transport",
+  "size_in_bytes": 122590,
+  "url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11210713084",
+  "archive_download_url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11210713084/zip",
+  "expired": false,
+  "digest": "sha256:94e21e0ef6bf607327b885b70b6b41b789c3ae7471044a97a66d27fdfcb57990",
+  "created_at": "2026-10-02T05:26:38Z",
+  "updated_at": "2026-10-02T05:26:38Z",
+  "expires_at": "2026-11-01T05:26:38Z",
+  "workflow_run": {
+    "id": 36968858912,
+    "repository_id": 1159894384,
+    "head_repository_id": 1159894384,
+    "head_branch": "test/0.4-native-distribution-20261002",
+    "head_sha": "8c3507f283466b372b3483eeb5abf50a0b94d183"
+  }
+}

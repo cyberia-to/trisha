@@ -1,0 +1,43 @@
+{
+  "scope": "Reject wrong-toolchain local run; no accepted local native verdict",
+  "time": "2026-10-02T02:04:44.110073+00:00",
+  "reason": "Homebrew rustc/cargo 1.95.0 precede rustup shims; RUSTUP_TOOLCHAIN did not affect those binaries",
+  "expected_toolchain": "1.89.0",
+  "observed_candidate": {
+    "schema_version": 2,
+    "platform": {
+      "name": "macos",
+      "arch": "aarch64",
+      "family": "unix",
+      "kernel_version": "25.4.0"
+    },
+    "toolchain": "rustc 1.95.0 (59807616e 2026-04-14) (Homebrew)\nbinary: rustc\ncommit-hash: 59807616e1fa2540724bfbac14d7976d7e4a3860\ncommit-date: 2026-04-14\nhost: aarch64-apple-darwin\nrelease: 1.95.0\nLLVM version: 22.1.3\n",
+    "rustflags": "",
+    "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/local-macos/temporary/cyber-candidate/unpacked/cyber-source",
+    "source_verified": true,
+    "source_verification_sha256": "1399bf2f87709b9a706a6e0ee64564f77718909f282ab8a29a8ea32f4adfef0a",
+    "provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+    "binaries": [
+      {
+        "name": "trident",
+        "sha256": "e264dfe136b3a3e64eb7a3ac63537cf2a8c6cbde208016cd73cee7300cbf33c6"
+      },
+      {
+        "name": "trident-lsp",
+        "sha256": "a28c43df75abaa4e2ba99486c023ad9c845815f4d0a4b3188305124b6fe55c1e"
+      },
+      {
+        "name": "trisha",
+        "sha256": "b955020e6186021255f0a575bf484a60bae68efb47430821b93a03aea8b9a1f5"
+      },
+      {
+        "name": "joy",
+        "sha256": "da437748e01f167daaf01e2d9c0fb72c8a666326ffa50a714ab6ac9b5344b8f0"
+      }
+    ]
+  },
+  "candidate_sha256": "33d6aad426eab99320b29bbcdc342ddb7c1a570c91764a96185e743e3c8f51c8",
+  "owned_process": "45415 45415 /opt/homebrew/Cellar/python@3.14/3.14.5/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python -B local-transport.py",
+  "signal": "SIGTERM",
+  "action": "stop before proof generation; restart with actual pinned toolchain bin paths in fresh output"
+}

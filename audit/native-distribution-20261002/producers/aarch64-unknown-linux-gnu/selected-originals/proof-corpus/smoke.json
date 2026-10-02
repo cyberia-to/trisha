@@ -1,0 +1,47 @@
+{
+  "schema_version": 2,
+  "suite": "installed-compiler-warrior-v2",
+  "all_checks_passed": true,
+  "source_provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+  "binaries": [
+    {
+      "name": "trident",
+      "sha256": "ad6da158b17257a8954b1084a9f64a8393ecaa448b67352fccc6c167d45dcb53"
+    },
+    {
+      "name": "trident-lsp",
+      "sha256": "5e926b1205a61d3bad59a1dfda6efa6d628951716b61c06ae6505a29e3606941"
+    },
+    {
+      "name": "trisha",
+      "sha256": "2d658d7d32b02e69759a817a20c04864f0c6330cd195a801673a66692a5c15fc"
+    },
+    {
+      "name": "joy",
+      "sha256": "c2b2a98bb78306e0d21f98bf688e7db8b6155f0577eab47013c03c8dfe3cef66"
+    }
+  ],
+  "source_verification_sha256": "1399bf2f87709b9a706a6e0ee64564f77718909f282ab8a29a8ea32f4adfef0a",
+  "smoke_script_sha256": "1545e133c1dfe90cdc04c7af3d86e3fa26918f77abdd83a1c31ae0cae7b33520",
+  "lsp_script_sha256": "e84b847a5cc274b3c8b1776d9e2d7563c730223a088fcac5a0989f7581628c94",
+  "fixture_files": [
+    {
+      "name": "state.json",
+      "sha256": "8953a46858800afc0b9e9cd3a2a9869efec0f3fea1177c2b63c4180458b3b2e8"
+    },
+    {
+      "name": "other-state.json",
+      "sha256": "16b1bab42e8f64781c9723cc1b5122ea43690b98eda5673e2dfddd97eb72ab5f"
+    },
+    {
+      "name": "state-all.json",
+      "sha256": "2a0e6d0d29ab36f8259dc3512e9db0b05fb1ea7f62a780a274c36df9d864b02c"
+    }
+  ],
+  "platform": {
+    "name": "linux",
+    "arch": "aarch64",
+    "family": "unix",
+    "kernel_version": "6.8.0-1064-azure"
+  }
+}

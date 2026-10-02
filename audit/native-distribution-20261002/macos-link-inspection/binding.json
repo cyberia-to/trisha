@@ -1,0 +1,11 @@
+{
+  "scope": "Post-inspection installed binary hashes match original candidate inventory; source/inspection outputs unchanged",
+  "candidate_sha256": "33d6aad426eab99320b29bbcdc342ddb7c1a570c91764a96185e743e3c8f51c8",
+  "inspection_receipt_sha256": "2a996be1c1d0a7cbc43bd8467579559a9da1cb92b71bffea044af260cee1135c",
+  "observed_binaries": {
+    "trident": "e264dfe136b3a3e64eb7a3ac63537cf2a8c6cbde208016cd73cee7300cbf33c6",
+    "trident-lsp": "a28c43df75abaa4e2ba99486c023ad9c845815f4d0a4b3188305124b6fe55c1e",
+    "trisha": "b955020e6186021255f0a575bf484a60bae68efb47430821b93a03aea8b9a1f5",
+    "joy": "da437748e01f167daaf01e2d9c0fb72c8a666326ffa50a714ab6ac9b5344b8f0"
+  }
+}

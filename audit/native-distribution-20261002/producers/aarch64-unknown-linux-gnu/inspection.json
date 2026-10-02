@@ -1,0 +1,69 @@
+{
+  "scope": "Frozen e4bac7ff feature-branch rehearsal; single native producer receipt inspection, whole matrix and full 198-proof gate separate",
+  "status": "producer_receipts_checked",
+  "observed_at": "2026-10-02T03:15:28.996562+00:00",
+  "run_id": 36949324686,
+  "runner_revision": "c94da47247457f9e819c2682e74d34f5f1756f62",
+  "target": "aarch64-unknown-linux-gnu",
+  "artifact_id": 11207645268,
+  "artifact_sha256": "ccc1174519e4c55444b12ba9cd89674eca3479c9f5df1e64a1f3126efd222031",
+  "retained_files": 267,
+  "source_sha256": "e4bac7ff7260a5f395febc196b3e4792653e0ff81d7887d688e16ea0959aa361",
+  "kit_sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd",
+  "source_provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+  "platform": "Linux-6.8.0-1064-azure-aarch64-with-glibc2.35",
+  "actual_rustc": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: aarch64-unknown-linux-gnu\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+  "cargo_version_observation": "not separately recorded by frozen producer",
+  "cpu": {
+    "trident": {
+      "log_sha256": "bd23f8ec29fa75afcd5ed6f05bac8c3fecece87d8ded66e110a7fc0f69b21ff4",
+      "test_binaries": 49,
+      "passed": 1231
+    },
+    "trisha": {
+      "log_sha256": "56197bcab6ef2c23150e6905c978512eb73a3344d285332d85cbdf8f9975fb2b",
+      "test_binaries": 64,
+      "passed": 429
+    },
+    "joy": {
+      "log_sha256": "447bd59c9a607efef3001c40d075e787d3b2b11b778aef057cab4ceab2aca128",
+      "test_binaries": 27,
+      "passed": 173
+    }
+  },
+  "gates": {
+    "installed-selfhost-smoke/receipt.json": "20e79355b99e14a65b2ceec2c798a457359a3ccc0651ccdfa49cc9f3078bc15c",
+    "unpacked-selfhost-smoke/receipt.json": "e9625169935b4485ef1a0a00b4ebcbd9b19b0e452197ed6b95c7f0fdc88d47a0",
+    "joy-native-smoke/receipt.json": "769702313de2a34c63aff42083349561d0a2ecd76e7009ff88757117606b645c",
+    "native-process-files.json": "4498e45f6eba989aeb445f0e95d8af3b466217d3bc59a463445cfd0cb87b97d1",
+    "proof-corpus/smoke.json": "fba31fd6a678f0b59057acc1c201a4569787d61fa4d2c4c60ed67c5e78547fa0",
+    "local-corpus-verification.json": "7c26cdc670e1c743a9adf4523f8a253e732c0347b35c4715269f6720dd31c0d7",
+    "neptune-client.log": "e496dbd304171f15987cb5ce4daebd3d6c349abcdcc64533de818e09628a0a9c",
+    "neptune-binding.log": "6fb0b9a0754bfd15dec985ddf0b1b85eb724fca43348e857e9bde85c50004090"
+  },
+  "baseline_execution": {
+    "all_checks_passed": true,
+    "source_provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+    "candidate_sha256": "e377a6fa4141b1ae4cfccdd8a7bc262c2a9c0facbef3555fc5cad1b88353dde8",
+    "log_sha256": "d8f6a5c3bdb5cd044b084c2d1f46750ccfa090fcbd89ca69b5c32afd6aa2a914",
+    "target": "aarch64-unknown-linux-gnu",
+    "baselines": 43,
+    "positive_fixtures": 99,
+    "negative_fixtures": 34,
+    "generated_proofs": 0
+  },
+  "corpus_cases": 47,
+  "corpus_positive": 18,
+  "corpus_rejections": 29,
+  "binary_archive": {
+    "name": "cyber-tools-aarch64-unknown-linux-gnu.tar.gz",
+    "sha256": "28ee61e3552e0564487c22ec9d96c482b5e68d3e9147570e1bb56310b31dc93e",
+    "bytes": 17449223
+  },
+  "corpus_archive": {
+    "name": "proof-corpus-aarch64-unknown-linux-gnu.tar.gz",
+    "sha256": "29dfef086ac20acd00df9322ba8304b76d2dea2f9557f8ca66656ecc6036de84",
+    "bytes": 25179443
+  },
+  "inspector_sha256": "3876953e5cd6acc422ccd86cdd2d37502c621c47abe005d5b8de8739699f7c5e"
+}

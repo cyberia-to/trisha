@@ -1,0 +1,1494 @@
+{
+  "schema": "joy/installed-native-smoke/v1",
+  "status": "passed",
+  "started_ns": 1790911040823539100,
+  "scope": "Four existing bounded execution-proof routes on supplied Joy; dynamic compiler proofs separate",
+  "binary": "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+  "binary_start": {
+    "bytes": 4669952,
+    "sha256": "c147199e6b085bf0867ee795b6de669e554125c559ae31946df4c36af5834cfb"
+  },
+  "fixtures": "C:\\a\\_temp\\cyber-candidate\\candidate\\share\\trisha-release-smoke",
+  "fixtures_start": {
+    "state.json": {
+      "bytes": 2146,
+      "sha256": "8953a46858800afc0b9e9cd3a2a9869efec0f3fea1177c2b63c4180458b3b2e8"
+    },
+    "state-all.json": {
+      "bytes": 2983,
+      "sha256": "2a0e6d0d29ab36f8259dc3512e9db0b05fb1ea7f62a780a274c36df9d864b02c"
+    },
+    "other-state.json": {
+      "bytes": 2145,
+      "sha256": "16b1bab42e8f64781c9723cc1b5122ea43690b98eda5673e2dfddd97eb72ab5f"
+    }
+  },
+  "script_start": {
+    "bytes": 13555,
+    "sha256": "398fc368ab423741b090fb1fc45ab3abfd5b77b7a7883d84438313c178c4fbb3"
+  },
+  "host": {
+    "system": "Windows",
+    "machine": "ARM64",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "libc": [
+      "",
+      ""
+    ],
+    "python": "3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:51:22) [MSC v.1944 64 bit (ARM64)]"
+  },
+  "environment": {
+    "path": "C:\\a\\_temp\\cyber-candidate\\candidate\\bin",
+    "removed_trident_overrides": {}
+  },
+  "commands": [
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "describe",
+        "--target",
+        "nox"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/0.stdout",
+      "stderr": "commands/0.stderr",
+      "elapsed_ns": 15068100,
+      "stdout_identity": {
+        "bytes": 3606,
+        "sha256": "f2fe0e4dd1cd801b65da7e1787cea47ef0ea38907a8106911b0e1d3e765d91c7"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "run",
+        "public.tri",
+        "--profile",
+        "release",
+        "--input-values",
+        "3,5"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/1.stdout",
+      "stderr": "commands/1.stderr",
+      "elapsed_ns": 31702100,
+      "stdout_identity": {
+        "bytes": 3,
+        "sha256": "68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53"
+      },
+      "stderr_identity": {
+        "bytes": 26,
+        "sha256": "41530f7b12f10aa7d2d8c9e3ad74fac4d63f362f6cdc72974f42cff156d56067"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "prove",
+        "public.tri",
+        "--profile",
+        "release",
+        "--input-values",
+        "3,5",
+        "--output",
+        "public.zheng"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/2.stdout",
+      "stderr": "commands/2.stderr",
+      "elapsed_ns": 38976800,
+      "stdout_identity": {
+        "bytes": 13,
+        "sha256": "e855078835b759899224cb67fe3d8702144ad4eec26a912f51d76f3f47e3e726"
+      },
+      "stderr_identity": {
+        "bytes": 73,
+        "sha256": "d191500d79324eeca5c299a6a9f6e8e7d030152c06f5a9095b8dd6ab5674ef62"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "public.zheng",
+        "--claim",
+        "24",
+        "--input-values",
+        "3,5"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/3.stdout",
+      "stderr": "commands/3.stderr",
+      "elapsed_ns": 14933400,
+      "stdout_identity": {
+        "bytes": 108,
+        "sha256": "9ec46596370c012a3bd0f33c18ded1f0db830239bfab710eef0d624b36bb433d"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "public.tri",
+        "--profile",
+        "release",
+        "--proof",
+        "public.zheng",
+        "--claim",
+        "24",
+        "--input-values",
+        "3,5"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/4.stdout",
+      "stderr": "commands/4.stderr",
+      "elapsed_ns": 17416100,
+      "stdout_identity": {
+        "bytes": 108,
+        "sha256": "9ec46596370c012a3bd0f33c18ded1f0db830239bfab710eef0d624b36bb433d"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "public.zheng",
+        "--claim",
+        "25"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/5.stdout",
+      "stderr": "commands/5.stderr",
+      "elapsed_ns": 12260000,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 84,
+        "sha256": "d86ff6338a1bcd34464eb322a15457e445942572dd0f3e56469ce815fe93aad3"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "public.zheng",
+        "--input-values",
+        "4,5"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/6.stdout",
+      "stderr": "commands/6.stderr",
+      "elapsed_ns": 12013600,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 84,
+        "sha256": "d86ff6338a1bcd34464eb322a15457e445942572dd0f3e56469ce815fe93aad3"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "changed-public.tri",
+        "--profile",
+        "release",
+        "--proof",
+        "public.zheng",
+        "--claim",
+        "24",
+        "--input-values",
+        "3,5"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/7.stdout",
+      "stderr": "commands/7.stderr",
+      "elapsed_ns": 15580800,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 60,
+        "sha256": "35672d1975a3808ab50818e2d2712d4476cdd379f8e7623b8e3b67a35d851d4c"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "corrupt-public.zheng"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/8.stdout",
+      "stderr": "commands/8.stderr",
+      "elapsed_ns": 12414100,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 55,
+        "sha256": "cf661d8237ba804a211d912eae94eaa089d9b1d2b3da73d206eddae6151313a4"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "run",
+        "private.tri",
+        "--profile",
+        "release",
+        "--secret",
+        "7,13"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/9.stdout",
+      "stderr": "commands/9.stderr",
+      "elapsed_ns": 30068800,
+      "stdout_identity": {
+        "bytes": 3,
+        "sha256": "0433e993a3dbc505d6e5cad972a1df0ab189cfe7ceece5e94fd47ca9a074370f"
+      },
+      "stderr_identity": {
+        "bytes": 26,
+        "sha256": "f31766e49aa2eb2a4ac328b4a41aa64070ad2de5fcc6ae376108d04b929444b7"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "prove",
+        "private.tri",
+        "--profile",
+        "release",
+        "--secret",
+        "7,13",
+        "--output",
+        "private.zheng"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/10.stdout",
+      "stderr": "commands/10.stderr",
+      "elapsed_ns": 325180200,
+      "stdout_identity": {
+        "bytes": 14,
+        "sha256": "2b4711ce4187c4ad43abf52bd4b834b53becef4fda172f3157de98b0d4aa0f59"
+      },
+      "stderr_identity": {
+        "bytes": 92,
+        "sha256": "f092182cf387f594550fdc27448148fa103b5fe505e6ed7e68264cb16d1cc598"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "private.zheng",
+        "--claim",
+        "91"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/11.stdout",
+      "stderr": "commands/11.stderr",
+      "elapsed_ns": 153008500,
+      "stdout_identity": {
+        "bytes": 111,
+        "sha256": "2c90abd2ad43ddf165dbfb75b2a4dd88bc75e730c04c4ee3057b0f01af314efc"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "private.tri",
+        "--profile",
+        "release",
+        "--proof",
+        "private.zheng",
+        "--claim",
+        "91"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/12.stdout",
+      "stderr": "commands/12.stderr",
+      "elapsed_ns": 155236600,
+      "stdout_identity": {
+        "bytes": 111,
+        "sha256": "2c90abd2ad43ddf165dbfb75b2a4dd88bc75e730c04c4ee3057b0f01af314efc"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "private.zheng",
+        "--claim",
+        "92"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/13.stdout",
+      "stderr": "commands/13.stderr",
+      "elapsed_ns": 13228100,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 82,
+        "sha256": "f6977a0a9e3b57b2da97acbf134a680b3663d095faf6ea4ba348204818c6a09d"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "changed-private.tri",
+        "--profile",
+        "release",
+        "--proof",
+        "private.zheng",
+        "--claim",
+        "91"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/14.stdout",
+      "stderr": "commands/14.stderr",
+      "elapsed_ns": 18170100,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 82,
+        "sha256": "a018cd7cb80223299749d114ce3aae77c1aeea0f60f2b6f237d91769b193174e"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "corrupt-private.zheng"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/15.stdout",
+      "stderr": "commands/15.stderr",
+      "elapsed_ns": 13185400,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 52,
+        "sha256": "c6317a5162d9c924060749a5b9495deae59a62c332b92e55254d777094a5332d"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "run",
+        "state.tri",
+        "--profile",
+        "release",
+        "--state",
+        "state-all.json",
+        "--input-values",
+        "11"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/16.stdout",
+      "stderr": "commands/16.stderr",
+      "elapsed_ns": 35989000,
+      "stdout_identity": {
+        "bytes": 3,
+        "sha256": "6950980e3aca96f4dc400eb2e47cc5c343e0d3f483a4e70adcae1d7e6bb22d9c"
+      },
+      "stderr_identity": {
+        "bytes": 26,
+        "sha256": "02abc14ccb4d08e6188bb16b9849e6385c21478a82566628a60bb4d360bf8d4a"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "prove",
+        "state.tri",
+        "--profile",
+        "release",
+        "--state",
+        "state-all.json",
+        "--input-values",
+        "11",
+        "--output",
+        "state.zheng"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/17.stdout",
+      "stderr": "commands/17.stderr",
+      "elapsed_ns": 52184800,
+      "stdout_identity": {
+        "bytes": 12,
+        "sha256": "67d700543a484d2f7f37da722453c97cf213ead4ba5a4d7c0d8ae3a0ba2130ca"
+      },
+      "stderr_identity": {
+        "bytes": 93,
+        "sha256": "55e010a6fa15d218e5fdcf077a09a2596db538112e94d44a33769b41f9f02cb5"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "state.zheng",
+        "--claim",
+        "82",
+        "--input-values",
+        "11",
+        "--state",
+        "state-all.json"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/18.stdout",
+      "stderr": "commands/18.stderr",
+      "elapsed_ns": 21861200,
+      "stdout_identity": {
+        "bytes": 126,
+        "sha256": "9f8b338e719e2c29945bba6ed3bd1e0f00966ccc359d3f4883df2602bd2d1e12"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "state.tri",
+        "--profile",
+        "release",
+        "--proof",
+        "state.zheng",
+        "--claim",
+        "82",
+        "--input-values",
+        "11",
+        "--state",
+        "state-all.json"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/19.stdout",
+      "stderr": "commands/19.stderr",
+      "elapsed_ns": 26836800,
+      "stdout_identity": {
+        "bytes": 126,
+        "sha256": "9f8b338e719e2c29945bba6ed3bd1e0f00966ccc359d3f4883df2602bd2d1e12"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "state.zheng",
+        "--claim",
+        "83"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/20.stdout",
+      "stderr": "commands/20.stderr",
+      "elapsed_ns": 12690200,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 52,
+        "sha256": "2922ac686e8ca5d0c5c4371e164dd5fa828ae03cbfa6c318e9e5a049be71dedc"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "state.zheng",
+        "--input-values",
+        "12"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/21.stdout",
+      "stderr": "commands/21.stderr",
+      "elapsed_ns": 12101600,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 52,
+        "sha256": "2922ac686e8ca5d0c5c4371e164dd5fa828ae03cbfa6c318e9e5a049be71dedc"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "state.zheng",
+        "--state",
+        "other-state.json"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/22.stdout",
+      "stderr": "commands/22.stderr",
+      "elapsed_ns": 13798200,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 61,
+        "sha256": "40248e82a2507d9725f6de72bd4c5ea20fcad833ca7e12c1bf66319148037424"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "changed-state.tri",
+        "--profile",
+        "release",
+        "--proof",
+        "state.zheng",
+        "--claim",
+        "82",
+        "--input-values",
+        "11",
+        "--state",
+        "state-all.json"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/23.stdout",
+      "stderr": "commands/23.stderr",
+      "elapsed_ns": 20391500,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 64,
+        "sha256": "338075b94bce7a615179e451a1c2add5ec59c2bb442b917d3449a4844774580d"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "corrupt-state.zheng"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/24.stdout",
+      "stderr": "commands/24.stderr",
+      "elapsed_ns": 13895600,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 57,
+        "sha256": "f79b95b0bb2873d30299d8754f2974a74176dc71e0d55adc57a7068bb98c5343"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "run",
+        "private-state.tri",
+        "--profile",
+        "release",
+        "--state",
+        "state-all.json",
+        "--secret",
+        "11"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/25.stdout",
+      "stderr": "commands/25.stderr",
+      "elapsed_ns": 37213100,
+      "stdout_identity": {
+        "bytes": 3,
+        "sha256": "6950980e3aca96f4dc400eb2e47cc5c343e0d3f483a4e70adcae1d7e6bb22d9c"
+      },
+      "stderr_identity": {
+        "bytes": 26,
+        "sha256": "3243393e2d58471c1f03474cf0a0dd6ef392b590b275aea4685310dfeabc97d3"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "prove",
+        "private-state.tri",
+        "--profile",
+        "release",
+        "--state",
+        "state-all.json",
+        "--secret",
+        "11",
+        "--output",
+        "private-state.zheng"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/26.stdout",
+      "stderr": "commands/26.stderr",
+      "elapsed_ns": 2093196700,
+      "stdout_identity": {
+        "bytes": 20,
+        "sha256": "87ed87b1fece71c74cc6beff729308e3bae7c9a414f443c467fe4553e0039bd2"
+      },
+      "stderr_identity": {
+        "bytes": 94,
+        "sha256": "578d2708b3a42c0c835236482f0c73e07af25eb481cf705b05ad483c02e82236"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "private-state.zheng",
+        "--claim",
+        "82",
+        "--state",
+        "state-all.json"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/27.stdout",
+      "stderr": "commands/27.stderr",
+      "elapsed_ns": 1006901200,
+      "stdout_identity": {
+        "bytes": 111,
+        "sha256": "024cdb7b2dd6d572dd51a7b7bc9f3910651c25c8a88a4bf31b7a2bbb5f5874b6"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "private-state.tri",
+        "--profile",
+        "release",
+        "--proof",
+        "private-state.zheng",
+        "--claim",
+        "82",
+        "--state",
+        "state-all.json"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/28.stdout",
+      "stderr": "commands/28.stderr",
+      "elapsed_ns": 1015376200,
+      "stdout_identity": {
+        "bytes": 111,
+        "sha256": "024cdb7b2dd6d572dd51a7b7bc9f3910651c25c8a88a4bf31b7a2bbb5f5874b6"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "private-state.zheng",
+        "--claim",
+        "83"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/29.stdout",
+      "stderr": "commands/29.stderr",
+      "elapsed_ns": 18579400,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 82,
+        "sha256": "f6977a0a9e3b57b2da97acbf134a680b3663d095faf6ea4ba348204818c6a09d"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "private-state.zheng",
+        "--state",
+        "other-state.json"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/30.stdout",
+      "stderr": "commands/30.stderr",
+      "elapsed_ns": 21586900,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 55,
+        "sha256": "7d4e6fc617834d4ebfa11e954751cc8b69d49da11742a9041390ff04d7a448af"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "changed-private-state.tri",
+        "--profile",
+        "release",
+        "--proof",
+        "private-state.zheng",
+        "--claim",
+        "82",
+        "--state",
+        "state-all.json"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/31.stdout",
+      "stderr": "commands/31.stderr",
+      "elapsed_ns": 21335200,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 82,
+        "sha256": "a018cd7cb80223299749d114ce3aae77c1aeea0f60f2b6f237d91769b193174e"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "corrupt-private-state.zheng"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/32.stdout",
+      "stderr": "commands/32.stderr",
+      "elapsed_ns": 17843200,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 52,
+        "sha256": "c6317a5162d9c924060749a5b9495deae59a62c332b92e55254d777094a5332d"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "prove",
+        "private.tri",
+        "--profile",
+        "release",
+        "--secret",
+        "7,13",
+        "--output",
+        "private-fresh.zheng"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/33.stdout",
+      "stderr": "commands/33.stderr",
+      "elapsed_ns": 347686100,
+      "stdout_identity": {
+        "bytes": 20,
+        "sha256": "25917da01863b9dfe5d0b7093ba378b6137842d0352f67db5cf3ebaef6f2d884"
+      },
+      "stderr_identity": {
+        "bytes": 92,
+        "sha256": "24431d1b6eba3c941903fb64c26330c3c0fc3b4da3eda4a661d89f19df241948"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "private-fresh.zheng",
+        "--claim",
+        "91"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/34.stdout",
+      "stderr": "commands/34.stderr",
+      "elapsed_ns": 153553400,
+      "stdout_identity": {
+        "bytes": 111,
+        "sha256": "2c90abd2ad43ddf165dbfb75b2a4dd88bc75e730c04c4ee3057b0f01af314efc"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "private.zheng",
+        "--secret",
+        "7,13"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/35.stdout",
+      "stderr": "commands/35.stderr",
+      "elapsed_ns": 12765700,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 91,
+        "sha256": "944d89bb9d52124672ea60563424386b1c2334fbcbb0dc494642af4b46e9ea8c"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "public.zheng",
+        "--budget",
+        "1"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/36.stdout",
+      "stderr": "commands/36.stderr",
+      "elapsed_ns": 12083100,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 84,
+        "sha256": "d86ff6338a1bcd34464eb322a15457e445942572dd0f3e56469ce815fe93aad3"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "prove",
+        "private.tri",
+        "--profile",
+        "release",
+        "--output",
+        "preserved.zheng",
+        "--force"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/37.stdout",
+      "stderr": "commands/37.stderr",
+      "elapsed_ns": 15245900,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 38,
+        "sha256": "0ee82b22c5cea4f917e9d0797212fb259dc7a73132157fa6d9c9bf6e2fa7e0d8"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "prove",
+        "private.tri",
+        "--profile",
+        "release",
+        "--secret",
+        "7",
+        "--output",
+        "preserved.zheng",
+        "--force"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/38.stdout",
+      "stderr": "commands/38.stderr",
+      "elapsed_ns": 17427500,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 67,
+        "sha256": "ee31153d54378a2c3192096415d2643e693131d23ad76f922d22e87521a72999"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "prove",
+        "private.tri",
+        "--profile",
+        "release",
+        "--secret",
+        "7,13,42",
+        "--output",
+        "preserved.zheng",
+        "--force"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/39.stdout",
+      "stderr": "commands/39.stderr",
+      "elapsed_ns": 15511500,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 67,
+        "sha256": "ee31153d54378a2c3192096415d2643e693131d23ad76f922d22e87521a72999"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "prove",
+        "state.tri",
+        "--state",
+        "state.json",
+        "--input-values",
+        "11",
+        "--zk",
+        "--output",
+        "preserved.zheng",
+        "--force"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/40.stdout",
+      "stderr": "commands/40.stderr",
+      "elapsed_ns": 16428200,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 80,
+        "sha256": "1a907e41abc63734c9fd0bf21161bb5897e46564bfd5c3b5395733caa4399278"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "prove",
+        "private.tri",
+        "--profile",
+        "release",
+        "--secret",
+        "7,13",
+        "--output",
+        "preserved.zheng"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/41.stdout",
+      "stderr": "commands/41.stderr",
+      "elapsed_ns": 326755600,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 148,
+        "sha256": "cb99a40e3f01d1f205a4d69eee8bb874a10dcdabbfc26c151fbbd45aba17e0dc"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "prove",
+        "private.tri",
+        "--profile",
+        "release",
+        "--secret",
+        "7,13",
+        "--output",
+        "preserved.zheng",
+        "--force"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/42.stdout",
+      "stderr": "commands/42.stderr",
+      "elapsed_ns": 322331800,
+      "stdout_identity": {
+        "bytes": 16,
+        "sha256": "412f7d8d562eec690fb90d2645246800f46343371fe09019b554fb5bd1341762"
+      },
+      "stderr_identity": {
+        "bytes": 92,
+        "sha256": "917a6546c39fffa067c3099d3724790a7d81287b28d5ba8590a0ea7f76c6f350"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "preserved.zheng",
+        "--claim",
+        "91"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/43.stdout",
+      "stderr": "commands/43.stderr",
+      "elapsed_ns": 151148200,
+      "stdout_identity": {
+        "bytes": 111,
+        "sha256": "2c90abd2ad43ddf165dbfb75b2a4dd88bc75e730c04c4ee3057b0f01af314efc"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "retired.zheng"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/44.stdout",
+      "stderr": "commands/44.stderr",
+      "elapsed_ns": 12254200,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 96,
+        "sha256": "d0c1d4357317aad2a691e187c077986e31cd592639071edd4b9de6a6dc85d1f8"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "retired.zheng"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/45.stdout",
+      "stderr": "commands/45.stderr",
+      "elapsed_ns": 8504000,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 96,
+        "sha256": "d0c1d4357317aad2a691e187c077986e31cd592639071edd4b9de6a6dc85d1f8"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "verify",
+        "retired.zheng"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/46.stdout",
+      "stderr": "commands/46.stderr",
+      "elapsed_ns": 8743200,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 96,
+        "sha256": "d0c1d4357317aad2a691e187c077986e31cd592639071edd4b9de6a6dc85d1f8"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "describe",
+        "--target",
+        "triton"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/47.stdout",
+      "stderr": "commands/47.stderr",
+      "elapsed_ns": 14269200,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 44,
+        "sha256": "8cf308285b619666a10a4e2632a0824250f753c35b2a7f5b0e4c5e19204d56d1"
+      }
+    },
+    {
+      "argv": [
+        "C:\\a\\_temp\\cyber-candidate\\candidate\\bin\\joy.exe",
+        "describe",
+        "--target",
+        "neptune"
+      ],
+      "cwd": "C:\\a\\trisha\\trisha\\release-results\\joy-native-smoke\\work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/48.stdout",
+      "stderr": "commands/48.stderr",
+      "elapsed_ns": 12109200,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 45,
+        "sha256": "4cd34053106ca190e992dd8f78d7a8025035ee196c2961cb82d2763498d00b60"
+      }
+    }
+  ],
+  "routes": {
+    "public": {
+      "source": "public.tri",
+      "proof": "public.zheng",
+      "expected_output": 24,
+      "public_inputs": "3,5",
+      "state": null,
+      "header": "JOYEXEC2"
+    },
+    "private": {
+      "source": "private.tri",
+      "proof": "private.zheng",
+      "expected_output": 91,
+      "public_inputs": null,
+      "state": null,
+      "header": "JOYZH001"
+    },
+    "state": {
+      "source": "state.tri",
+      "proof": "state.zheng",
+      "expected_output": 82,
+      "public_inputs": "11",
+      "state": "state-all.json",
+      "header": "JOYST001"
+    },
+    "private-state": {
+      "source": "private-state.tri",
+      "proof": "private-state.zheng",
+      "expected_output": 82,
+      "public_inputs": null,
+      "state": "state-all.json",
+      "header": "JOYZH001"
+    }
+  },
+  "artifacts": {
+    "public.zheng": {
+      "bytes": 2242,
+      "sha256": "42b445af44be75a8ed4a1f97d07fedbcf1e1160b9f104b367797b1c7844dfd35"
+    },
+    "private.zheng": {
+      "bytes": 287967,
+      "sha256": "105b918d86a36fb1a10a08c5ce1e2bcf06a13f25483bde5d9156a9828f217539"
+    },
+    "state.zheng": {
+      "bytes": 3706,
+      "sha256": "c4be502fb5a4911632e1bc928e9604efc47c9635371baf234e5f1a52a1acf5ed"
+    },
+    "private-state.zheng": {
+      "bytes": 2130727,
+      "sha256": "b74579cbd3ed7c05ff1ad09a75364460c16e8ac0d17c08611516ac76fba28b40"
+    },
+    "private-fresh.zheng": {
+      "bytes": 290527,
+      "sha256": "b82362ebc09da54b56c86806e1e2a1a25fa7bbfeef668df0ddce7848ae7fb62f"
+    }
+  },
+  "work_files": {
+    "changed-private-state.tri": {
+      "bytes": 120,
+      "sha256": "99736fdfdcd714421325d487ae6fa5da685649674abee63402d4aa8f2cfa9af6"
+    },
+    "changed-private.tri": {
+      "bytes": 85,
+      "sha256": "f4bd4004c09e3bfe5d8b99f7792b7503871b997a8d4fdf7131aee2ee824a242b"
+    },
+    "changed-public.tri": {
+      "bytes": 63,
+      "sha256": "cad5a53479a82dc45a1cc01fa04f9255fba8ae518b09bde3e10455a9895ae065"
+    },
+    "changed-state.tri": {
+      "bytes": 102,
+      "sha256": "17f86f323d8d6b66e702b98a73cf6f0075908d70a66fee83cee14a70b3a97e5d"
+    },
+    "corrupt-private-state.zheng": {
+      "bytes": 2130728,
+      "sha256": "15c31d0ff3a06f3766ca232a8b6375f7f60cabf49887d90925204286bce0660f"
+    },
+    "corrupt-private.zheng": {
+      "bytes": 287968,
+      "sha256": "90429182b62458b5d33c0fff4e222ef7270938044ff49f900a59d91abdc5a8d3"
+    },
+    "corrupt-public.zheng": {
+      "bytes": 2243,
+      "sha256": "901053ad5594e060c01e239790cea18a5345aa848005934a6304b0a4291733dc"
+    },
+    "corrupt-state.zheng": {
+      "bytes": 3707,
+      "sha256": "1ee451ca5d26fcf1e1e749e9923b12da3e530937ee0e605c9d8c27ffe496c8cf"
+    },
+    "other-state.json": {
+      "bytes": 2145,
+      "sha256": "16b1bab42e8f64781c9723cc1b5122ea43690b98eda5673e2dfddd97eb72ab5f"
+    },
+    "preserved.zheng": {
+      "bytes": 293087,
+      "sha256": "24a36e891cb15817d65d005d23cf50abc3d2cfeb7e87274560042c21c8ad8c65"
+    },
+    "private-fresh.zheng": {
+      "bytes": 290527,
+      "sha256": "b82362ebc09da54b56c86806e1e2a1a25fa7bbfeef668df0ddce7848ae7fb62f"
+    },
+    "private-state.tri": {
+      "bytes": 120,
+      "sha256": "f2739f767b2a6f461e5b311c2ee17e7802633825bf02cd0e2d4314ab2f7233ab"
+    },
+    "private-state.zheng": {
+      "bytes": 2130727,
+      "sha256": "b74579cbd3ed7c05ff1ad09a75364460c16e8ac0d17c08611516ac76fba28b40"
+    },
+    "private.tri": {
+      "bytes": 83,
+      "sha256": "5071a638573f636511c8c63ac3855d3254c96be82e9e1d713b80f733bdc5ed9f"
+    },
+    "private.zheng": {
+      "bytes": 287967,
+      "sha256": "105b918d86a36fb1a10a08c5ce1e2bcf06a13f25483bde5d9156a9828f217539"
+    },
+    "public.tri": {
+      "bytes": 61,
+      "sha256": "5fac3efa10b80bb55693480016c698ea354a366ed40f54a065d131382f168024"
+    },
+    "public.zheng": {
+      "bytes": 2242,
+      "sha256": "42b445af44be75a8ed4a1f97d07fedbcf1e1160b9f104b367797b1c7844dfd35"
+    },
+    "retired.zheng": {
+      "bytes": 8,
+      "sha256": "605a3bffe8d224c029a50a69fea1c629bd2ea02b7f0ce3b8486f6a4304070c5c"
+    },
+    "state-all.json": {
+      "bytes": 2983,
+      "sha256": "2a0e6d0d29ab36f8259dc3512e9db0b05fb1ea7f62a780a274c36df9d864b02c"
+    },
+    "state.json": {
+      "bytes": 2146,
+      "sha256": "8953a46858800afc0b9e9cd3a2a9869efec0f3fea1177c2b63c4180458b3b2e8"
+    },
+    "state.tri": {
+      "bytes": 102,
+      "sha256": "65fe8ebea5a99674f59608c6b4eca498596f879abf0a13326092cd4478d2ee14"
+    },
+    "state.zheng": {
+      "bytes": 3706,
+      "sha256": "c4be502fb5a4911632e1bc928e9604efc47c9635371baf234e5f1a52a1acf5ed"
+    }
+  },
+  "binary_end": {
+    "bytes": 4669952,
+    "sha256": "c147199e6b085bf0867ee795b6de669e554125c559ae31946df4c36af5834cfb"
+  },
+  "fixtures_end": {
+    "state.json": {
+      "bytes": 2146,
+      "sha256": "8953a46858800afc0b9e9cd3a2a9869efec0f3fea1177c2b63c4180458b3b2e8"
+    },
+    "state-all.json": {
+      "bytes": 2983,
+      "sha256": "2a0e6d0d29ab36f8259dc3512e9db0b05fb1ea7f62a780a274c36df9d864b02c"
+    },
+    "other-state.json": {
+      "bytes": 2145,
+      "sha256": "16b1bab42e8f64781c9723cc1b5122ea43690b98eda5673e2dfddd97eb72ab5f"
+    }
+  },
+  "script_end": {
+    "bytes": 13555,
+    "sha256": "398fc368ab423741b090fb1fc45ab3abfd5b77b7a7883d84438313c178c4fbb3"
+  },
+  "ended_ns": 1790911048001422700
+}

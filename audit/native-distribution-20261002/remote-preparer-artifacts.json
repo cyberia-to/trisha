@@ -1,0 +1,25 @@
+{
+  "total_count": 1,
+  "artifacts": [
+    {
+      "id": 11202924897,
+      "node_id": "MDg6QXJ0aWZhY3QxMTIwMjkyNDg5Nw==",
+      "name": "native-rehearsal-source-preparation",
+      "size_in_bytes": 50651,
+      "url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11202924897",
+      "archive_download_url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11202924897/zip",
+      "expired": false,
+      "digest": "sha256:cdb0275b9300d89cc031a548a3cbc2d68a072f06ad54ed245925b61eed822173",
+      "created_at": "2026-10-02T01:04:08Z",
+      "updated_at": "2026-10-02T01:04:08Z",
+      "expires_at": "2026-11-01T01:04:07Z",
+      "workflow_run": {
+        "id": 36948984631,
+        "repository_id": 1159894384,
+        "head_repository_id": 1159894384,
+        "head_branch": "test/0.4-native-distribution-20261002",
+        "head_sha": "49deb1a953dcc1102201df29f0c55a0286c70ef1"
+      }
+    }
+  ]
+}

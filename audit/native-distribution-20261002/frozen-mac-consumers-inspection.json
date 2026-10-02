@@ -1,0 +1,166 @@
+{
+  "scope": "Two actual Mac ARM consumer measurements only; required six-native-consumer matrix remains separate",
+  "status": "passed",
+  "source_sha256": "e4bac7ff7260a5f395febc196b3e4792653e0ff81d7887d688e16ea0959aa361",
+  "selector_sha256": "aea37d7f89a9069572e1c7e320ec2c2ea74f7c8b9d41078c7807e3539e988bf4",
+  "inspector_sha256": "c84a2f160aeab50b6015efd3abece6a4746ac0d5d913e56d9bd079b205942bd2",
+  "case_checks": 564,
+  "pairs": [
+    {
+      "consumer": "local-macos26-arm",
+      "producer": "aarch64-unknown-linux-gnu",
+      "receipt_sha256": "92ff236108a65a4a1adc79f7425412d7eef372e5bd8f5305670f9dc3d983144b",
+      "corpus_manifest_sha256": "b1ee37ccd9dfe177fce4b7196cc97301d67867509be037e1075efe809652b0ac",
+      "cases": 47,
+      "accepted": 18,
+      "rejected": 29,
+      "consumer_binaries": {
+        "trisha": "12cd1a2576e1272f770d1d93c444bfa2bf8372370e0af0f92af14d1274f31b73",
+        "joy": "987682608a17fee60f062af30648ef675a9ed734156c58a389f342bd11c35a1b"
+      }
+    },
+    {
+      "consumer": "local-macos26-arm",
+      "producer": "aarch64-pc-windows-msvc",
+      "receipt_sha256": "afc4ed93fe0a6d2841fceaf6c6516250ea4be4bf3a16fa7987858110b63d8ff8",
+      "corpus_manifest_sha256": "4a1b62b4c31ab4f82d49f9612279c529cce8fc2cd1d4b2fa5e495af4eb45a9eb",
+      "cases": 47,
+      "accepted": 18,
+      "rejected": 29,
+      "consumer_binaries": {
+        "trisha": "12cd1a2576e1272f770d1d93c444bfa2bf8372370e0af0f92af14d1274f31b73",
+        "joy": "987682608a17fee60f062af30648ef675a9ed734156c58a389f342bd11c35a1b"
+      }
+    },
+    {
+      "consumer": "local-macos26-arm",
+      "producer": "x86_64-pc-windows-msvc",
+      "receipt_sha256": "3075dfdbe207129b3d0a6efe9502c5cde54cc046d5e92c0586517d7f2ca7f935",
+      "corpus_manifest_sha256": "69b5c7933f3609daf10e41ccc9ff8116e9faab305352e5705a4759c79425ebc4",
+      "cases": 47,
+      "accepted": 18,
+      "rejected": 29,
+      "consumer_binaries": {
+        "trisha": "12cd1a2576e1272f770d1d93c444bfa2bf8372370e0af0f92af14d1274f31b73",
+        "joy": "987682608a17fee60f062af30648ef675a9ed734156c58a389f342bd11c35a1b"
+      }
+    },
+    {
+      "consumer": "local-macos26-arm",
+      "producer": "x86_64-unknown-linux-gnu",
+      "receipt_sha256": "a82b999ef5904b0ad4be0a07e2a614ab37960b0dbf368dce12740bc5c3cb9c32",
+      "corpus_manifest_sha256": "0642ec9f31505d962ef5b4427e229e787ac2058abeabd0a3d214b014d6d4ccdd",
+      "cases": 47,
+      "accepted": 18,
+      "rejected": 29,
+      "consumer_binaries": {
+        "trisha": "12cd1a2576e1272f770d1d93c444bfa2bf8372370e0af0f92af14d1274f31b73",
+        "joy": "987682608a17fee60f062af30648ef675a9ed734156c58a389f342bd11c35a1b"
+      }
+    },
+    {
+      "consumer": "local-macos26-arm",
+      "producer": "x86_64-apple-darwin",
+      "receipt_sha256": "42c9541f379398457f00f6bfadd59c97658e3adae062b26d75a1bb290496df71",
+      "corpus_manifest_sha256": "24285ac413e79980b4e724fa75b948eb4427724550bfb9e7b7cb2f3b171130fe",
+      "cases": 47,
+      "accepted": 18,
+      "rejected": 29,
+      "consumer_binaries": {
+        "trisha": "12cd1a2576e1272f770d1d93c444bfa2bf8372370e0af0f92af14d1274f31b73",
+        "joy": "987682608a17fee60f062af30648ef675a9ed734156c58a389f342bd11c35a1b"
+      }
+    },
+    {
+      "consumer": "local-macos26-arm",
+      "producer": "aarch64-apple-darwin",
+      "receipt_sha256": "ac8d25d2807f207f69a549b5dc8312e85942d080e9062811f0bad8971dab881e",
+      "corpus_manifest_sha256": "850f66cb834095292c71ecfc2f64c324627cc0dd8335bd65dcff02ac3b471627",
+      "cases": 47,
+      "accepted": 18,
+      "rejected": 29,
+      "consumer_binaries": {
+        "trisha": "12cd1a2576e1272f770d1d93c444bfa2bf8372370e0af0f92af14d1274f31b73",
+        "joy": "987682608a17fee60f062af30648ef675a9ed734156c58a389f342bd11c35a1b"
+      }
+    },
+    {
+      "consumer": "github-macos14-arm",
+      "producer": "aarch64-unknown-linux-gnu",
+      "receipt_sha256": "92ff236108a65a4a1adc79f7425412d7eef372e5bd8f5305670f9dc3d983144b",
+      "corpus_manifest_sha256": "b1ee37ccd9dfe177fce4b7196cc97301d67867509be037e1075efe809652b0ac",
+      "cases": 47,
+      "accepted": 18,
+      "rejected": 29,
+      "consumer_binaries": {
+        "trisha": "12cd1a2576e1272f770d1d93c444bfa2bf8372370e0af0f92af14d1274f31b73",
+        "joy": "987682608a17fee60f062af30648ef675a9ed734156c58a389f342bd11c35a1b"
+      }
+    },
+    {
+      "consumer": "github-macos14-arm",
+      "producer": "aarch64-pc-windows-msvc",
+      "receipt_sha256": "afc4ed93fe0a6d2841fceaf6c6516250ea4be4bf3a16fa7987858110b63d8ff8",
+      "corpus_manifest_sha256": "4a1b62b4c31ab4f82d49f9612279c529cce8fc2cd1d4b2fa5e495af4eb45a9eb",
+      "cases": 47,
+      "accepted": 18,
+      "rejected": 29,
+      "consumer_binaries": {
+        "trisha": "12cd1a2576e1272f770d1d93c444bfa2bf8372370e0af0f92af14d1274f31b73",
+        "joy": "987682608a17fee60f062af30648ef675a9ed734156c58a389f342bd11c35a1b"
+      }
+    },
+    {
+      "consumer": "github-macos14-arm",
+      "producer": "x86_64-pc-windows-msvc",
+      "receipt_sha256": "3075dfdbe207129b3d0a6efe9502c5cde54cc046d5e92c0586517d7f2ca7f935",
+      "corpus_manifest_sha256": "69b5c7933f3609daf10e41ccc9ff8116e9faab305352e5705a4759c79425ebc4",
+      "cases": 47,
+      "accepted": 18,
+      "rejected": 29,
+      "consumer_binaries": {
+        "trisha": "12cd1a2576e1272f770d1d93c444bfa2bf8372370e0af0f92af14d1274f31b73",
+        "joy": "987682608a17fee60f062af30648ef675a9ed734156c58a389f342bd11c35a1b"
+      }
+    },
+    {
+      "consumer": "github-macos14-arm",
+      "producer": "x86_64-unknown-linux-gnu",
+      "receipt_sha256": "a82b999ef5904b0ad4be0a07e2a614ab37960b0dbf368dce12740bc5c3cb9c32",
+      "corpus_manifest_sha256": "0642ec9f31505d962ef5b4427e229e787ac2058abeabd0a3d214b014d6d4ccdd",
+      "cases": 47,
+      "accepted": 18,
+      "rejected": 29,
+      "consumer_binaries": {
+        "trisha": "12cd1a2576e1272f770d1d93c444bfa2bf8372370e0af0f92af14d1274f31b73",
+        "joy": "987682608a17fee60f062af30648ef675a9ed734156c58a389f342bd11c35a1b"
+      }
+    },
+    {
+      "consumer": "github-macos14-arm",
+      "producer": "x86_64-apple-darwin",
+      "receipt_sha256": "42c9541f379398457f00f6bfadd59c97658e3adae062b26d75a1bb290496df71",
+      "corpus_manifest_sha256": "24285ac413e79980b4e724fa75b948eb4427724550bfb9e7b7cb2f3b171130fe",
+      "cases": 47,
+      "accepted": 18,
+      "rejected": 29,
+      "consumer_binaries": {
+        "trisha": "12cd1a2576e1272f770d1d93c444bfa2bf8372370e0af0f92af14d1274f31b73",
+        "joy": "987682608a17fee60f062af30648ef675a9ed734156c58a389f342bd11c35a1b"
+      }
+    },
+    {
+      "consumer": "github-macos14-arm",
+      "producer": "aarch64-apple-darwin",
+      "receipt_sha256": "ac8d25d2807f207f69a549b5dc8312e85942d080e9062811f0bad8971dab881e",
+      "corpus_manifest_sha256": "850f66cb834095292c71ecfc2f64c324627cc0dd8335bd65dcff02ac3b471627",
+      "cases": 47,
+      "accepted": 18,
+      "rejected": 29,
+      "consumer_binaries": {
+        "trisha": "12cd1a2576e1272f770d1d93c444bfa2bf8372370e0af0f92af14d1274f31b73",
+        "joy": "987682608a17fee60f062af30648ef675a9ed734156c58a389f342bd11c35a1b"
+      }
+    }
+  ]
+}

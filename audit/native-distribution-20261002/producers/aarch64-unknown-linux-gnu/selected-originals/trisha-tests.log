@@ -1,0 +1,1067 @@
+   Compiling paste v1.0.15
+   Compiling strength_reduce v0.2.4
+   Compiling transpose v0.2.3
+   Compiling p3-util v0.4.3
+   Compiling p3-maybe-rayon v0.4.3
+   Compiling p3-field v0.4.2
+   Compiling spin v0.10.1
+   Compiling getrandom v0.4.3
+   Compiling rustix v1.1.4
+   Compiling p3-matrix v0.4.2
+   Compiling p3-symmetric v0.4.2
+   Compiling linux-raw-sys v0.12.1
+   Compiling p3-dft v0.4.2
+   Compiling bitflags v2.11.0
+   Compiling p3-mds v0.4.2
+   Compiling p3-poseidon2 v0.4.2
+   Compiling p3-monty-31 v0.4.2
+   Compiling p3-challenger v0.4.2
+   Compiling fastrand v2.3.0
+   Compiling p3-goldilocks v0.4.2
+   Compiling tempfile v3.27.0
+   Compiling trisha v0.3.0 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/trisha/cli)
+   Compiling trisha-rs v0.3.0 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/trisha/rs)
+   Compiling trisha-neptune v0.3.0 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/trisha/neptune)
+   Compiling trisha-honeycrisp v0.3.0 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/trisha/honeycrisp)
+    Finished `release` profile [optimized] target(s) in 1m 01s
+     Running unittests main.rs (candidate/build/trisha/release/deps/trisha-b79fe1298a2307c0)
+
+running 16 tests
+test bench::fixture::tests::decimal_strings_preserve_full_canonical_field_range ... ok
+test bench::fixture::tests::hand_streams_preserve_canonical_fields_and_optional_absence ... ok
+test bench::fixture::tests::shared_private_witness_cannot_replace_public_expectations ... ok
+test bench::fixture::tests::unknown_fixture_keys_do_not_silently_skip_expectations ... ok
+test input_file::tests::field_decoder_accepts_only_canonical_words_without_string_storage ... ok
+test input_file::tests::sequences_reject_before_reading_the_remaining_payload ... ok
+test mine::mining_session::tests::backend_choice_distinguishes_unavailability_from_exhaustion ... ok
+test mine::mining_session::tests::exhaustion_null_template_and_rpc_error_are_bounded ... ok
+test mine::mining_session::tests::pinned_fork_boundaries_and_unknown_network ... ok
+test mine::mining_session::tests::stale_win_is_discarded_and_rejection_retries_without_resetting_budget ... ok
+test mine::mining_session::tests::template_fields_are_exact_and_version_is_inserted ... ok
+test neptune::mining_rpc_tests::mining_http_uses_selected_network_and_native_tuple_requests ... ok
+test neptune::mining_rpc_tests::wrong_network_and_rpc_envelope_reject_before_template_work ... ok
+test platform_paths::tests::overrides_and_unicode_are_preserved_on_every_platform ... ok
+test platform_paths::tests::unix_locations_and_empty_overrides_follow_the_contract ... ok
+test platform_paths::tests::windows_uses_roaming_configuration_without_home_or_unix_tmp ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/deploy_transaction.rs (candidate/build/trisha/release/deps/deploy_transaction-2e2a69b9e8b75e88)
+
+running 2 tests
+test genuine_transaction_prepare_and_mock_gateway_process ... ignored, requires generated canonical custom-lock SingleProof deployment intent
+test output_construction_is_offline_private_and_cannot_overwrite ... ok
+
+test result: ok. 1 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.08s
+
+     Running tests/deployment.rs (candidate/build/trisha/release/deps/deployment-f8c1f8dc4a96ac81)
+
+running 1 test
+test dry_run_reports_an_offline_native_program_plan_and_resolved_rpc_selection ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/input_file_kind.rs (candidate/build/trisha/release/deps/input_file_kind-67a944709d8f20da)
+
+running 1 test
+test cli_file_readers_reject_special_paths_without_blocking_and_keep_regular_inputs ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.15s
+
+     Running tests/neptune_wallet.rs (candidate/build/trisha/release/deps/neptune_wallet-68b7230336891f9e)
+
+running 8 tests
+test create_checks_wallet_appearance_and_never_labels_status_as_a_seed ... ok
+test hidden_addresses_are_separate_by_network ... ok
+test import_uses_inherited_stdin_without_seed_arguments_or_echo ... ok
+test indexed_addresses_are_offline_and_pass_key_network_and_data_directory ... ok
+test listing_is_bounded_even_for_maximum_remote_counter_and_checks_network ... ok
+test removal_rejects_wrong_network_and_symlink_paths ... ok
+test removal_requires_confirmation_and_only_removes_the_selected_wallet ... ok
+test removal_uses_upstream_wallet_path_without_guessing_platform_directory ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests/node_status.rs (candidate/build/trisha/release/deps/node_status-bf939e509e4e8bec)
+
+running 1 test
+test successful_cli_exit_without_a_node_reply_is_a_failed_status ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/recursive_input.rs (candidate/build/trisha/release/deps/recursive_input-f84f1709473c7b6a)
+
+running 3 tests
+test file_inputs_work_for_batches_and_reject_conflicts_and_noncanonical_fields ... ok
+test fixed_neptune_policy_witnesses_bind_real_proofs_to_caller_commitments ... ok
+test large_recursive_witness_runs_from_file_and_expected_claim_is_mandatory ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.41s
+
+     Running tests/source_pipeline.rs (candidate/build/trisha/release/deps/source_pipeline-4c4f09281eec0fcc)
+
+running 6 tests
+test describe_and_state_share_embedded_network_dataset ... ok
+test duplicate_batch_destinations_fail_before_writing_proofs ... ok
+test embedded_libraries_and_project_profiles_work_outside_checkout ... ok
+test source_cli_executes_proves_and_rejects_tampered_claim ... ok
+test test_cli_runs_assertions_and_reports_failures_and_skips ... ok
+test unsupported_targets_digests_and_deployment_fail ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.64s
+
+     Running unittests lib.rs (candidate/build/trisha/release/deps/trisha_honeycrisp-3adbe3523775af86)
+
+running 5 tests
+test cpu::tests::cpu_pair_preserves_raw_montgomery_hash_abi ... ok
+test cpu::tests::cpu_varlen_preserves_padding_and_raw_montgomery_hash_abi ... ok
+test neptune_mine::legacy_layout_tests::reboot_and_alpha_leaf_order_match_independent_pairwise_construction ... ok
+test neptune_mine::session::tests::cpu_winner_survives_completed_gpu_dispatch ... ok
+test neptune_mine::session::tests::reservations_cover_exact_limits_without_overflow ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running unittests bench_mine.rs (candidate/build/trisha/release/deps/bench_mine-01e4dc3ff50302c7)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/neptune_gpu.rs (candidate/build/trisha/release/deps/neptune_gpu-189a1f57fe7144f1)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/neptune_pow_compatibility.rs (candidate/build/trisha/release/deps/neptune_pow_compatibility-3726f8eeea4f1375)
+
+running 2 tests
+test host_offsets_match_metal_buffer_bindings ... ok
+test native_codec_and_fast_mast_hash_match_pinned_consensus ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests lib.rs (candidate/build/trisha/release/deps/trisha_neptune-f36a69afbc464f75)
+
+running 5 tests
+test json::tests::rejects_duplicates_floats_and_amplification ... ok
+test tests::constructs_actual_custom_utxo_and_rejects_reducing_rpc_aliases ... ok
+test tests::rejects_fifo_directory_and_symlink_inputs_before_reading ... ok
+test transport::tests::configuration_rejects_network_mismatch_and_plaintext_remote ... ok
+test transport::tests::gateway_sends_exact_request_and_rejects_wrong_receipts ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/deployment.rs (candidate/build/trisha/release/deps/deployment-a64c679a5b8fdad8)
+
+running 1 test
+test genuine_custom_lock_transaction_and_binding_mutations ... ignored, requires fresh pinned SingleProof with compiled custom-lock UTXO
+
+test result: ok. 0 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests lib.rs (candidate/build/trisha/release/deps/trisha_rs-3f020e7879e0ecdd)
+
+running 92 tests
+test cost::scorer::tests::call_return_jump_stack ... ok
+test cost::scorer::tests::cliff_boundary ... ok
+test cost::scorer::tests::cliff_jump_detection ... ok
+test cost::scorer::tests::empty_program ... ok
+test cost::scorer::tests::hash_dominance ... ok
+test cost::scorer::tests::labels_and_comments_ignored ... ok
+test cost::scorer::tests::memory_width ... ok
+test cost::scorer::tests::profile_from_string ... ok
+test cost::scorer::tests::simple_add ... ok
+test cost::scorer::tests::table_rebalance_detection ... ok
+test cost::scorer::tests::u32_operations ... ok
+test cost::stack_verifier::tests::assert_equivalent_accepted ... ok
+test cost::stack_verifier::tests::assert_removal_caught ... ok
+test cost::stack_verifier::tests::assert_vector_removal_caught ... ok
+test cost::stack_verifier::tests::comments_and_labels_ignored ... ok
+test cost::stack_verifier::tests::control_flow_is_error ... ok
+test cost::stack_verifier::tests::divine_equivalent_accepted ... ok
+test cost::stack_verifier::tests::divine_replacement_caught ... ok
+test cost::stack_verifier::tests::dup_swap ... ok
+test cost::stack_verifier::tests::eq_comparison ... ok
+test cost::stack_verifier::tests::generate_test_stack_deterministic ... ok
+test cost::stack_verifier::tests::generate_test_stack_in_range ... ok
+test cost::stack_verifier::tests::goldilocks_arithmetic ... ok
+test cost::stack_verifier::tests::halt_equivalent_accepted ... ok
+test cost::stack_verifier::tests::halt_removal_caught ... ok
+test cost::stack_verifier::tests::mul_field ... ok
+test cost::stack_verifier::tests::negative_push ... ok
+test cost::stack_verifier::tests::pop_count_instruction ... ok
+test cost::stack_verifier::tests::pow_instruction ... ok
+test cost::stack_verifier::tests::push_add ... ok
+test cost::stack_verifier::tests::sbox_pattern ... ok
+test cost::stack_verifier::tests::score_candidate_crash_returns_zero ... ok
+test cost::stack_verifier::tests::score_candidate_identical_scores_900 ... ok
+test cost::stack_verifier::tests::score_candidate_no_crash_wrong_depth ... ok
+test cost::stack_verifier::tests::score_candidate_nop_equivalent_scores_900 ... ok
+test cost::stack_verifier::tests::score_candidate_right_depth_wrong_values ... ok
+test cost::stack_verifier::tests::split_instruction ... ok
+test cost::stack_verifier::tests::split_now_verifiable ... ok
+test cost::stack_verifier::tests::split_wrong_replacement_caught ... ok
+test cost::stack_verifier::tests::underflow_is_error ... ok
+test cost::stack_verifier::tests::verify_equivalent_different ... ok
+test cost::stack_verifier::tests::verify_equivalent_same ... ok
+test cost::stack_verifier::tests::verify_rejects_both_error ... ok
+test cost::stack_verifier::tests::verify_rejects_when_baseline_errors ... ok
+test cost::stack_verifier::tests::verify_rejects_when_candidate_errors ... ok
+test cost::stack_verifier::tests::verify_with_stack_input ... ok
+test cost::stack_verifier::tests::write_io_equivalent_accepted ... ok
+test cost::stack_verifier::tests::write_io_removal_caught ... ok
+test cost::tests::test_asm_block_comments_not_counted ... ok
+test cost::tests::test_asm_block_cost ... ok
+test cost::tests::test_boundary_warning_when_close ... ok
+test cost::tests::test_comparison_format ... ok
+test cost::tests::test_cost_json_roundtrip ... ok
+test cost::tests::test_cost_report_format ... ok
+test cost::tests::test_function_call_cost ... ok
+test cost::tests::test_h0001_hash_table_dominance ... ok
+test cost::tests::test_h0002_headroom_hint ... ok
+test cost::tests::test_h0004_loop_bound_waste ... ok
+test cost::tests::test_h0004_no_waste_when_tight ... ok
+test cost::tests::test_hash_dominates ... ok
+test cost::tests::test_if_else_worst_case ... ok
+test cost::tests::test_loop_cost_multiplied ... ok
+test cost::tests::test_next_power_of_two ... ok
+test cost::tests::test_no_boundary_warning_when_far ... ok
+test cost::tests::test_padded_height ... ok
+test cost::tests::test_program_cost_json_roundtrip ... ok
+test cost::tests::test_reveal_cost_no_hash ... ok
+test cost::tests::test_seal_cost_has_hash ... ok
+test cost::tests::test_simple_program_cost ... ok
+test cost::tests::test_u32_cost ... ok
+test lower::legalize::tests::deep_access_restores_ram_when_its_end_pointer_wraps ... ok
+test lower::legalize::tests::scratch_search_accepts_a_zero_run_ending_at_the_last_field_address ... ok
+test lower::legalize::tests::scratch_search_rejects_address_wrap_before_any_write ... ok
+test lower::linker::tests::test_mangle_module ... ok
+test lower::linker::tests::test_multi_module_link ... ok
+test lower::linker::tests::test_single_module_link ... ok
+test lower::report::tests::empty_report ... ok
+test lower::report::tests::improvement_percentage ... ok
+test lower::report::tests::report_with_decisions ... ok
+test lower::report::tests::training_format ... ok
+test lower::tests::test_lower_already_prefixed_labels ... ok
+test lower::tests::test_lower_comment_and_raw ... ok
+test lower::tests::test_lower_crypto_ops ... ok
+test lower::tests::test_lower_flat_ops ... ok
+test lower::tests::test_lower_fn_structure ... ok
+test lower::tests::test_lower_if_else ... ok
+test lower::tests::test_lower_if_only ... ok
+test lower::tests::test_lower_label_formatting ... ok
+test lower::tests::test_lower_loop ... ok
+test lower::tests::test_nested_if_else_deferred ... ok
+test lower::tests::test_regression_event_emission ... ok
+test test::tests::non_terminating_assembly_is_bounded ... ok
+
+test result: ok. 92 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/bigint_boundaries.rs (candidate/build/trisha/release/deps/bigint_boundaries-177c88c8b5932d4b)
+
+running 6 tests
+test add256_boundary_vectors ... ok
+test add_mod_boundary_vectors ... ok
+test aggregate_branch_returns_with_different_local_counts_preserve_caller ... ok
+test mod_reduce_once_boundary_vectors ... ok
+test sub256_boundary_vectors ... ok
+test sub_mod_boundary_vectors ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.33s
+
+     Running tests/bigint_mod.rs (candidate/build/trisha/release/deps/bigint_mod-c8f581c8ab41c381)
+
+running 8 tests
+test aggregate_modular_loop_preserves_scalar_mask ... ok
+test full_width_mul_mod_matches_independent_integer_vectors ... ok
+test isolate_input_and_subtraction ... ok
+test low_256_product_matches_full_integer_low_bits ... ok
+test original_branch_local_tuple_return_is_not_corrupted ... ok
+test original_branch_tuple_called_from_aggregate_subtraction ... ok
+test quotient_and_mutable_bit_scan_use_all_32_bits ... ok
+test reduced_add_mod_retains_the_257th_carry_bit ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.64s
+
+     Running tests/build_output.rs (candidate/build/trisha/release/deps/build_output-fda7413154bf2281)
+
+running 4 tests
+test a_program_that_does_not_compile_reports_the_error ... [31mError:[0m type mismatch: declared U32 but expression has type Field
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/trisha_build_bad.tri:4:18[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m4 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249ml[0m[38;5;249me[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249mx[0m[38;5;249m:[0m[38;5;249m [0m[38;5;249mU[0m[38;5;249m3[0m[38;5;249m2[0m[38;5;249m [0m[38;5;249m=[0m[38;5;249m [0m[31mp[0m[31mu[0m[31mb[0m[31m_[0m[31mr[0m[31me[0m[31ma[0m[31md[0m[31m([0m[31m)[0m
+ [38;5;240m  │[0m                  [31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m┬[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m  
+ [38;5;240m  │[0m                       [31m╰[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m type mismatch: declared U32 but expression has type Field
+[38;5;246m───╯[0m
+ok
+test arithmetic_program_lowers_to_expected_tasm ... ok
+test control_flow_lowers_to_a_branch ... ok
+test multi_function_program_links_into_one_program ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/ccs.rs (candidate/build/trisha/release/deps/ccs-fa1c54e28fe02d6d)
+
+running 4 tests
+test generated_program_checks_private_columns_constant_and_public_coordinates ... ok
+test genuine_zk_roundtrip_pins_regenerated_relation_and_statement ... ok
+test malformed_and_excessive_relations_fail_before_execution ... ok
+test sparse_duplicates_empty_product_and_every_row_are_checked ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.49s
+
+     Running tests/compiler_pipeline.rs (candidate/build/trisha/release/deps/compiler_pipeline-7c824c27a7560bc1)
+
+running 3 tests
+test lexer_complete_records_and_rejection ... ok
+test parser_precedence_parentheses_associativity_and_rejection ... ok
+test pipeline_complete_tir_entry_and_return_type ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.74s
+
+     Running tests/control_blocks.rs (candidate/build/trisha/release/deps/control_blocks-a0d79d58f1c493c7)
+
+running 1 test
+test control_blocks_execute_constants_and_delimited_struct_expressions ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/control_flow.rs (candidate/build/trisha/release/deps/control_flow-2358c4ba644f66b3)
+
+running 5 tests
+test branch_local_type_shadowing_does_not_change_outer_field_layout ... ok
+test guarded_struct_pattern_requires_an_exhaustive_fallback ... [31mError:[0m non-exhaustive match: not all possible values are covered
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmpo7SCv2/partial.tri:5:8[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m5 │[0m [38;5;249m [0m[38;5;249mm[0m[38;5;249ma[0m[38;5;249mt[0m[38;5;249mc[0m[38;5;249mh[0m[38;5;249m [0m[31mp[0m[38;5;249m [0m[38;5;249m{[0m[38;5;249m [0m[38;5;249mP[0m[38;5;249ma[0m[38;5;249mi[0m[38;5;249mr[0m[38;5;249m [0m[38;5;249m{[0m[38;5;249m [0m[38;5;249mx[0m[38;5;249m:[0m[38;5;249m [0m[38;5;249m0[0m[38;5;249m,[0m[38;5;249m [0m[38;5;249my[0m[38;5;249m [0m[38;5;249m}[0m[38;5;249m [0m[38;5;249m=[0m[38;5;249m>[0m[38;5;249m [0m[38;5;249m{[0m[38;5;249m [0m[38;5;249mp[0m[38;5;249mu[0m[38;5;249mb[0m[38;5;249m_[0m[38;5;249mw[0m[38;5;249mr[0m[38;5;249mi[0m[38;5;249mt[0m[38;5;249me[0m[38;5;249m([0m[38;5;249my[0m[38;5;249m)[0m[38;5;249m [0m[38;5;249m}[0m[38;5;249m [0m[38;5;249m}[0m
+ [38;5;240m  │[0m        [31m┬[0m  
+ [38;5;240m  │[0m        [31m╰[0m[31m─[0m[31m─[0m non-exhaustive match: not all possible values are covered
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: add a wildcard `_ => { ... }` arm to handle all remaining values
+[38;5;246m───╯[0m
+ok
+test literal_match_executes_only_the_first_selected_arm ... ok
+test match_return_keeps_tuple_order_and_discards_arm_locals ... ok
+test struct_match_checks_literals_and_scopes_field_bindings ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests/crypto_abi.rs (candidate/build/trisha/release/deps/crypto_abi-fae8e91b00ea66da)
+
+running 3 tests
+test digest_ram_blocks_use_ascending_base_addresses ... ok
+test hash_and_sponge_match_canonical_native_library_vectors ... ok
+test merkle_queue_and_memory_match_canonical_hash_pair ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/crypto_policy.rs (candidate/build/trisha/release/deps/crypto_policy-a75432c34dd03680)
+
+running 4 tests
+test custom_permutation_all_lanes_with_caller_constants ... ok
+test keccak_all_rounds_all_lanes ... ok
+test keccak_ram_checks_regions_and_limbs_before_mutation ... ok
+test scalar_range_low_s_and_full_limb_roundtrip ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.74s
+
+     Running tests/custom_token_v2.rs (candidate/build/trisha/release/deps/custom_token_v2-4d8ccb15c5b1b8aa)
+
+running 4 tests
+test authenticated_utxo_transfer_and_supply_change_use_actual_program_identity ... ok
+test canonical_codec_matches_independent_pinned_neptune_oracle ... ok
+test committed_malformed_codec_and_token_policy_are_rejected ... ok
+test implementation_bound_fixtures_share_semantics_and_disclose_distinct_claims ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.23s
+
+     Running tests/deployment.rs (candidate/build/trisha/release/deps/deployment-7001e84eee4606bb)
+
+running 1 test
+test lock_script_identity_uses_native_program_hash_and_authenticates_attached_proof ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.19s
+
+     Running tests/early_return.rs (candidate/build/trisha/release/deps/early_return-2754118a946c58f4)
+
+running 9 tests
+test conditional_return_exits_function_before_io_and_later_value ... ok
+test direct_return_cleans_locals_and_preserves_caller ... ok
+test early_loop_return_does_not_execute_remaining_counter_iterations ... ok
+test match_early_arm_and_implicit_final_arm_preserve_result ... ok
+test nested_calls_keep_each_invocations_return_slots ... ok
+test nested_returns_preserve_aggregate_results_and_shadowed_continuations ... ok
+test recursive_source_calls_remain_rejected ... [31mError:[0m recursive call cycle detected: main -> sum -> sum
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmpOWMTeY/recursive.tri:4:4[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m4 │[0m [38;5;249mf[0m[38;5;249mn[0m[38;5;249m [0m[31mm[0m[31ma[0m[31mi[0m[31mn[0m[38;5;249m([0m[38;5;249m)[0m[38;5;249m [0m[38;5;249m{[0m[38;5;249m [0m[38;5;249mp[0m[38;5;249mu[0m[38;5;249mb[0m[38;5;249m_[0m[38;5;249mw[0m[38;5;249mr[0m[38;5;249mi[0m[38;5;249mt[0m[38;5;249me[0m[38;5;249m([0m[38;5;249ms[0m[38;5;249mu[0m[38;5;249mm[0m[38;5;249m([0m[38;5;249mp[0m[38;5;249mu[0m[38;5;249mb[0m[38;5;249m_[0m[38;5;249mr[0m[38;5;249me[0m[38;5;249ma[0m[38;5;249md[0m[38;5;249m([0m[38;5;249m)[0m[38;5;249m)[0m[38;5;249m)[0m[38;5;249m [0m[38;5;249m}[0m
+ [38;5;240m  │[0m    [31m─[0m[31m─[0m[31m┬[0m[31m─[0m  
+ [38;5;240m  │[0m      [31m╰[0m[31m─[0m[31m─[0m[31m─[0m recursive call cycle detected: main -> sum -> sum
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: stack-machine targets do not support recursion; use loops (`for`) or iterative algorithms instead
+[38;5;246m───╯[0m
+[31mError:[0m recursive call cycle detected: main -> sum -> sum
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmpOWMTeY/recursive.tri:4:4[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m4 │[0m [38;5;249mf[0m[38;5;249mn[0m[38;5;249m [0m[31mm[0m[31ma[0m[31mi[0m[31mn[0m[38;5;249m([0m[38;5;249m)[0m[38;5;249m [0m[38;5;249m{[0m[38;5;249m [0m[38;5;249mp[0m[38;5;249mu[0m[38;5;249mb[0m[38;5;249m_[0m[38;5;249mw[0m[38;5;249mr[0m[38;5;249mi[0m[38;5;249mt[0m[38;5;249me[0m[38;5;249m([0m[38;5;249ms[0m[38;5;249mu[0m[38;5;249mm[0m[38;5;249m([0m[38;5;249mp[0m[38;5;249mu[0m[38;5;249mb[0m[38;5;249m_[0m[38;5;249mr[0m[38;5;249me[0m[38;5;249ma[0m[38;5;249md[0m[38;5;249m([0m[38;5;249m)[0m[38;5;249m)[0m[38;5;249m)[0m[38;5;249m [0m[38;5;249m}[0m
+ [38;5;240m  │[0m    [31m─[0m[31m─[0m[31m┬[0m[31m─[0m  
+ [38;5;240m  │[0m      [31m╰[0m[31m─[0m[31m─[0m[31m─[0m recursive call cycle detected: main -> sum -> sum
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: stack-machine targets do not support recursion; use loops (`for`) or iterative algorithms instead
+[38;5;246m───╯[0m
+ok
+test return_from_nested_loops_skips_all_later_effects ... ok
+test void_return_and_unconditional_return_skip_io ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.11s
+
+     Running tests/entry_abi.rs (candidate/build/trisha/release/deps/entry_abi-d43f370bca83fd52)
+
+running 7 tests
+test actual_proof_binds_typed_entry_input_and_explicit_output ... ignored, serialized real proof gate; run when the release proof slot is free
+test aggregates_wider_than_register_window_preserve_every_leaf ... ok
+test checked_lowering_rejects_nested_or_misplaced_program_entry_metadata ... ok
+test imported_library_main_keeps_normal_call_abi ... ok
+test imported_nested_aggregate_entry_layout_and_leaf_validation ... ok
+test narrow_types_validate_even_when_unused_and_returns_are_not_public ... ok
+test parameters_use_declared_order_and_stream_remainder ... ok
+
+test result: ok. 6 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+     Running tests/events.rs (candidate/build/trisha/release/deps/events-986bbbc5eed4cd01)
+
+running 5 tests
+test aggregate_reveal_and_seal_share_flattened_word_order ... ok
+test empty_and_full_block_events_preserve_stack_balance ... ok
+test event_expressions_evaluate_once_in_declaration_order ... ok
+test oversized_payload_and_duplicate_fields_reject ... [31mError:[0m event 'E' has 10 payload words, max is 9
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmpQLzs5H/events.tri:2:7[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m [38;5;249me[0m[38;5;249mv[0m[38;5;249me[0m[38;5;249mn[0m[38;5;249mt[0m[38;5;249m [0m[31mE[0m[38;5;249m{[0m[38;5;249ma[0m[38;5;249m:[0m[38;5;249m[[0m[38;5;249mF[0m[38;5;249mi[0m[38;5;249me[0m[38;5;249ml[0m[38;5;249md[0m[38;5;249m;[0m[38;5;249m1[0m[38;5;249m0[0m[38;5;249m][0m[38;5;249m}[0m
+ [38;5;240m  │[0m       [31m┬[0m  
+ [38;5;240m  │[0m       [31m╰[0m[31m─[0m[31m─[0m event 'E' has 10 payload words, max is 9
+[38;5;246m───╯[0m
+[31mError:[0m event 'E' has 10 payload words, max is 9
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmprHThFu/events.tri:2:7[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m [38;5;249me[0m[38;5;249mv[0m[38;5;249me[0m[38;5;249mn[0m[38;5;249mt[0m[38;5;249m [0m[31mE[0m[38;5;249m{[0m[38;5;249ma[0m[38;5;249m:[0m[38;5;249mD[0m[38;5;249mi[0m[38;5;249mg[0m[38;5;249me[0m[38;5;249ms[0m[38;5;249mt[0m[38;5;249m,[0m[38;5;249mb[0m[38;5;249m:[0m[38;5;249mD[0m[38;5;249mi[0m[38;5;249mg[0m[38;5;249me[0m[38;5;249ms[0m[38;5;249mt[0m[38;5;249m}[0m
+ [38;5;240m  │[0m       [31m┬[0m  
+ [38;5;240m  │[0m       [31m╰[0m[31m─[0m[31m─[0m event 'E' has 10 payload words, max is 9
+[38;5;246m───╯[0m
+[31mError:[0m event 'E' has 4294967295 payload words, max is 9
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmpGa2AMz/events.tri:3:7[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m3 │[0m [38;5;249me[0m[38;5;249mv[0m[38;5;249me[0m[38;5;249mn[0m[38;5;249mt[0m[38;5;249m [0m[31mE[0m[38;5;249m{[0m[38;5;249ma[0m[38;5;249m:[0m[38;5;249mH[0m[38;5;249mu[0m[38;5;249mg[0m[38;5;249me[0m[38;5;249m}[0m
+ [38;5;240m  │[0m       [31m┬[0m  
+ [38;5;240m  │[0m       [31m╰[0m[31m─[0m[31m─[0m event 'E' has 4294967295 payload words, max is 9
+[38;5;246m───╯[0m
+[31mError:[0m duplicate field 'a' in event 'E'
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmpk1bNSr/events.tri:3:24[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m3 │[0m [38;5;249mf[0m[38;5;249mn[0m[38;5;249m [0m[38;5;249mm[0m[38;5;249ma[0m[38;5;249mi[0m[38;5;249mn[0m[38;5;249m([0m[38;5;249m)[0m[38;5;249m{[0m[38;5;249mr[0m[38;5;249me[0m[38;5;249mv[0m[38;5;249me[0m[38;5;249ma[0m[38;5;249ml[0m[38;5;249m [0m[38;5;249mE[0m[38;5;249m{[0m[38;5;249ma[0m[38;5;249m:[0m[38;5;249m1[0m[38;5;249m,[0m[31ma[0m[38;5;249m:[0m[38;5;249m2[0m[38;5;249m}[0m[38;5;249m}[0m
+ [38;5;240m  │[0m                        [31m┬[0m  
+ [38;5;240m  │[0m                        [31m╰[0m[31m─[0m[31m─[0m duplicate field 'a' in event 'E'
+[38;5;246m───╯[0m
+[31mError:[0m duplicate field 'a' in event 'E'
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmpKzUaqB/events.tri:2:17[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m [38;5;249me[0m[38;5;249mv[0m[38;5;249me[0m[38;5;249mn[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249mE[0m[38;5;249m{[0m[38;5;249ma[0m[38;5;249m:[0m[38;5;249mF[0m[38;5;249mi[0m[38;5;249me[0m[38;5;249ml[0m[38;5;249md[0m[38;5;249m,[0m[31ma[0m[38;5;249m:[0m[38;5;249mF[0m[38;5;249mi[0m[38;5;249me[0m[38;5;249ml[0m[38;5;249md[0m[38;5;249m}[0m
+ [38;5;240m  │[0m                 [31m┬[0m  
+ [38;5;240m  │[0m                 [31m╰[0m[31m─[0m[31m─[0m duplicate field 'a' in event 'E'
+[38;5;246m───╯[0m
+ok
+test reveal_uses_declaration_order_and_preserves_locals ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests/field_literals.rs (candidate/build/trisha/release/deps/field_literals-202568feaa6be2e4)
+
+running 2 tests
+test field_literals_and_constants_emit_canonical_native_words ... ok
+test u32_literals_keep_integer_bounds_instead_of_wrapping_as_fields ... [31mError:[0m return type mismatch: expected U32 but got Field
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmp93ohzl/integer.tri:2:18[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m [38;5;249mf[0m[38;5;249mn[0m[38;5;249m [0m[38;5;249mv[0m[38;5;249ma[0m[38;5;249ml[0m[38;5;249mu[0m[38;5;249me[0m[38;5;249m([0m[38;5;249m)[0m[38;5;249m-[0m[38;5;249m>[0m[38;5;249mU[0m[38;5;249m3[0m[38;5;249m2[0m[38;5;249m [0m[38;5;249m{[0m[31m4[0m[31m2[0m[31m9[0m[31m4[0m[31m9[0m[31m6[0m[31m7[0m[31m2[0m[31m9[0m[31m6[0m[38;5;249m}[0m
+ [38;5;240m  │[0m                  [31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m┬[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m  
+ [38;5;240m  │[0m                       [31m╰[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m return type mismatch: expected U32 but got Field
+[38;5;246m───╯[0m
+[31mError:[0m return type mismatch: expected U32 but got Field
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmp93ohzl/integer.tri:2:18[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m [38;5;249mf[0m[38;5;249mn[0m[38;5;249m [0m[38;5;249mv[0m[38;5;249ma[0m[38;5;249ml[0m[38;5;249mu[0m[38;5;249me[0m[38;5;249m([0m[38;5;249m)[0m[38;5;249m-[0m[38;5;249m>[0m[38;5;249mU[0m[38;5;249m3[0m[38;5;249m2[0m[38;5;249m [0m[38;5;249m{[0m[31m4[0m[31m2[0m[31m9[0m[31m4[0m[31m9[0m[31m6[0m[31m7[0m[31m2[0m[31m9[0m[31m6[0m[38;5;249m}[0m
+ [38;5;240m  │[0m                  [31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m┬[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m  
+ [38;5;240m  │[0m                       [31m╰[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m return type mismatch: expected U32 but got Field
+[38;5;246m───╯[0m
+[31mError:[0m return type mismatch: expected U32 but got Field
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmp93ohzl/integer.tri:2:18[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m [38;5;249mf[0m[38;5;249mn[0m[38;5;249m [0m[38;5;249mv[0m[38;5;249ma[0m[38;5;249ml[0m[38;5;249mu[0m[38;5;249me[0m[38;5;249m([0m[38;5;249m)[0m[38;5;249m-[0m[38;5;249m>[0m[38;5;249mU[0m[38;5;249m3[0m[38;5;249m2[0m[38;5;249m [0m[38;5;249m{[0m[31m1[0m[31m8[0m[31m4[0m[31m4[0m[31m6[0m[31m7[0m[31m4[0m[31m4[0m[31m0[0m[31m6[0m[31m9[0m[31m4[0m[31m1[0m[31m4[0m[31m5[0m[31m8[0m[31m4[0m[31m3[0m[31m2[0m[31m1[0m[38;5;249m}[0m
+ [38;5;240m  │[0m                  [31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m┬[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m  
+ [38;5;240m  │[0m                            [31m╰[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m return type mismatch: expected U32 but got Field
+[38;5;246m───╯[0m
+[31mError:[0m return type mismatch: expected U32 but got Field
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmp93ohzl/integer.tri:2:18[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m [38;5;249mf[0m[38;5;249mn[0m[38;5;249m [0m[38;5;249mv[0m[38;5;249ma[0m[38;5;249ml[0m[38;5;249mu[0m[38;5;249me[0m[38;5;249m([0m[38;5;249m)[0m[38;5;249m-[0m[38;5;249m>[0m[38;5;249mU[0m[38;5;249m3[0m[38;5;249m2[0m[38;5;249m [0m[38;5;249m{[0m[31m1[0m[31m8[0m[31m4[0m[31m4[0m[31m6[0m[31m7[0m[31m4[0m[31m4[0m[31m0[0m[31m6[0m[31m9[0m[31m4[0m[31m1[0m[31m4[0m[31m5[0m[31m8[0m[31m4[0m[31m3[0m[31m2[0m[31m1[0m[38;5;249m}[0m
+ [38;5;240m  │[0m                  [31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m┬[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m  
+ [38;5;240m  │[0m                            [31m╰[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m return type mismatch: expected U32 but got Field
+[38;5;246m───╯[0m
+[31mError:[0m return type mismatch: expected U32 but got Field
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmp93ohzl/integer.tri:2:18[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m [38;5;249mf[0m[38;5;249mn[0m[38;5;249m [0m[38;5;249mv[0m[38;5;249ma[0m[38;5;249ml[0m[38;5;249mu[0m[38;5;249me[0m[38;5;249m([0m[38;5;249m)[0m[38;5;249m-[0m[38;5;249m>[0m[38;5;249mU[0m[38;5;249m3[0m[38;5;249m2[0m[38;5;249m [0m[38;5;249m{[0m[31m1[0m[31m8[0m[31m4[0m[31m4[0m[31m6[0m[31m7[0m[31m4[0m[31m4[0m[31m0[0m[31m7[0m[31m3[0m[31m7[0m[31m0[0m[31m9[0m[31m5[0m[31m5[0m[31m1[0m[31m6[0m[31m1[0m[31m5[0m[38;5;249m}[0m
+ [38;5;240m  │[0m                  [31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m┬[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m  
+ [38;5;240m  │[0m                            [31m╰[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m return type mismatch: expected U32 but got Field
+[38;5;246m───╯[0m
+[31mError:[0m return type mismatch: expected U32 but got Field
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmp93ohzl/integer.tri:2:18[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m [38;5;249mf[0m[38;5;249mn[0m[38;5;249m [0m[38;5;249mv[0m[38;5;249ma[0m[38;5;249ml[0m[38;5;249mu[0m[38;5;249me[0m[38;5;249m([0m[38;5;249m)[0m[38;5;249m-[0m[38;5;249m>[0m[38;5;249mU[0m[38;5;249m3[0m[38;5;249m2[0m[38;5;249m [0m[38;5;249m{[0m[31m1[0m[31m8[0m[31m4[0m[31m4[0m[31m6[0m[31m7[0m[31m4[0m[31m4[0m[31m0[0m[31m7[0m[31m3[0m[31m7[0m[31m0[0m[31m9[0m[31m5[0m[31m5[0m[31m1[0m[31m6[0m[31m1[0m[31m5[0m[38;5;249m}[0m
+ [38;5;240m  │[0m                  [31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m┬[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m  
+ [38;5;240m  │[0m                            [31m╰[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m return type mismatch: expected U32 but got Field
+[38;5;246m───╯[0m
+ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/fixed_claim.rs (candidate/build/trisha/release/deps/fixed_claim-4afc8db3ef03990d)
+
+running 1 test
+test fixed_program_and_reversed_digest_inputs_are_bound_inside_vm ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.49s
+
+     Running tests/halting.rs (candidate/build/trisha/release/deps/halting-c7b318cc4bee69cb)
+
+running 10 tests
+test callable_aliases_follow_each_modules_typechecked_scope ... [33mWarning:[0m unused import 'ext.same'
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmpTnwZvo/entry.tri:2:1[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m [33mu[0m[33ms[0m[33me[0m[33m [0m[33me[0m[33mx[0m[33mt[0m[33m.[0m[33ms[0m[33ma[0m[33mm[0m[33me[0m
+ [38;5;240m  │[0m [33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m┬[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m  
+ [38;5;240m  │[0m       [33m╰[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m unused import 'ext.same'
+[38;5;246m───╯[0m
+[33mWarning:[0m unused import 'ext.same'
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmp74xYcf/entry.tri:2:1[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m [33mu[0m[33ms[0m[33me[0m[33m [0m[33me[0m[33mx[0m[33mt[0m[33m.[0m[33ms[0m[33ma[0m[33mm[0m[33me[0m
+ [38;5;240m  │[0m [33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m┬[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m  
+ [38;5;240m  │[0m       [33m╰[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m unused import 'ext.same'
+[38;5;246m───╯[0m
+ok
+test canonical_loop_bounds_preserve_the_continuing_result ... ok
+test failing_branches_do_not_discard_live_scalar_or_aggregate_results ... ok
+test imported_assertions_and_active_aliases_keep_resolved_semantics ... ok
+test imported_private_intrinsics_do_not_capture_caller_builtins ... ok
+test local_field_type_takes_precedence_over_module_constant_type ... ok
+test local_struct_roots_shadow_module_constants_before_branch_joins ... ok
+test ordinary_assert_function_executes_and_continues ... ok
+test pattern_and_local_bindings_shadow_loop_constants_in_divergence_analysis ... ok
+test private_later_constant_cannot_change_a_proved_halting_condition ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.31s
+
+     Running tests/imported_generics.rs (candidate/build/trisha/release/deps/imported_generics-d07c464145258e92)
+
+running 6 tests
+test genuine_proof_binds_imported_generic_to_program_input_and_output ... ignored, serialized default-security proof gate; run with the release proof slot
+test imported_generic_aggregate_return_keeps_wide_frame_and_input_order ... ok
+test imported_generic_body_is_checked_at_the_concrete_call ... [31mError:[0m return type mismatch: expected Field but got Bool
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmpZaLOkx/bad.tri:2:39[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m [38;5;249mp[0m[38;5;249mu[0m[38;5;249mb[0m[38;5;249m [0m[38;5;249mf[0m[38;5;249mn[0m[38;5;249m [0m[38;5;249mb[0m[38;5;249mr[0m[38;5;249mo[0m[38;5;249mk[0m[38;5;249me[0m[38;5;249mn[0m[38;5;249m<[0m[38;5;249mN[0m[38;5;249m>[0m[38;5;249m([0m[38;5;249mx[0m[38;5;249m:[0m[38;5;249m[[0m[38;5;249mF[0m[38;5;249mi[0m[38;5;249me[0m[38;5;249ml[0m[38;5;249md[0m[38;5;249m;[0m[38;5;249mN[0m[38;5;249m][0m[38;5;249m)[0m[38;5;249m-[0m[38;5;249m>[0m[38;5;249mF[0m[38;5;249mi[0m[38;5;249me[0m[38;5;249ml[0m[38;5;249md[0m[38;5;249m [0m[38;5;249m{[0m[31mt[0m[31mr[0m[31mu[0m[31me[0m[38;5;249m}[0m
+ [38;5;240m  │[0m                                       [31m─[0m[31m─[0m[31m┬[0m[31m─[0m  
+ [38;5;240m  │[0m                                         [31m╰[0m[31m─[0m[31m─[0m[31m─[0m return type mismatch: expected Field but got Bool
+[38;5;246m───╯[0m
+[31mError:[0m return type mismatch: expected Field but got Bool
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmpZaLOkx/bad.tri:2:39[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m [38;5;249mp[0m[38;5;249mu[0m[38;5;249mb[0m[38;5;249m [0m[38;5;249mf[0m[38;5;249mn[0m[38;5;249m [0m[38;5;249mb[0m[38;5;249mr[0m[38;5;249mo[0m[38;5;249mk[0m[38;5;249me[0m[38;5;249mn[0m[38;5;249m<[0m[38;5;249mN[0m[38;5;249m>[0m[38;5;249m([0m[38;5;249mx[0m[38;5;249m:[0m[38;5;249m[[0m[38;5;249mF[0m[38;5;249mi[0m[38;5;249me[0m[38;5;249ml[0m[38;5;249md[0m[38;5;249m;[0m[38;5;249mN[0m[38;5;249m][0m[38;5;249m)[0m[38;5;249m-[0m[38;5;249m>[0m[38;5;249mF[0m[38;5;249mi[0m[38;5;249me[0m[38;5;249ml[0m[38;5;249md[0m[38;5;249m [0m[38;5;249m{[0m[31mt[0m[31mr[0m[31mu[0m[31me[0m[38;5;249m}[0m
+ [38;5;240m  │[0m                                       [31m─[0m[31m─[0m[31m┬[0m[31m─[0m  
+ [38;5;240m  │[0m                                         [31m╰[0m[31m─[0m[31m─[0m[31m─[0m return type mismatch: expected Field but got Bool
+[38;5;246m───╯[0m
+ok
+test imported_generic_cfg_selects_the_owned_body ... ok
+test imported_instances_keep_lexical_helpers_types_and_distinct_module_names ... ok
+test inferred_nested_sizes_follow_arguments_and_specializations_do_not_alias_user_names ... ok
+
+test result: ok. 5 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+     Running tests/integration.rs (candidate/build/trisha/release/deps/integration-43e2bca56ff8bac9)
+
+running 17 tests
+test bundle_identity_and_state_requirements_are_enforced ... ok
+test deep_array_access_preserves_value_order ... ok
+test empty_input_conversion ... ok
+test malformed_claims_are_rejected_without_normalization ... ok
+test missing_file_compile_error ... ok
+test private_witness_failures_do_not_dump_vm_state ... ok
+test prove_and_verify_hello ... ok
+test prove_and_verify_with_input ... ok
+test run_hello_world ... ok
+test run_multiple_outputs ... ok
+test run_with_public_input ... ok
+test sha256_empty_block_matches_fips_digest ... ok
+test sha256_helpers_match_rust_integer_operations ... ok
+test sha256_module_assembly_uses_only_valid_stack_registers ... ok
+test spilling_preserves_twenty_five_live_values ... ok
+test tampered_proof_fails_verification ... ok
+test u64_bfe_roundtrip ... ok
+
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.25s
+
+     Running tests/native_input.rs (candidate/build/trisha/release/deps/native_input-f0c99832e9e2b287)
+
+running 2 tests
+test every_execution_entry_rejects_noncanonical_input_even_when_unused ... ok
+test word_limit_counts_all_three_streams_before_native_allocation ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/plumb_v2.rs (candidate/build/trisha/release/deps/plumb_v2-18d961ec528c9f74)
+
+running 6 tests
+test card_flags_creator_and_metadata_cap_are_bound_to_authenticated_state ... ok
+test complete_coin_and_card_transitions_authenticate_claims ... ok
+test disabled_authority_is_checked_as_all_five_words ... ok
+test fixtures_record_independent_complete_transition_claims ... ok
+test shared_config_utility_fixture_uses_v2_full_digest_schema ... ok
+test tree_paths_and_full_authority_words_are_not_optional ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.92s
+
+     Running tests/poseidon_standard.rs (candidate/build/trisha/release/deps/poseidon_standard-265da19c235a444c)
+
+running 3 tests
+test full_digest_and_explicit_truncation_match_length_bound_upstream_permutation ... ok
+test hand_ram_permutation_and_wrappers_match_independent_upstream ... ok
+test standard_permutation_matches_pinned_upstream_on_all_lanes ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests/program_context.rs (candidate/build/trisha/release/deps/program_context-9f6992360dc203e4)
+
+running 1 test
+test current_program_digest_matches_native_hash_and_survives_nested_calls ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/proof_consumption.rs (candidate/build/trisha/release/deps/proof_consumption-a6826521a3ae17ee)
+
+running 2 tests
+test hostile_height_items_are_rejected_before_shift_or_domain_arithmetic ... ok
+test native_recursive_and_warrior_reject_superfluous_proof_items ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.20s
+
+     Running tests/proof_wire.rs (candidate/build/trisha/release/deps/proof_wire-0ba4de214851a0fb)
+
+running 2 tests
+test canonical_native_proof_codec_preserves_existing_fixed_int_bytes ... ok
+test proof_wire_rejects_modular_aliases_bad_lengths_and_trailing_bytes ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/quantum_gates.rs (candidate/build/trisha/release/deps/quantum_gates-822cc9cf68d434d6)
+
+running 1 test
+test every_pure_gate_matches_independent_matrix_arithmetic_and_preserves_its_frame ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.22s
+
+     Running tests/quantum_ram.rs (candidate/build/trisha/release/deps/quantum_ram-d62dd60a98bd5feb)
+
+running 3 tests
+test arbitrary_complex_matrix_preserves_neighbors_for_each_target ... ok
+test buffer_may_end_at_the_last_u32_address ... ok
+test invalid_bounds_reject_before_state_mutation ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
+
+     Running tests/recursive_verifier.rs (candidate/build/trisha/release/deps/recursive_verifier-a4626b0eeaa6e0b3)
+
+running 4 tests
+test modular_wrap_cannot_fake_vector_encoding_length ... ok
+test official_minimum_trace_height_guard_is_enforced ... ok
+test official_recursive_verifier_accepts_real_proof_and_binds_complete_claim ... ok
+test upstream_fiat_shamir_size_word_forgery_is_rejected ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.80s
+
+     Running tests/recursive_witness.rs (candidate/build/trisha/release/deps/recursive_witness-f8c0b8aacef49d63)
+
+running 5 tests
+test compiled_sdk_verifies_real_proof_and_preserves_callers_values ... ok
+test malformed_raw_target_calls_fail_before_lowering ... ok
+test neptune_transaction_entry_requires_an_actual_proof ... ok
+test outer_proof_binds_compiled_recursive_sdk_to_public_claim ... ignored, full outer STARK proof; run explicitly in release mode with four Rayon threads
+test witness_adapter_binds_caller_claim_and_rejects_malformed_transport ... ok
+
+test result: ok. 4 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 3.88s
+
+     Running tests/runtime_arrays.rs (candidate/build/trisha/release/deps/runtime_arrays-b85fa60881b4117d)
+
+running 9 tests
+test array_of_structs_supports_whole_element_and_nested_field_store ... ok
+test array_read_and_write_reject_out_of_bounds_indices ... ok
+test indexed_assignment_evaluates_index_once_before_rhs_and_checks_first ... [33mWarning:[0m unused import 'vm.core.convert'
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmpbn9oSL/arrays.tri:2:1[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m [33mu[0m[33ms[0m[33me[0m[33m [0m[33mv[0m[33mm[0m[33m.[0m[33mc[0m[33mo[0m[33mr[0m[33me[0m[33m.[0m[33mc[0m[33mo[0m[33mn[0m[33mv[0m[33me[0m[33mr[0m[33mt[0m
+ [38;5;240m  │[0m [33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m┬[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m  
+ [38;5;240m  │[0m          [33m╰[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m unused import 'vm.core.convert'
+[38;5;246m───╯[0m
+[33mWarning:[0m unused import 'vm.core.convert'
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmpXU2pPc/arrays.tri:2:1[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m [33mu[0m[33ms[0m[33me[0m[33m [0m[33mv[0m[33mm[0m[33m.[0m[33mc[0m[33mo[0m[33mr[0m[33me[0m[33m.[0m[33mc[0m[33mo[0m[33mn[0m[33mv[0m[33me[0m[33mr[0m[33mt[0m
+ [38;5;240m  │[0m [33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m┬[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m  
+ [38;5;240m  │[0m          [33m╰[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m unused import 'vm.core.convert'
+[38;5;246m───╯[0m
+ok
+test inferred_array_layout_uses_canonical_builtin_and_expression_types ... ok
+test inferred_digest_arrays_use_selected_abi_element_width ... ok
+test multiword_struct_field_assignment_preserves_other_fields ... ok
+test nested_arrays_and_struct_array_fields_preserve_layout ... ok
+test runtime_indices_inside_nested_loops_preserve_locals ... ok
+test runtime_scalar_read_write_and_neighbors ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+     Running tests/sha256_ram.rs (candidate/build/trisha/release/deps/sha256_ram-fe31898e69568f28)
+
+running 3 tests
+test complete_double_hash_aggregate_and_ram_match_hashlib ... ok
+test compression_chains_non_iv_state_and_checks_initial_state ... ok
+test double_hash_ram_preserves_input_and_rejects_invalid_regions ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.74s
+
+     Running tests/stack_frames.rs (candidate/build/trisha/release/deps/stack_frames-2e7d9f4ae299bccc)
+
+running 4 tests
+test conditional_tuple_return_discards_branch_locals_and_callee_frame ... ok
+test mixed_width_tuple_wildcards_discard_exactly_the_ignored_fields ... ok
+test nested_conditional_aggregate_return_preserves_assignment_neighbors ... ok
+test tuple_reassignment_replaces_each_target_at_its_actual_width ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/stack_ram.rs (candidate/build/trisha/release/deps/stack_ram-e7e76bafd30eee7c)
+
+running 6 tests
+test deep_access_preserves_all_ram_including_fragmented_zero_runs ... ok
+test inline_assembly_cannot_declare_consumption_of_a_named_binding ... ok
+test inline_assembly_observes_source_ram_and_preserves_named_locals ... ok
+test multiword_return_cleanup_preserves_ram_across_repeated_calls ... ok
+test source_deep_access_preserves_runtime_address_and_block_neighbors ... ok
+test stack_sequences_preserve_ram_at_every_source_memory_observation ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.31s
+
+     Running tests/struct_literal_layout.rs (candidate/build/trisha/release/deps/struct_literal_layout-5b4e7df56715e2dd)
+
+running 4 tests
+test field_effects_are_evaluated_once_in_recursive_declaration_order ... ok
+test nested_mixed_width_imported_structs_survive_returns_and_array_indexing ... ok
+test reordered_literal_uses_declaration_layout_for_locals_calls_and_returns ... ok
+test unchecked_builder_errors_cannot_become_executable_stack_values ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/tagged_ccs.rs (candidate/build/trisha/release/deps/tagged_ccs-d13350cc5baf0d0c)
+
+running 2 tests
+test experimental_tagged_topologies_share_checker_program_and_bind_all_coordinates ... ok
+test genuine_tagged_ccs_proofs_bind_atom_pair_topology_under_same_matrices ... ignored, experimental genuine tagged CCS STARK; coordinate the heavy proof slot
+
+test result: ok. 1 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+     Running tests/target_ownership.rs (candidate/build/trisha/release/deps/target_ownership-4e52835b8ccf3e01)
+
+running 11 tests
+test checked_u32_wrapper_rejects_high_limbs ... ok
+test deep_stack_operations_preserve_every_word ... ok
+test embedded_package_owns_network_and_modules ... ok
+test extension_inverse_preserves_coefficient_order ... ok
+test incorrect_intrinsic_abi_is_rejected_before_lowering ... [31mError:[0m #[intrinsic] is only allowed in vm.*/std.*/os.* modules, not in 'wrong'
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmpYhMgui/wrong.tri:3:8[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m3 │[0m [38;5;249mp[0m[38;5;249mu[0m[38;5;249mb[0m[38;5;249m [0m[38;5;249mf[0m[38;5;249mn[0m[38;5;249m [0m[31mw[0m[31mr[0m[31mo[0m[31mn[0m[31mg[0m[38;5;249m([0m[38;5;249mx[0m[38;5;249m:[0m[38;5;249m [0m[38;5;249mF[0m[38;5;249mi[0m[38;5;249me[0m[38;5;249ml[0m[38;5;249md[0m[38;5;249m)[0m[38;5;249m [0m[38;5;249m-[0m[38;5;249m>[0m[38;5;249m [0m[38;5;249mD[0m[38;5;249mi[0m[38;5;249mg[0m[38;5;249me[0m[38;5;249ms[0m[38;5;249mt[0m
+ [38;5;240m  │[0m        [31m─[0m[31m─[0m[31m┬[0m[31m─[0m[31m─[0m  
+ [38;5;240m  │[0m          [31m╰[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m #[intrinsic] is only allowed in vm.*/std.*/os.* modules, not in 'wrong'
+[38;5;246m───╯[0m
+[31mError:[0m intrinsic 'hash' declaration does not match the selected target ABI
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmpYhMgui/wrong.tri:2:1[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m [31m#[0m[31m[[0m[31mi[0m[31mn[0m[31mt[0m[31mr[0m[31mi[0m[31mn[0m[31ms[0m[31mi[0m[31mc[0m[31m([0m[31mh[0m[31ma[0m[31ms[0m[31mh[0m[31m)[0m[31m][0m
+ [38;5;240m  │[0m [31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m┬[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m  
+ [38;5;240m  │[0m          [31m╰[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m intrinsic 'hash' declaration does not match the selected target ABI
+[38;5;246m───╯[0m
+ok
+test local_functions_shadow_imported_and_builtin_names_at_execution ... [33mWarning:[0m unused import 'vm.crypto.hash'
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmpq4H93F/shadow.tri:2:1[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m [33mu[0m[33ms[0m[33me[0m[33m [0m[33mv[0m[33mm[0m[33m.[0m[33mc[0m[33mr[0m[33my[0m[33mp[0m[33mt[0m[33mo[0m[33m.[0m[33mh[0m[33ma[0m[33ms[0m[33mh[0m
+ [38;5;240m  │[0m [33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m┬[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m  
+ [38;5;240m  │[0m          [33m╰[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m unused import 'vm.crypto.hash'
+[38;5;246m───╯[0m
+ok
+test neptune_sdk_requires_neptune_target ... [33mWarning:[0m unused import 'os.neptune.xfield'
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmpQU7v3Z/network.tri:2:1[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m [33mu[0m[33ms[0m[33me[0m[33m [0m[33mo[0m[33ms[0m[33m.[0m[33mn[0m[33me[0m[33mp[0m[33mt[0m[33mu[0m[33mn[0m[33me[0m[33m.[0m[33mx[0m[33mf[0m[33mi[0m[33me[0m[33ml[0m[33md[0m
+ [38;5;240m  │[0m [33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m┬[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m  
+ [38;5;240m  │[0m           [33m╰[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m[33m─[0m unused import 'os.neptune.xfield'
+[38;5;246m───╯[0m
+ok
+test owner_legalizes_wide_source_frames_in_both_profiles ... ok
+test power_uses_base_then_exponent_source_order ... ok
+test typed_extension_dot_steps_execute_with_both_pointers ... ok
+test wide_io_and_pop_are_legalized ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+
+     Running tests/tensor_boundaries.rs (candidate/build/trisha/release/deps/tensor_boundaries-c6e670990367b49a)
+
+running 1 test
+test relu_and_argmax_use_all_canonical_bits ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/terminal_returns.rs (candidate/build/trisha/release/deps/terminal_returns-4874704ff6b2568d)
+
+running 3 tests
+test imported_terminal_match_and_nested_if_return_full_aggregate ... ok
+test intermediate_branches_and_loop_tails_discard_values_but_keep_effects ... ok
+test terminal_nested_if_tails_and_explicit_returns_preserve_caller_locals ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.25s
+
+     Running tests/test_execution.rs (candidate/build/trisha/release/deps/test_execution-ecd7fb5c6705cbad)
+
+running 6 tests
+test actual_vm_tests_preserve_main_private_helpers_imports_and_isolate_ram ... ok
+test aggregate_loop_assignments_preserve_counters_and_neighboring_values ... ok
+test failures_are_aggregated_and_main_is_not_implicitly_executed ... ok
+test imported_nested_struct_field_paths_use_declared_types_and_offsets ... ok
+test manifest_entry_dependency_and_profile_apply_to_tests ... ok
+test no_tests_and_invalid_signatures_are_not_counted_as_passes ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
+
+     Running tests/triton_audit_stdlib.rs (candidate/build/trisha/release/deps/triton_audit_stdlib-c422f0e5dab2550f)
+
+running 13 tests
+test test_std_compiler_lexer_compiles ... ok
+test test_std_compiler_parser_compiles ... ok
+test test_std_compiler_typecheck_compiles ... ok
+test test_std_crypto_auth_compiles ... ok
+test test_std_crypto_bigint_compiles ... ok
+test test_std_crypto_ecdsa_compiles ... ok
+test test_std_crypto_ed25519_compiles ... ok
+test test_std_crypto_keccak256_compiles ... ok
+test test_std_crypto_merkle_compiles ... ok
+test test_std_crypto_poseidon2_compiles ... ok
+test test_std_crypto_poseidon_compiles ... ok
+test test_std_crypto_secp256k1_compiles ... ok
+test test_std_crypto_sha256_compiles ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.36s
+
+     Running tests/triton_compile.rs (candidate/build/trisha/release/deps/triton_compile-9b06f47cad359490)
+
+running 15 tests
+test test_all_binary_operators ... ok
+test test_card_compiles ... ok
+test test_chain_of_function_calls ... ok
+test test_coin_compiles ... ok
+test test_compile_type_error_returns_err ... [31mError:[0m type mismatch: declared U32 but expression has type Field
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmp96Xjh6/test.tri:3:18[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m3 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249ml[0m[38;5;249me[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249mx[0m[38;5;249m:[0m[38;5;249m [0m[38;5;249mU[0m[38;5;249m3[0m[38;5;249m2[0m[38;5;249m [0m[38;5;249m=[0m[38;5;249m [0m[31mp[0m[31mu[0m[31mb[0m[31m_[0m[31mr[0m[31me[0m[31ma[0m[31md[0m[31m([0m[31m)[0m
+ [38;5;240m  │[0m                  [31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m┬[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m  
+ [38;5;240m  │[0m                       [31m╰[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m type mismatch: declared U32 but expression has type Field
+[38;5;246m───╯[0m
+ok
+test test_compile_valid_program ... ok
+test test_deeply_nested_for ... ok
+test test_deeply_nested_if ... ok
+test test_error_max_nesting_depth ... ok
+test test_events_emit_and_seal ... ok
+test test_many_variables_spill ... ok
+test test_multiple_return_paths ... ok
+test test_struct_with_digest_field ... ok
+test test_tail_expression ... ok
+test test_xfield_operations ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.48s
+
+     Running tests/triton_features.rs (candidate/build/trisha/release/deps/triton_features-573afedb6a970b44)
+
+running 22 tests
+test test_array_element_assignment_compiles_triton ... ok
+test test_cfg_const_excluded_in_release ... ok
+test test_cfg_debug_compiles ... ok
+test test_cfg_different_targets_different_output ... ok
+test test_cfg_release_excludes_debug_fn ... ok
+test test_const_generic_add_expression ... ok
+test test_const_generic_mul_expression ... ok
+test test_field_and_index_assignment_immutable_still_rejected ... [31mError:[0m cannot assign to immutable variable
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmps0u2Et/test.tri:5:5[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m5 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[31mp[0m[38;5;249m.[0m[38;5;249mx[0m[38;5;249m [0m[38;5;249m=[0m[38;5;249m [0m[38;5;249m5[0m
+ [38;5;240m  │[0m     [31m┬[0m  
+ [38;5;240m  │[0m     [31m╰[0m[31m─[0m[31m─[0m cannot assign to immutable variable
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: declare the variable with `let mut` to make it mutable
+[38;5;246m───╯[0m
+ok
+test test_generic_fn_check_only ... ok
+test test_generic_fn_compile_explicit ... ok
+test test_generic_fn_compile_inferred ... ok
+test test_generic_fn_existing_code_unaffected ... ok
+test test_generic_fn_multiple_instantiations_compile ... ok
+test test_generic_fn_type_error ... [31mError:[0m argument 1 of 'first': expected [Field; 5] but got [Field; 3]
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmpDwPgr2/test.tri:9:25[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m9 │[0m [38;5;249ml[0m[38;5;249me[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249ms[0m[38;5;249m:[0m[38;5;249m [0m[38;5;249mF[0m[38;5;249mi[0m[38;5;249me[0m[38;5;249ml[0m[38;5;249md[0m[38;5;249m [0m[38;5;249m=[0m[38;5;249m [0m[38;5;249mf[0m[38;5;249mi[0m[38;5;249mr[0m[38;5;249ms[0m[38;5;249mt[0m[38;5;249m<[0m[38;5;249m5[0m[38;5;249m>[0m[38;5;249m([0m[31ma[0m[38;5;249m)[0m
+ [38;5;240m  │[0m                         [31m┬[0m  
+ [38;5;240m  │[0m                         [31m╰[0m[31m─[0m[31m─[0m argument 1 of 'first': expected [Field; 5] but got [Field; 3]
+[38;5;246m───╯[0m
+ok
+test test_match_bool_compiles ... ok
+test test_match_compiles ... ok
+test test_match_non_exhaustive_fails ... [31mError:[0m non-exhaustive match: not all possible values are covered
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmpYVemo6/test.tri:4:11[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m4 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249mm[0m[38;5;249ma[0m[38;5;249mt[0m[38;5;249mc[0m[38;5;249mh[0m[38;5;249m [0m[31mx[0m[38;5;249m [0m[38;5;249m{[0m
+ [38;5;240m  │[0m           [31m┬[0m  
+ [38;5;240m  │[0m           [31m╰[0m[31m─[0m[31m─[0m non-exhaustive match: not all possible values are covered
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: add a wildcard `_ => { ... }` arm to handle all remaining values
+[38;5;246m───╯[0m
+ok
+test test_match_struct_pattern_compiles ... ok
+test test_no_cfg_backward_compatible ... ok
+test test_os_state_read_still_undefined_on_triton ... [31mError:[0m undefined function 'os.state.read'
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m/tmp/.tmpIY1sCm/test.tri:3:20[38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m3 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249ml[0m[38;5;249me[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249mv[0m[38;5;249m:[0m[38;5;249m [0m[38;5;249mF[0m[38;5;249mi[0m[38;5;249me[0m[38;5;249ml[0m[38;5;249md[0m[38;5;249m [0m[38;5;249m=[0m[38;5;249m [0m[31mo[0m[31ms[0m[31m.[0m[31ms[0m[31mt[0m[31ma[0m[31mt[0m[31me[0m[31m.[0m[31mr[0m[31me[0m[31ma[0m[31md[0m[31m([0m[31m1[0m[31m)[0m
+ [38;5;240m  │[0m                    [31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m┬[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m  
+ [38;5;240m  │[0m                            [31m╰[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m[31m─[0m undefined function 'os.state.read'
+ [38;5;240m  │[0m 
+ [38;5;240m  │[0m [38;5;115mHelp[0m: check the function name and ensure the module is imported with `use`
+[38;5;246m───╯[0m
+ok
+test test_pure_fn_compiles ... ok
+test test_struct_field_assignment_compiles_triton ... ok
+
+test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
+
+     Running tests/triton_neptune.rs (candidate/build/trisha/release/deps/triton_neptune-d01e66bf493c5b9c)
+
+running 13 tests
+test coin_formatting_is_idempotent ... ok
+test test_neptune_lock_scripts_compile ... ok
+test test_neptune_type_scripts_compile ... ok
+test test_proof_aggregation ... ok
+test test_proof_aggregator_example_is_rejected ... ok
+test test_proof_composition_library ... ok
+test test_proof_relay_example_is_rejected ... ok
+test test_recursive_verifier_is_rejected ... ok
+test test_transaction_validation_is_rejected ... ok
+test test_xb_dot_step_intrinsic ... ok
+test test_xb_inner_product_library ... ok
+test test_xfe_inner_product_library ... ok
+test test_xfield_dot_step_intrinsics ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.31s
+
+     Running tests/triton_stdlib.rs (candidate/build/trisha/release/deps/triton_stdlib-7e1d8059429464e5)
+
+running 42 tests
+test os_neptune_kernel_compiles ... ok
+test os_neptune_locks_generation_compiles ... ok
+test os_neptune_locks_multisig_compiles ... ok
+test os_neptune_locks_symmetric_compiles ... ok
+test os_neptune_locks_timelock_compiles ... ok
+test os_neptune_plumb_compiles ... ok
+test os_neptune_programs_proof_aggregator_compiles ... ok
+test os_neptune_programs_proof_relay_compiles ... ok
+test os_neptune_programs_recursive_verifier_compiles ... ok
+test os_neptune_programs_transaction_validation_compiles ... ok
+test os_neptune_proof_compiles ... ok
+test os_neptune_recursive_compiles ... ok
+test os_neptune_standards_card_compiles ... ok
+test os_neptune_standards_coin_compiles ... ok
+test os_neptune_types_custom_token_compiles ... ok
+test os_neptune_types_native_currency_compiles ... ok
+test os_neptune_utxo_compiles ... ok
+test os_neptune_xfield_compiles ... ok
+test std_crypto_auth_compiles ... ok
+test std_crypto_bigint_compiles ... ok
+test std_crypto_ecdsa_compiles ... ok
+test std_crypto_ed25519_compiles ... ok
+test std_crypto_keccak256_compiles ... ok
+test std_crypto_merkle_compiles ... ok
+test std_crypto_poseidon2_compiles ... ok
+test std_crypto_poseidon_compiles ... ok
+test std_crypto_secp256k1_compiles ... ok
+test std_crypto_sha256_compiles ... ok
+test std_io_storage_compiles ... ok
+test std_nn_tensor_compiles ... ok
+test std_private_poly_compiles ... ok
+test std_quantum_gates_compiles ... ok
+test std_target_compiles ... ok
+test std_trinity_inference_compiles ... ok
+test vm_core_assert_compiles ... ok
+test vm_core_convert_compiles ... ok
+test vm_core_field_compiles ... ok
+test vm_core_u32_compiles ... ok
+test vm_crypto_hash_compiles ... ok
+test vm_crypto_merkle_compiles ... ok
+test vm_io_io_compiles ... ok
+test vm_io_mem_compiles ... ok
+
+test result: ok. 42 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.30s
+
+     Running tests/word_shifts.rs (candidate/build/trisha/release/deps/word_shifts-4a50aebbc6da0bec)
+
+running 2 tests
+test left_shift_multiplies_by_the_requested_power_of_two ... ok
+test right_shift_returns_floor_quotient_and_preserves_neighboring_words ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/zero_width.rs (candidate/build/trisha/release/deps/zero_width-74c6443c01adf895)
+
+running 7 tests
+test array_extent_beyond_u32_rejects_without_wrapping_or_expanding_entry ... ok
+test array_extents_resolve_local_and_defining_module_constants ... ok
+test assembly_word_effects_preserve_interleaved_empty_bindings ... ok
+test mixed_unit_layouts_preserve_effects_and_scalar_components ... ok
+test zero_width_array_access_uses_declared_count_without_expanding_empty_copies ... ok
+test zero_width_operands_keep_effect_order_and_execute_once ... ok
+test zero_width_values_preserve_caller_words_and_declared_array_bounds ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
+
+   Doc-tests trisha_honeycrisp
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests trisha_neptune
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests trisha_rs
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

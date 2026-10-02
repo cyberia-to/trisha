@@ -1,0 +1,29 @@
+{
+  "target": "x86_64-pc-windows-msvc",
+  "source": {
+    "scope": "Committed pushed release/0.4 branch feature rehearsal; no default-branch release candidate/tag/publication",
+    "phase": "build",
+    "full_baselines": false,
+    "asset_id": 604481115,
+    "source_sha256": "e4bac7ff7260a5f395febc196b3e4792653e0ff81d7887d688e16ea0959aa361",
+    "selfhost_kit": {
+      "asset_id": 604463150,
+      "sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd"
+    },
+    "neptune_intent": {
+      "asset_id": 568147730,
+      "sha256": "404ba33e683103e9cceaa7c21fcd6443401f8ba4216b8e77230ed34b24e249d0"
+    },
+    "targets": [
+      "x86_64-unknown-linux-gnu",
+      "aarch64-unknown-linux-gnu",
+      "x86_64-pc-windows-msvc",
+      "aarch64-pc-windows-msvc",
+      "x86_64-apple-darwin"
+    ]
+  },
+  "archive": "cyber-tools-x86_64-pc-windows-msvc.zip",
+  "sha256": "1f399cc1c8f13b7946826f1bdc80ca0e1bdeb59bb5ce6d2847edf572c751bd5d",
+  "platform": "Windows-2022Server-10.0.20348-SP0",
+  "runner_revision": "c94da47247457f9e819c2682e74d34f5f1756f62"
+}

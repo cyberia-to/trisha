@@ -1,0 +1,75 @@
+{
+  "scope": "Toolchain mismatch regression and exact rejected-attempt retention checks",
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "scripts/test_transport_native_rehearsal.py"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/trisha-native-ci",
+      "exit_code": 0,
+      "stdout": {
+        "path": "0.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "0.stderr",
+        "bytes": 101,
+        "sha256": "33060fd73862c5e1af97335504d5b45211fce6d229657f556d8deceeadc52ce4"
+      }
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "audit/native-distribution-20261002/rejected-local-rust195/verify.py",
+        "--originals"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/trisha-native-ci",
+      "exit_code": 0,
+      "stdout": {
+        "path": "1.stdout",
+        "bytes": 64,
+        "sha256": "695271bf53f7f1a60751c12a019a30f5ac0651f38480a2b06254c51a8f5c8ccb"
+      },
+      "stderr": {
+        "path": "1.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "-O",
+        "audit/native-distribution-20261002/rejected-local-rust195/verify.py"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/trisha-native-ci",
+      "exit_code": 0,
+      "stdout": {
+        "path": "2.stdout",
+        "bytes": 64,
+        "sha256": "695271bf53f7f1a60751c12a019a30f5ac0651f38480a2b06254c51a8f5c8ccb"
+      },
+      "stderr": {
+        "path": "2.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "code": {
+    "scripts/transport-native-rehearsal.py": "a737341265cf66f3dcc7cc614df7d0cd3be2a978fc23095c8133f637367ce5b5",
+    "scripts/test_transport_native_rehearsal.py": "6ed0d122708396c92f9e8253a0eb62447a46cba83fe53e4a4c85877714cef350",
+    "scripts/native-rehearsal-local.py": "4c3214c55666e07966a32419ced1aadcdb427e1bfb6f68bb320ecebef0efc809",
+    "scripts/native-rehearsal-local-transport.py": "1ad11342b234f08664344b9ff74a5cb04973536d7a709af37da6adc804cf8c64",
+    "audit/native-distribution-20261002/rejected-local-rust195/verify.py": "d7104182269da82a7548bdf68cd0196c22fa155700423761e865a6076a1e6c09"
+  }
+}
