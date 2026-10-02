@@ -1,0 +1,20 @@
+{
+  "id": 11212184914,
+  "node_id": "MDg6QXJ0aWZhY3QxMTIxMjE4NDkxNA==",
+  "name": "current-package-asset-transport",
+  "size_in_bytes": 198937,
+  "url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11212184914",
+  "archive_download_url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11212184914/zip",
+  "expired": false,
+  "digest": "sha256:c0075827fe11dfd988ab41a08da73c8a66f7a2ee7a6db7fab288c7c51be43968",
+  "created_at": "2026-10-02T06:31:04Z",
+  "updated_at": "2026-10-02T06:31:04Z",
+  "expires_at": "2026-11-01T06:31:03Z",
+  "workflow_run": {
+    "id": 36973773801,
+    "repository_id": 1159894384,
+    "head_repository_id": 1159894384,
+    "head_branch": "test/0.4-current-distribution-20261002",
+    "head_sha": "a12f032f3dfd866025e07fd6f1347b0bf0b2d48d"
+  }
+}

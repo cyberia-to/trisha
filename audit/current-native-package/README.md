@@ -5,7 +5,8 @@ Mac ARM package has passed its four CPU suites, installed/package checks,
 133 baseline executions, 47 legacy corpus cases and 27 structured cases.
 All five remote producers have passed. The new full198 gate remains in
 progress.
-Portable consumption of all six new legacy and structured corpora is pending.
+Portable consumption of all six new legacy and structured corpora is activated;
+its final receipt remains pending.
 This distinct branch rehearsal uses source `734df69d...`; the frozen
 `e4bac7ff...` receipts retain their original scope.
 
@@ -242,3 +243,27 @@ The distinct `.github/current-package-assets.json` selector activates the
 reviewed draft transport for five exact binary archives, five legacy corpora,
 five structured corpora and five original authenticated Actions ZIPs. Final
 full198 and six-platform portable consumption remain pending at activation.
+
+### Exact six-package consumption activated
+
+Transport run 36973773801 at `a12f032f3dfd866025e07fd6f1347b0bf0b2d48d`
+passed and retained twenty unique assets in the existing unpublished draft:
+five binary packages, five legacy corpora, five structured corpora and five
+original authenticated producer ZIPs. The original transport ZIP, receipt,
+all asset IDs/digests and post-upload origin checks are retained in
+`remote-asset-transport/`. Default refs remained unchanged; the draft's tag
+remained absent. Joy and Trisha release branches advanced independently,
+while this package's exact eleven source pins remain fixed.
+
+The verify selector now binds all six packages and both six-corpus sets,
+including the already retained local Mac package. Five native remote consumers
+and one local Mac consumer will exercise all 36 producer/consumer pairs, each
+with 47 legacy and 27 structured checks. The separate free macOS14 ARM lane
+checks the same corpora and accepted kit on its observed host. This bounded
+consumer phase does not rebuild or generate full proofs.
+
+`matrix-helper-checks/` retains the independent checker and its actual
+six-producer self-consumer trial: 444 case checks passed, and five altered
+receipts were rejected (legacy binary/outcome, structured producer identity,
+command inventory and raw output digest). That helper trial does not claim
+the still-pending cross-platform consumer matrix.
