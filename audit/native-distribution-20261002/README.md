@@ -108,6 +108,10 @@ paths and executable hashes. `bootstrap-toolchain-check/` records its actual
 `pin_toolchain` regression on this host: child lookups resolve Homebrew 1.95
 before selection and the pinned native 1.89 tools afterwards. The current
 remote producer run remains at its original bootstrap revision.
+The follow-up check in `bootstrap-toolchain-check-v2/` additionally binds
+`rustdoc`, clears inherited compiler/doc-tool overrides, and selects the full
+native host in both installation and lookup (`1.89.0-<target>`). This prevents
+a Windows ARM host's default x64 rustup host from selecting the wrong tools.
 The local source exporter requested 1.89 through `rustup run ... nu`; that
 invocation alone does not establish the Cargo version used by the external
 Nu process. No observed exporter-version claim is made. Source acceptance

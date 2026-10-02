@@ -53,19 +53,25 @@ def run(command, log, env, cwd):
 def pin_toolchain(env, target, results, work):
     # RUSTUP_TOOLCHAIN affects rustup shims, not a Homebrew/system compiler
     # earlier in PATH. Resolve the actual tools before compiling any source.
+    toolchain = '1.89.0-' + target
+    for name in ('RUSTC', 'RUSTDOC', 'RUSTC_WRAPPER', 'RUSTC_WORKSPACE_WRAPPER',
+                 'RUSTDOCFLAGS', 'CARGO_ENCODED_RUSTDOCFLAGS', 'CARGO_BUILD_TARGET',
+                 'CARGO_BUILD_RUSTC', 'CARGO_BUILD_RUSTDOC', 'CARGO_BUILD_RUSTC_WRAPPER',
+                 'CARGO_BUILD_RUSTC_WORKSPACE_WRAPPER', 'CARGO_BUILD_RUSTDOCFLAGS'):
+        env.pop(name, None)
+    env['RUSTUP_TOOLCHAIN'] = toolchain
     paths = {}
-    for name in ('rustc', 'cargo'):
+    for name in ('rustc', 'cargo', 'rustdoc'):
         log = results / (name + '-path.log')
-        run(['rustup', 'which', '--toolchain', '1.89.0', name], log, env, work)
+        run(['rustup', 'which', '--toolchain', toolchain, name], log, env, work)
         paths[name] = Path(log.read_text(encoding='utf-8').strip())
-    if paths['rustc'].parent != paths['cargo'].parent:
-        raise ValueError('Rust and Cargo must come from the same pinned toolchain')
+    if len({path.parent for path in paths.values()}) != 1:
+        raise ValueError('Rust, Cargo and rustdoc must come from the same pinned toolchain')
     env['PATH'] = str(paths['rustc'].parent) + os.pathsep + env['PATH']
     env['RUSTC'] = str(paths['rustc'])
-    for name in ('RUSTC_WRAPPER', 'RUSTC_WORKSPACE_WRAPPER'):
-        env.pop(name, None)
+    env['RUSTDOC'] = str(paths['rustdoc'])
     observed = {}
-    for name, flag in (('rustc', '-vV'), ('cargo', '-Vv')):
+    for name, flag in (('rustc', '-vV'), ('cargo', '-Vv'), ('rustdoc', '-vV')):
         log = results / (name + '.log')
         run([paths[name], flag], log, env, work)
         version = log.read_text(encoding='utf-8')
@@ -204,7 +210,7 @@ def main():
             z3.chmod(0o755)
         env['PATH'] = str(z3.parent) + os.pathsep + env['PATH']
         run([z3, '--version'], results/'z3.log', env, work)
-        run(['rustup', 'toolchain', 'install', '1.89.0', '--profile', 'minimal'], results/'toolchain.log', env, work)
+        run(['rustup', 'toolchain', 'install', '1.89.0-' + target, '--profile', 'minimal'], results/'toolchain.log', env, work)
         pin_toolchain(env, target, results, work)
         if os.name == 'nt':
             run([sys.executable, '-B', scripts/'test_windows_process.py'], results/'windows-process.log', env, work)
