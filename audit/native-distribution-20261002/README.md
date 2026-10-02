@@ -1,7 +1,10 @@
 # Native 0.4 distribution rehearsal — 2026-10-02
 
-Status: source and accepted-kit guards passed. The Linux ARM and Windows ARM producers passed;
-three remote producers and the corrected local Mac ARM lane remain in progress.
+Status: frozen-source acceptance passed: all six native producers, their
+applicable CPU and package gates, the actual Mac ARM full198 proof gate,
+and all 36 native corpus producer/consumer pairs (1692 case checks).
+The additional macOS 14 ARM consumer passed its separately scoped 282 checks.
+The later current-production package is a distinct pending lane in PR23.
 The first local attempt was rejected for using Homebrew Rust 1.95 instead of
 the pinned 1.89. Its original evidence remains in `rejected-local-rust195/`.
 The fresh local lane checks both actual Rust and Cargo versions and paths.
@@ -194,3 +197,155 @@ pins remain reachable: Joy, Nox, Trisha and Zheng have advanced on their release
 branches; the other seven selected refs remain at the original pins. Observed
 master/main refs were unchanged across this transport. This explicitly preserves
 the frozen closure rather than treating newer release-branch heads as its inputs.
+
+### Additional frozen native producers
+
+Authenticated run 36949324686 at selector
+`c94da47247457f9e819c2682e74d34f5f1756f62` completed the Windows x64 producer
+at 03:51 UTC and Linux x64 producer at 04:10 UTC on 2026-10-02. The retained
+`producers/<target>/inspection.json` records the exact API artifact, original
+ZIP digest, package and corpus identities, actual native Rust 1.89 observation,
+CPU summaries and all named gates. `job.log` preserves the actual hosted image
+and commands; `job-log.json` authenticates the downloaded log bytes.
+
+Windows x64 ran on Windows Server 2022 and passed 1213 Trident, 418 Trisha and
+167 Joy tests. Linux x64 ran on Ubuntu 22.04 and passed 1231 Trident, 429 Trisha
+and 173 Joy tests. Each passed all 133 baseline executions and the fresh
+47-case legacy corpus (18 accepted, 29 rejected). These numbers come from
+`python3 -B audit/native-distribution-20261002/inspect-native-producer.py`
+against artifacts 11208420793 and 11208532313 respectively. The Windows 11
+x64 minimum is still untested. Intel Mac, portable cross-consumption and the
+local full 198-proof verdict remain separate pending gates at this point.
+
+### Completed frozen Mac ARM full proof gate
+
+The fresh Rust 1.89 producer at runner revision
+`20273ae93a63973cc04d7206abff517853cfff58` completed at 04:35:13 UTC on
+2026-10-02. `local-rust189/final/` preserves the final driver, candidate, complete
+198-proof receipt, byte-preserved compressed original start/log/telemetry and
+full original-file retention inventory. The driver exited 0 with every named
+producer gate passed. CPU summaries contain 1231 Trident, 429 Trisha and 172 Joy
+passes on this actual Mac; other native hosts retain their own measured totals.
+
+The exact archived command was `python3 -B trisha/scripts/check-baselines.py
+CANDIDATE BASELINE_WORK --rss-limit-gib 28`, invoking the installed candidate's
+`trisha bench ARCHIVED_BASELINES --full`. It generated and verified 198 fresh
+proofs for 99 positive fixtures and rejected 34 negative fixtures, with all
+source/vendor/candidate/binary identities unchanged. Its actual elapsed time
+was 4106.085598958016 seconds and peak inner proof process-group RSS was
+17252352000 bytes (about 16.07 GiB). The complete native driver took
+8966.535507666995 seconds; its separately measured outer build/smoke group
+peaked at 9463103488 bytes. These peaks describe different process groups and
+are not summed or substituted for one another.
+
+`python3 -B measurements/retain-local.py` in the owned distribution family
+independently checked the original archived baseline parser, 198 events,
+fixture inventory, raw log identities, telemetry bounds, CPU summaries and
+package/corpus hashes. Its exact script is preserved beside `retention.json`.
+The resulting complete original evidence archive has 80874375 bytes and SHA-256
+`0b613f41a1c65aeb937f636070b0c497a6cb60c938f445dd53e3983ab9c15fab`.
+Draft upload is in progress at this commit. Cross-platform corpus consumption
+and the remaining Intel Mac producer are separate pending gates.
+
+### Original evidence whitespace
+
+A subsequent complete-branch `git diff --check d597381..HEAD` exposed ANSI
+trailing whitespace and native Windows CRLF in 32 preserved original log/JSON
+files. The earlier incremental checks had not covered already committed files.
+`raw-whitespace-check/` retains the exact failed check, corrected full-branch
+check and original Git/worktree SHA-256 comparison. `.gitattributes` now gives
+only those 32 exact paths `-text -whitespace`; no evidence bytes were edited.
+
+### Durable completed Mac evidence
+
+The complete original Mac native/198 archive is now draft asset 604817694,
+`rehearsal-20261002-e4bac7ff-local-rust189-evidence.tar.gz`, with server-confirmed
+SHA-256 `0b613f41a1c65aeb937f636070b0c497a6cb60c938f445dd53e3983ab9c15fab`
+and 80874375 bytes. `local-evidence-transport/receipt.json` records successful
+transport and postchecks from 04:42:00 to 05:08:10 UTC on 2026-10-02. Original
+command output, API responses and all eleven source reachability checks before
+and after the upload are preserved beside it. The existing release remained a
+draft, its tag remained absent (404), and all recorded default refs remained
+unchanged. The earlier package-only upload receipt remains unchanged and still
+states that the 198 verdict was pending at its own observation time.
+
+### All five remote producers passed
+
+Run 36949324686 completed successfully at its original selector/runner commit
+`c94da47247457f9e819c2682e74d34f5f1756f62`. The final Intel Mac producer ran
+on macOS 15.7.9 with actual native Rust 1.89.0 and passed 1231 Trident, 429
+Trisha and 172 Joy tests, 133 baseline execution fixtures and all 47 local
+corpus cases. Its original authenticated Actions ZIP is artifact 11210078256,
+SHA-256 `f6fb3d7e21ff723c1af5a3909e823518c48eae7a2a83a4466f2347efd306dc8c`.
+The inspector command and rules are the same as the first four producers;
+`producers/x86_64-apple-darwin/` retains the receipt and original job metadata.
+
+The exact five authenticated producer archives are now selected for durable
+transport through the existing unpublished draft. This activation starts
+transport; portable consumption of all six corpora remains pending. The Intel
+Mac measurement does not qualify the proposed macOS 14 Intel floor.
+
+### Durable remote artifacts and consumption activation
+
+Transport run 36968858912 at `8c3507f283466b372b3483eeb5abf50a0b94d183`
+passed, preserving all fifteen selected remote binary, corpus and original
+authenticated ZIP assets on the existing draft. The draft remained unpublished
+and the tag remained absent throughout. `remote-asset-transport/` retains the
+original transport Actions ZIP, API identity and exact asset/hash receipt.
+
+The verification selector now binds all six actual binary packages and all six
+actual producer corpora. Its five native remote consumer jobs and a separate
+free native macOS 14 ARM consumer are activated next. The latter exercises
+installed Joy/Trisha and kit consumption only, with a 5 GiB / 1800 second cap;
+it does not claim Trident/LSP or full proof generation on macOS 14.
+
+`check-corpus-matrix.py` will check the exact 36 producer/consumer receipt
+pairs after actual execution. Its single existing local pair helper exercise
+passed and rejected case-exit and binary-identity mutations; no 36-pair result
+is claimed at this activation commit.
+
+### Frozen distribution acceptance complete
+
+The five native consumer jobs in run 36969090113 at
+`b2289e18207021fc8c53c546fe5cdcdc19bbd9c5` all passed. The local Mac ARM
+consumer passed with the same exact six binary/corpus selections, taking
+135.66343954199692 seconds and peaking at 131678208 bytes sampled process-group
+RSS. `local-corpus-consumer/` retains its complete original command/result
+archive. `consumers/` retains each remote authenticated Actions ZIP, original
+API/hash inventory and byte-preserved compressed job log.
+
+`python3 -B -W error measurements/inspect-frozen-matrix.py` authenticated every
+consumer container, required the successful exact original run, then invoked
+`check-corpus-matrix.py` against all six original producer packages and all six
+actual consumer result directories. `corpus-matrix/receipt.json` records all
+36 required native pairs passed, with 1692 exact case checks (47 per pair).
+The check binds each consumer's installed Joy/Trisha identities, every selected
+producer corpus and its expected outcomes, and the installed accepted kit.
+The selected source is still `e4bac7ff...`; none of these receipts describes
+the separate current-production package.
+
+The additional free macOS 14 consumer ran on actual macOS 14.8.9 ARM64 in
+run 36969075321 at the same selector revision. It passed the six corpora
+(282 case checks) and installed kit in 94.94185200000001 seconds, with a
+137854976-byte sampled process-group peak, under 5 GiB / 1800-second limits.
+`macos14-arm-consumer/` preserves the authenticated original artifact;
+`frozen-mac-consumers-inspection.json` independently checks that receipt and
+the local Mac receipt. This qualifies the exercised installed Joy/Trisha
+consumer commands on that observed OS. Trident/LSP and full proof generation
+were not exercised there.
+
+All six frozen native producers, their applicable CPU and package gates, all
+133 baseline execution fixtures on each producer, one actual full198 proof
+gate on the frozen Mac binary, and all 36 portable corpus pairs have passed.
+The five remote binary/corpus/original producer containers and the complete
+Mac198 evidence have durable existing-draft assets. No publication, tag or
+default-branch release candidacy is implied. The current source archive
+`734df69d...` is being validated separately in PR23 with its own binaries and
+new full198 gate.
+
+Actual producer hosts remain macOS 26.4.1 ARM, macOS 15.7.9 Intel, Ubuntu
+22.04/glibc 2.35 ARM and x64, Windows 11 ARM and Windows Server 2022 x64.
+`docs/reference/release-platforms.md` calls the older desktop floors initial
+candidates/proposed policies; Windows 11 x64 and macOS 14 Intel remain
+unqualified projections. The extra macOS14 ARM consumer does not expand its
+measured command scope into complete desktop-floor qualification.

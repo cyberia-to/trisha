@@ -1,0 +1,69 @@
+{
+  "scope": "Frozen e4bac7ff feature-branch rehearsal; single native producer receipt inspection, whole matrix and full 198-proof gate separate",
+  "status": "producer_receipts_checked",
+  "observed_at": "2026-10-02T04:12:57.636558+00:00",
+  "run_id": 36949324686,
+  "runner_revision": "c94da47247457f9e819c2682e74d34f5f1756f62",
+  "target": "x86_64-unknown-linux-gnu",
+  "artifact_id": 11208532313,
+  "artifact_sha256": "37902a46c1127614b2738432f7bc92352644ce17eebd3a452d0cdf2f804227ee",
+  "retained_files": 267,
+  "source_sha256": "e4bac7ff7260a5f395febc196b3e4792653e0ff81d7887d688e16ea0959aa361",
+  "kit_sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd",
+  "source_provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+  "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+  "actual_rustc": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: x86_64-unknown-linux-gnu\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+  "cargo_version_observation": "not separately recorded by frozen producer",
+  "cpu": {
+    "trident": {
+      "log_sha256": "43a5186cd7fa92d8226a08d30062e41cb4ede52d38073429de176d2a9b55c45d",
+      "test_binaries": 49,
+      "passed": 1231
+    },
+    "trisha": {
+      "log_sha256": "7225e76aebf684448d66f921d0df51ef94a77e8665181079aebb550f21f93557",
+      "test_binaries": 64,
+      "passed": 429
+    },
+    "joy": {
+      "log_sha256": "60f271a751819b37b7be795e5dfeeca487e1377df741a0280a887c349b4f16b6",
+      "test_binaries": 27,
+      "passed": 173
+    }
+  },
+  "gates": {
+    "installed-selfhost-smoke/receipt.json": "f72cecb16579725932c8c1c54dca68fe93586dfd4a7b41989ea7ed44096a5409",
+    "unpacked-selfhost-smoke/receipt.json": "c176cf28ea52f064f073a904f2007c086290c497595d64cdfbc7e0d710e22463",
+    "joy-native-smoke/receipt.json": "7388754c08c2e39a719b86cc69dd8bb8d6bcbdfb9dcb3f79fab808ba5c98f28c",
+    "native-process-files.json": "a0442a68ed12939a46235c279f4799bce10b4b5716989ed2e6a2992229894a22",
+    "proof-corpus/smoke.json": "899a44ecb6593d0e800951ce56af6df9c4da39fcc842cdf150dc1a84605672e3",
+    "local-corpus-verification.json": "727e0ec94b8978577fac1c4733f08ced8f54bca1a85539443fa12ca123083d8a",
+    "neptune-client.log": "3592c25897d8dcf44342b8e109b369f6e2027eeb7245c939b3f2a83aab867ee0",
+    "neptune-binding.log": "06076d984e9a665a78cad62b2b9d8322f47c79007e7be0bb5ff3d27eec8cc998"
+  },
+  "baseline_execution": {
+    "all_checks_passed": true,
+    "source_provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+    "candidate_sha256": "1a8a61d44b6d8012fee6969deb951d82c1d5610f84cf8e5581d95f4f0ad76ccc",
+    "log_sha256": "d8f6a5c3bdb5cd044b084c2d1f46750ccfa090fcbd89ca69b5c32afd6aa2a914",
+    "target": "x86_64-unknown-linux-gnu",
+    "baselines": 43,
+    "positive_fixtures": 99,
+    "negative_fixtures": 34,
+    "generated_proofs": 0
+  },
+  "corpus_cases": 47,
+  "corpus_positive": 18,
+  "corpus_rejections": 29,
+  "binary_archive": {
+    "name": "cyber-tools-x86_64-unknown-linux-gnu.tar.gz",
+    "sha256": "eb771900d9a1e188e2e74fb0c20e66cca2799a9632548c7f84fa5ed8c52fbe4d",
+    "bytes": 18052268
+  },
+  "corpus_archive": {
+    "name": "proof-corpus-x86_64-unknown-linux-gnu.tar.gz",
+    "sha256": "3bf267ec0fc0bf5c4b43ff55e452960efcbeac66f52b19103b478bb23d476b62",
+    "bytes": 25260064
+  },
+  "inspector_sha256": "3876953e5cd6acc422ccd86cdd2d37502c621c47abe005d5b8de8739699f7c5e"
+}

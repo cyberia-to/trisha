@@ -1,0 +1,24 @@
+{
+  "receipt_sha256": "ac8d25d2807f207f69a549b5dc8312e85942d080e9062811f0bad8971dab881e",
+  "corpus_manifest_sha256": "850f66cb834095292c71ecfc2f64c324627cc0dd8335bd65dcff02ac3b471627",
+  "cases": 47,
+  "accepted": 18,
+  "rejected": 29,
+  "consumer_binaries": {
+    "trisha": "12cd1a2576e1272f770d1d93c444bfa2bf8372370e0af0f92af14d1274f31b73",
+    "joy": "987682608a17fee60f062af30648ef675a9ed734156c58a389f342bd11c35a1b"
+  },
+  "scope": "Actual one-pair checker exercise only; six-platform matrix pending",
+  "mutation_checks": [
+    {
+      "name": "altered-expected-exit",
+      "rejected": true,
+      "error": "exact case commands or outcomes differ"
+    },
+    {
+      "name": "altered-consumer-binary",
+      "rejected": true,
+      "error": "consumer binaries differ"
+    }
+  ]
+}

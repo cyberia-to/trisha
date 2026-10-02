@@ -1,0 +1,11 @@
+{
+  "all_checks_passed": true,
+  "source_provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+  "candidate_sha256": "a128aaabab96f0d40a9cc3b2824735e9357e4d834b65e398c55bee25d25807fb",
+  "log_sha256": "05c1a83332546b4a56145c4ba086c32565c5aee1ace9a6f647f49f56518405c6",
+  "target": "x86_64-apple-darwin",
+  "baselines": 43,
+  "positive_fixtures": 99,
+  "negative_fixtures": 34,
+  "generated_proofs": 0
+}

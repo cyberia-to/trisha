@@ -1,0 +1,11 @@
+{
+  "head": "ea81277468ce4fa88d49029d16076831e1d197ec",
+  "base": "68278000bc7941b8df74e6635925f7d08153360c",
+  "protected": {
+    ".github/release-candidate.json": "58263dbc6b7c09f96cd1598fa8982d7c5e305aee771f83da7dcc81d494172da0",
+    ".github/current-package-inputs.json": "e8e03c81f97d6aa5f7b3ab23faca44e058a2bd13dcf1228ffde1c81edb75619f",
+    "scripts/native-candidate.py": "2ad6047e170feae6dcb39adf2d9d1a4ac2f981b2f31c44af93570e140554dbcd",
+    "scripts/current-source-impact.py": "cffe213b0f0d0930c7d5c13d57cf97eecc3165d84662f7f8e30df0a07b005942",
+    "scripts/current-structured-corpus.py": "5caa737b7c7b8b1fef0dd024a56e78f394273b8140b12a1832f29c8dad891a94"
+  }
+}

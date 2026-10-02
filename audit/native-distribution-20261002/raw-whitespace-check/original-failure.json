@@ -1,0 +1,10 @@
+{
+  "command": [
+    "git",
+    "diff",
+    "--check",
+    "d59738198aff278e7166e5958fbbc5f9777986b7..HEAD"
+  ],
+  "exit_code": 2,
+  "scope": "Full frozen feature branch whitespace check"
+}

@@ -1,0 +1,829 @@
+{
+  "scope": "Frozen e4bac7ff committed feature-branch rehearsal transport; no default-branch release candidate/tag/publication",
+  "status": "passed",
+  "selector": {
+    "scope": "Frozen e4bac7ff committed feature-branch rehearsal transport; no default-branch release candidate/tag/publication",
+    "release_id": 389977897,
+    "release_tag": "candidate-20260916.1",
+    "asset_prefix": "rehearsal-20261002-e4bac7ff-remote",
+    "source_sha256": "e4bac7ff7260a5f395febc196b3e4792653e0ff81d7887d688e16ea0959aa361",
+    "kit_sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd",
+    "provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+    "producers": [
+      {
+        "target": "aarch64-unknown-linux-gnu",
+        "run_id": 36949324686,
+        "head_sha": "c94da47247457f9e819c2682e74d34f5f1756f62",
+        "artifact_id": 11207645268,
+        "zip_sha256": "ccc1174519e4c55444b12ba9cd89674eca3479c9f5df1e64a1f3126efd222031"
+      },
+      {
+        "target": "aarch64-pc-windows-msvc",
+        "run_id": 36949324686,
+        "head_sha": "c94da47247457f9e819c2682e74d34f5f1756f62",
+        "artifact_id": 11207109355,
+        "zip_sha256": "510fb6ebc05807dbdb8b9f4da7dffb577986114b5eeb479b2181181fceef6e58"
+      },
+      {
+        "target": "x86_64-pc-windows-msvc",
+        "run_id": 36949324686,
+        "head_sha": "c94da47247457f9e819c2682e74d34f5f1756f62",
+        "artifact_id": 11208420793,
+        "zip_sha256": "0a08d54f1125a376f1b6ff6ee42bb9945e6bf1420303be835990c9f4b1ff01dd"
+      },
+      {
+        "target": "x86_64-unknown-linux-gnu",
+        "run_id": 36949324686,
+        "head_sha": "c94da47247457f9e819c2682e74d34f5f1756f62",
+        "artifact_id": 11208532313,
+        "zip_sha256": "37902a46c1127614b2738432f7bc92352644ce17eebd3a452d0cdf2f804227ee"
+      },
+      {
+        "target": "x86_64-apple-darwin",
+        "run_id": 36949324686,
+        "head_sha": "c94da47247457f9e819c2682e74d34f5f1756f62",
+        "artifact_id": 11210078256,
+        "zip_sha256": "f6fb3d7e21ff723c1af5a3909e823518c48eae7a2a83a4466f2347efd306dc8c"
+      }
+    ]
+  },
+  "commands": [
+    {
+      "name": "draft-before",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "draft-before-tag",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "name": "aarch64-unknown-linux-gnu-run",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/actions/runs/36949324686"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "aarch64-unknown-linux-gnu-artifact",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/actions/artifacts/11207645268"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11207645268/zip"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "release",
+        "upload",
+        "candidate-20260916.1",
+        "/home/runner/work/_temp/native-rehearsal-assets/rehearsal-20261002-e4bac7ff-remote-cyber-tools-aarch64-unknown-linux-gnu.tar.gz",
+        "--repo",
+        "cyberia-to/trisha"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "aarch64-unknown-linux-gnu-binary-draft",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "aarch64-unknown-linux-gnu-binary-draft-tag",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "gh",
+        "release",
+        "upload",
+        "candidate-20260916.1",
+        "/home/runner/work/_temp/native-rehearsal-assets/rehearsal-20261002-e4bac7ff-remote-proof-corpus-aarch64-unknown-linux-gnu.tar.gz",
+        "--repo",
+        "cyberia-to/trisha"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "aarch64-unknown-linux-gnu-corpus-draft",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "aarch64-unknown-linux-gnu-corpus-draft-tag",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "gh",
+        "release",
+        "upload",
+        "candidate-20260916.1",
+        "/home/runner/work/_temp/native-rehearsal-assets/rehearsal-20261002-e4bac7ff-remote-aarch64-unknown-linux-gnu.zip",
+        "--repo",
+        "cyberia-to/trisha"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "aarch64-unknown-linux-gnu-evidence-draft",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "aarch64-unknown-linux-gnu-evidence-draft-tag",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "name": "aarch64-pc-windows-msvc-run",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/actions/runs/36949324686"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "aarch64-pc-windows-msvc-artifact",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/actions/artifacts/11207109355"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11207109355/zip"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "release",
+        "upload",
+        "candidate-20260916.1",
+        "/home/runner/work/_temp/native-rehearsal-assets/rehearsal-20261002-e4bac7ff-remote-cyber-tools-aarch64-pc-windows-msvc.zip",
+        "--repo",
+        "cyberia-to/trisha"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "aarch64-pc-windows-msvc-binary-draft",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "aarch64-pc-windows-msvc-binary-draft-tag",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "gh",
+        "release",
+        "upload",
+        "candidate-20260916.1",
+        "/home/runner/work/_temp/native-rehearsal-assets/rehearsal-20261002-e4bac7ff-remote-proof-corpus-aarch64-pc-windows-msvc.tar.gz",
+        "--repo",
+        "cyberia-to/trisha"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "aarch64-pc-windows-msvc-corpus-draft",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "aarch64-pc-windows-msvc-corpus-draft-tag",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "gh",
+        "release",
+        "upload",
+        "candidate-20260916.1",
+        "/home/runner/work/_temp/native-rehearsal-assets/rehearsal-20261002-e4bac7ff-remote-aarch64-pc-windows-msvc.zip",
+        "--repo",
+        "cyberia-to/trisha"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "aarch64-pc-windows-msvc-evidence-draft",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "aarch64-pc-windows-msvc-evidence-draft-tag",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "name": "x86_64-pc-windows-msvc-run",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/actions/runs/36949324686"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-pc-windows-msvc-artifact",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/actions/artifacts/11208420793"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11208420793/zip"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "release",
+        "upload",
+        "candidate-20260916.1",
+        "/home/runner/work/_temp/native-rehearsal-assets/rehearsal-20261002-e4bac7ff-remote-cyber-tools-x86_64-pc-windows-msvc.zip",
+        "--repo",
+        "cyberia-to/trisha"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-pc-windows-msvc-binary-draft",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-pc-windows-msvc-binary-draft-tag",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "gh",
+        "release",
+        "upload",
+        "candidate-20260916.1",
+        "/home/runner/work/_temp/native-rehearsal-assets/rehearsal-20261002-e4bac7ff-remote-proof-corpus-x86_64-pc-windows-msvc.tar.gz",
+        "--repo",
+        "cyberia-to/trisha"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-pc-windows-msvc-corpus-draft",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-pc-windows-msvc-corpus-draft-tag",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "gh",
+        "release",
+        "upload",
+        "candidate-20260916.1",
+        "/home/runner/work/_temp/native-rehearsal-assets/rehearsal-20261002-e4bac7ff-remote-x86_64-pc-windows-msvc.zip",
+        "--repo",
+        "cyberia-to/trisha"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-pc-windows-msvc-evidence-draft",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-pc-windows-msvc-evidence-draft-tag",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "name": "x86_64-unknown-linux-gnu-run",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/actions/runs/36949324686"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-unknown-linux-gnu-artifact",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/actions/artifacts/11208532313"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11208532313/zip"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "release",
+        "upload",
+        "candidate-20260916.1",
+        "/home/runner/work/_temp/native-rehearsal-assets/rehearsal-20261002-e4bac7ff-remote-cyber-tools-x86_64-unknown-linux-gnu.tar.gz",
+        "--repo",
+        "cyberia-to/trisha"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-unknown-linux-gnu-binary-draft",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-unknown-linux-gnu-binary-draft-tag",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "gh",
+        "release",
+        "upload",
+        "candidate-20260916.1",
+        "/home/runner/work/_temp/native-rehearsal-assets/rehearsal-20261002-e4bac7ff-remote-proof-corpus-x86_64-unknown-linux-gnu.tar.gz",
+        "--repo",
+        "cyberia-to/trisha"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-unknown-linux-gnu-corpus-draft",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-unknown-linux-gnu-corpus-draft-tag",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "gh",
+        "release",
+        "upload",
+        "candidate-20260916.1",
+        "/home/runner/work/_temp/native-rehearsal-assets/rehearsal-20261002-e4bac7ff-remote-x86_64-unknown-linux-gnu.zip",
+        "--repo",
+        "cyberia-to/trisha"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-unknown-linux-gnu-evidence-draft",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-unknown-linux-gnu-evidence-draft-tag",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "name": "x86_64-apple-darwin-run",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/actions/runs/36949324686"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-apple-darwin-artifact",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/actions/artifacts/11210078256"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11210078256/zip"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "release",
+        "upload",
+        "candidate-20260916.1",
+        "/home/runner/work/_temp/native-rehearsal-assets/rehearsal-20261002-e4bac7ff-remote-cyber-tools-x86_64-apple-darwin.tar.gz",
+        "--repo",
+        "cyberia-to/trisha"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-apple-darwin-binary-draft",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-apple-darwin-binary-draft-tag",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "gh",
+        "release",
+        "upload",
+        "candidate-20260916.1",
+        "/home/runner/work/_temp/native-rehearsal-assets/rehearsal-20261002-e4bac7ff-remote-proof-corpus-x86_64-apple-darwin.tar.gz",
+        "--repo",
+        "cyberia-to/trisha"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-apple-darwin-corpus-draft",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-apple-darwin-corpus-draft-tag",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "gh",
+        "release",
+        "upload",
+        "candidate-20260916.1",
+        "/home/runner/work/_temp/native-rehearsal-assets/rehearsal-20261002-e4bac7ff-remote-x86_64-apple-darwin.zip",
+        "--repo",
+        "cyberia-to/trisha"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-apple-darwin-evidence-draft",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-apple-darwin-evidence-draft-tag",
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    }
+  ],
+  "assets": [
+    {
+      "kind": "binary",
+      "target": "aarch64-unknown-linux-gnu",
+      "asset_id": 604875977,
+      "name": "rehearsal-20261002-e4bac7ff-remote-cyber-tools-aarch64-unknown-linux-gnu.tar.gz",
+      "sha256": "28ee61e3552e0564487c22ec9d96c482b5e68d3e9147570e1bb56310b31dc93e",
+      "bytes": 17449223,
+      "producer_run_id": 36949324686,
+      "producer_artifact_id": 11207645268
+    },
+    {
+      "kind": "corpus",
+      "target": "aarch64-unknown-linux-gnu",
+      "asset_id": 604876029,
+      "name": "rehearsal-20261002-e4bac7ff-remote-proof-corpus-aarch64-unknown-linux-gnu.tar.gz",
+      "sha256": "29dfef086ac20acd00df9322ba8304b76d2dea2f9557f8ca66656ecc6036de84",
+      "bytes": 25179443,
+      "producer_run_id": 36949324686,
+      "producer_artifact_id": 11207645268
+    },
+    {
+      "kind": "evidence",
+      "target": "aarch64-unknown-linux-gnu",
+      "asset_id": 604876085,
+      "name": "rehearsal-20261002-e4bac7ff-remote-aarch64-unknown-linux-gnu.zip",
+      "sha256": "ccc1174519e4c55444b12ba9cd89674eca3479c9f5df1e64a1f3126efd222031",
+      "bytes": 81182616,
+      "producer_run_id": 36949324686,
+      "producer_artifact_id": 11207645268
+    },
+    {
+      "kind": "binary",
+      "target": "aarch64-pc-windows-msvc",
+      "asset_id": 604876271,
+      "name": "rehearsal-20261002-e4bac7ff-remote-cyber-tools-aarch64-pc-windows-msvc.zip",
+      "sha256": "83b2ce616e91eb9d05e83075efd68cb66fcf72816123bfcb12564c484ee4ff67",
+      "bytes": 15712529,
+      "producer_run_id": 36949324686,
+      "producer_artifact_id": 11207109355
+    },
+    {
+      "kind": "corpus",
+      "target": "aarch64-pc-windows-msvc",
+      "asset_id": 604876317,
+      "name": "rehearsal-20261002-e4bac7ff-remote-proof-corpus-aarch64-pc-windows-msvc.tar.gz",
+      "sha256": "fcb344faccadd32d04dedc535c6289397e4a03c54525b1c089ba0b4dfb781b35",
+      "bytes": 25051195,
+      "producer_run_id": 36949324686,
+      "producer_artifact_id": 11207109355
+    },
+    {
+      "kind": "evidence",
+      "target": "aarch64-pc-windows-msvc",
+      "asset_id": 604876372,
+      "name": "rehearsal-20261002-e4bac7ff-remote-aarch64-pc-windows-msvc.zip",
+      "sha256": "510fb6ebc05807dbdb8b9f4da7dffb577986114b5eeb479b2181181fceef6e58",
+      "bytes": 79359650,
+      "producer_run_id": 36949324686,
+      "producer_artifact_id": 11207109355
+    },
+    {
+      "kind": "binary",
+      "target": "x86_64-pc-windows-msvc",
+      "asset_id": 604876575,
+      "name": "rehearsal-20261002-e4bac7ff-remote-cyber-tools-x86_64-pc-windows-msvc.zip",
+      "sha256": "1f399cc1c8f13b7946826f1bdc80ca0e1bdeb59bb5ce6d2847edf572c751bd5d",
+      "bytes": 16531752,
+      "producer_run_id": 36949324686,
+      "producer_artifact_id": 11208420793
+    },
+    {
+      "kind": "corpus",
+      "target": "x86_64-pc-windows-msvc",
+      "asset_id": 604876612,
+      "name": "rehearsal-20261002-e4bac7ff-remote-proof-corpus-x86_64-pc-windows-msvc.tar.gz",
+      "sha256": "ae861a9244cebf15d830fe75fc540289b856e6f1f4d03911d276dba00131fbf6",
+      "bytes": 25119189,
+      "producer_run_id": 36949324686,
+      "producer_artifact_id": 11208420793
+    },
+    {
+      "kind": "evidence",
+      "target": "x86_64-pc-windows-msvc",
+      "asset_id": 604876686,
+      "name": "rehearsal-20261002-e4bac7ff-remote-x86_64-pc-windows-msvc.zip",
+      "sha256": "0a08d54f1125a376f1b6ff6ee42bb9945e6bf1420303be835990c9f4b1ff01dd",
+      "bytes": 80170540,
+      "producer_run_id": 36949324686,
+      "producer_artifact_id": 11208420793
+    },
+    {
+      "kind": "binary",
+      "target": "x86_64-unknown-linux-gnu",
+      "asset_id": 604876898,
+      "name": "rehearsal-20261002-e4bac7ff-remote-cyber-tools-x86_64-unknown-linux-gnu.tar.gz",
+      "sha256": "eb771900d9a1e188e2e74fb0c20e66cca2799a9632548c7f84fa5ed8c52fbe4d",
+      "bytes": 18052268,
+      "producer_run_id": 36949324686,
+      "producer_artifact_id": 11208532313
+    },
+    {
+      "kind": "corpus",
+      "target": "x86_64-unknown-linux-gnu",
+      "asset_id": 604876971,
+      "name": "rehearsal-20261002-e4bac7ff-remote-proof-corpus-x86_64-unknown-linux-gnu.tar.gz",
+      "sha256": "3bf267ec0fc0bf5c4b43ff55e452960efcbeac66f52b19103b478bb23d476b62",
+      "bytes": 25260064,
+      "producer_run_id": 36949324686,
+      "producer_artifact_id": 11208532313
+    },
+    {
+      "kind": "evidence",
+      "target": "x86_64-unknown-linux-gnu",
+      "asset_id": 604877056,
+      "name": "rehearsal-20261002-e4bac7ff-remote-x86_64-unknown-linux-gnu.zip",
+      "sha256": "37902a46c1127614b2738432f7bc92352644ce17eebd3a452d0cdf2f804227ee",
+      "bytes": 82056713,
+      "producer_run_id": 36949324686,
+      "producer_artifact_id": 11208532313
+    },
+    {
+      "kind": "binary",
+      "target": "x86_64-apple-darwin",
+      "asset_id": 604877291,
+      "name": "rehearsal-20261002-e4bac7ff-remote-cyber-tools-x86_64-apple-darwin.tar.gz",
+      "sha256": "558a4ba67a49182e250e1a8a7dfde5cddb68d72061f59dfcbb9b1163d41db290",
+      "bytes": 17478636,
+      "producer_run_id": 36949324686,
+      "producer_artifact_id": 11210078256
+    },
+    {
+      "kind": "corpus",
+      "target": "x86_64-apple-darwin",
+      "asset_id": 604877333,
+      "name": "rehearsal-20261002-e4bac7ff-remote-proof-corpus-x86_64-apple-darwin.tar.gz",
+      "sha256": "6d48c7f2b1d67d1952380387149ac7ea816b0751f133a04c5af5ab2a1743b617",
+      "bytes": 25076116,
+      "producer_run_id": 36949324686,
+      "producer_artifact_id": 11210078256
+    },
+    {
+      "kind": "evidence",
+      "target": "x86_64-apple-darwin",
+      "asset_id": 604877376,
+      "name": "rehearsal-20261002-e4bac7ff-remote-x86_64-apple-darwin.zip",
+      "sha256": "f6fb3d7e21ff723c1af5a3909e823518c48eae7a2a83a4466f2347efd306dc8c",
+      "bytes": 81034111,
+      "producer_run_id": 36949324686,
+      "producer_artifact_id": 11210078256
+    }
+  ],
+  "producer_toolchains": [
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "rustc": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: aarch64-unknown-linux-gnu\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+      "cargo_version_observation": "not separately recorded by the frozen producer"
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "rustc": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: aarch64-pc-windows-msvc\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+      "cargo_version_observation": "not separately recorded by the frozen producer"
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "rustc": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: x86_64-pc-windows-msvc\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+      "cargo_version_observation": "not separately recorded by the frozen producer"
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "rustc": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: x86_64-unknown-linux-gnu\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+      "cargo_version_observation": "not separately recorded by the frozen producer"
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "rustc": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: x86_64-apple-darwin\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+      "cargo_version_observation": "not separately recorded by the frozen producer"
+    }
+  ]
+}
