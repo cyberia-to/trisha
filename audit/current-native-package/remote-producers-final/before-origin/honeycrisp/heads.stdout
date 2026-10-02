@@ -1,0 +1,13 @@
+ff735e6c262926bc9bab7534786a575020cbe442	refs/heads/chore/coordinated-release-20260916
+9d7412627873b3b34023f317f133d64635703d39	refs/heads/feat/tip5
+2bf7949fb802b25cbf69028c1bf90393f0d3b31d	refs/heads/launch/109-tape-take-align-invariant
+a33ee91749bfeff368dde9ae877c2c21c150f21d	refs/heads/launch/117-acpu-sparse-release-assert
+2f5d83cd95858f64b7196e1e0c59bd6be8a643cd	refs/heads/launch/120-chebyshev-release-assert
+4b55cb8ae68b6ca1cf0e534913c2db47f2459e8e	refs/heads/launch/125-acpu-csr-col-bound
+e304d9832441683add757271287b7addb70647da	refs/heads/launch/126-chebyshev-d-inv-sqrt-bound
+52d039e88cc37ba826666f7fd037c314fc58540f	refs/heads/launch/128-gemm-length-invariants
+57045f9bfe710e77cb7a7a41c19a8d1a3cad2221	refs/heads/launch/128-gemm-matvec-release-assert
+904dd33629679b59465963af08101ebb6e54c449	refs/heads/launch/131-field-power-of-two-release
+79aee0e82fe7314df6b136156cef168d709cdb57	refs/heads/launch/137-gemv-amx-length-checks
+71fc088d575957c323e1c5768984780fc374941a	refs/heads/launch/167-aruminium-nonnull-release-assert
+9593c7218e14e2b5b816d9008b45ab60b9580cf3	refs/heads/main

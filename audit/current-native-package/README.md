@@ -3,8 +3,8 @@
 Status: exact source export and independent reproduction passed. The fresh
 Mac ARM package has passed its four CPU suites, installed/package checks,
 133 baseline executions, 47 legacy corpus cases and 27 structured cases.
-Four remote producers have passed; Intel Mac and the new full198 gate remain
-in progress.
+All five remote producers have passed. The new full198 gate remains in
+progress.
 Portable consumption of all six new legacy and structured corpora is pending.
 This distinct branch rehearsal uses source `734df69d...`; the frozen
 `e4bac7ff...` receipts retain their original scope.
@@ -218,3 +218,27 @@ on the other targets. All source-archive/input-selector hashes remain fixed;
 no producer bytes or original receipts changed. The corrected inspector also
 passed the actual local Mac added checks and rejected the same five receipt
 mutations. Its earlier LF-only version remains in `local-package-gates/`.
+
+### All five current remote producers passed
+
+Run 36969168806 completed successfully on all five selected native hosts at
+runner `ecdc4e2ea131c50a860036e34ee7636b91fb8dde`, consuming exact archive
+`734df69d...`. `remote-producers-final/` binds the completed original run,
+all five authenticated artifact inventories, passing independent inspections
+and the final Intel Mac job log. Earlier four original job logs remain in
+`remote-producer-progress/`. Fresh eleven-origin observations preserve source
+reachability before draft transport; the fixed Trisha pin remains an ancestor
+of the advancing `release/0.4` branch.
+
+Read-only inspection of all 24 exact packaged binaries passed.
+`remote-producers-final/linkage/` retains the commands and original compressed
+LLVM/otool output: both Windows targets' actual PE imports satisfy the static
+CRT packaging policy, and both Linux targets' imported glibc versions are at
+most 2.35 on the measured Ubuntu 22.04 hosts. Mach-O deployment commands are
+recorded separately from execution on an older macOS floor. No Windows 11 x64
+or macOS 14 Intel execution qualification is inferred.
+
+The distinct `.github/current-package-assets.json` selector activates the
+reviewed draft transport for five exact binary archives, five legacy corpora,
+five structured corpora and five original authenticated Actions ZIPs. Final
+full198 and six-platform portable consumption remain pending at activation.
