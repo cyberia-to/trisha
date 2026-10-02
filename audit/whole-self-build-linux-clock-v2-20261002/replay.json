@@ -1,0 +1,489 @@
+{
+  "schema": "trident/linux-whole-self-build-positive-replay/v1",
+  "status": "passed-offline-evidence-replay",
+  "run": {
+    "repository": "cyberia-to/trisha",
+    "run_id": "36976540959",
+    "attempt": "1",
+    "head": "142198726fdec26dae87e2f694da2c2252fefb0f"
+  },
+  "generations": [
+    {
+      "generation": 1,
+      "proof": {
+        "bytes": 11977015727,
+        "sha256": "80212be832ce0a5caafa69d9dd346ff20d51ce20fc86892f0c7039492619bbb0"
+      },
+      "compiled": {
+        "bytes": 9691488,
+        "sha256": "76a07c08265bd2ef525164472b6b53ac3f0e6cbbedce3250c4202f40ffba34c8"
+      },
+      "produce_elapsed_ns": 9310972607244,
+      "verify_elapsed_ns": 3546567935994,
+      "produce_peak_rss_bytes": 923697152,
+      "verify_peak_rss_bytes": 488964096,
+      "producer_receipt": {
+        "bytes": 268974,
+        "sha256": "eb3615474adb2d0fdba8f9105bacf5add088af31878afb8f14fb39ccbbdb7fa2"
+      },
+      "verifier_receipt": {
+        "bytes": 307161,
+        "sha256": "ac70b222d3b7f1834e06aefc4ab5694af4f0a296defbdf3e02953ced42992eb1"
+      },
+      "pending": {
+        "schema": "trident/whole-proof-handoff/v2",
+        "run": {
+          "repository": "cyberia-to/trisha",
+          "run_id": "36976540959",
+          "attempt": "1",
+          "head": "142198726fdec26dae87e2f694da2c2252fefb0f"
+        },
+        "generation": 1,
+        "status": "pending-fresh-verification",
+        "manifest": {
+          "bytes": 50338,
+          "sha256": "d76efa27280c62895f611cd0829b0e63b5398dd5fe355e2b012ef4f7af153980"
+        },
+        "asset": {
+          "id": 605309190,
+          "name": "sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.pending.json",
+          "size": 50338,
+          "state": "uploaded",
+          "digest": "sha256:d76efa27280c62895f611cd0829b0e63b5398dd5fe355e2b012ef4f7af153980",
+          "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605309190",
+          "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.pending.json"
+        }
+      },
+      "completion": {
+        "bytes": 41525,
+        "sha256": "0a9cec6d97bc4905af97441412aaef1c2b6bccb2846002f962388e9b3b03efc4",
+        "asset": {
+          "id": 605431011,
+          "name": "sh8v2-36976540959-1-142198726fde-c1-verified-80212be832ce.completion.json",
+          "size": 41525,
+          "state": "uploaded",
+          "digest": "sha256:0a9cec6d97bc4905af97441412aaef1c2b6bccb2846002f962388e9b3b03efc4",
+          "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605431011",
+          "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c1-verified-80212be832ce.completion.json"
+        }
+      },
+      "parts": [
+        {
+          "sequence": 0,
+          "offset": 0,
+          "bytes": 1073741824,
+          "sha256": "a25658bf4617c637e3cb692f4fafc32b933d6fa848775cc7cbb123ea66aba96f",
+          "asset": {
+            "id": 605284604,
+            "name": "sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0000",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:a25658bf4617c637e3cb692f4fafc32b933d6fa848775cc7cbb123ea66aba96f",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605284604",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0000"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 1,
+          "offset": 1073741824,
+          "bytes": 1073741824,
+          "sha256": "a3f7e581689d4a92c7ca87d8a371354aef418dfc5d4552e28b919fa989282976",
+          "asset": {
+            "id": 605286396,
+            "name": "sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0001",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:a3f7e581689d4a92c7ca87d8a371354aef418dfc5d4552e28b919fa989282976",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605286396",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0001"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 2,
+          "offset": 2147483648,
+          "bytes": 1073741824,
+          "sha256": "76bafbad4a4a4fa0ebd57457cbebe0e7841cf36f2429dc3e4f78966e9b6e2ad7",
+          "asset": {
+            "id": 605288387,
+            "name": "sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0002",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:76bafbad4a4a4fa0ebd57457cbebe0e7841cf36f2429dc3e4f78966e9b6e2ad7",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605288387",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0002"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 3,
+          "offset": 3221225472,
+          "bytes": 1073741824,
+          "sha256": "564eaa7e958e075c3069e25064e300f1ae4536fda888a9bb5c04a094747c81bb",
+          "asset": {
+            "id": 605290360,
+            "name": "sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0003",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:564eaa7e958e075c3069e25064e300f1ae4536fda888a9bb5c04a094747c81bb",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605290360",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0003"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 4,
+          "offset": 4294967296,
+          "bytes": 1073741824,
+          "sha256": "635d80489a550c299ebb193687f88320169756b145738f2fe569814498c7dcdc",
+          "asset": {
+            "id": 605292863,
+            "name": "sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0004",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:635d80489a550c299ebb193687f88320169756b145738f2fe569814498c7dcdc",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605292863",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0004"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 5,
+          "offset": 5368709120,
+          "bytes": 1073741824,
+          "sha256": "737bb4cf9888dd5b43d3c1797a38afa96a371a91a6605a3a86a0b669cad76201",
+          "asset": {
+            "id": 605295713,
+            "name": "sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0005",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:737bb4cf9888dd5b43d3c1797a38afa96a371a91a6605a3a86a0b669cad76201",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605295713",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0005"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 6,
+          "offset": 6442450944,
+          "bytes": 1073741824,
+          "sha256": "9fd9f0f7a138a5facb4dfab97e6ae70f19d26622b6db9c01be961c78e6ba7d84",
+          "asset": {
+            "id": 605298015,
+            "name": "sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0006",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:9fd9f0f7a138a5facb4dfab97e6ae70f19d26622b6db9c01be961c78e6ba7d84",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605298015",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0006"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 7,
+          "offset": 7516192768,
+          "bytes": 1073741824,
+          "sha256": "60474bbe0b4b64f256c8dbdaa4aec0adfcc13f6a834d8535164a7feea56f0eb3",
+          "asset": {
+            "id": 605299940,
+            "name": "sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0007",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:60474bbe0b4b64f256c8dbdaa4aec0adfcc13f6a834d8535164a7feea56f0eb3",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605299940",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0007"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 8,
+          "offset": 8589934592,
+          "bytes": 1073741824,
+          "sha256": "d6e2dc96e6ac798c034afb2b252e662181ea5c9e8902eabe79fa664894f5f6e1",
+          "asset": {
+            "id": 605301790,
+            "name": "sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0008",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:d6e2dc96e6ac798c034afb2b252e662181ea5c9e8902eabe79fa664894f5f6e1",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605301790",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0008"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 9,
+          "offset": 9663676416,
+          "bytes": 1073741824,
+          "sha256": "bfa656caa4788e54e728b3eed51496045f02621d8c7ecc3a2018ff4f45bf46f0",
+          "asset": {
+            "id": 605304063,
+            "name": "sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0009",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:bfa656caa4788e54e728b3eed51496045f02621d8c7ecc3a2018ff4f45bf46f0",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605304063",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0009"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 10,
+          "offset": 10737418240,
+          "bytes": 1073741824,
+          "sha256": "ef2843a95c303ec7a4171ede43d6ce977331e900ce4868e8613656c8e5c824f0",
+          "asset": {
+            "id": 605305872,
+            "name": "sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0010",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:ef2843a95c303ec7a4171ede43d6ce977331e900ce4868e8613656c8e5c824f0",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605305872",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0010"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 11,
+          "offset": 11811160064,
+          "bytes": 165855663,
+          "sha256": "42c6a1d8f5d03f86fb58b46a69848d81872a3932de4a37f23509017cf0b1bceb",
+          "asset": {
+            "id": 605308280,
+            "name": "sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0011",
+            "size": 165855663,
+            "state": "uploaded",
+            "digest": "sha256:42c6a1d8f5d03f86fb58b46a69848d81872a3932de4a37f23509017cf0b1bceb",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605308280",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c1-pending-80212be832ce.part0011"
+          },
+          "downloaded_verified": true
+        }
+      ]
+    },
+    {
+      "generation": 2,
+      "proof": {
+        "bytes": 10569174820,
+        "sha256": "4db898cbc5133e0b96c758507d32b62aa82c4f39271cedd949b96d641a67de86"
+      },
+      "compiled": {
+        "bytes": 9691488,
+        "sha256": "76a07c08265bd2ef525164472b6b53ac3f0e6cbbedce3250c4202f40ffba34c8"
+      },
+      "produce_elapsed_ns": 10772054548568,
+      "verify_elapsed_ns": 3022060720632,
+      "produce_peak_rss_bytes": 925097984,
+      "verify_peak_rss_bytes": 489021440,
+      "producer_receipt": {
+        "bytes": 268981,
+        "sha256": "2009cd903745508e3da4fcfe7b482e614664075b960279496d1ed2029e26c4b9"
+      },
+      "verifier_receipt": {
+        "bytes": 307157,
+        "sha256": "db8d80179c7499c2a1a3bc61d8a288164a34b4b70d2442eccd47f3deca646162"
+      },
+      "pending": {
+        "schema": "trident/whole-proof-handoff/v2",
+        "run": {
+          "repository": "cyberia-to/trisha",
+          "run_id": "36976540959",
+          "attempt": "1",
+          "head": "142198726fdec26dae87e2f694da2c2252fefb0f"
+        },
+        "generation": 2,
+        "status": "pending-fresh-verification",
+        "manifest": {
+          "bytes": 48796,
+          "sha256": "b4a6a43f1b1e7d103847ce137ce5ebe0b09ee141635a9b07a7cfeea51a135bd7"
+        },
+        "asset": {
+          "id": 605339811,
+          "name": "sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.pending.json",
+          "size": 48796,
+          "state": "uploaded",
+          "digest": "sha256:b4a6a43f1b1e7d103847ce137ce5ebe0b09ee141635a9b07a7cfeea51a135bd7",
+          "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605339811",
+          "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.pending.json"
+        }
+      },
+      "completion": {
+        "bytes": 41524,
+        "sha256": "33b45597a09d5e88bf1d879173e6886ad190683cc555c62b098fd06487276fa0",
+        "asset": {
+          "id": 605444212,
+          "name": "sh8v2-36976540959-1-142198726fde-c2-verified-4db898cbc513.completion.json",
+          "size": 41524,
+          "state": "uploaded",
+          "digest": "sha256:33b45597a09d5e88bf1d879173e6886ad190683cc555c62b098fd06487276fa0",
+          "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605444212",
+          "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c2-verified-4db898cbc513.completion.json"
+        }
+      },
+      "parts": [
+        {
+          "sequence": 0,
+          "offset": 0,
+          "bytes": 1073741824,
+          "sha256": "22533f2cff1e9b38f1a337d81ee9fb7994ecc1be5f78e20e6533b2ef250abbc8",
+          "asset": {
+            "id": 605324564,
+            "name": "sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0000",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:22533f2cff1e9b38f1a337d81ee9fb7994ecc1be5f78e20e6533b2ef250abbc8",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605324564",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0000"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 1,
+          "offset": 1073741824,
+          "bytes": 1073741824,
+          "sha256": "c417b0ed2e76820117fae74c6e2cbd76ddce1d329fb16249278c6662b5c1cc8f",
+          "asset": {
+            "id": 605326269,
+            "name": "sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0001",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:c417b0ed2e76820117fae74c6e2cbd76ddce1d329fb16249278c6662b5c1cc8f",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605326269",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0001"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 2,
+          "offset": 2147483648,
+          "bytes": 1073741824,
+          "sha256": "685b27be538cffb732a4ea95ab4b5e6676e98633de92db4ba949638d9d8a9c61",
+          "asset": {
+            "id": 605327537,
+            "name": "sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0002",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:685b27be538cffb732a4ea95ab4b5e6676e98633de92db4ba949638d9d8a9c61",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605327537",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0002"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 3,
+          "offset": 3221225472,
+          "bytes": 1073741824,
+          "sha256": "3d05ec7c39fffe7ab07154dd3a150b7eaec08a9e095c44ffef0c061e275e508e",
+          "asset": {
+            "id": 605328808,
+            "name": "sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0003",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:3d05ec7c39fffe7ab07154dd3a150b7eaec08a9e095c44ffef0c061e275e508e",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605328808",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0003"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 4,
+          "offset": 4294967296,
+          "bytes": 1073741824,
+          "sha256": "54a87984cf1383bc8b4644fa68ba94d02b304fc59658399439b3de0de5a59aa0",
+          "asset": {
+            "id": 605330351,
+            "name": "sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0004",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:54a87984cf1383bc8b4644fa68ba94d02b304fc59658399439b3de0de5a59aa0",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605330351",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0004"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 5,
+          "offset": 5368709120,
+          "bytes": 1073741824,
+          "sha256": "82dbd842585e439df0fb1ee4bd2d29864176d0b05dcfd133a2ce50f633d315d7",
+          "asset": {
+            "id": 605331656,
+            "name": "sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0005",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:82dbd842585e439df0fb1ee4bd2d29864176d0b05dcfd133a2ce50f633d315d7",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605331656",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0005"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 6,
+          "offset": 6442450944,
+          "bytes": 1073741824,
+          "sha256": "0dffd968d36e5d01ef50e90209368977d6d648767bd9dfa21c6b1563c6245681",
+          "asset": {
+            "id": 605333169,
+            "name": "sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0006",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:0dffd968d36e5d01ef50e90209368977d6d648767bd9dfa21c6b1563c6245681",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605333169",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0006"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 7,
+          "offset": 7516192768,
+          "bytes": 1073741824,
+          "sha256": "b9007d44edcfbbc5113eb199ac80aa8979a8e5e8e3c93624e0f639fa424c2380",
+          "asset": {
+            "id": 605334643,
+            "name": "sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0007",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:b9007d44edcfbbc5113eb199ac80aa8979a8e5e8e3c93624e0f639fa424c2380",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605334643",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0007"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 8,
+          "offset": 8589934592,
+          "bytes": 1073741824,
+          "sha256": "ea7552d1ba17da3ba4643b85553411e5a070a8de7fa3b56bc0269f6c2f1f28e5",
+          "asset": {
+            "id": 605336330,
+            "name": "sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0008",
+            "size": 1073741824,
+            "state": "uploaded",
+            "digest": "sha256:ea7552d1ba17da3ba4643b85553411e5a070a8de7fa3b56bc0269f6c2f1f28e5",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605336330",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0008"
+          },
+          "downloaded_verified": true
+        },
+        {
+          "sequence": 9,
+          "offset": 9663676416,
+          "bytes": 905498404,
+          "sha256": "0b4f2fa0bdcad46967df94360371029207fc3861e2e96b09757971df1fb76500",
+          "asset": {
+            "id": 605337563,
+            "name": "sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0009",
+            "size": 905498404,
+            "state": "uploaded",
+            "digest": "sha256:0b4f2fa0bdcad46967df94360371029207fc3861e2e96b09757971df1fb76500",
+            "url": "https://api.github.com/repos/cyberia-to/trisha/releases/assets/605337563",
+            "browser_download_url": "https://github.com/cyberia-to/trisha/releases/download/untagged-175a500089154bd1773f/sh8v2-36976540959-1-142198726fde-c2-pending-4db898cbc513.part0009"
+          },
+          "downloaded_verified": true
+        }
+      ]
+    }
+  ],
+  "scope": "Original remote positive runs and original transport evidence only; complete local download/adoption and composite SH8 acceptance are separate."
+}

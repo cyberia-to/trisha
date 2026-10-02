@@ -1,0 +1,111 @@
+{
+  "schema": "trident/linux-v2-audit-local-validation/v1",
+  "status": "passed",
+  "base_head": "142198726fdec26dae87e2f694da2c2252fefb0f",
+  "python": {
+    "path": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "version": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "bytes": 52448,
+    "sha256": "2477b47fa3ae65b9574eb18a15edb364e96948eaa1875ad3f1c80d780efc9c12"
+  },
+  "actionlint": {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/native-proof-ci/actionlint-1.7.12/actionlint",
+    "bytes": 5829842,
+    "sha256": "8db11704dc296f096216db4db65d86cd7f0ebfdf4c38453a1da276b137b88388"
+  },
+  "input_archive": {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-input-export/sh8-frozen-full-inputs-20261002.tar.gz",
+    "bytes": 16637580,
+    "sha256": "7929925282e338a2f761510167575bfe4494c2713ac6fb9182fe59ef6223b9b8"
+  },
+  "commands": [
+    {
+      "name": "v2-tests",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_whole_v2.py"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "environment_changes": {},
+      "started_ns": 1790941022463806000,
+      "exit_code": 0,
+      "ended_ns": 1790941022749992000,
+      "logs": {
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "bytes": 115,
+          "sha256": "67e90191ffa84c338839de42e7b9332190599a7ed0398c89abe6276436770a3e"
+        }
+      }
+    },
+    {
+      "name": "original-tests",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_whole_self_build.py"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "environment_changes": {
+        "WHOLE_SELF_INPUT_ARCHIVE": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-input-export/sh8-frozen-full-inputs-20261002.tar.gz"
+      },
+      "started_ns": 1790941022750290000,
+      "exit_code": 0,
+      "ended_ns": 1790941022997499000,
+      "logs": {
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "bytes": 109,
+          "sha256": "03c05bc1d1c99f20c730df3a3de1fab4383d595932c0ad7f3405c29dbc92bfd4"
+        }
+      }
+    },
+    {
+      "name": "actionlint",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/native-proof-ci/actionlint-1.7.12/actionlint",
+        ".github/workflows/whole-self-build.yml",
+        ".github/workflows/whole-self-build-v2.yml",
+        ".github/workflows/whole-self-build-v2-generation.yml"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "environment_changes": {},
+      "started_ns": 1790941022997860000,
+      "exit_code": 0,
+      "ended_ns": 1790941023013155000,
+      "logs": {
+        "stdout": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ]
+}

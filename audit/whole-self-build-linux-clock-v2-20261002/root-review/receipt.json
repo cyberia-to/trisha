@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "-B",
+    "-W",
+    "error",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha/audit/whole-self-build-linux-clock-v2-20261002/check.py"
+  ],
+  "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+  "revision": "142198726fdec26dae87e2f694da2c2252fefb0f",
+  "checker_sha256": "e553d9802d18b7c3b2622bab866da0f90ea5b983358fb26357ae48fc006b07ee",
+  "manifest_sha256": "9cb08f2ca1997f26b9a9983f58db1991339c6a71ee226864e8fcd552edb10d67",
+  "exit_code": 0,
+  "elapsed_seconds": 1.5159907919587567,
+  "outputs": {
+    "stdout": {
+      "bytes": 23987,
+      "sha256": "d82ad0e3518ad0a45bc59c5f8f432f5c11b2fbccc4401300f7bd26b80d741e8b"
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

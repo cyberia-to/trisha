@@ -1,0 +1,46 @@
+{
+  "status": "passed",
+  "scope": "Root final offline review/tests only; no network, original proof scan, acceptance or adoption executed",
+  "sources": {
+    "bytes": 2192,
+    "sha256": "a9be736fee399466967e56c7d077faf978b1f1c131b235a226cc74101b2d5305"
+  },
+  "peer_review": {
+    "bytes": 9500,
+    "sha256": "ac75f6e0112c7907faf1158f123fabe62fce4ed43bcc0aa70d51916acd8feac6"
+  },
+  "command": [
+    "python3",
+    "-B",
+    "-W",
+    "error",
+    "-m",
+    "unittest",
+    "-v",
+    "test_adoption"
+  ],
+  "exit_code": 0,
+  "started": "2026-10-02T09:25:54.542797+00:00",
+  "ended": "2026-10-02T09:26:09.632935+00:00",
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "bytes": 3060,
+    "sha256": "8faa5e2036741b94cec9774e8af12ac0366830badbdfb0d159d1cb1dafe564d8"
+  },
+  "reviewed_fixes": [
+    "full local proof scan after readback before publication",
+    "owned process-group cleanup after leader exit",
+    "bounded emergency terminal failure persistence",
+    "ownership established before racy process-group probe"
+  ],
+  "execution_preconditions": [
+    "Actual whole Linux v2 run36976540959 attempt1 head142198726fdec26dae87e2f694da2c2252fefb0f succeeds in full",
+    "All original six artifact archives/four job receipts authenticated",
+    "Both full certificate and all22 part identities equal independently prepared local originals",
+    "Fresh disk and sidecar admission; frozen source/review maps match"
+  ],
+  "decision": "Implementation reviewed; actual execution remains contingent on observed successful remote prerequisite, no automatic retry or cap change"
+}
