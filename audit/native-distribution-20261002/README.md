@@ -98,3 +98,16 @@ architecture, and rejects any candidate whose recorded compiler differs.
 Remote asset acceptance now rejects the same mismatch from actual candidate
 metadata. The frozen remote bootstrap does not separately record Cargo's
 version; transport receipts preserve that observation limit explicitly.
+
+The dormant `native-rehearsal-macos-floor.yml` adds a separate, free macOS 14
+ARM consumer after all six exact producer assets exist. Its selector hash is
+pinned, and it requires actual Darwin 14 / ARM64 before running the archived
+verification phase. It inspects the host/tool versions, records commands and
+sampled process-group RSS, and bounds the consumer to 5 GiB and 30 minutes.
+Only installed-kit smoke and the six existing proof corpora run; no compiler
+build or new proof generation is selected. This supplements the six producer
+lanes and does not close Intel macOS 14 or Windows 11 x64 execution gaps.
+The [current standard runner table](https://docs.github.com/en/actions/reference/runners/github-hosted-runners)
+lists 7 GB for `macos-14` ARM; GitHub's
+[retirement notice](https://github.com/actions/runner-images/issues/13518)
+sets November 2, 2026 as the image retirement date. No paid runner is selected.

@@ -1,0 +1,17 @@
+{
+  "scope": "Negative host-guard check on actual macOS 26 ARM; no macOS 14 execution claimed",
+  "command": [
+    "python3",
+    "-B",
+    "-W",
+    "error",
+    "scripts/native-rehearsal-macos-floor.py"
+  ],
+  "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/trisha-native-ci",
+  "expected_exit_code": 1,
+  "exit_code": 1,
+  "driver_sha256": "2dd5278a826f74d1a2f3272823f1ee08ae56918b57f43402006ccbe9d3be5710",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "a476ce79046e6d094d7aed1323df9e8eae175641fa884649b6ef643014c646a6",
+  "all_checks_passed": true
+}
