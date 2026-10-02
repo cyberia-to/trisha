@@ -1,0 +1,53 @@
+{
+  "schema": "whole-self-build-linux-failure-replay-v1",
+  "status": "passed-integrity-replay",
+  "execution_result": "both-original-Linux-producers-failed",
+  "run": 36961998100,
+  "source": "5d14ae46f327a7f0ee1f9812b4ba62b73cf035bc",
+  "archive_count": 3,
+  "retained_archive_files": 610,
+  "source_repositories": 12,
+  "source_file_entries": 14495,
+  "complete_proofs": 0,
+  "fresh_verifications": 0,
+  "generations": [
+    {
+      "generation": 1,
+      "result": "failed-internal-7200-second-deadline",
+      "prove_elapsed_ns": 7200797057950,
+      "sampled_peak_rss_bytes": 922411008,
+      "samples": 7133,
+      "maximum_sampled_attempt_bytes": 6522480951,
+      "maximum_sample_elapsed_ns": 7199171062273,
+      "final_attempt_bytes": 0,
+      "minimum_sampled_free_bytes": 114790010880,
+      "native_build_elapsed_ns": 89655317240,
+      "bootstrap_to_prove_ns": 200944366594,
+      "binary": {
+        "path": "/home/runner/work/_temp/whole-self-build-c1/target/release/joy",
+        "bytes": 6641176,
+        "sha256": "87787c947c424e8f6010206cf0dba77825517febb3a92c62cad1b95e94bd296a"
+      },
+      "preparation_commands": 145
+    },
+    {
+      "generation": 2,
+      "result": "failed-internal-7200-second-deadline",
+      "prove_elapsed_ns": 7200774966007,
+      "sampled_peak_rss_bytes": 924831744,
+      "samples": 7133,
+      "maximum_sampled_attempt_bytes": 6373646574,
+      "maximum_sample_elapsed_ns": 7199400465589,
+      "final_attempt_bytes": 0,
+      "minimum_sampled_free_bytes": 114940366848,
+      "native_build_elapsed_ns": 91058296171,
+      "bootstrap_to_prove_ns": 197282004658,
+      "binary": {
+        "path": "/home/runner/work/_temp/whole-self-build-c2/target/release/joy",
+        "bytes": 6645288,
+        "sha256": "12943c14cf05cf23d9368c1f71042ce6467f83456a79eea4ec533506e0a1991b"
+      },
+      "preparation_commands": 145
+    }
+  ]
+}

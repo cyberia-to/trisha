@@ -1,0 +1,158 @@
+{
+  "schema": "whole-self-build-local-checks-v1",
+  "base_commit": "714d114087a49e7ea8ee2461e3f1f108ecfc9838",
+  "scope": "Paginated fixed-release asset membership, uploaded asset API identity and ordered download reconstruction; no remote operation or full proof",
+  "python": {
+    "path": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "version": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "bytes": 52448,
+    "sha256": "2477b47fa3ae65b9574eb18a15edb364e96948eaa1875ad3f1c80d780efc9c12"
+  },
+  "actionlint": {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/native-proof-ci/actionlint-1.7.12/actionlint",
+    "bytes": 5829842,
+    "sha256": "8db11704dc296f096216db4db65d86cd7f0ebfdf4c38453a1da276b137b88388"
+  },
+  "input_archive": {
+    "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-input-export/sh8-frozen-full-inputs-20261002.tar.gz",
+    "bytes": 16637580,
+    "sha256": "7929925282e338a2f761510167575bfe4494c2713ac6fb9182fe59ef6223b9b8"
+  },
+  "commands": [
+    {
+      "name": "tests",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "scripts/test_whole_self_build.py"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "started_ns": 1790912967494312000,
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 109,
+        "sha256": "96599c11183c6db88853341df4da55d342f01508101177c47094bad099ecd679"
+      }
+    },
+    {
+      "name": "actionlint",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/native-proof-ci/actionlint-1.7.12/actionlint",
+        ".github/workflows/whole-self-build.yml"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "started_ns": 1790912967721707000,
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "started_ns": 1790912967726396000,
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "gh-pagination-help",
+      "command": [
+        "gh",
+        "api",
+        "--help"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "started_ns": 1790912967738206000,
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 7651,
+        "sha256": "2ce9ad6c5b2a84d2c807223986b2c55679606410fac805cf3d76b8de6e2cd272"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "earlier_probe": "Ten tests passed with one compact-archive test skipped until explicit archive selection; actionlint and diff check passed.",
+  "ast_parsed": [
+    "scripts/native_proof_inputs.py",
+    "scripts/test_whole_self_build.py",
+    "scripts/whole-self-build.py",
+    "scripts/whole-self-retain.py",
+    "scripts/whole_self_host.py",
+    "scripts/whole_self_inputs.py"
+  ],
+  "sources": {
+    "scripts/native_proof_inputs.py": {
+      "bytes": 7395,
+      "sha256": "081cb35ba78abda71b1c86f6755dbb635672ca090dddbd0a1ff176959d58653b"
+    },
+    "scripts/test_whole_self_build.py": {
+      "bytes": 10471,
+      "sha256": "5daf9fc0fceef39fd51837a7da2dc8a13b71932b0ed24b1d54ac45b0cd6fa454"
+    },
+    "scripts/whole-self-build.py": {
+      "bytes": 10634,
+      "sha256": "6b18fce8f0d2be2f581d4f8b0a9fa54ed807e57865b47a14ff46dac89ee45c74"
+    },
+    "scripts/whole-self-retain.py": {
+      "bytes": 11497,
+      "sha256": "a5c91378403b182de2cf528d07b937ae8a134b15c9d7feaed23f889e9ec8387f"
+    },
+    "scripts/whole_self_host.py": {
+      "bytes": 6813,
+      "sha256": "a640e80649f46a2ff4c369423738f73eb563d99a1dd2daebc66d7b2175f29466"
+    },
+    "scripts/whole_self_inputs.py": {
+      "bytes": 8053,
+      "sha256": "066c1f68031432a83174c52503710eafc0d4f04654b714882336b8d5fa445779"
+    },
+    ".github/whole-self-build-activation.json": {
+      "bytes": 181,
+      "sha256": "3ab5c42e29b33f0f2cbf6e507af0326a09787df75992988ac8d0de0f27d064e2"
+    },
+    ".github/whole-self-build-input.json": {
+      "bytes": 423,
+      "sha256": "41a1dc48cb46984229b764d7147168173fededf1eaecf5d8abda40bcbfb1a308"
+    },
+    ".github/whole-self-build-sources.json": {
+      "bytes": 775,
+      "sha256": "a5a6df5b5b858ea09b91921961656dc559937092b91c0570a1fd172db6a2fed6"
+    },
+    ".github/workflows/whole-self-build.yml": {
+      "bytes": 2404,
+      "sha256": "8f11fa414f2adee08bc9918ecbc2d0f0c565e29aecf1ba4fa2f025ed75506b98"
+    },
+    "docs/reference/whole-self-build-ci.md": {
+      "bytes": 5892,
+      "sha256": "60ad27714ea0ed0f661153aef64eeedbf5825b5a1012154321fd4693dd9ad5c0"
+    },
+    ".claude/plans/whole-self-build-ci.md": {
+      "bytes": 4185,
+      "sha256": "669fa986908dd0d798981ca1739503cd79c5f08bc846161d2cf288beef921d86"
+    }
+  },
+  "status": "passed"
+}

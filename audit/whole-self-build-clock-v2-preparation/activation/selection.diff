@@ -1,0 +1,21 @@
+--- reviewed-disabled/.github/whole-v2-profile.json
++++ activation/.github/whole-v2-profile.json
+@@ -1,6 +1,6 @@
+ {
+   "format": "native-whole-self-build-clock-v2",
+-  "enabled": false,
++  "enabled": true,
+   "producer_time_ms": 14400000,
+   "producer_outer_seconds": 14700,
+   "verifier_time_ms": 7200000,
+--- reviewed-disabled/.github/whole-v2-activation.json
++++ activation/.github/whole-v2-activation.json
+@@ -2,6 +2,6 @@
+   "format": "whole-proof-clock-v2-activation",
+   "repository": "cyberia-to/trisha",
+   "branch": "test/0.4-whole-self-build-ci",
+-  "push_authorized": false,
+-  "pending_transport_authorized": false
++  "push_authorized": true,
++  "pending_transport_authorized": true
+ }

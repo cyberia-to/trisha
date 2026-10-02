@@ -1,0 +1,80 @@
+{
+  "schema": "trisha/whole-self-build-ci-final-checks/v1",
+  "scope": "Preparation and orchestration checks only; no remote execution or publication",
+  "python": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "python_executable": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+  "input_archive": {
+    "bytes": 16637580,
+    "sha256": "7929925282e338a2f761510167575bfe4494c2713ac6fb9182fe59ef6223b9b8"
+  },
+  "actionlint": {
+    "bytes": 5829842,
+    "sha256": "8db11704dc296f096216db4db65d86cd7f0ebfdf4c38453a1da276b137b88388"
+  },
+  "commands": [
+    {
+      "name": "unit-tests",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "scripts/test_whole_self_build.py"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 104,
+        "sha256": "32e999e8a8911b162fadcfe6ff8f641569479909d478e2e71ce1614ba6b5abff"
+      }
+    },
+    {
+      "name": "actionlint",
+      "argv": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/native-proof-ci/actionlint-1.7.12/actionlint",
+        ".github/workflows/whole-self-build.yml"
+      ],
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "parsed_sources": {
+    "scripts/whole-self-retain.py": {
+      "bytes": 9111,
+      "sha256": "3a00b605d07065e091544fe14bf9e4a41e4858905439b79005a8d1d705b82315"
+    },
+    "scripts/whole_self_inputs.py": {
+      "bytes": 6219,
+      "sha256": "25df270d0d66cb88f69a29639deb4beacefeffc69ded4985486922085cf9d616"
+    },
+    "scripts/whole-self-build.py": {
+      "bytes": 10851,
+      "sha256": "11928e79e4ae97bb9c6b933af3e55437d9e3608a6c2b60bacf2fd809d473dbb6"
+    },
+    "scripts/whole_self_host.py": {
+      "bytes": 6813,
+      "sha256": "a640e80649f46a2ff4c369423738f73eb563d99a1dd2daebc66d7b2175f29466"
+    },
+    "scripts/test_whole_self_build.py": {
+      "bytes": 5324,
+      "sha256": "0f7e0dc72e0aead4d5157bceb73278c2acf14b55393fed8b3103edc5763ea8de"
+    },
+    "scripts/native_proof_inputs.py": {
+      "bytes": 7395,
+      "sha256": "081cb35ba78abda71b1c86f6755dbb635672ca090dddbd0a1ff176959d58653b"
+    }
+  },
+  "workflow": {
+    "bytes": 2098,
+    "sha256": "b751ece836bce2dacca23fed5ca169a0dfa02e57243c6369eeb962d4b742cd6c"
+  },
+  "status": "passed"
+}

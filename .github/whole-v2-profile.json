@@ -1,0 +1,8 @@
+{
+  "format": "native-whole-self-build-clock-v2",
+  "enabled": true,
+  "producer_time_ms": 14400000,
+  "producer_outer_seconds": 14700,
+  "verifier_time_ms": 7200000,
+  "verifier_outer_seconds": 7500
+}

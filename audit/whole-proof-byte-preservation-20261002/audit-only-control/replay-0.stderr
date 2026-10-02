@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout/audit/whole-self-build-linux-20261002/check.py", line 186, in <module>
+    print(json.dumps(main(), indent=2))
+                     ~~~~^^
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout/audit/whole-self-build-linux-20261002/check.py", line 113, in main
+    same((REPO / name).read_bytes(), expected)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout/audit/whole-self-build-linux-20261002/check.py", line 36, in same
+    require(identity(data) == {k: expected[k] for k in ('bytes', 'sha256')}, 'byte identity')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout/audit/whole-self-build-linux-20261002/check.py", line 16, in require
+    raise ValueError(reason)
+ValueError: byte identity

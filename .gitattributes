@@ -38,3 +38,26 @@
 /audit/native-distribution-20261002/producers/x86_64-pc-windows-msvc/job.log -text -whitespace
 /audit/native-distribution-20261002/producers/x86_64-pc-windows-msvc/local-corpus-verification.json -text -whitespace
 /audit/native-distribution-20261002/producers/x86_64-pc-windows-msvc/source-verification.json -text -whitespace
+# Exact measured bootstrap bytes used by the complete compiler-proof audits.
+# Scope is these paths only; other repository text keeps its existing policy.
+/.claude/plans/whole-self-build-clock-v2.md -text
+/.github/whole-self-build-activation.json -text
+/.github/whole-self-build-input.json -text
+/.github/whole-self-build-sources.json -text
+/.github/whole-v2-activation.json -text
+/.github/whole-v2-profile.json -text
+/.github/whole-v2-sources.json -text
+/.github/workflows/whole-self-build-v2-generation.yml -text
+/.github/workflows/whole-self-build-v2.yml -text
+/.github/workflows/whole-self-build.yml -text
+/docs/reference/whole-self-build-clock-v2.md -text
+/scripts/native_proof_inputs.py -text
+/scripts/test_whole_self_build.py -text
+/scripts/test_whole_v2.py -text
+/scripts/whole-self-build.py -text
+/scripts/whole-self-retain.py -text
+/scripts/whole-v2.py -text
+/scripts/whole_self_host.py -text
+/scripts/whole_self_inputs.py -text
+/scripts/whole_v2_common.py -text
+/scripts/whole_v2_transport.py -text

@@ -1,0 +1,12 @@
+{
+  "format": "whole-self-build-input-v1",
+  "repository": "cyberia-to/trisha",
+  "release_id": 389977897,
+  "asset_id": 604704433,
+  "name": "sh8-frozen-full-inputs-20261002.tar.gz",
+  "bytes": 16637580,
+  "sha256": "7929925282e338a2f761510167575bfe4494c2713ac6fb9182fe59ef6223b9b8",
+  "manifest_sha256": "ac76da93cf873e3bdf3f309e593b6e4b5173f13acf50a6ec19887adea7f11e09",
+  "root": "whole-proof-inputs",
+  "files": 111
+}
