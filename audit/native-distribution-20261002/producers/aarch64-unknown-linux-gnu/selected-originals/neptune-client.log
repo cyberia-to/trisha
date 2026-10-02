@@ -1,0 +1,8 @@
+    Finished `release` profile [optimized] target(s) in 0.25s
+     Running tests/deploy_transaction.rs (candidate/build/trisha/release/deps/deploy_transaction-2e2a69b9e8b75e88)
+
+running 1 test
+test genuine_transaction_prepare_and_mock_gateway_process ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.31s
+

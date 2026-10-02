@@ -1,0 +1,13 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-W",
+    "error",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/check-current-corpus-matrix.py",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-corpus-matrix/selection.json",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-corpus-matrix/receipt.json"
+  ],
+  "exit_code": 0,
+  "driver_sha256": "cd4a7b31b3abd6ee57605587cea99cbbd90676d27d39d4cbfac2852fb95ebb1f"
+}

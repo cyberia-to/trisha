@@ -1,0 +1,13 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-W",
+    "error",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/inspect-native-producer.py",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/native-runs/36949324686/11207109355",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/native-runs/36949324686/11207109355/inspection.json"
+  ],
+  "scope": "Read-only original ZIP and retained receipts inspection; no re-execution of proofs",
+  "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution"
+}

@@ -1,0 +1,211 @@
+{
+  "scope": "Current 734df69d feature-branch rehearsal transport; no official release candidate, tag or publication",
+  "status": "passed",
+  "started": "2026-10-02T05:44:37.955406+00:00",
+  "target": "aarch64-apple-darwin",
+  "source_sha256": "734df69dc7d43467fc9ae574c7cf7b25eb9b4ec9bc08e9ca3f96b9500131f42e",
+  "provenance_sha256": "3c6f2ced084812e73f97c069169f83807fc5d389e54b581dd52f10982cd5b227",
+  "kit_sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd",
+  "producer_directory": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189",
+  "producer_driver_at_upload": {
+    "schema": "local/native-distribution-macos/v1",
+    "scope": "Actual native Mac ARM feature-branch rehearsal; no default-branch release/tag/publication",
+    "started": "2026-10-02T05:29:36.760670+00:00",
+    "status": "running",
+    "bootstrap_revision": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+    "bootstrap": {
+      "bytes": 23066,
+      "sha256": "2ad6047e170feae6dcb39adf2d9d1a4ac2f981b2f31c44af93570e140554dbcd"
+    },
+    "selector": {
+      "scope": "Current production-code native package feature-branch rehearsal; exact source and selector identities required; no default-branch release/tag/publication",
+      "phase": "build",
+      "full_baselines": true,
+      "asset_id": 604879597,
+      "source_sha256": "734df69dc7d43467fc9ae574c7cf7b25eb9b4ec9bc08e9ca3f96b9500131f42e",
+      "selfhost_kit": {
+        "asset_id": 604463150,
+        "sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd"
+      },
+      "neptune_intent": {
+        "asset_id": 568147730,
+        "sha256": "404ba33e683103e9cceaa7c21fcd6443401f8ba4216b8e77230ed34b24e249d0"
+      },
+      "targets": [
+        "aarch64-apple-darwin"
+      ],
+      "validation_profile": "current-package-v1",
+      "inputs_sha256": "e8e03c81f97d6aa5f7b3ab23faca44e058a2bd13dcf1228ffde1c81edb75619f"
+    },
+    "command": [
+      "python3",
+      "-B",
+      "local-transport.py"
+    ],
+    "transport_adapter": {
+      "bytes": 1961,
+      "sha256": "5d1df0d6ddd9e88b1b1b997d4dc8883f1918c96436cc3f45b09e1d2579732643"
+    },
+    "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189",
+    "peak_process_group_rss_bytes": 10900701184,
+    "resource_guard_bytes": 30064771072,
+    "pid": 58003
+  },
+  "proof_gate_claim": "Package-producing gates completed; full 198-proof verdict is separate and must be read from final driver/baseline receipts",
+  "archive": {
+    "target": "aarch64-apple-darwin",
+    "source": {
+      "scope": "Current production-code native package feature-branch rehearsal; exact source and selector identities required; no default-branch release/tag/publication",
+      "phase": "build",
+      "full_baselines": true,
+      "asset_id": 604879597,
+      "source_sha256": "734df69dc7d43467fc9ae574c7cf7b25eb9b4ec9bc08e9ca3f96b9500131f42e",
+      "selfhost_kit": {
+        "asset_id": 604463150,
+        "sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd"
+      },
+      "neptune_intent": {
+        "asset_id": 568147730,
+        "sha256": "404ba33e683103e9cceaa7c21fcd6443401f8ba4216b8e77230ed34b24e249d0"
+      },
+      "targets": [
+        "aarch64-apple-darwin"
+      ],
+      "validation_profile": "current-package-v1",
+      "inputs_sha256": "e8e03c81f97d6aa5f7b3ab23faca44e058a2bd13dcf1228ffde1c81edb75619f"
+    },
+    "archive": "cyber-tools-aarch64-apple-darwin.tar.gz",
+    "sha256": "b542e6e3bf8a15c4650cfeb8bda436ba45a1ecf32844aa9655275bf42086ab9b",
+    "platform": "macOS-26.4.1-arm64-arm-64bit-Mach-O",
+    "runner_revision": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde"
+  },
+  "candidate_sha256": "5a98849d67115fd9e1d2ccb59f0e3a3e68dc47c5700f5c09adec6eacc8cd43f4",
+  "commands": [
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "gh",
+        "release",
+        "upload",
+        "candidate-20260916.1",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/local-package-transport/rehearsal-20261002-734df69d-local-rust189-cyber-tools-aarch64-apple-darwin.tar.gz",
+        "--repo",
+        "cyberia-to/trisha"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "gh",
+        "release",
+        "upload",
+        "candidate-20260916.1",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/local-package-transport/rehearsal-20261002-734df69d-local-rust189-proof-corpus-aarch64-apple-darwin.tar.gz",
+        "--repo",
+        "cyberia-to/trisha"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "gh",
+        "release",
+        "upload",
+        "candidate-20260916.1",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/local-package-transport/rehearsal-20261002-734df69d-local-rust189-structured-corpus-aarch64-apple-darwin.tar.gz",
+        "--repo",
+        "cyberia-to/trisha"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "exit_code": 1
+    }
+  ],
+  "assets": [
+    {
+      "kind": "binary",
+      "target": "aarch64-apple-darwin",
+      "asset_id": 604908144,
+      "name": "rehearsal-20261002-734df69d-local-rust189-cyber-tools-aarch64-apple-darwin.tar.gz",
+      "sha256": "b542e6e3bf8a15c4650cfeb8bda436ba45a1ecf32844aa9655275bf42086ab9b",
+      "bytes": 16929445
+    },
+    {
+      "kind": "corpus",
+      "target": "aarch64-apple-darwin",
+      "asset_id": 604914519,
+      "name": "rehearsal-20261002-734df69d-local-rust189-proof-corpus-aarch64-apple-darwin.tar.gz",
+      "sha256": "1dca29b3906ca5fbb36a76c92ab712e93714260334b230785e4afc3f2ba4ff39",
+      "bytes": 25196751
+    },
+    {
+      "kind": "structured-corpus",
+      "target": "aarch64-apple-darwin",
+      "asset_id": 604922737,
+      "name": "rehearsal-20261002-734df69d-local-rust189-structured-corpus-aarch64-apple-darwin.tar.gz",
+      "sha256": "488b34e98b975e3cb508241913fcca871a40953452d07caba085c8b26a630978",
+      "bytes": 687924
+    }
+  ]
+}

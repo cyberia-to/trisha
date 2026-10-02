@@ -1,0 +1,20 @@
+{
+  "id": 11208532313,
+  "node_id": "MDg6QXJ0aWZhY3QxMTIwODUzMjMxMw==",
+  "name": "candidate-x86_64-unknown-linux-gnu",
+  "size_in_bytes": 82056713,
+  "url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11208532313",
+  "archive_download_url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11208532313/zip",
+  "expired": false,
+  "digest": "sha256:37902a46c1127614b2738432f7bc92352644ce17eebd3a452d0cdf2f804227ee",
+  "created_at": "2026-10-02T04:10:24Z",
+  "updated_at": "2026-10-02T04:10:24Z",
+  "expires_at": "2026-11-01T04:10:21Z",
+  "workflow_run": {
+    "id": 36949324686,
+    "repository_id": 1159894384,
+    "head_repository_id": 1159894384,
+    "head_branch": "test/0.4-native-distribution-20261002",
+    "head_sha": "c94da47247457f9e819c2682e74d34f5f1756f62"
+  }
+}

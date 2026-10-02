@@ -1,0 +1,76 @@
+{
+  "scope": "Exact Git checkout-byte transformations for actual producer revision; original failed receipt inspector retained",
+  "observed_impact": "bfbae6ef8ef5b46c96d1d05863848a7487579b28708a2630b81ce259e865ecb1",
+  "observed_generation": "e64ac2ee0e34d3de9e7acde94f839363f7c91f62b90e08f2a923e055421ddaf4",
+  "observed_verifier": "e64ac2ee0e34d3de9e7acde94f839363f7c91f62b90e08f2a923e055421ddaf4",
+  "expected": [
+    {
+      "path": "scripts/current-source-impact.py",
+      "core_autocrlf": "false",
+      "command": [
+        "git",
+        "-C",
+        "trisha-native-ci",
+        "-c",
+        "core.autocrlf=false",
+        "cat-file",
+        "--filters",
+        "ecdc4e2ea131c50a860036e34ee7636b91fb8dde:scripts/current-source-impact.py"
+      ],
+      "bytes": 9365,
+      "sha256": "cffe213b0f0d0930c7d5c13d57cf97eecc3165d84662f7f8e30df0a07b005942",
+      "crlf_count": 0
+    },
+    {
+      "path": "scripts/current-source-impact.py",
+      "core_autocrlf": "true",
+      "command": [
+        "git",
+        "-C",
+        "trisha-native-ci",
+        "-c",
+        "core.autocrlf=true",
+        "cat-file",
+        "--filters",
+        "ecdc4e2ea131c50a860036e34ee7636b91fb8dde:scripts/current-source-impact.py"
+      ],
+      "bytes": 9528,
+      "sha256": "bfbae6ef8ef5b46c96d1d05863848a7487579b28708a2630b81ce259e865ecb1",
+      "crlf_count": 163
+    },
+    {
+      "path": "scripts/current-structured-corpus.py",
+      "core_autocrlf": "false",
+      "command": [
+        "git",
+        "-C",
+        "trisha-native-ci",
+        "-c",
+        "core.autocrlf=false",
+        "cat-file",
+        "--filters",
+        "ecdc4e2ea131c50a860036e34ee7636b91fb8dde:scripts/current-structured-corpus.py"
+      ],
+      "bytes": 15161,
+      "sha256": "5caa737b7c7b8b1fef0dd024a56e78f394273b8140b12a1832f29c8dad891a94",
+      "crlf_count": 0
+    },
+    {
+      "path": "scripts/current-structured-corpus.py",
+      "core_autocrlf": "true",
+      "command": [
+        "git",
+        "-C",
+        "trisha-native-ci",
+        "-c",
+        "core.autocrlf=true",
+        "cat-file",
+        "--filters",
+        "ecdc4e2ea131c50a860036e34ee7636b91fb8dde:scripts/current-structured-corpus.py"
+      ],
+      "bytes": 15399,
+      "sha256": "e64ac2ee0e34d3de9e7acde94f839363f7c91f62b90e08f2a923e055421ddaf4",
+      "crlf_count": 238
+    }
+  ]
+}

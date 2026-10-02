@@ -1,0 +1,20 @@
+{
+  "id": 11212886258,
+  "node_id": "MDg6QXJ0aWZhY3QxMTIxMjg4NjI1OA==",
+  "name": "candidate-aarch64-pc-windows-msvc",
+  "size_in_bytes": 4888534,
+  "url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11212886258",
+  "archive_download_url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11212886258/zip",
+  "expired": false,
+  "digest": "sha256:40c5517fef3e688b3b8f1bd0870a0fca2b847c6d0babb9b42757076d60808bf7",
+  "created_at": "2026-10-02T06:37:33Z",
+  "updated_at": "2026-10-02T06:37:33Z",
+  "expires_at": "2026-11-01T06:37:32Z",
+  "workflow_run": {
+    "id": 36974227589,
+    "repository_id": 1159894384,
+    "head_repository_id": 1159894384,
+    "head_branch": "test/0.4-current-distribution-20261002",
+    "head_sha": "a5cdd95cb652d76a023fad1e40aefe54f6387445"
+  }
+}

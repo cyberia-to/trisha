@@ -1,0 +1,76 @@
+{
+  "scope": "Distinct current-production-code branch package rehearsal; frozen e4bac results retain their original identities",
+  "release_id": 389977897,
+  "release_tag": "candidate-20260916.1",
+  "asset_name": "rehearsal-20261002-current-source.tar.gz",
+  "source_sha256": "734df69dc7d43467fc9ae574c7cf7b25eb9b4ec9bc08e9ca3f96b9500131f42e",
+  "sources": [
+    {
+      "repository": "bbg",
+      "commit": "1d39975ad199b48c350fa4cc011cbf6f289480ee",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "origin_head": "1d39975ad199b48c350fa4cc011cbf6f289480ee"
+    },
+    {
+      "repository": "hemera",
+      "commit": "a931a0a8e7ed369852ce0f8bc6451a59745ee692",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "origin_head": "a931a0a8e7ed369852ce0f8bc6451a59745ee692"
+    },
+    {
+      "repository": "honeycrisp",
+      "commit": "ff735e6c262926bc9bab7534786a575020cbe442",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "origin_head": "ff735e6c262926bc9bab7534786a575020cbe442"
+    },
+    {
+      "repository": "joy",
+      "commit": "11b7bad201cbfc03955290b5479fa6684f8e2b82",
+      "origin_ref": "refs/heads/release/0.4",
+      "origin_head": "11b7bad201cbfc03955290b5479fa6684f8e2b82"
+    },
+    {
+      "repository": "lens",
+      "commit": "17cafe91431977b738e5b72361187cd01ad93638",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "origin_head": "17cafe91431977b738e5b72361187cd01ad93638"
+    },
+    {
+      "repository": "neuron",
+      "commit": "fd24e768d623604b67e20b4b93fa8e82c83ac373",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "origin_head": "fd24e768d623604b67e20b4b93fa8e82c83ac373"
+    },
+    {
+      "repository": "nox",
+      "commit": "2f09ca3c3f18ae470365310cca8db5208eda75c6",
+      "origin_ref": "refs/heads/release/0.4",
+      "origin_head": "2f09ca3c3f18ae470365310cca8db5208eda75c6"
+    },
+    {
+      "repository": "strata",
+      "commit": "d2eb1763b8caf04e6c7647ac6fe99761519c2ef9",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "origin_head": "d2eb1763b8caf04e6c7647ac6fe99761519c2ef9"
+    },
+    {
+      "repository": "trident",
+      "commit": "da0d1a59cd8208fab96f219ccedef29122d5221a",
+      "origin_ref": "refs/heads/release/0.4",
+      "origin_head": "da0d1a59cd8208fab96f219ccedef29122d5221a"
+    },
+    {
+      "repository": "trisha",
+      "commit": "191c6e03fa855be3b70b5aa5e4ee78be1ebffe91",
+      "origin_ref": "refs/heads/release/0.4",
+      "origin_head": "191c6e03fa855be3b70b5aa5e4ee78be1ebffe91"
+    },
+    {
+      "repository": "zheng",
+      "commit": "0d7ba6d422d9b825f9685e903e55252f88ebecd9",
+      "origin_ref": "refs/heads/release/0.4",
+      "origin_head": "0d7ba6d422d9b825f9685e903e55252f88ebecd9"
+    }
+  ],
+  "validation_profile": "current-package-v1"
+}

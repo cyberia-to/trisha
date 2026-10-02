@@ -1,0 +1,332 @@
+   Compiling joy-rs v0.5.0 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\joy\rs)
+   Compiling cyber-joy v0.5.0 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\joy\cli)
+    Finished `release` profile [optimized] target(s) in 38.83s
+     Running unittests main.rs (candidate\build\joy\release\deps\joy-e6ae46e90fd2f235.exe)
+
+running 1 test
+test publication::tests::staging_cannot_alias_destination_or_delete_successful_output ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests\artifact_files.rs (candidate\build\joy\release\deps\artifact_files-ad51158a8d61adcb.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\build_pipeline.rs (candidate\build\joy\release\deps\build_pipeline-ee7a7af198f92155.exe)
+
+running 5 tests
+test explicit_target_overrides_project_for_build_run_and_prove ... ok
+test json_v1_reports_exact_result_identity_and_structured_failure ... ok
+test project_build_run_prove_verify_preserves_custom_profile_and_imports ... ok
+test publication_requires_force_and_failures_preserve_existing_artifact ... ok
+test source_default_name_nox_export_and_checkout_independent_bundles ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.73s
+
+     Running tests\compiler_jobs.rs (candidate\build\joy\release\deps\compiler_jobs-66e950fcbeb09f45.exe)
+
+running 3 tests
+test all_failed_boundaries_preserve_previous_file_even_with_force ... ok
+test compiler_result_and_extracted_program_are_published_exactly_and_executed ... ok
+test guest_diagnostics_are_distinct_from_job_failure_and_never_publish_a_program ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.35s
+
+     Running tests\execution_claim.rs (candidate\build\joy\release\deps\execution_claim-4259bd2b4ad6a59c.exe)
+
+running 6 tests
+test changing_statement_values_cannot_reauthorize_an_execution ... ok
+test excess_secret_inputs_are_refused_and_single_quote_is_provable ... ok
+test fresh_verifier_authenticates_requested_public_io_without_execution_inputs ... ok
+test malformed_execution_artifacts_fail_directly_and_legacy_needs_opt_in ... ok
+test native_private_proving_verifies_without_secrets_and_publishes_atomically ... ok
+test retired_private_envelopes_never_fall_back_to_execution_or_legacy ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.03s
+
+     Running tests\native_cli_parity.rs (candidate\build\joy\release\deps\native_cli_parity-3865dcae21217792.exe)
+
+running 5 tests
+test batch_execution_preserves_order_and_failure_of_any_job ... ok
+test batch_proofs_use_isolated_paths_and_verify_each_artifact ... ok
+test batch_witness_preparation_failure_creates_no_proofs ... ok
+test input_file_serves_native_divine_and_conflicts_with_explicit_flags ... ok
+test malformed_witnesses_never_echo_their_contents ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.62s
+
+     Running tests\native_test_bench.rs (candidate\build\joy\release\deps\native_test_bench-7af30bafa1d2d76f.exe)
+
+running 5 tests
+test bench_reports_actual_native_execution_counts_and_independent_expectations ... ok
+test bench_restarts_private_input_stream_and_accepts_exported_bundles ... ok
+test bench_state_execution_reports_the_authenticated_root_and_rejects_tampering ... ok
+test test_command_executes_assertions_and_never_substitutes_main ... ok
+test test_command_uses_project_profiles_and_imported_test_entries ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.53s
+
+     Running tests\raw_source.rs (candidate\build\joy\release\deps\raw_source-690df197d61b8c9a.exe)
+
+running 5 tests
+test artifact_publication_preserves_existing_output_on_every_compile_failure ... ok
+test compact_source_loop_uses_explicit_frames_and_never_publishes_partial_execution ... ok
+test explicit_compiler_profile_export_matches_seed_api_and_refuses_other_formats ... ok
+test imported_source_compiles_to_art1_and_joy_executes_the_complete_output ... ok
+test named_profile_and_target_override_preserve_exact_nested_input ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.41s
+
+     Running tests\reaudit_cli.rs (candidate\build\joy\release\deps\reaudit_cli-593563cbd7fdc3f4.exe)
+
+running 2 tests
+test batch_preserves_option_looking_inputs_witnesses_and_output_paths ... ok
+test witness_file_byte_limit_accepts_exact_size_and_rejects_growth ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+
+     Running tests\source_packages.rs (candidate\build\joy\release\deps\source_packages-da60c5e6d0da6a24.exe)
+
+running 8 tests
+test aggregate_source_allowance_can_end_with_empty_files_but_cannot_reset ... ok
+test duplicate_json_keys_are_rejected_without_last_value_wins ... ok
+test host_paths_order_and_timestamps_do_not_change_canonical_jobs ... ok
+test packed_exact_source_bytes_match_independent_job_and_execute_on_the_guest ... ok
+test packing_and_compiler_execution_preserve_bytes_across_physical_arena_sizes ... ok
+test raw_compiler_and_nonregular_source_files_are_rejected_without_publication ... ok
+test requested_and_independent_host_caps_bound_packaging ... ok
+test unknown_missing_duplicate_and_unsupported_manifest_fields_reject_atomically ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.03s
+
+     Running tests\state_execution.rs (candidate\build\joy\release\deps\state_execution-ebd12d00ea4b764b.exe)
+
+running 3 tests
+test compiled_helper_state_proof_verifies_in_a_fresh_process_and_rejects_substitution ... ok
+test native_private_state_binds_root_and_build_in_a_fresh_verifier ... ok
+test secret_state_query_proves_and_preserves_existing_output_without_force ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 8.56s
+
+     Running tests\structured_run.rs (candidate\build\joy\release\deps\structured_run-7507a0f421e01cc4.exe)
+
+running 5 tests
+test cli_publishes_complete_nouns_with_exact_identity_and_execution_cost ... ok
+test explicit_compaction_deadline_ceiling_preserves_execution_and_publication ... ok
+test explicit_compaction_finishes_with_bounded_resident_storage_and_preserves_failed_outputs ... ok
+test failures_preserve_destinations_and_never_publish_partial_success ... ok
+test invalid_input_has_no_published_output ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.84s
+
+     Running tests\target_package.rs (candidate\build\joy\release\deps\target_package-c085a7924dd10089.exe)
+
+running 5 tests
+test installed_cli_rejects_state_instead_of_executing_statelessly ... ok
+test installed_compiler_uses_embedded_target_constants ... ok
+test installed_description_matches_machine_and_native_certificate_capabilities ... ok
+test installed_soft3_compiler_rejects_foreign_targets_and_resources ... ok
+test stateless_library_runner_rejects_state_marked_bundle ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.34s
+
+     Running unittests lib.rs (candidate\build\joy\release\deps\joy_rs-70c0ae8239121b4d.exe)
+
+running 50 tests
+test formula::tests::atom_roundtrips ... ok
+test formula::tests::cell_roundtrips ... ok
+test formula::tests::empty_subject_is_zero ... ok
+test formula::tests::leaves_flatten_left_to_right ... ok
+test formula::tests::nary_cell_folds_right ... ok
+test formula::tests::singleton_cell_errors ... ok
+test formula::tests::subject_puts_last_input_at_head ... ok
+test formula::tests::trailing_input_errors ... ok
+test formula::tests::unclosed_bracket_errors ... ok
+test formula::tests::whitespace_is_insignificant ... ok
+test structured::tests::admission::exact_art1_fields_and_terminator_are_enforced ... ok
+test structured::tests::admission::exact_input_bounds_and_shared_code_input_charge_once ... ok
+test structured::tests::admission::worker_deadline_returns_failure_without_output_bytes ... ok
+test structured::tests::compact_4097_iteration_program_runs_through_joy ... ok
+test structured::tests::compaction::collection_never_replenishes_cumulative_or_work_allowances ... ok
+test structured::tests::compaction::compacting_policy_keeps_resource_and_service_rejections ... ok
+test structured::tests::compaction::explicit_compaction_deadlines_preserve_defaults_and_cancellation ... ok
+test structured::tests::compaction::explicit_larger_reduction_allowance_preserves_prior_execution_and_defaults ... ok
+test structured::tests::compaction::extended_caps_require_explicit_compaction_and_remain_bounded ... ok
+test structured::tests::compaction::reclaiming_worker_preserves_nouns_and_gas_beyond_the_resident_allowance ... ok
+test structured::tests::compiler::changed_bindings_and_sufficient_limits_preserve_generated_program_bytes ... ok
+test structured::tests::compiler::compaction::compiler_job_binding_and_extracted_artifact_survive_repeated_collection ... ok
+test structured::tests::compiler::compaction::larger_host_allowance_still_admits_and_enforces_explicit_job_reductions ... ok
+test structured::tests::compiler::compile_errors_are_valid_results_with_ordered_utf8_diagnostics_and_no_program ... ok
+test structured::tests::compiler::generated_compiler_profile_is_admitted_only_when_requested_explicitly ... ok
+test structured::tests::compiler::guest_constructed_result_matches_independent_reference_and_program_executes ... ok
+test structured::tests::compiler::package::packed_collections_match_independent_reference_across_word_and_tree_boundaries ... ok
+test structured::tests::compiler::quotas::aggregate_source_and_repeated_records_share_one_admission_allowance ... ok
+test structured::tests::compiler::quotas::compiler_container_must_fit_the_job_request_even_when_input_is_smaller ... ok
+test structured::tests::compiler::quotas::every_job_limit_is_positive_and_cannot_raise_independent_host_caps ... ok
+test structured::tests::compiler::quotas::output_diagnostics_have_a_separate_shared_allowance_and_count_limit ... ok
+test structured::tests::compiler::quotas::requested_execution_and_shared_visit_limits_are_used_exactly ... ok
+test structured::tests::compiler::quotas::requested_transport_caps_cover_both_compiler_and_job_at_inclusive_boundaries ... ok
+test structured::tests::compiler::quotas::runtime_constructed_res1_obeys_requested_transport_caps_before_extraction ... ok
+test structured::tests::compiler::quotas::shared_logical_trees_and_noncanonical_empty_padding_cannot_bypass_admission ... ok
+test structured::tests::compiler::rejection::all_four_compiler_and_result_identity_limbs_are_bound ... ok
+test structured::tests::compiler::rejection::diagnostic_codes_spans_order_utf8_and_overflow_marker_are_enforced ... ok
+test structured::tests::compiler::rejection::generated_profile_status_and_runtime_faults_cannot_become_success ... ok
+test structured::tests::compiler::rejection::malformed_records_collections_and_byte_padding_are_rejected ... ok
+test structured::tests::compiler::rejection::packages_options_and_entry_are_structurally_validated_without_source_parsing ... ok
+test structured::tests::compiler::trident_source_seed_exports_compiler_profile_and_executes_bound_job_on_nox ... ok
+test structured::tests::compiler::vectors::cli_vectors_bind_actual_guest_results_to_independent_canonical_files ... ok
+test structured::tests::hard_limits_and_expired_deadlines_are_explicit ... ok
+test structured::tests::heap::compiler_scale_allowances_are_explicit_and_bounded ... ok
+test structured::tests::heap::physical_arena_capacity_preserves_output_identity_and_execution_accounting ... ok
+test structured::tests::malformed_containers_profiles_and_host_services_are_rejected ... ok
+test structured::tests::output_transport_limits_are_checked_after_runtime_construction ... ok
+test structured::tests::raw_topology_and_shared_dag_roundtrip_without_flattening ... ok
+test structured::tests::resource_boundaries_apply_during_evaluation_not_only_loading ... ok
+test structured::tests::runtime_generated_formula_executes_and_reports_bound_identities ... ok
+
+test result: ok. 50 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.62s
+
+     Running tests\integration.rs (candidate\build\joy\release\deps\integration-eaced1129458549e.exe)
+
+running 26 tests
+test add_literals_reduces_to_eight ... ok
+test artifact_is_self_contained_and_binds_its_assembly ... ok
+test artifact_load_error_paths ... ok
+test budget_exhaustion_halts ... ok
+test compile_tri_end_to_end ... ok
+test fixture_bundle_json_runs ... ok
+test hash_program_proves_and_verifies ... ok
+test look_against_stale_root_refused_at_prove ... ok
+test look_artifact_root_mismatch_rejected ... ok
+test look_artifact_tampered_binding_and_table_rejected ... ok
+test look_program_proves_and_verifies_against_state ... ok
+test metadata_cannot_authorize_an_output_claim ... ok
+test missing_secret_halts_honestly ... ok
+test proof_for_a_different_program_rejected ... ok
+test prove_refuses_look_rows_honestly ... ok
+test prove_refuses_single_row_traces_honestly ... ok
+test prove_verify_roundtrip ... ok
+test prove_verify_roundtrip_through_traits_and_disk ... ok
+test prove_works_on_a_minimal_bundle ... ok
+test public_inputs_bind_as_subject ... ok
+test secret_input_served_by_call_pattern ... ok
+test tampered_hash_group_rejected ... ok
+test tampered_proof_rejected ... ok
+test verify_by_rerun_pass_and_fail ... ok
+test verify_refuses_foreign_proof_formats ... ok
+test wrong_target_vm_rejected ... ok
+
+test result: ok. 26 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.06s
+
+     Running tests\legacy_assembly_bounds.rs (candidate\build\joy\release\deps\legacy_assembly_bounds-52065affab3e74cf.exe)
+
+running 1 test
+test compressed_legacy_assembly_cannot_expand_past_the_formula_limit ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\loop_indices.rs (candidate\build\joy\release\deps\loop_indices-f40abcc1dccc52b1.exe)
+
+running 2 tests
+test exact_final4_imported_loop_indices_have_public_proofs ... ok
+test loop_index_constants_do_not_escape_shadowed_or_returning_frames ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.42s
+
+     Running tests\native_private.rs (candidate\build\joy\release\deps\native_private-b5a8d0627e04555e.exe)
+
+running 5 tests
+test every_public_statement_and_build_identity_is_bound ... ok
+test explicit_budget_and_expected_claim_are_enforced_without_secret_replay ... ok
+test hidden_namespace_uses_authenticated_tables_and_canonical_certificate_metadata ... ok
+test malformed_outer_metadata_and_inner_wire_fail_at_their_boundaries ... ok
+test native_profiles_select_correctly_and_private_proofs_use_fresh_randomness ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.77s
+
+     Running tests\nox_loop_return.rs (candidate\build\joy\release\deps\nox_loop_return-b72cc3dedbb25403.exe)
+
+running 2 tests
+test bounded_loop_return_proof_binds_selected_result_input_and_cost ... ok
+test private_loop_return_proves_and_skips_later_witness ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.12s
+
+     Running tests\public_execution.rs (candidate\build\joy\release\deps\public_execution-6ee6bef9b0b96707.exe)
+
+running 5 tests
+test artifact_format_and_claim_filters_are_exact ... ok
+test compiled_source_roundtrip_and_changed_statement_rejection ... ok
+test explicit_public_budget_controls_native_confirmation ... ok
+test prover_and_verifier_traits_bind_claim_without_legacy_downgrade ... ok
+test unsupported_secret_state_and_call_inputs_are_refused ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+     Running tests\reaudit_native.rs (candidate\build\joy\release\deps\reaudit_native-718cdea2c27bcb66.exe)
+
+running 5 tests
+test binary_and_nary_formulas_share_the_noun_depth_ceiling ... ok
+test dynamic_self_application_hits_the_native_depth_guard ... ok
+test hash_consing_does_not_bypass_the_syntactic_node_ceiling ... ok
+test malformed_raw_formula_returns_an_error_without_process_abort ... ok
+test shared_result_expansion_is_checked_before_flat_output_allocation ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 9.41s
+
+     Running tests\secret_execution.rs (candidate\build\joy\release\deps\secret_execution-3343c9b19b486715.exe)
+
+running 3 tests
+test missing_witnesses_are_refused_by_execution ... ok
+test relabeling_legacy_statement_cannot_enable_another_format ... ok
+test secret_execution_works_but_all_public_provers_refuse_witnesses ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.56s
+
+     Running tests\secret_stream.rs (candidate\build\joy\release\deps\secret_stream-9545e5db7bb286ac.exe)
+
+running 4 tests
+test canonical_field_inputs_are_required_in_both_native_entry_points ... ok
+test inactive_calls_do_not_consume_witnesses_and_nested_checks_preserve_order ... ok
+test state_execution_enforces_the_same_stream_contract_for_hidden_reads ... ok
+test successful_execution_consumes_exactly_the_ordered_active_stream ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.29s
+
+     Running tests\terminal_returns.rs (candidate\build\joy\release\deps\terminal_returns-417778b3a7675507.exe)
+
+running 2 tests
+test terminal_branch_executes_secrets_without_public_proof_fallback ... ok
+test terminal_branch_public_certificates_bind_selected_values ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.78s
+
+     Running tests\typed_entry.rs (candidate\build\joy\release\deps\typed_entry-955a3566d001ffff.exe)
+
+running 3 tests
+test aggregate_entry_has_real_proven_native_layout ... ok
+test typed_input_guards_bind_native_private_execution ... ok
+test unused_typed_inputs_are_constrained_by_public_execution_certificate ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 12.19s
+
+     Running tests\worker.rs (candidate\build\joy\release\deps\worker-f684a70385556d04.exe)
+
+running 6 tests
+test all_profiles_verify_saved_computations_without_private_inputs ... ok
+test constructor_refuses_non_native_and_inconsistent_saved_jobs ... ok
+test dispatch_association_profile_and_byte_limits_precede_decoding ... ok
+test state_presence_cannot_be_downgraded_inside_the_shared_private_format ... ok
+test tampered_public_results_are_rejected_by_the_selected_native_verifier ... ok
+test valid_proofs_for_different_saved_expectations_are_rejected ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.74s
+
+   Doc-tests joy_rs
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

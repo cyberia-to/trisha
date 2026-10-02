@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/trisha-native-ci/scripts/native-rehearsal-macos-floor.py", line 142, in <module>
+    main()
+    ~~~~^^
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/trisha-native-ci/scripts/native-rehearsal-macos-floor.py", line 33, in main
+    raise ValueError('actual native macOS 14 ARM host required: ' + repr(actual_host))
+ValueError: actual native macOS 14 ARM host required: {'system': 'Darwin', 'version': '26.4.1', 'machine': 'arm64'}

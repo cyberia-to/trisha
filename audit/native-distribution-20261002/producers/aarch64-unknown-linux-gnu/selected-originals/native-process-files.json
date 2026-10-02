@@ -1,0 +1,309 @@
+{
+  "all_checks_passed": true,
+  "platform": "Linux-6.8.0-1064-azure-aarch64-with-glibc2.35",
+  "binaries": {
+    "trident": "ad6da158b17257a8954b1084a9f64a8393ecaa448b67352fccc6c167d45dcb53",
+    "trident-lsp": "5e926b1205a61d3bad59a1dfda6efa6d628951716b61c06ae6505a29e3606941",
+    "trisha": "2d658d7d32b02e69759a817a20c04864f0c6330cd195a801673a66692a5c15fc",
+    "joy": "c2b2a98bb78306e0d21f98bf688e7db8b6155f0577eab47013c03c8dfe3cef66"
+  },
+  "runtime_dependencies": {
+    "trident": "\tlinux-vdso.so.1 (0x0000ffc4a91da000)\n\tlibgcc_s.so.1 => /lib/aarch64-linux-gnu/libgcc_s.so.1 (0x0000ffc4a8a40000)\n\tlibm.so.6 => /lib/aarch64-linux-gnu/libm.so.6 (0x0000ffc4a89a0000)\n\tlibc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000ffc4a87f0000)\n\t/lib/ld-linux-aarch64.so.1 (0x0000ffc4a9190000)\n",
+    "trident-lsp": "\tlinux-vdso.so.1 (0x0000ff9d14c84000)\n\tlibgcc_s.so.1 => /lib/aarch64-linux-gnu/libgcc_s.so.1 (0x0000ff9d146f0000)\n\tlibm.so.6 => /lib/aarch64-linux-gnu/libm.so.6 (0x0000ff9d14650000)\n\tlibc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000ff9d144a0000)\n\t/lib/ld-linux-aarch64.so.1 (0x0000ff9d14c40000)\n",
+    "trisha": "\tlinux-vdso.so.1 (0x0000fffe00621000)\n\tlibgcc_s.so.1 => /lib/aarch64-linux-gnu/libgcc_s.so.1 (0x0000fffdffa60000)\n\tlibm.so.6 => /lib/aarch64-linux-gnu/libm.so.6 (0x0000fffdff9c0000)\n\tlibc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000fffdff810000)\n\t/lib/ld-linux-aarch64.so.1 (0x0000fffe005e0000)\n",
+    "joy": "\tlinux-vdso.so.1 (0x0000ffa7b1b70000)\n\tlibgcc_s.so.1 => /lib/aarch64-linux-gnu/libgcc_s.so.1 (0x0000ffa7b16a0000)\n\tlibm.so.6 => /lib/aarch64-linux-gnu/libm.so.6 (0x0000ffa7b1600000)\n\tlibc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000ffa7b1450000)\n\t/lib/ld-linux-aarch64.so.1 (0x0000ffa7b1b30000)\n"
+  },
+  "source_provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+  "checks": [
+    {
+      "binary": "trisha",
+      "args": [
+        "node",
+        "status"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "node",
+        "status"
+      ],
+      "exit_code": 0
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "node",
+        "status"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "neuron",
+        "--state",
+        "testnet",
+        "address",
+        "add",
+        "--index",
+        "42"
+      ],
+      "exit_code": 0
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "neuron",
+        "--state",
+        "testnet",
+        "address",
+        "add",
+        "--key-type",
+        "symmetric"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "neuron",
+        "--state",
+        "testnet",
+        "address",
+        "list",
+        "--start",
+        "8",
+        "--limit",
+        "3"
+      ],
+      "exit_code": 0
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "neuron",
+        "--state",
+        "testnet",
+        "address",
+        "list",
+        "--limit",
+        "1001"
+      ],
+      "exit_code": 2
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "neuron",
+        "--state",
+        "testnet",
+        "address",
+        "add"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "neuron",
+        "--state",
+        "testnet",
+        "create"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "neuron",
+        "--state",
+        "testnet",
+        "create"
+      ],
+      "exit_code": 0
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "neuron",
+        "--state",
+        "testnet",
+        "create"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "neuron",
+        "--state",
+        "testnet",
+        "remove"
+      ],
+      "exit_code": 0
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "neuron",
+        "--state",
+        "testnet",
+        "remove",
+        "--confirm"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "neuron",
+        "--state",
+        "testnet",
+        "remove",
+        "--confirm"
+      ],
+      "exit_code": 0
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "neuron",
+        "--state",
+        "testnet",
+        "remove",
+        "--confirm"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "neuron",
+        "--state",
+        "testnet",
+        "import"
+      ],
+      "exit_code": 0
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "neuron",
+        "--state",
+        "testnet",
+        "address",
+        "hide",
+        "mock-address-0"
+      ],
+      "exit_code": 0
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "run",
+        "entry.tri",
+        "--input-file",
+        "valid.json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "run",
+        "entry.tri",
+        "--input-file",
+        "directory"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "directory"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "entry.tri",
+        "--proof",
+        "directory"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "run",
+        "entry.tri",
+        "--input-file",
+        "link.json"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "link.json"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "entry.tri",
+        "--proof",
+        "link.json"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "run",
+        "entry.tri",
+        "--input-file",
+        "oversized"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "verify",
+        "oversized"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "joy",
+      "args": [
+        "verify",
+        "entry.tri",
+        "--proof",
+        "oversized"
+      ],
+      "exit_code": 1
+    },
+    {
+      "binary": "trisha",
+      "args": [
+        "run",
+        "entry.tri",
+        "--input-file",
+        "invalid.json"
+      ],
+      "exit_code": 1
+    }
+  ],
+  "probe_sha256": "7670af842f4c25d8129df32029cfc865ce3f0b11ff6e5d0bc96c6e0a68deccde",
+  "fixture_sha256": "7a323af91d99ca43cf3e91e4333419ba102512e42c9fc45f905243b88c971c19"
+}

@@ -1,0 +1,525 @@
+{
+  "total_count": 6,
+  "jobs": [
+    {
+      "id": 110719342002,
+      "run_id": 36969168806,
+      "workflow_name": "Native release candidate",
+      "head_branch": "test/0.4-current-distribution-20261002",
+      "run_url": "https://api.github.com/repos/cyberia-to/trisha/actions/runs/36969168806",
+      "run_attempt": 1,
+      "node_id": "CR_kwDORSKVcM8AAAAZx2MVsg",
+      "head_sha": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+      "url": "https://api.github.com/repos/cyberia-to/trisha/actions/jobs/110719342002",
+      "html_url": "https://github.com/cyberia-to/trisha/actions/runs/36969168806/job/110719342002",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-02T05:29:38Z",
+      "started_at": "2026-10-02T05:31:44Z",
+      "completed_at": "2026-10-02T05:32:29Z",
+      "name": "select",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-02T05:32:21Z",
+          "completed_at": "2026-10-02T05:32:22Z"
+        },
+        {
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-02T05:32:22Z",
+          "completed_at": "2026-10-02T05:32:26Z"
+        },
+        {
+          "name": "Run python3 - <<'PY'",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-02T05:32:26Z",
+          "completed_at": "2026-10-02T05:32:26Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-02T05:32:26Z",
+          "completed_at": "2026-10-02T05:32:27Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-02T05:32:27Z",
+          "completed_at": "2026-10-02T05:32:27Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/cyberia-to/trisha/check-runs/110719342002",
+      "labels": [
+        "ubuntu-22.04"
+      ],
+      "runner_id": 1000010212,
+      "runner_name": "GitHub Actions 1000010212",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 110719983824,
+      "run_id": 36969168806,
+      "workflow_name": "Native release candidate",
+      "head_branch": "test/0.4-current-distribution-20261002",
+      "run_url": "https://api.github.com/repos/cyberia-to/trisha/actions/runs/36969168806",
+      "run_attempt": 1,
+      "node_id": "CR_kwDORSKVcM8AAAAZx2zg0A",
+      "head_sha": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+      "url": "https://api.github.com/repos/cyberia-to/trisha/actions/jobs/110719983824",
+      "html_url": "https://github.com/cyberia-to/trisha/actions/runs/36969168806/job/110719983824",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-02T05:32:29Z",
+      "started_at": "2026-10-02T05:43:52Z",
+      "completed_at": "2026-10-02T06:10:47Z",
+      "name": "native (ubuntu-22.04, x86_64-unknown-linux-gnu)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-02T05:43:53Z",
+          "completed_at": "2026-10-02T05:43:54Z"
+        },
+        {
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-02T05:43:54Z",
+          "completed_at": "2026-10-02T05:43:58Z"
+        },
+        {
+          "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-02T05:43:58Z",
+          "completed_at": "2026-10-02T05:43:58Z"
+        },
+        {
+          "name": "Build and validate the exact source archive",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-02T05:43:58Z",
+          "completed_at": "2026-10-02T06:10:40Z"
+        },
+        {
+          "name": "Preserve binaries, proof corpus and failure evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-02T06:10:40Z",
+          "completed_at": "2026-10-02T06:10:44Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-02T06:10:44Z",
+          "completed_at": "2026-10-02T06:10:44Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-02T06:10:44Z",
+          "completed_at": "2026-10-02T06:10:44Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-02T06:10:44Z",
+          "completed_at": "2026-10-02T06:10:44Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/cyberia-to/trisha/check-runs/110719983824",
+      "labels": [
+        "ubuntu-22.04"
+      ],
+      "runner_id": 1000010218,
+      "runner_name": "GitHub Actions 1000010218",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 110719983848,
+      "run_id": 36969168806,
+      "workflow_name": "Native release candidate",
+      "head_branch": "test/0.4-current-distribution-20261002",
+      "run_url": "https://api.github.com/repos/cyberia-to/trisha/actions/runs/36969168806",
+      "run_attempt": 1,
+      "node_id": "CR_kwDORSKVcM8AAAAZx2zg6A",
+      "head_sha": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+      "url": "https://api.github.com/repos/cyberia-to/trisha/actions/jobs/110719983848",
+      "html_url": "https://github.com/cyberia-to/trisha/actions/runs/36969168806/job/110719983848",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-02T05:32:29Z",
+      "started_at": "2026-10-02T05:36:40Z",
+      "completed_at": "2026-10-02T06:15:54Z",
+      "name": "native (windows-2022, x86_64-pc-windows-msvc)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-02T05:36:41Z",
+          "completed_at": "2026-10-02T05:36:42Z"
+        },
+        {
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-02T05:36:42Z",
+          "completed_at": "2026-10-02T05:36:51Z"
+        },
+        {
+          "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-02T05:36:51Z",
+          "completed_at": "2026-10-02T05:36:51Z"
+        },
+        {
+          "name": "Build and validate the exact source archive",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-02T05:36:51Z",
+          "completed_at": "2026-10-02T06:15:44Z"
+        },
+        {
+          "name": "Preserve binaries, proof corpus and failure evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-02T06:15:44Z",
+          "completed_at": "2026-10-02T06:15:49Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-02T06:15:49Z",
+          "completed_at": "2026-10-02T06:15:49Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-02T06:15:49Z",
+          "completed_at": "2026-10-02T06:15:51Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-02T06:15:51Z",
+          "completed_at": "2026-10-02T06:15:51Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/cyberia-to/trisha/check-runs/110719983848",
+      "labels": [
+        "windows-2022"
+      ],
+      "runner_id": 1000010216,
+      "runner_name": "GitHub Actions 1000010216",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 110719983888,
+      "run_id": 36969168806,
+      "workflow_name": "Native release candidate",
+      "head_branch": "test/0.4-current-distribution-20261002",
+      "run_url": "https://api.github.com/repos/cyberia-to/trisha/actions/runs/36969168806",
+      "run_attempt": 1,
+      "node_id": "CR_kwDORSKVcM8AAAAZx2zhEA",
+      "head_sha": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+      "url": "https://api.github.com/repos/cyberia-to/trisha/actions/jobs/110719983888",
+      "html_url": "https://github.com/cyberia-to/trisha/actions/runs/36969168806/job/110719983888",
+      "status": "in_progress",
+      "conclusion": null,
+      "created_at": "2026-10-02T05:32:29Z",
+      "started_at": "2026-10-02T05:43:43Z",
+      "completed_at": null,
+      "name": "native (macos-15-intel, x86_64-apple-darwin)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-02T05:43:44Z",
+          "completed_at": "2026-10-02T05:43:46Z"
+        },
+        {
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-02T05:43:46Z",
+          "completed_at": "2026-10-02T05:43:54Z"
+        },
+        {
+          "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-02T05:43:54Z",
+          "completed_at": "2026-10-02T05:43:55Z"
+        },
+        {
+          "name": "Build and validate the exact source archive",
+          "status": "in_progress",
+          "conclusion": null,
+          "number": 4,
+          "started_at": "2026-10-02T05:43:55Z",
+          "completed_at": null
+        },
+        {
+          "name": "Preserve binaries, proof corpus and failure evidence",
+          "status": "pending",
+          "conclusion": null,
+          "number": 5,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "pending",
+          "conclusion": null,
+          "number": 9,
+          "started_at": null,
+          "completed_at": null
+        },
+        {
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "pending",
+          "conclusion": null,
+          "number": 10,
+          "started_at": null,
+          "completed_at": null
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/cyberia-to/trisha/check-runs/110719983888",
+      "labels": [
+        "macos-15-intel"
+      ],
+      "runner_id": 1000010217,
+      "runner_name": "GitHub Actions 1000010217",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 110719983896,
+      "run_id": 36969168806,
+      "workflow_name": "Native release candidate",
+      "head_branch": "test/0.4-current-distribution-20261002",
+      "run_url": "https://api.github.com/repos/cyberia-to/trisha/actions/runs/36969168806",
+      "run_attempt": 1,
+      "node_id": "CR_kwDORSKVcM8AAAAZx2zhGA",
+      "head_sha": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+      "url": "https://api.github.com/repos/cyberia-to/trisha/actions/jobs/110719983896",
+      "html_url": "https://github.com/cyberia-to/trisha/actions/runs/36969168806/job/110719983896",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-02T05:32:29Z",
+      "started_at": "2026-10-02T05:34:14Z",
+      "completed_at": "2026-10-02T06:08:27Z",
+      "name": "native (windows-11-arm, aarch64-pc-windows-msvc)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-02T05:34:15Z",
+          "completed_at": "2026-10-02T05:34:19Z"
+        },
+        {
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-02T05:34:19Z",
+          "completed_at": "2026-10-02T05:34:39Z"
+        },
+        {
+          "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-02T05:34:39Z",
+          "completed_at": "2026-10-02T05:34:39Z"
+        },
+        {
+          "name": "Build and validate the exact source archive",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-02T05:34:39Z",
+          "completed_at": "2026-10-02T06:08:06Z"
+        },
+        {
+          "name": "Preserve binaries, proof corpus and failure evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-02T06:08:06Z",
+          "completed_at": "2026-10-02T06:08:12Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-02T06:08:12Z",
+          "completed_at": "2026-10-02T06:08:12Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-02T06:08:12Z",
+          "completed_at": "2026-10-02T06:08:17Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-02T06:08:17Z",
+          "completed_at": "2026-10-02T06:08:17Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/cyberia-to/trisha/check-runs/110719983896",
+      "labels": [
+        "windows-11-arm"
+      ],
+      "runner_id": 1000010215,
+      "runner_name": "GitHub Actions 1000010215",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 110719983931,
+      "run_id": 36969168806,
+      "workflow_name": "Native release candidate",
+      "head_branch": "test/0.4-current-distribution-20261002",
+      "run_url": "https://api.github.com/repos/cyberia-to/trisha/actions/runs/36969168806",
+      "run_attempt": 1,
+      "node_id": "CR_kwDORSKVcM8AAAAZx2zhOw",
+      "head_sha": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+      "url": "https://api.github.com/repos/cyberia-to/trisha/actions/jobs/110719983931",
+      "html_url": "https://github.com/cyberia-to/trisha/actions/runs/36969168806/job/110719983931",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-02T05:32:29Z",
+      "started_at": "2026-10-02T05:51:58Z",
+      "completed_at": "2026-10-02T06:14:37Z",
+      "name": "native (ubuntu-22.04-arm, aarch64-unknown-linux-gnu)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-02T05:51:59Z",
+          "completed_at": "2026-10-02T05:52:00Z"
+        },
+        {
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-02T05:52:00Z",
+          "completed_at": "2026-10-02T05:52:04Z"
+        },
+        {
+          "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-02T05:52:04Z",
+          "completed_at": "2026-10-02T05:52:04Z"
+        },
+        {
+          "name": "Build and validate the exact source archive",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-02T05:52:04Z",
+          "completed_at": "2026-10-02T06:14:31Z"
+        },
+        {
+          "name": "Preserve binaries, proof corpus and failure evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-02T06:14:31Z",
+          "completed_at": "2026-10-02T06:14:34Z"
+        },
+        {
+          "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-02T06:14:34Z",
+          "completed_at": "2026-10-02T06:14:35Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-02T06:14:35Z",
+          "completed_at": "2026-10-02T06:14:35Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-02T06:14:35Z",
+          "completed_at": "2026-10-02T06:14:35Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/cyberia-to/trisha/check-runs/110719983931",
+      "labels": [
+        "ubuntu-22.04-arm"
+      ],
+      "runner_id": 1000010219,
+      "runner_name": "GitHub Actions 1000010219",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

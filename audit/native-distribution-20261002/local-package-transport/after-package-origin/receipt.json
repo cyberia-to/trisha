@@ -1,0 +1,290 @@
+{
+  "scope": "Read-only historical frozen source reachability immediately after package draft upload; release/0.4 may advance independently",
+  "observed_at": "2026-10-02T03:41:30.405005+00:00",
+  "source_sha256": "e4bac7ff7260a5f395febc196b3e4792653e0ff81d7887d688e16ea0959aa361",
+  "status": "passed",
+  "inputs": [
+    {
+      "repository": "bbg",
+      "pin": "1d39975ad199b48c350fa4cc011cbf6f289480ee",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "current_origin_head": "1d39975ad199b48c350fa4cc011cbf6f289480ee",
+      "commands": [
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/bbg",
+            "ls-remote",
+            "--heads",
+            "origin"
+          ],
+          "exit_code": 0
+        }
+      ],
+      "ancestry": {
+        "status": "identical"
+      }
+    },
+    {
+      "repository": "hemera",
+      "pin": "a931a0a8e7ed369852ce0f8bc6451a59745ee692",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "current_origin_head": "a931a0a8e7ed369852ce0f8bc6451a59745ee692",
+      "commands": [
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/hemera",
+            "ls-remote",
+            "--heads",
+            "origin"
+          ],
+          "exit_code": 0
+        }
+      ],
+      "ancestry": {
+        "status": "identical"
+      }
+    },
+    {
+      "repository": "honeycrisp",
+      "pin": "ff735e6c262926bc9bab7534786a575020cbe442",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "current_origin_head": "ff735e6c262926bc9bab7534786a575020cbe442",
+      "commands": [
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/honeycrisp",
+            "ls-remote",
+            "--heads",
+            "origin"
+          ],
+          "exit_code": 0
+        }
+      ],
+      "ancestry": {
+        "status": "identical"
+      }
+    },
+    {
+      "repository": "joy",
+      "pin": "77fec58bd39f9e9cb1e957590831109439352e45",
+      "origin_ref": "refs/heads/release/0.4",
+      "current_origin_head": "11b7bad201cbfc03955290b5479fa6684f8e2b82",
+      "commands": [
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/joy",
+            "ls-remote",
+            "--heads",
+            "origin"
+          ],
+          "exit_code": 0
+        },
+        {
+          "command": [
+            "gh",
+            "api",
+            "repos/cyberia-to/joy/compare/77fec58bd39f9e9cb1e957590831109439352e45...11b7bad201cbfc03955290b5479fa6684f8e2b82"
+          ],
+          "exit_code": 0
+        }
+      ],
+      "ancestry": {
+        "status": "ahead",
+        "ahead_by": 8,
+        "merge_base_sha": "77fec58bd39f9e9cb1e957590831109439352e45"
+      }
+    },
+    {
+      "repository": "lens",
+      "pin": "17cafe91431977b738e5b72361187cd01ad93638",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "current_origin_head": "17cafe91431977b738e5b72361187cd01ad93638",
+      "commands": [
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/lens",
+            "ls-remote",
+            "--heads",
+            "origin"
+          ],
+          "exit_code": 0
+        }
+      ],
+      "ancestry": {
+        "status": "identical"
+      }
+    },
+    {
+      "repository": "neuron",
+      "pin": "fd24e768d623604b67e20b4b93fa8e82c83ac373",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "current_origin_head": "fd24e768d623604b67e20b4b93fa8e82c83ac373",
+      "commands": [
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/neuron",
+            "ls-remote",
+            "--heads",
+            "origin"
+          ],
+          "exit_code": 0
+        }
+      ],
+      "ancestry": {
+        "status": "identical"
+      }
+    },
+    {
+      "repository": "nox",
+      "pin": "172811b7746cdcd6ab198a3ed976dc6c19f55d5b",
+      "origin_ref": "refs/heads/release/0.4",
+      "current_origin_head": "2f09ca3c3f18ae470365310cca8db5208eda75c6",
+      "commands": [
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/nox",
+            "ls-remote",
+            "--heads",
+            "origin"
+          ],
+          "exit_code": 0
+        },
+        {
+          "command": [
+            "gh",
+            "api",
+            "repos/cyberia-to/nox/compare/172811b7746cdcd6ab198a3ed976dc6c19f55d5b...2f09ca3c3f18ae470365310cca8db5208eda75c6"
+          ],
+          "exit_code": 0
+        }
+      ],
+      "ancestry": {
+        "status": "ahead",
+        "ahead_by": 2,
+        "merge_base_sha": "172811b7746cdcd6ab198a3ed976dc6c19f55d5b"
+      }
+    },
+    {
+      "repository": "strata",
+      "pin": "d2eb1763b8caf04e6c7647ac6fe99761519c2ef9",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "current_origin_head": "d2eb1763b8caf04e6c7647ac6fe99761519c2ef9",
+      "commands": [
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/strata",
+            "ls-remote",
+            "--heads",
+            "origin"
+          ],
+          "exit_code": 0
+        }
+      ],
+      "ancestry": {
+        "status": "identical"
+      }
+    },
+    {
+      "repository": "trident",
+      "pin": "da0d1a59cd8208fab96f219ccedef29122d5221a",
+      "origin_ref": "refs/heads/release/0.4",
+      "current_origin_head": "da0d1a59cd8208fab96f219ccedef29122d5221a",
+      "commands": [
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/trident",
+            "ls-remote",
+            "--heads",
+            "origin"
+          ],
+          "exit_code": 0
+        }
+      ],
+      "ancestry": {
+        "status": "identical"
+      }
+    },
+    {
+      "repository": "trisha",
+      "pin": "d59738198aff278e7166e5958fbbc5f9777986b7",
+      "origin_ref": "refs/heads/release/0.4",
+      "current_origin_head": "191c6e03fa855be3b70b5aa5e4ee78be1ebffe91",
+      "commands": [
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/trisha",
+            "ls-remote",
+            "--heads",
+            "origin"
+          ],
+          "exit_code": 0
+        },
+        {
+          "command": [
+            "gh",
+            "api",
+            "repos/cyberia-to/trisha/compare/d59738198aff278e7166e5958fbbc5f9777986b7...191c6e03fa855be3b70b5aa5e4ee78be1ebffe91"
+          ],
+          "exit_code": 0
+        }
+      ],
+      "ancestry": {
+        "status": "ahead",
+        "ahead_by": 3,
+        "merge_base_sha": "d59738198aff278e7166e5958fbbc5f9777986b7"
+      }
+    },
+    {
+      "repository": "zheng",
+      "pin": "633e5ba980db94ca10d9d6b67cf24d9d3aef63a7",
+      "origin_ref": "refs/heads/release/0.4",
+      "current_origin_head": "0d7ba6d422d9b825f9685e903e55252f88ebecd9",
+      "commands": [
+        {
+          "command": [
+            "git",
+            "-C",
+            "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/zheng",
+            "ls-remote",
+            "--heads",
+            "origin"
+          ],
+          "exit_code": 0
+        },
+        {
+          "command": [
+            "gh",
+            "api",
+            "repos/cyberia-to/zheng/compare/633e5ba980db94ca10d9d6b67cf24d9d3aef63a7...0d7ba6d422d9b825f9685e903e55252f88ebecd9"
+          ],
+          "exit_code": 0
+        }
+      ],
+      "ancestry": {
+        "status": "ahead",
+        "ahead_by": 8,
+        "merge_base_sha": "633e5ba980db94ca10d9d6b67cf24d9d3aef63a7"
+      }
+    }
+  ]
+}

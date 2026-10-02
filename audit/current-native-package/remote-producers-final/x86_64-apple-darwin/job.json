@@ -1,0 +1,92 @@
+{
+  "id": 110719983888,
+  "run_id": 36969168806,
+  "workflow_name": "Native release candidate",
+  "head_branch": "test/0.4-current-distribution-20261002",
+  "run_url": "https://api.github.com/repos/cyberia-to/trisha/actions/runs/36969168806",
+  "run_attempt": 1,
+  "node_id": "CR_kwDORSKVcM8AAAAZx2zhEA",
+  "head_sha": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+  "url": "https://api.github.com/repos/cyberia-to/trisha/actions/jobs/110719983888",
+  "html_url": "https://github.com/cyberia-to/trisha/actions/runs/36969168806/job/110719983888",
+  "status": "completed",
+  "conclusion": "success",
+  "created_at": "2026-10-02T05:32:29Z",
+  "started_at": "2026-10-02T05:43:43Z",
+  "completed_at": "2026-10-02T06:24:14Z",
+  "name": "native (macos-15-intel, x86_64-apple-darwin)",
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1,
+      "started_at": "2026-10-02T05:43:44Z",
+      "completed_at": "2026-10-02T05:43:46Z"
+    },
+    {
+      "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2,
+      "started_at": "2026-10-02T05:43:46Z",
+      "completed_at": "2026-10-02T05:43:54Z"
+    },
+    {
+      "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3,
+      "started_at": "2026-10-02T05:43:54Z",
+      "completed_at": "2026-10-02T05:43:55Z"
+    },
+    {
+      "name": "Build and validate the exact source archive",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4,
+      "started_at": "2026-10-02T05:43:55Z",
+      "completed_at": "2026-10-02T06:23:56Z"
+    },
+    {
+      "name": "Preserve binaries, proof corpus and failure evidence",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 5,
+      "started_at": "2026-10-02T06:23:56Z",
+      "completed_at": "2026-10-02T06:24:05Z"
+    },
+    {
+      "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 9,
+      "started_at": "2026-10-02T06:24:05Z",
+      "completed_at": "2026-10-02T06:24:05Z"
+    },
+    {
+      "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 10,
+      "started_at": "2026-10-02T06:24:05Z",
+      "completed_at": "2026-10-02T06:24:06Z"
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 11,
+      "started_at": "2026-10-02T06:24:06Z",
+      "completed_at": "2026-10-02T06:24:06Z"
+    }
+  ],
+  "check_run_url": "https://api.github.com/repos/cyberia-to/trisha/check-runs/110719983888",
+  "labels": [
+    "macos-15-intel"
+  ],
+  "runner_id": 1000010217,
+  "runner_name": "GitHub Actions 1000010217",
+  "runner_group_id": 0,
+  "runner_group_name": "GitHub Actions"
+}

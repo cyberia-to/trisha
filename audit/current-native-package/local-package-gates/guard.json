@@ -1,0 +1,36 @@
+{
+  "status": "passed",
+  "observed_at": "2026-10-02T05:43:56.951479+00:00",
+  "scope": "Fresh current Mac package-producing gates; full198 separately in progress",
+  "source_sha256": "734df69dc7d43467fc9ae574c7cf7b25eb9b4ec9bc08e9ca3f96b9500131f42e",
+  "source_provenance_sha256": "3c6f2ced084812e73f97c069169f83807fc5d389e54b581dd52f10982cd5b227",
+  "runner_revision": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+  "binaries": [
+    {
+      "name": "trident",
+      "sha256": "fd7a560f19aba2dc5767966126210d7d25b9f06ed7adaf9deab843574aa2ed68"
+    },
+    {
+      "name": "trident-lsp",
+      "sha256": "e6f241608ba8c35f83c97c81b2444087cfbaf7ccd19d8b5c05bf65e89765dded"
+    },
+    {
+      "name": "trisha",
+      "sha256": "2b096706c9b6905e960d19c93903c1b0e8ea203d21893838dbfa650ca1e0c25a"
+    },
+    {
+      "name": "joy",
+      "sha256": "cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6"
+    }
+  ],
+  "binary_archive": {
+    "name": "cyber-tools-aarch64-apple-darwin.tar.gz",
+    "sha256": "b542e6e3bf8a15c4650cfeb8bda436ba45a1ecf32844aa9655275bf42086ab9b",
+    "bytes": 16929445
+  },
+  "corpus_archive": {
+    "name": "proof-corpus-aarch64-apple-darwin.tar.gz",
+    "sha256": "1dca29b3906ca5fbb36a76c92ab712e93714260334b230785e4afc3f2ba4ff39",
+    "bytes": 25196751
+  }
+}

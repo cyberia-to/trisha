@@ -1,0 +1,181 @@
+{
+  "status": "passed",
+  "scope": "Actual six producer self-consumer pair receipts and five integrity mutations; full cross-platform consumer matrix remains separate",
+  "checker_sha256": "6f1614159860e6845b59d121153c9a159bebb950a8fc6b688ab16c891aa75bd6",
+  "script_sha256": "f109c75910d104e6167bd5cde1d2606faf7da54c593cb9144837fa03c5bbcfce",
+  "native_self_pairs": 6,
+  "case_checks": 444,
+  "pairs": [
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "legacy": {
+        "receipt_sha256": "de20b6de7002891eba5270a417129b34131a6d08417749c5e2081a404ac87b77",
+        "corpus_manifest_sha256": "95ea6d2d9bef819cbc1732058e96d01f657943283c63e3ad890b8db708158165",
+        "cases": 47,
+        "accepted": 18,
+        "rejected": 29,
+        "consumer_binaries": {
+          "trisha": "75985f4af4168def99f0cbc7c66fe90cc8c7098c431efa3835caae5d54d82684",
+          "joy": "dfe67f29a77973e972970db680e1a4c5ace572cd2279e60276971bb6b92be353"
+        }
+      },
+      "structured": {
+        "receipt_sha256": "034e95fe3eb0a916235de143aabcc65d3d3816aa46c55fdbb2e70b84a750a23a",
+        "corpus_manifest_sha256": "0716f58421f9e23ffcadc5ed9514671589abdcf4afc2e68e78597dcdccf3a21b",
+        "cases": 27,
+        "accepted": 6,
+        "rejected": 21,
+        "consumer_binaries": {
+          "joy": "dfe67f29a77973e972970db680e1a4c5ace572cd2279e60276971bb6b92be353"
+        }
+      }
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "legacy": {
+        "receipt_sha256": "fd68d87ac322fd1f9443e4e9e282896cd040d3cd40c509e5d04a3e503fb86723",
+        "corpus_manifest_sha256": "9f07a43c808690941ec4829898b6956a185053fe8fa53d699e103760ac19bb53",
+        "cases": 47,
+        "accepted": 18,
+        "rejected": 29,
+        "consumer_binaries": {
+          "trisha": "9e787238b8f022a5d78ff4a96de28994e794cdab605d01c6af73c10106a73d22",
+          "joy": "4b99b80a0867aca4b2858f88b9d71f8ec5b5de37d3ededbaa2b33e84d4c2e976"
+        }
+      },
+      "structured": {
+        "receipt_sha256": "ab487daa0510d7a2abd5c1df0fa3b1f0817c7101b97a294ef4b7411501a0549e",
+        "corpus_manifest_sha256": "92bb01036720e7ce4755f572f0f1aff3aa4f9d30b2a79ecf1795fc5c371bde78",
+        "cases": 27,
+        "accepted": 6,
+        "rejected": 21,
+        "consumer_binaries": {
+          "joy": "4b99b80a0867aca4b2858f88b9d71f8ec5b5de37d3ededbaa2b33e84d4c2e976"
+        }
+      }
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "legacy": {
+        "receipt_sha256": "e07d01c0cc5e101d94a994bb340000e5cb616ad311e6b75d503259712bcd985b",
+        "corpus_manifest_sha256": "b7ce70b7b530934b6cc38b06587f23fd17628f733d6f980e977aa5467d7ea241",
+        "cases": 47,
+        "accepted": 18,
+        "rejected": 29,
+        "consumer_binaries": {
+          "trisha": "cb9785cc22434cbae8e6695b4519c2593689c1f20c39c067e85f4624bcea9449",
+          "joy": "7d9ccebc4f159fc421cb1148bc14443d6c622a25ee18d39bf4353b4c697f5b6c"
+        }
+      },
+      "structured": {
+        "receipt_sha256": "44a1f10a1f3e7e6b98da069a68dbf987fe39fa8e1df4b1b6a0be895b538dc147",
+        "corpus_manifest_sha256": "5181c9fc3c5a292918d887188cd423782c9b615dc82141ce79e5e14c24cb927c",
+        "cases": 27,
+        "accepted": 6,
+        "rejected": 21,
+        "consumer_binaries": {
+          "joy": "7d9ccebc4f159fc421cb1148bc14443d6c622a25ee18d39bf4353b4c697f5b6c"
+        }
+      }
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "legacy": {
+        "receipt_sha256": "7d8dc7a16dae341ab5c4162c09376f28bd66bcddcf66991266f7fddbf01c3687",
+        "corpus_manifest_sha256": "dd9c447ba3f17d795801bcf158f6ce15f596310ba3afe67ee8d44e0ced49d959",
+        "cases": 47,
+        "accepted": 18,
+        "rejected": 29,
+        "consumer_binaries": {
+          "trisha": "418a74078fe54703e952a5998059a1cce9d764b46d7d59207f807de1bb3fedc6",
+          "joy": "6f145cfcaa190206957af05b03e0d174682497b6a63ecbccb9be60bd5c644c90"
+        }
+      },
+      "structured": {
+        "receipt_sha256": "25eb9640e71a9d2974894510f4e32ddada5c910242e00579021f2477d6e86f2a",
+        "corpus_manifest_sha256": "965fbae955414fff442cb3d924bf12572d9c6b40793b1d607c2c467ae9ecc526",
+        "cases": 27,
+        "accepted": 6,
+        "rejected": 21,
+        "consumer_binaries": {
+          "joy": "6f145cfcaa190206957af05b03e0d174682497b6a63ecbccb9be60bd5c644c90"
+        }
+      }
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "legacy": {
+        "receipt_sha256": "c85b7b643b141206b2daf49a96fa247cbd5bced35bb6f6b38df36d9ce23ff2ce",
+        "corpus_manifest_sha256": "fcc18f952ca9a190ffc649da1b83253e1cbd9e3896f427c9086a91de32adec26",
+        "cases": 47,
+        "accepted": 18,
+        "rejected": 29,
+        "consumer_binaries": {
+          "trisha": "dda3958e1a7393c64d0c07140baf5897fc680ef5fb532e1e089a54e7de805866",
+          "joy": "331cbb72979f92095fb1c5d95e607445a40d59c81872ecb25ea288a4328b94cc"
+        }
+      },
+      "structured": {
+        "receipt_sha256": "5bc3312692dd712b1c4a7a024ae014b52a62221c6b343357f29f9880e9459112",
+        "corpus_manifest_sha256": "d06f79e4f50211e63e57211738026e475ddf2b0fd285995ffad06a640287e706",
+        "cases": 27,
+        "accepted": 6,
+        "rejected": 21,
+        "consumer_binaries": {
+          "joy": "331cbb72979f92095fb1c5d95e607445a40d59c81872ecb25ea288a4328b94cc"
+        }
+      }
+    },
+    {
+      "target": "aarch64-apple-darwin",
+      "legacy": {
+        "receipt_sha256": "3c8371549c0897d923538eb3c3788a498bb3633a35bcd8ea1cd6fa0a8f38eaa3",
+        "corpus_manifest_sha256": "9bada0db89b251d52d00eeea1c91b93edc52ac5eb74a2c28c3bd6dcf638b4397",
+        "cases": 47,
+        "accepted": 18,
+        "rejected": 29,
+        "consumer_binaries": {
+          "trisha": "2b096706c9b6905e960d19c93903c1b0e8ea203d21893838dbfa650ca1e0c25a",
+          "joy": "cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6"
+        }
+      },
+      "structured": {
+        "receipt_sha256": "d5418a3917034630a00e2999a12f68360248d44bed981f50498de99847ffe95f",
+        "corpus_manifest_sha256": "d4182c73b13fc01ea6ca111b070349a37f2e4697a18d669dacd9722a3e051813",
+        "cases": 27,
+        "accepted": 6,
+        "rejected": 21,
+        "consumer_binaries": {
+          "joy": "cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6"
+        }
+      }
+    }
+  ],
+  "mutations": [
+    {
+      "name": "legacy-consumer-binary",
+      "rejected": true,
+      "error": "consumer binaries differ"
+    },
+    {
+      "name": "legacy-outcome",
+      "rejected": true,
+      "error": "exact case commands or outcomes differ"
+    },
+    {
+      "name": "structured-producer-identity",
+      "rejected": true,
+      "error": "structured producer/consumer Joy differs"
+    },
+    {
+      "name": "structured-command-inventory",
+      "rejected": true,
+      "error": "structured command inventory differs"
+    },
+    {
+      "name": "structured-raw-output",
+      "rejected": true,
+      "error": "structured raw command stream differs"
+    }
+  ]
+}

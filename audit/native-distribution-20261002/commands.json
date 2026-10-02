@@ -1,0 +1,73 @@
+[
+  {
+    "name": "draft-before",
+    "argv": [
+      "gh",
+      "api",
+      "repos/cyberia-to/trisha/releases/389977897"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "tag-before",
+    "argv": [
+      "gh",
+      "api",
+      "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+    ],
+    "exit_code": 1
+  },
+  {
+    "name": "trident-heads-before",
+    "argv": [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/trident",
+      "ls-remote",
+      "origin",
+      "refs/heads/master",
+      "refs/heads/release/0.4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "joy-heads-before",
+    "argv": [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/joy",
+      "ls-remote",
+      "origin",
+      "refs/heads/master",
+      "refs/heads/release/0.4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "trisha-heads-before",
+    "argv": [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/trisha",
+      "ls-remote",
+      "origin",
+      "refs/heads/master",
+      "refs/heads/release/0.4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "upload",
+    "argv": [
+      "gh",
+      "release",
+      "upload",
+      "candidate-20260916.1",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/transport/rehearsal-20261002-source.tar.gz",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/transport/rehearsal-20261002-selfhost-kit.tar.gz",
+      "--repo",
+      "cyberia-to/trisha"
+    ],
+    "exit_code": -15
+  }
+]

@@ -1,0 +1,14 @@
+fd24e768d623604b67e20b4b93fa8e82c83ac373	refs/heads/chore/coordinated-release-20260916
+e48a1973bb6faa730d813a40884759b11a66f476	refs/heads/docs/foundations-agent-review
+b7def549e26b60ff3cc78234b8e9b95c3be502cd	refs/heads/docs/model-v0.1
+029b27e2f06d4e720eb894f5c87e0da5393fbc2e	refs/heads/docs/node-model-dependency-audit
+34bbff9dbf36421a45c5c283e6c1336dcafc997a	refs/heads/feat/local-runtime
+7d214e0233852f448051e9dfd346f763f61a921c	refs/heads/fix/node-model-dependency
+53dbf8d1836b78e07cf811951ded622bc3e467d9	refs/heads/launch/127-neuron-audit
+c2a3eccf607859fb332946c64d19ae3e1d017139	refs/heads/launch/160-neuron-pair-canonicality
+40a005b286f302ebdbe6656ee4d3060801824565	refs/heads/launch/217-neuron-authority-coverage
+ccc72f25c2daa569599c2e684a63762420e50a05	refs/heads/launch/218-neuron-model-codec-coverage
+dbacef5b7e1e5c35688768a1636facaf02ff8b40	refs/heads/launch/219-neuron-cli-coverage
+fc33aa35f80081e540239f0883410fef428f5672	refs/heads/launch/253-records-codec-coverage
+6a56d3a520dda1fd5d09686b0b88c97d32afc88f	refs/heads/launch/39-neuron-mudra-build-gap
+c87541120caae4fb5d5bb401653d1cbcbeffeb7d	refs/heads/main

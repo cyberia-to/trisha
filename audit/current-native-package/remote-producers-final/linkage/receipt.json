@@ -1,0 +1,673 @@
+{
+  "status": "passed",
+  "scope": "Actual packaged binary import/deployment inspection; executable OS qualification remains limited to measured hosts",
+  "source_sha256": "734df69dc7d43467fc9ae574c7cf7b25eb9b4ec9bc08e9ca3f96b9500131f42e",
+  "llvm": "Homebrew LLVM version 22.1.4\n  Optimized build.\n",
+  "llvm_command": {
+    "command": [
+      "/opt/homebrew/opt/llvm/bin/llvm-readobj",
+      "--version"
+    ],
+    "exit_code": 0,
+    "stdout_sha256": "82976082b790b25186bb08d7bd32a05636c5067a6d27421f2d9515571f47c2b9",
+    "stdout_bytes": 48,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "script_sha256": "c6877062e3a64dcbf8fbba555d4767dbca22d444c7a5f7670c9647e72c733a54",
+  "binaries": [
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "binary": "trident",
+      "sha256": "4972c6ea5b6d55abb43f5cf4e3277ddf0c879c6dfc31ad8618070d429a205d88",
+      "archive_sha256": "0edc2616721e1facfa01562a4888015f5a1bf089906ef1950d2a3c1e00839efb",
+      "command": {
+        "command": [
+          "/opt/homebrew/opt/llvm/bin/llvm-readobj",
+          "--needed-libs",
+          "--version-info",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/x86_64-unknown-linux-gnu/trident"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "467fb8442393e18db691f6ed8975c194a58eadfb8320e58f75ddc012524c75bc",
+        "stdout_bytes": 12418,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "glibc_versions": [
+        "2.2.5",
+        "2.3",
+        "2.3.4",
+        "2.4",
+        "2.9",
+        "2.14",
+        "2.15",
+        "2.16",
+        "2.17",
+        "2.18",
+        "2.25",
+        "2.28",
+        "2.29",
+        "2.32",
+        "2.33",
+        "2.34"
+      ],
+      "observed_host": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+      "maximum_glibc": "2.34"
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "binary": "trident-lsp",
+      "sha256": "ae15db5541de1f0abc46e1587643526b26f7ccca39d471cbd7c260fd02a629de",
+      "archive_sha256": "0edc2616721e1facfa01562a4888015f5a1bf089906ef1950d2a3c1e00839efb",
+      "command": {
+        "command": [
+          "/opt/homebrew/opt/llvm/bin/llvm-readobj",
+          "--needed-libs",
+          "--version-info",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/x86_64-unknown-linux-gnu/trident-lsp"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "cb1cdab5aa076f97f7c3d52c4616db5007f5bdde9ac5bec26f9ca4e2ff6925f5",
+        "stdout_bytes": 10794,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "glibc_versions": [
+        "2.2.5",
+        "2.3",
+        "2.3.4",
+        "2.9",
+        "2.14",
+        "2.15",
+        "2.16",
+        "2.17",
+        "2.18",
+        "2.25",
+        "2.28",
+        "2.29",
+        "2.32",
+        "2.33",
+        "2.34"
+      ],
+      "observed_host": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+      "maximum_glibc": "2.34"
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "binary": "trisha",
+      "sha256": "75985f4af4168def99f0cbc7c66fe90cc8c7098c431efa3835caae5d54d82684",
+      "archive_sha256": "0edc2616721e1facfa01562a4888015f5a1bf089906ef1950d2a3c1e00839efb",
+      "command": {
+        "command": [
+          "/opt/homebrew/opt/llvm/bin/llvm-readobj",
+          "--needed-libs",
+          "--version-info",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/x86_64-unknown-linux-gnu/trisha"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "ab8f2cc1f23fa757c7ab920a5afe78627ab5253fba4ac6a5f789fdd20949242b",
+        "stdout_bytes": 12807,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "glibc_versions": [
+        "2.2.5",
+        "2.3",
+        "2.3.4",
+        "2.4",
+        "2.9",
+        "2.10",
+        "2.14",
+        "2.15",
+        "2.16",
+        "2.17",
+        "2.18",
+        "2.25",
+        "2.28",
+        "2.29",
+        "2.32",
+        "2.33",
+        "2.34"
+      ],
+      "observed_host": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+      "maximum_glibc": "2.34"
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "binary": "joy",
+      "sha256": "dfe67f29a77973e972970db680e1a4c5ace572cd2279e60276971bb6b92be353",
+      "archive_sha256": "0edc2616721e1facfa01562a4888015f5a1bf089906ef1950d2a3c1e00839efb",
+      "command": {
+        "command": [
+          "/opt/homebrew/opt/llvm/bin/llvm-readobj",
+          "--needed-libs",
+          "--version-info",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/x86_64-unknown-linux-gnu/joy"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "bf8087ea0a9b224ee44f1cd4882e86a532bdf88411c799a832d82a8c8fecb7c8",
+        "stdout_bytes": 10909,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "glibc_versions": [
+        "2.2.5",
+        "2.3",
+        "2.3.4",
+        "2.4",
+        "2.9",
+        "2.14",
+        "2.15",
+        "2.16",
+        "2.17",
+        "2.18",
+        "2.25",
+        "2.28",
+        "2.29",
+        "2.32",
+        "2.33",
+        "2.34"
+      ],
+      "observed_host": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+      "maximum_glibc": "2.34"
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "binary": "trident.exe",
+      "sha256": "147b4b1b11fdb3bab54c2d6f84f578ef1cd5cc48ea28c2176e63f1db92961a01",
+      "archive_sha256": "deea05b4e2a0f59253fe46d85fe035c807d58af979ca332e4902bbc3af5cf41c",
+      "command": {
+        "command": [
+          "/opt/homebrew/opt/llvm/bin/llvm-readobj",
+          "--coff-imports",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/aarch64-pc-windows-msvc/trident.exe"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "e110c7b74e99a64eb453c13ba4ad557e652bedf5cc514d0d8c73ea1a7a6807cd",
+        "stdout_bytes": 5285,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "imports": [
+        "kernel32.dll",
+        "api-ms-win-core-synch-l1-2-0.dll",
+        "bcryptprimitives.dll",
+        "KERNEL32.dll",
+        "ntdll.dll",
+        "WS2_32.dll"
+      ],
+      "static_crt_policy": "passed: no separate MSVC/UCRT runtime DLL import"
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "binary": "trident-lsp.exe",
+      "sha256": "19e71e6235c86577aede352c47c5f87cc5e2a6834a142f5de07b8265d690ace0",
+      "archive_sha256": "deea05b4e2a0f59253fe46d85fe035c807d58af979ca332e4902bbc3af5cf41c",
+      "command": {
+        "command": [
+          "/opt/homebrew/opt/llvm/bin/llvm-readobj",
+          "--coff-imports",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/aarch64-pc-windows-msvc/trident-lsp.exe"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "3b1aff7f96dce89e3728800c43169256f8f2ece7f11dbc5aff71df78e072b817",
+        "stdout_bytes": 4506,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "imports": [
+        "kernel32.dll",
+        "api-ms-win-core-synch-l1-2-0.dll",
+        "bcryptprimitives.dll",
+        "KERNEL32.dll",
+        "ntdll.dll"
+      ],
+      "static_crt_policy": "passed: no separate MSVC/UCRT runtime DLL import"
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "binary": "trisha.exe",
+      "sha256": "9e787238b8f022a5d78ff4a96de28994e794cdab605d01c6af73c10106a73d22",
+      "archive_sha256": "deea05b4e2a0f59253fe46d85fe035c807d58af979ca332e4902bbc3af5cf41c",
+      "command": {
+        "command": [
+          "/opt/homebrew/opt/llvm/bin/llvm-readobj",
+          "--coff-imports",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/aarch64-pc-windows-msvc/trisha.exe"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "e9dc5cc939905525527cb69d4569dad2378ac6ecc31182680a308755143ab306",
+        "stdout_bytes": 5670,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "imports": [
+        "kernel32.dll",
+        "bcryptprimitives.dll",
+        "ws2_32.dll",
+        "api-ms-win-core-synch-l1-2-0.dll",
+        "bcrypt.dll",
+        "advapi32.dll",
+        "ntdll.dll"
+      ],
+      "static_crt_policy": "passed: no separate MSVC/UCRT runtime DLL import"
+    },
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "binary": "joy.exe",
+      "sha256": "4b99b80a0867aca4b2858f88b9d71f8ec5b5de37d3ededbaa2b33e84d4c2e976",
+      "archive_sha256": "deea05b4e2a0f59253fe46d85fe035c807d58af979ca332e4902bbc3af5cf41c",
+      "command": {
+        "command": [
+          "/opt/homebrew/opt/llvm/bin/llvm-readobj",
+          "--coff-imports",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/aarch64-pc-windows-msvc/joy.exe"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "deab5332ee00159f5049038664e48850f05e6a6fd547d12b0098d148b185a3c6",
+        "stdout_bytes": 4534,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "imports": [
+        "bcryptprimitives.dll",
+        "kernel32.dll",
+        "api-ms-win-core-synch-l1-2-0.dll",
+        "KERNEL32.dll",
+        "ntdll.dll"
+      ],
+      "static_crt_policy": "passed: no separate MSVC/UCRT runtime DLL import"
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "binary": "trident",
+      "sha256": "022af0e2ce9b811d33b26e1b90e2599c7e46d32e66a7931a79d40b3066c64811",
+      "archive_sha256": "13fc312122f161c14a1446da3b98541bb7ba986941a62188e98eab49ca4f0d3b",
+      "command": {
+        "command": [
+          "/opt/homebrew/opt/llvm/bin/llvm-readobj",
+          "--needed-libs",
+          "--version-info",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/aarch64-unknown-linux-gnu/trident"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "15acaf59e6d77457974cb47085df8ac67ed6e4afa88b509fcf1ea1a6f669ab11",
+        "stdout_bytes": 11141,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "glibc_versions": [
+        "2.17",
+        "2.18",
+        "2.25",
+        "2.28",
+        "2.29",
+        "2.32",
+        "2.33",
+        "2.34"
+      ],
+      "observed_host": "Linux-6.8.0-1064-azure-aarch64-with-glibc2.35",
+      "maximum_glibc": "2.34"
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "binary": "trident-lsp",
+      "sha256": "a8e5fd26cc337f6b575f0332e29ab8669c6ff10509701f72e43ebaa8f880880f",
+      "archive_sha256": "13fc312122f161c14a1446da3b98541bb7ba986941a62188e98eab49ca4f0d3b",
+      "command": {
+        "command": [
+          "/opt/homebrew/opt/llvm/bin/llvm-readobj",
+          "--needed-libs",
+          "--version-info",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/aarch64-unknown-linux-gnu/trident-lsp"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "4a1a428e80f7922c6599fa6f13ab6959654853d805454977a4ca1e8484f12d9f",
+        "stdout_bytes": 9657,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "glibc_versions": [
+        "2.17",
+        "2.18",
+        "2.25",
+        "2.28",
+        "2.29",
+        "2.32",
+        "2.33",
+        "2.34"
+      ],
+      "observed_host": "Linux-6.8.0-1064-azure-aarch64-with-glibc2.35",
+      "maximum_glibc": "2.34"
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "binary": "trisha",
+      "sha256": "cb9785cc22434cbae8e6695b4519c2593689c1f20c39c067e85f4624bcea9449",
+      "archive_sha256": "13fc312122f161c14a1446da3b98541bb7ba986941a62188e98eab49ca4f0d3b",
+      "command": {
+        "command": [
+          "/opt/homebrew/opt/llvm/bin/llvm-readobj",
+          "--needed-libs",
+          "--version-info",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/aarch64-unknown-linux-gnu/trisha"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "51ed674b22262e55b82b0a5ed08e4717d4887ca53c08d2580f9d2d2ea2932002",
+        "stdout_bytes": 11721,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "glibc_versions": [
+        "2.17",
+        "2.18",
+        "2.25",
+        "2.28",
+        "2.29",
+        "2.32",
+        "2.33",
+        "2.34"
+      ],
+      "observed_host": "Linux-6.8.0-1064-azure-aarch64-with-glibc2.35",
+      "maximum_glibc": "2.34"
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "binary": "joy",
+      "sha256": "7d9ccebc4f159fc421cb1148bc14443d6c622a25ee18d39bf4353b4c697f5b6c",
+      "archive_sha256": "13fc312122f161c14a1446da3b98541bb7ba986941a62188e98eab49ca4f0d3b",
+      "command": {
+        "command": [
+          "/opt/homebrew/opt/llvm/bin/llvm-readobj",
+          "--needed-libs",
+          "--version-info",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/aarch64-unknown-linux-gnu/joy"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "2ad2c35847ede75c1ef8cfa7c6dcfc9d5710389f81f4f93d5beda127cb5902cb",
+        "stdout_bytes": 9650,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "glibc_versions": [
+        "2.17",
+        "2.18",
+        "2.25",
+        "2.28",
+        "2.29",
+        "2.32",
+        "2.33",
+        "2.34"
+      ],
+      "observed_host": "Linux-6.8.0-1064-azure-aarch64-with-glibc2.35",
+      "maximum_glibc": "2.34"
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "binary": "trident",
+      "sha256": "b6baa9b312ec09b535bfa38760227a43c664549a81c7b31560dcef628455458b",
+      "archive_sha256": "3608fec044690bd139fc161f5ac4d39d7c886a87e43cbee9e63433bddd5d59a5",
+      "command": {
+        "command": [
+          "otool",
+          "-l",
+          "-L",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/x86_64-apple-darwin/trident"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "76a8899868e619abd9f026bbdc0db4a27ac6ef24ace8afeb36e98229936f27bb",
+        "stdout_bytes": 6910,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "observed_host": "macOS-15.7.9-x86_64-i386-64bit-Mach-O",
+      "deployment_minos": [],
+      "scope": "Mach-O linkage only; older OS execution qualification remains separate"
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "binary": "trident-lsp",
+      "sha256": "95e3433c87b3db4e3604821322d89936d731850bf08c4be4cbe625abe35bc097",
+      "archive_sha256": "3608fec044690bd139fc161f5ac4d39d7c886a87e43cbee9e63433bddd5d59a5",
+      "command": {
+        "command": [
+          "otool",
+          "-l",
+          "-L",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/x86_64-apple-darwin/trident-lsp"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "1d4fb665a11597446f0c96fb72eb066de5705c25b87e09ecb0735029fa5bc954",
+        "stdout_bytes": 6914,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "observed_host": "macOS-15.7.9-x86_64-i386-64bit-Mach-O",
+      "deployment_minos": [],
+      "scope": "Mach-O linkage only; older OS execution qualification remains separate"
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "binary": "trisha",
+      "sha256": "418a74078fe54703e952a5998059a1cce9d764b46d7d59207f807de1bb3fedc6",
+      "archive_sha256": "3608fec044690bd139fc161f5ac4d39d7c886a87e43cbee9e63433bddd5d59a5",
+      "command": {
+        "command": [
+          "otool",
+          "-l",
+          "-L",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/x86_64-apple-darwin/trisha"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "04ff3996a75bb269a6f6a412d5737e02d7283c1b55f9402f081d5467dd45740c",
+        "stdout_bytes": 7345,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "observed_host": "macOS-15.7.9-x86_64-i386-64bit-Mach-O",
+      "deployment_minos": [],
+      "scope": "Mach-O linkage only; older OS execution qualification remains separate"
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "binary": "joy",
+      "sha256": "6f145cfcaa190206957af05b03e0d174682497b6a63ecbccb9be60bd5c644c90",
+      "archive_sha256": "3608fec044690bd139fc161f5ac4d39d7c886a87e43cbee9e63433bddd5d59a5",
+      "command": {
+        "command": [
+          "otool",
+          "-l",
+          "-L",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/x86_64-apple-darwin/joy"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "e2de7265a6ebd30d4b203a2c91a93675b7c9a1d557d493fae8b39d41aeb22801",
+        "stdout_bytes": 6899,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "observed_host": "macOS-15.7.9-x86_64-i386-64bit-Mach-O",
+      "deployment_minos": [],
+      "scope": "Mach-O linkage only; older OS execution qualification remains separate"
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "binary": "trident.exe",
+      "sha256": "2f1e5533da4611411a07736b9394e3876dde19c1b7aa800017e7465d8740ff59",
+      "archive_sha256": "4f2bf5c6ba76f2218a084279651b0b71e44efa3353663b5dbaeb071577b387e9",
+      "command": {
+        "command": [
+          "/opt/homebrew/opt/llvm/bin/llvm-readobj",
+          "--coff-imports",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/x86_64-pc-windows-msvc/trident.exe"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "f41c92d71a06527b323e723400e9627a723474df9534750ff4a10f857954a8d7",
+        "stdout_bytes": 5492,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "imports": [
+        "kernel32.dll",
+        "api-ms-win-core-synch-l1-2-0.dll",
+        "bcryptprimitives.dll",
+        "KERNEL32.dll",
+        "ntdll.dll",
+        "WS2_32.dll"
+      ],
+      "static_crt_policy": "passed: no separate MSVC/UCRT runtime DLL import"
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "binary": "trident-lsp.exe",
+      "sha256": "eca729dd26c04d743dafce2afd14195345f6a92e2fcb90611e429f6d7075abf7",
+      "archive_sha256": "4f2bf5c6ba76f2218a084279651b0b71e44efa3353663b5dbaeb071577b387e9",
+      "command": {
+        "command": [
+          "/opt/homebrew/opt/llvm/bin/llvm-readobj",
+          "--coff-imports",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/x86_64-pc-windows-msvc/trident-lsp.exe"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "79953b13d85444c268fa937caa3425ab7da068e767174ff9686b3dad81964f69",
+        "stdout_bytes": 4713,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "imports": [
+        "kernel32.dll",
+        "api-ms-win-core-synch-l1-2-0.dll",
+        "bcryptprimitives.dll",
+        "KERNEL32.dll",
+        "ntdll.dll"
+      ],
+      "static_crt_policy": "passed: no separate MSVC/UCRT runtime DLL import"
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "binary": "trisha.exe",
+      "sha256": "dda3958e1a7393c64d0c07140baf5897fc680ef5fb532e1e089a54e7de805866",
+      "archive_sha256": "4f2bf5c6ba76f2218a084279651b0b71e44efa3353663b5dbaeb071577b387e9",
+      "command": {
+        "command": [
+          "/opt/homebrew/opt/llvm/bin/llvm-readobj",
+          "--coff-imports",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/x86_64-pc-windows-msvc/trisha.exe"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "4127fa901034ecdf51cf8a13261c3280deea20fde0ac6215876d1d07ee57b8ee",
+        "stdout_bytes": 5821,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "imports": [
+        "kernel32.dll",
+        "bcryptprimitives.dll",
+        "ws2_32.dll",
+        "api-ms-win-core-synch-l1-2-0.dll",
+        "bcrypt.dll",
+        "advapi32.dll",
+        "ntdll.dll"
+      ],
+      "static_crt_policy": "passed: no separate MSVC/UCRT runtime DLL import"
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "binary": "joy.exe",
+      "sha256": "331cbb72979f92095fb1c5d95e607445a40d59c81872ecb25ea288a4328b94cc",
+      "archive_sha256": "4f2bf5c6ba76f2218a084279651b0b71e44efa3353663b5dbaeb071577b387e9",
+      "command": {
+        "command": [
+          "/opt/homebrew/opt/llvm/bin/llvm-readobj",
+          "--coff-imports",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/x86_64-pc-windows-msvc/joy.exe"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "7dea08fabcc860634f5a5bb0ec66aa2cdb3d0dc7c5bbc4bcd12732996d6036c2",
+        "stdout_bytes": 4741,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "imports": [
+        "bcryptprimitives.dll",
+        "kernel32.dll",
+        "api-ms-win-core-synch-l1-2-0.dll",
+        "KERNEL32.dll",
+        "ntdll.dll"
+      ],
+      "static_crt_policy": "passed: no separate MSVC/UCRT runtime DLL import"
+    },
+    {
+      "target": "aarch64-apple-darwin",
+      "binary": "trident",
+      "sha256": "fd7a560f19aba2dc5767966126210d7d25b9f06ed7adaf9deab843574aa2ed68",
+      "archive_sha256": "b542e6e3bf8a15c4650cfeb8bda436ba45a1ecf32844aa9655275bf42086ab9b",
+      "command": {
+        "command": [
+          "otool",
+          "-l",
+          "-L",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/aarch64-apple-darwin/trident"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "f262a04010587e5315e6c6f05fa72476102e0117adec5545c740a9cfe67cf335",
+        "stdout_bytes": 7299,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "observed_host": "macOS-26.4.1-arm64-arm-64bit-Mach-O",
+      "deployment_minos": [
+        "11.0"
+      ],
+      "scope": "Mach-O linkage only; older OS execution qualification remains separate"
+    },
+    {
+      "target": "aarch64-apple-darwin",
+      "binary": "trident-lsp",
+      "sha256": "e6f241608ba8c35f83c97c81b2444087cfbaf7ccd19d8b5c05bf65e89765dded",
+      "archive_sha256": "b542e6e3bf8a15c4650cfeb8bda436ba45a1ecf32844aa9655275bf42086ab9b",
+      "command": {
+        "command": [
+          "otool",
+          "-l",
+          "-L",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/aarch64-apple-darwin/trident-lsp"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "9e9c583bc1be87d9df3dfc856be1b7aedfd9bb460434cdaa37c6a9fc169a4517",
+        "stdout_bytes": 7303,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "observed_host": "macOS-26.4.1-arm64-arm-64bit-Mach-O",
+      "deployment_minos": [
+        "11.0"
+      ],
+      "scope": "Mach-O linkage only; older OS execution qualification remains separate"
+    },
+    {
+      "target": "aarch64-apple-darwin",
+      "binary": "trisha",
+      "sha256": "2b096706c9b6905e960d19c93903c1b0e8ea203d21893838dbfa650ca1e0c25a",
+      "archive_sha256": "b542e6e3bf8a15c4650cfeb8bda436ba45a1ecf32844aa9655275bf42086ab9b",
+      "command": {
+        "command": [
+          "otool",
+          "-l",
+          "-L",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/aarch64-apple-darwin/trisha"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "1bc54a48df84f2b3233af0b73e69752558fc5c593d296b2eb42dc95c89b6b987",
+        "stdout_bytes": 8105,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "observed_host": "macOS-26.4.1-arm64-arm-64bit-Mach-O",
+      "deployment_minos": [
+        "11.0"
+      ],
+      "scope": "Mach-O linkage only; older OS execution qualification remains separate"
+    },
+    {
+      "target": "aarch64-apple-darwin",
+      "binary": "joy",
+      "sha256": "cd8403626c29740b41e62c3160636bbce3a8ccd9abadc75d0b0bb874b6e441e6",
+      "archive_sha256": "b542e6e3bf8a15c4650cfeb8bda436ba45a1ecf32844aa9655275bf42086ab9b",
+      "command": {
+        "command": [
+          "otool",
+          "-l",
+          "-L",
+          "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/current-linkage/aarch64-apple-darwin/joy"
+        ],
+        "exit_code": 0,
+        "stdout_sha256": "de50e1ab957cbe924f213ce8ee6dc6efb52e039a36eceb3602087e5564232569",
+        "stdout_bytes": 7288,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "observed_host": "macOS-26.4.1-arm64-arm-64bit-Mach-O",
+      "deployment_minos": [
+        "11.0"
+      ],
+      "scope": "Mach-O linkage only; older OS execution qualification remains separate"
+    }
+  ]
+}

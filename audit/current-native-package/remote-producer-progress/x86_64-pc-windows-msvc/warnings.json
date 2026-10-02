@@ -1,0 +1,54 @@
+{
+  "status": "passed",
+  "normalization": "ANSI CSI sequences removed for warning recognition; original log bytes retained unchanged in authenticated ZIP",
+  "logs": [
+    {
+      "path": "candidate-fixture-build.log",
+      "bytes": 2814,
+      "sha256": "e6b3e23364ded148ba4e61588913eef4cc35076bf7560cf2f51cbb05ee214744",
+      "rust_warnings": []
+    },
+    {
+      "path": "candidate-joy-build.log",
+      "bytes": 5852,
+      "sha256": "9effae4e6131813758450c8b26e9fcf4a49464f66d55fa8aeb064daf8450ade2",
+      "rust_warnings": []
+    },
+    {
+      "path": "candidate-trident-build.log",
+      "bytes": 3920,
+      "sha256": "f356c445c1b04a2dc6ae1a2e4ac99a07189386253b87edf295b80f1134a35320",
+      "rust_warnings": []
+    },
+    {
+      "path": "candidate-trisha-build.log",
+      "bytes": 13418,
+      "sha256": "fc45c2fc7b9880b84f1ff89e26def2e51af7f1c0c6ccf97061f39baab9903c8b",
+      "rust_warnings": []
+    },
+    {
+      "path": "joy-tests.log",
+      "bytes": 24332,
+      "sha256": "11cd17d682a30ae2f2618078f660aff33da412d65e3086b8c42aaca2f753bb15",
+      "rust_warnings": []
+    },
+    {
+      "path": "nox-tests.log",
+      "bytes": 21426,
+      "sha256": "013678f2ea89ad541a3010785f074ad49675988844414d2a9a316f1862c91f91",
+      "rust_warnings": []
+    },
+    {
+      "path": "trident-tests.log",
+      "bytes": 58828,
+      "sha256": "8b13f80894af425d717350fe9bd62e5de45ef37fd45a64c4be68163a129d3293",
+      "rust_warnings": []
+    },
+    {
+      "path": "trisha-tests.log",
+      "bytes": 71075,
+      "sha256": "005b64622becbed275cb5c943c2b41e75bbb8907ed1a0c7d43911991f036b47c",
+      "rust_warnings": []
+    }
+  ]
+}

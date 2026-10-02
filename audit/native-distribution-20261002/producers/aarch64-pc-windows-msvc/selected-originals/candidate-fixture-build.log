@@ -1,0 +1,38 @@
+   Compiling strata-core v0.1.1 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\strata\core)
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.24
+   Compiling quote v1.0.47
+   Compiling serde_core v1.0.229
+   Compiling strata-proof v0.1.1 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\strata\proof)
+   Compiling strata-ext v0.1.1 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\strata\ext)
+   Compiling syn v3.0.5
+   Compiling serde v1.0.229
+   Compiling strata-compute v0.1.1 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\strata\compute)
+   Compiling serde_derive v1.0.229
+   Compiling strata-nebu v0.1.1 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\strata\nebu\rs)
+   Compiling strata-jali v0.1.1 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\strata\jali\rs)
+   Compiling strata-genies v0.1.1 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\strata\genies\rs)
+   Compiling strata-kuro v0.1.1 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\strata\kuro\rs)
+   Compiling strata-trop v0.1.1 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\strata\trop\rs)
+   Compiling cyber-hemera v0.3.1 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\hemera\rs)
+   Compiling getrandom v0.3.4
+   Compiling cfg-if v1.0.4
+   Compiling zmij v1.0.23
+   Compiling cyber-lens-core v0.1.2 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\lens\core)
+   Compiling cyber-lens-brakedown v0.2.0 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\lens\brakedown)
+   Compiling cyber-lens-assayer v0.2.0 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\lens\assayer)
+   Compiling cyber-lens-ikat v0.2.0 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\lens\ikat)
+   Compiling cyber-lens-binius v0.1.1 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\lens\binius)
+   Compiling cyber-lens-porphyry v0.2.0 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\lens\porphyry)
+   Compiling cyber-lens v0.2.0 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\lens\src)
+   Compiling cyber-nox v0.3.0 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\nox\rs)
+   Compiling serde_json v1.0.151
+   Compiling zeroize v1.9.0
+   Compiling zheng v0.4.0 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\zheng\rs)
+   Compiling itoa v1.0.18
+   Compiling memchr v2.8.3
+   Compiling neuron-id v0.1.0 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\neuron\id)
+   Compiling bbg v0.3.0 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\bbg\rs)
+   Compiling release-state-fixture v0.0.0 (C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\scripts\fixtures)
+    Finished `release` profile [optimized] target(s) in 31.88s
+     Running `C:\a\_temp\cyber-candidate\candidate.building.i1raHr\build\fixtures\release\release-state-fixture.exe 'C:\a\_temp\cyber-candidate\candidate.building.i1raHr\share\trisha-release-smoke'`

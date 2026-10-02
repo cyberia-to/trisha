@@ -1,0 +1,105 @@
+{
+  "total_count": 5,
+  "artifacts": [
+    {
+      "id": 11212481311,
+      "node_id": "MDg6QXJ0aWZhY3QxMTIxMjQ4MTMxMQ==",
+      "name": "candidate-x86_64-apple-darwin",
+      "size_in_bytes": 83627717,
+      "url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11212481311",
+      "archive_download_url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11212481311/zip",
+      "expired": false,
+      "digest": "sha256:4cf927a9cc93f532aba16a41e63b8e7dd239bbbfd903883d1016cceed7f153ce",
+      "created_at": "2026-10-02T06:24:05Z",
+      "updated_at": "2026-10-02T06:24:05Z",
+      "expires_at": "2026-11-01T06:23:58Z",
+      "workflow_run": {
+        "id": 36969168806,
+        "repository_id": 1159894384,
+        "head_repository_id": 1159894384,
+        "head_branch": "test/0.4-current-distribution-20261002",
+        "head_sha": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde"
+      }
+    },
+    {
+      "id": 11212455449,
+      "node_id": "MDg6QXJ0aWZhY3QxMTIxMjQ1NTQ0OQ==",
+      "name": "candidate-x86_64-pc-windows-msvc",
+      "size_in_bytes": 82675686,
+      "url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11212455449",
+      "archive_download_url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11212455449/zip",
+      "expired": false,
+      "digest": "sha256:74e223433c16fe233e247e48f4c715f1eae18de25dd18c4aa750e33960e60199",
+      "created_at": "2026-10-02T06:15:49Z",
+      "updated_at": "2026-10-02T06:15:49Z",
+      "expires_at": "2026-11-01T06:15:45Z",
+      "workflow_run": {
+        "id": 36969168806,
+        "repository_id": 1159894384,
+        "head_repository_id": 1159894384,
+        "head_branch": "test/0.4-current-distribution-20261002",
+        "head_sha": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde"
+      }
+    },
+    {
+      "id": 11212207445,
+      "node_id": "MDg6QXJ0aWZhY3QxMTIxMjIwNzQ0NQ==",
+      "name": "candidate-aarch64-unknown-linux-gnu",
+      "size_in_bytes": 83564320,
+      "url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11212207445",
+      "archive_download_url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11212207445/zip",
+      "expired": false,
+      "digest": "sha256:efb546e1fb41e9ab1045e795cee36076f97f09c291cc824f720ee7c04d11ca57",
+      "created_at": "2026-10-02T06:14:34Z",
+      "updated_at": "2026-10-02T06:14:34Z",
+      "expires_at": "2026-11-01T06:14:31Z",
+      "workflow_run": {
+        "id": 36969168806,
+        "repository_id": 1159894384,
+        "head_repository_id": 1159894384,
+        "head_branch": "test/0.4-current-distribution-20261002",
+        "head_sha": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde"
+      }
+    },
+    {
+      "id": 11211903748,
+      "node_id": "MDg6QXJ0aWZhY3QxMTIxMTkwMzc0OA==",
+      "name": "candidate-x86_64-unknown-linux-gnu",
+      "size_in_bytes": 83899007,
+      "url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11211903748",
+      "archive_download_url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11211903748/zip",
+      "expired": false,
+      "digest": "sha256:f1f61099628d8f57b9c27325cf6c3f5c4ee664093a91bd6b65b83051bdc4ba2f",
+      "created_at": "2026-10-02T06:10:44Z",
+      "updated_at": "2026-10-02T06:10:44Z",
+      "expires_at": "2026-11-01T06:10:40Z",
+      "workflow_run": {
+        "id": 36969168806,
+        "repository_id": 1159894384,
+        "head_repository_id": 1159894384,
+        "head_branch": "test/0.4-current-distribution-20261002",
+        "head_sha": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde"
+      }
+    },
+    {
+      "id": 11211868568,
+      "node_id": "MDg6QXJ0aWZhY3QxMTIxMTg2ODU2OA==",
+      "name": "candidate-aarch64-pc-windows-msvc",
+      "size_in_bytes": 81531238,
+      "url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11211868568",
+      "archive_download_url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11211868568/zip",
+      "expired": false,
+      "digest": "sha256:373e1440bf5f560e8a7d735f4f20a87719f1fd2705bc551250120e5d0cfd7447",
+      "created_at": "2026-10-02T06:08:12Z",
+      "updated_at": "2026-10-02T06:08:12Z",
+      "expires_at": "2026-11-01T06:08:07Z",
+      "workflow_run": {
+        "id": 36969168806,
+        "repository_id": 1159894384,
+        "head_repository_id": 1159894384,
+        "head_branch": "test/0.4-current-distribution-20261002",
+        "head_sha": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde"
+      }
+    }
+  ]
+}

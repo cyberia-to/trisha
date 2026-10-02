@@ -1,0 +1,15 @@
+7c7e350a68aba42b7880af36ccc9aa0d26ace79d	refs/heads/chore/0.3.1
+a931a0a8e7ed369852ce0f8bc6451a59745ee692	refs/heads/chore/coordinated-release-20260916
+98d34070635252e8d740ddfcc1e720307a345c80	refs/heads/feat/eidos-hemera-proofs
+51292aa9faca3673d4a403d2cd8c8c02c32cf04e	refs/heads/launch/107-cli-fmt-backend-tests
+d33c2527dcbb22c5985cf71ee3d0d03fb533e7f2	refs/heads/launch/169-step-sponge-invariants
+b7ffadd43a1c97f2d0da6641feddd153724f0ff0	refs/heads/launch/183-stream-decode-length-check
+b58ab27b7401c1dd6d9681fa75451fe47fe6c5f8	refs/heads/launch/190-hemera-stream-async
+9e16b4de253beb6b837b259f2f61617dd7421b4a	refs/heads/launch/191-async-io-coverage
+74712cafce5f63374afe1b380f92c0ce9e9ea21e	refs/heads/launch/210-hemera-stream-decode-len
+a63afb5dab804b61dd78307910821e814db2d2f4	refs/heads/launch/238-stream-invariants-release
+fb4ddcc6f87a72f9115612f8b8a4863325d2aa2d	refs/heads/launch/245-wgsl-left-subtree-chunks
+fc33f98cfb4185f82d50e59844d2f6427c60ba37	refs/heads/launch/39-hemera-clean-checkout
+45ed76076030e633ed02bb79ce8ec8dcaa54baf8	refs/heads/launch/40-verify-batch-root
+725f87434d4bc86c1c82290b93ba1242d4538502	refs/heads/launch/60-cli-hex-panic
+23f3bbcff910ea6d504ceb505680a539260869da	refs/heads/main

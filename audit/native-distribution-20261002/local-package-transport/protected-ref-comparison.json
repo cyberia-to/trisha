@@ -1,0 +1,61 @@
+{
+  "status": "passed",
+  "scope": "Observed master/main refs before and after only; all eleven selected source pins separately remain reachable on their origin refs",
+  "protected_refs": [
+    {
+      "repository": "honeycrisp",
+      "ref": "refs/heads/main",
+      "sha": "9593c7218e14e2b5b816d9008b45ab60b9580cf3"
+    },
+    {
+      "repository": "neuron",
+      "ref": "refs/heads/main",
+      "sha": "c87541120caae4fb5d5bb401653d1cbcbeffeb7d"
+    },
+    {
+      "repository": "hemera",
+      "ref": "refs/heads/main",
+      "sha": "23f3bbcff910ea6d504ceb505680a539260869da"
+    },
+    {
+      "repository": "trisha",
+      "ref": "refs/heads/master",
+      "sha": "3cb3984eca9e6a1e71cb9fd8e2cc7ea18913fd2d"
+    },
+    {
+      "repository": "strata",
+      "ref": "refs/heads/main",
+      "sha": "56aedb2d12b3126c601eb333419136d403614dbb"
+    },
+    {
+      "repository": "lens",
+      "ref": "refs/heads/master",
+      "sha": "392abe752793c3e0b98f2d1d57245ba1e3173673"
+    },
+    {
+      "repository": "trident",
+      "ref": "refs/heads/master",
+      "sha": "360b737e073ca2f969ab0c78460b4228bcac7b78"
+    },
+    {
+      "repository": "nox",
+      "ref": "refs/heads/master",
+      "sha": "2612673cae64239cb3511b13027d9ffaba77f48e"
+    },
+    {
+      "repository": "joy",
+      "ref": "refs/heads/main",
+      "sha": "10844a890e2939d529a1003474298a09be30b75c"
+    },
+    {
+      "repository": "bbg",
+      "ref": "refs/heads/master",
+      "sha": "a3c9a0c22bfb78ef891265f9e2cd25838ef77c2d"
+    },
+    {
+      "repository": "zheng",
+      "ref": "refs/heads/master",
+      "sha": "44bd5bfec5cb6764123ea513a33a26c0877a488c"
+    }
+  ]
+}

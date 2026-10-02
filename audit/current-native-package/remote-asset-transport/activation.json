@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "scope": "Authenticated transport and unchanged default refs checked before six-native consumer activation; final corpus/full198 verdict separate",
+  "transport_run": 36973773801,
+  "producer_run": 36969168806,
+  "selector_sha256": "58263dbc6b7c09f96cd1598fa8982d7c5e305aee771f83da7dcc81d494172da0",
+  "source_sha256": "734df69dc7d43467fc9ae574c7cf7b25eb9b4ec9bc08e9ca3f96b9500131f42e",
+  "script_sha256": "92218be0b99cd6b0a3b24fc93a707d99910b591c3fede5b8542a47ee25974341",
+  "remote_assets": 20,
+  "local_assets": 3
+}

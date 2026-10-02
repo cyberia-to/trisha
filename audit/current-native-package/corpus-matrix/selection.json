@@ -1,0 +1,19 @@
+{
+  "selector": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/trisha-native-ci/.github/release-candidate.json",
+  "producer_results": {
+    "aarch64-apple-darwin": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/release-results",
+    "aarch64-pc-windows-msvc": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/native-runs/36969168806/11211868568/restored",
+    "x86_64-unknown-linux-gnu": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/native-runs/36969168806/11211903748/restored",
+    "aarch64-unknown-linux-gnu": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/native-runs/36969168806/11212207445/restored",
+    "x86_64-pc-windows-msvc": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/native-runs/36969168806/11212455449/restored",
+    "x86_64-apple-darwin": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/native-runs/36969168806/11212481311/restored"
+  },
+  "consumer_results": {
+    "aarch64-apple-darwin": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-corpus-consumer/release-results",
+    "aarch64-pc-windows-msvc": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/native-runs/36974227589/11212886258/restored",
+    "aarch64-unknown-linux-gnu": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/native-runs/36974227589/11212836179/restored",
+    "x86_64-pc-windows-msvc": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/native-runs/36974227589/11212642441/restored",
+    "x86_64-apple-darwin": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/native-runs/36974227589/11212633025/restored",
+    "x86_64-unknown-linux-gnu": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/native-runs/36974227589/11212349713/restored"
+  }
+}

@@ -50,6 +50,39 @@ def run(command, log, env, cwd):
         raise RuntimeError(f'command exited {result.returncode}; see {log.name}')
 
 
+def pin_toolchain(env, target, results, work):
+    # RUSTUP_TOOLCHAIN affects rustup shims, not a Homebrew/system compiler
+    # earlier in PATH. Resolve the actual tools before compiling any source.
+    toolchain = '1.89.0-' + target
+    for name in ('RUSTC', 'RUSTDOC', 'RUSTC_WRAPPER', 'RUSTC_WORKSPACE_WRAPPER',
+                 'RUSTDOCFLAGS', 'CARGO_ENCODED_RUSTDOCFLAGS', 'CARGO_BUILD_TARGET',
+                 'CARGO_BUILD_RUSTC', 'CARGO_BUILD_RUSTDOC', 'CARGO_BUILD_RUSTC_WRAPPER',
+                 'CARGO_BUILD_RUSTC_WORKSPACE_WRAPPER', 'CARGO_BUILD_RUSTDOCFLAGS'):
+        env.pop(name, None)
+    env['RUSTUP_TOOLCHAIN'] = toolchain
+    paths = {}
+    for name in ('rustc', 'cargo', 'rustdoc'):
+        log = results / (name + '-path.log')
+        run(['rustup', 'which', '--toolchain', toolchain, name], log, env, work)
+        paths[name] = Path(log.read_text(encoding='utf-8').strip())
+    if len({path.parent for path in paths.values()}) != 1:
+        raise ValueError('Rust, Cargo and rustdoc must come from the same pinned toolchain')
+    env['PATH'] = str(paths['rustc'].parent) + os.pathsep + env['PATH']
+    env['RUSTC'] = str(paths['rustc'])
+    env['RUSTDOC'] = str(paths['rustdoc'])
+    observed = {}
+    for name, flag in (('rustc', '-vV'), ('cargo', '-Vv'), ('rustdoc', '-vV')):
+        log = results / (name + '.log')
+        run([paths[name], flag], log, env, work)
+        version = log.read_text(encoding='utf-8')
+        if not version.startswith(name + ' 1.89.0 '):
+            raise ValueError('actual ' + name + ' is not pinned 1.89.0')
+        observed[name] = dict(path=str(paths[name]), sha256=sha(paths[name]), version=version)
+    if f'host: {target}\n' not in observed['rustc']['version']:
+        raise ValueError('pinned toolchain is not native to requested target')
+    (results / 'toolchain-paths.json').write_text(json.dumps(observed, indent=2) + '\n')
+
+
 def extract(archive, destination):
     destination.mkdir()
     if archive.suffix in ('.zip', '.whl'):
@@ -94,7 +127,25 @@ def main():
     sys.stdout.reconfigure(encoding='utf-8', errors='backslashreplace')
     sys.stderr.reconfigure(encoding='utf-8', errors='backslashreplace')
     checkout = Path.cwd()
-    spec = json.loads((checkout/'.github/release-candidate.json').read_text())
+    selector = checkout / os.environ.get('RELEASE_SELECTOR', '.github/release-candidate.json')
+    spec = json.loads(selector.read_text())
+    profile = spec.get('validation_profile', 'original')
+    if profile not in ('original', 'current-package-v1'):
+        raise ValueError('unknown native validation profile')
+    current = profile == 'current-package-v1'
+    if current:
+        inputs = checkout / '.github/current-package-inputs.json'
+        if sha(inputs) != spec['inputs_sha256']:
+            raise ValueError('current package input selector differs')
+        selected_inputs = json.loads(inputs.read_text())
+        if selected_inputs['source_sha256'] != spec['source_sha256']:
+            raise ValueError('current package source selection differs')
+        if spec.get('phase') == 'verify':
+            expected = set(NU)
+            for field in ('corpora', 'structured_corpora'):
+                rows = spec[field]
+                if len(rows) != 6 or {row['target'] for row in rows} != expected:
+                    raise ValueError('all six unique producer corpora are required')
     target = os.environ['RELEASE_TARGET']
     expected_machine = 'arm64' if target.startswith('aarch64') else 'x86_64'
     actual_machine = platform.machine().lower().replace('amd64', 'x86_64').replace('aarch64', 'arm64')
@@ -121,6 +172,9 @@ def main():
             download(spec['binaries'][target], work/('binary'+extension), env)
             for index, corpus in enumerate(spec['corpora']):
                 download(corpus, work/f'corpus-{index}.tar.gz', env)
+            if current:
+                for index, corpus in enumerate(spec['structured_corpora']):
+                    download(corpus, work/f'structured-{index}.tar.gz', env)
         env.pop('GH_TOKEN', None)
         env.pop('GITHUB_TOKEN', None)
         if sha(archive) != spec['source_sha256']:
@@ -129,6 +183,10 @@ def main():
         source = work/'unpacked/cyber-source'
         scripts = source/'trisha/scripts'
         run([sys.executable, '-B', scripts/'verify-source.py', source], results/'source.log', env, work)
+        if current:
+            run([sys.executable, '-B', checkout/'scripts/current-source-impact.py', '--source', source,
+                 '--inputs', inputs, '--references', checkout/'audit/current-native-package/references',
+                 '--receipt', results/'source-impact.json'], results/'source-impact.log', env, work)
         kit = work/'selfhost-kit'
         run([sys.executable, '-B', scripts/'selfhost-kit.py', 'unpack', '--archive', kit_archive,
              '--sha256', spec['selfhost_kit']['sha256'], '--trident', source/'trident', '--output', kit],
@@ -153,6 +211,14 @@ def main():
                      work/f'corpus-{index}/proof-corpus', '--candidate', work/'installed/cyber-tools',
                      '--receipt', results/f'verification-{index}.json'],
                     results/f'verification-{index}.log', env, work)
+            if current:
+                for index, corpus in enumerate(spec['structured_corpora']):
+                    extract(work/f'structured-{index}.tar.gz', work/f'structured-{index}')
+                    run([sys.executable, '-B', checkout/'scripts/current-structured-corpus.py', 'verify',
+                         '--corpus', work/f'structured-{index}/structured-corpus',
+                         '--candidate', work/'installed/cyber-tools',
+                         '--receipt', results/f'structured-verification-{index}.json'],
+                        results/f'structured-verification-{index}.log', env, work)
             return
         nu_archive = work/('nu'+extension)
         url = f'https://github.com/nushell/nushell/releases/download/0.112.2/nu-0.112.2-{target}{extension}'
@@ -177,10 +243,8 @@ def main():
             z3.chmod(0o755)
         env['PATH'] = str(z3.parent) + os.pathsep + env['PATH']
         run([z3, '--version'], results/'z3.log', env, work)
-        run(['rustup', 'toolchain', 'install', '1.89.0', '--profile', 'minimal'], results/'toolchain.log', env, work)
-        actual_target = subprocess.check_output(['rustc', '-vV'], env=env, text=True)
-        if f'host: {target}\n' not in actual_target:
-            raise ValueError(f'toolchain is not native to requested target: {actual_target}')
+        run(['rustup', 'toolchain', 'install', '1.89.0-' + target, '--profile', 'minimal'], results/'toolchain.log', env, work)
+        pin_toolchain(env, target, results, work)
         if os.name == 'nt':
             run([sys.executable, '-B', scripts/'test_windows_process.py'], results/'windows-process.log', env, work)
         candidate = work/'candidate'
@@ -192,13 +256,17 @@ def main():
         env['RUSTFLAGS'] = json.loads((candidate/'candidate.json').read_text())['rustflags']
         env['PATH'] = str(candidate/'bin') + os.pathsep + env['PATH']
         test_failures = []
-        for project in ('trident', 'trisha', 'joy'):
+        for project in (('trident', 'trisha', 'joy', 'nox') if current else ('trident', 'trisha', 'joy')):
             env['CARGO_TARGET_DIR'] = str(candidate/'build'/project)
             command = ['cargo', 'test', '--manifest-path', source/project/'Cargo.toml',
                        '--release', '--locked', '--no-fail-fast']
             if project == 'trisha':
                 for package in ('trisha', 'trisha-rs', 'trisha-neptune', 'trisha-honeycrisp'):
                     command += ['-p', package]
+            elif current and project == 'trident':
+                command += ['--workspace', '--lib']
+            elif project == 'nox':
+                command += ['-p', 'cyber-nox', '--features', 'std', '--lib']
             else:
                 command += ['--workspace']
             try:
@@ -273,6 +341,17 @@ def main():
         kit_smoke(installed, installed/'share/trident-selfhost', results/'unpacked-selfhost-smoke')
         run([sys.executable, '-B', scripts/'smoke-lsp.py', installed/'bin'/('trident-lsp'+suffix)],
             results/'unpacked-lsp.log', env, work)
+        if current:
+            structured = results/'structured-corpus'
+            helper = checkout/'scripts/current-structured-corpus.py'
+            run([sys.executable, '-B', helper, 'generate', '--source', source,
+                 '--candidate', installed, '--output', structured], results/'structured-generate.log', env, work)
+            run([sys.executable, '-B', helper, 'verify', '--corpus', structured,
+                 '--candidate', installed, '--receipt', results/'local-structured-verification.json'],
+                results/'local-structured-verification.log', env, work)
+            run([sys.executable, '-B', scripts/'archive-source.py', structured,
+                 results/f'structured-corpus-{target}.tar.gz', '--prefix', 'structured-corpus', '--epoch', '0'],
+                results/'structured-package.log', env, work)
         for name in ('candidate.json', 'source-verification.json'):
             shutil.copyfile(candidate/name, results/name)
         shutil.copytree(smoke, results/'proof-corpus')

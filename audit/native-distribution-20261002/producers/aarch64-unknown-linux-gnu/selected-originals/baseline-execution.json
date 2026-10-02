@@ -1,0 +1,11 @@
+{
+  "all_checks_passed": true,
+  "source_provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+  "candidate_sha256": "e377a6fa4141b1ae4cfccdd8a7bc262c2a9c0facbef3555fc5cad1b88353dde8",
+  "log_sha256": "d8f6a5c3bdb5cd044b084c2d1f46750ccfa090fcbd89ca69b5c32afd6aa2a914",
+  "target": "aarch64-unknown-linux-gnu",
+  "baselines": 43,
+  "positive_fixtures": 99,
+  "negative_fixtures": 34,
+  "generated_proofs": 0
+}

@@ -1,0 +1,11 @@
+PASS: installed LSP initialize/shutdown/exit
+
+trident 0.3.0
+
+trisha 0.3.0
+
+joy 0.5.0
+
+Checking installed Triton recursive execution and outer proof...
+PASS: installed Trident/Trisha/Joy packages, Joy build, target selection, owned Neptune states, typed entry parameters, loop returns and scope, artifact extensions, execution/proving/verification, recursive Triton outer proof, offline program inspection and tamper rejection.
+Public JOYEXEC2, private JOYZH001 and authenticated-public-state JOYST001 paths passed. Private queries use bounded, fully public state tables. Neptune transaction validation and live deployment remain separate gates.

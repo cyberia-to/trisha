@@ -1,0 +1,1494 @@
+{
+  "schema": "joy/installed-native-smoke/v1",
+  "status": "passed",
+  "started_ns": 1790910335175907907,
+  "scope": "Four existing bounded execution-proof routes on supplied Joy; dynamic compiler proofs separate",
+  "binary": "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+  "binary_start": {
+    "bytes": 5797456,
+    "sha256": "c2b2a98bb78306e0d21f98bf688e7db8b6155f0577eab47013c03c8dfe3cef66"
+  },
+  "fixtures": "/home/runner/work/_temp/cyber-candidate/candidate/share/trisha-release-smoke",
+  "fixtures_start": {
+    "state.json": {
+      "bytes": 2146,
+      "sha256": "8953a46858800afc0b9e9cd3a2a9869efec0f3fea1177c2b63c4180458b3b2e8"
+    },
+    "state-all.json": {
+      "bytes": 2983,
+      "sha256": "2a0e6d0d29ab36f8259dc3512e9db0b05fb1ea7f62a780a274c36df9d864b02c"
+    },
+    "other-state.json": {
+      "bytes": 2145,
+      "sha256": "16b1bab42e8f64781c9723cc1b5122ea43690b98eda5673e2dfddd97eb72ab5f"
+    }
+  },
+  "script_start": {
+    "bytes": 13555,
+    "sha256": "398fc368ab423741b090fb1fc45ab3abfd5b77b7a7883d84438313c178c4fbb3"
+  },
+  "host": {
+    "system": "Linux",
+    "machine": "aarch64",
+    "platform": "Linux-6.8.0-1064-azure-aarch64-with-glibc2.35",
+    "libc": [
+      "glibc",
+      "2.35"
+    ],
+    "python": "3.13.15 (main, Aug  6 2026, 02:18:38) [GCC 11.4.0]"
+  },
+  "environment": {
+    "path": "/home/runner/work/_temp/cyber-candidate/candidate/bin",
+    "removed_trident_overrides": {}
+  },
+  "commands": [
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "describe",
+        "--target",
+        "nox"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/0.stdout",
+      "stderr": "commands/0.stderr",
+      "elapsed_ns": 1487529,
+      "stdout_identity": {
+        "bytes": 3606,
+        "sha256": "f2fe0e4dd1cd801b65da7e1787cea47ef0ea38907a8106911b0e1d3e765d91c7"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "run",
+        "public.tri",
+        "--profile",
+        "release",
+        "--input-values",
+        "3,5"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/1.stdout",
+      "stderr": "commands/1.stderr",
+      "elapsed_ns": 15715289,
+      "stdout_identity": {
+        "bytes": 3,
+        "sha256": "68ca3fba3b7e864770cb61aeb306d4bd4354b68ab4dd38450860c5d823e42a53"
+      },
+      "stderr_identity": {
+        "bytes": 26,
+        "sha256": "41530f7b12f10aa7d2d8c9e3ad74fac4d63f362f6cdc72974f42cff156d56067"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "prove",
+        "public.tri",
+        "--profile",
+        "release",
+        "--input-values",
+        "3,5",
+        "--output",
+        "public.zheng"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/2.stdout",
+      "stderr": "commands/2.stderr",
+      "elapsed_ns": 15872415,
+      "stdout_identity": {
+        "bytes": 13,
+        "sha256": "e855078835b759899224cb67fe3d8702144ad4eec26a912f51d76f3f47e3e726"
+      },
+      "stderr_identity": {
+        "bytes": 73,
+        "sha256": "83eff97bcc94a8334a268df90938c32d573ed89170e702483773c53a884a4a1f"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "public.zheng",
+        "--claim",
+        "24",
+        "--input-values",
+        "3,5"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/3.stdout",
+      "stderr": "commands/3.stderr",
+      "elapsed_ns": 3580316,
+      "stdout_identity": {
+        "bytes": 108,
+        "sha256": "9ec46596370c012a3bd0f33c18ded1f0db830239bfab710eef0d624b36bb433d"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "public.tri",
+        "--profile",
+        "release",
+        "--proof",
+        "public.zheng",
+        "--claim",
+        "24",
+        "--input-values",
+        "3,5"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/4.stdout",
+      "stderr": "commands/4.stderr",
+      "elapsed_ns": 7565391,
+      "stdout_identity": {
+        "bytes": 108,
+        "sha256": "9ec46596370c012a3bd0f33c18ded1f0db830239bfab710eef0d624b36bb433d"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "public.zheng",
+        "--claim",
+        "25"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/5.stdout",
+      "stderr": "commands/5.stderr",
+      "elapsed_ns": 1485866,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 84,
+        "sha256": "d86ff6338a1bcd34464eb322a15457e445942572dd0f3e56469ce815fe93aad3"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "public.zheng",
+        "--input-values",
+        "4,5"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/6.stdout",
+      "stderr": "commands/6.stderr",
+      "elapsed_ns": 1478347,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 84,
+        "sha256": "d86ff6338a1bcd34464eb322a15457e445942572dd0f3e56469ce815fe93aad3"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "changed-public.tri",
+        "--profile",
+        "release",
+        "--proof",
+        "public.zheng",
+        "--claim",
+        "24",
+        "--input-values",
+        "3,5"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/7.stdout",
+      "stderr": "commands/7.stderr",
+      "elapsed_ns": 3526736,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 60,
+        "sha256": "35672d1975a3808ab50818e2d2712d4476cdd379f8e7623b8e3b67a35d851d4c"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "corrupt-public.zheng"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/8.stdout",
+      "stderr": "commands/8.stderr",
+      "elapsed_ns": 1494777,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 55,
+        "sha256": "cf661d8237ba804a211d912eae94eaa089d9b1d2b3da73d206eddae6151313a4"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "run",
+        "private.tri",
+        "--profile",
+        "release",
+        "--secret",
+        "7,13"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/9.stdout",
+      "stderr": "commands/9.stderr",
+      "elapsed_ns": 15681899,
+      "stdout_identity": {
+        "bytes": 3,
+        "sha256": "0433e993a3dbc505d6e5cad972a1df0ab189cfe7ceece5e94fd47ca9a074370f"
+      },
+      "stderr_identity": {
+        "bytes": 26,
+        "sha256": "f31766e49aa2eb2a4ac328b4a41aa64070ad2de5fcc6ae376108d04b929444b7"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "prove",
+        "private.tri",
+        "--profile",
+        "release",
+        "--secret",
+        "7,13",
+        "--output",
+        "private.zheng"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/10.stdout",
+      "stderr": "commands/10.stderr",
+      "elapsed_ns": 315476957,
+      "stdout_identity": {
+        "bytes": 14,
+        "sha256": "2b4711ce4187c4ad43abf52bd4b834b53becef4fda172f3157de98b0d4aa0f59"
+      },
+      "stderr_identity": {
+        "bytes": 92,
+        "sha256": "0d4c32d0224f9b75e86a00221a0a03c2fe0202a7f3d8586f7013482be2caee4c"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "private.zheng",
+        "--claim",
+        "91"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/11.stdout",
+      "stderr": "commands/11.stderr",
+      "elapsed_ns": 164179446,
+      "stdout_identity": {
+        "bytes": 111,
+        "sha256": "2c90abd2ad43ddf165dbfb75b2a4dd88bc75e730c04c4ee3057b0f01af314efc"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "private.tri",
+        "--profile",
+        "release",
+        "--proof",
+        "private.zheng",
+        "--claim",
+        "91"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/12.stdout",
+      "stderr": "commands/12.stderr",
+      "elapsed_ns": 164078820,
+      "stdout_identity": {
+        "bytes": 111,
+        "sha256": "2c90abd2ad43ddf165dbfb75b2a4dd88bc75e730c04c4ee3057b0f01af314efc"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "private.zheng",
+        "--claim",
+        "92"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/13.stdout",
+      "stderr": "commands/13.stderr",
+      "elapsed_ns": 3612594,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 82,
+        "sha256": "f6977a0a9e3b57b2da97acbf134a680b3663d095faf6ea4ba348204818c6a09d"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "changed-private.tri",
+        "--profile",
+        "release",
+        "--proof",
+        "private.zheng",
+        "--claim",
+        "91"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/14.stdout",
+      "stderr": "commands/14.stderr",
+      "elapsed_ns": 3558230,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 82,
+        "sha256": "a018cd7cb80223299749d114ce3aae77c1aeea0f60f2b6f237d91769b193174e"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "corrupt-private.zheng"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/15.stdout",
+      "stderr": "commands/15.stderr",
+      "elapsed_ns": 3560790,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 52,
+        "sha256": "c6317a5162d9c924060749a5b9495deae59a62c332b92e55254d777094a5332d"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "run",
+        "state.tri",
+        "--profile",
+        "release",
+        "--state",
+        "state-all.json",
+        "--input-values",
+        "11"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/16.stdout",
+      "stderr": "commands/16.stderr",
+      "elapsed_ns": 31753933,
+      "stdout_identity": {
+        "bytes": 3,
+        "sha256": "6950980e3aca96f4dc400eb2e47cc5c343e0d3f483a4e70adcae1d7e6bb22d9c"
+      },
+      "stderr_identity": {
+        "bytes": 26,
+        "sha256": "02abc14ccb4d08e6188bb16b9849e6385c21478a82566628a60bb4d360bf8d4a"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "prove",
+        "state.tri",
+        "--profile",
+        "release",
+        "--state",
+        "state-all.json",
+        "--input-values",
+        "11",
+        "--output",
+        "state.zheng"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/17.stdout",
+      "stderr": "commands/17.stderr",
+      "elapsed_ns": 31823858,
+      "stdout_identity": {
+        "bytes": 12,
+        "sha256": "67d700543a484d2f7f37da722453c97cf213ead4ba5a4d7c0d8ae3a0ba2130ca"
+      },
+      "stderr_identity": {
+        "bytes": 93,
+        "sha256": "82e0aa6975eb10f8d6c7e16e0c70d03806a33b2cc37a32c368113acd8ea58b32"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "state.zheng",
+        "--claim",
+        "82",
+        "--input-values",
+        "11",
+        "--state",
+        "state-all.json"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/18.stdout",
+      "stderr": "commands/18.stderr",
+      "elapsed_ns": 15723056,
+      "stdout_identity": {
+        "bytes": 126,
+        "sha256": "9f8b338e719e2c29945bba6ed3bd1e0f00966ccc359d3f4883df2602bd2d1e12"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "state.tri",
+        "--profile",
+        "release",
+        "--proof",
+        "state.zheng",
+        "--claim",
+        "82",
+        "--input-values",
+        "11",
+        "--state",
+        "state-all.json"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/19.stdout",
+      "stderr": "commands/19.stderr",
+      "elapsed_ns": 15701170,
+      "stdout_identity": {
+        "bytes": 126,
+        "sha256": "9f8b338e719e2c29945bba6ed3bd1e0f00966ccc359d3f4883df2602bd2d1e12"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "state.zheng",
+        "--claim",
+        "83"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/20.stdout",
+      "stderr": "commands/20.stderr",
+      "elapsed_ns": 1538462,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 52,
+        "sha256": "2922ac686e8ca5d0c5c4371e164dd5fa828ae03cbfa6c318e9e5a049be71dedc"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "state.zheng",
+        "--input-values",
+        "12"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/21.stdout",
+      "stderr": "commands/21.stderr",
+      "elapsed_ns": 1485562,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 52,
+        "sha256": "2922ac686e8ca5d0c5c4371e164dd5fa828ae03cbfa6c318e9e5a049be71dedc"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "state.zheng",
+        "--state",
+        "other-state.json"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/22.stdout",
+      "stderr": "commands/22.stderr",
+      "elapsed_ns": 3565694,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 61,
+        "sha256": "40248e82a2507d9725f6de72bd4c5ea20fcad833ca7e12c1bf66319148037424"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "changed-state.tri",
+        "--profile",
+        "release",
+        "--proof",
+        "state.zheng",
+        "--claim",
+        "82",
+        "--input-values",
+        "11",
+        "--state",
+        "state-all.json"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/23.stdout",
+      "stderr": "commands/23.stderr",
+      "elapsed_ns": 7587781,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 64,
+        "sha256": "338075b94bce7a615179e451a1c2add5ec59c2bb442b917d3449a4844774580d"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "corrupt-state.zheng"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/24.stdout",
+      "stderr": "commands/24.stderr",
+      "elapsed_ns": 1478938,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 57,
+        "sha256": "f79b95b0bb2873d30299d8754f2974a74176dc71e0d55adc57a7068bb98c5343"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "run",
+        "private-state.tri",
+        "--profile",
+        "release",
+        "--state",
+        "state-all.json",
+        "--secret",
+        "11"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/25.stdout",
+      "stderr": "commands/25.stderr",
+      "elapsed_ns": 31746102,
+      "stdout_identity": {
+        "bytes": 3,
+        "sha256": "6950980e3aca96f4dc400eb2e47cc5c343e0d3f483a4e70adcae1d7e6bb22d9c"
+      },
+      "stderr_identity": {
+        "bytes": 26,
+        "sha256": "3243393e2d58471c1f03474cf0a0dd6ef392b590b275aea4685310dfeabc97d3"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "prove",
+        "private-state.tri",
+        "--profile",
+        "release",
+        "--state",
+        "state-all.json",
+        "--secret",
+        "11",
+        "--output",
+        "private-state.zheng"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/26.stdout",
+      "stderr": "commands/26.stderr",
+      "elapsed_ns": 2071120564,
+      "stdout_identity": {
+        "bytes": 20,
+        "sha256": "87ed87b1fece71c74cc6beff729308e3bae7c9a414f443c467fe4553e0039bd2"
+      },
+      "stderr_identity": {
+        "bytes": 94,
+        "sha256": "bf6a6620fad29a5a749ee376aa386033badc3c4824971191a41c06b068357fa8"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "private-state.zheng",
+        "--claim",
+        "82",
+        "--state",
+        "state-all.json"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/27.stdout",
+      "stderr": "commands/27.stderr",
+      "elapsed_ns": 1016221516,
+      "stdout_identity": {
+        "bytes": 111,
+        "sha256": "024cdb7b2dd6d572dd51a7b7bc9f3910651c25c8a88a4bf31b7a2bbb5f5874b6"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "private-state.tri",
+        "--profile",
+        "release",
+        "--proof",
+        "private-state.zheng",
+        "--claim",
+        "82",
+        "--state",
+        "state-all.json"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/28.stdout",
+      "stderr": "commands/28.stderr",
+      "elapsed_ns": 1017516041,
+      "stdout_identity": {
+        "bytes": 111,
+        "sha256": "024cdb7b2dd6d572dd51a7b7bc9f3910651c25c8a88a4bf31b7a2bbb5f5874b6"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "private-state.zheng",
+        "--claim",
+        "83"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/29.stdout",
+      "stderr": "commands/29.stderr",
+      "elapsed_ns": 7713270,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 82,
+        "sha256": "f6977a0a9e3b57b2da97acbf134a680b3663d095faf6ea4ba348204818c6a09d"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "private-state.zheng",
+        "--state",
+        "other-state.json"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/30.stdout",
+      "stderr": "commands/30.stderr",
+      "elapsed_ns": 15734272,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 55,
+        "sha256": "7d4e6fc617834d4ebfa11e954751cc8b69d49da11742a9041390ff04d7a448af"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "changed-private-state.tri",
+        "--profile",
+        "release",
+        "--proof",
+        "private-state.zheng",
+        "--claim",
+        "82",
+        "--state",
+        "state-all.json"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/31.stdout",
+      "stderr": "commands/31.stderr",
+      "elapsed_ns": 7662473,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 82,
+        "sha256": "a018cd7cb80223299749d114ce3aae77c1aeea0f60f2b6f237d91769b193174e"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "corrupt-private-state.zheng"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/32.stdout",
+      "stderr": "commands/32.stderr",
+      "elapsed_ns": 7712917,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 52,
+        "sha256": "c6317a5162d9c924060749a5b9495deae59a62c332b92e55254d777094a5332d"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "prove",
+        "private.tri",
+        "--profile",
+        "release",
+        "--secret",
+        "7,13",
+        "--output",
+        "private-fresh.zheng"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/33.stdout",
+      "stderr": "commands/33.stderr",
+      "elapsed_ns": 314724701,
+      "stdout_identity": {
+        "bytes": 20,
+        "sha256": "25917da01863b9dfe5d0b7093ba378b6137842d0352f67db5cf3ebaef6f2d884"
+      },
+      "stderr_identity": {
+        "bytes": 92,
+        "sha256": "9829fca3c66ff876d1624feafbc4df3a897e36c9664c48a8044a74ae56daf7d4"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "private-fresh.zheng",
+        "--claim",
+        "91"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/34.stdout",
+      "stderr": "commands/34.stderr",
+      "elapsed_ns": 164082492,
+      "stdout_identity": {
+        "bytes": 111,
+        "sha256": "2c90abd2ad43ddf165dbfb75b2a4dd88bc75e730c04c4ee3057b0f01af314efc"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "private.zheng",
+        "--secret",
+        "7,13"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/35.stdout",
+      "stderr": "commands/35.stderr",
+      "elapsed_ns": 3644032,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 91,
+        "sha256": "944d89bb9d52124672ea60563424386b1c2334fbcbb0dc494642af4b46e9ea8c"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "public.zheng",
+        "--budget",
+        "1"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/36.stdout",
+      "stderr": "commands/36.stderr",
+      "elapsed_ns": 1648808,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 84,
+        "sha256": "d86ff6338a1bcd34464eb322a15457e445942572dd0f3e56469ce815fe93aad3"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "prove",
+        "private.tri",
+        "--profile",
+        "release",
+        "--output",
+        "preserved.zheng",
+        "--force"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/37.stdout",
+      "stderr": "commands/37.stderr",
+      "elapsed_ns": 3647360,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 38,
+        "sha256": "0ee82b22c5cea4f917e9d0797212fb259dc7a73132157fa6d9c9bf6e2fa7e0d8"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "prove",
+        "private.tri",
+        "--profile",
+        "release",
+        "--secret",
+        "7",
+        "--output",
+        "preserved.zheng",
+        "--force"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/38.stdout",
+      "stderr": "commands/38.stderr",
+      "elapsed_ns": 3623546,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 67,
+        "sha256": "ee31153d54378a2c3192096415d2643e693131d23ad76f922d22e87521a72999"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "prove",
+        "private.tri",
+        "--profile",
+        "release",
+        "--secret",
+        "7,13,42",
+        "--output",
+        "preserved.zheng",
+        "--force"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/39.stdout",
+      "stderr": "commands/39.stderr",
+      "elapsed_ns": 3583669,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 67,
+        "sha256": "ee31153d54378a2c3192096415d2643e693131d23ad76f922d22e87521a72999"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "prove",
+        "state.tri",
+        "--state",
+        "state.json",
+        "--input-values",
+        "11",
+        "--zk",
+        "--output",
+        "preserved.zheng",
+        "--force"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/40.stdout",
+      "stderr": "commands/40.stderr",
+      "elapsed_ns": 7667673,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 80,
+        "sha256": "1a907e41abc63734c9fd0bf21161bb5897e46564bfd5c3b5395733caa4399278"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "prove",
+        "private.tri",
+        "--profile",
+        "release",
+        "--secret",
+        "7,13",
+        "--output",
+        "preserved.zheng"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/41.stdout",
+      "stderr": "commands/41.stderr",
+      "elapsed_ns": 314593845,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 107,
+        "sha256": "ece9595f215c8a16799b51f3ce6de8de768ee8e7380b21bb08b1ed50696f01d6"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "prove",
+        "private.tri",
+        "--profile",
+        "release",
+        "--secret",
+        "7,13",
+        "--output",
+        "preserved.zheng",
+        "--force"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/42.stdout",
+      "stderr": "commands/42.stderr",
+      "elapsed_ns": 314542256,
+      "stdout_identity": {
+        "bytes": 16,
+        "sha256": "412f7d8d562eec690fb90d2645246800f46343371fe09019b554fb5bd1341762"
+      },
+      "stderr_identity": {
+        "bytes": 92,
+        "sha256": "8210a336813c9a7730696dc21d412a6339cd280c8e153effc1e43088bc30d304"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "preserved.zheng",
+        "--claim",
+        "91"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "status": "completed",
+      "stdout": "commands/43.stdout",
+      "stderr": "commands/43.stderr",
+      "elapsed_ns": 164320284,
+      "stdout_identity": {
+        "bytes": 111,
+        "sha256": "2c90abd2ad43ddf165dbfb75b2a4dd88bc75e730c04c4ee3057b0f01af314efc"
+      },
+      "stderr_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "retired.zheng"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/44.stdout",
+      "stderr": "commands/44.stderr",
+      "elapsed_ns": 1606554,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 96,
+        "sha256": "d0c1d4357317aad2a691e187c077986e31cd592639071edd4b9de6a6dc85d1f8"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "retired.zheng"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/45.stdout",
+      "stderr": "commands/45.stderr",
+      "elapsed_ns": 1531847,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 96,
+        "sha256": "d0c1d4357317aad2a691e187c077986e31cd592639071edd4b9de6a6dc85d1f8"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "verify",
+        "retired.zheng"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/46.stdout",
+      "stderr": "commands/46.stderr",
+      "elapsed_ns": 1516503,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 96,
+        "sha256": "d0c1d4357317aad2a691e187c077986e31cd592639071edd4b9de6a6dc85d1f8"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "describe",
+        "--target",
+        "triton"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/47.stdout",
+      "stderr": "commands/47.stderr",
+      "elapsed_ns": 1529079,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 44,
+        "sha256": "8cf308285b619666a10a4e2632a0824250f753c35b2a7f5b0e4c5e19204d56d1"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/candidate/bin/joy",
+        "describe",
+        "--target",
+        "neptune"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/joy-native-smoke/work",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "status": "completed",
+      "stdout": "commands/48.stdout",
+      "stderr": "commands/48.stderr",
+      "elapsed_ns": 1518976,
+      "stdout_identity": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_identity": {
+        "bytes": 45,
+        "sha256": "4cd34053106ca190e992dd8f78d7a8025035ee196c2961cb82d2763498d00b60"
+      }
+    }
+  ],
+  "routes": {
+    "public": {
+      "source": "public.tri",
+      "proof": "public.zheng",
+      "expected_output": 24,
+      "public_inputs": "3,5",
+      "state": null,
+      "header": "JOYEXEC2"
+    },
+    "private": {
+      "source": "private.tri",
+      "proof": "private.zheng",
+      "expected_output": 91,
+      "public_inputs": null,
+      "state": null,
+      "header": "JOYZH001"
+    },
+    "state": {
+      "source": "state.tri",
+      "proof": "state.zheng",
+      "expected_output": 82,
+      "public_inputs": "11",
+      "state": "state-all.json",
+      "header": "JOYST001"
+    },
+    "private-state": {
+      "source": "private-state.tri",
+      "proof": "private-state.zheng",
+      "expected_output": 82,
+      "public_inputs": null,
+      "state": "state-all.json",
+      "header": "JOYZH001"
+    }
+  },
+  "artifacts": {
+    "public.zheng": {
+      "bytes": 2242,
+      "sha256": "42b445af44be75a8ed4a1f97d07fedbcf1e1160b9f104b367797b1c7844dfd35"
+    },
+    "private.zheng": {
+      "bytes": 282847,
+      "sha256": "66400b7fc060cd8cb521c0d09e9b7f59cba9598f3d8697ecc4c4bdc9577dfff0"
+    },
+    "state.zheng": {
+      "bytes": 3706,
+      "sha256": "c4be502fb5a4911632e1bc928e9604efc47c9635371baf234e5f1a52a1acf5ed"
+    },
+    "private-state.zheng": {
+      "bytes": 2069286,
+      "sha256": "f828cb87c27f65576ba1c8a637060552d0d0bbcaa5df482ec3350ebb6c3c3369"
+    },
+    "private-fresh.zheng": {
+      "bytes": 283871,
+      "sha256": "a0f47940fb719fd4e1351fa6003ce7749aa87c023ada77f141db2263ccdc3d7e"
+    }
+  },
+  "work_files": {
+    "changed-private-state.tri": {
+      "bytes": 120,
+      "sha256": "99736fdfdcd714421325d487ae6fa5da685649674abee63402d4aa8f2cfa9af6"
+    },
+    "changed-private.tri": {
+      "bytes": 85,
+      "sha256": "f4bd4004c09e3bfe5d8b99f7792b7503871b997a8d4fdf7131aee2ee824a242b"
+    },
+    "changed-public.tri": {
+      "bytes": 63,
+      "sha256": "cad5a53479a82dc45a1cc01fa04f9255fba8ae518b09bde3e10455a9895ae065"
+    },
+    "changed-state.tri": {
+      "bytes": 102,
+      "sha256": "17f86f323d8d6b66e702b98a73cf6f0075908d70a66fee83cee14a70b3a97e5d"
+    },
+    "corrupt-private-state.zheng": {
+      "bytes": 2069287,
+      "sha256": "71e5256a87cacb9293bd6d6c38051968e7b7ae1e84ee79a1536ae8a743e4d603"
+    },
+    "corrupt-private.zheng": {
+      "bytes": 282848,
+      "sha256": "4361e8e22c4ae936f70342d01a0565a75ee123d1d810ea732bfdb552703d7a59"
+    },
+    "corrupt-public.zheng": {
+      "bytes": 2243,
+      "sha256": "901053ad5594e060c01e239790cea18a5345aa848005934a6304b0a4291733dc"
+    },
+    "corrupt-state.zheng": {
+      "bytes": 3707,
+      "sha256": "1ee451ca5d26fcf1e1e749e9923b12da3e530937ee0e605c9d8c27ffe496c8cf"
+    },
+    "other-state.json": {
+      "bytes": 2145,
+      "sha256": "16b1bab42e8f64781c9723cc1b5122ea43690b98eda5673e2dfddd97eb72ab5f"
+    },
+    "preserved.zheng": {
+      "bytes": 283359,
+      "sha256": "1df77476a081b0908cc5dc58a8fa61df778839f07ec81f89f08a1f35fb708d71"
+    },
+    "private-fresh.zheng": {
+      "bytes": 283871,
+      "sha256": "a0f47940fb719fd4e1351fa6003ce7749aa87c023ada77f141db2263ccdc3d7e"
+    },
+    "private-state.tri": {
+      "bytes": 120,
+      "sha256": "f2739f767b2a6f461e5b311c2ee17e7802633825bf02cd0e2d4314ab2f7233ab"
+    },
+    "private-state.zheng": {
+      "bytes": 2069286,
+      "sha256": "f828cb87c27f65576ba1c8a637060552d0d0bbcaa5df482ec3350ebb6c3c3369"
+    },
+    "private.tri": {
+      "bytes": 83,
+      "sha256": "5071a638573f636511c8c63ac3855d3254c96be82e9e1d713b80f733bdc5ed9f"
+    },
+    "private.zheng": {
+      "bytes": 282847,
+      "sha256": "66400b7fc060cd8cb521c0d09e9b7f59cba9598f3d8697ecc4c4bdc9577dfff0"
+    },
+    "public.tri": {
+      "bytes": 61,
+      "sha256": "5fac3efa10b80bb55693480016c698ea354a366ed40f54a065d131382f168024"
+    },
+    "public.zheng": {
+      "bytes": 2242,
+      "sha256": "42b445af44be75a8ed4a1f97d07fedbcf1e1160b9f104b367797b1c7844dfd35"
+    },
+    "retired.zheng": {
+      "bytes": 8,
+      "sha256": "605a3bffe8d224c029a50a69fea1c629bd2ea02b7f0ce3b8486f6a4304070c5c"
+    },
+    "state-all.json": {
+      "bytes": 2983,
+      "sha256": "2a0e6d0d29ab36f8259dc3512e9db0b05fb1ea7f62a780a274c36df9d864b02c"
+    },
+    "state.json": {
+      "bytes": 2146,
+      "sha256": "8953a46858800afc0b9e9cd3a2a9869efec0f3fea1177c2b63c4180458b3b2e8"
+    },
+    "state.tri": {
+      "bytes": 102,
+      "sha256": "65fe8ebea5a99674f59608c6b4eca498596f879abf0a13326092cd4478d2ee14"
+    },
+    "state.zheng": {
+      "bytes": 3706,
+      "sha256": "c4be502fb5a4911632e1bc928e9604efc47c9635371baf234e5f1a52a1acf5ed"
+    }
+  },
+  "binary_end": {
+    "bytes": 5797456,
+    "sha256": "c2b2a98bb78306e0d21f98bf688e7db8b6155f0577eab47013c03c8dfe3cef66"
+  },
+  "fixtures_end": {
+    "state.json": {
+      "bytes": 2146,
+      "sha256": "8953a46858800afc0b9e9cd3a2a9869efec0f3fea1177c2b63c4180458b3b2e8"
+    },
+    "state-all.json": {
+      "bytes": 2983,
+      "sha256": "2a0e6d0d29ab36f8259dc3512e9db0b05fb1ea7f62a780a274c36df9d864b02c"
+    },
+    "other-state.json": {
+      "bytes": 2145,
+      "sha256": "16b1bab42e8f64781c9723cc1b5122ea43690b98eda5673e2dfddd97eb72ab5f"
+    }
+  },
+  "script_end": {
+    "bytes": 13555,
+    "sha256": "398fc368ab423741b090fb1fc45ab3abfd5b77b7a7883d84438313c178c4fbb3"
+  },
+  "ended_ns": 1790910341582002902
+}

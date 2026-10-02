@@ -1,0 +1,405 @@
+fixture	classic_cycles	hand_cycles	hand/classic	status
+Reference: Equality accepts identical field elements and rejects distinct ones.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\assert\vector.bench.toml	9	9	9/9	PASS
+Reference: Equality accepts identical field elements and rejects distinct ones.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\assert-mismatch\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Canonical expected public postimage is Tip5([17,0,...,0]); secret18 must reject.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\auth-preimage\vector.bench.toml	52	36	36/52	PASS
+Reference: Canonical expected public postimage is Tip5([17,0,...,0]); secret18 must reject.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\auth-preimage-bad\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Independent integer boundary (2^256-1)+1=0 mod2^256, with carry1; tests carry propagation across all8limbs.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\bigint-carry\vector.bench.toml	1274	124	124/1274	PASS
+Reference: Independent byte tokenization and Pratt AST/postfix TIR oracle; complete lexer records; associativity. See std/compiler/README.md.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\compiler-lexer-associativity\vector.bench.toml	35519	13284	13284/35519	PASS
+Reference: Independent byte tokenization and Pratt AST/postfix TIR oracle; complete lexer records; parentheses. See std/compiler/README.md.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\compiler-lexer-parentheses\vector.bench.toml	35738	14041	14041/35738	PASS
+Reference: Independent byte tokenization and Pratt AST/postfix TIR oracle; complete lexer records; precedence. See std/compiler/README.md.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\compiler-lexer-precedence\vector.bench.toml	28976	11426	11426/28976	PASS
+Reference: Malformed source must report an error; driver asserts zero errors. Hand reference rejects the invalid token/expression directly.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\compiler-lexer-reject\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Independent byte tokenization and Pratt AST/postfix TIR oracle; complete parser records; associativity. See std/compiler/README.md.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\compiler-parser-associativity\vector.bench.toml	69428	14979	14979/69428	PASS
+Reference: Independent byte tokenization and Pratt AST/postfix TIR oracle; complete parser records; parentheses. See std/compiler/README.md.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\compiler-parser-parentheses\vector.bench.toml	72870	15377	15377/72870	PASS
+Reference: Independent byte tokenization and Pratt AST/postfix TIR oracle; complete parser records; precedence. See std/compiler/README.md.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\compiler-parser-precedence\vector.bench.toml	54581	12441	12441/54581	PASS
+Reference: Malformed source must report an error; driver asserts zero errors. Hand reference rejects the invalid token/expression directly.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\compiler-parser-reject\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Independent byte tokenization and Pratt AST/postfix TIR oracle; complete pipeline records; associativity. See std/compiler/README.md.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\compiler-pipeline-associativity\vector.bench.toml	139570	14297	14297/139570	PASS
+Reference: Independent byte tokenization and Pratt AST/postfix TIR oracle; complete pipeline records; parentheses. See std/compiler/README.md.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\compiler-pipeline-parentheses\vector.bench.toml	134753	14767	14767/134753	PASS
+Reference: Independent byte tokenization and Pratt AST/postfix TIR oracle; complete pipeline records; precedence. See std/compiler/README.md.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\compiler-pipeline-precedence\vector.bench.toml	107569	11903	11903/107569	PASS
+Reference: Malformed source must report an error; driver asserts zero errors. Hand reference rejects the invalid token/expression directly.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\compiler-pipeline-reject\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Malformed source must report an error; driver asserts zero errors. Hand reference rejects the invalid token/expression directly.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\compiler-pipeline-type-reject\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: U32 inclusive bound is 4294967295; 4294967296 must reject.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\convert\vector.bench.toml	10	12	12/10	PASS
+Reference: U32 inclusive bound is 4294967295; 4294967296 must reject.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\convert-overflow\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Independent Python modular exponentiation and explicit custom I+J/diagonal+J matrices over all eight lanes and 86 nonzero caller constants. This historical custom permutation is not standard Poseidon2 and has no cryptographic security claim.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\custom-poseidon2-lanes\vector.bench.toml	50335	4139	4139/50335	PASS
+Reference: Complete custom30-round RAM-constant hash4 adapter against independent modular oracle, for Trinity composition; no standard hash security claim.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\custom-poseidon2-ram\vector.bench.toml	50491	5711	5711/50491	PASS
+Reference: Independent Python modular exponentiation and explicit custom I+J/diagonal+J matrices over all eight lanes and 86 nonzero caller constants. This historical custom permutation is not standard Poseidon2 and has no cryptographic security claim.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\custom-poseidon2-zero\vector.bench.toml	50335	4139	4139/50335	PASS
+Reference: Independent pinned Neptune BFieldCodec layout and upstream Tip5; full own-program token predicate, variant burn.
+Implementation-bound public statements: Canonical Neptune0.15.1 salted UTXOs contain each executing program hash as the selected coin type; public roots consequently differ. All salts, locks, issuer, unrelated native-shaped coins and10-input/7-output amounts are identical.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\custom-token-v2-burn\vector.bench.toml	18177	8437	8437/18177	PASS
+Reference: Independent pinned Neptune BFieldCodec layout and upstream Tip5; full own-program token predicate, variant mint.
+Implementation-bound public statements: Canonical Neptune0.15.1 salted UTXOs contain each executing program hash as the selected coin type; public roots consequently differ. All salts, locks, issuer, unrelated native-shaped coins and10-input/13-output amounts are identical.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\custom-token-v2-mint\vector.bench.toml	18177	8437	8437/18177	PASS
+Reference: Independent pinned Neptune BFieldCodec layout and upstream Tip5; full own-program token predicate, variant transfer.
+Implementation-bound public statements: Canonical Neptune0.15.1 salted UTXOs contain each executing program hash as the selected coin type; public roots consequently differ. All salts, locks, issuer, unrelated native-shaped coins and10-input/10-output amounts are identical.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\custom-token-v2-transfer\vector.bench.toml	17777	8307	8307/17777	PASS
+Reference: Independent pinned Neptune BFieldCodec layout and upstream Tip5; full own-program token predicate, variant wrong-selfhash.
+Implementation-bound public statements: Canonical Neptune0.15.1 salted UTXOs contain each executing program hash as the selected coin type; public roots consequently differ. All salts, locks, issuer, unrelated native-shaped coins and10-input/10-output amounts are identical.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\custom-token-v2-wrong-selfhash\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Python exact integer range and low-S boundary plus complete signature limb roundtrip; curve-agnostic scalar policy, not ECDSA curve verification.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\ecdsa-cross-limb\vector.bench.toml	6119	2927	2927/6119	PASS
+Reference: Python exact integer range and low-S boundary plus complete signature limb roundtrip; curve-agnostic scalar policy, not ECDSA curve verification.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\ecdsa-even-order\vector.bench.toml	6305	3039	3039/6305	PASS
+Reference: Python exact integer range and low-S boundary plus complete signature limb roundtrip; curve-agnostic scalar policy, not ECDSA curve verification.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\ecdsa-half\vector.bench.toml	5945	2819	2819/5945	PASS
+Reference: Python exact integer range and low-S boundary plus complete signature limb roundtrip; curve-agnostic scalar policy, not ECDSA curve verification.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\ecdsa-high\vector.bench.toml	5945	2819	2819/5945	PASS
+Reference: Python exact integer range and low-S boundary plus complete signature limb roundtrip; curve-agnostic scalar policy, not ECDSA curve verification.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\ecdsa-invalid-r\vector.bench.toml	5532	2819	2819/5532	PASS
+Reference: Python exact integer range and low-S boundary plus complete signature limb roundtrip; curve-agnostic scalar policy, not ECDSA curve verification.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\ecdsa-order\vector.bench.toml	5941	2819	2819/5941	PASS
+Reference: A 2^32 input limb must be rejected by both signature decoders, never truncated to U32.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\ecdsa-oversized-limb\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Python exact integer range and low-S boundary plus complete signature limb roundtrip; curve-agnostic scalar policy, not ECDSA curve verification.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\ecdsa-zero\vector.bench.toml	4509	2709	2709/4509	PASS
+Reference: Independent integer recurrence F0=0,F1=1,F(n+2)=F(n+1)+F(n), reduced modulo Goldilocks.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\fibonacci-0\vector.bench.toml	25	16	16/25	PASS
+Reference: Independent integer recurrence F0=0,F1=1,F(n+2)=F(n+1)+F(n), reduced modulo Goldilocks.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\fibonacci-1\vector.bench.toml	45	28	28/45	PASS
+Reference: Independent integer recurrence F0=0,F1=1,F(n+2)=F(n+1)+F(n), reduced modulo Goldilocks.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\fibonacci-10\vector.bench.toml	225	136	136/225	PASS
+Reference: Independent integer recurrence F0=0,F1=1,F(n+2)=F(n+1)+F(n), reduced modulo Goldilocks.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\fibonacci-100\vector.bench.toml	2025	1216	1216/2025	PASS
+Reference: Integer arithmetic modulo p; modular inverse computed by extended Euclidean algorithm (Python pow).
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\field\vector.bench.toml	27	34	34/27	PASS
+Reference: Native Tip5 reference for fixed nonzero preimage; this checks the example hash relation, not deployment authorization (example lock digest is witness-supplied).
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\generation\vector.bench.toml	50	36	36/50	PASS
+Reference: Native Tip5 reference for fixed nonzero preimage; this checks the example hash relation, not deployment authorization (example lock digest is witness-supplied).
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\generation-bad-preimage\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Public input/output round trip preserves order.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\io\vector.bench.toml	10	14	14/10	PASS
+Reference: Independent 64-bit integer Keccak-f[1600] per https://keccak.team/keccak_specs_summary.html, caller-owned RAM API, all24 rounds/all25 lanes (50U32 outputs); not a padding or Ethereum-trie test.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\keccak-lanes\vector.bench.toml	755070	98515	98515/755070	PASS
+Reference: Independent 64-bit integer Keccak-f[1600] per https://keccak.team/keccak_specs_summary.html, caller-owned RAM API, all24 rounds/all25 lanes (50U32 outputs); not a padding or Ethereum-trie test.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\keccak-zero\vector.bench.toml	755070	98515	98515/755070	PASS
+Reference: Independent native Tip5 depth3 path for leaf[17,0,0,0,0], index5, siblings[1..5],[6..10],[11..15]; changed sibling must reject.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\kernel-timestamp\vector.bench.toml	720	75	75/720	PASS
+Reference: Independent native Tip5 depth3 path for leaf[17,0,0,0,0], index5, siblings[1..5],[6..10],[11..15]; changed sibling must reject.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\kernel-timestamp-bad-path\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Two distinct RAM cells retain their independently assigned values.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\mem\vector.bench.toml	21	27	27/21	PASS
+Reference: Independent twenty-first Tip5::hash_pair for both sibling orientations; rs/examples/baseline_vectors.rs.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\merkle-2\vector.bench.toml	43	27	27/43	PASS
+Reference: Independent twenty-first Tip5::hash_pair for both sibling orientations; rs/examples/baseline_vectors.rs.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\merkle-3\vector.bench.toml	43	27	27/43	PASS
+Reference: Independent native Tip5 depth3 path for leaf[17,0,0,0,0], index5, siblings[1..5],[6..10],[11..15]; changed sibling must reject.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\merkle-proof\vector.bench.toml	692	73	73/692	PASS
+Reference: Independent native Tip5 depth3 path for leaf[17,0,0,0,0], index5, siblings[1..5],[6..10],[11..15]; changed sibling must reject.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\merkle-proof-bad-path\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Three distinct native Tip5 key preimages17,18,19; valid2-of3 masks3,5,6; mask7 rejected. Tests example relation, not witness-supplied key policy.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\multisig-3\vector.bench.toml	132	109	109/132	PASS
+Reference: Three distinct native Tip5 key preimages17,18,19; valid2-of3 masks3,5,6; mask7 rejected. Tests example relation, not witness-supplied key policy.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\multisig-5\vector.bench.toml	141	109	109/141	PASS
+Reference: Three distinct native Tip5 key preimages17,18,19; valid2-of3 masks3,5,6; mask7 rejected. Tests example relation, not witness-supplied key policy.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\multisig-6\vector.bench.toml	150	109	109/150	PASS
+Reference: Three distinct native Tip5 key preimages17,18,19; valid2-of3 masks3,5,6; mask7 rejected. Tests example relation, not witness-supplied key policy.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\multisig-7\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Fresh proof of pinned Neptune0.15.1 full NativeCurrency program: authenticated10input=7output+3kernelFee, canonical program/version5/all15inputwords/emptyoutput.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\neptune-native-currency\vector.bench.toml	578365	578310	578310/578365	PASS
+Reference: Fresh proof of pinned Neptune0.15.1 full NativeCurrency program: authenticated10input=7output+3kernelFee, canonical program/version5/all15inputwords/emptyoutput.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\neptune-native-currency-wrong-input\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Pinned Neptune0.15.1 revision9869b5e35b659dc520fad51ba5a9c812fed46db0 HardforkGamma SingleProof generated independently by tools/neptune-policy-oracle/examples/single_proof.rs. Complete empty transaction includes four integrity/collector proofs and mandatory native currency proof; fixed program, nativeversion5, reversed kernel and empty output authenticated in VM. Mutated cases bypass host validation deliberately.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\neptune-transaction\valid.bench.toml	833066	833060	833060/833066	PASS
+Reference: Pinned Neptune0.15.1 revision9869b5e35b659dc520fad51ba5a9c812fed46db0 HardforkGamma SingleProof generated independently by tools/neptune-policy-oracle/examples/single_proof.rs. Complete empty transaction includes four integrity/collector proofs and mandatory native currency proof; fixed program, nativeversion5, reversed kernel and empty output authenticated in VM. Mutated cases bypass host validation deliberately.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\neptune-transaction\wrong-kernel.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Pinned Neptune0.15.1 revision9869b5e35b659dc520fad51ba5a9c812fed46db0 HardforkGamma SingleProof generated independently by tools/neptune-policy-oracle/examples/single_proof.rs. Complete empty transaction includes four integrity/collector proofs and mandatory native currency proof; fixed program, nativeversion5, reversed kernel and empty output authenticated in VM. Mutated cases bypass host validation deliberately.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\neptune-transaction\wrong-output.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Pinned Neptune0.15.1 revision9869b5e35b659dc520fad51ba5a9c812fed46db0 HardforkGamma SingleProof generated independently by tools/neptune-policy-oracle/examples/single_proof.rs. Complete empty transaction includes four integrity/collector proofs and mandatory native currency proof; fixed program, nativeversion5, reversed kernel and empty output authenticated in VM. Mutated cases bypass host validation deliberately.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\neptune-transaction\wrong-program.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Pinned Neptune0.15.1 revision9869b5e35b659dc520fad51ba5a9c812fed46db0 HardforkGamma SingleProof generated independently by tools/neptune-policy-oracle/examples/single_proof.rs. Complete empty transaction includes four integrity/collector proofs and mandatory native currency proof; fixed program, nativeversion5, reversed kernel and empty output authenticated in VM. Mutated cases bypass host validation deliberately.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\neptune-transaction\wrong-version.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: PLUMBv2 full30-field config, independent upstream Tip5 pair tree; last-hook mutation rejects.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\plumb-config\vector.bench.toml	3372	451	451/3372	PASS
+Reference: PLUMBv2 full30-field config, independent upstream Tip5 pair tree; last-hook mutation rejects.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\plumb-config-bad\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: PLUMB v2 complete card-0 transition; independent upstream Tip5 sparse-tree host oracle, full Digest authorities, same-sibling roots, declared event words.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\plumb-v2-card-0\vector.bench.toml	33491	5761	5761/33491	PASS
+Reference: PLUMB v2 complete card-1 transition; independent upstream Tip5 sparse-tree host oracle, full Digest authorities, same-sibling roots, declared event words.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\plumb-v2-card-1\vector.bench.toml	33452	5729	5729/33452	PASS
+Reference: PLUMB v2 complete card-2 transition; independent upstream Tip5 sparse-tree host oracle, full Digest authorities, same-sibling roots, declared event words.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\plumb-v2-card-2\vector.bench.toml	31516	5557	5557/31516	PASS
+Reference: PLUMB v2 complete card-3 transition; independent upstream Tip5 sparse-tree host oracle, full Digest authorities, same-sibling roots, declared event words.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\plumb-v2-card-3\vector.bench.toml	33552	5584	5584/33552	PASS
+Reference: PLUMB v2 complete card-4 transition; independent upstream Tip5 sparse-tree host oracle, full Digest authorities, same-sibling roots, declared event words.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\plumb-v2-card-4\vector.bench.toml	32506	5580	5580/32506	PASS
+Reference: PLUMB v2 complete card-config transition; independent upstream Tip5 sparse-tree host oracle, full Digest authorities, same-sibling roots, declared event words.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\plumb-v2-card-config\vector.bench.toml	8517	1216	1216/8517	PASS
+Reference: PLUMB v2 complete coin-0 transition; independent upstream Tip5 sparse-tree host oracle, full Digest authorities, same-sibling roots, declared event words.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\plumb-v2-coin-0\vector.bench.toml	56612	10109	10109/56612	PASS
+Reference: PLUMB v2 complete coin-1 transition; independent upstream Tip5 sparse-tree host oracle, full Digest authorities, same-sibling roots, declared event words.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\plumb-v2-coin-1\vector.bench.toml	30741	5489	5489/30741	PASS
+Reference: PLUMB v2 complete coin-2 transition; independent upstream Tip5 sparse-tree host oracle, full Digest authorities, same-sibling roots, declared event words.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\plumb-v2-coin-2\vector.bench.toml	8943	1198	1198/8943	PASS
+Reference: PLUMB v2 complete coin-3 transition; independent upstream Tip5 sparse-tree host oracle, full Digest authorities, same-sibling roots, declared event words.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\plumb-v2-coin-3\vector.bench.toml	30005	5369	5369/30005	PASS
+Reference: PLUMB v2 complete coin-4 transition; independent upstream Tip5 sparse-tree host oracle, full Digest authorities, same-sibling roots, declared event words.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\plumb-v2-coin-4\vector.bench.toml	32169	5585	5585/32169	PASS
+Reference: Integer polynomial 2+3*x+5*x^2 at x=7 equals268.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\poly-eval\vector.bench.toml	137	84	84/137	PASS
+Reference: Plonky3 p3-goldilocks 0.4.2 Poseidon2GoldilocksHL8, revision 0835481398d2b481bef0c6d0e8188b484ab9a636; all eight lanes.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\poseidon-range\vector.bench.toml	6863	7027	7027/6863	PASS
+Reference: Plonky3 p3-goldilocks 0.4.2 Poseidon2GoldilocksHL8, revision 0835481398d2b481bef0c6d0e8188b484ab9a636; all eight lanes.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\poseidon-zero\vector.bench.toml	6863	7027	7027/6863	PASS
+Reference: Independent CNOT matrix: |00>,|01> unchanged; amplitudes of |10>,|11> exchange (both real and imaginary coordinates).
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\quantum-cnot\vector.bench.toml	65	27	27/65	PASS
+Reference: Independent Rust u128 modular complex arithmetic and explicit gate matrices; all21 pure gate routines, every output coordinate. Measurement checks the documented signed-field surrogate.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\quantum-pure\0.bench.toml	12002	739	739/12002	PASS
+Reference: Independent Rust u128 modular complex arithmetic and explicit gate matrices; all21 pure gate routines, every output coordinate. Measurement checks the documented signed-field surrogate.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\quantum-pure\1.bench.toml	12000	739	739/12000	PASS
+Reference: Independent Rust u128 modular complex arithmetic and explicit gate matrices; all21 pure gate routines, every output coordinate. Measurement checks the documented signed-field surrogate.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\quantum-pure\2.bench.toml	12002	739	739/12002	PASS
+Reference: Independent Rust u128 modular complex arithmetic and explicit gate matrices; all21 pure gate routines, every output coordinate. Measurement checks the documented signed-field surrogate.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\quantum-pure\3.bench.toml	12002	739	739/12002	PASS
+Reference: Independent integer complex 2x2 matrix arithmetic modulo Goldilocks, every target n=1..3; neighboring cells unchanged. Hand scratch [2^40,2^40+64) is benchmark-private and clobbered.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\quantum-ram-1\invalid-address.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Independent integer complex 2x2 matrix arithmetic modulo Goldilocks, every target n=1..3; neighboring cells unchanged. Hand scratch [2^40,2^40+64) is benchmark-private and clobbered.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\quantum-ram-1\invalid-target.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Independent integer complex 2x2 matrix arithmetic modulo Goldilocks, every target n=1..3; neighboring cells unchanged. Hand scratch [2^40,2^40+64) is benchmark-private and clobbered.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\quantum-ram-1\invalid-too-many.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Independent integer complex 2x2 matrix arithmetic modulo Goldilocks, every target n=1..3; neighboring cells unchanged. Hand scratch [2^40,2^40+64) is benchmark-private and clobbered.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\quantum-ram-1\target-0.bench.toml	2830	516	516/2830	PASS
+Reference: Independent integer complex 2x2 matrix arithmetic modulo Goldilocks, every target n=1..3; neighboring cells unchanged. Hand scratch [2^40,2^40+64) is benchmark-private and clobbered.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\quantum-ram-2\target-0.bench.toml	5532	855	855/5532	PASS
+Reference: Independent integer complex 2x2 matrix arithmetic modulo Goldilocks, every target n=1..3; neighboring cells unchanged. Hand scratch [2^40,2^40+64) is benchmark-private and clobbered.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\quantum-ram-2\target-1.bench.toml	5548	882	882/5548	PASS
+Reference: Independent integer complex 2x2 matrix arithmetic modulo Goldilocks, every target n=1..3; neighboring cells unchanged. Hand scratch [2^40,2^40+64) is benchmark-private and clobbered.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\quantum-ram-3\target-0.bench.toml	10920	1506	1506/10920	PASS
+Reference: Independent integer complex 2x2 matrix arithmetic modulo Goldilocks, every target n=1..3; neighboring cells unchanged. Hand scratch [2^40,2^40+64) is benchmark-private and clobbered.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\quantum-ram-3\target-1.bench.toml	10936	1533	1533/10936	PASS
+Reference: Independent integer complex 2x2 matrix arithmetic modulo Goldilocks, every target n=1..3; neighboring cells unchanged. Hand scratch [2^40,2^40+64) is benchmark-private and clobbered.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\quantum-ram-3\target-2.bench.toml	10952	1560	1560/10952	PASS
+Reference: Official default-security Triton7 proof for read_io1 +3 write_io1, inputs2/9 outputs5/12. Expected full-claim commitments computed by native Tip5(BFieldCodec Claim); published Triton7 verifier hand linkage is independent of Trident compilation. Version1 full-proof ABI replaces invalid configurable-FRI prototype.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\recursive-aggregate-bad-second\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Official default-security Triton7 proof for read_io1 +3 write_io1, inputs2/9 outputs5/12. Expected full-claim commitments computed by native Tip5(BFieldCodec Claim); published Triton7 verifier hand linkage is independent of Trident compilation. Version1 full-proof ABI replaces invalid configurable-FRI prototype.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\recursive-aggregate-count-0\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Official default-security Triton7 proof for read_io1 +3 write_io1, inputs2/9 outputs5/12. Expected full-claim commitments computed by native Tip5(BFieldCodec Claim); published Triton7 verifier hand linkage is independent of Trident compilation. Version1 full-proof ABI replaces invalid configurable-FRI prototype.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\recursive-aggregate-count-17\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Official default-security Triton7 proof for read_io1 +3 write_io1, inputs2/9 outputs5/12. Expected full-claim commitments computed by native Tip5(BFieldCodec Claim); published Triton7 verifier hand linkage is independent of Trident compilation. Version1 full-proof ABI replaces invalid configurable-FRI prototype.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\recursive-aggregate-count-4294967296\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Official default-security Triton7 proof for read_io1 +3 write_io1, inputs2/9 outputs5/12. Expected full-claim commitments computed by native Tip5(BFieldCodec Claim); published Triton7 verifier hand linkage is independent of Trident compilation. Version1 full-proof ABI replaces invalid configurable-FRI prototype.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\recursive-aggregate-two\vector.bench.toml	862385	862330	862330/862385	PASS
+Reference: Independent coefficientwise multiplication (2+3X+4X²)*5, RAM strides3 and1.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\recursive-dot\vector.bench.toml	129	76	76/129	PASS
+Reference: Official default-security Triton7 proof for read_io1 +3 write_io1, inputs2/9 outputs5/12. Expected full-claim commitments computed by native Tip5(BFieldCodec Claim); published Triton7 verifier hand linkage is independent of Trident compilation. Version1 full-proof ABI replaces invalid configurable-FRI prototype.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\recursive-proof\vector.bench.toml	430449	430441	430441/430449	PASS
+Reference: Official default-security Triton7 proof for read_io1 +3 write_io1, inputs2/9 outputs5/12. Expected full-claim commitments computed by native Tip5(BFieldCodec Claim); published Triton7 verifier hand linkage is independent of Trident compilation. Version1 full-proof ABI replaces invalid configurable-FRI prototype.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\recursive-proof-bad-claim\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Official default-security Triton7 proof for read_io1 +3 write_io1, inputs2/9 outputs5/12. Expected full-claim commitments computed by native Tip5(BFieldCodec Claim); published Triton7 verifier hand linkage is independent of Trident compilation. Version1 full-proof ABI replaces invalid configurable-FRI prototype.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\recursive-relay\vector.bench.toml	430463	430450	430450/430463	PASS
+Reference: Official default-security Triton7 proof for read_io1 +3 write_io1, inputs2/9 outputs5/12. Expected full-claim commitments computed by native Tip5(BFieldCodec Claim); published Triton7 verifier hand linkage is independent of Trident compilation. Version1 full-proof ABI replaces invalid configurable-FRI prototype.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\recursive-relay-bad-claim\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Official default-security Triton7 proof for read_io1 +3 write_io1, inputs2/9 outputs5/12. Expected full-claim commitments computed by native Tip5(BFieldCodec Claim); published Triton7 verifier hand linkage is independent of Trident compilation. Version1 full-proof ABI replaces invalid configurable-FRI prototype.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\recursive-verifier\vector.bench.toml	430449	430442	430442/430449	PASS
+Reference: Official default-security Triton7 proof for read_io1 +3 write_io1, inputs2/9 outputs5/12. Expected full-claim commitments computed by native Tip5(BFieldCodec Claim); published Triton7 verifier hand linkage is independent of Trident compilation. Version1 full-proof ABI replaces invalid configurable-FRI prototype.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\recursive-verifier-bad-claim\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Full double-SHA256, caller-owned RAM API, FIPS180-4 single-block padding and independent hashlib.sha256 twice; all256 output bits. Struct API is separately regression-tested against the same vectors.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\sha256-55bytes\vector.bench.toml	188106	29259	29259/188106	PASS
+Reference: Full double-SHA256, caller-owned RAM API, FIPS180-4 single-block padding and independent hashlib.sha256 twice; all256 output bits. Struct API is separately regression-tested against the same vectors.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\sha256-abc\vector.bench.toml	188106	29259	29259/188106	PASS
+Reference: Full double-SHA256, caller-owned RAM API, FIPS180-4 single-block padding and independent hashlib.sha256 twice; all256 output bits. Struct API is separately regression-tested against the same vectors.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\sha256-carry\vector.bench.toml	188106	29259	29259/188106	PASS
+Reference: Full double-SHA256, caller-owned RAM API, FIPS180-4 single-block padding and independent hashlib.sha256 twice; all256 output bits. Struct API is separately regression-tested against the same vectors.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\sha256-empty\vector.bench.toml	188106	29259	29259/188106	PASS
+Reference: Two full SHA256 compression blocks with non-IV chaining state on second invocation; hashlib.sha256(bytes(range(64))), all256 output bits.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\sha256-two-blocks\vector.bench.toml	187053	29263	29263/187053	PASS
+Reference: Native Tip5 reference for fixed nonzero preimage; this checks the example hash relation, not deployment authorization (example lock digest is witness-supplied).
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\symmetric\vector.bench.toml	298	32	32/298	PASS
+Reference: Native Tip5 reference for fixed nonzero preimage; this checks the example hash relation, not deployment authorization (example lock digest is witness-supplied).
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\symmetric-bad-preimage\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Independent canonical integer ordering with signed threshold (p-1)/2; argmax index then ReLU of each input.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\tensor-boundaries\ascending.bench.toml	304	710	710/304	PASS
+Reference: Independent canonical integer ordering with signed threshold (p-1)/2; argmax index then ReLU of each input.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\tensor-boundaries\cross-high.bench.toml	302	710	710/302	PASS
+Reference: Independent canonical integer ordering with signed threshold (p-1)/2; argmax index then ReLU of each input.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\tensor-boundaries\descending.bench.toml	292	696	696/292	PASS
+Reference: Independent canonical integer ordering with signed threshold (p-1)/2; argmax index then ReLU of each input.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\tensor-boundaries\negative.bench.toml	262	564	564/262	PASS
+Reference: Independent canonical integer ordering with signed threshold (p-1)/2; argmax index then ReLU of each input.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\tensor-boundaries\same-high.bench.toml	304	710	710/304	PASS
+Reference: Independent canonical integer ordering with signed threshold (p-1)/2; argmax index then ReLU of each input.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\tensor-boundaries\threshold-reversed.bench.toml	270	564	564/270	PASS
+Reference: Independent canonical integer ordering with signed threshold (p-1)/2; argmax index then ReLU of each input.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\tensor-boundaries\threshold.bench.toml	210	550	550/210	PASS
+Reference: Independent integer matrix-vector multiplication [[2,3],[5,7]]*[11,13]=[61,146].
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\tensor-matvec\vector.bench.toml	258	198	198/258	PASS
+Reference: Canonical native Tip5 path authenticates timestamp17; unlock16/17 pass, unlock18 rejects. Tests example relation; witness-supplied lock policy is not deployment authorization.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\timelock-16\vector.bench.toml	1018	112	112/1018	PASS
+Reference: Canonical native Tip5 path authenticates timestamp17; unlock16/17 pass, unlock18 rejects. Tests example relation; witness-supplied lock policy is not deployment authorization.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\timelock-17\vector.bench.toml	1018	112	112/1018	PASS
+Reference: Canonical native Tip5 path authenticates timestamp17; unlock16/17 pass, unlock18 rejects. Tests example relation; witness-supplied lock policy is not deployment authorization.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\timelock-18\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: twenty-first Tip5::hash_10([0,1,2,3,4,5,6,7,8,9]); reproducible rs/examples/baseline_vectors.rs.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\tip5\vector.bench.toml	42	36	36/42	PASS
+Reference: Independent integer matrix arithmetic, full custom30-round hash,14-round LUT witness oracle and explicit PBS witness transport; all29arguments. Arithmetic demonstration only: not secure TFHE/private inference or quantum commitment.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\trinity-ascending\vector.bench.toml	74188	21364	21364/74188	PASS
+Reference: Independent integer matrix arithmetic, full custom30-round hash,14-round LUT witness oracle and explicit PBS witness transport; all29arguments. Arithmetic demonstration only: not secure TFHE/private inference or quantum commitment.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\trinity-ascending\wrong-witness.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Independent integer matrix arithmetic, full custom30-round hash,14-round LUT witness oracle and explicit PBS witness transport; all29arguments. Arithmetic demonstration only: not secure TFHE/private inference or quantum commitment.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\trinity-descending\vector.bench.toml	74122	21332	21332/74122	PASS
+Reference: Independent integer matrix arithmetic, full custom30-round hash,14-round LUT witness oracle and explicit PBS witness transport; all29arguments. Arithmetic demonstration only: not secure TFHE/private inference or quantum commitment.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\trinity-descending\wrong-witness.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: 255=2^8-1; floor(log2)=7; eight set bits; 3^5=243.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\u32\vector.bench.toml	31	18	18/31	PASS
+Reference: Digest equality: all five coordinates must agree.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\utxo\vector.bench.toml	11	9	9/11	PASS
+Reference: Digest equality: all five coordinates must agree.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\utxo-mismatch\vector.bench.toml	-	-	-	PASS (both executions rejected)
+Reference: Independent twenty-first XFieldElement::inverse([2,3,4]); rs/examples/baseline_vectors.rs.
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\fixtures\xfield-inverse\vector.bench.toml	20	11	11/20	PASS
+Backend: cpu
+C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\baselines\triton\reference\arithmetic.bench.toml	11	7	7/11	PASS
+133 / 133 fixtures passed; 43 / 43 baselines verified
+Neural: no verified reference fixtures
