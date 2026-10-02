@@ -3,7 +3,8 @@
 Status: exact source export and independent reproduction passed. The fresh
 Mac ARM package has passed its four CPU suites, installed/package checks,
 133 baseline executions, 47 legacy corpus cases and 27 structured cases.
-Its new full198 gate and the five remote producers remain in progress.
+Four remote producers have passed; Intel Mac and the new full198 gate remain
+in progress.
 Portable consumption of all six new legacy and structured corpora is pending.
 This distinct branch rehearsal uses source `734df69d...`; the frozen
 `e4bac7ff...` receipts retain their original scope.
@@ -192,3 +193,28 @@ The transport coordination ended at 05:53:49 UTC on 2026-10-02. Its original
 receipt retains the in-progress full198 status observed during upload; it is
 not a final proof acceptance receipt. The complete current proof verdict will
 be recorded separately after the native driver exits.
+
+### Four current remote producers checked
+
+At the observation retained in `remote-producer-progress/`, both Linux and
+both Windows jobs in run 36969168806 had succeeded. Each original Actions
+ZIP was authenticated against its API digest and inventoried, then checked
+with the retained `inspect-current-native-producer.py`. All four passed
+the exact source/kit/native Rust 1.89 identities, applicable CPU commands,
+133 execution fixtures, package gates, 47 legacy cases and 27 structured
+cases. The exact commands, totals, artifact identities and compressed original
+job logs are retained per target. ANSI-normalized warning inspection found
+no Rust warning in the original CPU/build logs. Intel Mac, full198 and portable
+consumption remain separate pending gates at this observation.
+
+The first independent WinARM inspection failed because its checker expected
+LF-only hashes for two Python helper files. Actual Windows checkout used
+CRLF. `inspector-checkout-correction/` preserves that failed command and raw
+output. The exact source revision `ecdc4e2...` was independently transformed
+with Git `cat-file --filters` under both `core.autocrlf` settings. Its Windows
+byte hashes match the producer's recorded helper hashes exactly. The corrected
+inspector requires those exact CRLF hashes on Windows and the exact LF hashes
+on the other targets. All source-archive/input-selector hashes remain fixed;
+no producer bytes or original receipts changed. The corrected inspector also
+passed the actual local Mac added checks and rejected the same five receipt
+mutations. Its earlier LF-only version remains in `local-package-gates/`.

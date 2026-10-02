@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/inspect-current-native-producer.py", line 120, in <module>
+    result=inspect(args.retained)
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/inspect-current-native-producer.py", line 109, in inspect
+    extra=additional(p,candidate,target,archive)
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/inspect-current-native-producer.py", line 34, in additional
+    require(impact['status']=='passed' and impact['source_provenance_sha256']==PROVENANCE and impact['selector_sha256']==INPUTS and impact['checker_sha256']==IMPACT,'current source-impact identity differs')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/inspect-current-native-producer.py", line 14, in require
+    if not condition:raise ValueError(message)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: current source-impact identity differs
