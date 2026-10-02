@@ -1,8 +1,4 @@
 {
-  ".gitattributes": {
-    "bytes": 8,
-    "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
-  },
   "README.md": {
     "bytes": 2618,
     "sha256": "15ed4a06374aad307f83c5fa581edda874d58c9968c9de7620972d00660923ad"
@@ -34,14 +30,6 @@
   "activation/tests.stdout": {
     "bytes": 0,
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-  },
-  "byte-preservation-prior-files.json": {
-    "bytes": 9875,
-    "sha256": "243e76efcd0f39cab3d4d96a6b5c39ce35991f04b2231ea6cdf39562aa9de7fe"
-  },
-  "byte-preservation.json": {
-    "bytes": 567,
-    "sha256": "bccc38eed6ccf6c3aa29d6dacc0be3676ef30f3ce446fc73a81114e5df6963c2"
   },
   "check.py": {
     "bytes": 3090,

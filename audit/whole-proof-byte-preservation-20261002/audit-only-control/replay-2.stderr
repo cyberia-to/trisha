@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout/audit/whole-self-build-clock-v2-preparation/check.py", line 58, in <module>
+    print(json.dumps(main(), sort_keys=True))
+                     ~~~~^^
+  File "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/byte-preservation/audit-only-control/checkout/audit/whole-self-build-clock-v2-preparation/check.py", line 34, in main
+    assert identity(repo / name) == expected, name
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: scripts/whole-v2.py
