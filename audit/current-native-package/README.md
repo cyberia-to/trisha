@@ -5,8 +5,8 @@ Mac ARM package has passed its four CPU suites, installed/package checks,
 133 baseline executions, 47 legacy corpus cases and 27 structured cases.
 All five remote producers have passed. The new full198 gate remains in
 progress.
-Portable consumption of all six new legacy and structured corpora is activated;
-its final receipt remains pending.
+The local Mac consumer passed all six legacy and structured corpora; remote
+consumers and the final matrix receipt remain pending.
 This distinct branch rehearsal uses source `734df69d...`; the frozen
 `e4bac7ff...` receipts retain their original scope.
 
@@ -267,3 +267,18 @@ six-producer self-consumer trial: 444 case checks passed, and five altered
 receipts were rejected (legacy binary/outcome, structured producer identity,
 command inventory and raw output digest). That helper trial does not claim
 the still-pending cross-platform consumer matrix.
+
+### Actual local current consumer passed
+
+The local Mac ARM consumer at selector revision
+`a5cdd95cb652d76a023fad1e40aefe54f6387445` passed the accepted-kit smoke and
+all six legacy plus six structured corpora: 444 exact case checks. The
+complete driver took 50.20351241598837 seconds with a sampled process-group
+peak of 117833728 bytes. Its source remained `734df69d...`, with no rebuild
+or full proof generation in this phase.
+
+`local-corpus-consumer/` preserves the original 413-file command/result
+archive, per-file identities, driver and independent pair-check receipt.
+The five-native remote consumer run is 36974227589; the additional free
+Mac14 ARM run is 36974208978. Their results and the complete matrix receipt
+remain pending at this observation.
