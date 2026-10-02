@@ -5,8 +5,8 @@ Mac ARM package has passed its four CPU suites, installed/package checks,
 133 baseline executions, 47 legacy corpus cases and 27 structured cases.
 All five remote producers have passed. The new full198 gate remains in
 progress.
-The local Mac consumer passed all six legacy and structured corpora; remote
-consumers and the final matrix receipt remain pending.
+All six native consumers passed every legacy and structured corpus; the full
+36-pair matrix and additional Mac14 ARM consumer are accepted.
 This distinct branch rehearsal uses source `734df69d...`; the frozen
 `e4bac7ff...` receipts retain their original scope.
 
@@ -282,3 +282,31 @@ archive, per-file identities, driver and independent pair-check receipt.
 The five-native remote consumer run is 36974227589; the additional free
 Mac14 ARM run is 36974208978. Their results and the complete matrix receipt
 remain pending at this observation.
+
+### Complete current portable matrix passed
+
+The five remote consumers in run 36974227589 completed successfully at
+`a5cdd95cb652d76a023fad1e40aefe54f6387445`.
+`python3 -B -W error measurements/inspect-current-matrix.py` authenticated
+all five original Actions ZIPs against the API digests, required that exact
+successful run, checked the current source-impact/helper identities, and
+invoked the retained corpus checker against the six actual producer and six
+actual consumer result directories. `corpus-matrix/receipt.json` records
+36 native pairs, 72 corpus pairs and 2664 exact case checks passed.
+`consumers/` preserves each original ZIP, API/hash inventory and compressed
+original job log. No synthesized consumer receipt contributes to the matrix.
+
+The additional free Mac14 ARM consumer in run 36974208978 passed on actual
+macOS 14.8.9 ARM64 at the same selector revision. Its 444 corpus checks and
+accepted-kit smoke completed in 91.088789583 seconds, with a 130088960-byte
+sampled process-group peak under the original 5 GiB / 1800-second limits.
+`macos14-arm-consumer/` retains its original container and job log.
+`current-mac-consumers-inspection.json` separately checks both the local and
+Mac14 ARM observations (888 case checks combined); the Mac14 measurement
+qualifies only the exercised Joy/Trisha and kit consumer commands.
+
+All six native producer package gates and the full portable corpus matrix
+for exact source `734df69d...` have passed. The actual full198 proof run on
+its local Mac binary remains in progress at this observation. The later Joy
+`dd61df9...` host-deadline change is outside these immutable package receipts
+and requires a distinct follow-up source/package lane.

@@ -1,0 +1,1935 @@
+{
+  "run_id": 36974227589,
+  "head_sha": "a5cdd95cb652d76a023fad1e40aefe54f6387445",
+  "artifact_name": "candidate-x86_64-apple-darwin",
+  "artifact_id": 11212633025,
+  "archive_sha256": "9621943dc62e7dcbd0317056920a37a2dd39462f5fdc959c98ad181ac3bf27bf",
+  "archive_bytes": 4887899,
+  "files": [
+    {
+      "path": "selfhost-kit.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source-impact.json",
+      "bytes": 3189991,
+      "sha256": "94b14967bbf658df8a777aeaa76259450429b82e09b6dd5ad0289b8c6530255c"
+    },
+    {
+      "path": "source-impact.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source.log",
+      "bytes": 517,
+      "sha256": "ab03bfe130fa39b81220c9231a2d2589fa615f5314cafa81cea25726ab652dc3"
+    },
+    {
+      "path": "structured-verification-0/add14-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-0/add14-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/add14-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-0/add14-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/add14-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/add14-valid.stdout",
+      "bytes": 847,
+      "sha256": "b7ae094d9a979bf3700fe2c69f520edbc666134347bf55485fb5e2881c54c46b"
+    },
+    {
+      "path": "structured-verification-0/add14-wrong-input.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-0/add14-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/add14-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-0/add14-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/compiler-diagnostic-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-0/compiler-diagnostic-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/compiler-diagnostic-extract.stderr",
+      "bytes": 253,
+      "sha256": "cee027be1406b50affbab4c4b2c7ccac1350c23de46ca0fe5af6338573406a8a"
+    },
+    {
+      "path": "structured-verification-0/compiler-diagnostic-extract.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/compiler-diagnostic-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-0/compiler-diagnostic-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/compiler-diagnostic-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/compiler-diagnostic-valid.stdout",
+      "bytes": 1910,
+      "sha256": "f489f30a249e84614d0b145fe5059447409762387767fec63296d2c853327b1e"
+    },
+    {
+      "path": "structured-verification-0/compiler-diagnostic-wrong-input.stderr",
+      "bytes": 38,
+      "sha256": "76ac000f069b408bdd5a401dd8afa9ea7840e58732d5109721251c00bcae02f7"
+    },
+    {
+      "path": "structured-verification-0/compiler-diagnostic-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/compiler-diagnostic-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-0/compiler-diagnostic-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/compiler-success-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-0/compiler-success-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/compiler-success-extract-run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/compiler-success-extract-run.stdout",
+      "bytes": 734,
+      "sha256": "43be2cd232e5686677472a9762918be34795cd2b2cdfdfc3cf32cd906ad5ed57"
+    },
+    {
+      "path": "structured-verification-0/compiler-success-extract.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/compiler-success-extract.stdout",
+      "bytes": 1790,
+      "sha256": "a15602a643f00e3b61efc63e00f88abd0e242d81765bf74250eaf9e95dd9611a"
+    },
+    {
+      "path": "structured-verification-0/compiler-success-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-0/compiler-success-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/compiler-success-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/compiler-success-valid.stdout",
+      "bytes": 1790,
+      "sha256": "8ced1538a737a58a6b03fab6430a28f2d1a44915089cedf1bf5aa3945d489bb4"
+    },
+    {
+      "path": "structured-verification-0/compiler-success-wrong-input.stderr",
+      "bytes": 38,
+      "sha256": "76ac000f069b408bdd5a401dd8afa9ea7840e58732d5109721251c00bcae02f7"
+    },
+    {
+      "path": "structured-verification-0/compiler-success-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/compiler-success-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-0/compiler-success-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/identity_tree-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-0/identity_tree-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/identity_tree-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-0/identity_tree-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/identity_tree-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/identity_tree-valid.stdout",
+      "bytes": 847,
+      "sha256": "f5ccb0a48de5a0c8caae744d89a6048584e748a171def3740277366e0b802fe9"
+    },
+    {
+      "path": "structured-verification-0/identity_tree-wrong-input.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-0/identity_tree-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/identity_tree-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-0/identity_tree-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/loop4097-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-0/loop4097-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/loop4097-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-0/loop4097-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/loop4097-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/loop4097-valid.stdout",
+      "bytes": 881,
+      "sha256": "d82a76f9005ba483b2238cad4c0962fa2f98101235920f6b29bbc5dbafe28ef9"
+    },
+    {
+      "path": "structured-verification-0/loop4097-wrong-input.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-0/loop4097-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0/loop4097-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-0/loop4097-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-0.json",
+      "bytes": 37874,
+      "sha256": "e1eb3b3cec268d8211ad358d04f9e1ebe0cc64dc394fda754dcee30bb6f70457"
+    },
+    {
+      "path": "structured-verification-0.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/add14-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-1/add14-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/add14-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-1/add14-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/add14-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/add14-valid.stdout",
+      "bytes": 847,
+      "sha256": "b33d98d91d66b0d33241d130d584f20c371a6a955710982e573f68664e86dbe9"
+    },
+    {
+      "path": "structured-verification-1/add14-wrong-input.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-1/add14-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/add14-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-1/add14-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/compiler-diagnostic-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-1/compiler-diagnostic-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/compiler-diagnostic-extract.stderr",
+      "bytes": 253,
+      "sha256": "cee027be1406b50affbab4c4b2c7ccac1350c23de46ca0fe5af6338573406a8a"
+    },
+    {
+      "path": "structured-verification-1/compiler-diagnostic-extract.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/compiler-diagnostic-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-1/compiler-diagnostic-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/compiler-diagnostic-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/compiler-diagnostic-valid.stdout",
+      "bytes": 1910,
+      "sha256": "d482b2476bbbbd2a2d7b93087ac08010ecd43bee5d8b5b732fd0992a8062d696"
+    },
+    {
+      "path": "structured-verification-1/compiler-diagnostic-wrong-input.stderr",
+      "bytes": 38,
+      "sha256": "76ac000f069b408bdd5a401dd8afa9ea7840e58732d5109721251c00bcae02f7"
+    },
+    {
+      "path": "structured-verification-1/compiler-diagnostic-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/compiler-diagnostic-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-1/compiler-diagnostic-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/compiler-success-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-1/compiler-success-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/compiler-success-extract-run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/compiler-success-extract-run.stdout",
+      "bytes": 734,
+      "sha256": "81fb9cc18340b6180bf9b9175acb44b211f2103e1c34f80fa49191e265e5f39a"
+    },
+    {
+      "path": "structured-verification-1/compiler-success-extract.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/compiler-success-extract.stdout",
+      "bytes": 1790,
+      "sha256": "be1fe69d7d82293aab47ac708d925880c6a8f39141a20a5747ce1ac7b7741db7"
+    },
+    {
+      "path": "structured-verification-1/compiler-success-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-1/compiler-success-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/compiler-success-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/compiler-success-valid.stdout",
+      "bytes": 1790,
+      "sha256": "a917d1e02f24108ebe1898c36291645c98c99a44d77c3c04a0cc4d1caa1a699c"
+    },
+    {
+      "path": "structured-verification-1/compiler-success-wrong-input.stderr",
+      "bytes": 38,
+      "sha256": "76ac000f069b408bdd5a401dd8afa9ea7840e58732d5109721251c00bcae02f7"
+    },
+    {
+      "path": "structured-verification-1/compiler-success-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/compiler-success-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-1/compiler-success-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/identity_tree-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-1/identity_tree-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/identity_tree-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-1/identity_tree-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/identity_tree-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/identity_tree-valid.stdout",
+      "bytes": 847,
+      "sha256": "b45836ea933c14aba2620125b208224375c8ee331a5830b7a5aedcd7200c5aef"
+    },
+    {
+      "path": "structured-verification-1/identity_tree-wrong-input.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-1/identity_tree-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/identity_tree-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-1/identity_tree-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/loop4097-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-1/loop4097-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/loop4097-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-1/loop4097-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/loop4097-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/loop4097-valid.stdout",
+      "bytes": 881,
+      "sha256": "a922dcda98c270299264730721eb146f3410a639280f747d11970ed033d059ba"
+    },
+    {
+      "path": "structured-verification-1/loop4097-wrong-input.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-1/loop4097-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1/loop4097-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-1/loop4097-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-1.json",
+      "bytes": 37878,
+      "sha256": "89a4ca873a332839e5ae704d0791452cae233c0e75623dbc8c19b05832aa6acf"
+    },
+    {
+      "path": "structured-verification-1.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/add14-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-2/add14-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/add14-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-2/add14-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/add14-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/add14-valid.stdout",
+      "bytes": 847,
+      "sha256": "b62ac745648e8ec25c9e5da560486f9fc59209df7fa5d6d6224c56c1d759ee77"
+    },
+    {
+      "path": "structured-verification-2/add14-wrong-input.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-2/add14-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/add14-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-2/add14-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/compiler-diagnostic-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-2/compiler-diagnostic-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/compiler-diagnostic-extract.stderr",
+      "bytes": 253,
+      "sha256": "cee027be1406b50affbab4c4b2c7ccac1350c23de46ca0fe5af6338573406a8a"
+    },
+    {
+      "path": "structured-verification-2/compiler-diagnostic-extract.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/compiler-diagnostic-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-2/compiler-diagnostic-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/compiler-diagnostic-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/compiler-diagnostic-valid.stdout",
+      "bytes": 1910,
+      "sha256": "77da6d7f87699b88444ad0185055dc87790f2fa244bada6ca3f0a6a4aaf5ae3b"
+    },
+    {
+      "path": "structured-verification-2/compiler-diagnostic-wrong-input.stderr",
+      "bytes": 38,
+      "sha256": "76ac000f069b408bdd5a401dd8afa9ea7840e58732d5109721251c00bcae02f7"
+    },
+    {
+      "path": "structured-verification-2/compiler-diagnostic-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/compiler-diagnostic-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-2/compiler-diagnostic-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/compiler-success-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-2/compiler-success-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/compiler-success-extract-run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/compiler-success-extract-run.stdout",
+      "bytes": 734,
+      "sha256": "f8a26cad3cba5b20f94eb6b835ce3bf585d7aae20455ee5ef2c8a4c486338cf9"
+    },
+    {
+      "path": "structured-verification-2/compiler-success-extract.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/compiler-success-extract.stdout",
+      "bytes": 1790,
+      "sha256": "8395f9c4de9ffae768e7726c4c20407bc0ef81752a4d657c3f1ef64aee582922"
+    },
+    {
+      "path": "structured-verification-2/compiler-success-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-2/compiler-success-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/compiler-success-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/compiler-success-valid.stdout",
+      "bytes": 1790,
+      "sha256": "54f5cc5dd7e9b867a70fbf928a0ae384805b486c29cc1ca9a963e4b92fdcd36e"
+    },
+    {
+      "path": "structured-verification-2/compiler-success-wrong-input.stderr",
+      "bytes": 38,
+      "sha256": "76ac000f069b408bdd5a401dd8afa9ea7840e58732d5109721251c00bcae02f7"
+    },
+    {
+      "path": "structured-verification-2/compiler-success-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/compiler-success-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-2/compiler-success-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/identity_tree-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-2/identity_tree-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/identity_tree-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-2/identity_tree-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/identity_tree-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/identity_tree-valid.stdout",
+      "bytes": 847,
+      "sha256": "9ad3055c6f1904841970a1dc5de47b1ab19c4ed93d74a57482f2813a0036780a"
+    },
+    {
+      "path": "structured-verification-2/identity_tree-wrong-input.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-2/identity_tree-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/identity_tree-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-2/identity_tree-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/loop4097-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-2/loop4097-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/loop4097-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-2/loop4097-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/loop4097-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/loop4097-valid.stdout",
+      "bytes": 881,
+      "sha256": "d37f984bdaa15bda0b7c6cf08437b20d1ef5af02074415bd3dab7b1657920bf2"
+    },
+    {
+      "path": "structured-verification-2/loop4097-wrong-input.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-2/loop4097-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2/loop4097-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-2/loop4097-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-2.json",
+      "bytes": 37884,
+      "sha256": "921fdcd8391da27a98d2b0e1a193a0941ef32ef5aac670576db6d44b2c6c77fd"
+    },
+    {
+      "path": "structured-verification-2.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/add14-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-3/add14-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/add14-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-3/add14-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/add14-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/add14-valid.stdout",
+      "bytes": 847,
+      "sha256": "dba33502b70accdc8eb368d2af6d2311da8c1c2cff04e537b1ce581672c2fbae"
+    },
+    {
+      "path": "structured-verification-3/add14-wrong-input.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-3/add14-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/add14-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-3/add14-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/compiler-diagnostic-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-3/compiler-diagnostic-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/compiler-diagnostic-extract.stderr",
+      "bytes": 253,
+      "sha256": "cee027be1406b50affbab4c4b2c7ccac1350c23de46ca0fe5af6338573406a8a"
+    },
+    {
+      "path": "structured-verification-3/compiler-diagnostic-extract.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/compiler-diagnostic-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-3/compiler-diagnostic-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/compiler-diagnostic-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/compiler-diagnostic-valid.stdout",
+      "bytes": 1910,
+      "sha256": "2956ad79a4b43f4b0ef4a73e44fd8e11909f4ea4ad00ef998e777cd5fa1625da"
+    },
+    {
+      "path": "structured-verification-3/compiler-diagnostic-wrong-input.stderr",
+      "bytes": 38,
+      "sha256": "76ac000f069b408bdd5a401dd8afa9ea7840e58732d5109721251c00bcae02f7"
+    },
+    {
+      "path": "structured-verification-3/compiler-diagnostic-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/compiler-diagnostic-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-3/compiler-diagnostic-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/compiler-success-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-3/compiler-success-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/compiler-success-extract-run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/compiler-success-extract-run.stdout",
+      "bytes": 734,
+      "sha256": "5324d9e0384d03bb5db0e4dc5c3cadaf2a05979354ce19e7d6e9e44e79a55042"
+    },
+    {
+      "path": "structured-verification-3/compiler-success-extract.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/compiler-success-extract.stdout",
+      "bytes": 1790,
+      "sha256": "bf536572b38aa41239d4668330609de0026faa6671f90bcaa887ae0dedfac0b8"
+    },
+    {
+      "path": "structured-verification-3/compiler-success-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-3/compiler-success-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/compiler-success-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/compiler-success-valid.stdout",
+      "bytes": 1790,
+      "sha256": "e02f1e1a8d055382f98e3dd4b21af3094ca6cbd95db07763ebdcaad75c2d9e9b"
+    },
+    {
+      "path": "structured-verification-3/compiler-success-wrong-input.stderr",
+      "bytes": 38,
+      "sha256": "76ac000f069b408bdd5a401dd8afa9ea7840e58732d5109721251c00bcae02f7"
+    },
+    {
+      "path": "structured-verification-3/compiler-success-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/compiler-success-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-3/compiler-success-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/identity_tree-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-3/identity_tree-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/identity_tree-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-3/identity_tree-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/identity_tree-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/identity_tree-valid.stdout",
+      "bytes": 847,
+      "sha256": "4bdab78bfd38638490abfc2a450a046eae6c4012522ea87291dae048d6344317"
+    },
+    {
+      "path": "structured-verification-3/identity_tree-wrong-input.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-3/identity_tree-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/identity_tree-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-3/identity_tree-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/loop4097-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-3/loop4097-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/loop4097-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-3/loop4097-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/loop4097-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/loop4097-valid.stdout",
+      "bytes": 881,
+      "sha256": "62d54a384d70d1a5cae2df41d81409e45c7b0f2f29d93777004685881a176b9a"
+    },
+    {
+      "path": "structured-verification-3/loop4097-wrong-input.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-3/loop4097-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3/loop4097-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-3/loop4097-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-3.json",
+      "bytes": 37873,
+      "sha256": "d653d76f5c6fe3082140743e867964d9d5df4317c6b08fd3688494e0ce4ecdf9"
+    },
+    {
+      "path": "structured-verification-3.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/add14-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-4/add14-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/add14-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-4/add14-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/add14-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/add14-valid.stdout",
+      "bytes": 847,
+      "sha256": "06ff2d5983d28a35268a4098d59f7b5a429927f84ef3aa9af9409424ecb1390a"
+    },
+    {
+      "path": "structured-verification-4/add14-wrong-input.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-4/add14-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/add14-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-4/add14-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/compiler-diagnostic-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-4/compiler-diagnostic-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/compiler-diagnostic-extract.stderr",
+      "bytes": 253,
+      "sha256": "cee027be1406b50affbab4c4b2c7ccac1350c23de46ca0fe5af6338573406a8a"
+    },
+    {
+      "path": "structured-verification-4/compiler-diagnostic-extract.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/compiler-diagnostic-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-4/compiler-diagnostic-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/compiler-diagnostic-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/compiler-diagnostic-valid.stdout",
+      "bytes": 1910,
+      "sha256": "05ddb345b63cf378586d967e4ced30991bf53cc9534e5a0953dbe885c87e7ffd"
+    },
+    {
+      "path": "structured-verification-4/compiler-diagnostic-wrong-input.stderr",
+      "bytes": 38,
+      "sha256": "76ac000f069b408bdd5a401dd8afa9ea7840e58732d5109721251c00bcae02f7"
+    },
+    {
+      "path": "structured-verification-4/compiler-diagnostic-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/compiler-diagnostic-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-4/compiler-diagnostic-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/compiler-success-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-4/compiler-success-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/compiler-success-extract-run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/compiler-success-extract-run.stdout",
+      "bytes": 734,
+      "sha256": "e268013b7e3325c4c5c95db144d8f5b1a42694e7615e8d9274469892a18346be"
+    },
+    {
+      "path": "structured-verification-4/compiler-success-extract.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/compiler-success-extract.stdout",
+      "bytes": 1790,
+      "sha256": "8a01c5357243861eafd3c58d77c13f770b150e59c80910f7c6ff0480635a964b"
+    },
+    {
+      "path": "structured-verification-4/compiler-success-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-4/compiler-success-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/compiler-success-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/compiler-success-valid.stdout",
+      "bytes": 1790,
+      "sha256": "a3410ece45304fc6e14e1f9b7268292baf7459a4418728980659b9b76945dd43"
+    },
+    {
+      "path": "structured-verification-4/compiler-success-wrong-input.stderr",
+      "bytes": 38,
+      "sha256": "76ac000f069b408bdd5a401dd8afa9ea7840e58732d5109721251c00bcae02f7"
+    },
+    {
+      "path": "structured-verification-4/compiler-success-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/compiler-success-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-4/compiler-success-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/identity_tree-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-4/identity_tree-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/identity_tree-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-4/identity_tree-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/identity_tree-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/identity_tree-valid.stdout",
+      "bytes": 847,
+      "sha256": "4abcfc373f1d1cfa7f538954e4a564549884e4351dd21eca64fda8cc28d2293c"
+    },
+    {
+      "path": "structured-verification-4/identity_tree-wrong-input.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-4/identity_tree-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/identity_tree-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-4/identity_tree-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/loop4097-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-4/loop4097-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/loop4097-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-4/loop4097-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/loop4097-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/loop4097-valid.stdout",
+      "bytes": 881,
+      "sha256": "c2a36049d53d18b52db93e145eb15e60a4228b8a73e930d48c723883daf878b7"
+    },
+    {
+      "path": "structured-verification-4/loop4097-wrong-input.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-4/loop4097-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4/loop4097-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-4/loop4097-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-4.json",
+      "bytes": 37877,
+      "sha256": "ff467341b303f9341a40d094f2382c3cb09dcff32a185e659a7a731271700597"
+    },
+    {
+      "path": "structured-verification-4.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/add14-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-5/add14-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/add14-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-5/add14-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/add14-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/add14-valid.stdout",
+      "bytes": 847,
+      "sha256": "1d3acd2ee5a08ac204071888efae82dab407bbb4efee92bef6a67678b75c0807"
+    },
+    {
+      "path": "structured-verification-5/add14-wrong-input.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-5/add14-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/add14-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-5/add14-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/compiler-diagnostic-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-5/compiler-diagnostic-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/compiler-diagnostic-extract.stderr",
+      "bytes": 253,
+      "sha256": "cee027be1406b50affbab4c4b2c7ccac1350c23de46ca0fe5af6338573406a8a"
+    },
+    {
+      "path": "structured-verification-5/compiler-diagnostic-extract.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/compiler-diagnostic-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-5/compiler-diagnostic-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/compiler-diagnostic-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/compiler-diagnostic-valid.stdout",
+      "bytes": 1910,
+      "sha256": "ea97d6613689e0f58be82a26fa3f1c369562f9054e7f53fa7aa48935cc23bc81"
+    },
+    {
+      "path": "structured-verification-5/compiler-diagnostic-wrong-input.stderr",
+      "bytes": 38,
+      "sha256": "76ac000f069b408bdd5a401dd8afa9ea7840e58732d5109721251c00bcae02f7"
+    },
+    {
+      "path": "structured-verification-5/compiler-diagnostic-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/compiler-diagnostic-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-5/compiler-diagnostic-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/compiler-success-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-5/compiler-success-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/compiler-success-extract-run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/compiler-success-extract-run.stdout",
+      "bytes": 734,
+      "sha256": "50e30e67c2fcdbe9b4903e9131fb6f7b1056d083595d0a5c58d1e13e8f7bddd5"
+    },
+    {
+      "path": "structured-verification-5/compiler-success-extract.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/compiler-success-extract.stdout",
+      "bytes": 1790,
+      "sha256": "b51b90ae726787a3e0382ac06fea556d4b9a731d7fca4b6e0f1b4e010a86040d"
+    },
+    {
+      "path": "structured-verification-5/compiler-success-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-5/compiler-success-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/compiler-success-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/compiler-success-valid.stdout",
+      "bytes": 1790,
+      "sha256": "e576042c4b5e3a8380ef8730e27c9913ea723ea54d9dff17589013cc488ebb6d"
+    },
+    {
+      "path": "structured-verification-5/compiler-success-wrong-input.stderr",
+      "bytes": 38,
+      "sha256": "76ac000f069b408bdd5a401dd8afa9ea7840e58732d5109721251c00bcae02f7"
+    },
+    {
+      "path": "structured-verification-5/compiler-success-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/compiler-success-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-5/compiler-success-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/identity_tree-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-5/identity_tree-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/identity_tree-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-5/identity_tree-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/identity_tree-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/identity_tree-valid.stdout",
+      "bytes": 847,
+      "sha256": "51c70aabaedcda3e2992dacbffa31b52a2795dcd501fdc37e6b663851ff51e95"
+    },
+    {
+      "path": "structured-verification-5/identity_tree-wrong-input.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-5/identity_tree-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/identity_tree-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-5/identity_tree-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/loop4097-corrupt.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-5/loop4097-corrupt.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/loop4097-truncated.stderr",
+      "bytes": 76,
+      "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+    },
+    {
+      "path": "structured-verification-5/loop4097-truncated.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/loop4097-valid.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/loop4097-valid.stdout",
+      "bytes": 881,
+      "sha256": "ae2e76cd03f43f537ddab3a01dfdee875811350688a9a39257224908a73fd6da"
+    },
+    {
+      "path": "structured-verification-5/loop4097-wrong-input.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-5/loop4097-wrong-input.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5/loop4097-wrong-program.stderr",
+      "bytes": 83,
+      "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+    },
+    {
+      "path": "structured-verification-5/loop4097-wrong-program.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "structured-verification-5.json",
+      "bytes": 37883,
+      "sha256": "0be6b6a72bb6066cc0957d2ee43f5ba9322911a5c803091fef8e6425400e5953"
+    },
+    {
+      "path": "structured-verification-5.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "verification-0.json",
+      "bytes": 11720,
+      "sha256": "54577e8d2be30323b6ce9275cc42a035bfec6c48baeb68c2220001004f4d920d"
+    },
+    {
+      "path": "verification-0.log",
+      "bytes": 56,
+      "sha256": "1e622b55d98f51ba0ec73434a57718e213cecaee985ec8c0d221ddf2d6010ce9"
+    },
+    {
+      "path": "verification-1.json",
+      "bytes": 11724,
+      "sha256": "e76d002bfbb8573b05a0380f11d4fd26bf5417a4b9f0524edc5356d99fa762a7"
+    },
+    {
+      "path": "verification-1.log",
+      "bytes": 56,
+      "sha256": "1e622b55d98f51ba0ec73434a57718e213cecaee985ec8c0d221ddf2d6010ce9"
+    },
+    {
+      "path": "verification-2.json",
+      "bytes": 11730,
+      "sha256": "29a8c4ad943d0b34afb4a201496ead9716202660b987c0e0f8abe0ad41381a8a"
+    },
+    {
+      "path": "verification-2.log",
+      "bytes": 56,
+      "sha256": "1e622b55d98f51ba0ec73434a57718e213cecaee985ec8c0d221ddf2d6010ce9"
+    },
+    {
+      "path": "verification-3.json",
+      "bytes": 11719,
+      "sha256": "7d8dc7a16dae341ab5c4162c09376f28bd66bcddcf66991266f7fddbf01c3687"
+    },
+    {
+      "path": "verification-3.log",
+      "bytes": 56,
+      "sha256": "1e622b55d98f51ba0ec73434a57718e213cecaee985ec8c0d221ddf2d6010ce9"
+    },
+    {
+      "path": "verification-4.json",
+      "bytes": 11723,
+      "sha256": "e43f1d5b7a71605493f7dac0e91c76901aa8805b3902221e5e90a6fb911ccc4c"
+    },
+    {
+      "path": "verification-4.log",
+      "bytes": 56,
+      "sha256": "1e622b55d98f51ba0ec73434a57718e213cecaee985ec8c0d221ddf2d6010ce9"
+    },
+    {
+      "path": "verification-5.json",
+      "bytes": 11729,
+      "sha256": "90f3d74e4cfa2f57a4f5cb479046152335be0ecb955aceeb71037c87d650821d"
+    },
+    {
+      "path": "verification-5.log",
+      "bytes": 56,
+      "sha256": "1e622b55d98f51ba0ec73434a57718e213cecaee985ec8c0d221ddf2d6010ce9"
+    },
+    {
+      "path": "verified-selfhost-smoke/0.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "verified-selfhost-smoke/0.stdout",
+      "bytes": 1013,
+      "sha256": "026af4ee55979baa18fbd20a5185983a6249e1414d1e390623aab906c4e08be6"
+    },
+    {
+      "path": "verified-selfhost-smoke/1.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "verified-selfhost-smoke/1.stdout",
+      "bytes": 1612,
+      "sha256": "0d2b724ab33b80fa2722e0c18dc9236b99dbf7e2acca77d3f303ff8b28f44aee"
+    },
+    {
+      "path": "verified-selfhost-smoke/2.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "verified-selfhost-smoke/2.stdout",
+      "bytes": 650,
+      "sha256": "f2cf003d796a97f48fcd3bfd5f8dcfa2fb23e77692d12aaca521603f39245852"
+    },
+    {
+      "path": "verified-selfhost-smoke/3.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "verified-selfhost-smoke/3.stdout",
+      "bytes": 1017,
+      "sha256": "e47ea5869bbd9387de409be5ed887f5f46923018d62856211b5c3778bd9275f6"
+    },
+    {
+      "path": "verified-selfhost-smoke/4.stderr",
+      "bytes": 73,
+      "sha256": "84652c1ed1c66d5ebbfda8d9ce5f7601e042bfea64394c4de666805def5e3618"
+    },
+    {
+      "path": "verified-selfhost-smoke/4.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "verified-selfhost-smoke/answer.dag",
+      "bytes": 85,
+      "sha256": "348d22b1dca51095cf13e13a4674727db537c8cd07f21af53009022b5e7bb94a"
+    },
+    {
+      "path": "verified-selfhost-smoke/bad-job.dag",
+      "bytes": 8209,
+      "sha256": "e0938cffce6800c46a60be49d928cee5a025c2f3c0e51d756ab05f731c32be78"
+    },
+    {
+      "path": "verified-selfhost-smoke/compiler.dag",
+      "bytes": 9691488,
+      "sha256": "76a07c08265bd2ef525164472b6b53ac3f0e6cbbedce3250c4202f40ffba34c8"
+    },
+    {
+      "path": "verified-selfhost-smoke/job.dag",
+      "bytes": 8209,
+      "sha256": "b72bd0849cc8999a71b16ba6fa23386009f96ba7f53c06f41d01d79cac41ea37"
+    },
+    {
+      "path": "verified-selfhost-smoke/package.json",
+      "bytes": 687,
+      "sha256": "7e623737987cc4d68068537ad3c3957cc04a9e6354993d120ea83df7191c7e21"
+    },
+    {
+      "path": "verified-selfhost-smoke/receipt.json",
+      "bytes": 5824,
+      "sha256": "810820a498aeee3d5ad14d97552cfa609b3185426831e660e61f03ec41a9fe35"
+    },
+    {
+      "path": "verified-selfhost-smoke/rejected.dag",
+      "bytes": 25,
+      "sha256": "ad5fe2d1d3a9c16aca67d90d1ac709615163be42802d06b27cb54f4c3cc39b3b"
+    },
+    {
+      "path": "verified-selfhost-smoke/sample.dag",
+      "bytes": 790,
+      "sha256": "d6a6504b1f0cb8e93f758cd325c2bab254e20e7e1b50d18993ce6ea77c648b82"
+    },
+    {
+      "path": "verified-selfhost-smoke/sample.tri",
+      "bytes": 46,
+      "sha256": "71300b06b27cab1575ecd19b3c977aa7377e56890ce2dd9a2c0349fc25950e25"
+    },
+    {
+      "path": "verified-selfhost-smoke/zero.dag",
+      "bytes": 85,
+      "sha256": "7b658a799adf0f027ec2b44fdb463847b2ef4bf49f7f7af1166a3291781f66cd"
+    },
+    {
+      "path": "verified-selfhost-smoke.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

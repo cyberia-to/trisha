@@ -1,0 +1,20 @@
+{
+  "id": 11212737111,
+  "node_id": "MDg6QXJ0aWZhY3QxMTIxMjczNzExMQ==",
+  "name": "current-package-macos14-arm-consumer",
+  "size_in_bytes": 4908000,
+  "url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11212737111",
+  "archive_download_url": "https://api.github.com/repos/cyberia-to/trisha/actions/artifacts/11212737111/zip",
+  "expired": false,
+  "digest": "sha256:9c2b4bd2d2c1d5715cdaf338a7c8161c640bb323e56487ecc9323c9d74333ce3",
+  "created_at": "2026-10-02T06:36:26Z",
+  "updated_at": "2026-10-02T06:36:26Z",
+  "expires_at": "2026-11-01T06:36:25Z",
+  "workflow_run": {
+    "id": 36974208978,
+    "repository_id": 1159894384,
+    "head_repository_id": 1159894384,
+    "head_branch": "test/0.4-current-distribution-20261002",
+    "head_sha": "a5cdd95cb652d76a023fad1e40aefe54f6387445"
+  }
+}
