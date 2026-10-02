@@ -1,0 +1,154 @@
+{
+  "status": "passed",
+  "parents": [
+    "e3ff0b71919a956119674d9cc6f58489bd888a81",
+    "6624b97eb0c2179816f908cb90af02c4edc7d6e8"
+  ],
+  "merge_base": "c8836be0103c8d2ead07c409bb117af04cae3449",
+  "parent_entries": [
+    3233,
+    1993
+  ],
+  "merged_entries": 3487,
+  "preserved_feature_entries": 3232,
+  "preserved_incoming_changed_entries": 254,
+  "every_incoming_audit_blob_preserved": true,
+  "only_modified_existing_feature_path": ".gitattributes",
+  "attributes_sha256": "e89a50238159213213525f56aeed30ac83c3277d0e57ecc92ca2ff44de8cdf46",
+  "staged_tree": "da1272a6d28e181b8800d9ea1cf78d6d4ec5ea67",
+  "protected": {
+    ".github/final-package-assets.json": {
+      "blob": "863443c456060731a26cce9bc5a573887f255405",
+      "sha256": "81b1f1febf9c59d4beebf0c827d67541c106b7675c5c4ae8a75433e10de6b4e3"
+    },
+    ".github/final-package-candidate.json": {
+      "blob": "55fa764d05b4098a014e8f37ae7283a99926381c",
+      "sha256": "084bfe4821114455881b1fd2718d8a10373e48562d97093ef3a580b0fb9626ba"
+    },
+    ".github/final-package-inputs.json": {
+      "blob": "8f3c754cc522af1797ab26104df9e36d5c8ef147",
+      "sha256": "6a9e9af007de7f1d3dca6cb078080270cb4b96057db182f9c64775d063d6e767"
+    },
+    ".github/final-package-macos-floor.json": {
+      "blob": "8f2d82b699607e8850b8e7ae0fffb3ce922e60c0",
+      "sha256": "35bed4ce88573d2bb61c9e712fe867e57d71d5068e208276fe18e9e4424debce"
+    },
+    ".github/final-package-source.json": {
+      "blob": "165d5536ff2e2f89b01bc2eacc9b749972412772",
+      "sha256": "f78fd4a1fb6d6ec7f7635202db7b220b11eb4e4f7307a7c4112b7dd8fbbc4d6d"
+    },
+    "scripts/check-installed-host-ceiling.py": {
+      "blob": "bf5752fe52868cde808c02c91079e68333ef37b6",
+      "sha256": "20c434ab117fe2e54e7e1a80e39f232fac4ef32f92803326bf9213e78fceebf7"
+    },
+    "scripts/final-source-impact.py": {
+      "blob": "c44739ffffc66c69b0c223e16029e2515f6633a4",
+      "sha256": "a80578694041fe432df21819b166140165fe98d27ff3d0a6dcfb8a9621faa86d"
+    },
+    "scripts/inherit-full-baselines.py": {
+      "blob": "107bb28b5f647e4e3ee70d119162c528a4b13998",
+      "sha256": "6d37ed18d894bbfb8b3a745d06f360441177cc07f0da83eff9573b78c5d12761"
+    },
+    "scripts/native-candidate.py": {
+      "blob": "deb15e0b9a0cbab82060db6438ec1fe716db0ae2",
+      "sha256": "b2ef3e9ac773e6326f084cdf9cf419766272646d9c6ad7050953a0b3417a7e05"
+    },
+    "scripts/native-rehearsal-local.py": {
+      "blob": "c6ba46e79f91f57613e27efac03283d1286be87a",
+      "sha256": "e6b8dc12af1dbf81fcbf76ed2f94be2165621006797be950100db854230a220b"
+    },
+    "scripts/native-rehearsal-macos-floor.py": {
+      "blob": "31b9dc7961e5f26547ba896bb436470ccb24f1d2",
+      "sha256": "1997002295a3596e28a21c5eac90da648739258b5d70471abfdc77cf428e12c5"
+    },
+    "scripts/prepare-native-rehearsal.py": {
+      "blob": "2cb121b64597bded8030145a9383039b03d747c6",
+      "sha256": "45c5036b799726a4514921f142cfa3601f7ed37581fd12b628cf089f68ec6191"
+    },
+    "scripts/transport-native-rehearsal.py": {
+      "blob": "86cfb0c36923bb834d51470fc6ee54ee84aa9d96",
+      "sha256": "685cf20dcc3c593be06092c62d050d42c316f0bea355ba6a364d2056035b54f9"
+    }
+  },
+  "commands": [
+    {
+      "name": "diff-check",
+      "argv": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+      "returncode": 0
+    },
+    {
+      "name": "branch-diff-check",
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "c8836be0103c8d2ead07c409bb117af04cae3449"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+      "returncode": 0
+    },
+    {
+      "name": "actionlint",
+      "argv": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/native-proof-ci/actionlint-1.7.12/actionlint"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+      "returncode": 0
+    },
+    {
+      "name": "test_final_native_gate",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "scripts/test_final_native_gate.py"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+      "returncode": 0
+    },
+    {
+      "name": "test_transport_native_rehearsal",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "scripts/test_transport_native_rehearsal.py"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+      "returncode": 0
+    },
+    {
+      "name": "test_whole_self_build",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "scripts/test_whole_self_build.py"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+      "returncode": 0
+    },
+    {
+      "name": "test_whole_v2",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "scripts/test_whole_v2.py"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+      "returncode": 0
+    }
+  ],
+  "push_scope": "All four final-package selectors and workflows unchanged from premerge HEAD; their push paths cannot activate. Incoming whole-proof workflows restrict pushes to test/0.4-whole-self-build-ci."
+}

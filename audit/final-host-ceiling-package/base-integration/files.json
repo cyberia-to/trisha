@@ -1,0 +1,207 @@
+{
+  "status": "passed",
+  "merge": "685ac4d3641d34b04de4cb9e69f50e3d47da573f",
+  "parents": [
+    "e3ff0b71919a956119674d9cc6f58489bd888a81",
+    "6624b97eb0c2179816f908cb90af02c4edc7d6e8"
+  ],
+  "tree": "da1272a6d28e181b8800d9ea1cf78d6d4ec5ea67",
+  "original_files": [
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/branch-diff-check.stderr",
+      "path": "checks/branch-diff-check.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/branch-diff-check.stdout",
+      "path": "checks/branch-diff-check.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/check-v2.py",
+      "path": "checks/check-v2.py",
+      "bytes": 3385,
+      "sha256": "0942f47eb210f6c94d2e5e573d6514ff1243261658c23bcb5085ac967edad865"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/check.py",
+      "path": "checks/check.py",
+      "bytes": 3349,
+      "sha256": "669686c78c5a46e84fa4d67e3ed9fd839708218f89c7cd0487475b7258d92407"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/corrected/actionlint.stderr",
+      "path": "checks/corrected/actionlint.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/corrected/actionlint.stdout",
+      "path": "checks/corrected/actionlint.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/corrected/branch-diff-check.stderr",
+      "path": "checks/corrected/branch-diff-check.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/corrected/branch-diff-check.stdout",
+      "path": "checks/corrected/branch-diff-check.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/corrected/diff-check.stderr",
+      "path": "checks/corrected/diff-check.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/corrected/diff-check.stdout",
+      "path": "checks/corrected/diff-check.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/corrected/receipt.json",
+      "path": "checks/corrected/receipt.json",
+      "bytes": 5729,
+      "sha256": "7bed7cad7e1e70ae96148417921330e719cec341d7dda3f42c8656834985bbbb"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/corrected/test_final_native_gate.stderr",
+      "path": "checks/corrected/test_final_native_gate.stderr",
+      "bytes": 105,
+      "sha256": "3cd02e884955c8b49b809ce57755ae46aacba4d9ef1382b84e081568bb3f04a5"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/corrected/test_final_native_gate.stdout",
+      "path": "checks/corrected/test_final_native_gate.stdout",
+      "bytes": 3516,
+      "sha256": "02705ccf315aac83905b107c265370fb4429f272c9ad88aa50aebc48ad9daac1"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/corrected/test_transport_native_rehearsal.stderr",
+      "path": "checks/corrected/test_transport_native_rehearsal.stderr",
+      "bytes": 103,
+      "sha256": "baf49b59538192f3e136ca0404cac516ecb8dd2fe5ba1416604056f3080fa49c"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/corrected/test_transport_native_rehearsal.stdout",
+      "path": "checks/corrected/test_transport_native_rehearsal.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/corrected/test_whole_self_build.stderr",
+      "path": "checks/corrected/test_whole_self_build.stderr",
+      "bytes": 121,
+      "sha256": "a029ad9008caed37e8cf4f2fb7c73aec27805aad70b4ed1b5d074d1fcb616ccd"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/corrected/test_whole_self_build.stdout",
+      "path": "checks/corrected/test_whole_self_build.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/corrected/test_whole_v2.stderr",
+      "path": "checks/corrected/test_whole_v2.stderr",
+      "bytes": 115,
+      "sha256": "0c5b9385d3e288ccac90e88b3a2e57269f17a8cbc122007aafa74ce027262458"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/corrected/test_whole_v2.stdout",
+      "path": "checks/corrected/test_whole_v2.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/diff-check.stderr",
+      "path": "checks/diff-check.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/diff-check.stdout",
+      "path": "checks/diff-check.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/initial-check-failure.json",
+      "path": "checks/initial-check-failure.json",
+      "bytes": 279,
+      "sha256": "b47979536746998c8cdac3f26304ce458aa5ce27d555fa8111b02b91448d047a"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/initial-diff-check.stderr",
+      "path": "checks/initial-diff-check.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/initial-diff-check.stdout",
+      "path": "checks/initial-diff-check.stdout",
+      "bytes": 1523,
+      "sha256": "7584040fc610258dc576e4693570c70773028bf2797dba5580eab83ab969bda3"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/initial-parent-comparison.json",
+      "path": "checks/initial-parent-comparison.json",
+      "bytes": 1466,
+      "sha256": "a9b36462267e49aea24772f444f6b1853f4858a960c517cf64c208dc57b8eb3e"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/parent-1.gitattributes",
+      "path": "checks/parent-1.gitattributes",
+      "bytes": 5392,
+      "sha256": "5c828c470089933db0adb90e38ae2d88852772931c178831184c92e5dd9c972f"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration/parent-2.gitattributes",
+      "path": "checks/parent-2.gitattributes",
+      "bytes": 5447,
+      "sha256": "ebcb500b6f4062e36e15e8f475dea89400f1e8d7d8e2e107bd906037a546b25b"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-merge.stdout",
+      "path": "final-base-merge.stdout",
+      "bytes": 147,
+      "sha256": "d5bfb27b43db7cd4f639135b0094aeb6bd5f237048eda7df95ff4e85bc65674d"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-merge.stderr",
+      "path": "final-base-merge.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/final-base-integration-before.json",
+      "path": "final-base-integration-before.json",
+      "bytes": 180,
+      "sha256": "b7d368651ed23668078a16642229e8bb73d8be17beddd63c2327af2cd0723dbd"
+    },
+    {
+      "source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/integration/trisha-whole-proof-pr22/receipt.json",
+      "path": "original-pr22-integration.json",
+      "bytes": 3649,
+      "sha256": "431ab7dd7bfca2f9af60a5358ed1e159116670a39e211e87965c61154d6dbc6c"
+    }
+  ],
+  "scope": "Non-rewrite release base integration. Every prior feature blob and every incoming audit blob is unchanged; only .gitattributes combines policies plus one exact raw-log whitespace exemption. Native selectors and package runtime sources remain frozen. No native workload was rerun.",
+  "local_check_correction": "The first audit helper resolved actionlint one directory too high and stopped before unit tests. Its source and initial outputs remain separate; the corrected helper uses a fresh output directory.",
+  "test_counts": {
+    "final_orchestration_passed": 7,
+    "transport_passed": 5,
+    "whole_self_build_passed": 9,
+    "whole_self_build_skipped": 1,
+    "whole_v2_passed": 16
+  },
+  "skip_reason": "Explicit local compact input archive environment was not provided for the existing conditional whole-self-build archive integration test; this merge introduces no changes to that test or its runtime inputs."
+}

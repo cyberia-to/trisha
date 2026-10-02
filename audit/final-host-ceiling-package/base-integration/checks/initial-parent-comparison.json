@@ -1,0 +1,33 @@
+{
+  "e3ff0b71919a956119674d9cc6f58489bd888a81": {},
+  "6624b97eb0c2179816f908cb90af02c4edc7d6e8": {
+    "docs/reference/release-platforms.md": {
+      "parent": "100644 blob 51963f15bc9d020139e92192ac28fca179d98550",
+      "index": "100644 blob d4cda2c09b7791005ad8a0083256526e0663a597"
+    },
+    "scripts/native-candidate.py": {
+      "parent": "100644 blob 264f6c749b3e54632ad70479ea053b743c245585",
+      "index": "100644 blob deb15e0b9a0cbab82060db6438ec1fe716db0ae2"
+    },
+    "scripts/native-rehearsal-local.py": {
+      "parent": "100644 blob d3470954b91fbf2cd42bf2b62efd86cd653da8f3",
+      "index": "100644 blob c6ba46e79f91f57613e27efac03283d1286be87a"
+    },
+    "scripts/native-rehearsal-macos-floor.py": {
+      "parent": "100644 blob 3c13ce431d869d2f37327cbb2bc16b86caeabb74",
+      "index": "100644 blob 31b9dc7961e5f26547ba896bb436470ccb24f1d2"
+    },
+    "scripts/prepare-native-rehearsal.py": {
+      "parent": "100644 blob f7474cd85527e9cf9fdc97d2333924a6b53ef97f",
+      "index": "100644 blob 2cb121b64597bded8030145a9383039b03d747c6"
+    },
+    "scripts/test_transport_native_rehearsal.py": {
+      "parent": "100644 blob 0888c1e21bf9566ec79c4dc8e5ca02e50dc6bbb7",
+      "index": "100644 blob 5d30adbf7c86cadf824585d871c64e5ac19c87a9"
+    },
+    "scripts/transport-native-rehearsal.py": {
+      "parent": "100644 blob 9d42754760362ca98858dbf285ac48ab603cbb51",
+      "index": "100644 blob 86cfb0c36923bb834d51470fc6ee54ee84aa9d96"
+    }
+  }
+}

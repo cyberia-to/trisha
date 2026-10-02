@@ -5,7 +5,8 @@ the fresh Mac ARM 198-proof gate, the complete six-by-six consumer matrix and
 the bounded macOS 14 ARM consumer passed for exact source 73b50ebd. All twenty
 remote and three local package/corpus bodies passed authenticated readback.
 Original consumer containers and complete local proof evidence are retained.
-Final integration review is pending. This is a feature-branch rehearsal, not a
+Independent final consumer replay passed; release integration is pending.
+This is a feature-branch rehearsal, not a
 published release.
 
 `dependency-scope/` retains the exact Joy11b7→dd61 diff and original Cargo1.89
@@ -254,8 +255,8 @@ assets and matched their original and server hashes.
 observations, API responses, commands and complete-readback receipt by byte
 manifest. The independent transport review has SHA-256
 `79af45942a8dd062dc62bbe85299ff57d38063d5584b6e17526a6ddd96a10b6a`.
-These are feature-branch rehearsal assets. No consumer selector has been
-activated and no public release or tag has been created.
+These are feature-branch rehearsal assets. At this transport observation no
+consumer selector had been activated. No public release or tag was created.
 
 ## First remote producer inspected
 
@@ -392,8 +393,8 @@ full198 archive asset 605413707. The unchanged `baseline_reference` asset
 605010237 remains only the old conditional-inheritance input required by the
 frozen runner; it supplies no coverage for the different final executable.
 Consumer verification returns before inheritance or full198 generation.
-The next observations must record the actual six-native consumer matrix and
-separate Mac14 ARM Joy/Trisha+kit/deadline probes before acceptance.
+At activation, the actual six-native consumer matrix and separate Mac14 ARM
+Joy/Trisha+kit/deadline probes remained pending; their results follow below.
 
 ## Complete final portable consumption passed
 
@@ -466,3 +467,20 @@ This confirms 36 native pairs, 2664 corpus cases and 138 deadline commands,
 plus the separate 444-case / 23-command Mac14 observation, without rerunning
 native workloads. Release-branch integration remains separate from source and
 artifact validation; no default branch, tag or publication is changed here.
+
+## Release base evidence integration
+
+Merge `685ac4d3641d34b04de4cb9e69f50e3d47da573f` incorporates release base
+`6624b97eb0c2179816f908cb90af02c4edc7d6e8` without rewriting either history.
+`base-integration/` retains the exact parent comparison, original merge conflict,
+raw whitespace-check failure, corrected checks and PR22 integration receipt.
+Every prior feature blob and every incoming audit blob remains unchanged.
+The root attributes contain both parents' rules plus one exact-path whitespace
+exemption for the unchanged raw GitHub help log. All native selectors and
+package runtime sources remain identical to the validated feature branch.
+
+The merged tree passed actionlint, both diff checks, seven final orchestration,
+five transport, nine whole-self-build and sixteen whole-v2 tests. The existing
+conditional compact-archive test was skipped because its explicit archive
+environment was not provided. No native workload was rerun; push-path inspection
+confirmed that this evidence integration changes no package activation selector.
