@@ -1,0 +1,50 @@
+[
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-W",
+      "error",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/trisha-native-ci/scripts/test_archive_source.py"
+    ],
+    "exit_code": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "455a234a903f02c7d36882c9b036acc1ee7cca1176404082cfe9897ae40211f7"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-W",
+      "error",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/trisha-native-ci/scripts/test_verify_source.py"
+    ],
+    "exit_code": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "571ef100b5ed561205c2c67ce8ff211a4171664eb316697cde389fce3b4555e7"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-W",
+      "error",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/trisha-native-ci/scripts/test_package_binaries.py"
+    ],
+    "exit_code": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "84499de1f4e01e6a8e0dec975c92caa2fec08d0f97b72abef8cbe1253482de3d"
+  },
+  {
+    "command": [
+      "python3",
+      "-B",
+      "-W",
+      "error",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/trisha-native-ci/scripts/test_selfhost_kit.py"
+    ],
+    "exit_code": 0,
+    "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "48bb0f8a0da0048c05fee84b689e2366500a080e9214589f502a7199998c21d8"
+  }
+]

@@ -51,3 +51,12 @@ success does not establish an older OS floor. The proposed macOS 14 and Windows 
 floors still need matching-host receipts before they can become supported
 minimums; the selected runners are macOS 15 Intel and Windows Server
 2022 x64. This rehearsal does not relabel either proposed floor as validated.
+
+The separate `native-rehearsal-assets.yml` transport is dormant until a pinned
+producer selection is committed. It requires successful exact producer runs,
+raw Actions ZIP/API digest agreement, source and kit provenance agreement, and
+the binary archive and sealed corpus identities before uploading unique draft
+assets. It executes no archive code. Existing archive, source-verifier, binary
+package and kit guard suites pass under `-W error`; their actual commands and
+outputs are retained in `transport-helper-checks/`. Native producer/corpus
+acceptance remains separate from these helper checks.
