@@ -2367,7 +2367,11 @@
     "rss_bytes": 2147483648,
     "free_floor_bytes": 8589934592,
     "artifact_zip_bytes": 268435456,
-    "artifact_decoded_bytes": 536870912
+    "artifact_decoded_bytes": 134217728,
+    "receipt_bytes": 4194304,
+    "resources_bytes": 4194304,
+    "inventory_bytes": 1048576,
+    "packing_receipt_bytes": 1048576
   },
   "frozen_sources_manifest": {
     "bytes": 2192,

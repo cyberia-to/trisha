@@ -9,6 +9,7 @@ import zipfile
 from common import identity, require
 from contracts import MIB
 from bounded import process_rows
+from metadata import PROFILE, selected
 
 
 class CappedFile:
@@ -23,13 +24,15 @@ class CappedFile:
 
 def pack(transport,artifact):
     directory=transport.directory;transport.sample()
-    expanded={f'whole-v2-{phase}-c{g}-1' for phase in ('producer','verifier','pending') for g in (1,2)}
     # Retain original authenticated ZIPs; duplicate decoded directories are replayed locally.
-    files={str(p.relative_to(directory)):identity(p) for p in sorted(directory.rglob('*')) if p.is_file() and p!=directory/'chunk' and p.relative_to(directory).parts[0] not in expanded}
-    require(len(files)<=10000 and sum(v['bytes'] for v in files.values())<=512*MIB,'bounded metadata membership')
+    files={str(p.relative_to(directory)):identity(p) for p in sorted(selected(directory))}
+    require(len(files)<=10000 and sum(v['bytes'] for v in files.values())<=PROFILE['artifact_decoded_bytes'],'bounded metadata membership')
     require('receipt.json' in files and not any(n=='chunk' or n.endswith('.joysc') for n in files),'no complete or partial proof bodies')
     manifest=directory/'evidence-files.json'
-    raw=(json.dumps(files,indent=2)+'\n').encode();transport.budget(len(raw))
+    raw=(json.dumps(files,indent=2)+'\n').encode()
+    require(len(raw)<=PROFILE['inventory_bytes'],'bounded final inventory overhead')
+    require(sum(v['bytes'] for v in files.values())+len(raw)<=PROFILE['artifact_decoded_bytes'],'128MiB exact final decoded metadata cap')
+    transport.budget(len(raw))
     with manifest.open('xb') as stream:stream.write(raw)
     files['evidence-files.json']=identity(manifest)
     base_bytes=sum(p.stat().st_size for p in directory.rglob('*') if p.is_file() and p!=directory/'chunk')
@@ -53,7 +56,7 @@ def pack(transport,artifact):
                 source=directory/name;require(identity(source)==wanted,'stable metadata before packing')
                 archive.write(source,name);require(identity(source)==wanted,'stable metadata after packing')
     sample_tick=-1;budget()
-    result=dict(schema='trident/remote-byte-replay-packing/v1',status='passed',archive=identity(artifact),members=files,started_ns=started,ended_ns=time.time_ns(),elapsed_total_monotonic_seconds=time.monotonic()-transport.tick,sampled_peak_rss_bytes=peak,samples=observations,scope='metadata only; failed proof-part bytes are excluded')
+    result=dict(schema='trident/remote-byte-replay-packing/v1',status='passed',profile=PROFILE,observer_pid=os.getpid(),archive=identity(artifact),members=files,started_ns=started,ended_ns=time.time_ns(),elapsed_total_monotonic_seconds=time.monotonic()-transport.tick,sampled_peak_rss_bytes=peak,samples=observations,scope='metadata only; failed proof-part bytes are excluded')
     raw=(json.dumps(result,indent=2)+'\n').encode();require(len(raw)<=MIB,'reserved packing receipt cap')
     with (artifact.parent/'packing.json').open('xb') as stream:stream.write(raw)
     require(sum(p.stat().st_size for p in artifact.parent.iterdir())<=251*MIB,'final original Actions payload bound below256MiB')

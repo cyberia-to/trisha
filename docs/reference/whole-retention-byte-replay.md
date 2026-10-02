@@ -98,8 +98,18 @@ duplicate decoded directory; the local replay expands that original ZIP again.
 The local replay removes only its checked duplicate inner ZIP after authenticating
 the retained outer Actions archive. All original raw archives remain retained.
 
-The final small Actions archive is capped at256MiB compressed and512MiB decoded;
-individual metadata members retain their existing bounds. Always retain success
+The final small Actions archive is capped at256MiB compressed and128MiB decoded;
+individual metadata members retain their existing bounds. Before every one of the22
+body reads, reserve the remaining space up to4MiB for the ordinary receipt and
+4MiB for resource observations, the exact missing reviewed-source copy bytes,
+and1MiB each for the final inventory and packing receipt within the128MiB
+metadata ceiling. Record every admission arithmetic check. Recheck the final
+selected metadata plus exact inventory size before packing; refuse excess
+without publishing a success archive. The separate512MiB actual sidecar/disk
+ceiling remains unchanged. Require the exact declared profile in each replayed
+worker and packing receipt. Resource samples require positive distinct integer
+PIDs, integer nonnegative parent/group IDs and RSS, the actual observer PID,
+exact nonnegative sums, and ordered times/peaks. Always retain success
 or failure metadata within the job deadline. Do not include partial proof bytes.
 
 ## Local closure and durable adoption

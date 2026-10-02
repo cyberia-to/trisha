@@ -15,11 +15,14 @@ import gate
 def replay(transport,entries):
     from common import Reconstruction, identity, require
     from contracts import ident
+    from metadata import reserve
     require([e['generation'] for e in entries]==[1,2] and sum(len(e['parts']) for e in entries)==22,'all22 identities admitted first')
     for entry in entries:
         row=dict(generation=entry['generation'],proof=entry['proof'],parts=[],status='reading-existing-assets')
         transport.receipt['entries'].append(row);transport.persist();whole=Reconstruction()
         for part in entry['parts']:
+            checked=reserve(transport.directory,gate.sources(),entry['generation'],part['sequence'])
+            transport.receipt.setdefault('metadata_reservations',[]).append(checked);transport.persist()
             path=transport.download(f"c{entry['generation']}-part-{part['sequence']:04d}",part['asset'],ident(part),chunk=True)
             whole.append(path,part);transport.budget()
             row['parts'].append(dict(part,independently_downloaded=True));transport.persist()
@@ -35,9 +38,11 @@ def main():
     try:
         source,selected,expected,prepared=gate.activation()
         from bounded import Readback, SCHEMA, SCOPE
+        from metadata import PROFILE
         from common import identity, load, require
         import remote
         from packing import pack
+        require(selected['bounds']==PROFILE,'exact reviewed remote profile selector')
         root=Path(os.environ['RUNNER_TEMP'])/'whole-readback';root.mkdir();directory=root/'data';directory.mkdir()
         gh=Path(shutil.which('gh')).resolve();gh_value=dict(path=str(gh),**identity(gh))
         transport=Readback(directory,gh_value,source,gate.sources);transport.tick=started

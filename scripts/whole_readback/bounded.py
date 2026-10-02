@@ -10,6 +10,7 @@ gate.frozen()
 from common import CHUNK, REPO, identity, load, require
 from contracts import MIB
 from transport import Transport
+from metadata import PROFILE
 
 SCHEMA='trident/remote-certificate-byte-replay/v1'
 SCOPE='Independent remote complete-byte readback; original local attempt remains separate; proof acceptance unchanged.'
@@ -36,7 +37,9 @@ def process_rows(proc=Path('/proc')):
         except (FileNotFoundError,ProcessLookupError):continue
         require(len(raw)<=4096 and b') ' in raw,'bounded process stat')
         fields=raw.rsplit(b') ',1)[1].split();require(len(fields)>=22,'complete process stat')
-        rows.append(dict(pid=int(path.name),ppid=int(fields[1]),pgid=int(fields[2]),rss_bytes=int(fields[21])*os.sysconf('SC_PAGE_SIZE')))
+        row=dict(pid=int(path.name),ppid=int(fields[1]),pgid=int(fields[2]),rss_bytes=int(fields[21])*os.sysconf('SC_PAGE_SIZE'))
+        require(row['pid']>0 and path.name==str(row['pid']) and all(v>=0 for v in row.values()),'canonical process identity and nonnegative RSS')
+        rows.append(row)
     return rows
 
 
@@ -44,8 +47,12 @@ class Readback(Transport):
     def __init__(self,directory,gh,sources,check_sources):
         self.sample_tick=-1;self.peak=0;self.sampling_closed=False
         super().__init__(directory,gh,sources,check_sources)
-        self.receipt.update(schema=SCHEMA,scope=SCOPE,profile=dict(total_seconds=5400,api_seconds=120,body_seconds=1800,chunk_bytes=CHUNK,sidecar_bytes=512*MIB,free_floor_bytes=8*CHUNK,rss_bytes=2*CHUNK,terminal_reserve_bytes=MIB))
+        self.receipt.update(schema=SCHEMA,scope=SCOPE,profile=PROFILE,observer_pid=os.getpid())
         self.persist()
+
+    def persist(self):
+        require(len((json.dumps(self.receipt,indent=2)+'\n').encode())<=PROFILE['receipt_bytes'],'4MiB ordinary worker receipt cap')
+        super().persist()
 
     def sample(self):
         if self.sampling_closed:return
@@ -60,7 +67,9 @@ class Readback(Transport):
         if 'pid' in latest and 'ended_ns' not in latest:selected|={r['pid'] for r in rows if r['pgid']==latest['pid']}
         owned=[r for r in rows if r['pid'] in selected];rss=sum(r['rss_bytes'] for r in owned);self.peak=max(self.peak,rss)
         value=dict(time_ns=time.time_ns(),rss_bytes=rss,processes=owned)
-        raw=json.dumps(value)+'\n';super().budget(len(raw.encode()))
+        raw=json.dumps(value)+'\n';path=self.directory/'resources.jsonl'
+        require((path.stat().st_size if path.exists() else 0)+len(raw.encode())<=PROFILE['resources_bytes'],'4MiB worker resource observation cap')
+        super().budget(len(raw.encode()))
         with (self.directory/'resources.jsonl').open('a') as stream:stream.write(raw)
         self.receipt.update(sampled_peak_rss_bytes=self.peak,latest_sample=value);self.sample_tick=now
         require(rss<=2*CHUNK,'sampled aggregate worker and child RSS ceiling')

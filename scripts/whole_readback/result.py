@@ -10,6 +10,7 @@ from common import REPO, identity, load, require
 from contracts import MIB
 from archives import extract_zip, zip_preflight
 from recorded import replay
+from metadata import PROFILE, resources, check_profile
 
 
 def coordinates(value,run,head):
@@ -47,6 +48,7 @@ def admit(transport,run,head):
     wanted=dict(bytes=asset['size_in_bytes'],sha256=asset['digest'][7:]);path=transport.directory/'original-worker-actions.zip'
     transport.run('new-actions-zip',['api',f"repos/{REPO}/actions/artifacts/{asset['id']}/zip"],output=path,maximum=wanted['bytes'],data=True);require(identity(path)==wanted,'authenticated original Actions ZIP body')
     outer(path,transport.directory,transport.budget);packing=load(transport.directory/'packing.json');inner=transport.directory/'evidence.zip'
+    check_profile(packing['profile'])
     require(packing['schema']=='trident/remote-byte-replay-packing/v1' and packing['status']=='passed' and identity(inner)==packing['archive'],'complete bounded inner metadata artifact')
     require(0<=packing['elapsed_total_monotonic_seconds']<=5400 and packing['sampled_peak_rss_bytes']<=2*1024**3,'original packing deadline and RSS observations')
     evidence=transport.directory/'evidence';members=extract_zip(inner,evidence,transport.budget);require(members==packing['members'],'all original inner metadata members')
@@ -55,9 +57,7 @@ def admit(transport,run,head):
     inner.unlink()
     worker=load(evidence/'receipt.json');require(worker['worker']==dict(id=run,attempt=1,head=head,repository=REPO,branch=gate.load(gate.SELECTOR)['branch'],workflow=gate.load(gate.SELECTOR)['workflow'],event=value['event']),'actual runtime worker coordinates')
     require(worker['ended_ns']<=packing['started_ns']<=packing['ended_ns'],'body observation precedes completed packing')
-    samples=packing['samples'];require(samples and all(a['time_ns']<=b['time_ns'] for a,b in zip(samples,samples[1:])),'ordered original packing samples')
-    require(all(s['rss_bytes']==sum(p['rss_bytes'] for p in s['processes'])<=2*1024**3 and packing['started_ns']<=s['time_ns']<=packing['ended_ns'] for s in samples),'packing sample values and interval')
-    require(max(s['rss_bytes'] for s in samples)==packing['sampled_peak_rss_bytes'],'packing raw peak')
+    resources(packing['samples'],packing['observer_pid'],packing['started_ns'],packing['ended_ns'],packing['sampled_peak_rss_bytes'],packing=True)
     checked=replay(evidence,worker,transport.budget)
     after=transport.api('new-run-after',f'repos/{REPO}/actions/runs/{run}');coordinates(after,run,head)
     return dict(schema='trident/authenticated-remote-byte-result/v1',status='passed',run=value,jobs=jobs,artifact=asset,original_zip=wanted,packing=identity(transport.directory/'packing.json'),checked=checked)

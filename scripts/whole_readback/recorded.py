@@ -9,6 +9,7 @@ from common import CHUNK, REPO, identity, load, require
 from contracts import MIB, ident
 from transport import Transport
 from bounded import read_only
+from metadata import PROFILE, observations, resources, check_profile
 
 
 class Recorded(Transport):
@@ -62,6 +63,7 @@ def replay(directory,receipt,budget):
     import remote
     selected,expected,prepared=gate.frozen()
     require(receipt['schema']=='trident/remote-certificate-byte-replay/v1' and receipt['status']=='completed-byte-replay','new successful remote byte schema')
+    check_profile(receipt['profile']);check_profile(selected['bounds'])
     require(0<=receipt['elapsed_monotonic_seconds']<=5400,'bounded original worker duration')
     require(receipt['local_preparation']==selected['local_preparation'] and receipt['original_local_metadata']==selected['original_metadata'],'original local byte contract')
     require(receipt['sources']==gate.sources() and receipt['source_manifest']==identity(gate.MANIFEST) and receipt['selector']==identity(gate.SELECTOR),'exact reviewed execution sources')
@@ -73,9 +75,8 @@ def replay(directory,receipt,budget):
     for entry in entries:
         for part in entry['parts']:t.member(f"c{entry['generation']}-part-{part['sequence']:04d}-membership",part['asset'],ident(part))
     t.draft('final');require(set(t.used)|set(bodies)==set(t.rows),'all worker API operations independently replayed')
+    observations(receipt['metadata_reservations'],receipt['sources'],receipt['commands'],receipt['started_ns'])
+    require((directory/'resources.jsonl').stat().st_size<=PROFILE['resources_bytes'],'bounded raw resource observations')
     samples=[json.loads(line) for line in (directory/'resources.jsonl').read_text().splitlines()]
-    require(samples and len(samples)<=6000 and all(a['time_ns']<=b['time_ns'] for a,b in zip(samples,samples[1:])),'ordered bounded worker resource observations')
-    require(all(s['rss_bytes']==sum(p['rss_bytes'] for p in s['processes'])<=2*CHUNK for s in samples),'sampled complete process RSS observations')
-    require(max(s['rss_bytes'] for s in samples)==receipt['sampled_peak_rss_bytes'] and samples[-1]==receipt['latest_sample'],'raw resource summary binding')
-    require(all(receipt['started_ns']<=s['time_ns']<=receipt['ended_ns'] for s in samples),'resource samples within worker observation')
+    resources(samples,receipt['observer_pid'],receipt['started_ns'],receipt['ended_ns'],receipt['sampled_peak_rss_bytes'],receipt['latest_sample'])
     return dict(status='passed-authenticated-remote-byte-replay',entries=entries,body_commands=bodies,worker=receipt['worker'],source_manifest=receipt['source_manifest'],receipt=identity(directory/'receipt.json'))

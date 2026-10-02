@@ -21,6 +21,7 @@ import recorded
 import remote
 import result
 import worker
+from metadata import PROFILE
 
 
 class Observed(Transport):
@@ -63,13 +64,13 @@ class Archives(unittest.TestCase):
         worker.replay(t,entries);t.draft('final')
         for name in gate.sources():
             target=t.directory/'worker-sources'/name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(gate.REPOSITORY/name,target)
-        sample=dict(time_ns=time.time_ns(),rss_bytes=1,processes=[dict(pid=1,rss_bytes=1)])
+        sample=dict(time_ns=time.time_ns(),rss_bytes=1,processes=[dict(pid=os.getpid(),ppid=0,pgid=os.getpid(),rss_bytes=1)])
         (t.directory/'resources.jsonl').write_text(json.dumps(sample)+'\n')
         cls.selected=copy.deepcopy(gate.load(gate.SELECTOR));cls.selected.update(remote_entries=entries,actions_artifacts={n:dict(id=v['metadata']['id'],zip=v['zip']) for n,v in t.receipt['actions_artifacts'].items()})
         cls.worker=dict(id=12345,attempt=1,head='b'*40,repository=REPO,branch=cls.selected['branch'],workflow=cls.selected['workflow'],event='push')
-        t.receipt.update(schema='trident/remote-certificate-byte-replay/v1',status='completed-byte-replay',worker=cls.worker,elapsed_monotonic_seconds=1,ended_ns=time.time_ns(),local_preparation=cls.selected['local_preparation'],original_local_metadata=cls.selected['original_metadata'],sources=gate.sources(),source_manifest=identity(gate.MANIFEST),selector=identity(gate.SELECTOR),sampled_peak_rss_bytes=1,latest_sample=sample)
+        t.receipt.update(schema='trident/remote-certificate-byte-replay/v1',status='completed-byte-replay',worker=cls.worker,profile=PROFILE,observer_pid=os.getpid(),elapsed_monotonic_seconds=1,ended_ns=time.time_ns(),local_preparation=cls.selected['local_preparation'],original_local_metadata=cls.selected['original_metadata'],sources=gate.sources(),source_manifest=identity(gate.MANIFEST),selector=identity(gate.SELECTOR),sampled_peak_rss_bytes=1,latest_sample=sample)
         t.persist();cls.receipt=copy.deepcopy(t.receipt)
-        with patch.object(packing,'process_rows',return_value=[dict(pid=os.getpid(),rss_bytes=1)]):
+        with patch.object(packing,'process_rows',return_value=[dict(pid=os.getpid(),ppid=0,pgid=os.getpid(),rss_bytes=1)]):
             cls.packed=packing.pack(t,cls.root/'artifact/evidence.zip')
         cls.outer=cls.root/'actions.zip'
         with zipfile.ZipFile(cls.outer,'w',compression=zipfile.ZIP_STORED) as archive:
@@ -97,7 +98,8 @@ class Archives(unittest.TestCase):
         self.assertFalse(any(n=='chunk' or n.endswith('.joysc') for n in self.packed['members']))
 
     def test_command_and_resource_mutations(self):
-        changes=[lambda r:r.update(status='running'),lambda r:r.update(source_manifest={}),
+        changes=[lambda r:r.update(status='running'),lambda r:r.pop('profile'),lambda r:r.update(profile={}),lambda r:r['profile'].update(total_seconds=5400.0),
+                 lambda r:r['metadata_reservations'][0].update(required_bytes=0),lambda r:r.update(source_manifest={}),
                  lambda r:r['entries'][0]['parts'].reverse(),lambda r:r['commands'][0].update(exit_code=9),
                  lambda r:r['commands'][-1]['command'].append('--method'),lambda r:r.update(sampled_peak_rss_bytes=2),
                  lambda r:r.update(latest_sample={}),lambda r:r.update(ended_ns=0)]
