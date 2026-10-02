@@ -1,0 +1,919 @@
+{
+  "schema": "joy/current-package-structured-verification/v1",
+  "status": "passed",
+  "all_checks_passed": true,
+  "corpus_sha256": "77b70f267bb3d060df74c4f67cce1c9467617ae26ba5ccc79d89a1066935483d",
+  "source_provenance_sha256": "018dc900f3a084273f45edb999800caf0301e17ce8f7f4d55936fe9c50b015f9",
+  "producer_platform": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "platform": "macOS-15.7.9-arm64-arm-64bit-Mach-O",
+    "python": "3.13.15 (v3.13.15:4061bc4c35f, Aug  5 2026, 09:08:51) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "image": "macos15",
+    "image_version": "20260907.0337.1"
+  },
+  "producer_joy_sha256": "9736c9b5dad76f40b0c08023783b30affcb64610e95562aa37a6c52b01f8cccf",
+  "consumer_platform": "macOS-26.4.1-arm64-arm-64bit-Mach-O",
+  "consumer_joy": {
+    "bytes": 5635792,
+    "sha256": "9736c9b5dad76f40b0c08023783b30affcb64610e95562aa37a6c52b01f8cccf"
+  },
+  "verifier_sha256": "5caa737b7c7b8b1fef0dd024a56e78f394273b8140b12a1832f29c8dad891a94",
+  "cases": [
+    {
+      "id": "add14-valid",
+      "exit_code": 0
+    },
+    {
+      "id": "identity_tree-valid",
+      "exit_code": 0
+    },
+    {
+      "id": "loop4097-valid",
+      "exit_code": 0
+    },
+    {
+      "id": "compiler-success-valid",
+      "exit_code": 0
+    },
+    {
+      "id": "compiler-diagnostic-valid",
+      "exit_code": 0
+    },
+    {
+      "id": "add14-wrong-input",
+      "exit_code": 1
+    },
+    {
+      "id": "add14-wrong-program",
+      "exit_code": 1
+    },
+    {
+      "id": "add14-truncated",
+      "exit_code": 1
+    },
+    {
+      "id": "add14-corrupt",
+      "exit_code": 1
+    },
+    {
+      "id": "identity_tree-wrong-input",
+      "exit_code": 1
+    },
+    {
+      "id": "identity_tree-wrong-program",
+      "exit_code": 1
+    },
+    {
+      "id": "identity_tree-truncated",
+      "exit_code": 1
+    },
+    {
+      "id": "identity_tree-corrupt",
+      "exit_code": 1
+    },
+    {
+      "id": "loop4097-wrong-input",
+      "exit_code": 1
+    },
+    {
+      "id": "loop4097-wrong-program",
+      "exit_code": 1
+    },
+    {
+      "id": "loop4097-truncated",
+      "exit_code": 1
+    },
+    {
+      "id": "loop4097-corrupt",
+      "exit_code": 1
+    },
+    {
+      "id": "compiler-success-wrong-input",
+      "exit_code": 1
+    },
+    {
+      "id": "compiler-success-wrong-program",
+      "exit_code": 1
+    },
+    {
+      "id": "compiler-success-truncated",
+      "exit_code": 1
+    },
+    {
+      "id": "compiler-success-corrupt",
+      "exit_code": 1
+    },
+    {
+      "id": "compiler-diagnostic-wrong-input",
+      "exit_code": 1
+    },
+    {
+      "id": "compiler-diagnostic-wrong-program",
+      "exit_code": 1
+    },
+    {
+      "id": "compiler-diagnostic-truncated",
+      "exit_code": 1
+    },
+    {
+      "id": "compiler-diagnostic-corrupt",
+      "exit_code": 1
+    },
+    {
+      "id": "compiler-success-extract",
+      "exit_code": 0
+    },
+    {
+      "id": "compiler-diagnostic-extract",
+      "exit_code": 1
+    }
+  ],
+  "commands": [
+    {
+      "name": "add14-valid",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/add14/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/add14/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/add14/proof",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": {
+        "path": "add14-valid.stdout",
+        "bytes": 846,
+        "sha256": "22c3a562716a9878f1e66f585c5686dd720412f2a0d4323a179da230e298c6b8"
+      },
+      "stderr": {
+        "path": "add14-valid.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "identity_tree-valid",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/identity_tree/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/identity_tree/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/identity_tree/proof",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": {
+        "path": "identity_tree-valid.stdout",
+        "bytes": 846,
+        "sha256": "fe57e2e9b4f3e4ffafe96665e8e736b40307ad80a5b12b809ce7ea135ebcc54c"
+      },
+      "stderr": {
+        "path": "identity_tree-valid.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "loop4097-valid",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/loop4097/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/loop4097/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/loop4097/proof",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": {
+        "path": "loop4097-valid.stdout",
+        "bytes": 880,
+        "sha256": "2bba9f3e30297d47e8314263032bf54315867b43e3b47254c7ab11afef00684f"
+      },
+      "stderr": {
+        "path": "loop4097-valid.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "compiler-success-valid",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-success/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-success/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-success/proof",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": {
+        "path": "compiler-success-valid.stdout",
+        "bytes": 1789,
+        "sha256": "f78eff50893de0a398797fd5a6f6bf6aa46911d1cbbdf822b7e9384aec0e9047"
+      },
+      "stderr": {
+        "path": "compiler-success-valid.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "compiler-diagnostic-valid",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-diagnostic/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-diagnostic/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-diagnostic/proof",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": {
+        "path": "compiler-diagnostic-valid.stdout",
+        "bytes": 1909,
+        "sha256": "e44f191d12e431f53694ea45abe08e39c0ac6fd4057b4bd9072564d9f538e4e0"
+      },
+      "stderr": {
+        "path": "compiler-diagnostic-valid.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "add14-wrong-input",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/add14/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/add14/wrong-input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/add14/proof",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "add14-wrong-input.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "add14-wrong-input.stderr",
+        "bytes": 83,
+        "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+      }
+    },
+    {
+      "name": "add14-wrong-program",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/add14/wrong-program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/add14/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/add14/proof",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "add14-wrong-program.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "add14-wrong-program.stderr",
+        "bytes": 83,
+        "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+      }
+    },
+    {
+      "name": "add14-truncated",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/add14/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/add14/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/add14/truncated",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "add14-truncated.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "add14-truncated.stderr",
+        "bytes": 76,
+        "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+      }
+    },
+    {
+      "name": "add14-corrupt",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/add14/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/add14/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/add14/corrupt",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "add14-corrupt.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "add14-corrupt.stderr",
+        "bytes": 83,
+        "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+      }
+    },
+    {
+      "name": "identity_tree-wrong-input",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/identity_tree/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/identity_tree/wrong-input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/identity_tree/proof",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "identity_tree-wrong-input.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "identity_tree-wrong-input.stderr",
+        "bytes": 83,
+        "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+      }
+    },
+    {
+      "name": "identity_tree-wrong-program",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/identity_tree/wrong-program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/identity_tree/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/identity_tree/proof",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "identity_tree-wrong-program.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "identity_tree-wrong-program.stderr",
+        "bytes": 83,
+        "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+      }
+    },
+    {
+      "name": "identity_tree-truncated",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/identity_tree/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/identity_tree/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/identity_tree/truncated",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "identity_tree-truncated.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "identity_tree-truncated.stderr",
+        "bytes": 76,
+        "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+      }
+    },
+    {
+      "name": "identity_tree-corrupt",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/identity_tree/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/identity_tree/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/identity_tree/corrupt",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "identity_tree-corrupt.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "identity_tree-corrupt.stderr",
+        "bytes": 83,
+        "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+      }
+    },
+    {
+      "name": "loop4097-wrong-input",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/loop4097/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/loop4097/wrong-input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/loop4097/proof",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "loop4097-wrong-input.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "loop4097-wrong-input.stderr",
+        "bytes": 83,
+        "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+      }
+    },
+    {
+      "name": "loop4097-wrong-program",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/loop4097/wrong-program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/loop4097/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/loop4097/proof",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "loop4097-wrong-program.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "loop4097-wrong-program.stderr",
+        "bytes": 83,
+        "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+      }
+    },
+    {
+      "name": "loop4097-truncated",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/loop4097/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/loop4097/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/loop4097/truncated",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "loop4097-truncated.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "loop4097-truncated.stderr",
+        "bytes": 76,
+        "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+      }
+    },
+    {
+      "name": "loop4097-corrupt",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/loop4097/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/loop4097/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/loop4097/corrupt",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "loop4097-corrupt.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "loop4097-corrupt.stderr",
+        "bytes": 83,
+        "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+      }
+    },
+    {
+      "name": "compiler-success-wrong-input",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-success/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-success/wrong-input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-success/proof",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "compiler-success-wrong-input.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "compiler-success-wrong-input.stderr",
+        "bytes": 38,
+        "sha256": "76ac000f069b408bdd5a401dd8afa9ea7840e58732d5109721251c00bcae02f7"
+      }
+    },
+    {
+      "name": "compiler-success-wrong-program",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-success/wrong-program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-success/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-success/proof",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "compiler-success-wrong-program.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "compiler-success-wrong-program.stderr",
+        "bytes": 83,
+        "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+      }
+    },
+    {
+      "name": "compiler-success-truncated",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-success/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-success/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-success/truncated",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "compiler-success-truncated.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "compiler-success-truncated.stderr",
+        "bytes": 76,
+        "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+      }
+    },
+    {
+      "name": "compiler-success-corrupt",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-success/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-success/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-success/corrupt",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "compiler-success-corrupt.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "compiler-success-corrupt.stderr",
+        "bytes": 83,
+        "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+      }
+    },
+    {
+      "name": "compiler-diagnostic-wrong-input",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-diagnostic/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-diagnostic/wrong-input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-diagnostic/proof",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "compiler-diagnostic-wrong-input.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "compiler-diagnostic-wrong-input.stderr",
+        "bytes": 38,
+        "sha256": "76ac000f069b408bdd5a401dd8afa9ea7840e58732d5109721251c00bcae02f7"
+      }
+    },
+    {
+      "name": "compiler-diagnostic-wrong-program",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-diagnostic/wrong-program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-diagnostic/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-diagnostic/proof",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "compiler-diagnostic-wrong-program.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "compiler-diagnostic-wrong-program.stderr",
+        "bytes": 83,
+        "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+      }
+    },
+    {
+      "name": "compiler-diagnostic-truncated",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-diagnostic/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-diagnostic/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-diagnostic/truncated",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "compiler-diagnostic-truncated.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "compiler-diagnostic-truncated.stderr",
+        "bytes": 76,
+        "sha256": "dbbb42fbbce8eb7736edf29aae6b6a8d21763482627dbcff0ffa33f447e4612a"
+      }
+    },
+    {
+      "name": "compiler-diagnostic-corrupt",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-diagnostic/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-diagnostic/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-diagnostic/corrupt",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "compiler-diagnostic-corrupt.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "compiler-diagnostic-corrupt.stderr",
+        "bytes": 83,
+        "sha256": "ff7cc4c7cf1d4f38554ccf251501f67b89d7c06e3058478441dc52b2484433f8"
+      }
+    },
+    {
+      "name": "compiler-success-extract",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-success/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-success/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-success/proof",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force",
+        "--emit",
+        "program"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": {
+        "path": "compiler-success-extract.stdout",
+        "bytes": 1789,
+        "sha256": "708cb640b2af01a4e4732b69ed4b0bce9ca8a2141e3779ddd330f26299fe2a05"
+      },
+      "stderr": {
+        "path": "compiler-success-extract.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "compiler-success-extract-run",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "run-artifact",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-success/zero",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/ran"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "stdout": {
+        "path": "compiler-success-extract-run.stdout",
+        "bytes": 733,
+        "sha256": "16d193c078b8053d21ea0b0c6ecded6098591673d01036254c8b1558325ac55e"
+      },
+      "stderr": {
+        "path": "compiler-success-extract-run.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "compiler-diagnostic-extract",
+      "command": [
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v1/test-candidate/bin/joy",
+        "verify-artifact",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-diagnostic/program",
+        "--input",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-diagnostic/input",
+        "--proof",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/structured-helper-v3-check/corpus/compiler-diagnostic/proof",
+        "-o",
+        "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5/destination",
+        "--force",
+        "--emit",
+        "program"
+      ],
+      "cwd": "/var/folders/gc/64p7ymwx60144drqltvslckr0000gn/T/structured consumer \u043f\u0440\u043e\u0431\u0435\u043b fn_j6rt5",
+      "expected_exit": 1,
+      "exit_code": 1,
+      "stdout": {
+        "path": "compiler-diagnostic-extract.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "compiler-diagnostic-extract.stderr",
+        "bytes": 253,
+        "sha256": "cee027be1406b50affbab4c4b2c7ccac1350c23de46ca0fe5af6338573406a8a"
+      }
+    }
+  ]
+}

@@ -57,3 +57,25 @@ both an unattested physical-resource claim and no prover observations.
 and actionlint 1.7.12 against the dormant workflows and native matrix workflow.
 The corresponding stdout/stderr files retain the complete check output. No
 production build, native matrix or full198 result is inferred from these checks.
+
+## Review correction and case-map hardening
+
+Root review of `4df03759fbbc8ff78aa0b7fc3cb3864f63d51889` found the full branch
+`git diff --check 01f8a80..HEAD` failed on ANSI/trailing whitespace and EOF in
+the preserved original Trident CPU log. Earlier local whitespace checks covered
+only uncommitted changes. The exact failed root review is retained in
+`root-review-original.tar.gz` (SHA-256
+`3b1489e67f7009ba969ac8cb808acf0ddc51e721a593205b83ec8787e57741ad`).
+The exact-path `.gitattributes` entry disables whitespace diagnostics only for
+that raw log. Its bytes still match the original CPU receipt; no log bytes were
+edited. The full branch comparison plus current changes subsequently passed,
+as recorded in `hardening-checks.json`.
+
+The structured consumer now fixes expected exit and extraction mode for every
+case ID. A fresh actual helper run again passed all 27 cases. Two further
+process tests rejected a count-preserving exchange of a valid/reject expected
+exit and a changed compiler-diagnostic extraction mode. Their full inputs,
+commands, raw output and final helper are in
+`structured-helper-v3-evidence.tar.gz` (SHA-256
+`137b00643cd71bfa660e6a3b3bf668edc789259d1eaa9b83e2d167417db6b3ae`).
+Earlier helper evidence stays unchanged.

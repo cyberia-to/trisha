@@ -16,6 +16,9 @@ COMPILER = {'compiler-success': ('compiler', 'job', 'result', 'success'),
 BASES = tuple(RAW) + tuple(COMPILER)
 IDS = {name + '-' + suffix for name in BASES for suffix in ('valid', 'wrong-input', 'wrong-program', 'truncated', 'corrupt')}
 IDS |= {'compiler-success-extract', 'compiler-diagnostic-extract'}
+CASE_RULES = {name + '-' + suffix: (0 if suffix == 'valid' else 1, 'result')
+              for name in BASES for suffix in ('valid', 'wrong-input', 'wrong-program', 'truncated', 'corrupt')}
+CASE_RULES.update({'compiler-success-extract': (0, 'program'), 'compiler-diagnostic-extract': (1, 'program')})
 
 
 def require(value, message):
@@ -161,6 +164,7 @@ def verify(corpus, prefix, receipt):
     cases = manifest['cases']
     require(len(cases) == 27 and {row['id'] for row in cases} == IDS, 'structured case inventory differs')
     require(all(type(row['expected_exit']) is int and row['expected_exit'] in (0, 1) for row in cases), 'invalid expected exit')
+    require(all((row['expected_exit'], row['emit']) == CASE_RULES[row['id']] for row in cases), 'case acceptance/extraction rule differs')
     require(sum(row['expected_exit'] == 0 for row in cases) == 6 and sum(row['expected_exit'] == 1 for row in cases) == 21, 'structured acceptance/rejection counts differ')
     files = manifest['files']
     require(len({row['path'] for row in files}) == len(files), 'duplicate corpus file')
