@@ -1,9 +1,10 @@
 # Final Joy host deadline package evidence
 
 Status: exact final source export, independent remote reproduction and complete
-authenticated source-asset readback passed. Five remote native producers are
-dispatched and the local Mac ARM producer is running. Native acceptance remains
-pending; all consumer selectors remain inactive.
+authenticated source-asset readback passed. All five remote native producers
+are running. Local Mac ARM package gates and complete draft asset readback
+passed; its fresh full198 gate is running. Native acceptance remains pending;
+all consumer selectors remain inactive.
 
 `dependency-scope/` retains the exact Joy11b7→dd61 diff and original Cargo1.89
 locked/offline/all-features dependency observations. The one changed production
@@ -215,3 +216,41 @@ whether the original full198 coverage is inherited or a fresh gate is needed.
 These launch observations are pending producer evidence. The five remote
 hosts, local Mac ARM, complete portable consumer matrix and bounded Mac14
 consumer each require their own actual successful receipts before acceptance.
+
+## Local package transport and complete readback passed
+
+The actual final Mac ARM package completed the CPU, installed kit, Neptune,
+LSP, 133 manual execution, 47 legacy corpus and 27 structured corpus checks.
+The installed deadline helper accepted 15 commands and rejected eight, using
+the packaged Joy SHA-256
+`7b1aee370f6826db73f089054f261a3ef874ad54d2e259fbd26f7d8164ab6071`.
+`producer-inspection-preparation/` retains the actual independent installed
+receipt check, eight container integrity tests and eight deadline receipt
+tests (the actual positive plus seven mutations).
+
+The actual Trisha SHA-256
+`fe069879a44b582a47069c5cd849b1eb3da4c75a037e72aa9d107742ecc8173f`
+differs from the original source734 worker. The exact inheritance check
+therefore returned `needs_fresh_full198`, and the new guarded proof run is
+required. The package transport receipts make no full198 acceptance claim.
+
+After independent concrete review, the retained command
+`python3 -B -W error measurements/transport-final-local-packages.py` uploaded
+the three unique archives to existing unpublished draft 389977897. Source
+reachability passed before and after upload for all eleven frozen commits,
+default refs were unchanged, and the draft tag remained absent.
+`readback-final-local-packages.py` then downloaded every byte of all three
+assets and matched their original and server hashes.
+
+| Archive | Draft asset | Bytes | SHA-256 |
+| --- | --- | ---: | --- |
+| Mac ARM binaries | 605308332 | 16929929 | `0ba4af63ea103c4d41382816541e8ade6883d7af078ba9e3ba3e9cb27e05d348` |
+| Mac ARM legacy corpus | 605308674 | 25171332 | `29632607c886c71398c1f637c5361f53164fdb52167ffbea27b1cc2d452a1002` |
+| Mac ARM structured corpus | 605308921 | 687915 | `7a64776e901dc39c94682188bc7700692e1f60f3f48dd3606bcee24a72f4cdf0` |
+
+`local-package-transport/` retains the exact reviewed scripts, original origin
+observations, API responses, commands and complete-readback receipt by byte
+manifest. The independent transport review has SHA-256
+`79af45942a8dd062dc62bbe85299ff57d38063d5584b6e17526a6ddd96a10b6a`.
+These are feature-branch rehearsal assets. No consumer selector has been
+activated and no public release or tag has been created.

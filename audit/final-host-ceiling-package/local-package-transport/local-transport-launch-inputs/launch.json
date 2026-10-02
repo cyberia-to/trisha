@@ -1,0 +1,33 @@
+{
+  "observed_at": "2026-10-02T09:57:40.298777+00:00",
+  "command": [
+    "python3",
+    "-B",
+    "-W",
+    "error",
+    "measurements/transport-final-local-packages.py"
+  ],
+  "review_sha256": "79af45942a8dd062dc62bbe85299ff57d38063d5584b6e17526a6ddd96a10b6a",
+  "frozen_scripts": {
+    "upload-final-local-packages.py": {
+      "bytes": 7055,
+      "sha256": "e64a7d028b463cde03f25f52689b8a08da6cf32fe67f91ca7ec0f7f6da820b92"
+    },
+    "transport-final-local-packages.py": {
+      "bytes": 1959,
+      "sha256": "ad2f2894dbc43076183085fcc15a96ece8993755bcded62758c2ad11c19e08b5"
+    },
+    "check-final-origin-before-packages.py": {
+      "bytes": 2244,
+      "sha256": "519f2e1b73440f49702b3417a9df4803f4a384133c51bcb7f00b5bf1e9c78c3c"
+    },
+    "check-final-origin-after-packages.py": {
+      "bytes": 2242,
+      "sha256": "259c3c0d316930b211e0fc41dc39042c2bef0b67040c3567a77f26904e09ba3d"
+    },
+    "inspect-final-native-producer.py": {
+      "bytes": 19072,
+      "sha256": "64572b572e3a7319f837d788307436e36b54802cc0ba6f146c541bb297d43a8a"
+    }
+  }
+}

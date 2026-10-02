@@ -1,0 +1,79 @@
+{
+  "status": "passed",
+  "scope": "Distinct final source package transport only; full198 result remains separate",
+  "commands": [
+    {
+      "name": "before",
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/check-final-origin-before-packages.py"
+      ],
+      "script_sha256": "519f2e1b73440f49702b3417a9df4803f4a384133c51bcb7f00b5bf1e9c78c3c",
+      "exit_code": 0
+    },
+    {
+      "name": "upload",
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/upload-final-local-packages.py"
+      ],
+      "script_sha256": "e64a7d028b463cde03f25f52689b8a08da6cf32fe67f91ca7ec0f7f6da820b92",
+      "exit_code": 0
+    },
+    {
+      "name": "after",
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/check-final-origin-after-packages.py"
+      ],
+      "script_sha256": "259c3c0d316930b211e0fc41dc39042c2bef0b67040c3567a77f26904e09ba3d",
+      "exit_code": 0
+    }
+  ],
+  "started": "2026-10-02T09:57:40.383867+00:00",
+  "unchanged_default_refs": {
+    "bbg": {
+      "refs/heads/master": "a3c9a0c22bfb78ef891265f9e2cd25838ef77c2d"
+    },
+    "hemera": {
+      "refs/heads/main": "23f3bbcff910ea6d504ceb505680a539260869da"
+    },
+    "honeycrisp": {
+      "refs/heads/main": "9593c7218e14e2b5b816d9008b45ab60b9580cf3"
+    },
+    "joy": {
+      "refs/heads/main": "10844a890e2939d529a1003474298a09be30b75c"
+    },
+    "lens": {
+      "refs/heads/master": "392abe752793c3e0b98f2d1d57245ba1e3173673"
+    },
+    "neuron": {
+      "refs/heads/main": "c87541120caae4fb5d5bb401653d1cbcbeffeb7d"
+    },
+    "nox": {
+      "refs/heads/master": "2612673cae64239cb3511b13027d9ffaba77f48e"
+    },
+    "strata": {
+      "refs/heads/main": "56aedb2d12b3126c601eb333419136d403614dbb"
+    },
+    "trident": {
+      "refs/heads/master": "360b737e073ca2f969ab0c78460b4228bcac7b78"
+    },
+    "trisha": {
+      "refs/heads/master": "3cb3984eca9e6a1e71cb9fd8e2cc7ea18913fd2d"
+    },
+    "zheng": {
+      "refs/heads/master": "44bd5bfec5cb6764123ea513a33a26c0877a488c"
+    }
+  },
+  "ended": "2026-10-02T09:58:19.190547+00:00"
+}
