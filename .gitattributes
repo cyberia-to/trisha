@@ -52,3 +52,4 @@
 /scripts/inherit-full-baselines.py -text
 /scripts/check-installed-host-ceiling.py -text
 /audit/final-host-ceiling-package/runner-preparation/host-ceiling-old-binary-rejection.stderr -text -whitespace
+/audit/final-host-ceiling-package/independent-final-review/supplemental/production-diff.patch -text -whitespace
