@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "platform": {
+    "name": "windows",
+    "arch": "aarch64",
+    "family": "windows",
+    "kernel_version": "26200"
+  },
+  "toolchain": "rustc 1.89.0 (29483883e 2025-08-04)\nbinary: rustc\ncommit-hash: 29483883eed69d5fb4db01964cdf2af4d86e9cb2\ncommit-date: 2025-08-04\nhost: aarch64-pc-windows-msvc\nrelease: 1.89.0\nLLVM version: 20.1.7\n",
+  "rustflags": "-C target-feature=+crt-static",
+  "source": "C:\\a\\_temp\\cyber-candidate\\unpacked\\cyber-source",
+  "source_verified": true,
+  "source_verification_sha256": "ddfd2f2f3d6ad5862edf39b8227e79ca3c675621ae6bc77f9860cf59b6e49fed",
+  "provenance_sha256": "9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5",
+  "binaries": [
+    {
+      "name": "trident",
+      "sha256": "e5305b24d2eec8c1c1337a282f8adde52fba3768bdf5a875ab2ac5306a81b54e"
+    },
+    {
+      "name": "trident-lsp",
+      "sha256": "a53e8c0c6a78a804cc924a9a028190553c23d4d36ccb0fc31f8ec1aa627d1d4b"
+    },
+    {
+      "name": "trisha",
+      "sha256": "5a1b06028b0f51800a96a236e7354f3ce36e56bdf4a0e1269aa1aad583139dd9"
+    },
+    {
+      "name": "joy",
+      "sha256": "c147199e6b085bf0867ee795b6de669e554125c559ae31946df4c36af5834cfb"
+    }
+  ]
+}

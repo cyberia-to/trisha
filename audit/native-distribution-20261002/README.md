@@ -1,7 +1,7 @@
 # Native 0.4 distribution rehearsal — 2026-10-02
 
-Status: source and accepted-kit guards passed. The Linux ARM producer passed;
-four remote producers and the corrected local Mac ARM lane remain in progress.
+Status: source and accepted-kit guards passed. The Linux ARM and Windows ARM producers passed;
+three remote producers and the corrected local Mac ARM lane remain in progress.
 The first local attempt was rejected for using Homebrew Rust 1.95 instead of
 the pinned 1.89. Its original evidence remains in `rejected-local-rust195/`.
 The fresh local lane checks both actual Rust and Cargo versions and paths.
@@ -154,3 +154,20 @@ inventory: `package-binaries.nu` removes only the absolute build `source` path.
 ```sh
 python3 -B -W error audit/native-distribution-20261002/inspect-native-producer.py RETAINED_ARTIFACT_DIRECTORY FRESH_INSPECTION_JSON
 ```
+
+The Windows ARM producer from the same run also passed. Its original ZIP
+`11207109355` has SHA-256 `510fb6ebc05807dbdb8b9f4da7dffb577986114b5eeb479b2181181fceef6e58`;
+`producers/aarch64-pc-windows-msvc/` retains its metadata, exact selected original
+logs/receipts and inspection. Actual native Rust 1.89.0, Windows 11 10.0.26200
+and ARM64 PE machine `0xaa64` are observed. CPU summaries contain 1,213 Trident,
+418 Trisha and 167 Joy passes with zero failures or Rust warning headers;
+platform-specific test selection accounts for the different totals. All named
+producer gates and the same 47 corpus cases passed. The four observed PE import
+tables contain no separately installed MSVC runtime dependency.
+
+Both completed producers now also retain their original job logs and exact
+download-command/SHA receipts. The Linux host was Ubuntu 22.04.5, runner image
+`ubuntu-22.04-arm` version `20260927.143.1`. The Windows host was runner image
+`windows-11-vs2026-arm64` version `20260924.168.1`. These are actual matching-host
+observations; the Windows result names build 26200 and does not establish
+execution on every earlier Windows 11 build.

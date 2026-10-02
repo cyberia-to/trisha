@@ -1,0 +1,4 @@
+Building trident-lang from C:\a\_temp\cyber-candidate\unpacked\cyber-source\trident\Cargo.toml
+Building trisha from C:\a\_temp\cyber-candidate\unpacked\cyber-source\trisha\Cargo.toml
+Building cyber-joy from C:\a\_temp\cyber-candidate\unpacked\cyber-source\joy\Cargo.toml
+Candidate built: C:\a\_temp\cyber-candidate\candidate. Run smoke-release.nu against its bin directory. This does not publish a release.
