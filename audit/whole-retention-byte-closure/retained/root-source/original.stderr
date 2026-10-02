@@ -1,0 +1,27 @@
+test_actual_sidecar_boundary_keeps_reserved_terminal_failure (test_adoption.Tests.test_actual_sidecar_boundary_keeps_reserved_terminal_failure) ... ok
+test_altered_original_local_metadata_refuses_publication (test_adoption.Tests.test_altered_original_local_metadata_refuses_publication) ... ok
+test_archive_traversal_links_duplicates_and_expansion (test_adoption.Tests.test_archive_traversal_links_duplicates_and_expansion) ... ok
+test_completion_and_retained_status_are_distinct (test_adoption.Tests.test_completion_and_retained_status_are_distinct) ... ok
+test_disappearing_probe_cleans_known_owned_live_child (test_adoption.Tests.test_disappearing_probe_cleans_known_owned_live_child) ... ok
+test_exact_run_four_jobs_and_artifact_origin (test_adoption.Tests.test_exact_run_four_jobs_and_artifact_origin) ... ok
+test_exited_leader_orphan_stderr_holder_is_killed (test_adoption.Tests.test_exited_leader_orphan_stderr_holder_is_killed) ... ok
+test_expired_total_clock_keeps_reserved_terminal_failure (test_adoption.Tests.test_expired_total_clock_keeps_reserved_terminal_failure) ... ok
+test_failed_readback_preserves_owned_chunk_and_stops_publication (test_adoption.Tests.test_failed_readback_preserves_owned_chunk_and_stops_publication) ... ok
+test_fixed_draft_tag_default_and_membership_guards (test_adoption.Tests.test_fixed_draft_tag_default_and_membership_guards) ... ok
+test_fixed_preparation_and_frozen_admission_hashes (test_adoption.Tests.test_fixed_preparation_and_frozen_admission_hashes) ... ok
+test_hidden_tar_headers_and_sidecar_reservations_bounded (test_adoption.Tests.test_hidden_tar_headers_and_sidecar_reservations_bounded) ... ok
+test_manifest_mutations_rejected_before_part_bodies (test_adoption.Tests.test_manifest_mutations_rejected_before_part_bodies) ... ok
+test_native_receipt_semantic_command_environment_and_hash_mutations (test_adoption.Tests.test_native_receipt_semantic_command_environment_and_hash_mutations) ... ok
+test_order_whole_hash_and_failed_partial_preserved (test_adoption.Tests.test_order_whole_hash_and_failed_partial_preserved) ... ok
+test_publication_requires_both_reconstructions (test_adoption.Tests.test_publication_requires_both_reconstructions) ... ok
+test_rapid_exited_leader_probe_retains_ownership (test_adoption.Tests.test_rapid_exited_leader_probe_retains_ownership) ... ok
+test_real_deadline_terminates_owned_child (test_adoption.Tests.test_real_deadline_terminates_owned_child) ... ok
+test_real_file_size_overflow_is_bounded (test_adoption.Tests.test_real_file_size_overflow_is_bounded) ... ok
+test_real_stderr_overflow_is_hard_capped (test_adoption.Tests.test_real_stderr_overflow_is_hard_capped) ... ok
+test_real_success_drains_delayed_stderr_and_records_output (test_adoption.Tests.test_real_success_drains_delayed_stderr_and_records_output) ... ok
+test_synthetic_complete_admission_reconstruction_publication (test_adoption.Tests.test_synthetic_complete_admission_reconstruction_publication) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 15.097s
+
+OK

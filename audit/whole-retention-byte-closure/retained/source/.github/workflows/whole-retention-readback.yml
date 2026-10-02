@@ -1,0 +1,46 @@
+name: Independent complete certificate byte readback
+on:
+  push:
+    branches: [test/0.4-whole-retention-readback]
+    paths:
+      - .github/whole-readback-activation.json
+      - .github/workflows/whole-retention-readback.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: complete-certificate-byte-readback
+  cancel-in-progress: false
+jobs:
+  readback:
+    if: github.repository == 'cyberia-to/trisha' && github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    permissions:
+      # Draft visibility needs push-capable access; the worker permits GET only.
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.13.15'
+          architecture: x64
+      - name: Read every canonical part and both complete whole digests
+        timeout-minutes: 100
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -B -W error scripts/whole_readback/worker.py
+      - name: Retain original remote byte observations
+        if: always()
+        timeout-minutes: 10
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: whole-byte-readback-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/whole-readback/artifact/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 90

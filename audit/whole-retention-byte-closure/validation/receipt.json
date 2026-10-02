@@ -1,0 +1,104 @@
+{
+  "status": "passed-audit-precommit",
+  "started_ns": 1790969995947138000,
+  "ended_ns": 1790969996920457000,
+  "commands": [
+    {
+      "name": "check",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "audit/whole-retention-byte-closure/check.py",
+        "--originals"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-retention-remote-readback/trisha",
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 444,
+        "sha256": "e03b0b92d942f0e090a9222d454d65eca42d90a44afa0f6b56e0e2535316b7a9"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "name": "tests",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "audit/whole-retention-byte-closure",
+        "-p",
+        "test_delivery.py",
+        "-v"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-retention-remote-readback/trisha",
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 1128,
+        "sha256": "ef3d0699e6d242e6847238944c494c98f3ef74f79e1e6d323565296fa77161ad"
+      }
+    },
+    {
+      "name": "diff",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-retention-remote-readback/trisha",
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "source_files": {
+    "check.py": {
+      "bytes": 9903,
+      "sha256": "2189f80604330cadc5de4ac9350fd0dd2d5bcad8fc80970fea636878f17903b9"
+    },
+    "privacy.py": {
+      "bytes": 1166,
+      "sha256": "695ec873048bb10b7eca173d95c94f1185fbe2a9dd5c00ceb96a63a47d0b456b"
+    },
+    "retain.py": {
+      "bytes": 5698,
+      "sha256": "e7d040cce2f6b931eac7c451da6da17e021c09ccd56623f10bb6f5964fdd67aa"
+    },
+    "test_delivery.py": {
+      "bytes": 3271,
+      "sha256": "7679b48d5882dd7ae136c2e480a0392aa3826ae60365bc05f1aae8d9ef8b41d9"
+    },
+    "README.md": {
+      "bytes": 5128,
+      "sha256": "7147879617545da1b1d1b80b10df403acada1bd387642c2e59684c3d46a531ed"
+    },
+    "retention.json": {
+      "bytes": 37716,
+      "sha256": "1d561d768c0790228b71e1e333487b7801dbe18298b90f07253503e4c7879b1a"
+    },
+    "source-equivalence.json": {
+      "bytes": 69366,
+      "sha256": "009db17b7f94758903f533da493ea2ea5036b670aabefc4df34a7c13eb954d0d"
+    }
+  },
+  "scope": "77 originals and38 activated sources,510 source-equivalent runtime inputs,11 adversarial delivery/privacy tests; no runtime change or repeated proof workload."
+}
