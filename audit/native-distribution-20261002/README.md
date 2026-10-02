@@ -171,3 +171,26 @@ download-command/SHA receipts. The Linux host was Ubuntu 22.04.5, runner image
 `windows-11-vs2026-arm64` version `20260924.168.1`. These are actual matching-host
 observations; the Windows result names build 26200 and does not establish
 execution on every earlier Windows 11 build.
+
+## Local Mac package transport
+
+The fresh native Rust 1.89 Mac build completed the package-producing gates,
+including CPU suites, both kit checks, 133 baseline executions, installed proof
+smoke, 47 corpus cases, deterministic repack, unpacked binary hashes and LSP.
+Its full 198-proof run started afterwards and remains pending. The exact package
+and corpus were uploaded while that independent proof gate ran. The successful
+`local-package-transport/receipt.json` therefore claims package transport only.
+
+- Binary asset `604717111`, 16,776,610 bytes, SHA-256
+  `3def4024793c8416a369996020ae8bbf7031c87ff3ce5a0408cc1081d3d7743b`.
+- Corpus asset `604728905`, 25,210,637 bytes, SHA-256
+  `b632aaecca4f1e3fe7920e2e3cc223780101dde798f9a6d2a029e0f51cb4ab54`.
+
+Both use unique `rehearsal-20261002-e4bac7ff-local-rust189-` names on the existing
+unpublished draft. Original commands and raw API responses bind the upload
+bytes to the server digests and continued tag absence. Before/after origin-ref
+and comparison API receipts independently establish that all eleven frozen
+pins remain reachable: Joy, Nox, Trisha and Zheng have advanced on their release
+branches; the other seven selected refs remain at the original pins. Observed
+master/main refs were unchanged across this transport. This explicitly preserves
+the frozen closure rather than treating newer release-branch heads as its inputs.

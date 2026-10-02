@@ -1,0 +1,12 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-W",
+    "error",
+    "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/measurements/upload-local-packages.py"
+  ],
+  "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution",
+  "driver_sha256": "76e1db88708d510e800d5b9f638cd7fca2ad069a404450060d1b5238e98782a3",
+  "scope": "The copied driver records this fixed measurement family; binary/corpus bytes are retained at named durable draft asset IDs and original local paths"
+}
