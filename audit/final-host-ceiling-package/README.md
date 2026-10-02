@@ -1,10 +1,11 @@
 # Final Joy host deadline package evidence
 
 Status: exact final source export, independent remote reproduction and complete
-authenticated source-asset readback passed. All five remote native producers
-are running. Local Mac ARM package gates and complete draft asset readback
-passed; its fresh full198 gate is running. Native acceptance remains pending;
-all consumer selectors remain inactive.
+authenticated source-asset readback passed. The five remote native producer
+gates are underway; Linux x64 has completed and its original receipts passed
+inspection. Local Mac ARM package gates and complete draft asset readback
+passed; its fresh full198 gate is running. Native acceptance remains pending,
+and all consumer selectors remain inactive.
 
 `dependency-scope/` retains the exact Joy11b7→dd61 diff and original Cargo1.89
 locked/offline/all-features dependency observations. The one changed production
@@ -254,3 +255,21 @@ manifest. The independent transport review has SHA-256
 `79af45942a8dd062dc62bbe85299ff57d38063d5584b6e17526a6ddd96a10b6a`.
 These are feature-branch rehearsal assets. No consumer selector has been
 activated and no public release or tag has been created.
+
+## First remote producer inspected
+
+`remote-producer-progress-1/` preserves the completed Linux x64 observation
+from run 36990413939 at exact runner commit
+`5de26a93eb4d489d90f150882adec2c47d14bea4`. The retained
+`inspect-final-native-producer.py` command authenticated original Actions
+artifact 11221252119, all 458 ZIP/restored members, and all four packaged
+executable hashes. Its 82934847-byte ZIP has SHA-256
+`6eb4b535dd66abacecfe026c3527b172cba1e8fddb6b66499e900c9fd1ee5989`.
+
+The actual host reported Linux with glibc 2.35 and native Rust/Cargo/rustdoc
+1.89. CPU logs recorded Trident 762, Trisha 429, Joy 217 and Nox 245 passed
+tests. The existing 133 execution, kit, Neptune, LSP, 47 legacy corpus and
+27 structured corpus gates passed, as did all 23 installed deadline commands.
+Original job logs and separate ANSI-aware zero-warning observations are
+retained. This is one producer observation; remaining native producers,
+packaged linkage, full198 and the complete consumer matrix remain separate.
