@@ -1,6 +1,6 @@
 {
   "schema": "trident/remote-certificate-byte-replay-selector/v1",
-  "enabled": false,
+  "enabled": true,
   "repository": "cyberia-to/trisha",
   "branch": "test/0.4-whole-retention-readback",
   "workflow": ".github/workflows/whole-retention-readback.yml",

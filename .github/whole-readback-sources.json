@@ -8,12 +8,12 @@
     "sha256": "af6a00d6c19673a3c654c2de92d97a153ae7d0d112235c798c553f17b9099173"
   },
   ".github/whole-readback-activation.json": {
-    "bytes": 128,
-    "sha256": "f7ed2da3aeaec775cb8b67fd223ec0e7f3f7f148ae6ebe227253e70f2fb80992"
+    "bytes": 127,
+    "sha256": "21ee6bed085d0e380f20f5806c70f8dd7a9fd7cdf04d3729565231ecf1ec9589"
   },
   ".github/whole-readback.json": {
-    "bytes": 118263,
-    "sha256": "e8c9ba26b0aff7c5583996f3a103978096af9888851f656f29889a57a8e033ed"
+    "bytes": 118262,
+    "sha256": "75c4aff8b0e1c1a18a425bc7bb1af76df36f2ce43cf63d1d69bf307060cba64e"
   },
   ".github/workflows/whole-retention-readback.yml": {
     "bytes": 1624,

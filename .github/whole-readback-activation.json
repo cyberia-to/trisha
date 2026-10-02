@@ -1,5 +1,5 @@
 {
   "schema": "trident/remote-byte-replay-activation/v1",
-  "enabled": false,
+  "enabled": true,
   "branch": "test/0.4-whole-retention-readback"
 }
