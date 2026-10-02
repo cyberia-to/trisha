@@ -20,6 +20,38 @@ spec.loader.exec_module(retention)
 
 
 class Orchestration(unittest.TestCase):
+    def test_only_explicit_reviewed_events_authorize_replay_and_retention(self):
+        environment = dict(GITHUB_REPOSITORY='cyberia-to/trisha', GITHUB_EVENT_NAME='push',
+                           GITHUB_REF='refs/heads/test/0.4-whole-self-build-ci', RETAIN_DRAFT='true')
+        self.assertTrue(inputs.authorization(ROOT, environment)['retain_draft'])
+        for changed in ({'GITHUB_REPOSITORY': 'elsewhere/trisha'},
+                        {'GITHUB_EVENT_NAME': 'pull_request'}, {'GITHUB_EVENT_NAME': 'schedule'},
+                        {'GITHUB_REF': 'refs/heads/master'}, {'RETAIN_DRAFT': 'false'},
+                        {'RETAIN_DRAFT': ''}, {'RETAIN_DRAFT': '1'}):
+            with self.subTest(changed=changed), self.assertRaises(ValueError):
+                inputs.authorization(ROOT, dict(environment, **changed))
+        for selection in ('true', 'false'):
+            actual = inputs.authorization(ROOT, dict(environment, GITHUB_EVENT_NAME='workflow_dispatch', RETAIN_DRAFT=selection))
+            self.assertEqual(actual['retain_draft'], selection == 'true')
+        with tempfile.TemporaryDirectory() as directory:
+            checkout = Path(directory)
+            (checkout / '.github').mkdir()
+            selector = inputs.load(ROOT / '.github/whole-self-build-activation.json')
+            for changed in ({'push_authorized': False}, {'push_authorized': 1},
+                            {'retain_draft': False}, {'retain_draft': 1},
+                            {'branch': 'master'}, {'repository': 'elsewhere/trisha'},
+                            {'format': 'unknown'}, {'extra': True}):
+                (checkout / '.github/whole-self-build-activation.json').write_text(json.dumps(dict(selector, **changed)))
+                with self.subTest(changed=changed), self.assertRaises(ValueError):
+                    inputs.authorization(checkout, environment)
+
+    def test_bootstrap_inventory_covers_workflow_and_all_selectors(self):
+        actual = inputs.bootstrap(ROOT)
+        for name in ('scripts/native_proof_inputs.py', '.github/workflows/whole-self-build.yml',
+                     '.github/whole-self-build-sources.json', '.github/whole-self-build-input.json',
+                     '.github/whole-self-build-activation.json'):
+            self.assertEqual(actual[name], inputs.identity(ROOT / name))
+
     def test_input_and_source_selectors_are_complete_and_pinned(self):
         asset = inputs.asset_selector(ROOT / '.github/whole-self-build-input.json')
         self.assertEqual(asset['asset_id'], 604704433)

@@ -7,7 +7,17 @@ then checks the certificate in a fresh process against explicit expected compile
 and JOB1 files. It reports successful proof verification separately from durable
 evidence retention. Observed results belong in `audit/`.
 
-The workflow is manual-only and uses `ubuntu-24.04` in the public repository.
+The workflow uses `ubuntu-24.04` in the public repository. Its first activation
+is a reviewed push to exactly `test/0.4-whole-self-build-ci`, selected only by
+changes to the workflow file or `.github/whole-self-build-activation.json`.
+That committed selector explicitly authorizes this branch and draft retention.
+Audit-only and script-only commits do not trigger another push run. Subsequent
+manual dispatches select retention explicitly. The driver admits only that exact
+push branch with the selector's authorization, or a manual dispatch in the fixed
+repository. The workflow and all three selectors join the bootstrap source hash
+inventory, which is rechecked after execution. The default branch is unchanged.
+GitHub requires default-branch presence for initial manual workflow activation:
+[workflow dispatch](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_dispatch).
 GitHub documents free standard public runners with four CPUs, 16 GB RAM and
 14 GB SSD storage. Their job limit is six hours. These are platform constraints,
 not measurements of this workflow. The exact 48 GiB free-start preflight must pass
@@ -55,7 +65,9 @@ assets must each be below 2 GiB, so full certificates cannot be single release
 assets once they cross that bound. Source:
 [release storage limits](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases).
 
-Draft retention requires an explicit dispatch selection after review. It may add
+Draft retention requires an explicit dispatch selection or the reviewed push
+activation selector's authorization. Both replay and retention validate the
+same event and selection. It may add
 uniquely named assets to the fixed existing unpublished draft, using its release
 ID. It requires the expected draft/tag state, absent tag ref, exact returned asset
 identity and an independently downloaded hash check. Pre/post draft checks are

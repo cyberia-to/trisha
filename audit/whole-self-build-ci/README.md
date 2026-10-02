@@ -29,7 +29,16 @@ The whole workflow's committed source selectors pin production Joy
 12-repository source closure. The input asset is pinned by ID 604704433 and exact
 size, SHA256 and manifest identity in `.github/whole-self-build-input.json`.
 
+`activation/checks.json` records the follow-up branch activation checks against
+base commit `798f4749152aa7b07b371f874877d73bca377371`, with exact changed source
+hashes. All eight tests passed with the compact input archive selected, and
+actionlint plus Python AST parsing passed. The added tests require explicit
+reviewed event/retention authorization and complete bootstrap workflow/selector
+identities. The initial push is limited to the exact feature branch and changes
+to its activation selector or workflow; audit-only commits do not trigger it.
+No push, hosted job or publication occurred during these local checks.
+
 Runtime capacity and durable retention remain unmeasured until the reviewed
-manual hosted jobs complete. The original 48 GiB free-start guard may reject a
+hosted jobs complete. The original 48 GiB free-start guard may reject a
 runner after allowlisted SDK cleanup; this preparation audit does not predict
 that the guard will pass.

@@ -35,6 +35,36 @@ def load(path):
     return json.loads(Path(path).read_text(encoding='utf-8'), object_pairs_hook=unique)
 
 
+def authorization(checkout, environment):
+    require(environment.get('GITHUB_REPOSITORY') == 'cyberia-to/trisha', 'fixed workflow repository')
+    selection = environment.get('RETAIN_DRAFT')
+    require(selection in ('true', 'false'), 'explicit retention selection')
+    event = environment.get('GITHUB_EVENT_NAME')
+    if event == 'push':
+        activation = load(checkout / '.github/whole-self-build-activation.json')
+        require(set(activation) == {'format', 'repository', 'branch', 'push_authorized', 'retain_draft'}, 'activation fields')
+        require(activation['format'] == 'whole-self-build-activation-v1' and
+                activation['repository'] == 'cyberia-to/trisha' and
+                activation['branch'] == 'test/0.4-whole-self-build-ci' and
+                activation['push_authorized'] is True and activation['retain_draft'] is True,
+                'reviewed push and retention authorization')
+        require(environment.get('GITHUB_REF') == 'refs/heads/' + activation['branch'], 'exact activation branch')
+        require(selection == 'true', 'push retention agrees with activation')
+    else:
+        require(event == 'workflow_dispatch', 'reviewed push or manual dispatch required')
+    return dict(event=event, repository=environment['GITHUB_REPOSITORY'],
+                ref=environment.get('GITHUB_REF'), retain_draft=selection == 'true')
+
+
+def bootstrap(checkout):
+    paths = sorted(p for p in (checkout / 'scripts').glob('*whole*self*') if p.is_file())
+    paths += [checkout / name for name in (
+        'scripts/native_proof_inputs.py', '.github/workflows/whole-self-build.yml',
+        '.github/whole-self-build-sources.json', '.github/whole-self-build-input.json',
+        '.github/whole-self-build-activation.json')]
+    return {str(p.relative_to(checkout)): identity(p) for p in paths}
+
+
 def asset_selector(path):
     asset = load(path)
     require(asset['format'] == 'whole-self-build-input-v1', 'input format')

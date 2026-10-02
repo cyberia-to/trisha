@@ -10,9 +10,13 @@ untouched. Branch: `test/0.4-whole-self-build-ci`, based on origin/release/0.4
    `2b7017f89a495eb43c0feca6818eb68f35c21a02`, with its complete 12-repository
    selector. Resolve absolute native Rust 1.89.0 tools, use isolated Cargo home and
    target paths, verify clean source inventories and resolved Cargo closure.
-2. Add a manual-only Linux x64 workflow with two independent generation jobs on
+2. Add a Linux x64 workflow with two independent generation jobs on
    free public-repository `ubuntu-24.04`; maximum six hours per job. Preserve the
    original 7,200-second guest-host deadline and all whole-proof profile caps.
+   First activation is a reviewed push to this exact feature branch, gated by
+   paths for the explicit activation selector and workflow only. The committed
+   selector authorizes draft retention on this push; manual dispatch retains an
+   explicit retention choice. Audit-only commits cannot rerun the heavy jobs.
 3. Download the reviewed input asset by immutable release-asset ID, enforce exact
    16,637,580-byte size and SHA256
    `7929925282e338a2f761510167575bfe4494c2713ac6fb9182fe59ef6223b9b8`.

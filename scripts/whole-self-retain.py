@@ -13,7 +13,7 @@ from urllib.parse import quote
 
 from native_proof_inputs import require, sanitized
 from whole_self_host import cancellation_handlers, save
-from whole_self_inputs import GIB, identity, load
+from whole_self_inputs import GIB, authorization, bootstrap, identity, load
 
 REPO = 'cyberia-to/trisha'
 RELEASE = 389977897
@@ -42,7 +42,10 @@ def main():
     results = args.results.resolve()
     checked = load(results / 'receipt.json')
     require(checked['status'] == 'passed', 'successful full proof and fresh verification required')
-    require(os.environ.get('GITHUB_REPOSITORY') == REPO and os.environ.get('GITHUB_EVENT_NAME') == 'workflow_dispatch', 'reviewed manual dispatch')
+    authorized = authorization(Path.cwd().resolve(), os.environ)
+    require(authorized['retain_draft'], 'explicit draft retention authorization required')
+    require(authorized == checked['authorization'], 'same replay and retention authorization')
+    require(bootstrap(Path.cwd().resolve()) == checked['bootstrap'], 'reviewed bootstrap source unchanged')
     token = os.environ.get('GH_TOKEN')
     require(token, 'explicit draft transport token required')
     environment = dict(sanitized(os.environ), GH_TOKEN=token)
@@ -57,6 +60,7 @@ def main():
     receipt = dict(schema='trident/whole-proof-draft-retention/v1', status='running',
                    repository=REPO, release_id=RELEASE, tag_name=TAG, proof=expected,
                    generation=checked['generation'], input_asset=checked['input_asset'],
+                   authorization=authorized,
                    source_selector=checked['source_selector'], binary=checked['binary'],
                    verified_receipt=identity(results / 'receipt.json'), driver=identity(Path(__file__)),
                    commands=[], parts=[], scope='Unique complete evidence assets on existing unpublished draft; no promotion, tags or overwrite')

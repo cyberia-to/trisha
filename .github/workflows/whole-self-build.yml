@@ -1,5 +1,10 @@
 name: Complete native compiler self-build proofs
 on:
+  push:
+    branches: [test/0.4-whole-self-build-ci]
+    paths:
+      - .github/whole-self-build-activation.json
+      - .github/workflows/whole-self-build.yml
   workflow_dispatch:
     inputs:
       retain_draft:
@@ -36,16 +41,17 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GENERATION: ${{ matrix.generation }}
-          RETAIN_DRAFT: ${{ inputs.retain_draft }}
+          RETAIN_DRAFT: ${{ github.event_name == 'push' || inputs.retain_draft }}
         run: >-
           python -B scripts/whole-self-build.py
           --generation "$GENERATION"
           --results "$RUNNER_TEMP/whole-self-build-results"
       - name: Retain verified complete proof as checked draft assets
         timeout-minutes: 45
-        if: success() && inputs.retain_draft
+        if: success() && (github.event_name == 'push' || inputs.retain_draft)
         env:
           GH_TOKEN: ${{ github.token }}
+          RETAIN_DRAFT: ${{ github.event_name == 'push' || inputs.retain_draft }}
         run: >-
           python -B scripts/whole-self-retain.py
           --results "$RUNNER_TEMP/whole-self-build-results"

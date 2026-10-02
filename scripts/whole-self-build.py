@@ -67,14 +67,11 @@ def main():
     save()
     try:
         native.native_host(target, platform.system(), platform.machine())
-        native.require(os.environ.get('GITHUB_REPOSITORY') == 'cyberia-to/trisha' and
-                       os.environ.get('GITHUB_EVENT_NAME') == 'workflow_dispatch', 'reviewed manual repository dispatch')
+        report['authorization'] = frozen.authorization(checkout, os.environ)
         actual = run('bootstrap-head', ['git', 'rev-parse', 'HEAD'], checkout).strip()
         native.require(actual == os.environ['GITHUB_SHA'], 'exact workflow checkout')
         native.require(not run('bootstrap-status', ['git', 'status', '--porcelain=v1', '--untracked-files=all'], checkout).strip(), 'clean workflow checkout')
-        report['bootstrap'] = {str(p.relative_to(checkout)): frozen.identity(p)
-                               for p in sorted((checkout / 'scripts').glob('*whole*self*')) if p.is_file()}
-        report['bootstrap']['scripts/native_proof_inputs.py'] = frozen.identity(checkout / 'scripts/native_proof_inputs.py')
+        report['bootstrap'] = frozen.bootstrap(checkout)
         host.cleanup(results, run)
         token = os.environ.get('GH_TOKEN')
         native.require(token, 'read-only input asset token required')
@@ -146,6 +143,8 @@ def main():
         report['frozen_inputs_after'] = {name: frozen.identity(package / name) for name in report['frozen_inputs_before']}
         native.require(report['frozen_inputs_after'] == report['frozen_inputs_before'], 'frozen inputs changed')
         native.require(frozen.identity(binary) == {k: report['binary'][k] for k in ('bytes', 'sha256')}, 'binary changed')
+        report['bootstrap_after'] = frozen.bootstrap(checkout)
+        native.require(report['bootstrap_after'] == report['bootstrap'], 'bootstrap source files changed')
         report.update(status='passed', verification=verify_report, proof=dict(path=str(proof), **frozen.identity(proof)),
                       compiled=frozen.identity(artifact))
         host.save(results / 'retention-input.json', dict(proof=report['proof'], generation=args.generation,
