@@ -1,0 +1,61 @@
+{
+  "original_directory": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-selector-checks",
+  "files": [
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-selector-checks/native-candidate.py.stderr",
+      "retained": "native-candidate.py.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 493,
+      "sha256": "809b6cfdb53b92d78ac47c5786534051164f599dd1ef3c6feaf0abb9dc06b948",
+      "retained_sha256": "4b2415377b0911e749046ff68be38c3298be46c5c8b221339f0100caf37c80d7"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-selector-checks/native-candidate.py.stdout",
+      "retained": "native-candidate.py.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-selector-checks/prepare-native-rehearsal.py.stderr",
+      "retained": "prepare-native-rehearsal.py.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 506,
+      "sha256": "e1deffbbb6eedb4020690e22b1527cd5f709e41f2d6102c13d2dfc95d58e92db",
+      "retained_sha256": "129885867b99550fbb3d6ff859f66bf50f8b8a01767b084fa00082cca65cbadf"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-selector-checks/prepare-native-rehearsal.py.stdout",
+      "retained": "prepare-native-rehearsal.py.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-selector-checks/receipt.json",
+      "retained": "receipt.json",
+      "encoding": "identity",
+      "bytes": 1853,
+      "sha256": "36e2664f3d4ae7f2565825c21e4e97da1ebb3236d50cf1c276d05b16a9f7c6e3",
+      "retained_sha256": "36e2664f3d4ae7f2565825c21e4e97da1ebb3236d50cf1c276d05b16a9f7c6e3"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-selector-checks/transport-native-rehearsal.py.stderr",
+      "retained": "transport-native-rehearsal.py.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 508,
+      "sha256": "29639e8edeefd8aa8d5f03d16bbbdf3ebf401e5ffe17e6e42b089101fb163dd7",
+      "retained_sha256": "3a5c89b2c69032672050947ed9ee930b5ae49717c9d0ba4ecdd8f1e91883e587"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inactive-selector-checks/transport-native-rehearsal.py.stdout",
+      "retained": "transport-native-rehearsal.py.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    }
+  ]
+}

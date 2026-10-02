@@ -1,8 +1,8 @@
 {
   "scope": "Distinct final Joy dd61 host-deadline feature-branch package rehearsal; prior source734 and frozen e4bac receipts unchanged",
   "validation_profile": "final-host-ceiling-v1",
-  "status": "review-before-export",
-  "source_sha256": null,
+  "status": "exported-awaiting-independent-reproduction",
+  "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
   "release_id": 389977897,
   "release_tag": "candidate-20260916.1",
   "asset_name": "rehearsal-20261002-final-dd61-source.tar.gz",

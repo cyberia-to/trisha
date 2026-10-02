@@ -1,8 +1,9 @@
 # Final Joy host deadline package evidence
 
 Status: contract, source dependency scope and conditional full198 inheritance
-checker are reviewed. Native final package source export remains pending the
-remaining source guard and runner review.
+checker are reviewed. Exact source export passed after the root and peer
+runner reviews. Independent remote reproduction and all native final gates
+remain pending; the consumer/transport followup awaits supplemental review.
 
 `dependency-scope/` retains the exact Joy11b7→dd61 diff and original Cargo1.89
 locked/offline/all-features dependency observations. The one changed production
@@ -113,3 +114,37 @@ transport tests (both ZIP/tar metadata paths), actionlint and diff checks.
 The real verify branch test confirms that its installed probe is reached
 after all six structured corpus calls and returns without entering compilation.
 No final package acceptance is inferred from these orchestration tests.
+
+## Exact final source export passed
+
+The reviewed local exporter ran with
+`--reviewed-head 99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9`. It materialized
+eleven detached worktrees, derived the actual locked all-features Trisha/Joy
+production closure, checked native Rust/Cargo/rustdoc 1.89 and Nushell 0.112.2,
+and exported committed inputs with the ordinary source packager. The original
+command, script, streams and receipt are retained in `source-preparation/`.
+Strict physical source, accepted kit and final source-impact checks passed.
+All selected origin heads and recorded default refs remained unchanged.
+
+The archive contains 536837002 bytes with SHA-256
+`73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8`.
+Its provenance SHA-256 is
+`9334dead92b990a12acf16a2565aeb762a07311dfc2c3d6cb896c0490dc5926e`,
+and the vendor inventory remains
+`cf324959661a85fc94cf4345beaf5dbf274c1dbd5fc66960155e0750ace35d1b`.
+The code inputs are fixed at Trisha c8836be and Joy dd61, with the other nine
+selected commits retained explicitly. These identities are now frozen in
+the separate inactive final selectors. No final native build has started.
+
+`root-runner-review/` and `independent-final-review/` preserve the independent
+reviews of exact 99fd998 and exporter by byte manifest. The later consumer
+probe and packaged-metadata correction has its own supplemental review scope;
+these original review receipts remain unchanged.
+
+The transport guard's supplemental mutation test also rejects the digest of
+the original build candidate and a differently formatted equivalent candidate;
+it accepts only the original packaged bytes. All five transport tests passed.
+The original root review's consumer-coverage wording correction is retained as
+`root-runner-review/consumer-coverage-finding.json` (SHA-256
+`6fdd1f798001579028a1749ecb38d58fb040fe41b07710a79901095a92c8b49d`),
+separate from its unchanged original review.

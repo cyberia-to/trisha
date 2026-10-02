@@ -1,0 +1,92 @@
+[
+  {
+    "name": "orchestration",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "-W",
+      "error",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "scripts",
+      "-p",
+      "test_final_native_gate.py",
+      "-v"
+    ],
+    "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+    "exit_code": 0,
+    "started_ns": 1790927223824571000,
+    "ended_ns": 1790927223911455000,
+    "files": {
+      "stdout": {
+        "bytes": 3516,
+        "sha256": "c336510aba63f9355c5c97815274fa5cf1bc69a2481c6edcf5651d4f47792d90"
+      },
+      "stderr": {
+        "bytes": 900,
+        "sha256": "75f6d0308db84a10bade6231063e0c9302b367272658c619fd1f13c8c3fbdebb"
+      }
+    }
+  },
+  {
+    "name": "transport",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "-W",
+      "error",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "scripts",
+      "-p",
+      "test_transport_native_rehearsal.py",
+      "-v"
+    ],
+    "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+    "exit_code": 0,
+    "started_ns": 1790927223911629000,
+    "ended_ns": 1790927223959290000,
+    "files": {
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "bytes": 536,
+        "sha256": "9042a503a18b8a8b528049526403a0aec064a47f10f54e9c3e9c6eab7e8ec427"
+      }
+    }
+  },
+  {
+    "name": "source-preview",
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "-W",
+      "error",
+      "audit/final-host-ceiling-package/check-source-preview.py",
+      "--family",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution",
+      "--output",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/independent-final-review/source-preview.json"
+    ],
+    "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+    "exit_code": 0,
+    "started_ns": 1790927223959407000,
+    "ended_ns": 1790927224673168000,
+    "files": {
+      "stdout": {
+        "bytes": 66,
+        "sha256": "bbea650bb836e48299b45fca3e9f07f722cc38237d385bdc412a65a619f8cdcc"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  }
+]

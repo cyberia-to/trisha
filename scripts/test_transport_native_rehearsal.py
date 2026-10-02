@@ -2,6 +2,7 @@
 import importlib.util
 import hashlib
 import io
+import json
 from pathlib import Path
 import tarfile
 import tempfile
@@ -53,6 +54,23 @@ class ActualToolchainTests(unittest.TestCase):
             self.assertEqual(transport.packaged_candidate_sha256(binary), expected)
             original = b'{"binaries":[],"provenance_sha256":"measured","source":"build-path"}\n'
             self.assertNotEqual(hashlib.sha256(original).hexdigest(), expected)
+
+    def test_original_build_metadata_and_reformatted_metadata_are_rejected(self):
+        candidate = dict(binaries=[dict(name='joy', sha256='a'*64)], provenance_sha256='measured')
+        raw = (json.dumps(candidate, indent=2) + '\n').encode()
+        deadline = dict(status='passed', accepted=15, rejected=8, commands=[{}]*23,
+                        joy=dict(sha256='a'*64), source_provenance_sha256='measured',
+                        candidate_sha256=hashlib.sha256(raw).hexdigest())
+        with tempfile.TemporaryDirectory() as directory:
+            binary = Path(directory)/'binary.zip'
+            with zipfile.ZipFile(binary, 'w') as archive:
+                archive.writestr('cyber-tools/candidate.json', raw)
+            transport.require_installed_deadline(deadline, candidate, 'measured', binary)
+            for altered in ((json.dumps(dict(candidate, source='local-build-source'), indent=2)+'\n').encode(),
+                            json.dumps(candidate, separators=(',', ':')).encode()):
+                with self.subTest(altered=altered), self.assertRaisesRegex(ValueError, 'deadline probe differs'):
+                    transport.require_installed_deadline(dict(deadline, candidate_sha256=hashlib.sha256(altered).hexdigest()),
+                                                         candidate, 'measured', binary)
 
 
 if __name__ == '__main__':

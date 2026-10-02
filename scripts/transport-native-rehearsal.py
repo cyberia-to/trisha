@@ -37,6 +37,15 @@ def packaged_candidate_sha256(binary):
     return hashlib.sha256(raw).hexdigest()
 
 
+def require_installed_deadline(deadline, candidate, provenance, binary):
+    joy = next(row['sha256'] for row in candidate['binaries'] if row['name'] == 'joy')
+    if (deadline['status'] != 'passed' or deadline['accepted'] != 15 or deadline['rejected'] != 8
+            or len(deadline['commands']) != 23 or deadline['joy']['sha256'] != joy
+            or deadline['source_provenance_sha256'] != provenance
+            or deadline['candidate_sha256'] != packaged_candidate_sha256(binary)):
+        raise ValueError('final installed deadline probe differs from actual native package')
+
+
 def main():
     checkout = Path.cwd()
     spec = json.loads((checkout / os.environ.get('REHEARSAL_ASSETS_SELECTOR', '.github/native-rehearsal-assets.json')).read_text())
@@ -143,12 +152,7 @@ def main():
                 raise ValueError('native binary archive identity mismatch')
             if spec.get('validation_profile') == 'final-host-ceiling-v1':
                 deadline = json.loads((restored / 'installed-host-ceiling/receipt.json').read_text())
-                joy = next(row['sha256'] for row in candidate['binaries'] if row['name'] == 'joy')
-                if (deadline['status'] != 'passed' or deadline['accepted'] != 15 or deadline['rejected'] != 8
-                        or len(deadline['commands']) != 23 or deadline['joy']['sha256'] != joy
-                        or deadline['source_provenance_sha256'] != spec['provenance_sha256']
-                        or deadline['candidate_sha256'] != packaged_candidate_sha256(binary)):
-                    raise ValueError('final installed deadline probe differs from actual native package')
+                require_installed_deadline(deadline, candidate, spec['provenance_sha256'], binary)
             proof = restored / ('proof-corpus-' + target + '.tar.gz')
             with tarfile.open(proof) as content:
                 member = content.getmember('proof-corpus/corpus.json')

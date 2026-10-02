@@ -1,9 +1,9 @@
 {
   "scope": "Distinct final Joy dd61 host-deadline feature-branch package rehearsal; prior source734 and frozen e4bac receipts unchanged",
   "validation_profile": "final-host-ceiling-v1",
-  "status": "review-before-export",
-  "source_sha256": null,
-  "source_provenance_sha256": null,
+  "status": "exported-awaiting-independent-reproduction",
+  "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+  "source_provenance_sha256": "9334dead92b990a12acf16a2565aeb762a07311dfc2c3d6cb896c0490dc5926e",
   "vendor_sha256": "cf324959661a85fc94cf4345beaf5dbf274c1dbd5fc66960155e0750ace35d1b",
   "sources": [
     {

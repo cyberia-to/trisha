@@ -1,0 +1,77 @@
+{
+  "scope": "Distinct final Joy dd61 host-deadline feature-branch package rehearsal; prior source734 and frozen e4bac receipts unchanged",
+  "validation_profile": "final-host-ceiling-v1",
+  "status": "review-before-export",
+  "source_sha256": null,
+  "source_provenance_sha256": null,
+  "vendor_sha256": "cf324959661a85fc94cf4345beaf5dbf274c1dbd5fc66960155e0750ace35d1b",
+  "sources": [
+    {
+      "repository": "bbg",
+      "commit": "1d39975ad199b48c350fa4cc011cbf6f289480ee",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "origin_head": "1d39975ad199b48c350fa4cc011cbf6f289480ee"
+    },
+    {
+      "repository": "hemera",
+      "commit": "a931a0a8e7ed369852ce0f8bc6451a59745ee692",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "origin_head": "a931a0a8e7ed369852ce0f8bc6451a59745ee692"
+    },
+    {
+      "repository": "honeycrisp",
+      "commit": "ff735e6c262926bc9bab7534786a575020cbe442",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "origin_head": "ff735e6c262926bc9bab7534786a575020cbe442"
+    },
+    {
+      "repository": "joy",
+      "commit": "dd61df9128f6da1f97d4698f45f154f05312fe51",
+      "origin_ref": "refs/heads/release/0.4",
+      "origin_head": "dd61df9128f6da1f97d4698f45f154f05312fe51"
+    },
+    {
+      "repository": "lens",
+      "commit": "17cafe91431977b738e5b72361187cd01ad93638",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "origin_head": "17cafe91431977b738e5b72361187cd01ad93638"
+    },
+    {
+      "repository": "neuron",
+      "commit": "fd24e768d623604b67e20b4b93fa8e82c83ac373",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "origin_head": "fd24e768d623604b67e20b4b93fa8e82c83ac373"
+    },
+    {
+      "repository": "nox",
+      "commit": "2f09ca3c3f18ae470365310cca8db5208eda75c6",
+      "origin_ref": "refs/heads/release/0.4",
+      "origin_head": "2f09ca3c3f18ae470365310cca8db5208eda75c6"
+    },
+    {
+      "repository": "strata",
+      "commit": "d2eb1763b8caf04e6c7647ac6fe99761519c2ef9",
+      "origin_ref": "refs/heads/chore/coordinated-release-20260916",
+      "origin_head": "d2eb1763b8caf04e6c7647ac6fe99761519c2ef9"
+    },
+    {
+      "repository": "trident",
+      "commit": "da0d1a59cd8208fab96f219ccedef29122d5221a",
+      "origin_ref": "refs/heads/release/0.4",
+      "origin_head": "da0d1a59cd8208fab96f219ccedef29122d5221a"
+    },
+    {
+      "repository": "trisha",
+      "commit": "c8836be0103c8d2ead07c409bb117af04cae3449",
+      "origin_ref": "refs/heads/release/0.4",
+      "origin_head": "c8836be0103c8d2ead07c409bb117af04cae3449"
+    },
+    {
+      "repository": "zheng",
+      "commit": "0d7ba6d422d9b825f9685e903e55252f88ebecd9",
+      "origin_ref": "refs/heads/release/0.4",
+      "origin_head": "0d7ba6d422d9b825f9685e903e55252f88ebecd9"
+    }
+  ],
+  "full198_policy": "Exact tested Trisha binary and protected inputs only: inherited coverage or fresh guarded run"
+}

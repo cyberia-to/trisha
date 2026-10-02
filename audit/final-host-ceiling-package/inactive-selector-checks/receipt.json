@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "scope": "Three inactive final selectors reject before any output/download/build/upload",
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci/scripts/native-candidate.py"
+      ],
+      "selector": "final-package-candidate.json",
+      "exit_code": 1,
+      "expected_rejection": "final package selector is not activated",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "809b6cfdb53b92d78ac47c5786534051164f599dd1ef3c6feaf0abb9dc06b948"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci/scripts/prepare-native-rehearsal.py"
+      ],
+      "selector": "final-package-source.json",
+      "exit_code": 1,
+      "expected_rejection": "final source selector is not activated",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e1deffbbb6eedb4020690e22b1527cd5f709e41f2d6102c13d2dfc95d58e92db"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci/scripts/transport-native-rehearsal.py"
+      ],
+      "selector": "final-package-assets.json",
+      "exit_code": 1,
+      "expected_rejection": "final asset selector is not activated",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "29639e8edeefd8aa8d5f03d16bbbdf3ebf401e5ffe17e6e42b089101fb163dd7"
+    }
+  ]
+}
