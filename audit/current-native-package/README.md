@@ -104,3 +104,24 @@ cannot authorize inheritance if a hosted compiler was shadowed by another
 installation. `original-matrix-rejections.json` records rejection of the four
 currently available real producers and of a duplicate substituted for the
 missing Intel Mac. The complete positive check waits for actual Intel evidence.
+
+### Exact current source exported
+
+The frozen five-target producer run 36949324686 completed successfully, and
+all five original authenticated ZIPs passed native Rust 1.89, source/kit, CPU
+and producer receipt inspection before the current export. Their actual
+inspections and original run API are retained under `references/`.
+
+`source-export/export-reviewed-source.py` then checked the eleven clean exact
+commits and their observed origin reachability, invoked the committed Trisha
+source packager, and passed the archived source verifier, accepted kit guard
+and current source-impact guard. Original command streams and hashes are in
+`source-export/original-commands.tar.gz`. The resulting archive is 441342969
+bytes with SHA-256 `734df69dc7d43467fc9ae574c7cf7b25eb9b4ec9bc08e9ca3f96b9500131f42e`;
+its `sources.json` SHA-256 is
+`3c6f2ced084812e73f97c069169f83807fc5d389e54b581dd52f10982cd5b227`.
+
+The source preparation selector activates independent Linux reproduction
+from those same eleven origin commits. Upload to the existing unpublished
+draft requires the exact archive hash. Native builds and the new actual
+198-proof measurement remain pending; no frozen binary receipt is relabeled.

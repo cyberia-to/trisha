@@ -72,44 +72,5 @@
       "origin_head": "0d7ba6d422d9b825f9685e903e55252f88ebecd9"
     }
   ],
-  "status": "exported-awaiting-independent-reproduction",
-  "production_closure": {
-    "repositories": [
-      "bbg",
-      "hemera",
-      "honeycrisp",
-      "joy",
-      "lens",
-      "neuron",
-      "nox",
-      "strata",
-      "trident",
-      "trisha",
-      "zheng"
-    ],
-    "command_roots": [
-      "trisha",
-      "joy"
-    ],
-    "flags": [
-      "--all-features",
-      "--locked"
-    ],
-    "receipt": "audit/current-native-package/source-preparation/closure.json",
-    "receipt_sha256": "47ec94b355a626fa487c6759c08dcd338f29b918a70e17377010f2f6fcf18a57"
-  },
-  "validation_profile": "current-package-v1",
-  "inherited_compiler_cpu": {
-    "source_sha256": "e4bac7ff7260a5f395febc196b3e4792653e0ff81d7887d688e16ea0959aa361",
-    "native_run_id": 36949324686,
-    "runner_revision": "c94da47247457f9e819c2682e74d34f5f1756f62",
-    "status": "original-matrix-passed"
-  },
-  "current_public_profile": {
-    "native_run_id": 36958147193,
-    "runner_revision": "2b7017f89a495eb43c0feca6818eb68f35c21a02"
-  },
-  "local_full_198": "new execution required after frozen run ends",
-  "source_provenance_sha256": "3c6f2ced084812e73f97c069169f83807fc5d389e54b581dd52f10982cd5b227",
-  "vendor_sha256": "cf324959661a85fc94cf4345beaf5dbf274c1dbd5fc66960155e0750ace35d1b"
+  "validation_profile": "current-package-v1"
 }
