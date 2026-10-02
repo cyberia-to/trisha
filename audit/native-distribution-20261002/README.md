@@ -13,9 +13,17 @@ revision. `prepare.json` binds each executed command and output to that closure.
 The accepted kit is the existing retained Trisha artifact, SHA-256
 `a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd`.
 Its production unpack check passed against the newly archived Trident sources.
-The feature preparer must reproduce that exact source archive on a GitHub
-runner before uploading a unique named asset. The native selector will bind
-the uploaded source and kit IDs and SHA-256 identities after transport checks.
+The feature preparer at `49deb1a953dcc1102201df29f0c55a0286c70ef1`
+reproduced the exact source archive on an actual Ubuntu runner in
+[run 36948984631](https://github.com/cyberia-to/trisha/actions/runs/36948984631).
+The source asset is `604481115`; the accepted kit asset is `604463150`.
+The native selector binds both IDs and their verified SHA-256 identities.
+`remote-preparer-artifact.zip` retains the original GitHub evidence ZIP, bound
+to the saved API metadata by SHA-256
+`cdb0275b9300d89cc031a548a3cbc2d68a072f06ad54ed245925b61eed822173`.
+Default/release branch refs remain byte-identical and the draft tag remains
+absent after upload. Original commands, API metadata and the interrupted local
+upload/owned-starter cleanup receipts are retained alongside this record.
 The pre-existing unpublished draft is transport only. No tag is created.
 The original local upload remains recorded separately; local network throughput
 motivated this exact-byte remote preparation route.
