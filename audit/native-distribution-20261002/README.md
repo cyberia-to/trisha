@@ -51,6 +51,13 @@ success does not establish an older OS floor. The proposed macOS 14 and Windows 
 floors still need matching-host receipts before they can become supported
 minimums; the selected runners are macOS 15 Intel and Windows Server
 2022 x64. This rehearsal does not relabel either proposed floor as validated.
+`macos-link-inspection/receipt.json` retains actual `sw_vers`, `uname`, pinned
+Rust, compiler/linker, `file` and `otool` commands on the local macOS 26.4.1 ARM
+host. The four binaries advertise Mach-O `minos 11.0` and SDK 26.4; their
+observed runtime libraries are system libraries. Original raw command streams
+and the candidate inventory are retained. `binding.json` records the unchanged
+four installed hashes after inspection. These link values do not replace
+execution on macOS 14.
 
 The separate `native-rehearsal-assets.yml` transport is dormant until a pinned
 producer selection is committed. It requires successful exact producer runs,
