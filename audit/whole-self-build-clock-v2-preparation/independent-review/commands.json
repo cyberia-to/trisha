@@ -1,0 +1,14 @@
+[
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/whole-proof-ci/trisha",
+      "rev-parse",
+      "HEAD"
+    ],
+    "stdout": "ec05b133efe3fa71c28d4e50e5defd0f6be8150d\n",
+    "stderr": "",
+    "exit_code": 0
+  }
+]

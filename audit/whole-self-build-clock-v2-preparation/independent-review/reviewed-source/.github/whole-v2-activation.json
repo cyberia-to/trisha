@@ -1,0 +1,7 @@
+{
+  "format": "whole-proof-clock-v2-activation",
+  "repository": "cyberia-to/trisha",
+  "branch": "test/0.4-whole-self-build-ci",
+  "push_authorized": false,
+  "pending_transport_authorized": false
+}

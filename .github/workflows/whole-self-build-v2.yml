@@ -1,0 +1,29 @@
+name: Complete native compiler proofs with separate physical clocks
+on:
+  push:
+    branches: [test/0.4-whole-self-build-ci]
+    paths:
+      - .github/whole-v2-activation.json
+      - .github/workflows/whole-self-build-v2.yml
+      - .github/workflows/whole-self-build-v2-generation.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: whole-self-build-clock-v2-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  c1:
+    if: github.repository == 'cyberia-to/trisha' && github.event.repository.private == false
+    permissions:
+      contents: write
+    uses: ./.github/workflows/whole-self-build-v2-generation.yml
+    with:
+      generation: 1
+  c2:
+    if: github.repository == 'cyberia-to/trisha' && github.event.repository.private == false
+    permissions:
+      contents: write
+    uses: ./.github/workflows/whole-self-build-v2-generation.yml
+    with:
+      generation: 2
