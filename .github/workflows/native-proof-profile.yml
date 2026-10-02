@@ -1,0 +1,58 @@
+name: Native public proof profile
+on:
+  push:
+    branches: ['test/0.4-native-proof-profile']
+    paths:
+      - '.github/native-proof-profile.json'
+      - '.github/workflows/native-proof-profile.yml'
+      - 'scripts/native-proof-profile.py'
+      - 'scripts/native_proof_inputs.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-15
+            target: aarch64-apple-darwin
+            python: arm64
+          - runner: macos-15-intel
+            target: x86_64-apple-darwin
+            python: x64
+          - runner: ubuntu-24.04-arm
+            target: aarch64-unknown-linux-gnu
+            python: arm64
+          - runner: ubuntu-24.04
+            target: x86_64-unknown-linux-gnu
+            python: x64
+          - runner: windows-11-arm
+            target: aarch64-pc-windows-msvc
+            python: arm64
+          - runner: windows-2022
+            target: x86_64-pc-windows-msvc
+            python: x64
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.13.15'
+          architecture: ${{ matrix.python }}
+      - name: Validate native public proof profile from exact origin inputs
+        env:
+          PROOF_NATIVE_TARGET: ${{ matrix.target }}
+        run: python -B scripts/native-proof-profile.py
+      - name: Preserve native binary and exact success or failure evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: native-proof-${{ matrix.target }}
+          path: native-proof-results/
+          if-no-files-found: error
+          retention-days: 30

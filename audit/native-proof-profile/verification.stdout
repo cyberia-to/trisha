@@ -1,0 +1,4 @@
+local-native-gate.tar.gz failed: rustup bootstrap before compilation 244 files verified
+local-native-gate-v2.tar.gz rejected: command logs overwritten 340 files verified
+local-native-gate-v3.tar.gz accepted: complete gates and evidence integrity passed 346 files verified
+reviewed source, static checks and evidence integrity verified

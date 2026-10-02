@@ -1,0 +1,15 @@
+{
+  "base": "d59738198aff278e7166e5958fbbc5f9777986b7",
+  "files": {
+    ".claude/plans/native-proof-profile.md": "1b7b2517edf9dd00f15103aa082f2082010970ee242e51ff81e41f5f3e6463c2",
+    ".github/native-proof-profile.json": "a5a6df5b5b858ea09b91921961656dc559937092b91c0570a1fd172db6a2fed6",
+    ".github/workflows/native-proof-profile.yml": "684c850ecdbf81e52aefa70941c3ac8296891289d610e7203209a4b220f92654",
+    "docs/reference/native-proof-profile.md": "8a7388ab15c0f9b3870da6efe19c3f294db8bde688e8638c2627c7d7cfaf0c1e",
+    "scripts/native-proof-profile.py": "5ee788acd443c6f1ca8ac14c405a02d5442e26899b44fe58b1bf5f492072a9fc",
+    "scripts/native_proof_inputs.py": "081cb35ba78abda71b1c86f6755dbb635672ca090dddbd0a1ff176959d58653b",
+    "scripts/test_native_proof_profile.py": "2718b62a7137e16757e9b8c5ee727550a5d3f366bf1278ccadf2daf935109f10",
+    "audit/native-proof-profile/verify_evidence.py": "eeff3531f1e8d5237e2e521da8d24bceeabb1f30183d13b779b53deda375cb8d"
+  },
+  "successful_run_bootstrap_matches": true,
+  "independent_root_final_review": "No remaining finding after native executable/environment reset, platform-required names, warning scan, per-project Cargo cwd, duplicate-log prevention and final log hash replay corrections."
+}
