@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "review-accepted-kit-retention.py"
+  ],
+  "source_revision": "4b81af3baf01180d95113e5d69ed8d7e5e69eb1e",
+  "retention_index": {
+    "bytes": 1742,
+    "sha256": "4de44eda13ba417bfe4975183f7569f625039cbbbab159849d5cb5b1e5a8fc57"
+  },
+  "retained_indexed_files": 14,
+  "raw_evidence_members": 217,
+  "raw_evidence_bytes": 9632088,
+  "all_original_member_bytes_equal": true,
+  "portable_verifier": {
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-B",
+      "-W",
+      "error",
+      "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/accepted-selfhost-kit/retention/verify.py",
+      "--external"
+    ],
+    "exit_code": 0,
+    "stdout": {
+      "bytes": 351,
+      "sha256": "d1eca52e3583e99af8c89f7556cdeb738dfdd2086fdd8dd527e3b55a391c0c7e"
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

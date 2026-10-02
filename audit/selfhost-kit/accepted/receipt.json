@@ -1,0 +1,35 @@
+{
+  "schema": "trident/accepted-kit-retention/v1",
+  "status": "retained",
+  "original_delivery": {
+    "bytes": 26278,
+    "sha256": "ca60b94f17441a22aa2d1afc8fd4ed02382d46935fcad00f4c53f45ee6ca5b04"
+  },
+  "source_revision": "4b81af3baf01180d95113e5d69ed8d7e5e69eb1e",
+  "driver_sha256": "f2387607d48577bd94ca1b3fe3a87dd8a0e508a385af2acbce852d856b2c2aa0",
+  "kit_archive": {
+    "path": "selfhost-kit.tar.gz",
+    "bytes": 4377450,
+    "sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd"
+  },
+  "evidence_archive": {
+    "path": "evidence.tar.gz",
+    "bytes": 4768336,
+    "sha256": "6ff0abf493674351ff685aad52b3aef51b280d37167bbe04e1250fc2389031c7"
+  },
+  "evidence_members": 217,
+  "evidence_raw_bytes": 9632088,
+  "delivery_files": 235,
+  "delivery_raw_bytes": 144989128,
+  "canonical_aliases": 42,
+  "external_identities": 11,
+  "exact_archived_original_bytes": true,
+  "exact_original_accepted_kit_bytes": true,
+  "original_final36_verification": {
+    "bytes": 1159982,
+    "sha256": "be6d76f37c0daf9694e75dad83e200adc25a32b05e593fdbeec11f4d67a69f81"
+  },
+  "immutable_original_ci_dependency": "/Users/master/cyber/.worktrees/selfhost-0.4-full-bootstrap/measurements/ci-phases-final-acceptance",
+  "original_ci_scope": "Full original ZIP/API/store/tree chain remains retained by Trident; fresh authority report and exact references retained here",
+  "scope": "Accepted portable kit and local installed/unpacked runtime compatibility; prior full self-build reused through exact inputs; no new SH6 or compilation proof"
+}

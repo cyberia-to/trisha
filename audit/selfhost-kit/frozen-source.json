@@ -1,0 +1,46 @@
+{
+  "base_revision": "13c5c24b93d7136624d8725f911b2aa45a175129",
+  "status": " M docs/reference/release-platforms.md\n M scripts/README.md\n M scripts/native-candidate.py\n M scripts/package-binaries.nu\n M scripts/package-source.nu\n M scripts/test_package_binaries.py\n?? scripts/selfhost-kit.py\n?? scripts/selfhost_kit.py\n?? scripts/selfhost_kit_assembly.py\n?? scripts/test_selfhost_kit.py\n",
+  "files": {
+    "docs/reference/release-platforms.md": {
+      "bytes": 10663,
+      "sha256": "964751d9b83246f9c6205b46415c10b28417d59fca35c522f45423a9d6f9ac61"
+    },
+    "scripts/README.md": {
+      "bytes": 15025,
+      "sha256": "474d16598137895300d303b7b1a4ba5fa421d413b92032bc53a924de07685c59"
+    },
+    "scripts/native-candidate.py": {
+      "bytes": 18078,
+      "sha256": "2c5c8dbc21dbb96474c3219f884a6cd4a14cb623e3fc7aa06a0bdb5b2ccc9572"
+    },
+    "scripts/package-binaries.nu": {
+      "bytes": 10294,
+      "sha256": "cac3aaec3a1c55415d021d677e613cadfb7ccf28db7f7ccb160037304875daff"
+    },
+    "scripts/package-source.nu": {
+      "bytes": 5447,
+      "sha256": "cd26bc5a718d99a56572bfb4853338dabf4d8bb81d1006cf0babc97f0540093d"
+    },
+    "scripts/test_package_binaries.py": {
+      "bytes": 9268,
+      "sha256": "28e69e08738966b33490135ca570db17d0121892aa06cb659b437df662b08aa1"
+    },
+    "scripts/selfhost-kit.py": {
+      "bytes": 2394,
+      "sha256": "e196728a2c94e13175c5954271bfab50ed186ca8a0136a65b0e35ddf8395a624"
+    },
+    "scripts/selfhost_kit.py": {
+      "bytes": 18040,
+      "sha256": "d4d0f47728c97a8762979a32504de41d99630bac5797db5ecb703ec2bb190752"
+    },
+    "scripts/selfhost_kit_assembly.py": {
+      "bytes": 7100,
+      "sha256": "358db287e7f49ba2980e4a0ee6fb0275f54f6919f89ec6826781bff2b3288ea5"
+    },
+    "scripts/test_selfhost_kit.py": {
+      "bytes": 12468,
+      "sha256": "aeeb6d2232c6d93dec6b42da4facfbaf3963c5595579c57f1d33482d0094df78"
+    }
+  }
+}

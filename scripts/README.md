@@ -55,7 +55,9 @@ and smoke bind the exact `source-verification.json` SHA-256, including its
 vendor inventory digest. Smoke also binds its own script bytes before/after
 execution; binary packaging ships that same script from the verified archive.
 
-`package-binaries.nu <candidate-prefix> <new-archive.tar.gz> --smoke <smoke.json>`
+`package-binaries.nu <candidate-prefix> <new-archive.tar.gz> --smoke <smoke.json>
+--selfhost-kit <kit.tar.gz> --selfhost-kit-sha256 <SHA256>
+--selfhost-smoke <installed-selfhost-smoke/receipt.json>`
 packages the installed binaries after checking both build and full smoke
 receipts. It creates a deterministic `cyber-tools/` archive with the binaries,
 licenses, validation receipts and the exact installed-smoke fixture bytes.
@@ -73,7 +75,10 @@ checks deterministic archive bytes, metadata, links and executable preservation.
 `python3 -B scripts/test_verify_source.py` checks complete pre/post source
 verification and failed-build cleanup. `python3 -B scripts/test_package_binaries.py`
 checks changed inputs, staging failures, receipt binding and deterministic
-packaging with synthetic fixtures.
+packaging with synthetic binaries and an explicit kit-routing subprocess double;
+these fixtures never stand for an accepted compiler kit. `test_selfhost_kit.py`
+checks the production boundaries; its optional `--rehearsal DIR --trident DIR
+--joy ABSOLUTE_BINARY` exercises an actual historical-C2 rehearsal separately.
 
 ## Build and inspect outside the checkouts
 
@@ -209,3 +214,21 @@ The dedicated proof worker additionally runs the complete198-proof gate; `full_b
 request that additional gate from a sufficiently provisioned native runner. A separate `verify` phase
 consumes authenticated binary/corpus archives for the cross-platform matrix.
 GitHub credentials are removed before archived implementations execute.
+
+The selector also requires `selfhost_kit: {asset_id, sha256}` for one separately
+assembled portable compiler archive. `selfhost-kit.py assemble --validator PATH
+--config CONFIG.json --trident PACKAGED_SOURCE/trident --guide GUIDE_INPUTS
+--work FRESH_EVIDENCE --output NEW_KIT.tar.gz` invokes the committed final36
+authority. Configuration keys are its eight path arguments (`restored`,
+`stores`, `indices`, `inputs`, `runner-directory`, `expected`, `aggregate-job`,
+`final-run`), `indices-sha256`, `aggregate-id`, and the selected original
+`producer-name`. Paths are explicit absolute paths. Original ZIP/API/store
+inputs remain untouched; the work directory retains validation output and logs.
+
+`rehearse` accepts `--compiler`, `--inventory`, `--fixed-point` instead of the
+validator/config pair and always records rehearsal status. This provides local
+transport and supplied-Joy checks while acceptance is pending. It cannot enter
+`package-binaries.nu`, which requires `--selfhost-kit`, its pinned
+`--selfhost-kit-sha256` and a passed `--selfhost-smoke` receipt from the exact
+installed Joy. Native candidate runs the smoke again after unpacking. These
+additional receipts do not change the four binary identities or proof corpus.

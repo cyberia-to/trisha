@@ -1,4 +1,8 @@
-"""Packaging boundary tests with synthetic binaries, never proof evidence."""
+"""Packaging routing with synthetic binaries and a kit subprocess double.
+
+The kit double only exercises packaging/copy routes, never accepted kit evidence.
+Real kit guards and actual-C2 rehearsal are separate from this fixture.
+"""
 import hashlib
 import importlib.util
 import json
@@ -82,11 +86,27 @@ class BinaryPackaging(unittest.TestCase):
             smoke_script_sha256=sha((SCRIPTS/'smoke-release.nu').read_bytes()),
             lsp_script_sha256=sha((SCRIPTS/'smoke-lsp.py').read_bytes()),
             binaries=binaries, fixture_files=fixture_files, platform={})))
+        # Patch only the test copy's kit subprocess target, never production
+        # status checks. This double does not construct an accepted kit.
+        self.script = self.root/'package-binaries.nu'
+        source = (SCRIPTS/'package-binaries.nu').read_text()
+        source = source.replace('let repo = ($env.FILE_PWD | path dirname)',
+                                'let repo = ' + json.dumps(str(SCRIPTS.parent)))
+        double = self.root/'routing-double.py'
+        double.write_text('import pathlib,sys\n'
+                          'if sys.argv[1] == "unpack":\n'
+                          ' p=pathlib.Path(sys.argv[sys.argv.index("--output")+1]); p.mkdir(parents=True)\n'
+                          ' (p/"kit.json").write_text("routing-only; no kit acceptance")\n')
+        source = source.replace('($repo | path join scripts selfhost-kit.py)', json.dumps(str(double)))
+        self.script.write_text(source)
+        self.kit = self.root/'routing-only.tar.gz'
+        self.kit.write_bytes(b'no accepted kit fixture')
 
     def package(self, name='archive', with_receipt=True, env=None):
         output = self.root/(name+'.tar.gz')
-        command = [shutil.which('nu'), str(SCRIPTS/'package-binaries.nu'),
-                   str(self.prefix), str(output)]
+        command = [shutil.which('nu'), str(self.script), str(self.prefix), str(output),
+                   '--selfhost-kit', str(self.kit), '--selfhost-kit-sha256', sha(self.kit.read_bytes()),
+                   '--selfhost-smoke', str(self.receipt)]
         if with_receipt:
             command += ['--smoke', str(self.receipt)]
         result = subprocess.run(command, capture_output=True, text=True, env=env)
@@ -107,6 +127,14 @@ class BinaryPackaging(unittest.TestCase):
                 self.assertNotEqual(result.returncode, 0, result.stdout)
                 self.assertFalse(output.exists())
                 path.write_bytes(previous)
+
+    def test_production_packager_requires_accepted_kit(self):
+        output = self.root/'production.tar.gz'
+        result = subprocess.run([shutil.which('nu'), str(SCRIPTS/'package-binaries.nu'),
+                                 str(self.prefix), str(output), '--smoke', str(self.receipt)], capture_output=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn(b'accepted --selfhost-kit', result.stderr)
+        self.assertFalse(output.exists())
 
     def test_staging_and_permission_failures_leave_no_archive(self):
         for tool in ['mktemp', 'chmod']:
