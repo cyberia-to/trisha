@@ -1,0 +1,29 @@
+{
+  "scope": "Distinct final Joy dd61 host-deadline feature-branch package rehearsal; prior source734 and frozen e4bac receipts unchanged",
+  "validation_profile": "final-host-ceiling-v1",
+  "status": "active",
+  "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+  "phase": "produce",
+  "asset_id": 605224542,
+  "inputs_sha256": "6a9e9af007de7f1d3dca6cb078080270cb4b96057db182f9c64775d063d6e767",
+  "selfhost_kit": {
+    "asset_id": 604463150,
+    "sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd"
+  },
+  "neptune_intent": {
+    "asset_id": 568147730,
+    "sha256": "404ba33e683103e9cceaa7c21fcd6443401f8ba4216b8e77230ed34b24e249d0"
+  },
+  "targets": [
+    "x86_64-unknown-linux-gnu",
+    "aarch64-unknown-linux-gnu",
+    "x86_64-pc-windows-msvc",
+    "aarch64-pc-windows-msvc",
+    "x86_64-apple-darwin"
+  ],
+  "full_baselines": false,
+  "baseline_reference": {
+    "asset_id": 605010237,
+    "sha256": "54db68904fc8c92f1446c46cb7b90345a05e026a92b46e6ccb259822a3328204"
+  }
+}

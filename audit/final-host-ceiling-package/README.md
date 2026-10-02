@@ -1,8 +1,9 @@
 # Final Joy host deadline package evidence
 
 Status: exact final source export, independent remote reproduction and complete
-authenticated source-asset readback passed. Native activation is prepared for
-review; no final native producer or consumer gate has started.
+authenticated source-asset readback passed. Five remote native producers are
+dispatched and the local Mac ARM producer is running. Native acceptance remains
+pending; all consumer selectors remain inactive.
 
 `dependency-scope/` retains the exact Joy11b7→dd61 diff and original Cargo1.89
 locked/offline/all-features dependency observations. The one changed production
@@ -87,8 +88,9 @@ commands on the exact dd61 helper binary, with original review SHA-256
 
 At that preparation observation, all five `.github/final-package-*.json`
 selectors were inactive (`review-before-export`). Their null archive/asset
-identities described work that had not occurred. The separate final workflows require explicit active
-selectors; no source export, asset transport or native gate has been started.
+identities described work that had not occurred. At that observation no source
+export, asset transport or native gate had started. The separate final
+workflows require explicit active selectors.
 The final runner uses the unchanged native hosts, resource bounds, all current
 package gates and corpus rules. Local full198 checks the exact retained
 source734 asset first and runs a fresh guarded gate whenever the actual final
@@ -132,8 +134,8 @@ Its provenance SHA-256 is
 and the vendor inventory remains
 `cf324959661a85fc94cf4345beaf5dbf274c1dbd5fc66960155e0750ace35d1b`.
 The code inputs are fixed at Trisha c8836be and Joy dd61, with the other nine
-selected commits retained explicitly. These identities are now frozen in
-the separate inactive final selectors. No final native build has started.
+selected commits retained explicitly. These identities were frozen in the
+separate inactive final selectors before source reproduction or native builds.
 
 `root-runner-review/` and `independent-final-review/` preserve the independent
 reviews of exact 99fd998 and exporter by byte manifest. The later consumer
@@ -155,9 +157,9 @@ metadata correction. Their original files and exact manifests are retained
 under each review's `supplemental/` directory, with review SHA-256 values
 `07d773115c5b42322f55f9dec95c58e716a78cfff8f1222678f9ff7e1097e654`
 and `309ed6428b65ae99a9b7da9e54740c6692403b2b3c69b6d4fe6c88e5550c0002`.
-The authorized next change activates only the source reproduction selector.
-All native producer/consumer, package transport and Mac14 selectors remain
-inactive until the independent archive and uploaded asset are checked.
+The next authorized change activated only the source reproduction selector.
+All native producer/consumer, package transport and Mac14 selectors remained
+inactive until the independent archive and uploaded asset were checked.
 
 ## Independent reproduction and complete source readback passed
 
@@ -186,3 +188,30 @@ free disk. The original process snapshot includes the two independent
 whole-proof mutators and concurrent compiler work. Native launch requires a
 fresh admission observation; Cargo2/Rayon4 and the existing 28 GiB guards
 remain fixed.
+
+## Final native producers activated
+
+The independent native activation review is retained under
+`root-runner-review/native-activation/`, with original review SHA-256
+`38c43aeceea774978fc918a41610a50dbe3c103bd23b73355baa779f286b59f5`.
+Commit `5de26a93eb4d489d90f150882adec2c47d14bea4` changed only the native
+selector's status and authenticated source asset ID 605224542. Its exact
+selector SHA-256 is
+`0ff11aab6d5ee47f1778965074069cbcb473455e54143419368895343117f3e5`.
+Remote run 36990413939 was dispatched for the five selected native hosts.
+
+The local Mac ARM producer started at 09:33:06 UTC on 2026-10-02 using
+`scripts/native-rehearsal-local.py --family <final-distribution>
+--output-name local-macos-final-rust189 --selector
+.github/final-package-candidate.json --cache
+<final-distribution>/measurements/local-native-asset-cache.json`.
+`native-launch/` preserves the exact absolute command, launch observations,
+three actual native Rust/Cargo/rustdoc 1.89 preflights, cache identities and
+fresh resource admission. Admission measured 53392580608 bytes free disk and
+54 percent free memory on the 48 GiB, 16-CPU host. The existing Cargo2/Rayon4
+and 28 GiB guards remain fixed. An actual Trisha byte comparison will decide
+whether the original full198 coverage is inherited or a fresh gate is needed.
+
+These launch observations are pending producer evidence. The five remote
+hosts, local Mac ARM, complete portable consumer matrix and bounded Mac14
+consumer each require their own actual successful receipts before acceptance.

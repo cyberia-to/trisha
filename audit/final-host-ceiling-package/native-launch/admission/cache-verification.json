@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "assets": [
+    {
+      "asset_id": "605224542",
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/source-export.tar.gz",
+      "bytes": 536837002,
+      "sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8"
+    },
+    {
+      "asset_id": "604463150",
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/distribution/trisha/audit/selfhost-kit/accepted/selfhost-kit.tar.gz",
+      "bytes": 4377450,
+      "sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd"
+    },
+    {
+      "asset_id": "605010237",
+      "path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/measurements/local-rust189-complete/rehearsal-20261002-734df69d-local-rust189-evidence.tar.gz",
+      "bytes": 85557916,
+      "sha256": "54db68904fc8c92f1446c46cb7b90345a05e026a92b46e6ccb259822a3328204"
+    }
+  ]
+}
