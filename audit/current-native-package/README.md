@@ -125,3 +125,17 @@ The source preparation selector activates independent Linux reproduction
 from those same eleven origin commits. Upload to the existing unpublished
 draft requires the exact archive hash. Native builds and the new actual
 198-proof measurement remain pending; no frozen binary receipt is relabeled.
+
+### Independent reproduction passed; native production activated
+
+Run 36968949223 at `1e159e6d3de1cfbba626d1d16cb44f5b4a573136` independently
+reproduced archive `734df69dc7d43467fc9ae574c7cf7b25eb9b4ec9bc08e9ca3f96b9500131f42e`
+from all eleven exact origin pins, passed the strict source/impact guards,
+and uploaded its exact 441342969 bytes to the existing unpublished draft.
+The tag remained absent. `source-reproduction/` retains the original
+authenticated Actions ZIP and the exact source asset receipt.
+
+The current package selector now activates five native remote producer jobs
+and a separately measured local Mac ARM lane. Both use these exact bytes;
+the local lane requires a new full198 proof gate after its fresh builds.
+All producer/consumer and full198 results remain pending at this commit.

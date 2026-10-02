@@ -1,9 +1,9 @@
 {
-  "scope": "Committed pushed release/0.4 branch feature rehearsal; no default-branch release candidate/tag/publication",
+  "scope": "Current production-code native package feature-branch rehearsal; exact source and selector identities required; no default-branch release/tag/publication",
   "phase": "build",
   "full_baselines": false,
-  "asset_id": 604481115,
-  "source_sha256": "e4bac7ff7260a5f395febc196b3e4792653e0ff81d7887d688e16ea0959aa361",
+  "asset_id": 604879597,
+  "source_sha256": "734df69dc7d43467fc9ae574c7cf7b25eb9b4ec9bc08e9ca3f96b9500131f42e",
   "selfhost_kit": {
     "asset_id": 604463150,
     "sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd"
@@ -18,5 +18,7 @@
     "x86_64-pc-windows-msvc",
     "aarch64-pc-windows-msvc",
     "x86_64-apple-darwin"
-  ]
+  ],
+  "validation_profile": "current-package-v1",
+  "inputs_sha256": "e8e03c81f97d6aa5f7b3ab23faca44e058a2bd13dcf1228ffde1c81edb75619f"
 }
