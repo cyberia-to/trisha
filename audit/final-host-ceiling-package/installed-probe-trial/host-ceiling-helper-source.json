@@ -1,0 +1,9 @@
+{
+  "scope": "Actual measured dd61/a96e installed Joy helper trial against unchanged compiler vectors; not a coordinated final package",
+  "joy_path": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/host-deadline/installed-final/bin/joy",
+  "joy_sha256": "d81d61c400148f7b674b4e1a471f6b828773416681d210ccdd34437431357bd9",
+  "joy_source": "dd61df9128f6da1f97d4698f45f154f05312fe51",
+  "fixture_sha256": "4b118cd9c9f20764e46b16676d4cb63599dc40c7e8f3a40a47c4fe5962f752ad",
+  "fixture_source": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189/temporary/cyber-candidate/unpacked/cyber-source",
+  "parent_install_receipt": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/host-deadline/postcommit/receipt.json"
+}
