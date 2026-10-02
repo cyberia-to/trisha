@@ -4,6 +4,7 @@ import gzip
 import hashlib
 import json
 from pathlib import Path
+import re
 
 FROZEN = '9fddb8002ebb49ad724dfeb20972066c1de0b75b22f806b5360609bb12eaaec5'
 PROFILE = 'cda54f7ee5f34f01566cc728c22b3dd97bee63247c646c518039d9906309717f'
@@ -84,6 +85,15 @@ def check(source, selector, references):
             and local['actual_rustc'].startswith('rustc 1.89.0 ')
             and local['target'] == 'aarch64-apple-darwin'
             and local['trident_passed'] > 0, 'frozen local native CPU evidence differs')
+    raw_log = (references / 'frozen-local-trident-tests.log').read_bytes()
+    raw_candidate = (references / 'frozen-local-candidate.json').read_bytes()
+    candidate = json.loads(raw_candidate)
+    summaries = re.findall(r'^test result:.*$', raw_log.decode(), re.M)
+    require(digest(raw_log) == local['log_sha256'] and digest(raw_candidate) == local['candidate_sha256']
+            and candidate['provenance_sha256'] == FROZEN and candidate['toolchain'] == local['actual_rustc']
+            and summaries and all(line.startswith('test result: ok.') and '; 0 failed;' in line for line in summaries)
+            and sum(map(int, re.findall(r'^test result: ok\. (\d+) passed;', raw_log.decode(), re.M))) == local['trident_passed'],
+            'frozen local CPU raw evidence differs')
     require(digest((source / 'vendor-sources.json').read_bytes()) == VENDOR, 'Triton vendor inventory changed')
     comparisons = []
     for name in sorted(current):
