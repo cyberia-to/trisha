@@ -1,0 +1,70 @@
+{
+  "scripts/native-candidate.py": {
+    "bytes": 26414,
+    "sha256": "b2ef3e9ac773e6326f084cdf9cf419766272646d9c6ad7050953a0b3417a7e05"
+  },
+  "scripts/native-rehearsal-macos-floor.py": {
+    "bytes": 9072,
+    "sha256": "1997002295a3596e28a21c5eac90da648739258b5d70471abfdc77cf428e12c5"
+  },
+  "scripts/transport-native-rehearsal.py": {
+    "bytes": 12788,
+    "sha256": "685cf20dcc3c593be06092c62d050d42c316f0bea355ba6a364d2056035b54f9"
+  },
+  "scripts/test_final_native_gate.py": {
+    "bytes": 7271,
+    "sha256": "cf494c9486dd3853925909bee149936e31fc08761c9daa9ad7763d25f356d70c"
+  },
+  "scripts/test_transport_native_rehearsal.py": {
+    "bytes": 4106,
+    "sha256": "2edb8f80ac9778dcbcda5ef787842e55056f471db15fc7186bdb7a9bd9e42f14"
+  },
+  "scripts/check-installed-host-ceiling.py": {
+    "bytes": 6762,
+    "sha256": "20c434ab117fe2e54e7e1a80e39f232fac4ef32f92803326bf9213e78fceebf7"
+  },
+  "scripts/prepare-native-rehearsal.py": {
+    "bytes": 8483,
+    "sha256": "45c5036b799726a4514921f142cfa3601f7ed37581fd12b628cf089f68ec6191"
+  },
+  "audit/final-host-ceiling-package/README.md": {
+    "bytes": 9132,
+    "sha256": "4afe0b4e822945725fa6b8b2e3aead440e6a40e9bc3571912fb9e42a30b240ff"
+  },
+  ".github/final-package-source.json": {
+    "bytes": 2959,
+    "sha256": "bcf7d05b5f437d3ea0b74d41c7047066a1a5b89f313ab64de5e0610c31df49f8"
+  },
+  ".github/final-package-inputs.json": {
+    "bytes": 3130,
+    "sha256": "6a9e9af007de7f1d3dca6cb078080270cb4b96057db182f9c64775d063d6e767"
+  },
+  ".github/final-package-candidate.json": {
+    "bytes": 1070,
+    "sha256": "bacc629e0dc934eb40edd664d9380c96ee4aa94dedb47a66d5e19b1895d1a91f"
+  },
+  ".github/final-package-assets.json": {
+    "bytes": 742,
+    "sha256": "3661376ab2179436bce39a9e8bf8a79ca6f93b022178e9fef24e340b76ffe166"
+  },
+  ".github/final-package-macos-floor.json": {
+    "bytes": 548,
+    "sha256": "cebc66f37247e09367b3446cbfe5a6ab19a1080df844eb35619a999849e85948"
+  },
+  ".github/workflows/final-package-source.yml": {
+    "bytes": 1620,
+    "sha256": "9352deee130868bc76c98ce4c749db10f8c2fca7ee5e15a326eab85e8e81c351"
+  },
+  ".github/workflows/final-package-native.yml": {
+    "bytes": 2886,
+    "sha256": "27477b80d145cbcad6c559d801df7f67ffe16fd3f6ac06bcd6c355fdd091e087"
+  },
+  ".github/workflows/final-package-assets.yml": {
+    "bytes": 1628,
+    "sha256": "6d3c9a744e4650e654fb9d0b7da502319b857d4c254d9bc8a45f6896bb7c306e"
+  },
+  ".github/workflows/final-package-macos-floor.yml": {
+    "bytes": 1702,
+    "sha256": "9f0b7c10c93e39ff3d70cd2103ad58f16ab426d885f614c5fb5cc09c79aa60da"
+  }
+}

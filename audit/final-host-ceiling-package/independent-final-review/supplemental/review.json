@@ -1,0 +1,133 @@
+{
+  "schema": "independent/final-package-supplemental-review/v1",
+  "status": "passed-source-review",
+  "head": "9f38a66e970fdabbf814e937ac39c42b82985ab5",
+  "prior_reviewed_head": "99fd9989e4dea7a0a06e11dbff68bb91e54fa0f9",
+  "scope": "Read-only supplemental consumer deadline probe and authenticated package metadata identity changes; no export, network, activation or native gate execution.",
+  "sources": {
+    "scripts/native-candidate.py": {
+      "bytes": 26414,
+      "sha256": "b2ef3e9ac773e6326f084cdf9cf419766272646d9c6ad7050953a0b3417a7e05"
+    },
+    "scripts/native-rehearsal-macos-floor.py": {
+      "bytes": 9072,
+      "sha256": "1997002295a3596e28a21c5eac90da648739258b5d70471abfdc77cf428e12c5"
+    },
+    "scripts/transport-native-rehearsal.py": {
+      "bytes": 12788,
+      "sha256": "685cf20dcc3c593be06092c62d050d42c316f0bea355ba6a364d2056035b54f9"
+    },
+    "scripts/test_final_native_gate.py": {
+      "bytes": 7271,
+      "sha256": "cf494c9486dd3853925909bee149936e31fc08761c9daa9ad7763d25f356d70c"
+    },
+    "scripts/test_transport_native_rehearsal.py": {
+      "bytes": 4106,
+      "sha256": "2edb8f80ac9778dcbcda5ef787842e55056f471db15fc7186bdb7a9bd9e42f14"
+    },
+    "scripts/check-installed-host-ceiling.py": {
+      "bytes": 6762,
+      "sha256": "20c434ab117fe2e54e7e1a80e39f232fac4ef32f92803326bf9213e78fceebf7"
+    },
+    "scripts/prepare-native-rehearsal.py": {
+      "bytes": 8483,
+      "sha256": "45c5036b799726a4514921f142cfa3601f7ed37581fd12b628cf089f68ec6191"
+    },
+    "audit/final-host-ceiling-package/README.md": {
+      "bytes": 9132,
+      "sha256": "4afe0b4e822945725fa6b8b2e3aead440e6a40e9bc3571912fb9e42a30b240ff"
+    },
+    ".github/final-package-source.json": {
+      "bytes": 2959,
+      "sha256": "bcf7d05b5f437d3ea0b74d41c7047066a1a5b89f313ab64de5e0610c31df49f8"
+    },
+    ".github/final-package-inputs.json": {
+      "bytes": 3130,
+      "sha256": "6a9e9af007de7f1d3dca6cb078080270cb4b96057db182f9c64775d063d6e767"
+    },
+    ".github/final-package-candidate.json": {
+      "bytes": 1070,
+      "sha256": "bacc629e0dc934eb40edd664d9380c96ee4aa94dedb47a66d5e19b1895d1a91f"
+    },
+    ".github/final-package-assets.json": {
+      "bytes": 742,
+      "sha256": "3661376ab2179436bce39a9e8bf8a79ca6f93b022178e9fef24e340b76ffe166"
+    },
+    ".github/final-package-macos-floor.json": {
+      "bytes": 548,
+      "sha256": "cebc66f37247e09367b3446cbfe5a6ab19a1080df844eb35619a999849e85948"
+    },
+    ".github/workflows/final-package-source.yml": {
+      "bytes": 1620,
+      "sha256": "9352deee130868bc76c98ce4c749db10f8c2fca7ee5e15a326eab85e8e81c351"
+    },
+    ".github/workflows/final-package-native.yml": {
+      "bytes": 2886,
+      "sha256": "27477b80d145cbcad6c559d801df7f67ffe16fd3f6ac06bcd6c355fdd091e087"
+    },
+    ".github/workflows/final-package-assets.yml": {
+      "bytes": 1628,
+      "sha256": "6d3c9a744e4650e654fb9d0b7da502319b857d4c254d9bc8a45f6896bb7c306e"
+    },
+    ".github/workflows/final-package-macos-floor.yml": {
+      "bytes": 1702,
+      "sha256": "9f0b7c10c93e39ff3d70cd2103ad58f16ab426d885f614c5fb5cc09c79aa60da"
+    }
+  },
+  "findings": [],
+  "checks": [
+    "Final verify branch invokes the installed deadline helper once after all six structured corpora, before returning without compiler setup. Non-final verify behavior remains unchanged.",
+    "Mac14 parent keeps the same 5 GiB/1800-second guard around the actual consumer child including the new probe, and binds its passed 23-command receipt to installed Joy, exact installed candidate bytes and source provenance.",
+    "Transport checks actual binary archive SHA256 before reading its candidate.json; helper hashes original archived bytes for ZIP and regular tar member. It rejects build metadata and differently formatted equivalent JSON.",
+    "All five final selectors remain inactive with exported-awaiting-independent-reproduction status at exact reviewed HEAD. Source/inputs/candidate dependent hash links agree. Source workflow activates only the single final-package-source selector; other workflows have separate path/status gates.",
+    "Independent execution: seven orchestration tests plus five transport tests passed under explicit Python 3.14 -B -W error. Full diff --check passed. Worktree HEAD and clean state were checked before/after."
+  ],
+  "limitations": [
+    "No final native consumer, Mac14 probe or remote source reproduction has run in this independent review; tests are orchestration/metadata controls.",
+    "Prior exact 99fd998 source export and original review receipts retain their separate identities. This supplement does not relabel them as runtime consumer coverage.",
+    "Package metadata extraction follows the pre-existing authenticated native artifact trust boundary; this review does not broaden it into a general hostile archive parser.",
+    "Any future active selector or asset identity requires its own concrete review/authorization."
+  ],
+  "evidence": {
+    "sources.json": {
+      "bytes": 2564,
+      "sha256": "cc391f4fe0ab7fc44faac00ee8ffa413e7f31a7158846045a6bda1ba8614b20a"
+    },
+    "commands.json": {
+      "bytes": 1326,
+      "sha256": "af3ccd62230a1f98620af546beacb3f9ec1704753527f7b4788cffdf5b9abc00"
+    },
+    "production-diff.patch": {
+      "bytes": 18774,
+      "sha256": "bdc962d80c7ed01909b08eb93c57d5f3f906fafa256ef558e8dbc4bedccc1bba"
+    },
+    "selector-check.json": {
+      "bytes": 662,
+      "sha256": "5c75f0dd7e4405ce6d612f67d177a3f9e7c311e9c29066884d584d76a96cf7c1"
+    },
+    "orchestration.stdout": {
+      "bytes": 3516,
+      "sha256": "0d97297c86d6e20bcedf743cb8475d0524f4e23635080b2ac4b43bec7fafa280"
+    },
+    "orchestration.stderr": {
+      "bytes": 105,
+      "sha256": "209637c5270ea62667d3505f25f6e8e713fd220b3020983b799e40ff6ae4138a"
+    },
+    "transport.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "transport.stderr": {
+      "bytes": 103,
+      "sha256": "d03ce458f2a6cd2b4f27522f3aacad03ce1872c028853507c3ad02ca621bdcad"
+    },
+    "diff.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "diff.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

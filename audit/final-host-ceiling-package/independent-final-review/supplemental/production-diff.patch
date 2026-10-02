@@ -1,0 +1,333 @@
+diff --git a/.github/final-package-assets.json b/.github/final-package-assets.json
+index 7d15bbc..df8dfdc 100644
+--- a/.github/final-package-assets.json
++++ b/.github/final-package-assets.json
+@@ -1,13 +1,13 @@
+ {
+   "scope": "Distinct final Joy dd61 host-deadline feature-branch package rehearsal; prior source734 and frozen e4bac receipts unchanged",
+   "validation_profile": "final-host-ceiling-v1",
+-  "status": "review-before-export",
+-  "source_sha256": null,
++  "status": "exported-awaiting-independent-reproduction",
++  "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+   "release_id": 389977897,
+   "release_tag": "candidate-20260916.1",
+   "asset_prefix": "rehearsal-20261002-final-dd61-remote",
+-  "provenance_sha256": null,
+-  "inputs_sha256": null,
++  "provenance_sha256": "9334dead92b990a12acf16a2565aeb762a07311dfc2c3d6cb896c0490dc5926e",
++  "inputs_sha256": "6a9e9af007de7f1d3dca6cb078080270cb4b96057db182f9c64775d063d6e767",
+   "kit_sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd",
+   "producers": []
+ }
+diff --git a/.github/final-package-candidate.json b/.github/final-package-candidate.json
+index e17eefa..6dd965f 100644
+--- a/.github/final-package-candidate.json
++++ b/.github/final-package-candidate.json
+@@ -1,11 +1,11 @@
+ {
+   "scope": "Distinct final Joy dd61 host-deadline feature-branch package rehearsal; prior source734 and frozen e4bac receipts unchanged",
+   "validation_profile": "final-host-ceiling-v1",
+-  "status": "review-before-export",
+-  "source_sha256": null,
++  "status": "exported-awaiting-independent-reproduction",
++  "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+   "phase": "produce",
+   "asset_id": null,
+-  "inputs_sha256": null,
++  "inputs_sha256": "6a9e9af007de7f1d3dca6cb078080270cb4b96057db182f9c64775d063d6e767",
+   "selfhost_kit": {
+     "asset_id": 604463150,
+     "sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd"
+diff --git a/.github/final-package-inputs.json b/.github/final-package-inputs.json
+index 17171be..8f3c754 100644
+--- a/.github/final-package-inputs.json
++++ b/.github/final-package-inputs.json
+@@ -1,9 +1,9 @@
+ {
+   "scope": "Distinct final Joy dd61 host-deadline feature-branch package rehearsal; prior source734 and frozen e4bac receipts unchanged",
+   "validation_profile": "final-host-ceiling-v1",
+-  "status": "review-before-export",
+-  "source_sha256": null,
+-  "source_provenance_sha256": null,
++  "status": "exported-awaiting-independent-reproduction",
++  "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
++  "source_provenance_sha256": "9334dead92b990a12acf16a2565aeb762a07311dfc2c3d6cb896c0490dc5926e",
+   "vendor_sha256": "cf324959661a85fc94cf4345beaf5dbf274c1dbd5fc66960155e0750ace35d1b",
+   "sources": [
+     {
+diff --git a/.github/final-package-macos-floor.json b/.github/final-package-macos-floor.json
+index d0aaca4..fcd1638 100644
+--- a/.github/final-package-macos-floor.json
++++ b/.github/final-package-macos-floor.json
+@@ -1,8 +1,8 @@
+ {
+   "scope": "Actual macOS14 ARM installed final Joy/Trisha legacy and structured corpus plus accepted-kit consumer only; measured host, no whole-proof generation or Trident/LSP floor qualification",
+   "validation_profile": "final-host-ceiling-v1",
+-  "status": "review-before-export",
+-  "source_sha256": null,
++  "status": "exported-awaiting-independent-reproduction",
++  "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+   "candidate_selector": ".github/final-package-candidate.json",
+-  "selector_sha256": null
++  "selector_sha256": "bacc629e0dc934eb40edd664d9380c96ee4aa94dedb47a66d5e19b1895d1a91f"
+ }
+diff --git a/.github/final-package-source.json b/.github/final-package-source.json
+index 0bc96b3..bf039b1 100644
+--- a/.github/final-package-source.json
++++ b/.github/final-package-source.json
+@@ -1,8 +1,8 @@
+ {
+   "scope": "Distinct final Joy dd61 host-deadline feature-branch package rehearsal; prior source734 and frozen e4bac receipts unchanged",
+   "validation_profile": "final-host-ceiling-v1",
+-  "status": "review-before-export",
+-  "source_sha256": null,
++  "status": "exported-awaiting-independent-reproduction",
++  "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+   "release_id": 389977897,
+   "release_tag": "candidate-20260916.1",
+   "asset_name": "rehearsal-20261002-final-dd61-source.tar.gz",
+diff --git a/scripts/native-candidate.py b/scripts/native-candidate.py
+index d3d21c5..deb15e0 100644
+--- a/scripts/native-candidate.py
++++ b/scripts/native-candidate.py
+@@ -258,6 +258,10 @@ def main():
+                          '--candidate', work/'installed/cyber-tools',
+                          '--receipt', results/f'structured-verification-{index}.json'],
+                         results/f'structured-verification-{index}.log', env, work)
++            if final:
++                run([sys.executable, '-B', checkout/'scripts/check-installed-host-ceiling.py', '--source', source,
++                     '--candidate', work/'installed/cyber-tools', '--output', results/'installed-host-ceiling'],
++                    results/'installed-host-ceiling.log', env, work)
+             return
+         nu_archive = work/('nu'+extension)
+         url = f'https://github.com/nushell/nushell/releases/download/0.112.2/nu-0.112.2-{target}{extension}'
+diff --git a/scripts/native-rehearsal-macos-floor.py b/scripts/native-rehearsal-macos-floor.py
+index 4329183..31b9dc7 100644
+--- a/scripts/native-rehearsal-macos-floor.py
++++ b/scripts/native-rehearsal-macos-floor.py
+@@ -60,8 +60,8 @@ def main():
+     child = None
+     save()
+     try:
+-        # These host tools are inspected only. No Cargo build, Rust compiler,
+-        # or prover is invoked by the selected verification phase.
++        # These host tools are inspected only. The final profile also exercises
++        # bounded installed Joy certificate probes; no build or full198 runs.
+         commands = {
+             'os': ['sw_vers'], 'kernel': ['uname', '-a'], 'architecture': ['arch'],
+             'memory': ['sysctl', '-n', 'hw.memsize'], 'python': [sys.executable, '-VV'],
+@@ -132,6 +132,16 @@ def main():
+                 if verification.get('all_checks_passed') is not True or len(verification['cases']) != 27:
+                     raise ValueError('incomplete structured corpus verification')
+                 report['structured_verifications'].append(dict(target=corpus['target'], receipt=path.name, sha256=sha(path)))
++        if selected.get('validation_profile') == 'final-host-ceiling-v1':
++            path = root / 'release-results/installed-host-ceiling/receipt.json'
++            deadline = json.loads(path.read_text())
++            joy = next(row['sha256'] for row in candidate['binaries'] if row['name'] == 'joy')
++            if (deadline['status'] != 'passed' or deadline['accepted'] != 15 or deadline['rejected'] != 8
++                    or len(deadline['commands']) != 23 or deadline['joy']['sha256'] != joy
++                    or deadline['candidate_sha256'] != sha(installed)
++                    or deadline['source_provenance_sha256'] != candidate['provenance_sha256']):
++                raise ValueError('actual Mac14 installed deadline probe differs')
++            report['installed_host_ceiling'] = dict(receipt=str(path.relative_to(root)), sha256=sha(path), accepted=15, rejected=8)
+         report['status'] = 'passed'
+     except BaseException:
+         if child is not None and child.poll() is None:
+diff --git a/scripts/test_final_native_gate.py b/scripts/test_final_native_gate.py
+index a8b9932..d9f1adb 100644
+--- a/scripts/test_final_native_gate.py
++++ b/scripts/test_final_native_gate.py
+@@ -1,6 +1,7 @@
+ """Exercise native orchestration at the inheritance/fresh-proof boundary."""
+ import importlib.util
+ import json
++import os
+ from pathlib import Path
+ import tempfile
+ from types import SimpleNamespace
+@@ -70,6 +71,69 @@ class FullGate(unittest.TestCase):
+         self.assertFalse(fresh or retained)
+         self.assertIsNotNone(error)
+ 
++    def test_final_verify_route_runs_installed_deadline_probe_before_return(self):
++        # Explicit orchestration stubs test the real verify branch, without
++        # representing any generated certificate or source as a measurement.
++        with tempfile.TemporaryDirectory() as directory:
++            root = Path(directory)
++            checkout, temporary = root/'checkout', root/'temporary'
++            checkout.mkdir()
++            temporary.mkdir()
++            (checkout/'.github').mkdir()
++            archive = b'archive'
++            source = b'[]'
++            digest = native.hashlib.sha256(archive).hexdigest()
++            inputs = checkout/'.github/final-package-inputs.json'
++            inputs.write_text(json.dumps(dict(validation_profile='final-host-ceiling-v1', source_sha256=digest)))
++            target = 'aarch64-apple-darwin'
++            asset = dict(asset_id=1, sha256=digest)
++            selector = dict(validation_profile='final-host-ceiling-v1', status='active', phase='verify',
++                            asset_id=1, source_sha256=digest, inputs_sha256=native.sha(inputs),
++                            selfhost_kit=asset, binaries={target: asset},
++                            corpora=[dict(target=t, **asset) for t in native.NU],
++                            structured_corpora=[dict(target=t, **asset) for t in native.NU])
++            (checkout/'.github/release-candidate.json').write_text(json.dumps(selector))
++            calls = []
++
++            def download(selected, destination, env, maximum=None):
++                destination.write_bytes(archive)
++
++            def extract(path, destination):
++                destination.mkdir()
++                if destination.name == 'unpacked':
++                    (destination/'cyber-source').mkdir()
++                    (destination/'cyber-source/sources.json').write_bytes(source)
++                elif destination.name == 'installed':
++                    package = destination/'cyber-tools'
++                    (package/'share/trident-selfhost').mkdir(parents=True)
++                    (package/'share/trident-selfhost/kit.json').write_bytes(b'kit')
++                    (package/'candidate.json').write_text(json.dumps(dict(provenance_sha256=native.hashlib.sha256(source).hexdigest())))
++
++            def command(args, log, env, cwd):
++                calls.append(list(map(str, args)))
++                if 'unpack' in args:
++                    kit = temporary/'cyber-candidate/selfhost-kit'
++                    kit.mkdir()
++                    (kit/'kit.json').write_bytes(b'kit')
++
++            before = Path.cwd()
++            try:
++                os.chdir(checkout)
++                environment = dict(RELEASE_TARGET=target, RELEASE_SELECTOR='.github/release-candidate.json', RUNNER_TEMP=str(temporary))
++                with patch.dict(os.environ, environment), patch.object(native.platform, 'machine', lambda: 'arm64'), \
++                        patch.object(native, 'download', download), patch.object(native, 'extract', extract), \
++                        patch.object(native, 'run', command), patch.object(native, 'pin_toolchain') as compiler:
++                    native.main()
++                    compiler.assert_not_called()
++            finally:
++                os.chdir(before)
++            probes = [i for i, row in enumerate(calls) if row[2].endswith('/check-installed-host-ceiling.py')]
++            corpora = [i for i, row in enumerate(calls) if row[2].endswith('/current-structured-corpus.py')]
++            self.assertEqual(len(probes), 1)
++            self.assertEqual(len(corpora), 6)
++            self.assertGreater(probes[0], max(corpora))
++            self.assertIn(str(temporary/'cyber-candidate/installed/cyber-tools'), calls[probes[0]])
++
+ 
+ if __name__ == '__main__':
+     unittest.main()
+diff --git a/scripts/test_transport_native_rehearsal.py b/scripts/test_transport_native_rehearsal.py
+index 0888c1e..5d30adb 100644
+--- a/scripts/test_transport_native_rehearsal.py
++++ b/scripts/test_transport_native_rehearsal.py
+@@ -1,7 +1,13 @@
+ """Reject the observed PATH-shadowing error before preserving native assets."""
+ import importlib.util
++import hashlib
++import io
++import json
+ from pathlib import Path
++import tarfile
++import tempfile
+ import unittest
++import zipfile
+ 
+ spec = importlib.util.spec_from_file_location(
+     'transport_native_rehearsal', Path(__file__).with_name('transport-native-rehearsal.py'))
+@@ -31,6 +37,41 @@ class ActualToolchainTests(unittest.TestCase):
+             with self.subTest(observed=observed), self.assertRaises(ValueError):
+                 transport.require_pinned_toolchain({'toolchain': observed}, self.target)
+ 
++    def test_probe_uses_original_packaged_candidate_bytes_for_both_archive_types(self):
++        raw = b'{"binaries":[],"provenance_sha256":"measured"}\n'
++        expected = hashlib.sha256(raw).hexdigest()
++        with tempfile.TemporaryDirectory() as directory:
++            root = Path(directory)
++            binary = root/'binary.tar.gz'
++            with tarfile.open(binary, 'w:gz') as archive:
++                member = tarfile.TarInfo('cyber-tools/candidate.json')
++                member.size = len(raw)
++                archive.addfile(member, io.BytesIO(raw))
++            self.assertEqual(transport.packaged_candidate_sha256(binary), expected)
++            binary = root/'binary.zip'
++            with zipfile.ZipFile(binary, 'w') as archive:
++                archive.writestr('cyber-tools/candidate.json', raw)
++            self.assertEqual(transport.packaged_candidate_sha256(binary), expected)
++            original = b'{"binaries":[],"provenance_sha256":"measured","source":"build-path"}\n'
++            self.assertNotEqual(hashlib.sha256(original).hexdigest(), expected)
++
++    def test_original_build_metadata_and_reformatted_metadata_are_rejected(self):
++        candidate = dict(binaries=[dict(name='joy', sha256='a'*64)], provenance_sha256='measured')
++        raw = (json.dumps(candidate, indent=2) + '\n').encode()
++        deadline = dict(status='passed', accepted=15, rejected=8, commands=[{}]*23,
++                        joy=dict(sha256='a'*64), source_provenance_sha256='measured',
++                        candidate_sha256=hashlib.sha256(raw).hexdigest())
++        with tempfile.TemporaryDirectory() as directory:
++            binary = Path(directory)/'binary.zip'
++            with zipfile.ZipFile(binary, 'w') as archive:
++                archive.writestr('cyber-tools/candidate.json', raw)
++            transport.require_installed_deadline(deadline, candidate, 'measured', binary)
++            for altered in ((json.dumps(dict(candidate, source='local-build-source'), indent=2)+'\n').encode(),
++                            json.dumps(candidate, separators=(',', ':')).encode()):
++                with self.subTest(altered=altered), self.assertRaisesRegex(ValueError, 'deadline probe differs'):
++                    transport.require_installed_deadline(dict(deadline, candidate_sha256=hashlib.sha256(altered).hexdigest()),
++                                                         candidate, 'measured', binary)
++
+ 
+ if __name__ == '__main__':
+     unittest.main()
+diff --git a/scripts/transport-native-rehearsal.py b/scripts/transport-native-rehearsal.py
+index 61c55de..86cfb0c 100644
+--- a/scripts/transport-native-rehearsal.py
++++ b/scripts/transport-native-rehearsal.py
+@@ -24,6 +24,28 @@ def require_pinned_toolchain(candidate, target):
+     return observed
+ 
+ 
++def packaged_candidate_sha256(binary):
++    if binary.suffix == '.zip':
++        with zipfile.ZipFile(binary) as archive:
++            raw = archive.read('cyber-tools/candidate.json')
++    else:
++        with tarfile.open(binary) as archive:
++            member = archive.getmember('cyber-tools/candidate.json')
++            if not member.isfile():
++                raise ValueError('packaged candidate must be a regular file')
++            raw = archive.extractfile(member).read()
++    return hashlib.sha256(raw).hexdigest()
++
++
++def require_installed_deadline(deadline, candidate, provenance, binary):
++    joy = next(row['sha256'] for row in candidate['binaries'] if row['name'] == 'joy')
++    if (deadline['status'] != 'passed' or deadline['accepted'] != 15 or deadline['rejected'] != 8
++            or len(deadline['commands']) != 23 or deadline['joy']['sha256'] != joy
++            or deadline['source_provenance_sha256'] != provenance
++            or deadline['candidate_sha256'] != packaged_candidate_sha256(binary)):
++        raise ValueError('final installed deadline probe differs from actual native package')
++
++
+ def main():
+     checkout = Path.cwd()
+     spec = json.loads((checkout / os.environ.get('REHEARSAL_ASSETS_SELECTOR', '.github/native-rehearsal-assets.json')).read_text())
+@@ -124,18 +146,13 @@ def main():
+                         or impact['selector_sha256'] != spec['inputs_sha256']):
+                     raise ValueError('current package source impact guard differs')
+                 observed.update(cargo_version_observation=paths['cargo']['version'], rustdoc=paths['rustdoc']['version'])
+-            if spec.get('validation_profile') == 'final-host-ceiling-v1':
+-                deadline = json.loads((restored / 'installed-host-ceiling/receipt.json').read_text())
+-                joy = next(row['sha256'] for row in candidate['binaries'] if row['name'] == 'joy')
+-                if (deadline['status'] != 'passed' or deadline['accepted'] != 15 or deadline['rejected'] != 8
+-                        or len(deadline['commands']) != 23 or deadline['joy']['sha256'] != joy
+-                        or deadline['source_provenance_sha256'] != spec['provenance_sha256']
+-                        or deadline['candidate_sha256'] != sha(restored / 'candidate.json')):
+-                    raise ValueError('final installed deadline probe differs from actual native package')
+             report.setdefault('producer_toolchains', []).append(observed)
+             binary = restored / produced['archive']
+             if binary.parent != restored or sha(binary) != produced['sha256']:
+                 raise ValueError('native binary archive identity mismatch')
++            if spec.get('validation_profile') == 'final-host-ceiling-v1':
++                deadline = json.loads((restored / 'installed-host-ceiling/receipt.json').read_text())
++                require_installed_deadline(deadline, candidate, spec['provenance_sha256'], binary)
+             proof = restored / ('proof-corpus-' + target + '.tar.gz')
+             with tarfile.open(proof) as content:
+                 member = content.getmember('proof-corpus/corpus.json')

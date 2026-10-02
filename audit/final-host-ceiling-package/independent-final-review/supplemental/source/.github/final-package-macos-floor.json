@@ -1,0 +1,8 @@
+{
+  "scope": "Actual macOS14 ARM installed final Joy/Trisha legacy and structured corpus plus accepted-kit consumer only; measured host, no whole-proof generation or Trident/LSP floor qualification",
+  "validation_profile": "final-host-ceiling-v1",
+  "status": "exported-awaiting-independent-reproduction",
+  "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+  "candidate_selector": ".github/final-package-candidate.json",
+  "selector_sha256": "bacc629e0dc934eb40edd664d9380c96ee4aa94dedb47a66d5e19b1895d1a91f"
+}

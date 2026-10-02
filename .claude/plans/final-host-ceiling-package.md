@@ -1,9 +1,9 @@
 # Final package after the explicit Joy host ceiling change
 
-Status: contract, inheritance checker and installed deadline probe independently
-reviewed. Final source guard, native runner and inactive selectors are prepared
-for review, with actual source preview and fail-closed orchestration checks.
-No final source archive has been exported or native gate dispatched.
+Status: source guard, native runner, inactive selectors and consumer/transport
+followup passed root and independent reviews. The exact final source export
+passed with archive 73b50ebd and provenance 9334dead. Source-only independent
+reproduction is authorized; all final native gates remain inactive.
 The source734 package remains an immutable prior Joy11b7 measurement.
 
 ## Measured change and fixed scope

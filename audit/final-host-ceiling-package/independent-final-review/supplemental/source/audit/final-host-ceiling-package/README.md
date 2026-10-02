@@ -3,8 +3,7 @@
 Status: contract, source dependency scope and conditional full198 inheritance
 checker are reviewed. Exact source export passed after the root and peer
 runner reviews. Independent remote reproduction and all native final gates
-remain pending. The consumer/transport followup passed both supplemental
-reviews; source reproduction is the next activation.
+remain pending; the consumer/transport followup awaits supplemental review.
 
 `dependency-scope/` retains the exact Joy11b7→dd61 diff and original Cargo1.89
 locked/offline/all-features dependency observations. The one changed production
@@ -87,9 +86,9 @@ are preserved as the expected negative control.
 commands on the exact dd61 helper binary, with original review SHA-256
 `0d51bcaca3ad411865e2129479950bd4046961190080dd0f12bea593889e5e02`.
 
-At that preparation observation, all five `.github/final-package-*.json`
-selectors were inactive (`review-before-export`). Their null archive/asset
-identities described work that had not occurred. The separate final workflows require explicit active
+All five `.github/final-package-*.json` selectors are explicitly inactive
+(`review-before-export`). Their null archive/asset identities describe work
+that has not occurred. The separate final workflows require explicit active
 selectors; no source export, asset transport or native gate has been started.
 The final runner uses the unchanged native hosts, resource bounds, all current
 package gates and corpus rules. Local full198 checks the exact retained
@@ -149,14 +148,3 @@ The original root review's consumer-coverage wording correction is retained as
 `root-runner-review/consumer-coverage-finding.json` (SHA-256
 `6fdd1f798001579028a1749ecb38d58fb040fe41b07710a79901095a92c8b49d`),
 separate from its unchanged original review.
-
-## Source-only activation reviewed
-
-Both supplemental reviews passed the final consumer placement and packaged
-metadata correction. Their original files and exact manifests are retained
-under each review's `supplemental/` directory, with review SHA-256 values
-`07d773115c5b42322f55f9dec95c58e716a78cfff8f1222678f9ff7e1097e654`
-and `309ed6428b65ae99a9b7da9e54740c6692403b2b3c69b6d4fe6c88e5550c0002`.
-The authorized next change activates only the source reproduction selector.
-All native producer/consumer, package transport and Mac14 selectors remain
-inactive until the independent archive and uploaded asset are checked.

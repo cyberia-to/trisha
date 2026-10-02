@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "statuses": {
+    ".github/final-package-source.json": "exported-awaiting-independent-reproduction",
+    ".github/final-package-inputs.json": "exported-awaiting-independent-reproduction",
+    ".github/final-package-candidate.json": "exported-awaiting-independent-reproduction",
+    ".github/final-package-assets.json": "exported-awaiting-independent-reproduction",
+    ".github/final-package-macos-floor.json": "exported-awaiting-independent-reproduction"
+  },
+  "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
+  "inputs_sha256": "6a9e9af007de7f1d3dca6cb078080270cb4b96057db182f9c64775d063d6e767"
+}

@@ -1,0 +1,42 @@
+name: Final deadline package Prepare native rehearsal source
+on:
+  push:
+    branches: ['test/0.4-final-host-ceiling-20261002']
+    paths: ['.github/final-package-source.json']
+permissions:
+  contents: write
+jobs:
+  prepare:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.13.15'
+      - name: Read activation status
+        id: activation
+        shell: bash
+        run: |
+          python3 - <<'PYCODE'
+          import json, os
+          selected = json.load(open('.github/final-package-source.json'))
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('active=' + str(selected.get('status') == 'active').lower() + '\n')
+          PYCODE
+      - name: Reproduce the committed source archive and retain draft transport
+        if: steps.activation.outputs.active == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REHEARSAL_SOURCE_SELECTOR: .github/final-package-source.json
+        run: python3 -B scripts/prepare-native-rehearsal.py
+      - name: Preserve exact preparation evidence
+        if: always() && steps.activation.outputs.active == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: final-package-source-preparation
+          path: rehearsal-source-results/
+          if-no-files-found: error
+          retention-days: 30

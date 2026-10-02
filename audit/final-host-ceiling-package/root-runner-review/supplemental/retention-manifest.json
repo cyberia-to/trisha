@@ -1,0 +1,85 @@
+{
+  "original_directory": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/supplemental",
+  "files": [
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/supplemental/actionlint.stderr",
+      "retained": "actionlint.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/supplemental/actionlint.stdout",
+      "retained": "actionlint.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/supplemental/checks.json",
+      "retained": "checks.json",
+      "encoding": "identity",
+      "bytes": 2259,
+      "sha256": "3401ba65bc1ddff82d6529432c1da2bfe0199fd830017c993b295704ac5b0f4b",
+      "retained_sha256": "3401ba65bc1ddff82d6529432c1da2bfe0199fd830017c993b295704ac5b0f4b"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/supplemental/diff-check.stderr",
+      "retained": "diff-check.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/supplemental/diff-check.stdout",
+      "retained": "diff-check.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/supplemental/orchestration.stderr",
+      "retained": "orchestration.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 105,
+      "sha256": "209637c5270ea62667d3505f25f6e8e713fd220b3020983b799e40ff6ae4138a",
+      "retained_sha256": "b5256d6cfdf17c8f5b61ff2420447d787f9a695e14fb91c4428162db990d9a41"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/supplemental/orchestration.stdout",
+      "retained": "orchestration.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 3516,
+      "sha256": "59022fb7c3072b17dab173b89257a94a781a80c92a194412e91cbc04a8d44195",
+      "retained_sha256": "34c5efee41a7de9738e0c77ebeacee550c0b4dbb51afca6ccc8599f47a231397"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/supplemental/review.json",
+      "retained": "review.json",
+      "encoding": "identity",
+      "bytes": 2822,
+      "sha256": "07d773115c5b42322f55f9dec95c58e716a78cfff8f1222678f9ff7e1097e654",
+      "retained_sha256": "07d773115c5b42322f55f9dec95c58e716a78cfff8f1222678f9ff7e1097e654"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/supplemental/transport.stderr",
+      "retained": "transport.stderr.gz",
+      "encoding": "gzip",
+      "bytes": 103,
+      "sha256": "d03ce458f2a6cd2b4f27522f3aacad03ce1872c028853507c3ad02ca621bdcad",
+      "retained_sha256": "04eac9d9185120cd6136c4064609b21371c7776c9ebdedcc347c5deca82f5411"
+    },
+    {
+      "original": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/root-runner-review/supplemental/transport.stdout",
+      "retained": "transport.stdout.gz",
+      "encoding": "gzip",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "retained_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    }
+  ]
+}
