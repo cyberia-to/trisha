@@ -1,7 +1,7 @@
 {
   "scope": "Distinct final Joy dd61 host-deadline feature-branch package rehearsal; prior source734 and frozen e4bac receipts unchanged",
   "validation_profile": "final-host-ceiling-v1",
-  "status": "exported-awaiting-independent-reproduction",
+  "status": "active",
   "source_sha256": "73b50ebdd451908ca6da801a0c30b81ae6a9bc053e98cb8449db9a209b11f3f8",
   "release_id": 389977897,
   "release_tag": "candidate-20260916.1",
@@ -9,5 +9,41 @@
   "provenance_sha256": "9334dead92b990a12acf16a2565aeb762a07311dfc2c3d6cb896c0490dc5926e",
   "inputs_sha256": "6a9e9af007de7f1d3dca6cb078080270cb4b96057db182f9c64775d063d6e767",
   "kit_sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd",
-  "producers": []
+  "producers": [
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "run_id": 36990413939,
+      "head_sha": "5de26a93eb4d489d90f150882adec2c47d14bea4",
+      "artifact_id": 11221602815,
+      "zip_sha256": "4959b0f9a3c19a750ed7bc595f80fff562d025d3e583b9dc826a2724a2066ce6"
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "run_id": 36990413939,
+      "head_sha": "5de26a93eb4d489d90f150882adec2c47d14bea4",
+      "artifact_id": 11221645284,
+      "zip_sha256": "bf4e7ef2d144120f3b3bb51c6a142ac7643699d82f63ab241a1d097d9e7988ea"
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "run_id": 36990413939,
+      "head_sha": "5de26a93eb4d489d90f150882adec2c47d14bea4",
+      "artifact_id": 11221748513,
+      "zip_sha256": "20a69921428f26e8d40742e402058d239179b57a09f2b206e8380aa3ea37775b"
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "run_id": 36990413939,
+      "head_sha": "5de26a93eb4d489d90f150882adec2c47d14bea4",
+      "artifact_id": 11221631394,
+      "zip_sha256": "66e7671cee0bbddbc429c2f470c66a61477ad522447e23e6d9e92454ca4bb689"
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "run_id": 36990413939,
+      "head_sha": "5de26a93eb4d489d90f150882adec2c47d14bea4",
+      "artifact_id": 11221252119,
+      "zip_sha256": "6eb4b535dd66abacecfe026c3527b172cba1e8fddb6b66499e900c9fd1ee5989"
+    }
+  ]
 }

@@ -1,0 +1,219 @@
+{
+  "status": "passed-transport-selector-review",
+  "started_ns": 1790939720284023000,
+  "scope": "Root review of exact final remote transport selector only; no consumer activation or release publication",
+  "commands": [
+    {
+      "name": "source-transport-native-rehearsal.py",
+      "argv": [
+        "git",
+        "show",
+        "5de26a93eb4d489d90f150882adec2c47d14bea4:scripts/transport-native-rehearsal.py"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+      "exit_code": 0
+    },
+    {
+      "name": "source-final-package-assets.yml",
+      "argv": [
+        "git",
+        "show",
+        "5de26a93eb4d489d90f150882adec2c47d14bea4:.github/workflows/final-package-assets.yml"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+      "exit_code": 0
+    },
+    {
+      "name": "run",
+      "argv": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/actions/runs/36990413939"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+      "exit_code": 0
+    },
+    {
+      "name": "draft",
+      "argv": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/releases/389977897"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+      "exit_code": 0
+    },
+    {
+      "name": "tag",
+      "argv": [
+        "gh",
+        "api",
+        "repos/cyberia-to/trisha/git/ref/tags/candidate-20260916.1"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+      "exit_code": 1
+    },
+    {
+      "name": "aarch64-pc-windows-msvc",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inspect-final-native-producer.py",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221602815",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/aarch64-pc-windows-msvc.json",
+        "--run-id",
+        "36990413939",
+        "--head",
+        "5de26a93eb4d489d90f150882adec2c47d14bea4"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+      "exit_code": 0
+    },
+    {
+      "name": "aarch64-unknown-linux-gnu",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inspect-final-native-producer.py",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221645284",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/aarch64-unknown-linux-gnu.json",
+        "--run-id",
+        "36990413939",
+        "--head",
+        "5de26a93eb4d489d90f150882adec2c47d14bea4"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-apple-darwin",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inspect-final-native-producer.py",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221748513",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/x86_64-apple-darwin.json",
+        "--run-id",
+        "36990413939",
+        "--head",
+        "5de26a93eb4d489d90f150882adec2c47d14bea4"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-pc-windows-msvc",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inspect-final-native-producer.py",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221631394",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/x86_64-pc-windows-msvc.json",
+        "--run-id",
+        "36990413939",
+        "--head",
+        "5de26a93eb4d489d90f150882adec2c47d14bea4"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+      "exit_code": 0
+    },
+    {
+      "name": "x86_64-unknown-linux-gnu",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-W",
+        "error",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/inspect-final-native-producer.py",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/native-runs/36990413939/11221252119",
+        "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/measurements/root-final-assets-review/x86_64-unknown-linux-gnu.json",
+        "--run-id",
+        "36990413939",
+        "--head",
+        "5de26a93eb4d489d90f150882adec2c47d14bea4"
+      ],
+      "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/final-distribution/trisha-native-ci",
+      "exit_code": 0
+    }
+  ],
+  "selector": {
+    "bytes": 2046,
+    "sha256": "81b1f1febf9c59d4beebf0c827d67541c106b7675c5c4ae8a75433e10de6b4e3"
+  },
+  "producer_reviews": [
+    {
+      "target": "aarch64-pc-windows-msvc",
+      "receipt": {
+        "bytes": 6157,
+        "sha256": "02b4c8c54565e1f57f85469277b7ceeebe306bbf637ce857f3dc153d013985e1"
+      },
+      "artifact": {
+        "bytes": 81027031,
+        "sha256": "4959b0f9a3c19a750ed7bc595f80fff562d025d3e583b9dc826a2724a2066ce6"
+      }
+    },
+    {
+      "target": "aarch64-unknown-linux-gnu",
+      "receipt": {
+        "bytes": 6160,
+        "sha256": "fb919b045a79c82671329e6083e06d8598c22c0e729e2d05380f2ec62a394735"
+      },
+      "artifact": {
+        "bytes": 82832232,
+        "sha256": "bf4e7ef2d144120f3b3bb51c6a142ac7643699d82f63ab241a1d097d9e7988ea"
+      }
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "receipt": {
+        "bytes": 6087,
+        "sha256": "db3ec5f2e74a96dad58842b612e599995fa297ee057885a1584bbfcf23f61123"
+      },
+      "artifact": {
+        "bytes": 82798389,
+        "sha256": "20a69921428f26e8d40742e402058d239179b57a09f2b206e8380aa3ea37775b"
+      }
+    },
+    {
+      "target": "x86_64-pc-windows-msvc",
+      "receipt": {
+        "bytes": 6162,
+        "sha256": "2eb738dfd8401446452f3d76b72fc6dabbef84a8467365e1bf764e73a480db77"
+      },
+      "artifact": {
+        "bytes": 82036935,
+        "sha256": "66e7671cee0bbddbc429c2f470c66a61477ad522447e23e6d9e92454ca4bb689"
+      }
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "receipt": {
+        "bytes": 6147,
+        "sha256": "dbf58986ca442cf5059a1635edefe4cac268d2dbe6736e4f85d37a21fdb4911b"
+      },
+      "artifact": {
+        "bytes": 82934847,
+        "sha256": "6eb4b535dd66abacecfe026c3527b172cba1e8fddb6b66499e900c9fd1ee5989"
+      }
+    }
+  ],
+  "inspector": {
+    "bytes": 19072,
+    "sha256": "64572b572e3a7319f837d788307436e36b54802cc0ba6f146c541bb297d43a8a"
+  },
+  "source_guard": "transport source and workflow unchanged from actual producer runner revision",
+  "authorization": "Activate exact reviewed selector only; preserve existing unique draft, no tag or publication; all transport bodies require authenticated readback before consumer selector review.",
+  "ended_ns": 1790939726142151000,
+  "script": {
+    "bytes": 3638,
+    "sha256": "5f2f5ea36e4503cb8b08656ded35108a2fb7caff2ad6c5478ae69df98b0ae734"
+  }
+}
