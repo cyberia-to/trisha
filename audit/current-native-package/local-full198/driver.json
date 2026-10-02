@@ -1,0 +1,60 @@
+{
+  "schema": "local/native-distribution-macos/v1",
+  "scope": "Actual native Mac ARM feature-branch rehearsal; no default-branch release/tag/publication",
+  "started": "2026-10-02T05:29:36.760670+00:00",
+  "status": "passed",
+  "bootstrap_revision": "ecdc4e2ea131c50a860036e34ee7636b91fb8dde",
+  "bootstrap": {
+    "bytes": 23066,
+    "sha256": "2ad6047e170feae6dcb39adf2d9d1a4ac2f981b2f31c44af93570e140554dbcd"
+  },
+  "selector": {
+    "scope": "Current production-code native package feature-branch rehearsal; exact source and selector identities required; no default-branch release/tag/publication",
+    "phase": "build",
+    "full_baselines": true,
+    "asset_id": 604879597,
+    "source_sha256": "734df69dc7d43467fc9ae574c7cf7b25eb9b4ec9bc08e9ca3f96b9500131f42e",
+    "selfhost_kit": {
+      "asset_id": 604463150,
+      "sha256": "a3052d95c3de6d622157988a8e74826b2f0140724a634298458c3d75f6b508bd"
+    },
+    "neptune_intent": {
+      "asset_id": 568147730,
+      "sha256": "404ba33e683103e9cceaa7c21fcd6443401f8ba4216b8e77230ed34b24e249d0"
+    },
+    "targets": [
+      "aarch64-apple-darwin"
+    ],
+    "validation_profile": "current-package-v1",
+    "inputs_sha256": "e8e03c81f97d6aa5f7b3ab23faca44e058a2bd13dcf1228ffde1c81edb75619f"
+  },
+  "command": [
+    "python3",
+    "-B",
+    "local-transport.py"
+  ],
+  "transport_adapter": {
+    "bytes": 1961,
+    "sha256": "5d1df0d6ddd9e88b1b1b997d4dc8883f1918c96436cc3f45b09e1d2579732643"
+  },
+  "cwd": "/Users/master/cyber/.worktrees/selfhost-0.4-finalization-20261002/current-distribution/local-macos-current-rust189",
+  "peak_process_group_rss_bytes": 10900701184,
+  "resource_guard_bytes": 30064771072,
+  "pid": 58003,
+  "exit_code": 0,
+  "resource_stopped": false,
+  "ended": "2026-10-02T06:51:01.944209+00:00",
+  "elapsed_seconds": 4885.090305750025,
+  "driver.stdout": {
+    "bytes": 17937,
+    "sha256": "7bb3bdf72c85d4c722d0d62b6e4dfbff2fb4c9f37c2d16f0ee6ec55bfe1e2129"
+  },
+  "driver.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "resources.jsonl": {
+    "bytes": 90809,
+    "sha256": "cde89f812da6ca305e35754550b5e8c09a031167eec9d8bd863dc8b2c3d7cb41"
+  }
+}
