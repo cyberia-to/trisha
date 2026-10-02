@@ -102,6 +102,17 @@ architecture, and rejects any candidate whose recorded compiler differs.
 Remote asset acceptance now rejects the same mismatch from actual candidate
 metadata. The frozen remote bootstrap does not separately record Cargo's
 version; transport receipts preserve that observation limit explicitly.
+For subsequent builds, `native-candidate.py` now applies the same explicit
+toolchain selection before compilation and records both actual tool versions,
+paths and executable hashes. `bootstrap-toolchain-check/` records its actual
+`pin_toolchain` regression on this host: child lookups resolve Homebrew 1.95
+before selection and the pinned native 1.89 tools afterwards. The current
+remote producer run remains at its original bootstrap revision.
+The local source exporter requested 1.89 through `rustup run ... nu`; that
+invocation alone does not establish the Cargo version used by the external
+Nu process. No observed exporter-version claim is made. Source acceptance
+rests on the exact origin closure, independent byte-identical remote export,
+and source/kit guards.
 
 The dormant `native-rehearsal-macos-floor.yml` adds a separate, free macOS 14
 ARM consumer after all six exact producer assets exist. Its selector hash is
