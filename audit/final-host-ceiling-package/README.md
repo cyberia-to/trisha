@@ -93,3 +93,23 @@ The final runner uses the unchanged native hosts, resource bounds, all current
 package gates and corpus rules. Local full198 checks the exact retained
 source734 asset first and runs a fresh guarded gate whenever the actual final
 Trisha executable or protected inputs differ.
+
+## Supplemental consumer and metadata correction
+
+The initial reviewed runner executed the installed deadline probe in producers
+only. The final verify route now also invokes it on the actual unpacked
+consumer executable after all six structured corpora, including the bounded
+Mac14 lane. That lane retains and checks the exact 23-command probe receipt
+within its unchanged 5 GiB / 1800-second guard. Its scope includes these small
+Joy certificate probes; full198 proof generation remains separate.
+
+Before any final activation, inspection also found that transport compared the
+probe's packaged candidate metadata digest with the build candidate metadata,
+which still contains the local source path. Transport now reads the exact
+`candidate.json` bytes inside the authenticated binary archive.
+`consumer-followup/` records the actual prior Mac package/installed metadata
+equality and original build metadata difference, seven runner tests, four
+transport tests (both ZIP/tar metadata paths), actionlint and diff checks.
+The real verify branch test confirms that its installed probe is reached
+after all six structured corpus calls and returns without entering compilation.
+No final package acceptance is inferred from these orchestration tests.

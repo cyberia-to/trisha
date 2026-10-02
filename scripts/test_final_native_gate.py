@@ -1,6 +1,7 @@
 """Exercise native orchestration at the inheritance/fresh-proof boundary."""
 import importlib.util
 import json
+import os
 from pathlib import Path
 import tempfile
 from types import SimpleNamespace
@@ -69,6 +70,69 @@ class FullGate(unittest.TestCase):
         fresh, error, retained = self.decision(0, 'inherited_full198_coverage', 197, [])
         self.assertFalse(fresh or retained)
         self.assertIsNotNone(error)
+
+    def test_final_verify_route_runs_installed_deadline_probe_before_return(self):
+        # Explicit orchestration stubs test the real verify branch, without
+        # representing any generated certificate or source as a measurement.
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            checkout, temporary = root/'checkout', root/'temporary'
+            checkout.mkdir()
+            temporary.mkdir()
+            (checkout/'.github').mkdir()
+            archive = b'archive'
+            source = b'[]'
+            digest = native.hashlib.sha256(archive).hexdigest()
+            inputs = checkout/'.github/final-package-inputs.json'
+            inputs.write_text(json.dumps(dict(validation_profile='final-host-ceiling-v1', source_sha256=digest)))
+            target = 'aarch64-apple-darwin'
+            asset = dict(asset_id=1, sha256=digest)
+            selector = dict(validation_profile='final-host-ceiling-v1', status='active', phase='verify',
+                            asset_id=1, source_sha256=digest, inputs_sha256=native.sha(inputs),
+                            selfhost_kit=asset, binaries={target: asset},
+                            corpora=[dict(target=t, **asset) for t in native.NU],
+                            structured_corpora=[dict(target=t, **asset) for t in native.NU])
+            (checkout/'.github/release-candidate.json').write_text(json.dumps(selector))
+            calls = []
+
+            def download(selected, destination, env, maximum=None):
+                destination.write_bytes(archive)
+
+            def extract(path, destination):
+                destination.mkdir()
+                if destination.name == 'unpacked':
+                    (destination/'cyber-source').mkdir()
+                    (destination/'cyber-source/sources.json').write_bytes(source)
+                elif destination.name == 'installed':
+                    package = destination/'cyber-tools'
+                    (package/'share/trident-selfhost').mkdir(parents=True)
+                    (package/'share/trident-selfhost/kit.json').write_bytes(b'kit')
+                    (package/'candidate.json').write_text(json.dumps(dict(provenance_sha256=native.hashlib.sha256(source).hexdigest())))
+
+            def command(args, log, env, cwd):
+                calls.append(list(map(str, args)))
+                if 'unpack' in args:
+                    kit = temporary/'cyber-candidate/selfhost-kit'
+                    kit.mkdir()
+                    (kit/'kit.json').write_bytes(b'kit')
+
+            before = Path.cwd()
+            try:
+                os.chdir(checkout)
+                environment = dict(RELEASE_TARGET=target, RELEASE_SELECTOR='.github/release-candidate.json', RUNNER_TEMP=str(temporary))
+                with patch.dict(os.environ, environment), patch.object(native.platform, 'machine', lambda: 'arm64'), \
+                        patch.object(native, 'download', download), patch.object(native, 'extract', extract), \
+                        patch.object(native, 'run', command), patch.object(native, 'pin_toolchain') as compiler:
+                    native.main()
+                    compiler.assert_not_called()
+            finally:
+                os.chdir(before)
+            probes = [i for i, row in enumerate(calls) if row[2].endswith('/check-installed-host-ceiling.py')]
+            corpora = [i for i, row in enumerate(calls) if row[2].endswith('/current-structured-corpus.py')]
+            self.assertEqual(len(probes), 1)
+            self.assertEqual(len(corpora), 6)
+            self.assertGreater(probes[0], max(corpora))
+            self.assertIn(str(temporary/'cyber-candidate/installed/cyber-tools'), calls[probes[0]])
 
 
 if __name__ == '__main__':

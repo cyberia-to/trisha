@@ -60,8 +60,8 @@ def main():
     child = None
     save()
     try:
-        # These host tools are inspected only. No Cargo build, Rust compiler,
-        # or prover is invoked by the selected verification phase.
+        # These host tools are inspected only. The final profile also exercises
+        # bounded installed Joy certificate probes; no build or full198 runs.
         commands = {
             'os': ['sw_vers'], 'kernel': ['uname', '-a'], 'architecture': ['arch'],
             'memory': ['sysctl', '-n', 'hw.memsize'], 'python': [sys.executable, '-VV'],
@@ -132,6 +132,16 @@ def main():
                 if verification.get('all_checks_passed') is not True or len(verification['cases']) != 27:
                     raise ValueError('incomplete structured corpus verification')
                 report['structured_verifications'].append(dict(target=corpus['target'], receipt=path.name, sha256=sha(path)))
+        if selected.get('validation_profile') == 'final-host-ceiling-v1':
+            path = root / 'release-results/installed-host-ceiling/receipt.json'
+            deadline = json.loads(path.read_text())
+            joy = next(row['sha256'] for row in candidate['binaries'] if row['name'] == 'joy')
+            if (deadline['status'] != 'passed' or deadline['accepted'] != 15 or deadline['rejected'] != 8
+                    or len(deadline['commands']) != 23 or deadline['joy']['sha256'] != joy
+                    or deadline['candidate_sha256'] != sha(installed)
+                    or deadline['source_provenance_sha256'] != candidate['provenance_sha256']):
+                raise ValueError('actual Mac14 installed deadline probe differs')
+            report['installed_host_ceiling'] = dict(receipt=str(path.relative_to(root)), sha256=sha(path), accepted=15, rejected=8)
         report['status'] = 'passed'
     except BaseException:
         if child is not None and child.poll() is None:

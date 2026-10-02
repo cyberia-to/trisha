@@ -1,7 +1,12 @@
 """Reject the observed PATH-shadowing error before preserving native assets."""
 import importlib.util
+import hashlib
+import io
 from pathlib import Path
+import tarfile
+import tempfile
 import unittest
+import zipfile
 
 spec = importlib.util.spec_from_file_location(
     'transport_native_rehearsal', Path(__file__).with_name('transport-native-rehearsal.py'))
@@ -30,6 +35,24 @@ class ActualToolchainTests(unittest.TestCase):
                          'host: x86_64-apple-darwin\nrelease: 1.89.0\n'):
             with self.subTest(observed=observed), self.assertRaises(ValueError):
                 transport.require_pinned_toolchain({'toolchain': observed}, self.target)
+
+    def test_probe_uses_original_packaged_candidate_bytes_for_both_archive_types(self):
+        raw = b'{"binaries":[],"provenance_sha256":"measured"}\n'
+        expected = hashlib.sha256(raw).hexdigest()
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            binary = root/'binary.tar.gz'
+            with tarfile.open(binary, 'w:gz') as archive:
+                member = tarfile.TarInfo('cyber-tools/candidate.json')
+                member.size = len(raw)
+                archive.addfile(member, io.BytesIO(raw))
+            self.assertEqual(transport.packaged_candidate_sha256(binary), expected)
+            binary = root/'binary.zip'
+            with zipfile.ZipFile(binary, 'w') as archive:
+                archive.writestr('cyber-tools/candidate.json', raw)
+            self.assertEqual(transport.packaged_candidate_sha256(binary), expected)
+            original = b'{"binaries":[],"provenance_sha256":"measured","source":"build-path"}\n'
+            self.assertNotEqual(hashlib.sha256(original).hexdigest(), expected)
 
 
 if __name__ == '__main__':

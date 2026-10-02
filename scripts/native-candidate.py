@@ -258,6 +258,10 @@ def main():
                          '--candidate', work/'installed/cyber-tools',
                          '--receipt', results/f'structured-verification-{index}.json'],
                         results/f'structured-verification-{index}.log', env, work)
+            if final:
+                run([sys.executable, '-B', checkout/'scripts/check-installed-host-ceiling.py', '--source', source,
+                     '--candidate', work/'installed/cyber-tools', '--output', results/'installed-host-ceiling'],
+                    results/'installed-host-ceiling.log', env, work)
             return
         nu_archive = work/('nu'+extension)
         url = f'https://github.com/nushell/nushell/releases/download/0.112.2/nu-0.112.2-{target}{extension}'

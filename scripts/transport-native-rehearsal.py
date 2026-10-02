@@ -24,6 +24,19 @@ def require_pinned_toolchain(candidate, target):
     return observed
 
 
+def packaged_candidate_sha256(binary):
+    if binary.suffix == '.zip':
+        with zipfile.ZipFile(binary) as archive:
+            raw = archive.read('cyber-tools/candidate.json')
+    else:
+        with tarfile.open(binary) as archive:
+            member = archive.getmember('cyber-tools/candidate.json')
+            if not member.isfile():
+                raise ValueError('packaged candidate must be a regular file')
+            raw = archive.extractfile(member).read()
+    return hashlib.sha256(raw).hexdigest()
+
+
 def main():
     checkout = Path.cwd()
     spec = json.loads((checkout / os.environ.get('REHEARSAL_ASSETS_SELECTOR', '.github/native-rehearsal-assets.json')).read_text())
@@ -124,18 +137,18 @@ def main():
                         or impact['selector_sha256'] != spec['inputs_sha256']):
                     raise ValueError('current package source impact guard differs')
                 observed.update(cargo_version_observation=paths['cargo']['version'], rustdoc=paths['rustdoc']['version'])
+            report.setdefault('producer_toolchains', []).append(observed)
+            binary = restored / produced['archive']
+            if binary.parent != restored or sha(binary) != produced['sha256']:
+                raise ValueError('native binary archive identity mismatch')
             if spec.get('validation_profile') == 'final-host-ceiling-v1':
                 deadline = json.loads((restored / 'installed-host-ceiling/receipt.json').read_text())
                 joy = next(row['sha256'] for row in candidate['binaries'] if row['name'] == 'joy')
                 if (deadline['status'] != 'passed' or deadline['accepted'] != 15 or deadline['rejected'] != 8
                         or len(deadline['commands']) != 23 or deadline['joy']['sha256'] != joy
                         or deadline['source_provenance_sha256'] != spec['provenance_sha256']
-                        or deadline['candidate_sha256'] != sha(restored / 'candidate.json')):
+                        or deadline['candidate_sha256'] != packaged_candidate_sha256(binary)):
                     raise ValueError('final installed deadline probe differs from actual native package')
-            report.setdefault('producer_toolchains', []).append(observed)
-            binary = restored / produced['archive']
-            if binary.parent != restored or sha(binary) != produced['sha256']:
-                raise ValueError('native binary archive identity mismatch')
             proof = restored / ('proof-corpus-' + target + '.tar.gz')
             with tarfile.open(proof) as content:
                 member = content.getmember('proof-corpus/corpus.json')
