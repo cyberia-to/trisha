@@ -5,7 +5,9 @@ the fresh Mac ARM 198-proof gate, the complete six-by-six consumer matrix and
 the bounded macOS 14 ARM consumer passed for exact source 73b50ebd. All twenty
 remote and three local package/corpus bodies passed authenticated readback.
 Original consumer containers and complete local proof evidence are retained.
-Independent final consumer replay passed; release integration is pending.
+Independent final consumer replay passed. [PR24](https://github.com/cyberia-to/trisha/pull/24)
+merged this evidence into `release/0.4` as
+`95899e8f4fe32b5d7269d92b5e63ef429fbfafac`.
 This is a feature-branch rehearsal, not a
 published release.
 

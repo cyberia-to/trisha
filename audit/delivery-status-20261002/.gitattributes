@@ -1,0 +1,5 @@
+# Original read-only publication observation.
+/request.json -text
+/response.json -text
+/stderr.log -text
+/receipt.json -text
