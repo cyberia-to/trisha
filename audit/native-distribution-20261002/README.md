@@ -1,7 +1,10 @@
 # Native 0.4 distribution rehearsal — 2026-10-02
 
-Status: source and accepted-kit guards passed. The Linux ARM and Windows ARM producers passed;
-three remote producers and the corrected local Mac ARM lane remain in progress.
+Status: frozen-source acceptance passed: all six native producers, their
+applicable CPU and package gates, the actual Mac ARM full198 proof gate,
+and all 36 native corpus producer/consumer pairs (1692 case checks).
+The additional macOS 14 ARM consumer passed its separately scoped 282 checks.
+The later current-production package is a distinct pending lane in PR23.
 The first local attempt was rejected for using Homebrew Rust 1.95 instead of
 the pinned 1.89. Its original evidence remains in `rejected-local-rust195/`.
 The fresh local lane checks both actual Rust and Cargo versions and paths.
