@@ -1,6 +1,7 @@
 # Native 0.4 distribution rehearsal — 2026-10-02
 
-Status: source and accepted-kit guards passed; native distribution jobs pending.
+Status: source and accepted-kit guards passed. The Linux ARM producer passed;
+four remote producers and the corrected local Mac ARM lane remain in progress.
 The first local attempt was rejected for using Homebrew Rust 1.95 instead of
 the pinned 1.89. Its original evidence remains in `rejected-local-rust195/`.
 The fresh local lane checks both actual Rust and Cargo versions and paths.
@@ -120,7 +121,7 @@ and source/kit guards.
 
 The dormant `native-rehearsal-macos-floor.yml` adds a separate, free macOS 14
 ARM consumer after all six exact producer assets exist. Its selector hash is
-pinned, and it requires actual Darwin 14 / ARM64 before running the archived
+pinned, and it requires actual macOS 14 / ARM64 before running the archived
 verification phase. It inspects the host/tool versions, records commands and
 sampled process-group RSS, and bounds the consumer to 5 GiB and 30 minutes.
 Only installed-kit smoke and the six existing proof corpora run; no compiler
@@ -130,3 +131,26 @@ The [current standard runner table](https://docs.github.com/en/actions/reference
 lists 7 GB for `macos-14` ARM; GitHub's
 [retirement notice](https://github.com/actions/runner-images/issues/13518)
 sets November 2, 2026 as the image retirement date. No paid runner is selected.
+
+## First measured native producer
+
+The frozen selector at `c94da47247457f9e819c2682e74d34f5f1756f62` passed its
+Linux ARM producer job in [run 36949324686](https://github.com/cyberia-to/trisha/actions/runs/36949324686/job/110658543001).
+`producers/aarch64-unknown-linux-gnu/` retains the artifact API metadata, full
+original-file inventory, compact original logs/receipts, and the independent
+read-only inspection command. Its authenticated original Actions ZIP is retained
+locally with SHA-256 `ccc1174519e4c55444b12ba9cd89674eca3479c9f5df1e64a1f3126efd222031`;
+durable draft transport is pending completion of the whole producer run.
+The actual candidate records native Rust 1.89.0 and Linux/glibc 2.35.
+CPU summaries total 1,231 Trident, 429 Trisha and 173 Joy tests passed, with
+zero failed summaries or Rust warning headers. The installed and unpacked kit,
+Neptune binding/mock-client gates, process/file probes, 133 baseline executions,
+fresh installed proof smoke and 47 corpus cases (18 positive, 29 rejections)
+passed. These are the original frozen Joy proof routes, separate from the newer
+SH7 profile implementation. No full 198-proof result is claimed for this runner.
+The inspector compares the packaged candidate with the documented portable
+inventory: `package-binaries.nu` removes only the absolute build `source` path.
+
+```sh
+python3 -B -W error audit/native-distribution-20261002/inspect-native-producer.py RETAINED_ARTIFACT_DIRECTORY FRESH_INSPECTION_JSON
+```

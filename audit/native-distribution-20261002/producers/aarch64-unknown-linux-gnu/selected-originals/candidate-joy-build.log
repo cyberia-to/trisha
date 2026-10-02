@@ -1,0 +1,132 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.24
+   Compiling serde_core v1.0.229
+   Compiling syn v3.0.5
+   Compiling syn v2.0.119
+   Compiling serde v1.0.229
+   Compiling serde_derive v1.0.229
+   Compiling synstructure v0.13.2
+   Compiling strata-core v0.1.1 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/strata/core)
+   Compiling stable_deref_trait v1.2.1
+   Compiling zerofrom-derive v0.1.7
+   Compiling yoke-derive v0.8.2
+   Compiling zerofrom v0.1.8
+   Compiling strata-ext v0.1.1 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/strata/ext)
+   Compiling strata-proof v0.1.1 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/strata/proof)
+   Compiling zerovec-derive v0.11.6
+   Compiling yoke v0.8.3
+   Compiling strata-compute v0.1.1 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/strata/compute)
+   Compiling displaydoc v0.2.7
+   Compiling zerovec v0.11.8
+   Compiling strata-nebu v0.1.1 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/strata/nebu/rs)
+   Compiling cyber-hemera v0.3.1 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/hemera/rs)
+   Compiling cyber-lens-core v0.1.2 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/lens/core)
+   Compiling tinystr v0.8.4
+   Compiling writeable v0.6.4
+   Compiling libc v0.2.189
+   Compiling litemap v0.8.3
+   Compiling icu_locale_core v2.3.0
+   Compiling potential_utf v0.1.6
+   Compiling zerotrie v0.2.5
+   Compiling smallvec v1.16.0
+   Compiling icu_normalizer_data v2.3.0
+   Compiling icu_properties_data v2.3.0
+   Compiling utf8_iter v1.0.4
+   Compiling icu_collections v2.3.0
+   Compiling icu_provider v2.3.1
+   Compiling pin-project-lite v0.2.17
+   Compiling cyber-lens-brakedown v0.2.0 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/lens/brakedown)
+   Compiling futures-sink v0.3.34
+   Compiling cfg-if v1.0.4
+   Compiling memchr v2.8.3
+   Compiling futures-core v0.3.34
+   Compiling icu_properties v2.3.0
+   Compiling icu_normalizer v2.3.0
+   Compiling zmij v1.0.23
+   Compiling idna_adapter v1.2.2
+   Compiling futures-channel v0.3.34
+   Compiling futures-macro v0.3.34
+   Compiling once_cell v1.21.4
+   Compiling futures-task v0.3.34
+   Compiling serde_json v1.0.151
+   Compiling parking_lot_core v0.9.12
+   Compiling percent-encoding v2.3.2
+   Compiling utf8parse v0.2.2
+   Compiling slab v0.4.12
+   Compiling semver v1.0.28
+   Compiling futures-io v0.3.34
+   Compiling futures-util v0.3.34
+   Compiling rustc_version v0.4.1
+   Compiling anstyle-parse v1.0.0
+   Compiling form_urlencoded v1.2.2
+   Compiling idna v1.1.0
+   Compiling strata-jali v0.1.1 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/strata/jali/rs)
+   Compiling strata-genies v0.1.1 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/strata/genies/rs)
+   Compiling strata-kuro v0.1.1 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/strata/kuro/rs)
+   Compiling strata-trop v0.1.1 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/strata/trop/rs)
+   Compiling pin-project-internal v1.1.13
+   Compiling tokio-macros v2.7.2
+   Compiling scopeguard v1.2.0
+   Compiling httparse v1.10.1
+   Compiling colorchoice v1.0.5
+   Compiling anstyle v1.0.14
+   Compiling thiserror v2.0.20
+   Compiling is_terminal_polyfill v1.70.2
+   Compiling anstyle-query v1.1.5
+   Compiling getrandom v0.3.4
+   Compiling itoa v1.0.18
+   Compiling anstream v1.0.0
+   Compiling tokio v1.53.1
+   Compiling lock_api v0.4.14
+   Compiling pin-project v1.1.13
+   Compiling cyber-lens-assayer v0.2.0 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/lens/assayer)
+   Compiling cyber-lens-binius v0.1.1 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/lens/binius)
+   Compiling cyber-lens-porphyry v0.2.0 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/lens/porphyry)
+   Compiling cyber-lens-ikat v0.2.0 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/lens/ikat)
+   Compiling url v2.5.8
+   Compiling heapless v0.7.17
+   Compiling tracing-core v0.1.36
+   Compiling cyber-nox v0.3.0 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/nox/rs)
+   Compiling tracing-attributes v0.1.31
+   Compiling thiserror-impl v2.0.20
+   Compiling serde_repr v0.1.21
+   Compiling hashbrown v0.14.5
+   Compiling tower-service v0.3.3
+   Compiling tower-layer v0.3.3
+   Compiling bytes v1.12.1
+   Compiling clap_lex v1.1.0
+   Compiling bitflags v1.3.2
+   Compiling strsim v0.11.1
+   Compiling byteorder v1.5.0
+   Compiling heck v0.5.0
+   Compiling hash32 v0.2.1
+   Compiling tokio-util v0.7.19
+   Compiling clap_derive v4.6.4
+   Compiling clap_builder v4.6.6
+   Compiling lsp-types v0.94.1
+   Compiling tower v0.4.13
+   Compiling dashmap v5.5.3
+   Compiling tracing v0.1.44
+   Compiling cyber-lens v0.2.0 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/lens/src)
+   Compiling futures v0.3.34
+   Compiling auto_impl v1.3.0
+   Compiling tower-lsp-macros v0.9.0
+   Compiling async-trait v0.1.92
+   Compiling zeroize v1.9.0
+   Compiling unicode-width v0.1.14
+   Compiling trident-lang v0.3.0 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/trident)
+   Compiling yansi v1.0.1
+   Compiling ariadne v0.4.1
+   Compiling tower-lsp v0.20.0
+   Compiling zheng v0.4.0 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/zheng/rs)
+   Compiling cobs v0.3.0
+   Compiling clap v4.6.6
+   Compiling neuron-id v0.1.0 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/neuron/id)
+   Compiling adler2 v2.0.1
+   Compiling miniz_oxide v0.8.9
+   Compiling bbg v0.3.0 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/bbg/rs)
+   Compiling postcard v1.1.3
+   Compiling joy-rs v0.5.0 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/joy/rs)
+   Compiling cyber-joy v0.5.0 (/home/runner/work/_temp/cyber-candidate/unpacked/cyber-source/joy/cli)
+    Finished `release` profile [optimized] target(s) in 1m 38s

@@ -1,0 +1,651 @@
+{
+  "all_checks_passed": true,
+  "corpus_sha256": "b1ee37ccd9dfe177fce4b7196cc97301d67867509be037e1075efe809652b0ac",
+  "producer_platform": {
+    "name": "linux",
+    "arch": "aarch64",
+    "family": "unix",
+    "kernel_version": "6.8.0-1064-azure"
+  },
+  "consumer_binaries": {
+    "trisha": "2d658d7d32b02e69759a817a20c04864f0c6330cd195a801673a66692a5c15fc",
+    "joy": "c2b2a98bb78306e0d21f98bf688e7db8b6155f0577eab47013c03c8dfe3cef66"
+  },
+  "cases": [
+    {
+      "args": [
+        "verify",
+        "inner.proof.toml"
+      ],
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "verify",
+        "outer.proof.toml"
+      ],
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "verify",
+        "proofs/main.proof.toml"
+      ],
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "verify",
+        "proofs/witness.proof.toml"
+      ],
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "verify",
+        "imported.proof.toml"
+      ],
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "verify",
+        "typed-entry-debug.proof.toml"
+      ],
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "verify",
+        "stack-ram-debug.proof.toml"
+      ],
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "verify",
+        "typed-entry-release.proof.toml"
+      ],
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "verify",
+        "stack-ram-release.proof.toml"
+      ],
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "verify",
+        "main.proof.toml"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "forged-outer.proof.toml"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "imported-bad-output.proof.toml"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "typed-entry-debug-bad-input.proof.toml"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "typed-entry-debug-bad-output.proof.toml"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "stack-ram-debug-bad-output.proof.toml"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "typed-entry-release-bad-input.proof.toml"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "typed-entry-release-bad-output.proof.toml"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "stack-ram-release-bad-output.proof.toml"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "arithmetic.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "arithmetic.zheng",
+        "--input-values",
+        "5",
+        "--claim",
+        "38"
+      ],
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "verify",
+        "arithmetic.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "arithmetic.zheng",
+        "--input-values",
+        "5",
+        "--claim",
+        "39"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "arithmetic.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "arithmetic.zheng",
+        "--input-values",
+        "6",
+        "--claim",
+        "38"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "private.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "private.zheng",
+        "--input-values",
+        "5",
+        "--claim",
+        "1769"
+      ],
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "verify",
+        "private.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "private.zheng",
+        "--input-values",
+        "5",
+        "--claim",
+        "1770"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "private.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "private.zheng",
+        "--input-values",
+        "6",
+        "--claim",
+        "1769"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "state.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "state.zheng",
+        "--input-values",
+        "11",
+        "--claim",
+        "82",
+        "--state",
+        "state.json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "verify",
+        "state.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "state.zheng",
+        "--input-values",
+        "11",
+        "--claim",
+        "83",
+        "--state",
+        "state.json"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "state.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "state.zheng",
+        "--input-values",
+        "12",
+        "--claim",
+        "82",
+        "--state",
+        "state.json"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "state.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "state.zheng",
+        "--input-values",
+        "11",
+        "--claim",
+        "82",
+        "--state",
+        "other-state.json"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "private-state.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "private-state.zheng",
+        "--input-values",
+        "5",
+        "--claim",
+        "82",
+        "--state",
+        "state-all.json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "verify",
+        "private-state.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "private-state.zheng",
+        "--input-values",
+        "5",
+        "--claim",
+        "83",
+        "--state",
+        "state-all.json"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "private-state.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "private-state.zheng",
+        "--input-values",
+        "6",
+        "--claim",
+        "82",
+        "--state",
+        "state-all.json"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "private-state.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "private-state.zheng",
+        "--input-values",
+        "5",
+        "--claim",
+        "82",
+        "--state",
+        "other-state.json"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "typed-nox.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "typed-nox-debug.zheng",
+        "--input-values",
+        "7,19,0,101,103,107,307,311,313,317",
+        "--claim",
+        "719"
+      ],
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "verify",
+        "typed-nox.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "typed-nox-debug.zheng",
+        "--input-values",
+        "7,19,0,101,103,107,307,311,313,317",
+        "--claim",
+        "720"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "typed-nox.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "debug",
+        "--proof",
+        "typed-nox-debug.zheng",
+        "--input-values",
+        "8,19,0,101,103,107,307,311,313,317",
+        "--claim",
+        "719"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "typed-nox.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "typed-nox-release.zheng",
+        "--input-values",
+        "7,19,0,101,103,107,307,311,313,317",
+        "--claim",
+        "719"
+      ],
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "verify",
+        "typed-nox.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "typed-nox-release.zheng",
+        "--input-values",
+        "7,19,0,101,103,107,307,311,313,317",
+        "--claim",
+        "720"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "typed-nox.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "typed-nox-release.zheng",
+        "--input-values",
+        "8,19,0,101,103,107,307,311,313,317",
+        "--claim",
+        "719"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "typed-private.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "typed-private.zheng",
+        "--input-values",
+        "19,0",
+        "--claim",
+        "42"
+      ],
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "verify",
+        "typed-private.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "typed-private.zheng",
+        "--input-values",
+        "19,0",
+        "--claim",
+        "43"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "typed-private.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "typed-private.zheng",
+        "--input-values",
+        "20,0",
+        "--claim",
+        "42"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "loop-private.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "loop-private.zheng",
+        "--input-values",
+        "5",
+        "--claim",
+        "42"
+      ],
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "verify",
+        "loop-private.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "loop-private.zheng",
+        "--input-values",
+        "5",
+        "--claim",
+        "43"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "loop-private.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "loop-private.zheng",
+        "--input-values",
+        "6",
+        "--claim",
+        "42"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "imported-nox.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "imported.zheng",
+        "--input-values",
+        "3,5",
+        "--claim",
+        "803"
+      ],
+      "exit_code": 0
+    },
+    {
+      "args": [
+        "verify",
+        "imported-nox.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "imported.zheng",
+        "--input-values",
+        "3,5",
+        "--claim",
+        "804"
+      ],
+      "exit_code": 1
+    },
+    {
+      "args": [
+        "verify",
+        "imported-nox.tri",
+        "--target",
+        "nox",
+        "--profile",
+        "release",
+        "--proof",
+        "imported.zheng",
+        "--input-values",
+        "4,5",
+        "--claim",
+        "803"
+      ],
+      "exit_code": 1
+    }
+  ]
+}

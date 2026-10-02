@@ -1,0 +1,188 @@
+{
+  "answer": {
+    "bytes": 85,
+    "sha256": "348d22b1dca51095cf13e13a4674727db537c8cd07f21af53009022b5e7bb94a"
+  },
+  "commands": [
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/installed/cyber-tools/bin/joy",
+        "pack-job",
+        "--compiler",
+        "compiler.dag",
+        "--manifest",
+        "package.json",
+        "--output",
+        "job.dag"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/unpacked-selfhost-smoke",
+      "ended_ns": 1790910607731551116,
+      "exit_code": 0,
+      "started_ns": 1790910605963393362,
+      "status": "completed",
+      "stderr": {
+        "bytes": 0,
+        "path": "0.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 1013,
+        "path": "0.stdout",
+        "sha256": "026af4ee55979baa18fbd20a5185983a6249e1414d1e390623aab906c4e08be6"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/installed/cyber-tools/bin/joy",
+        "run-artifact",
+        "compiler.dag",
+        "--input",
+        "job.dag",
+        "--emit",
+        "program",
+        "--output",
+        "sample.dag"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/unpacked-selfhost-smoke",
+      "ended_ns": 1790910609601365966,
+      "exit_code": 0,
+      "started_ns": 1790910607731852361,
+      "status": "completed",
+      "stderr": {
+        "bytes": 0,
+        "path": "1.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 1612,
+        "path": "1.stdout",
+        "sha256": "9275d21e4effb106cbb32fe75337985b29ca4b042b54e699b38a538971d1a0d9"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/installed/cyber-tools/bin/joy",
+        "run-artifact",
+        "sample.dag",
+        "--input",
+        "zero.dag",
+        "--output",
+        "answer.dag"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/unpacked-selfhost-smoke",
+      "ended_ns": 1790910609609381541,
+      "exit_code": 0,
+      "started_ns": 1790910609601689554,
+      "status": "completed",
+      "stderr": {
+        "bytes": 0,
+        "path": "2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 650,
+        "path": "2.stdout",
+        "sha256": "48182dba94119448feae282dadf742f93f175dbc7b676399afe6ab01f3e56f79"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/installed/cyber-tools/bin/joy",
+        "pack-job",
+        "--compiler",
+        "compiler.dag",
+        "--manifest",
+        "package.json",
+        "--output",
+        "bad-job.dag"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/unpacked-selfhost-smoke",
+      "ended_ns": 1790910611379272093,
+      "exit_code": 0,
+      "started_ns": 1790910609609896276,
+      "status": "completed",
+      "stderr": {
+        "bytes": 0,
+        "path": "3.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 1017,
+        "path": "3.stdout",
+        "sha256": "e47ea5869bbd9387de409be5ed887f5f46923018d62856211b5c3778bd9275f6"
+      }
+    },
+    {
+      "argv": [
+        "/home/runner/work/_temp/cyber-candidate/installed/cyber-tools/bin/joy",
+        "run-artifact",
+        "compiler.dag",
+        "--input",
+        "bad-job.dag",
+        "--emit",
+        "program",
+        "--output",
+        "rejected.dag",
+        "--force"
+      ],
+      "cwd": "/home/runner/work/trisha/trisha/release-results/unpacked-selfhost-smoke",
+      "ended_ns": 1790910613248947120,
+      "exit_code": 1,
+      "started_ns": 1790910611379693306,
+      "status": "completed",
+      "stderr": {
+        "bytes": 73,
+        "path": "4.stderr",
+        "sha256": "84652c1ed1c66d5ebbfda8d9ce5f7601e042bfea64394c4de666805def5e3618"
+      },
+      "stdout": {
+        "bytes": 0,
+        "path": "4.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "ended_ns": 1790910613263032655,
+  "implementation": {
+    "selfhost-kit.py": "e196728a2c94e13175c5954271bfab50ed186ca8a0136a65b0e35ddf8395a624",
+    "selfhost_kit.py": "d4d0f47728c97a8762979a32504de41d99630bac5797db5ecb703ec2bb190752",
+    "selfhost_kit_assembly.py": "358db287e7f49ba2980e4a0ee6fb0275f54f6919f89ec6826781bff2b3288ea5"
+  },
+  "joy": {
+    "bytes": 5797456,
+    "path": "/home/runner/work/_temp/cyber-candidate/installed/cyber-tools/bin/joy",
+    "sha256": "c2b2a98bb78306e0d21f98bf688e7db8b6155f0577eab47013c03c8dfe3cef66"
+  },
+  "kit_manifest": {
+    "bytes": 2155,
+    "sha256": "4096a513d439adda55e62731f461ff0a7a72fa0c85d79292090be048b7f55ae8"
+  },
+  "kit_status": "accepted",
+  "outputs": {
+    "answer.dag": {
+      "bytes": 85,
+      "sha256": "348d22b1dca51095cf13e13a4674727db537c8cd07f21af53009022b5e7bb94a"
+    },
+    "bad-job.dag": {
+      "bytes": 8209,
+      "sha256": "e0938cffce6800c46a60be49d928cee5a025c2f3c0e51d756ab05f731c32be78"
+    },
+    "job.dag": {
+      "bytes": 8209,
+      "sha256": "b72bd0849cc8999a71b16ba6fa23386009f96ba7f53c06f41d01d79cac41ea37"
+    },
+    "rejected.dag": {
+      "bytes": 25,
+      "sha256": "ad5fe2d1d3a9c16aca67d90d1ac709615163be42802d06b27cb54f4c3cc39b3b"
+    },
+    "sample.dag": {
+      "bytes": 790,
+      "sha256": "d6a6504b1f0cb8e93f758cd325c2bab254e20e7e1b50d18993ce6ea77c648b82"
+    }
+  },
+  "rejected_output_preserved": true,
+  "schema": "trident/selfhost-kit-smoke/v1",
+  "scope": "supplied Joy distribution compatibility; no new SH6/proof acceptance",
+  "started_ns": 1790910605957811746,
+  "status": "passed"
+}
