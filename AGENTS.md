@@ -1,4 +1,6 @@
-# Trisha — Claude Code Instructions
+# AGENTS.md — trisha
+
+> the doctrine of the home is `~/cyber/AGENTS.md`; it applies here first. Claude Code receives both files at session start through `~/.config/cyber/agents-md.nu`; other agents read them in order.
 
 Triton VM warrior. Execute, prove, verify, deploy Trident programs.
 
